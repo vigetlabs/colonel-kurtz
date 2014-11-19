@@ -1,0 +1,40 @@
+{
+  "name": "colonel-kurtz",
+  "version": "0.0.0",
+  "description": "A block editor",
+  "main": "colonel-kurtz/index.js",
+  "scripts": {
+    "start": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/vigetlabs/colonel-kurtz.git"
+  },
+  "keywords": [
+    "block",
+    "editor"
+  ],
+  "author": "Lawson Kurtz <lawson.kurtz@viget.com> (http://viget.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vigetlabs/colonel-kurtz/issues"
+  },
+  "homepage": "https://github.com/vigetlabs/colonel-kurtz",
+  "bugs": "https://github.com/vigetlabs/colonel-kurtz/issues",
+  "devDependencies": {
+    "browserify": "latest",
+    "watchify": "latest",
+    "gulp-util": "latest",
+    "pretty-hrtime": "latest",
+    "gulp-notify": "latest",
+    "vinyl-source-stream": "latest",
+    "run-sequence": "latest",
+    "reactify": "latest",
+    "react-tools": "latest",
+    "uglifyify": "latest"
+  },
+  "dependencies": {
+    "react": "latest"
+  }
+}
