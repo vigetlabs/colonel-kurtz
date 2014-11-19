@@ -11,7 +11,7 @@ var exportGlobal = function(name: string, object: any) {
         window[name] = object
     }
     else {
-        throw new Error("Unkown run-time environment. Currently only browsers and Node.js are supported.")
+        throw new Error("Unknown run-time environment. Currently only browsers and Node.js are supported.")
     }
 }
 
