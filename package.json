@@ -4,7 +4,8 @@
   "description": "A block editor",
   "main": "colonel-kurtz/index.js",
   "scripts": {
-    "start": "gulp",
+    "start": "NODE_ENV=development webpack -wd",
+    "build": "NODE_ENV=production webpack -p",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,26 +16,28 @@
     "block",
     "editor"
   ],
-  "author": "Lawson Kurtz <lawson.kurtz@viget.com> (http://viget.com/)",
+  "contributors": [
+    {
+      "name": "Lawson Kurtz",
+      "email": "lawson.kurtz@viget.com",
+      "url": "http://viget.com/"
+    },
+    {
+      "name": "Nate Hunzaker",
+      "email": "nate.hunzaker@viget.com",
+      "url": "http://viget.com/"
+    }
+  ],
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/vigetlabs/colonel-kurtz/issues"
-  },
-  "homepage": "https://github.com/vigetlabs/colonel-kurtz",
   "bugs": "https://github.com/vigetlabs/colonel-kurtz/issues",
+  "homepage": "https://github.com/vigetlabs/colonel-kurtz",
   "devDependencies": {
-    "browserify": "latest",
-    "watchify": "latest",
-    "gulp-util": "latest",
-    "pretty-hrtime": "latest",
-    "gulp-notify": "latest",
-    "vinyl-source-stream": "latest",
-    "run-sequence": "latest",
-    "reactify": "latest",
-    "react-tools": "latest",
-    "uglifyify": "latest"
+    "envify-loader": "^0.1.0",
+    "json-loader": "^0.5.1",
+    "jsx-loader": "^0.12.2",
+    "webpack": "^1.4.13"
   },
   "dependencies": {
-    "react": "latest"
+    "react": ">= 0.12.1"
   }
 }
