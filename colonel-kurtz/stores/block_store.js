@@ -7,7 +7,6 @@ var Constants = require('../constants/block_constants')
 var BlockListConstants = require('../constants/block_list_constants')
 var Actions = require('../actions/block_actions')
 var BlockListActions = require('../actions/block_list_actions')
-var _ = require('underscore')
 
 var _blocks = []
 
@@ -18,7 +17,7 @@ var BlockStore = merge(Events.EventEmitter.prototype, {
   },
 
   find(id: number): Block {
-    return _.find(this.all(), function(block) {
+    return this.all().find(function(block) {
       return block.id === id
     })
   },

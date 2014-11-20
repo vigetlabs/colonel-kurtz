@@ -1,6 +1,5 @@
 /* @flow */
 
-var _ = require('underscore')
 var uid = require('../utils/uid')
 
 var BlockList = function(params: {editorId: number; blockId: number}) {
@@ -31,8 +30,8 @@ BlockList.prototype = {
   },
 
   removeBlock(blockId) {
-    this._blockPositions = _.reject(this._blockPositions, function(blockPosition) {
-      return blockId === blockPosition.blockId
+    this._blockPositions = this._blockPositions.filter(function(blockPosition) {
+      return blockId !== blockPosition.blockId
     })
 
     this._cleanup()
@@ -40,7 +39,7 @@ BlockList.prototype = {
 
   insertBlock(block, position) {
     if (!position) {
-      var position = 0
+      position = 0
     }
 
     this._incrementBlockPositionsAfter(position);
@@ -78,8 +77,8 @@ BlockList.prototype = {
   },
 
   _sortBlockPositions() {
-    this._blockPositions = _.sortBy(this._blockPositions, function(blockPosition){
-      return blockPosition.position
+    this._blockPositions = this._blockPositions.sort(function(a, b){
+      return a.position - b.position
     })
   }
 
