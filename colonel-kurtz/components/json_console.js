@@ -5,6 +5,12 @@ var BlockListStore = require('../stores/block_list_store')
 
 var JsonConsole = React.createClass({
 
+  getDefaultProps() {
+    return {
+      indentation: 2
+    }
+  },
+
   getInitialState() {
     return this.getState()
   },
@@ -19,19 +25,13 @@ var JsonConsole = React.createClass({
     this.setState(this.getState())
   },
 
-  json(): Object {
-    var blockList = this.state.blockList
-
-    if (blockList) {
-      return blockList.toJson()
-    } else {
-      return {}
-    }
+  toJSON(): Object {
+    return this.state.blockList.toJSON() || {}
   },
 
   render(): any {
     return(
-      <pre>{ JSON.stringify(this.json(), undefined, 2) }</pre>
+      <pre>{ JSON.stringify(this, undefined, this.props.indentation) }</pre>
     )
   }
 

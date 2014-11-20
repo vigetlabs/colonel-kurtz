@@ -14,12 +14,12 @@ var BlockList = function(params: {editorId: number; blockId: number}) {
 
 BlockList.prototype = {
 
-  toJson() {
+  toJSON() {
     return {
       id: this.id,
       blocks: this._blockPositions.map(function(blockPosition) {
         var block = BlockStore.find(blockPosition.blockId)
-        return block.toJson()
+        return block.toJSON()
       })
     }
   },
