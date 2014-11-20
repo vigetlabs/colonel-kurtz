@@ -13,11 +13,11 @@ var BlockActions = {
     })
   },
 
-  destroy(params: {blockId: number; blockListId: number}) {
+  destroy(params: {blockId: number; parentBlockListId: number}) {
     Dispatcher.dispatch({
       type: BlockConstants.BLOCK_DESTROY,
       blockId: params.blockId,
-      blockListId: params.blockListId
+      parentBlockListId: params.parentBlockListId
     })
   }
 

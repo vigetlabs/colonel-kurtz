@@ -93,7 +93,7 @@ var BlockListStore = merge(Events.EventEmitter.prototype, {
         BlockListStore._addBlockToList(action.block, action.position)
         break
       case BlockConstants.BLOCK_DESTROY:
-        BlockListStore._removeBlockFromList(action.blockId, action.blockListId)
+        BlockListStore._removeBlockFromList(action.blockId, action.parentBlockListId)
         break
       case Constants.BLOCK_LIST_CREATE:
         BlockListStore._create({ editorId: action.editorId, blockId: action.blockId })

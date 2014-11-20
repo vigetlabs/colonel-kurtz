@@ -6,7 +6,7 @@ var BlockActions = require('../actions/block_actions')
 var RemoveBlockButton = React.createClass({
 
   removeBlock() {
-    BlockActions.destroy({ blockId: this.props.blockId, blockListId: this.props.blockListId })
+    BlockActions.destroy({ blockId: this.props.blockId, parentBlockListId: this.props.blockListId })
   },
 
   render(): any {
