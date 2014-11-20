@@ -8,7 +8,6 @@ var Actions = require('../actions/block_list_actions')
 var BlockList = require('../models/block_list')
 var BlockStore = require('../stores/block_store')
 var Block = require('../models/block')
-var _ = require('underscore')
 
 var _blockLists = []
 
@@ -19,7 +18,7 @@ var BlockListStore = merge(Events.EventEmitter.prototype, {
   },
 
   findByEditorId(editorId: number) {
-    var blockList = _.find(this.all(), function(blockList) {
+    var blockList = this.all().find(function(blockList) {
       return blockList.editorId === editorId
     })
 
@@ -31,7 +30,7 @@ var BlockListStore = merge(Events.EventEmitter.prototype, {
   },
 
   findByBlockId(blockId: number) {
-    var blockList = _.find(this.all(), function(blockList) {
+    var blockList = this.all().find(function(blockList) {
       return blockList.blockId === blockId
     })
 
@@ -42,9 +41,10 @@ var BlockListStore = merge(Events.EventEmitter.prototype, {
     }
   },
 
-  find(id) {
-    var blockList = _.find(this.all(), function(blockList) {
-      return blockList.id === id
+  find(id: number) {
+    var blockList = this.all().find(function(list) {
+      console.log(list.id, id)
+      return list.id === id
     })
 
     if (blockList) {

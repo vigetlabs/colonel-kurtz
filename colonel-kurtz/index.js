@@ -7,6 +7,7 @@ var BlockListActions = require('./actions/block_list_actions')
 var BlockListStore = require('./stores/block_list_store')
 var exportGlobal = require('./utils/export_global')
 var uid = require('./utils/uid')
+require('array.prototype.find')
 
 var _instances = []
 
