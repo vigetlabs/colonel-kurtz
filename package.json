@@ -39,5 +39,7 @@
   },
   "dependencies": {
     "react": ">= 0.12.1"
+    "flux": "latest",
+    "underscore": "latest"
   }
 }
