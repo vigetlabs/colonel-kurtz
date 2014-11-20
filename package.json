@@ -38,9 +38,10 @@
     "webpack": "^1.4.13"
   },
   "dependencies": {
-    "react": ">= 0.12.1"
+    "react": ">= 0.12.1",
     "flux": "latest",
     "immutable": "latest",
-    "array.prototype.find": "latest"
+    "array.prototype.find": "latest",
+    "object.assign": "latest"
   }
 }
