@@ -37,17 +37,10 @@ class ColonelKurtz {
     this._callbacks.push(callback)
   }
 
-  toJson() {
-    var json
+  toJSON() {
     var rootList = this.rootBlockList()
 
-    if (rootList) {
-      json = rootList.toJson()
-    } else {
-      json = {}
-    }
-
-    return json
+    return rootList ? rootList.toJSON() : {}
   }
 
   toHtml(): string {
