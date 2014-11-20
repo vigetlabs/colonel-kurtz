@@ -17,7 +17,7 @@ var App = React.createClass({
     return this.props.editor.rootBlockList().id
   },
 
-  setModeTo(mode: string): Function {
+  setMode(mode: string): Function {
     var component = this
 
     return function() {
@@ -28,7 +28,7 @@ var App = React.createClass({
   render(): any {
     return(
       <div>
-        <ModeSelection mode={ this.state.mode } modeSetter={ this.setModeTo } />
+        <ModeSelection mode={ this.state.mode } setMode={ this.setMode } />
         <ContentSection mode={ this.state.mode } initialBlockListId={ this.getBlockListId() } />
       </div>
     )
