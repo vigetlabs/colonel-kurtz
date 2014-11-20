@@ -7,9 +7,7 @@ var Previewer = React.createClass({
 
   render(): any {
     return(
-      <div>
-        <PreviewerBlockList initialBlockListId={ this.props.initialBlockListId } />
-      </div>
+      <PreviewerBlockList initialBlockListId={ this.props.initialBlockListId } />
     )
   }
 
