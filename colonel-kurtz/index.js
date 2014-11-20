@@ -1,7 +1,7 @@
 /* @flow */
 
 var React = require('react')
-
+var Immutable = require('immutable')
 var App = require('./components/app')
 var BlockListActions = require('./actions/block_list_actions')
 var BlockListStore = require('./stores/block_list_store')
@@ -11,14 +11,14 @@ var uid = require('./utils/uid')
 var _instances = []
 
 class ColonelKurtz {
-  _callbacks: Array<Function>;
+  _callbacks: Immutable.Set<Function>;
   domElement: Element;
   id: number;
 
   constructor(domElement: Element) {
     this.id = uid()
     this.domElement = domElement
-    this._callbacks = []
+    this._callbacks = Immutable.Set([])
 
     _instances.push(this)
 
@@ -34,7 +34,7 @@ class ColonelKurtz {
   }
 
   addCallback(callback: Function): void {
-    this._callbacks.push(callback)
+    this._callbacks = this._callbacks.add(callback)
   }
 
   toJSON() {
@@ -61,12 +61,8 @@ class ColonelKurtz {
     return this.domElement
   }
 
-  _getCallbacks(): Array<Function> {
-    return this._callbacks
-  }
-
   _runCallbacks(): void {
-    this._getCallbacks().forEach(function(callback){
+    this._callbacks.forEach(function(callback){
       callback()
     })
   }
