@@ -51,5 +51,3 @@ var ActsLikeBlockList = {
 }
 
 module.exports = ActsLikeBlockList
-
-
