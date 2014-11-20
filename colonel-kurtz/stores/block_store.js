@@ -1,16 +1,16 @@
 /* @flow */
 
-var merge = require('react/lib/merge')
 var Events = require('events')
 var Dispatcher = require('../dispatcher')
 var Constants = require('../constants/block_constants')
 var BlockListConstants = require('../constants/block_list_constants')
 var Actions = require('../actions/block_actions')
 var BlockListActions = require('../actions/block_list_actions')
+var assign = Object.assign || require('object.assign')
 
 var _blocks = []
 
-var BlockStore = merge(Events.EventEmitter.prototype, {
+var BlockStore = assign({
 
   all(): Array<Block> {
     return _blocks
@@ -56,7 +56,7 @@ var BlockStore = merge(Events.EventEmitter.prototype, {
     }
   })
 
-})
+}, Events.EventEmitter.prototype)
 
 module.exports = BlockStore
 

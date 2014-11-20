@@ -38,6 +38,7 @@
     "react": "latest",
     "flux": "latest",
     "immutable": "latest",
-    "array.prototype.find": "latest"
+    "array.prototype.find": "latest",
+    "object.assign": "latest"
   }
 }
