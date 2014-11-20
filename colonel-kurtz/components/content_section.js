@@ -1,23 +1,21 @@
 /* @flow */
 
 var React = require('react')
+var Immutable = require('immutable')
 var EditorComponent = require('./editor')
 var PreviewerComponent = require('./previewer')
 var JsonConsoleComponent = require('./json_console')
 var AppConstants = require('../constants/app_constants')
 
 var ContentSection = React.createClass({
-  contentTypes(): Object {
-    var types = {}
-    types[AppConstants.EDIT_MODE] = EditorComponent,
-    types[AppConstants.PREVIEW_MODE] = PreviewerComponent,
-    types[AppConstants.JSON_CONSOLE_MODE] = JsonConsoleComponent
-
-    return types
-  },
 
   contentType(): React {
-    return this.contentTypes()[this.props.mode]
+    var contentTypes: Immutable.Map = Immutable.Map({}).
+      set(AppConstants.EDIT_MODE, EditorComponent).
+      set(AppConstants.PREVIEW_MODE, PreviewerComponent).
+      set(AppConstants.JSON_CONSOLE_MODE, JsonConsoleComponent)
+
+    return contentTypes.get(this.props.mode)
   },
 
   render(): any {
