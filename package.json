@@ -35,6 +35,8 @@
     "uglifyify": "latest"
   },
   "dependencies": {
-    "react": "latest"
+    "react": "latest",
+    "flux": "latest",
+    "underscore": "latest"
   }
 }

@@ -3,7 +3,7 @@ var bundleDest = './build/';
 
 module.exports = {
   browserify: {
-    debug: true,
+    debug: false,
     extensions: ['.js', '.jsx'],
     transform: [
       [
