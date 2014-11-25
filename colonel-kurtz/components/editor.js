@@ -6,11 +6,7 @@ var EditorBlockList = require('./editor_block_list')
 var Editor = React.createClass({
 
   render(): any {
-    return(
-      <div>
-        <EditorBlockList initialBlockListId={ this.props.initialBlockListId } />
-      </div>
-    )
+    return <EditorBlockList initialBlockListId={ this.props.initialBlockListId } />
   }
 
 })

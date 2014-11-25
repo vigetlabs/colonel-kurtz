@@ -14,9 +14,15 @@ var EditorBlock = React.createClass({
 
   render(): any {
     return(
-      <div className="block">
-        <RemoveBlockButton blockId={ this.state.block.id } blockListId={ this.state.block.parentBlockListId } />
-        <p>{ this.state.block.content }</p>
+      <div className="colonel-block">
+        <p className="colonel-block-content" contentEditable>
+          { this.state.block.content }
+        </p>
+
+        <div className="colonel-toolbar">
+          <RemoveBlockButton blockId={ this.state.block.id } blockListId={ this.state.block.parentBlockListId } />
+        </div>
+
         { this.childBlockListComponent() }
       </div>
     )
@@ -25,5 +31,3 @@ var EditorBlock = React.createClass({
 })
 
 module.exports = EditorBlock
-
-

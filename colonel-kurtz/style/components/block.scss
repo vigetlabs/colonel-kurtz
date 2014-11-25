@@ -1,0 +1,22 @@
+.colonel-blocks,
+.colonel-block {
+  position: relative;
+}
+
+.colonel-block {
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(#000, 0.4);
+  padding-bottom: 1px;
+  margin: 16px 16px 0;
+}
+
+.colonel-block-content {
+  color: $colonel-muted-dark;
+  margin: 0;
+  padding: 16px 48px 16px 16px;
+
+  &:focus {
+    color: $colonel-text-dark;
+    outline: 0;
+  }
+}

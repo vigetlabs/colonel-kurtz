@@ -1,0 +1,30 @@
+.colonel-btn {
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  color: $colonel-primary;
+  cursor: pointer;
+  font: 500 14px/16px $colonel-font-family;
+  margin: 0 4px;
+  min-width: 64px;
+  padding: 10px 8px;
+  position: relative;
+  text-transform: uppercase;
+  transition: 0.2s all;
+  letter-spacing: tracking(10);
+
+  &:focus {
+    box-shadow: 0 0 1px rgba(#000, 0.15), 0 1px 3px rgba(#000, 0.2);
+    outline: none;
+  }
+}
+
+.colonel-btn-icon {
+  border-radius: 50%;
+  color: $colonel-muted-dark;
+  font-size: 20px;
+  margin: 4px;
+  min-width: 0;
+  padding: 12px 0;
+  width: 40px;
+}

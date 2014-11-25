@@ -1,0 +1,16 @@
+@function tracking($target) {
+  // 1 unit = 1/1000 em
+  @return ($target / 1000) * 1em;
+}
+
+@function strip-units($number) {
+  @return $number / ($number * 0 + 1);
+}
+
+@function sp($value, $baseline:16) {
+  @return (strip-units($value) / $baseline) + rem;
+}
+
+@function unit($number, $value: $unit) {
+  @return $number * $value;
+}
