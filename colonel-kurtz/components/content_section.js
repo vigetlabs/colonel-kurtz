@@ -1,28 +1,26 @@
 /* @flow */
 
-var React = require('react')
-var Immutable = require('immutable')
-var EditorComponent = require('./editor')
-var PreviewerComponent = require('./previewer')
-var JsonConsoleComponent = require('./json_console')
-var AppConstants = require('../constants/app_constants')
+var React     = require('react')
+var Constants = require('../constants/app_constants')
+
+var _types    = {}
+
+_types[Constants.EDIT_MODE]         = require('../components/editor'))
+_types[Constants.PREVIEW_MODE]      = require('../components/previewer'))
+_types[Constants.JSON_CONSOLE_MODE] = require('../components/json_console'))
 
 var ContentSection = React.createClass({
 
-  contentType(): React {
-    var contentTypes: Immutable.Map = Immutable.Map({}).
-      set(AppConstants.EDIT_MODE, EditorComponent).
-      set(AppConstants.PREVIEW_MODE, PreviewerComponent).
-      set(AppConstants.JSON_CONSOLE_MODE, JsonConsoleComponent)
-
-    return contentTypes.get(this.props.mode)
+  propTypes: {
+    mode: React.PropTypes.oneOf(Object.keys(Constants)).isRequired,
+    initialBlockListId: React.PropTypes.number.isRequired
   },
 
   render(): any {
-    var ContentType = this.contentType()
+    var ContentType = _types[this.props.mode]
 
-    return(
-     <ContentType initialBlockListId={ this.props.initialBlockListId } />
+    return (
+      <ContentType initialBlockListId={ this.props.initialBlockListId } />
     )
   }
 

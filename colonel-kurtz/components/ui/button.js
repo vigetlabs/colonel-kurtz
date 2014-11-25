@@ -5,8 +5,8 @@ var Button = React.createClass({
 
   getDefaultProps() {
     return {
-      tagName  : 'button',
-      inkColor : null
+      inkColor : null,
+      tagName  : 'button'
     }
   },
 
