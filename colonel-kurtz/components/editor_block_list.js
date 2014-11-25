@@ -16,8 +16,8 @@ var EditorBlockList = React.createClass({
     if (blockList) {
       return blockList.blockIds().map(function(blockId, i) {
         return (
-          <div>
-            <EditorBlock key={ blockId } initialBlockId={ blockId } />
+          <div key={ blockId }>
+            <EditorBlock initialBlockId={ blockId } />
             <div className="colonel-dropzone">
               <AddBlockButton position={ i } blockListId={ blockListId } />
             </div>

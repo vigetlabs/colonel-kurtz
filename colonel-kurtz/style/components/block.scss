@@ -12,11 +12,32 @@
 
 .colonel-block-content {
   color: $colonel-muted-dark;
-  margin: 0;
-  padding: 16px 48px 16px 16px;
+  padding: 16px 48px 0 16px;
+}
+
+.colonel-block-editor {
+  min-height: 16px;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin-top: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  p + p {
+    margin-top: 16px;
+  }
 
   &:focus {
     color: $colonel-text-dark;
     outline: 0;
   }
+
 }

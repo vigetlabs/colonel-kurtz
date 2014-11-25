@@ -1,0 +1,94 @@
+$medium_editor_bgcolor:       #fafafa;
+$medium_editor_border_color:  #eaeaea;
+$medium_editor_button_size:   40px;
+$medium_editor_link_color:    rgba(#000, 0.875);
+
+.medium-toolbar-arrow-under:after {
+  border-color: $medium_editor_bgcolor transparent transparent transparent;
+  top: $medium_editor_button_size;
+}
+
+.medium-toolbar-arrow-over:before {
+  border-color: transparent transparent $medium_editor_bgcolor transparent;
+  top: -8px;
+}
+
+.medium-editor-toolbar {
+  background-color: $medium_editor_bgcolor;
+  border-radius: 2px;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 1px rgba(0, 0, 0, 0.15));
+
+  li {
+    padding: 0;
+
+    button {
+      background-color: transparent;
+      border: none;
+      border-right: 1px solid $medium_editor_border_color;
+      box-shadow: 0 1px 0 rgba(#fff, 0.875) inset;
+      color: $medium_editor_link_color;
+      font-size: 13px;
+      height: $medium_editor_button_size;
+      line-height: 16px;
+      min-width: $medium_editor_button_size;
+      padding: 8px 0;
+      transition: background-color .2s ease-in, color .2s ease-in;
+
+      &:hover {
+        background-color: #f2f2f2;
+      }
+    }
+
+    .medium-editor-button-active {
+      background-color: #009688;
+      box-shadow: inset 0 0 1px rgba(#000, 0.15);
+      color: #FFF;
+    }
+
+    .medium-editor-button-last {
+      border-right: none;
+    }
+  }
+}
+
+.medium-editor-toolbar-form-anchor {
+  .medium-editor-toolbar-anchor-input {
+    height: $medium_editor_button_size;
+    background: $medium_editor_bgcolor;
+    color: $medium_editor_link_color;
+
+    &::-webkit-input-placeholder {
+      color: #fff;
+      color: rgba(#fff, 0.8);
+    }
+
+    &:-moz-placeholder { /* Firefox 18- */
+      color: #fff;
+      color: rgba(#fff, 0.8);
+    }
+
+    &::-moz-placeholder {  /* Firefox 19+ */
+      color: #fff;
+      color: rgba(#fff, 0.8);
+    }
+
+    &:-ms-input-placeholder {
+      color: #fff;
+      color: rgba(#fff, 0.8);
+    }
+  }
+
+  a {
+    color: $medium_editor_link_color;
+  }
+}
+
+.medium-editor-toolbar-anchor-preview {
+  background: $medium_editor_bgcolor;
+  color: $medium_editor_link_color;
+}
+
+.medium-editor-placeholder:after {
+  color: #333;
+  color: rgba(#000, 0.5);
+}

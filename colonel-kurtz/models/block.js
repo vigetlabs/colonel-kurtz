@@ -11,14 +11,11 @@ class Block {
   constructor(params: {parentBlockListId: number}) {
     this.id = uid()
     this.parentBlockListId = params.parentBlockListId
-    this.content = "I'm block " + this.id
+    this.content = ""
   }
 
   toJSON(): {id: number; content: any; childBlockList: ?BlockList} {
-    var json = {
-      id: this.id,
-      content: this.content
-    }
+    var json = { id, content }
 
     var childBlockList = this.childBlockList()
 

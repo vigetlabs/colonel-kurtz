@@ -17,7 +17,7 @@ module.exports = {
 
   resolve: {
     extensions: ['', '.js', '.jsx', '.json', '.scss'],
-    modulesDirectories: [ 'web_modules', 'node_modules', 'colonel-kurtz' ]
+    modulesDirectories: [ 'web_modules', 'node_modules', 'colonel-kurtz', 'vendor' ]
   },
 
   plugins: [
