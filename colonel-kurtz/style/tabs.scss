@@ -24,25 +24,40 @@ $colonel-tabs-font: 500 14px/16px sans-serif !default;
 .colonel-tabs-btn {
   background: transparent;
   border: 0;
-  border-bottom: $colonel-tabs-border-width solid transparent;
   color: inherit;
   cursor: pointer;
   font: $colonel-tabs-font;
   letter-spacing: 0.05em;
   line-height: 16px;
-  padding: 16px 16px (16 - $colonel-tabs-border-width);
+  overflow: hidden;
+  padding: 16px;
   position: relative;
   text-transform: uppercase;
-  transition: 0.2s border, 0.2s color;
+  transition: 0.2s color;
   -webkit-appearance: button;
 
-  &:focus {
-    border-bottom-color: $colonel-muted-light;
-    outline: none;
+  &:after {
+    background: $colonel-muted-light;
+    bottom: -$colonel-tabs-border-width;
+    content: "";
+    height: $colonel-tabs-border-width;
+    left: 0;
+    position: absolute;
+    transition: 0.2s background, 0.4s bottom;
+    width: 100%;
   }
 
-  &:disabled {
-    border-bottom-color: $colonel-accent;
+  &:focus {
+    outline: none;
+
+    &:after {
+      bottom: 0;
+    }
+  }
+
+  &:disabled:after {
+    background: $colonel-accent;
+    bottom: 0;
   }
 
   &:focus,
