@@ -43,7 +43,6 @@ var BlockListStore = assign({
 
   find(id: number) {
     var blockList = this.all().find(function(list) {
-      console.log(list.id, id)
       return list.id === id
     })
 

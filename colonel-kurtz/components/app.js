@@ -18,16 +18,12 @@ var App = React.createClass({
   },
 
   setMode(mode: string): Function {
-    var component = this
-
-    return function() {
-      component.setState({ mode: mode })
-    }
+    return () => this.setState({ mode: mode })
   },
 
   render(): any {
     return(
-      <div>
+      <div className="colonel">
         <ModeSelection mode={ this.state.mode } setMode={ this.setMode } />
         <ContentSection mode={ this.state.mode } initialBlockListId={ this.getBlockListId() } />
       </div>

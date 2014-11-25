@@ -1,0 +1,20 @@
+$colonel-font-family: sans-serif;
+$colonel-primary: #009688 !default;
+$colonel-accent: #cddc39 !default;
+$colonel-text-light: rgba(#fff, 0.875) !default;
+$colonel-text-dark: rgba(#000, 0.875) !default;
+$colonel-muted-light: rgba(#fff, 0.4) !default;
+$colonel-muted-dark: rgba(#000, 0.4) !default;
+
+.colonel {
+  box-sizing: border-box;
+  font-family: $colonel-font-family;
+
+  *,
+  *:after,
+  *:before {
+    box-sizing: inherit;
+  }
+}
+
+@import 'tabs';
