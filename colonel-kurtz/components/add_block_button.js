@@ -1,17 +1,23 @@
 /* @flow */
 
 var React = require('react')
+var Button = require('./ui/button')
 var BlockActions = require('../actions/block_actions')
+var Strings = require('constants/strings')
 
 var AddBlockButton = React.createClass({
 
   addBlock() {
-    BlockActions.create({ parentBlockListId: this.props.blockListId, position: this.props.position })
+    var { position, blockListId: parentBlockListId } = this.props
+
+    BlockActions.create({ parentBlockListId, position })
   },
 
   render(): any {
-    return(
-      <button onClick={ this.addBlock }>Add Block</button>
+    return (
+      <Button aria-label={ Strings.add.label } className="colonel-btn colonel-btn-icon" onClick={ this.addBlock }>
+        +
+      </Button>
     )
   }
 

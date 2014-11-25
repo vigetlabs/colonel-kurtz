@@ -1,0 +1,10 @@
+.colonel {
+  box-sizing: border-box;
+  font-family: $colonel-font-family;
+
+  *,
+  *:after,
+  *:before {
+    box-sizing: inherit;
+  }
+}
