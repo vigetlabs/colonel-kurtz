@@ -31,12 +31,14 @@ $colonel-tabs-font: 500 14px/16px sans-serif !default;
   letter-spacing: 0.05em;
   line-height: 16px;
   padding: 16px 16px (16 - $colonel-tabs-border-width);
+  position: relative;
   text-transform: uppercase;
   transition: 0.2s border, 0.2s color;
   -webkit-appearance: button;
 
   &:focus {
     border-bottom-color: $colonel-muted-light;
+    outline: none;
   }
 
   &:disabled {

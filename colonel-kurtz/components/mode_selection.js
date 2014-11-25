@@ -1,6 +1,7 @@
 /* @flow */
 
 var React = require('react')
+var Button = require('./ui/button');
 var AppConstants = require('../constants/app_constants')
 
 var ModeSelection = React.createClass({
@@ -32,9 +33,9 @@ var ModeSelection = React.createClass({
 
     return (
       <li key={ key } className="colonel-tabs-list-item" role="tab">
-        <button className="colonel-tabs-btn" { ...props }>
+        <Button className="colonel-tabs-btn" { ...props }>
           { key }
-        </button>
+        </Button>
       </li>
     )
   },
