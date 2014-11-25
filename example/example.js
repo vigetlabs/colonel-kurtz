@@ -1,1 +1,1 @@
-new ColonelKurtz(document.body).render();
+new ColonelKurtz(document.getElementById('app')).render();
