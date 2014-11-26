@@ -1,6 +1,5 @@
 /* @flow */
 
-var Block      = require('../models/block')
 var Bus        = require('../bus')
 var Constants  = require('../constants/block_constants')
 var Dispatcher = require('../dispatcher')
@@ -62,3 +61,6 @@ var BlockStore = {
 }
 
 module.exports = BlockStore
+
+// This is to get around circular dependencies
+var Block = require('../models/block')

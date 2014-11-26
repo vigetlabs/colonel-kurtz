@@ -2,7 +2,6 @@
 
 var Actions        = require('../actions/block_list_actions')
 var Block          = require('../models/block')
-var BlockConstants = require('../constants/block_constants')
 var BlockList      = require('../models/block_list')
 var BlockStore     = require('../stores/block_store')
 var Constants      = require('../constants/block_list_constants')
@@ -71,3 +70,6 @@ var BlockListStore = {
 }
 
 module.exports = BlockListStore
+
+// This is to get around circular dependencies
+var BlockConstants = require('../constants/block_constants')
