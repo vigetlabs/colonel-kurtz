@@ -14,7 +14,7 @@ var BlockStore = {
   },
 
   find(id: number): Block {
-    return this.all().find(function(block) {
+    return BlockStore.all().find(function(block) {
       return block.id === id
     })
   },
@@ -30,7 +30,7 @@ var BlockStore = {
   },
 
   _destroy(blockId: number) {
-    var block = this.find(blockId)
+    var block = BlockStore.find(blockId)
 
     if (block) {
       var removalIndex = _blocks.indexOf(block)

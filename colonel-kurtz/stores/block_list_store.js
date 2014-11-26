@@ -7,6 +7,7 @@ var BlockStore     = require('../stores/block_store')
 var Constants      = require('../constants/block_list_constants')
 var Dispatcher     = require('../dispatcher')
 var Immutable      = require('immutable')
+var Bus            = require('../bus')
 
 var _blockLists = Immutable.List()
 
@@ -39,6 +40,7 @@ var BlockListStore = {
 
     if (blockList) {
       blockList.insertBlock(block, position)
+      Bus.publish()
     }
   },
 
@@ -47,6 +49,7 @@ var BlockListStore = {
 
     if (blockList) {
       blockList.removeBlock(blockId)
+      Bus.publish()
     }
   },
 

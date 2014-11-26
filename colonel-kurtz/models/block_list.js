@@ -16,7 +16,7 @@ BlockList.prototype = {
   toJSON() {
     return {
       id: this.id,
-      blocks: this._blocks.map(BlockStore.find).map(b=> b.toJSON())
+      blocks: this._blocks.map(BlockStore.find).map(b => b.toJSON())
     }
   },
 
@@ -25,9 +25,7 @@ BlockList.prototype = {
   },
 
   removeBlock(blockId) {
-    this._blocks = this._blocks.filter(function(blockPosition) {
-      return blockId !== blockPosition.blockId
-    })
+    this._blocks = this._blocks.filter(id => id !== blockId)
   },
 
   insertBlock(block, position: number) {

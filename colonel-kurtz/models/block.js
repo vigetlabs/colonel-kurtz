@@ -15,7 +15,7 @@ class Block {
   }
 
   toJSON(): {id: number; content: any; childBlockList: ?BlockList} {
-    var json = { id, content }
+    var json = { id: this.id, content: this.content }
 
     var childBlockList = this.childBlockList()
 
