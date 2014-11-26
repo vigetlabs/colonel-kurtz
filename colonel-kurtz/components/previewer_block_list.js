@@ -9,17 +9,13 @@ var PreviewerBlockList = React.createClass({
   mixins: [ ActsLikeBlockList ],
 
   blockComponents(): Array<ReactElement> {
-    var blockList = this.blockList()
-
-    if (blockList) {
-      return blockList.blockIds().map(function(blockId) {
-        return <PreviewerBlock key={ blockId } initialBlockId={ blockId } />
-      })
-    }
+    return this.state.blockIds.map(function(blockId) {
+      return <PreviewerBlock key={ blockId } initialBlockId={ blockId } />
+    })
   },
 
   render(): any {
-    return(
+    return (
       <div>
         { this.blockComponents() }
       </div>

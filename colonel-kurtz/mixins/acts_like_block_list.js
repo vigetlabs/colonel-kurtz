@@ -23,14 +23,8 @@ var ActsLikeBlockList = {
   },
 
   blockIds(): Array<number> {
-    var blockIds  = []
     var blockList = this.blockList()
-
-    if (blockList) {
-      blockIds = blockList.blockIds()
-    }
-
-    return blockIds
+    return blockList? blockList.all() : []
   }
 
 }

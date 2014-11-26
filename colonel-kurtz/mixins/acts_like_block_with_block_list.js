@@ -16,7 +16,6 @@ var ActsLikeBlockWithBlockList = {
 
     if (childBlockList) {
       var ListComponent = this.listComponent()
-
       return <ListComponent initialBlockListId={ childBlockList.id } />
     }
   }
@@ -24,5 +23,3 @@ var ActsLikeBlockWithBlockList = {
 }
 
 module.exports = ActsLikeBlockWithBlockList
-
-

@@ -4665,7 +4665,7 @@ var ColonelKurtz =
 	  this.editorId = params.editorId
 	  this.blockId = params.blockId
 	  this.id = id
-	  this._blockPositions = []
+	  this._blocks = []
 	}
 	
 	BlockList.prototype = {
@@ -4673,72 +4673,23 @@ var ColonelKurtz =
 	  toJSON:function() {
 	    return {
 	      id: this.id,
-	      blocks: this._blockPositions.map(function(blockPosition) {
-	        var block = BlockStore.find(blockPosition.blockId)
-	        return block.toJSON()
-	      })
+	      blocks: this._blocks.map(BlockStore.find).map(function(b) {return b.toJSON();})
 	    }
 	  },
 	
-	  blockIds:function() {
-	    return this._blockPositions.map(function(blockPosition) {
-	      return blockPosition.blockId
-	    })
+	  all:function() {
+	    return this._blocks
 	  },
 	
 	  removeBlock:function(blockId) {
-	    this._blockPositions = this._blockPositions.filter(function(blockPosition) {
+	    this._blocks = this._blocks.filter(function(blockPosition) {
 	      return blockId !== blockPosition.blockId
 	    })
-	
-	    this._cleanup()
 	  },
 	
-	  insertBlock:function(block, position) {
-	    if (!position) {
-	      position = 0
-	    }
-	
-	    this._incrementBlockPositionsAfter(position);
-	
-	
-	    this._blockPositions.push({
-	      blockId: block.id,
-	      position: position
-	    })
-	
-	    this._cleanup()
-	  },
-	
-	  _incrementBlockPositionsAfter:function(position) {
-	    this._blockPositions.forEach(function(blockPosition){
-	      if (blockPosition.position >= position) {
-	        blockPosition.position += 1
-	      }
-	    })
-	  },
-	
-	  _cleanup:function() {
-	    this._sortBlockPositions()
-	    this._ensureConsecutivePositions()
-	  },
-	
-	  _ensureConsecutivePositions:function() {
-	    var counter = 0
-	
-	    this._blockPositions = this._blockPositions.map(function(blockPosition) {
-	      blockPosition.position = counter
-	      counter +=1
-	      return blockPosition
-	    })
-	  },
-	
-	  _sortBlockPositions:function() {
-	    this._blockPositions = this._blockPositions.sort(function(a, b){
-	      return a.position - b.position
-	    })
+	  insertBlock:function(block, position        ) {
+	    this._blocks.splice(position, 0, block.id)
 	  }
-	
 	}
 	
 	module.exports = BlockList
@@ -5198,8 +5149,8 @@ var ColonelKurtz =
 	/* @flow */
 	
 	var React = __webpack_require__(/*! react */ 7)
-	var EditorBlock = __webpack_require__(/*! ./editor_block */ 57)
-	var AddBlockButton = __webpack_require__(/*! ./add_block_button */ 58)
+	var EditorBlock = __webpack_require__(/*! ./editor_block */ 58)
+	var AddBlockButton = __webpack_require__(/*! ./add_block_button */ 59)
 	var ActsLikeBlockList = __webpack_require__(/*! ../mixins/acts_like_block_list */ 116)
 	
 	var EditorBlockList = React.createClass({displayName: 'EditorBlockList',
@@ -5207,21 +5158,18 @@ var ColonelKurtz =
 	  mixins: [ ActsLikeBlockList ],
 	
 	  blockComponents:function()                       {
-	    var blockList = this.blockList()
 	    var blockListId = this.blockListId()
 	
-	    if (blockList) {
-	      return blockList.blockIds().map(function(blockId, i) {
-	        return (
-	          React.createElement("div", {key: blockId }, 
-	            React.createElement(EditorBlock, {initialBlockId: blockId }), 
-	            React.createElement("div", {className: "colonel-dropzone"}, 
-	              React.createElement(AddBlockButton, {position: i, blockListId: blockListId })
-	            )
+	    return this.state.blockIds.map(function(blockId, i) {
+	      return (
+	        React.createElement("div", {key: blockId }, 
+	          React.createElement(EditorBlock, {initialBlockId: blockId }), 
+	          React.createElement("div", {className: "colonel-dropzone"}, 
+	            React.createElement(AddBlockButton, {position:  i + 1, blockListId: blockListId })
 	          )
 	        )
-	      })
-	    }
+	      )
+	    })
 	  },
 	
 	  render:function()      {
@@ -5250,7 +5198,7 @@ var ColonelKurtz =
 	/* @flow */
 	
 	var React = __webpack_require__(/*! react */ 7)
-	var PreviewerBlock = __webpack_require__(/*! ./previewer_block */ 59)
+	var PreviewerBlock = __webpack_require__(/*! ./previewer_block */ 57)
 	var ActsLikeBlockList = __webpack_require__(/*! ../mixins/acts_like_block_list */ 116)
 	
 	var PreviewerBlockList = React.createClass({displayName: 'PreviewerBlockList',
@@ -5258,17 +5206,13 @@ var ColonelKurtz =
 	  mixins: [ ActsLikeBlockList ],
 	
 	  blockComponents:function()                      {
-	    var blockList = this.blockList()
-	
-	    if (blockList) {
-	      return blockList.blockIds().map(function(blockId) {
-	        return React.createElement(PreviewerBlock, {key: blockId, initialBlockId: blockId })
-	      })
-	    }
+	    return this.state.blockIds.map(function(blockId) {
+	      return React.createElement(PreviewerBlock, {key: blockId, initialBlockId: blockId })
+	    })
 	  },
 	
 	  render:function()      {
-	    return(
+	    return (
 	      React.createElement("div", null, 
 	         this.blockComponents() 
 	      )
@@ -11874,6 +11818,40 @@ var ColonelKurtz =
 
 /***/ },
 /* 57 */
+/*!*****************************************************!*\
+  !*** ./colonel-kurtz/components/previewer_block.js ***!
+  \*****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var React = __webpack_require__(/*! react */ 7)
+	var ActLikeBlockWithBlockList = __webpack_require__(/*! ../mixins/acts_like_block_with_block_list */ 119)
+	
+	var PreviewerBlock = React.createClass({displayName: 'PreviewerBlock',
+	
+	  mixins: [ ActLikeBlockWithBlockList ],
+	
+	  listComponent:function() {
+	    return __webpack_require__(/*! ./previewer_block_list */ 30)
+	  },
+	
+	  render:function()      {
+	    return(
+	      React.createElement("div", null, 
+	        React.createElement("p", null,  this.state.block.content), 
+	         this.childBlockListComponent() 
+	      )
+	    )
+	  }
+	
+	})
+	
+	module.exports = PreviewerBlock
+
+
+/***/ },
+/* 58 */
 /*!**************************************************!*\
   !*** ./colonel-kurtz/components/editor_block.js ***!
   \**************************************************/
@@ -11882,9 +11860,9 @@ var ColonelKurtz =
 	/* @flow */
 	
 	var React = __webpack_require__(/*! react */ 7)
-	var RemoveBlockButton = __webpack_require__(/*! ./remove_block_button */ 119)
-	var ActLikeBlockWithBlockList = __webpack_require__(/*! ../mixins/acts_like_block_with_block_list */ 120)
-	var Medium = __webpack_require__(/*! ./block_types/medium */ 167)
+	var RemoveBlockButton = __webpack_require__(/*! ./remove_block_button */ 120)
+	var ActLikeBlockWithBlockList = __webpack_require__(/*! ../mixins/acts_like_block_with_block_list */ 119)
+	var Medium = __webpack_require__(/*! ./block_types/medium */ 168)
 	
 	var EditorBlock = React.createClass({displayName: 'EditorBlock',
 	
@@ -11916,7 +11894,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 58 */
+/* 59 */
 /*!******************************************************!*\
   !*** ./colonel-kurtz/components/add_block_button.js ***!
   \******************************************************/
@@ -11927,7 +11905,7 @@ var ColonelKurtz =
 	var React = __webpack_require__(/*! react */ 7)
 	var Button = __webpack_require__(/*! ./ui/button */ 26)
 	var BlockActions = __webpack_require__(/*! ../actions/block_actions */ 121)
-	var Strings = __webpack_require__(/*! constants/strings */ 168)
+	var Strings = __webpack_require__(/*! constants/strings */ 169)
 	
 	var AddBlockButton = React.createClass({displayName: 'AddBlockButton',
 	
@@ -11948,40 +11926,6 @@ var ColonelKurtz =
 	})
 	
 	module.exports = AddBlockButton
-
-
-/***/ },
-/* 59 */
-/*!*****************************************************!*\
-  !*** ./colonel-kurtz/components/previewer_block.js ***!
-  \*****************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var React = __webpack_require__(/*! react */ 7)
-	var ActLikeBlockWithBlockList = __webpack_require__(/*! ../mixins/acts_like_block_with_block_list */ 120)
-	
-	var PreviewerBlock = React.createClass({displayName: 'PreviewerBlock',
-	
-	  mixins: [ ActLikeBlockWithBlockList ],
-	
-	  listComponent:function() {
-	    return __webpack_require__(/*! ./previewer_block_list */ 30)
-	  },
-	
-	  render:function()      {
-	    return(
-	      React.createElement("div", null, 
-	        React.createElement("p", null,  this.state.block.content), 
-	         this.childBlockListComponent() 
-	      )
-	    )
-	  }
-	
-	})
-	
-	module.exports = PreviewerBlock
 
 
 /***/ },
@@ -18708,7 +18652,7 @@ var ColonelKurtz =
 	
 	var React = __webpack_require__(/*! react */ 7)
 	var BlockListStore = __webpack_require__(/*! ../stores/block_list_store */ 3)
-	var Monitor = __webpack_require__(/*! ./monitor */ 169)
+	var Monitor = __webpack_require__(/*! ./monitor */ 167)
 	
 	var ActsLikeBlockList = {
 	
@@ -18729,14 +18673,8 @@ var ColonelKurtz =
 	  },
 	
 	  blockIds:function()                {
-	    var blockIds  = []
 	    var blockList = this.blockList()
-	
-	    if (blockList) {
-	      blockIds = blockList.blockIds()
-	    }
-	
-	    return blockIds
+	    return blockList? blockList.all() : []
 	  }
 	
 	}
@@ -19014,6 +18952,40 @@ var ColonelKurtz =
 
 /***/ },
 /* 119 */
+/*!*****************************************************************!*\
+  !*** ./colonel-kurtz/mixins/acts_like_block_with_block_list.js ***!
+  \*****************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var React = __webpack_require__(/*! react */ 7)
+	var BlockStore = __webpack_require__(/*! ../stores/block_store */ 9)
+	
+	var ActsLikeBlockWithBlockList = {
+	
+	  getInitialState:function()         {
+	    return {
+	      block: BlockStore.find(this.props.initialBlockId)
+	    }
+	  },
+	
+	  childBlockListComponent:function()               {
+	    var childBlockList = this.state.block.childBlockList()
+	
+	    if (childBlockList) {
+	      var ListComponent = this.listComponent()
+	      return React.createElement(ListComponent, {initialBlockListId:  childBlockList.id})
+	    }
+	  }
+	
+	}
+	
+	module.exports = ActsLikeBlockWithBlockList
+
+
+/***/ },
+/* 120 */
 /*!*********************************************************!*\
   !*** ./colonel-kurtz/components/remove_block_button.js ***!
   \*********************************************************/
@@ -19024,7 +18996,7 @@ var ColonelKurtz =
 	var React = __webpack_require__(/*! react */ 7)
 	var Button = __webpack_require__(/*! ./ui/button */ 26)
 	var BlockActions = __webpack_require__(/*! ../actions/block_actions */ 121)
-	var Strings = __webpack_require__(/*! constants/strings */ 168)
+	var Strings = __webpack_require__(/*! constants/strings */ 169)
 	
 	var RemoveBlockButton = React.createClass({displayName: 'RemoveBlockButton',
 	
@@ -19053,43 +19025,6 @@ var ColonelKurtz =
 	})
 	
 	module.exports = RemoveBlockButton
-
-
-/***/ },
-/* 120 */
-/*!*****************************************************************!*\
-  !*** ./colonel-kurtz/mixins/acts_like_block_with_block_list.js ***!
-  \*****************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var React = __webpack_require__(/*! react */ 7)
-	var BlockStore = __webpack_require__(/*! ../stores/block_store */ 9)
-	
-	var ActsLikeBlockWithBlockList = {
-	
-	  getInitialState:function()         {
-	    return {
-	      block: BlockStore.find(this.props.initialBlockId)
-	    }
-	  },
-	
-	  childBlockListComponent:function()               {
-	    var childBlockList = this.state.block.childBlockList()
-	
-	    if (childBlockList) {
-	      var ListComponent = this.listComponent()
-	
-	      return React.createElement(ListComponent, {initialBlockListId:  childBlockList.id})
-	    }
-	  }
-	
-	}
-	
-	module.exports = ActsLikeBlockWithBlockList
-	
-	
 
 
 /***/ },
@@ -23178,6 +23113,52 @@ var ColonelKurtz =
 
 /***/ },
 /* 167 */
+/*!*****************************************!*\
+  !*** ./colonel-kurtz/mixins/monitor.js ***!
+  \*****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Listens to the Bus and calls a provided `getState` function when
+	 * the Bus publishes.
+	 */
+	
+	var Bus       = __webpack_require__(/*! ../bus */ 25);
+	var invariant = __webpack_require__(/*! react/lib/invariant */ 56);
+	
+	var Monitor = {
+	
+	  getInitialState:function()         {
+	    if (true) {
+	      invariant(this.getState, "Monitor mixin requires `getState` implementation.");
+	    }
+	
+	    return this.getState();
+	  },
+	
+	  updateState:function() {
+	    this.setState(this.getState());
+	  },
+	
+	  componentDidMount:function() {
+	    Bus.subscribe(this.updateState);
+	  },
+	
+	  componentWillUnmount:function() {
+	    Bus.unsubscribe(this.updateState);
+	  },
+	
+	  componentWillReceiveProps:function() {
+	    this.updateState();
+	  }
+	
+	};
+	
+	module.exports = Monitor;
+
+
+/***/ },
+/* 168 */
 /*!********************************************************!*\
   !*** ./colonel-kurtz/components/block_types/medium.js ***!
   \********************************************************/
@@ -23221,7 +23202,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 168 */
+/* 169 */
 /*!********************************************!*\
   !*** ./colonel-kurtz/constants/strings.js ***!
   \********************************************/
@@ -23237,52 +23218,6 @@ var ColonelKurtz =
 	    'label' : 'Add a new block'
 	  }
 	}
-
-
-/***/ },
-/* 169 */
-/*!*****************************************!*\
-  !*** ./colonel-kurtz/mixins/monitor.js ***!
-  \*****************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Listens to the Bus and calls a provided `getState` function when
-	 * the Bus publishes.
-	 */
-	
-	var Bus       = __webpack_require__(/*! ../bus */ 25);
-	var invariant = __webpack_require__(/*! react/lib/invariant */ 56);
-	
-	var Monitor = {
-	
-	  getInitialState:function()         {
-	    if (true) {
-	      invariant(this.getState, "Monitor mixin requires `getState` implementation.");
-	    }
-	
-	    return this.getState();
-	  },
-	
-	  updateState:function() {
-	    this.setState(this.getState());
-	  },
-	
-	  componentDidMount:function() {
-	    Bus.subscribe(this.updateState);
-	  },
-	
-	  componentWillUnmount:function() {
-	    Bus.unsubscribe(this.updateState);
-	  },
-	
-	  componentWillReceiveProps:function() {
-	    this.updateState();
-	  }
-	
-	};
-	
-	module.exports = Monitor;
 
 
 /***/ },

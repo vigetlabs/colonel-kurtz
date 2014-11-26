@@ -10,21 +10,18 @@ var EditorBlockList = React.createClass({
   mixins: [ ActsLikeBlockList ],
 
   blockComponents(): ?Array<ReactElement> {
-    var blockList = this.blockList()
     var blockListId = this.blockListId()
 
-    if (blockList) {
-      return blockList.blockIds().map(function(blockId, i) {
-        return (
-          <div key={ blockId }>
-            <EditorBlock initialBlockId={ blockId } />
-            <div className="colonel-dropzone">
-              <AddBlockButton position={ i } blockListId={ blockListId } />
-            </div>
+    return this.state.blockIds.map(function(blockId, i) {
+      return (
+        <div key={ blockId }>
+          <EditorBlock initialBlockId={ blockId } />
+          <div className="colonel-dropzone">
+            <AddBlockButton position={ i + 1 } blockListId={ blockListId } />
           </div>
-        )
-      })
-    }
+        </div>
+      )
+    })
   },
 
   render(): any {
