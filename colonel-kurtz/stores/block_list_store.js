@@ -1,62 +1,39 @@
 /* @flow */
 
-var Events = require('events')
 var Dispatcher = require('../dispatcher')
-var Constants = require('../constants/block_list_constants')
 var Actions = require('../actions/block_list_actions')
+var Constants = require('../constants/block_list_constants')
+var BlockConstants = require('../constants/block_constants')
 var BlockList = require('../models/block_list')
 var BlockStore = require('../stores/block_store')
 var Block = require('../models/block')
-var assign = Object.assign || require('object.assign')
 
-var _blockLists = []
+var Immutable = require('immutable')
 
-var BlockListStore = assign({
+var _blockLists = Immutable.List()
+
+var BlockListStore = {
 
   all(): Array<BlockList> {
     return _blockLists
   },
 
   findByEditorId(editorId: number) {
-    var blockList = this.all().find(function(blockList) {
-      return blockList.editorId === editorId
-    })
-
-    if (blockList) {
-      return blockList
-    } else {
-      return null
-    }
+    return this.all().find((blockList) => blockList.editorId === editorId) || null
   },
 
   findByBlockId(blockId: number) {
-    var blockList = this.all().find(function(blockList) {
-      return blockList.blockId === blockId
-    })
-
-    if (blockList) {
-      return blockList
-    } else {
-      return null
-    }
+    return this.all().find((blockList) => blockList.blockId === blockId) || null
   },
 
   find(id: number) {
-    var blockList = this.all().find(function(list) {
-      return list.id === id
-    })
-
-    if (blockList) {
-      return blockList
-    } else {
-      return null
-    }
+    return this.all().find((list) => list.id === id) || null
   },
 
   _create(params: Object): void {
     var blockList = new BlockList({ editorId: params.editorId, blockId: params.blockId })
-    this.emit(Constants.BLOCK_LIST_CREATED)
-    _blockLists.push(blockList)
+
+    _blockLists = _blockLists.push(blockList)
   },
 
   _addBlockToList(block: Block, position: number) {
@@ -64,7 +41,6 @@ var BlockListStore = assign({
 
     if (blockList) {
       blockList.insertBlock(block, position)
-      this.emit(Constants.BLOCK_LIST_CHANGE)
     }
   },
 
@@ -73,16 +49,7 @@ var BlockListStore = assign({
 
     if (blockList) {
       blockList.removeBlock(blockId)
-      this.emit(Constants.BLOCK_LIST_CHANGE)
     }
-  },
-
-  onChange(callback: Function) {
-    this.on(Constants.BLOCK_LIST_CHANGE, callback)
-  },
-
-  offChange(callback: Function) {
-    this.removeListener(Constants.BLOCK_LIST_CHANGE, callback)
   },
 
   dispatchToken: Dispatcher.register(function(action) {
@@ -103,7 +70,7 @@ var BlockListStore = assign({
   })
 
 
-}, Events.EventEmitter.prototype)
+}
 
 module.exports = BlockListStore
 

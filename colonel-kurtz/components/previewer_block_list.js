@@ -6,7 +6,7 @@ var ActsLikeBlockList = require('../mixins/acts_like_block_list')
 
 var PreviewerBlockList = React.createClass({
 
-  mixins: [ActsLikeBlockList],
+  mixins: [ ActsLikeBlockList ],
 
   blockComponents(): Array<ReactElement> {
     var blockList = this.blockList()

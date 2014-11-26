@@ -5,7 +5,7 @@ var ActLikeBlockWithBlockList = require('../mixins/acts_like_block_with_block_li
 
 var PreviewerBlock = React.createClass({
 
-  mixins: [ActLikeBlockWithBlockList],
+  mixins: [ ActLikeBlockWithBlockList ],
 
   listComponent() {
     return require('./previewer_block_list')

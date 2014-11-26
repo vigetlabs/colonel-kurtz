@@ -28,6 +28,16 @@
       "url": "http://viget.com/"
     }
   ],
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/jestPreprocessor.js",
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react",
+      "<rootDir>/node_modules/immutable"
+    ],
+    "globals": {
+      "__DEV__": true
+    }
+  },
   "license": "ISC",
   "bugs": "https://github.com/vigetlabs/colonel-kurtz/issues",
   "homepage": "https://github.com/vigetlabs/colonel-kurtz",
