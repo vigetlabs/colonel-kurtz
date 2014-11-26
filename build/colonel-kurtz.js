@@ -4951,7 +4951,7 @@ var ColonelKurtz =
 	/* @flow */
 	
 	var React = __webpack_require__(/*! react */ 7)
-	var EditorBlockList = __webpack_require__(/*! ./editor_block_list */ 30)
+	var EditorBlockList = __webpack_require__(/*! ./editor_block_list */ 29)
 	
 	var Editor = React.createClass({displayName: 'Editor',
 	
@@ -4974,7 +4974,7 @@ var ColonelKurtz =
 	/* @flow */
 	
 	var React = __webpack_require__(/*! react */ 7)
-	var PreviewerBlockList = __webpack_require__(/*! ./previewer_block_list */ 29)
+	var PreviewerBlockList = __webpack_require__(/*! ./previewer_block_list */ 30)
 	
 	var Previewer = React.createClass({displayName: 'Previewer',
 	
@@ -5191,46 +5191,6 @@ var ColonelKurtz =
 /***/ },
 /* 28 */,
 /* 29 */
-/*!**********************************************************!*\
-  !*** ./colonel-kurtz/components/previewer_block_list.js ***!
-  \**********************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var React = __webpack_require__(/*! react */ 7)
-	var PreviewerBlock = __webpack_require__(/*! ./previewer_block */ 57)
-	var ActsLikeBlockList = __webpack_require__(/*! ../mixins/acts_like_block_list */ 116)
-	
-	var PreviewerBlockList = React.createClass({displayName: 'PreviewerBlockList',
-	
-	  mixins: [ ActsLikeBlockList ],
-	
-	  blockComponents:function()                      {
-	    var blockList = this.blockList()
-	
-	    if (blockList) {
-	      return blockList.blockIds().map(function(blockId) {
-	        return React.createElement(PreviewerBlock, {key: blockId, initialBlockId: blockId })
-	      })
-	    }
-	  },
-	
-	  render:function()      {
-	    return(
-	      React.createElement("div", null, 
-	         this.blockComponents() 
-	      )
-	    )
-	  }
-	
-	})
-	
-	module.exports = PreviewerBlockList
-
-
-/***/ },
-/* 30 */
 /*!*******************************************************!*\
   !*** ./colonel-kurtz/components/editor_block_list.js ***!
   \*******************************************************/
@@ -5239,8 +5199,8 @@ var ColonelKurtz =
 	/* @flow */
 	
 	var React = __webpack_require__(/*! react */ 7)
-	var EditorBlock = __webpack_require__(/*! ./editor_block */ 58)
-	var AddBlockButton = __webpack_require__(/*! ./add_block_button */ 59)
+	var EditorBlock = __webpack_require__(/*! ./editor_block */ 57)
+	var AddBlockButton = __webpack_require__(/*! ./add_block_button */ 58)
 	var ActsLikeBlockList = __webpack_require__(/*! ../mixins/acts_like_block_list */ 116)
 	
 	var EditorBlockList = React.createClass({displayName: 'EditorBlockList',
@@ -5279,6 +5239,46 @@ var ColonelKurtz =
 	})
 	
 	module.exports = EditorBlockList
+
+
+/***/ },
+/* 30 */
+/*!**********************************************************!*\
+  !*** ./colonel-kurtz/components/previewer_block_list.js ***!
+  \**********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var React = __webpack_require__(/*! react */ 7)
+	var PreviewerBlock = __webpack_require__(/*! ./previewer_block */ 59)
+	var ActsLikeBlockList = __webpack_require__(/*! ../mixins/acts_like_block_list */ 116)
+	
+	var PreviewerBlockList = React.createClass({displayName: 'PreviewerBlockList',
+	
+	  mixins: [ ActsLikeBlockList ],
+	
+	  blockComponents:function()                      {
+	    var blockList = this.blockList()
+	
+	    if (blockList) {
+	      return blockList.blockIds().map(function(blockId) {
+	        return React.createElement(PreviewerBlock, {key: blockId, initialBlockId: blockId })
+	      })
+	    }
+	  },
+	
+	  render:function()      {
+	    return(
+	      React.createElement("div", null, 
+	         this.blockComponents() 
+	      )
+	    )
+	  }
+	
+	})
+	
+	module.exports = PreviewerBlockList
 
 
 /***/ },
@@ -5522,7 +5522,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 64);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 68);
 	
 	var invariant = __webpack_require__(/*! ./invariant */ 56);
 	
@@ -5748,9 +5748,9 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 65);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 64);
 	
-	var traverseAllChildren = __webpack_require__(/*! ./traverseAllChildren */ 66);
+	var traverseAllChildren = __webpack_require__(/*! ./traverseAllChildren */ 65);
 	var warning = __webpack_require__(/*! ./warning */ 63);
 	
 	var twoArgumentPooler = PooledClass.twoArgumentPooler;
@@ -5904,8 +5904,8 @@ var ColonelKurtz =
 	"use strict";
 	
 	var ReactElement = __webpack_require__(/*! ./ReactElement */ 39);
-	var ReactOwner = __webpack_require__(/*! ./ReactOwner */ 67);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 68);
+	var ReactOwner = __webpack_require__(/*! ./ReactOwner */ 66);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 67);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 52);
 	var invariant = __webpack_require__(/*! ./invariant */ 56);
@@ -6359,12 +6359,12 @@ var ColonelKurtz =
 	var ReactEmptyComponent = __webpack_require__(/*! ./ReactEmptyComponent */ 69);
 	var ReactErrorUtils = __webpack_require__(/*! ./ReactErrorUtils */ 70);
 	var ReactLegacyElement = __webpack_require__(/*! ./ReactLegacyElement */ 45);
-	var ReactOwner = __webpack_require__(/*! ./ReactOwner */ 67);
+	var ReactOwner = __webpack_require__(/*! ./ReactOwner */ 66);
 	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 48);
 	var ReactPropTransferer = __webpack_require__(/*! ./ReactPropTransferer */ 71);
 	var ReactPropTypeLocations = __webpack_require__(/*! ./ReactPropTypeLocations */ 72);
 	var ReactPropTypeLocationNames = __webpack_require__(/*! ./ReactPropTypeLocationNames */ 73);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 68);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 67);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 52);
 	var instantiateReactComponent = __webpack_require__(/*! ./instantiateReactComponent */ 74);
@@ -11875,40 +11875,6 @@ var ColonelKurtz =
 
 /***/ },
 /* 57 */
-/*!*****************************************************!*\
-  !*** ./colonel-kurtz/components/previewer_block.js ***!
-  \*****************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var React = __webpack_require__(/*! react */ 7)
-	var ActLikeBlockWithBlockList = __webpack_require__(/*! ../mixins/acts_like_block_with_block_list */ 119)
-	
-	var PreviewerBlock = React.createClass({displayName: 'PreviewerBlock',
-	
-	  mixins: [ ActLikeBlockWithBlockList ],
-	
-	  listComponent:function() {
-	    return __webpack_require__(/*! ./previewer_block_list */ 29)
-	  },
-	
-	  render:function()      {
-	    return(
-	      React.createElement("div", null, 
-	        React.createElement("p", null,  this.state.block.content), 
-	         this.childBlockListComponent() 
-	      )
-	    )
-	  }
-	
-	})
-	
-	module.exports = PreviewerBlock
-
-
-/***/ },
-/* 58 */
 /*!**************************************************!*\
   !*** ./colonel-kurtz/components/editor_block.js ***!
   \**************************************************/
@@ -11917,16 +11883,16 @@ var ColonelKurtz =
 	/* @flow */
 	
 	var React = __webpack_require__(/*! react */ 7)
-	var RemoveBlockButton = __webpack_require__(/*! ./remove_block_button */ 120)
-	var ActLikeBlockWithBlockList = __webpack_require__(/*! ../mixins/acts_like_block_with_block_list */ 119)
-	var Medium = __webpack_require__(/*! ./block_types/medium */ 168)
+	var RemoveBlockButton = __webpack_require__(/*! ./remove_block_button */ 119)
+	var ActLikeBlockWithBlockList = __webpack_require__(/*! ../mixins/acts_like_block_with_block_list */ 120)
+	var Medium = __webpack_require__(/*! ./block_types/medium */ 167)
 	
 	var EditorBlock = React.createClass({displayName: 'EditorBlock',
 	
 	  mixins: [ ActLikeBlockWithBlockList ],
 	
 	  listComponent:function() {
-	    return __webpack_require__(/*! ./editor_block_list */ 30)
+	    return __webpack_require__(/*! ./editor_block_list */ 29)
 	  },
 	
 	  render:function()      {
@@ -11951,7 +11917,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 59 */
+/* 58 */
 /*!******************************************************!*\
   !*** ./colonel-kurtz/components/add_block_button.js ***!
   \******************************************************/
@@ -11962,7 +11928,7 @@ var ColonelKurtz =
 	var React = __webpack_require__(/*! react */ 7)
 	var Button = __webpack_require__(/*! ./ui/button */ 26)
 	var BlockActions = __webpack_require__(/*! ../actions/block_actions */ 121)
-	var Strings = __webpack_require__(/*! constants/strings */ 169)
+	var Strings = __webpack_require__(/*! constants/strings */ 168)
 	
 	var AddBlockButton = React.createClass({displayName: 'AddBlockButton',
 	
@@ -11983,6 +11949,40 @@ var ColonelKurtz =
 	})
 	
 	module.exports = AddBlockButton
+
+
+/***/ },
+/* 59 */
+/*!*****************************************************!*\
+  !*** ./colonel-kurtz/components/previewer_block.js ***!
+  \*****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var React = __webpack_require__(/*! react */ 7)
+	var ActLikeBlockWithBlockList = __webpack_require__(/*! ../mixins/acts_like_block_with_block_list */ 120)
+	
+	var PreviewerBlock = React.createClass({displayName: 'PreviewerBlock',
+	
+	  mixins: [ ActLikeBlockWithBlockList ],
+	
+	  listComponent:function() {
+	    return __webpack_require__(/*! ./previewer_block_list */ 30)
+	  },
+	
+	  render:function()      {
+	    return(
+	      React.createElement("div", null, 
+	        React.createElement("p", null,  this.state.block.content), 
+	         this.childBlockListComponent() 
+	      )
+	    )
+	  }
+	
+	})
+	
+	module.exports = PreviewerBlock
 
 
 /***/ },
@@ -12430,85 +12430,6 @@ var ColonelKurtz =
 
 /***/ },
 /* 64 */
-/*!***************************************!*\
-  !*** ./~/react/lib/EventConstants.js ***!
-  \***************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2014, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule EventConstants
-	 */
-	
-	"use strict";
-	
-	var keyMirror = __webpack_require__(/*! ./keyMirror */ 27);
-	
-	var PropagationPhases = keyMirror({bubbled: null, captured: null});
-	
-	/**
-	 * Types of raw signals from the browser caught at the top level.
-	 */
-	var topLevelTypes = keyMirror({
-	  topBlur: null,
-	  topChange: null,
-	  topClick: null,
-	  topCompositionEnd: null,
-	  topCompositionStart: null,
-	  topCompositionUpdate: null,
-	  topContextMenu: null,
-	  topCopy: null,
-	  topCut: null,
-	  topDoubleClick: null,
-	  topDrag: null,
-	  topDragEnd: null,
-	  topDragEnter: null,
-	  topDragExit: null,
-	  topDragLeave: null,
-	  topDragOver: null,
-	  topDragStart: null,
-	  topDrop: null,
-	  topError: null,
-	  topFocus: null,
-	  topInput: null,
-	  topKeyDown: null,
-	  topKeyPress: null,
-	  topKeyUp: null,
-	  topLoad: null,
-	  topMouseDown: null,
-	  topMouseMove: null,
-	  topMouseOut: null,
-	  topMouseOver: null,
-	  topMouseUp: null,
-	  topPaste: null,
-	  topReset: null,
-	  topScroll: null,
-	  topSelectionChange: null,
-	  topSubmit: null,
-	  topTextInput: null,
-	  topTouchCancel: null,
-	  topTouchEnd: null,
-	  topTouchMove: null,
-	  topTouchStart: null,
-	  topWheel: null
-	});
-	
-	var EventConstants = {
-	  topLevelTypes: topLevelTypes,
-	  PropagationPhases: PropagationPhases
-	};
-	
-	module.exports = EventConstants;
-
-
-/***/ },
-/* 65 */
 /*!************************************!*\
   !*** ./~/react/lib/PooledClass.js ***!
   \************************************/
@@ -12629,7 +12550,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 66 */
+/* 65 */
 /*!********************************************!*\
   !*** ./~/react/lib/traverseAllChildren.js ***!
   \********************************************/
@@ -12817,7 +12738,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 67 */
+/* 66 */
 /*!***********************************!*\
   !*** ./~/react/lib/ReactOwner.js ***!
   \***********************************/
@@ -12978,7 +12899,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 68 */
+/* 67 */
 /*!*************************************!*\
   !*** ./~/react/lib/ReactUpdates.js ***!
   \*************************************/
@@ -12998,7 +12919,7 @@ var ColonelKurtz =
 	"use strict";
 	
 	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 123);
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 65);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 64);
 	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 38);
 	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 48);
 	var Transaction = __webpack_require__(/*! ./Transaction */ 124);
@@ -13270,6 +13191,85 @@ var ColonelKurtz =
 	};
 	
 	module.exports = ReactUpdates;
+
+
+/***/ },
+/* 68 */
+/*!***************************************!*\
+  !*** ./~/react/lib/EventConstants.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-2014, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule EventConstants
+	 */
+	
+	"use strict";
+	
+	var keyMirror = __webpack_require__(/*! ./keyMirror */ 27);
+	
+	var PropagationPhases = keyMirror({bubbled: null, captured: null});
+	
+	/**
+	 * Types of raw signals from the browser caught at the top level.
+	 */
+	var topLevelTypes = keyMirror({
+	  topBlur: null,
+	  topChange: null,
+	  topClick: null,
+	  topCompositionEnd: null,
+	  topCompositionStart: null,
+	  topCompositionUpdate: null,
+	  topContextMenu: null,
+	  topCopy: null,
+	  topCut: null,
+	  topDoubleClick: null,
+	  topDrag: null,
+	  topDragEnd: null,
+	  topDragEnter: null,
+	  topDragExit: null,
+	  topDragLeave: null,
+	  topDragOver: null,
+	  topDragStart: null,
+	  topDrop: null,
+	  topError: null,
+	  topFocus: null,
+	  topInput: null,
+	  topKeyDown: null,
+	  topKeyPress: null,
+	  topKeyUp: null,
+	  topLoad: null,
+	  topMouseDown: null,
+	  topMouseMove: null,
+	  topMouseOut: null,
+	  topMouseOver: null,
+	  topMouseUp: null,
+	  topPaste: null,
+	  topReset: null,
+	  topScroll: null,
+	  topSelectionChange: null,
+	  topSubmit: null,
+	  topTextInput: null,
+	  topTouchCancel: null,
+	  topTouchEnd: null,
+	  topTouchMove: null,
+	  topTouchStart: null,
+	  topWheel: null
+	});
+	
+	var EventConstants = {
+	  topLevelTypes: topLevelTypes,
+	  PropagationPhases: PropagationPhases
+	};
+	
+	module.exports = EventConstants;
 
 
 /***/ },
@@ -14144,7 +14144,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 64);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 68);
 	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 131);
 	var EventPluginRegistry = __webpack_require__(/*! ./EventPluginRegistry */ 132);
 	var ReactEventEmitterMixin = __webpack_require__(/*! ./ReactEventEmitterMixin */ 133);
@@ -14578,7 +14578,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 64);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 68);
 	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 135);
 	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 55);
 	var SyntheticInputEvent = __webpack_require__(/*! ./SyntheticInputEvent */ 136);
@@ -14806,11 +14806,11 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 64);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 68);
 	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 131);
 	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 135);
 	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 55);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 68);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 67);
 	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 137);
 	
 	var isEventSupported = __webpack_require__(/*! ./isEventSupported */ 82);
@@ -15228,7 +15228,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 64);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 68);
 	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 135);
 	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 55);
 	var ReactInputSelection = __webpack_require__(/*! ./ReactInputSelection */ 139);
@@ -15541,7 +15541,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 64);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 68);
 	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 135);
 	var SyntheticMouseEvent = __webpack_require__(/*! ./SyntheticMouseEvent */ 142);
 	
@@ -15881,7 +15881,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 64);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 68);
 	
 	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 113);
 	
@@ -16072,7 +16072,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 68);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 67);
 	var Transaction = __webpack_require__(/*! ./Transaction */ 124);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 52);
@@ -16224,7 +16224,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 64);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 68);
 	var LocalEventTrapMixin = __webpack_require__(/*! ./LocalEventTrapMixin */ 147);
 	var ReactBrowserComponentMixin = __webpack_require__(/*! ./ReactBrowserComponentMixin */ 80);
 	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 36);
@@ -16281,7 +16281,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 64);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 68);
 	var LocalEventTrapMixin = __webpack_require__(/*! ./LocalEventTrapMixin */ 147);
 	var ReactBrowserComponentMixin = __webpack_require__(/*! ./ReactBrowserComponentMixin */ 80);
 	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 36);
@@ -16344,7 +16344,7 @@ var ColonelKurtz =
 	var ReactElement = __webpack_require__(/*! ./ReactElement */ 39);
 	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 41);
 	var ReactMount = __webpack_require__(/*! ./ReactMount */ 46);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 68);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 67);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 52);
 	var invariant = __webpack_require__(/*! ./invariant */ 56);
@@ -16583,7 +16583,7 @@ var ColonelKurtz =
 	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 36);
 	var ReactElement = __webpack_require__(/*! ./ReactElement */ 39);
 	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 41);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 68);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 67);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 52);
 	
@@ -16775,7 +16775,7 @@ var ColonelKurtz =
 	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 36);
 	var ReactElement = __webpack_require__(/*! ./ReactElement */ 39);
 	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 41);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 68);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 67);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 52);
 	var invariant = __webpack_require__(/*! ./invariant */ 56);
@@ -16917,10 +16917,10 @@ var ColonelKurtz =
 	
 	var EventListener = __webpack_require__(/*! ./EventListener */ 149);
 	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 55);
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 65);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 64);
 	var ReactInstanceHandles = __webpack_require__(/*! ./ReactInstanceHandles */ 44);
 	var ReactMount = __webpack_require__(/*! ./ReactMount */ 46);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 68);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 67);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 52);
 	var getEventTarget = __webpack_require__(/*! ./getEventTarget */ 150);
@@ -17114,7 +17114,7 @@ var ColonelKurtz =
 	var ReactNativeComponent = __webpack_require__(/*! ./ReactNativeComponent */ 126);
 	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 48);
 	var ReactRootIndex = __webpack_require__(/*! ./ReactRootIndex */ 108);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 68);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 67);
 	
 	var ReactInjection = {
 	  Component: ReactComponent.injection,
@@ -17152,7 +17152,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 64);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 68);
 	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 135);
 	var ReactInputSelection = __webpack_require__(/*! ./ReactInputSelection */ 139);
 	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 137);
@@ -17392,7 +17392,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 64);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 68);
 	var EventPluginUtils = __webpack_require__(/*! ./EventPluginUtils */ 33);
 	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 135);
 	var SyntheticClipboardEvent = __webpack_require__(/*! ./SyntheticClipboardEvent */ 154);
@@ -18430,7 +18430,7 @@ var ColonelKurtz =
 	
 	var ReactTextComponent = __webpack_require__(/*! ./ReactTextComponent */ 51);
 	
-	var traverseAllChildren = __webpack_require__(/*! ./traverseAllChildren */ 66);
+	var traverseAllChildren = __webpack_require__(/*! ./traverseAllChildren */ 65);
 	var warning = __webpack_require__(/*! ./warning */ 63);
 	
 	/**
@@ -18599,7 +18599,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 65);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 64);
 	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 123);
 	var ReactPutListenerQueue = __webpack_require__(/*! ./ReactPutListenerQueue */ 166);
 	var Transaction = __webpack_require__(/*! ./Transaction */ 124);
@@ -18709,7 +18709,7 @@ var ColonelKurtz =
 	
 	var React = __webpack_require__(/*! react */ 7)
 	var BlockListStore = __webpack_require__(/*! ../stores/block_list_store */ 3)
-	var Monitor = __webpack_require__(/*! ./monitor */ 167)
+	var Monitor = __webpack_require__(/*! ./monitor */ 169)
 	
 	var ActsLikeBlockList = {
 	
@@ -19015,6 +19015,49 @@ var ColonelKurtz =
 
 /***/ },
 /* 119 */
+/*!*********************************************************!*\
+  !*** ./colonel-kurtz/components/remove_block_button.js ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var React = __webpack_require__(/*! react */ 7)
+	var Button = __webpack_require__(/*! ./ui/button */ 26)
+	var BlockActions = __webpack_require__(/*! ../actions/block_actions */ 121)
+	var Strings = __webpack_require__(/*! constants/strings */ 168)
+	
+	var RemoveBlockButton = React.createClass({displayName: 'RemoveBlockButton',
+	
+	  removeBlock:function() {
+	    var $__0=      this.props,blockId=$__0.blockId,parentBlockListId=$__0.blockListId
+	
+	    BlockActions.destroy({ blockId:blockId, parentBlockListId:parentBlockListId })
+	  },
+	
+	  render:function()      {
+	    return (
+	      React.createElement(Button, {'aria-label':  Strings.remove.label, className: "colonel-btn colonel-btn-icon", onClick:  this._onClick}, 
+	        "×"
+	      )
+	    )
+	  },
+	
+	  _onClick:function() {
+	    var answer = confirm(Strings.remove.confirm)
+	
+	    if (answer) {
+	      this.removeBlock()
+	    }
+	  }
+	
+	})
+	
+	module.exports = RemoveBlockButton
+
+
+/***/ },
+/* 120 */
 /*!*****************************************************************!*\
   !*** ./colonel-kurtz/mixins/acts_like_block_with_block_list.js ***!
   \*****************************************************************/
@@ -19048,49 +19091,6 @@ var ColonelKurtz =
 	module.exports = ActsLikeBlockWithBlockList
 	
 	
-
-
-/***/ },
-/* 120 */
-/*!*********************************************************!*\
-  !*** ./colonel-kurtz/components/remove_block_button.js ***!
-  \*********************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var React = __webpack_require__(/*! react */ 7)
-	var Button = __webpack_require__(/*! ./ui/button */ 26)
-	var BlockActions = __webpack_require__(/*! ../actions/block_actions */ 121)
-	var Strings = __webpack_require__(/*! constants/strings */ 169)
-	
-	var RemoveBlockButton = React.createClass({displayName: 'RemoveBlockButton',
-	
-	  removeBlock:function() {
-	    var $__0=      this.props,blockId=$__0.blockId,parentBlockListId=$__0.blockListId
-	
-	    BlockActions.destroy({ blockId:blockId, parentBlockListId:parentBlockListId })
-	  },
-	
-	  render:function()      {
-	    return (
-	      React.createElement(Button, {'aria-label':  Strings.remove.label, className: "colonel-btn colonel-btn-icon", onClick:  this._onClick}, 
-	        "×"
-	      )
-	    )
-	  },
-	
-	  _onClick:function() {
-	    var answer = confirm(Strings.remove.confirm)
-	
-	    if (answer) {
-	      this.removeBlock()
-	    }
-	  }
-	
-	})
-	
-	module.exports = RemoveBlockButton
 
 
 /***/ },
@@ -19176,7 +19176,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 65);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 64);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 52);
 	var invariant = __webpack_require__(/*! ./invariant */ 56);
@@ -20600,7 +20600,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 64);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 68);
 	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 131);
 	
 	var accumulateInto = __webpack_require__(/*! ./accumulateInto */ 173);
@@ -20802,7 +20802,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 65);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 64);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 52);
 	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 113);
@@ -21540,7 +21540,7 @@ var ColonelKurtz =
 	"use strict";
 	
 	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 123);
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 65);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 64);
 	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 81);
 	var ReactInputSelection = __webpack_require__(/*! ./ReactInputSelection */ 139);
 	var ReactPutListenerQueue = __webpack_require__(/*! ./ReactPutListenerQueue */ 166);
@@ -23134,7 +23134,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 65);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 64);
 	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 81);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 52);
@@ -23179,52 +23179,6 @@ var ColonelKurtz =
 
 /***/ },
 /* 167 */
-/*!*****************************************!*\
-  !*** ./colonel-kurtz/mixins/monitor.js ***!
-  \*****************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Listens to the Bus and calls a provided `getState` function when
-	 * the Bus publishes.
-	 */
-	
-	var Bus       = __webpack_require__(/*! ../bus */ 25);
-	var invariant = __webpack_require__(/*! react/lib/invariant */ 56);
-	
-	var Monitor = {
-	
-	  getInitialState:function()         {
-	    if (true) {
-	      invariant(this.getState, "Monitor mixin requires `getState` implementation.");
-	    }
-	
-	    return this.getState();
-	  },
-	
-	  updateState:function() {
-	    this.setState(this.getState());
-	  },
-	
-	  componentDidMount:function() {
-	    Bus.subscribe(this.updateState);
-	  },
-	
-	  componentWillUnmount:function() {
-	    Bus.unsubscribe(this.updateState);
-	  },
-	
-	  componentWillReceiveProps:function() {
-	    this.updateState();
-	  }
-	
-	};
-	
-	module.exports = Monitor;
-
-
-/***/ },
-/* 168 */
 /*!********************************************************!*\
   !*** ./colonel-kurtz/components/block_types/medium.js ***!
   \********************************************************/
@@ -23268,7 +23222,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 169 */
+/* 168 */
 /*!********************************************!*\
   !*** ./colonel-kurtz/constants/strings.js ***!
   \********************************************/
@@ -23284,6 +23238,52 @@ var ColonelKurtz =
 	    'label' : 'Add a new block'
 	  }
 	}
+
+
+/***/ },
+/* 169 */
+/*!*****************************************!*\
+  !*** ./colonel-kurtz/mixins/monitor.js ***!
+  \*****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Listens to the Bus and calls a provided `getState` function when
+	 * the Bus publishes.
+	 */
+	
+	var Bus       = __webpack_require__(/*! ../bus */ 25);
+	var invariant = __webpack_require__(/*! react/lib/invariant */ 56);
+	
+	var Monitor = {
+	
+	  getInitialState:function()         {
+	    if (true) {
+	      invariant(this.getState, "Monitor mixin requires `getState` implementation.");
+	    }
+	
+	    return this.getState();
+	  },
+	
+	  updateState:function() {
+	    this.setState(this.getState());
+	  },
+	
+	  componentDidMount:function() {
+	    Bus.subscribe(this.updateState);
+	  },
+	
+	  componentWillUnmount:function() {
+	    Bus.unsubscribe(this.updateState);
+	  },
+	
+	  componentWillReceiveProps:function() {
+	    this.updateState();
+	  }
+	
+	};
+	
+	module.exports = Monitor;
 
 
 /***/ },
