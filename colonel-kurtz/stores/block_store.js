@@ -1,9 +1,10 @@
 /* @flow */
 
-var Immutable  = require('immutable')
-var Dispatcher = require('../dispatcher')
-var Constants  = require('../constants/block_constants')
+var Block      = require('../models/block')
 var Bus        = require('../bus')
+var Constants  = require('../constants/block_constants')
+var Dispatcher = require('../dispatcher')
+var Immutable  = require('immutable')
 
 var _blocks = Immutable.List()
 
@@ -61,5 +62,3 @@ var BlockStore = {
 }
 
 module.exports = BlockStore
-
-var Block = require('../models/block')

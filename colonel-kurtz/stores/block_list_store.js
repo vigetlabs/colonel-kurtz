@@ -1,14 +1,13 @@
 /* @flow */
 
-var Dispatcher = require('../dispatcher')
-var Actions = require('../actions/block_list_actions')
-var Constants = require('../constants/block_list_constants')
+var Actions        = require('../actions/block_list_actions')
+var Block          = require('../models/block')
 var BlockConstants = require('../constants/block_constants')
-var BlockList = require('../models/block_list')
-var BlockStore = require('../stores/block_store')
-var Block = require('../models/block')
-
-var Immutable = require('immutable')
+var BlockList      = require('../models/block_list')
+var BlockStore     = require('../stores/block_store')
+var Constants      = require('../constants/block_list_constants')
+var Dispatcher     = require('../dispatcher')
+var Immutable      = require('immutable')
 
 var _blockLists = Immutable.List()
 
@@ -69,9 +68,6 @@ var BlockListStore = {
     }
   })
 
-
 }
 
 module.exports = BlockListStore
-
-var BlockConstants = require('../constants/block_constants')

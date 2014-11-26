@@ -215,15 +215,14 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 17)
-	var Actions = __webpack_require__(/*! ../actions/block_list_actions */ 2)
-	var Constants = __webpack_require__(/*! ../constants/block_list_constants */ 15)
+	var Actions        = __webpack_require__(/*! ../actions/block_list_actions */ 2)
+	var Block          = __webpack_require__(/*! ../models/block */ 19)
 	var BlockConstants = __webpack_require__(/*! ../constants/block_constants */ 16)
-	var BlockList = __webpack_require__(/*! ../models/block_list */ 18)
-	var BlockStore = __webpack_require__(/*! ../stores/block_store */ 9)
-	var Block = __webpack_require__(/*! ../models/block */ 19)
-	
-	var Immutable = __webpack_require__(/*! immutable */ 8)
+	var BlockList      = __webpack_require__(/*! ../models/block_list */ 18)
+	var BlockStore     = __webpack_require__(/*! ../stores/block_store */ 9)
+	var Constants      = __webpack_require__(/*! ../constants/block_list_constants */ 15)
+	var Dispatcher     = __webpack_require__(/*! ../dispatcher */ 17)
+	var Immutable      = __webpack_require__(/*! immutable */ 8)
 	
 	var _blockLists = Immutable.List()
 	
@@ -284,12 +283,9 @@ var ColonelKurtz =
 	    }
 	  })
 	
-	
 	}
 	
 	module.exports = BlockListStore
-	
-	var BlockConstants = __webpack_require__(/*! ../constants/block_constants */ 16)
 
 
 /***/ },
@@ -4327,10 +4323,11 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var Immutable  = __webpack_require__(/*! immutable */ 8)
-	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 17)
-	var Constants  = __webpack_require__(/*! ../constants/block_constants */ 16)
+	var Block      = __webpack_require__(/*! ../models/block */ 19)
 	var Bus        = __webpack_require__(/*! ../bus */ 25)
+	var Constants  = __webpack_require__(/*! ../constants/block_constants */ 16)
+	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 17)
+	var Immutable  = __webpack_require__(/*! immutable */ 8)
 	
 	var _blocks = Immutable.List()
 	
@@ -4388,8 +4385,6 @@ var ColonelKurtz =
 	}
 	
 	module.exports = BlockStore
-	
-	var Block = __webpack_require__(/*! ../models/block */ 19)
 
 
 /***/ },
