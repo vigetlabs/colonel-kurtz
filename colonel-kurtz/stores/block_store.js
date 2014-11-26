@@ -1,16 +1,13 @@
 /* @flow */
 
-var Events = require('events')
+var Immutable  = require('immutable')
 var Dispatcher = require('../dispatcher')
-var Constants = require('../constants/block_constants')
-var BlockListConstants = require('../constants/block_list_constants')
-var Actions = require('../actions/block_actions')
-var BlockListActions = require('../actions/block_list_actions')
-var assign = Object.assign || require('object.assign')
+var Constants  = require('../constants/block_constants')
+var Bus        = require('../bus')
 
-var _blocks = []
+var _blocks = Immutable.List()
 
-var BlockStore = assign({
+var BlockStore = {
 
   all(): Array<Block> {
     return _blocks
@@ -23,9 +20,12 @@ var BlockStore = assign({
   },
 
   _create(parentBlockListId: number): Block {
-    var block = new Block({ parentBlockListId: parentBlockListId })
-    _blocks.push(block)
-    this.emit(Constants.BLOCK_CREATED)
+    var block = new Block({ parentBlockListId })
+
+    _blocks = _blocks.push(block)
+
+    Bus.publish()
+
     return block
   },
 
@@ -34,8 +34,10 @@ var BlockStore = assign({
 
     if (block) {
       var removalIndex = _blocks.indexOf(block)
-      _blocks.splice(removalIndex, 1)
-      this.emit(Constants.BLOCK_DESTROYED)
+
+      _blocks = _blocks.splice(removalIndex, 1)
+
+      Bus.publish()
     }
   },
 
@@ -56,7 +58,7 @@ var BlockStore = assign({
     }
   })
 
-}, Events.EventEmitter.prototype)
+}
 
 module.exports = BlockStore
 
