@@ -1,7 +1,8 @@
 /* @flow */
 
-var uid = require('../utils/uid')
-var BlockList = require('./block_list')
+var uid            = require('../utils/uid')
+var BlockList      = require('./block_list')
+var BlockTypeStore = require('stores/block_type_store')
 
 class Block {
   id: number;
@@ -11,10 +12,12 @@ class Block {
     this.id = uid()
     this.parentBlockListId = params.parentBlockListId
     this.content = null
+    // TODO: Demo only. Replace with actual block type determination.
+    this.type = Math.random() > 0.5 ? 'medium' : 'text'
   }
 
   toJSON(): {id: number; content: any; childBlockList: ?BlockList} {
-    var json = { id: this.id, content: this.content }
+    var json = { id: this.id, type: this.type, content: this.content }
 
     var childBlockList = this.childBlockList()
 
@@ -40,10 +43,15 @@ class Block {
   update(newContent: Object) {
     BlockActions.update({ blockId: this.id, content: newContent })
   }
+
+  component() {
+    var blockType = BlockTypeStore.find(this.type)
+    return blockType ? blockType.component : null
+  }
 }
 
 module.exports = Block
 
-var BlockListStore = require('../stores/block_list_store')
+var BlockListStore   = require('../stores/block_list_store')
 var BlockListActions = require('../actions/block_list_actions')
-var BlockActions = require('../actions/block_actions')
+var BlockActions     = require('../actions/block_actions')

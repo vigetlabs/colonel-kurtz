@@ -1,12 +1,16 @@
 /* @flow */
 
-var React = require('react')
-var Immutable = require('immutable')
-var App = require('./components/app')
+var React            = require('react')
+var Immutable        = require('immutable')
+var App              = require('./components/app')
 var BlockListActions = require('./actions/block_list_actions')
-var BlockListStore = require('./stores/block_list_store')
-var exportGlobal = require('./utils/export_global')
-var uid = require('./utils/uid')
+var BlockTypeActions = require('./actions/block_type_actions')
+var BlockListStore   = require('./stores/block_list_store')
+var BlockTypeStore   = require('./stores/block_type_store')
+var BlockTypeMixin   = require('mixins/block_type')
+var exportGlobal     = require('./utils/export_global')
+var uid              = require('./utils/uid')
+var assign           = require('object.assign')
 
 require('array.prototype.find')
 require('style/colonel')
@@ -79,6 +83,22 @@ class ColonelKurtz {
   }
 
 }
+
+ColonelKurtz.addBlockType = function(id, component) {
+  BlockTypeActions.create({ id, component })
+}
+
+ColonelKurtz.createBlock = function(blockClass) {
+  return React.createClass(
+    assign(blockClass, {
+      React: React,
+      mixins: [BlockTypeMixin]
+    })
+  )
+}
+
+// Add core block types
+ColonelKurtz.addBlockType('medium', require('components/block_types/medium'))
 
 module.exports = ColonelKurtz
 
