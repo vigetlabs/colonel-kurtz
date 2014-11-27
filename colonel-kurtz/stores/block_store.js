@@ -41,6 +41,17 @@ var BlockStore = {
     }
   },
 
+  _update(blockId: number, content: Object) {
+    var block = BlockStore.find(blockId)
+
+    if (block) {
+      // This could probably be done more immutably, but seems fine as is.
+      block.content = content
+
+      Bus.publish()
+    }
+  },
+
   dispatchToken: Dispatcher.register(function(action) {
     switch (action.type) {
       case Constants.BLOCK_CREATE:
@@ -51,7 +62,7 @@ var BlockStore = {
         BlockStore._destroy(action.blockId)
         break
       case Constants.BLOCK_UPDATE:
-        // do a thing
+        BlockStore._update(action.blockId, action.content)
         break
       default:
         // do nothing

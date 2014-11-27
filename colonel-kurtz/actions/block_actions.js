@@ -19,6 +19,16 @@ var BlockActions = {
       blockId: params.blockId,
       parentBlockListId: params.parentBlockListId
     })
+  },
+
+  update(params: {blockId: number; content: Object}) {
+    var { blockId, content } = params
+
+    Dispatcher.dispatch({
+      type: BlockConstants.BLOCK_UPDATE,
+      blockId: blockId,
+      content: content
+    })
   }
 
 }

@@ -6,12 +6,11 @@ var BlockList = require('./block_list')
 class Block {
   id: number;
   parentBlockListId: number;
-  content: string;
 
   constructor(params: {parentBlockListId: number}) {
     this.id = uid()
     this.parentBlockListId = params.parentBlockListId
-    this.content = ""
+    this.content = null
   }
 
   toJSON(): {id: number; content: any; childBlockList: ?BlockList} {
@@ -37,9 +36,14 @@ class Block {
 
     return BlockListStore.findByBlockId(this.id)
   }
+
+  update(newContent: Object) {
+    BlockActions.update({ blockId: this.id, content: newContent })
+  }
 }
 
 module.exports = Block
 
 var BlockListStore = require('../stores/block_list_store')
 var BlockListActions = require('../actions/block_list_actions')
+var BlockActions = require('../actions/block_actions')

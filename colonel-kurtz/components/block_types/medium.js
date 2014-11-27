@@ -1,34 +1,65 @@
 /* @flow */
 
-var React = require('react')
-var Pure = require('mixins/pure')
+var React        = require('react')
 var MediumEditor = require('vendor/medium-editor')
+var BlockType    = require('mixins/block_type')
 
 require('vendor/medium-editor/style')
 
 var Medium = React.createClass({
 
-  shouldComponentUpdate(props) {
-    return props.content !== this.props.content
+  // Begin: Common Block Type Interface
+  //
+  // Each block type component must include the BlockType mixin and implement:
+  // - defaultContent()
+  // - renderEditor()
+  // - renderPreviewer()
+  //
+  // Block content is managed via calls to setContent(), which updates both
+  // this component's state as well as the block instance's content.
+
+  mixins: [BlockType],
+
+  defaultContent() {
+    return {
+      html: ''
+    }
   },
 
+  renderEditor() {
+    return (
+      <div className="colonel-block-content">
+        <div className="colonel-block-editor" onBlur={ this.onEditorBlur } role="textarea" aria-multiline="true" ref="editor" dangerouslySetInnerHTML={{ __html: this.state.content.html }} />
+      </div>
+    )
+  },
+
+  renderPreviewer() {
+    return (
+      <div dangerouslySetInnerHTML={{ __html: this.state.content.html }}></div>
+    )
+  },
+
+  // End: Common Block Type Interface
+
   componentDidMount() {
-    this.setState({
-      editor: new MediumEditor(this.refs.editor.getDOMNode(), this.props.options)
-    })
+    if (this.editMode()) {
+      this.setState({
+        editor: new MediumEditor(this.refs.editor.getDOMNode(), this.props.options)
+      })
+    }
   },
 
   componentWillUnmount() {
-    this.state.editor.deactivate()
+    if (this.editMode()) {
+      this.state.editor.deactivate()
+    }
   },
 
-  render(): any {
-    return (
-      <div className="colonel-block-content">
-        <div className="colonel-block-editor" role="textarea" aria-multiline="true" ref="editor" dangerouslySetInnerHTML={{ __html: this.props.content }} />
-      </div>
-    )
-  }
+  onEditorBlur() {
+    var htmlContent = { html: this.refs.editor.getDOMNode().innerHTML }
+    this.setContent(htmlContent)
+  },
 
 })
 
