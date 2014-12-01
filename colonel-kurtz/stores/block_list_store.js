@@ -1,6 +1,5 @@
 /* @flow */
 
-var Actions    = require('../actions/block_list_actions')
 var BlockList  = require('../models/block_list')
 var BlockStore = require('../stores/block_store')
 var Constants  = require('../constants/block_list_constants')
@@ -14,6 +13,24 @@ var BlockListStore = {
 
   all(): Array<BlockList> {
     return _blockLists
+  },
+
+  serialize(id) {
+    var list = this.find(id);
+
+    return {
+      id: id,
+      blocks: list.all().map(BlockStore.find).map(function(block) {
+        var childBlockList = BlockListStore.findByBlockId(block.id)
+
+        return {
+          id: block.id,
+          type: block.type,
+          content: block.content,
+          childBlockList: BlockListStore.serialize(childBlockList.id)
+        }
+      })
+    }
   },
 
   findByEditorId(editorId: number) {
@@ -32,16 +49,17 @@ var BlockListStore = {
     var blockList = new BlockList({ editorId: params.editorId, blockId: params.blockId })
 
     _blockLists = _blockLists.push(blockList)
+  },
 
-    return blockList
+  _createFromParent(block, position): void {
+    var parent = this.find(block.parentBlockListId)
+    var blockList = new BlockList({ editorId: parent.editorId, blockId: block.id})
+
+    _blockLists = _blockLists.push(blockList)
   },
 
   _addBlockToList(block: Block, position: number) {
     var blockList = this.find(block.parentBlockListId)
-
-    if (!blockList) {
-      blockList = BlockListStore._create({ blockId: block.id })
-    }
 
     blockList.insertBlock(block, position)
 
@@ -62,6 +80,7 @@ var BlockListStore = {
       case BlockConstants.BLOCK_CREATE:
         Dispatcher.waitFor([ BlockStore.dispatchToken ])
         BlockListStore._addBlockToList(action.block, action.position)
+        BlockListStore._createFromParent(action.block, action.position)
         break
       case BlockConstants.BLOCK_DESTROY:
         BlockListStore._removeBlockFromList(action.blockId, action.parentBlockListId)

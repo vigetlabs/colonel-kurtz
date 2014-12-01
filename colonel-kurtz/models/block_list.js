@@ -13,13 +13,6 @@ var BlockList = function(params: {editorId: number; blockId: number}) {
 
 BlockList.prototype = {
 
-  toJSON() {
-    return {
-      id: this.id,
-      blocks: this._blocks.map(BlockStore.find).map(b => b.toJSON())
-    }
-  },
-
   all() {
     return this._blocks
   },
@@ -34,5 +27,3 @@ BlockList.prototype = {
 }
 
 module.exports = BlockList
-
-var BlockStore = require('../stores/block_store')

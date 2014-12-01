@@ -1,9 +1,12 @@
 /* @flow */
 
-var React = require('react')
-var BlockListStore = require('../stores/block_list_store')
+var Serializer = require('../stores/serializer_store')
+var Monitor   = require('../mixins/monitor')
+var React     = require('react')
 
 var JsonConsole = React.createClass({
+
+  mixins: [ Monitor ],
 
   getDefaultProps() {
     return {
@@ -11,26 +14,18 @@ var JsonConsole = React.createClass({
     }
   },
 
-  getInitialState() {
-    return this.getState()
-  },
-
   getState(): Object {
     return {
-      blockList:BlockListStore.find(this.props.initialBlockListId)
+      data: Serializer.serializeBlockList(this.props.initialBlockListId)
     }
   },
 
-  updateState() {
-    this.setState(this.getState())
-  },
-
   toJSON(): Object {
-    return this.state.blockList.toJSON() || {}
+    return this.state.data
   },
 
   render(): any {
-    return(
+    return (
       <pre>{ JSON.stringify(this, undefined, this.props.indentation) }</pre>
     )
   }

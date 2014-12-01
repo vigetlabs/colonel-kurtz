@@ -11,6 +11,7 @@ var BlockTypeMixin   = require('mixins/block_type')
 var exportGlobal     = require('./utils/export_global')
 var uid              = require('./utils/uid')
 var assign           = require('object.assign')
+var Serializer       = require('./stores/serializer_store')
 
 require('array.prototype.find')
 require('style/colonel')
@@ -45,9 +46,7 @@ class ColonelKurtz {
   }
 
   toJSON() {
-    var rootList = this.rootBlockList()
-
-    return rootList ? rootList.toJSON() : {}
+    return Serializer.serializeBlockList(this.rootBlockList().id)
   }
 
   toHtml(): string {
