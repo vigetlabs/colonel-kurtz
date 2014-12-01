@@ -1,9 +1,10 @@
 /* @flow */
 
-var React = require('react')
-var RemoveBlockButton = require('./remove_block_button')
 var ActLikeBlockWithBlockList = require('../mixins/acts_like_block_with_block_list')
 var AppConstants = require('constants/app_constants')
+var Block = require('./block')
+var React = require('react')
+var RemoveBlockButton = require('./remove_block_button')
 
 var EditorBlock = React.createClass({
 
@@ -13,17 +14,12 @@ var EditorBlock = React.createClass({
     return require('./editor_block_list')
   },
 
-  updateContent(content) {
-    this.state.block.update(content)
-  },
-
   render(): any {
-    var { id, parentBlockListId } = this.state.block
-    var BlockType = this.state.block.component()
+    var { content, id, type, parentBlockListId } = this.state.block
 
-    return(
+    return (
       <div className="colonel-block">
-        <BlockType mode={ AppConstants.EDIT_MODE } initialContent={ this.state.block.content } updateContent={ this.updateContent } />
+        <Block block={ this.state.block } mode={ AppConstants.EDIT_MODE } />
 
         <div className="colonel-toolbar">
           <RemoveBlockButton blockId={ id } blockListId={ parentBlockListId } />

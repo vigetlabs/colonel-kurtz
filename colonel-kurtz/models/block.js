@@ -43,10 +43,6 @@ class Block {
     BlockActions.update({ blockId: this.id, content: newContent })
   }
 
-  component() {
-    var blockType = BlockTypeStore.find(this.type)
-    return blockType ? blockType.component : null
-  }
 }
 
 module.exports = Block

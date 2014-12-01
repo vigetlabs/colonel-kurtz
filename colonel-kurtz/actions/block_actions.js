@@ -22,14 +22,8 @@ var BlockActions = {
     })
   },
 
-  update(params: {blockId: number; content: Object}) {
-    var { blockId, content } = params
-
-    Dispatcher.dispatch({
-      type: BlockConstants.BLOCK_UPDATE,
-      blockId: blockId,
-      content: content
-    })
+  update(blockId: number, content: string) {
+    Dispatcher.dispatch({ type: BlockConstants.BLOCK_UPDATE, blockId, content })
   }
 
 }

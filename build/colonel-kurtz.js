@@ -50,7 +50,7 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React            = __webpack_require__(/*! react */ 12)
+	var React            = __webpack_require__(/*! react */ 10)
 	var Immutable        = __webpack_require__(/*! immutable */ 13)
 	var App              = __webpack_require__(/*! ./components/app */ 1)
 	var BlockListActions = __webpack_require__(/*! ./actions/block_list_actions */ 2)
@@ -60,9 +60,9 @@ var ColonelKurtz =
 	var BlockTypeMixin   = __webpack_require__(/*! mixins/block_type */ 8)
 	var exportGlobal     = __webpack_require__(/*! ./utils/export_global */ 6)
 	var uid              = __webpack_require__(/*! ./utils/uid */ 7)
-	var assign           = __webpack_require__(/*! object.assign */ 10)
+	var assign           = __webpack_require__(/*! object.assign */ 11)
 	
-	__webpack_require__(/*! array.prototype.find */ 11)
+	__webpack_require__(/*! array.prototype.find */ 12)
 	__webpack_require__(/*! style/colonel */ 15)
 	
 	var _instances = []
@@ -164,10 +164,10 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React = __webpack_require__(/*! react */ 12)
-	var AppConstants = __webpack_require__(/*! ../constants/app_constants */ 26)
-	var ModeSelection = __webpack_require__(/*! ./mode_selection */ 24)
-	var ContentSection = __webpack_require__(/*! ./content_section */ 25)
+	var React = __webpack_require__(/*! react */ 10)
+	var AppConstants = __webpack_require__(/*! ../constants/app_constants */ 19)
+	var ModeSelection = __webpack_require__(/*! ./mode_selection */ 17)
+	var ContentSection = __webpack_require__(/*! ./content_section */ 18)
 	
 	var App = React.createClass({displayName: 'App',
 	
@@ -208,8 +208,8 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var BlockListConstants = __webpack_require__(/*! ../constants/block_list_constants */ 17)
-	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 20)
+	var BlockListConstants = __webpack_require__(/*! ../constants/block_list_constants */ 20)
+	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 23)
 	
 	var BlockListActions = {
 	
@@ -235,8 +235,8 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var Constants  = __webpack_require__(/*! constants/block_type_constants */ 19)
-	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 20)
+	var Constants  = __webpack_require__(/*! constants/block_type_constants */ 22)
+	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 23)
 	
 	var BlockTypeActions = {
 	
@@ -262,13 +262,13 @@ var ColonelKurtz =
 	/* @flow */
 	
 	var Actions        = __webpack_require__(/*! ../actions/block_list_actions */ 2)
-	var Block          = __webpack_require__(/*! ../models/block */ 21)
-	var BlockList      = __webpack_require__(/*! ../models/block_list */ 22)
+	var Block          = __webpack_require__(/*! ../models/block */ 24)
+	var BlockList      = __webpack_require__(/*! ../models/block_list */ 25)
 	var BlockStore     = __webpack_require__(/*! ../stores/block_store */ 14)
-	var Constants      = __webpack_require__(/*! ../constants/block_list_constants */ 17)
-	var Dispatcher     = __webpack_require__(/*! ../dispatcher */ 20)
+	var Constants      = __webpack_require__(/*! ../constants/block_list_constants */ 20)
+	var Dispatcher     = __webpack_require__(/*! ../dispatcher */ 23)
 	var Immutable      = __webpack_require__(/*! immutable */ 13)
-	var Bus            = __webpack_require__(/*! ../bus */ 23)
+	var Bus            = __webpack_require__(/*! ../bus */ 26)
 	
 	var _blockLists = Immutable.List()
 	
@@ -336,7 +336,7 @@ var ColonelKurtz =
 	module.exports = BlockListStore
 	
 	// This is to get around circular dependencies
-	var BlockConstants = __webpack_require__(/*! ../constants/block_constants */ 18)
+	var BlockConstants = __webpack_require__(/*! ../constants/block_constants */ 21)
 
 
 /***/ },
@@ -348,8 +348,8 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var Constants  = __webpack_require__(/*! ../constants/block_type_constants */ 19)
-	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 20)
+	var Constants  = __webpack_require__(/*! ../constants/block_type_constants */ 22)
+	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 23)
 	var Immutable  = __webpack_require__(/*! immutable */ 13)
 	
 	var _blockTypes = Immutable.List()
@@ -443,8 +443,8 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React        = __webpack_require__(/*! react */ 12)
-	var AppConstants = __webpack_require__(/*! constants/app_constants */ 26)
+	var React        = __webpack_require__(/*! react */ 10)
+	var AppConstants = __webpack_require__(/*! constants/app_constants */ 19)
 	var invariant    = __webpack_require__(/*! react/lib/invariant */ 28)
 	var Pure         = __webpack_require__(/*! mixins/pure */ 27)
 	
@@ -495,11 +495,11 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React        = __webpack_require__(/*! react */ 12)
-	var MediumEditor = __webpack_require__(/*! vendor/medium-editor */ 31)
+	var React        = __webpack_require__(/*! react */ 10)
+	var MediumEditor = __webpack_require__(/*! vendor/medium-editor */ 32)
 	var BlockType    = __webpack_require__(/*! mixins/block_type */ 8)
 	
-	__webpack_require__(/*! vendor/medium-editor/style */ 29)
+	__webpack_require__(/*! vendor/medium-editor/style */ 30)
 	
 	var Medium = React.createClass({displayName: 'Medium',
 	
@@ -563,6 +563,16 @@ var ColonelKurtz =
 
 /***/ },
 /* 10 */
+/*!**************************!*\
+  !*** ./~/react/react.js ***!
+  \**************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(/*! ./lib/React */ 33);
+
+
+/***/ },
+/* 11 */
 /*!**********************************!*\
   !*** ./~/object.assign/index.js ***!
   \**********************************/
@@ -571,7 +581,7 @@ var ColonelKurtz =
 	'use strict';
 	
 	// modified from https://github.com/es-shims/es6-shim
-	var keys = __webpack_require__(/*! object-keys */ 41);
+	var keys = __webpack_require__(/*! object-keys */ 42);
 	var canBeObject = function (obj) {
 		return typeof obj !== 'undefined' && obj !== null;
 	};
@@ -602,7 +612,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 11 */
+/* 12 */
 /*!*****************************************!*\
   !*** ./~/array.prototype.find/index.js ***!
   \*****************************************/
@@ -641,16 +651,6 @@ var ColonelKurtz =
 	    Array.prototype.find = find;
 	  }
 	})(this);
-
-
-/***/ },
-/* 12 */
-/*!**************************!*\
-  !*** ./~/react/react.js ***!
-  \**************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(/*! ./lib/React */ 33);
 
 
 /***/ },
@@ -4591,9 +4591,9 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var Bus        = __webpack_require__(/*! ../bus */ 23)
-	var Constants  = __webpack_require__(/*! ../constants/block_constants */ 18)
-	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 20)
+	var Bus        = __webpack_require__(/*! ../bus */ 26)
+	var Constants  = __webpack_require__(/*! ../constants/block_constants */ 21)
+	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 23)
 	var Immutable  = __webpack_require__(/*! immutable */ 13)
 	
 	var _blocks = Immutable.List()
@@ -4665,7 +4665,7 @@ var ColonelKurtz =
 	module.exports = BlockStore
 	
 	// This is to get around circular dependencies
-	var Block = __webpack_require__(/*! ../models/block */ 21)
+	var Block = __webpack_require__(/*! ../models/block */ 24)
 
 
 /***/ },
@@ -4680,258 +4680,6 @@ var ColonelKurtz =
 /***/ },
 /* 16 */,
 /* 17 */
-/*!*********************************************************!*\
-  !*** ./colonel-kurtz/constants/block_list_constants.js ***!
-  \*********************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 39)
-	
-	var BlockListConstants = KeyMirror({
-	  BLOCK_LIST_CREATE  : null,
-	  BLOCK_LIST_CREATED : null,
-	  BLOCK_LIST_CHANGE  : null
-	})
-	
-	module.exports = BlockListConstants
-
-
-/***/ },
-/* 18 */
-/*!****************************************************!*\
-  !*** ./colonel-kurtz/constants/block_constants.js ***!
-  \****************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 39)
-	
-	var BlockConstants = KeyMirror({
-	  BLOCK_CREATE    : null,
-	  BLOCK_CREATED   : null,
-	  BLOCK_DESTROY   : null,
-	  BLOCK_DESTROYED : null,
-	  BLOCK_UPDATE    : null
-	
-	})
-	
-	module.exports = BlockConstants
-
-
-/***/ },
-/* 19 */
-/*!*********************************************************!*\
-  !*** ./colonel-kurtz/constants/block_type_constants.js ***!
-  \*********************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 39)
-	
-	var BlockTypeConstants = KeyMirror({
-	  BLOCK_TYPE_CREATE : null
-	})
-	
-	module.exports = BlockTypeConstants
-
-
-/***/ },
-/* 20 */
-/*!*******************************************!*\
-  !*** ./colonel-kurtz/dispatcher/index.js ***!
-  \*******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Dispatcher is used to broadcast payloads to registered callbacks.
-	 *
-	 * This is different from generic pub-sub systems in two ways:
-	 *
-	 * - Callbacks are not subscribed to particular events. Every payload is dispatched to every registered callback.
-	 * - Callbacks can be deferred in whole or part until other callbacks have been executed.
-	 *
-	 * See http://facebook.github.io/flux/docs/dispatcher.html
-	 */
-	
-	var Dispatcher = __webpack_require__(/*! flux */ 67).Dispatcher
-	
-	module.exports = new Dispatcher()
-
-
-/***/ },
-/* 21 */
-/*!***************************************!*\
-  !*** ./colonel-kurtz/models/block.js ***!
-  \***************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var uid            = __webpack_require__(/*! ../utils/uid */ 7)
-	var BlockList      = __webpack_require__(/*! ./block_list */ 22)
-	var BlockTypeStore = __webpack_require__(/*! ../stores/block_type_store */ 5)
-	
-	
-	             
-	                            
-	
-	  function Block(params)                                            {"use strict";
-	    this.id = uid()
-	    this.parentBlockListId = params.parentBlockListId
-	    this.content = null
-	    this.type = params.type || 'text'
-	  }
-	
-	  Block.prototype.toJSON=function()                                                         {"use strict";
-	    var json = { id: this.id, type: this.type, content: this.content }
-	
-	    var childBlockList = this.childBlockList()
-	
-	    if (childBlockList) {
-	      json.childBlockList = childBlockList.toJSON()
-	    }
-	
-	    return json
-	  };
-	
-	  Block.prototype.parentBlockList=function() {"use strict";
-	    return BlockListStore.find(this.parentBlockListId)
-	  };
-	
-	  Block.prototype.childBlockList=function() {"use strict";
-	    // To simulate Blocks with nested block lists, add a block list to every block.
-	    // TODO: remove once block types are implemented
-	    BlockListActions.create({ blockId: this.id })
-	
-	    return BlockListStore.findByBlockId(this.id)
-	  };
-	
-	  Block.prototype.update=function(newContent)         {"use strict";
-	    BlockActions.update({ blockId: this.id, content: newContent })
-	  };
-	
-	  Block.prototype.component=function() {"use strict";
-	    var blockType = BlockTypeStore.find(this.type)
-	    return blockType ? blockType.component : null
-	  };
-	
-	
-	module.exports = Block
-	
-	var BlockListStore   = __webpack_require__(/*! ../stores/block_list_store */ 4)
-	var BlockListActions = __webpack_require__(/*! ../actions/block_list_actions */ 2)
-	var BlockActions     = __webpack_require__(/*! ../actions/block_actions */ 34)
-
-
-/***/ },
-/* 22 */
-/*!********************************************!*\
-  !*** ./colonel-kurtz/models/block_list.js ***!
-  \********************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var uid = __webpack_require__(/*! ../utils/uid */ 7)
-	
-	var BlockList = function(params                                     ) {
-	  var id         = uid()
-	
-	  this.editorId = params.editorId
-	  this.blockId = params.blockId
-	  this.id = id
-	  this._blocks = []
-	}
-	
-	BlockList.prototype = {
-	
-	  toJSON:function() {
-	    return {
-	      id: this.id,
-	      blocks: this._blocks.map(BlockStore.find).map(function(b)  {return b.toJSON();})
-	    }
-	  },
-	
-	  all:function() {
-	    return this._blocks
-	  },
-	
-	  removeBlock:function(blockId) {
-	    this._blocks = this._blocks.filter(function(id)  {return id !== blockId;})
-	  },
-	
-	  insertBlock:function(block, position        ) {
-	    this._blocks.splice(position, 0, block.id)
-	  }
-	}
-	
-	module.exports = BlockList
-	
-	var BlockStore = __webpack_require__(/*! ../stores/block_store */ 14)
-
-
-/***/ },
-/* 23 */
-/*!************************************!*\
-  !*** ./colonel-kurtz/bus/index.js ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * The Bus emits a heartbeat whenever any store state has changed.
-	 * When Stores change, they can use this entity to broadcast
-	 * that state has changed.
-	 */
-	
-	var Immutable  = __webpack_require__(/*! immutable */ 13);
-	var invariant  = __webpack_require__(/*! react/lib/invariant */ 28);
-	
-	var _callbacks = Immutable.Set();
-	
-	var Bus = {
-	
-	  /**
-	   * Given a CALLBACK function, remove it from the Set of callbacks.
-	   * Throws an error if the callback is not included in the Set.
-	   */
-	  unsubscribe:function(callback) {
-	    if (true) {
-	      invariant(_callbacks.has(callback), 'Bus.stopListeningTo() was asked to remove callback that it was not subscribed to.');
-	    }
-	
-	    _callbacks = _callbacks.remove(callback);
-	  },
-	
-	  /**
-	   * Given a CALLBACK function, add it to the Set of all callbacks.
-	   */
-	  subscribe:function(callback) {
-	    if (true) {
-	      var type = typeof callback
-	      invariant(type === 'function', 'Bus.listenTo() expects a function, instead it received a ' + type)
-	    }
-	
-	    _callbacks = _callbacks.add(callback);
-	  },
-	
-	  /**
-	   * Trigger every callback in the Set
-	   */
-	  publish:function() {
-	    _callbacks.forEach(function(callback)  {return callback();});
-	  }
-	
-	}
-	
-	module.exports = Bus;
-
-
-/***/ },
-/* 24 */
 /*!****************************************************!*\
   !*** ./colonel-kurtz/components/mode_selection.js ***!
   \****************************************************/
@@ -4939,9 +4687,9 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React = __webpack_require__(/*! react */ 12)
-	var Button = __webpack_require__(/*! ./ui/button */ 40);
-	var AppConstants = __webpack_require__(/*! ../constants/app_constants */ 26)
+	var React = __webpack_require__(/*! react */ 10)
+	var Button = __webpack_require__(/*! ./ui/button */ 38);
+	var AppConstants = __webpack_require__(/*! ../constants/app_constants */ 19)
 	
 	var ModeSelection = React.createClass({displayName: 'ModeSelection',
 	
@@ -4999,7 +4747,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 25 */
+/* 18 */
 /*!*****************************************************!*\
   !*** ./colonel-kurtz/components/content_section.js ***!
   \*****************************************************/
@@ -5007,14 +4755,14 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React = __webpack_require__(/*! react */ 12)
-	var Constants = __webpack_require__(/*! ../constants/app_constants */ 26)
+	var React = __webpack_require__(/*! react */ 10)
+	var Constants = __webpack_require__(/*! ../constants/app_constants */ 19)
 	
 	var _types    = {}
 	
-	_types[Constants.EDIT_MODE]         = __webpack_require__(/*! ../components/editor */ 35)
-	_types[Constants.PREVIEW_MODE]      = __webpack_require__(/*! ../components/previewer */ 36)
-	_types[Constants.JSON_CONSOLE_MODE] = __webpack_require__(/*! ../components/json_console */ 37)
+	_types[Constants.EDIT_MODE]         = __webpack_require__(/*! ../components/editor */ 34)
+	_types[Constants.PREVIEW_MODE]      = __webpack_require__(/*! ../components/previewer */ 35)
+	_types[Constants.JSON_CONSOLE_MODE] = __webpack_require__(/*! ../components/json_console */ 36)
 	
 	var ContentSection = React.createClass({displayName: 'ContentSection',
 	
@@ -5039,7 +4787,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 26 */
+/* 19 */
 /*!**************************************************!*\
   !*** ./colonel-kurtz/constants/app_constants.js ***!
   \**************************************************/
@@ -5056,6 +4804,254 @@ var ColonelKurtz =
 	})
 	
 	module.exports = AppConstants
+
+
+/***/ },
+/* 20 */
+/*!*********************************************************!*\
+  !*** ./colonel-kurtz/constants/block_list_constants.js ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 39)
+	
+	var BlockListConstants = KeyMirror({
+	  BLOCK_LIST_CREATE  : null,
+	  BLOCK_LIST_CREATED : null,
+	  BLOCK_LIST_CHANGE  : null
+	})
+	
+	module.exports = BlockListConstants
+
+
+/***/ },
+/* 21 */
+/*!****************************************************!*\
+  !*** ./colonel-kurtz/constants/block_constants.js ***!
+  \****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 39)
+	
+	var BlockConstants = KeyMirror({
+	  BLOCK_CREATE    : null,
+	  BLOCK_CREATED   : null,
+	  BLOCK_DESTROY   : null,
+	  BLOCK_DESTROYED : null,
+	  BLOCK_UPDATE    : null
+	
+	})
+	
+	module.exports = BlockConstants
+
+
+/***/ },
+/* 22 */
+/*!*********************************************************!*\
+  !*** ./colonel-kurtz/constants/block_type_constants.js ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 39)
+	
+	var BlockTypeConstants = KeyMirror({
+	  BLOCK_TYPE_CREATE : null
+	})
+	
+	module.exports = BlockTypeConstants
+
+
+/***/ },
+/* 23 */
+/*!*******************************************!*\
+  !*** ./colonel-kurtz/dispatcher/index.js ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Dispatcher is used to broadcast payloads to registered callbacks.
+	 *
+	 * This is different from generic pub-sub systems in two ways:
+	 *
+	 * - Callbacks are not subscribed to particular events. Every payload is dispatched to every registered callback.
+	 * - Callbacks can be deferred in whole or part until other callbacks have been executed.
+	 *
+	 * See http://facebook.github.io/flux/docs/dispatcher.html
+	 */
+	
+	var Dispatcher = __webpack_require__(/*! flux */ 69).Dispatcher
+	
+	module.exports = new Dispatcher()
+
+
+/***/ },
+/* 24 */
+/*!***************************************!*\
+  !*** ./colonel-kurtz/models/block.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var uid            = __webpack_require__(/*! ../utils/uid */ 7)
+	var BlockList      = __webpack_require__(/*! ./block_list */ 25)
+	var BlockTypeStore = __webpack_require__(/*! ../stores/block_type_store */ 5)
+	
+	
+	             
+	                            
+	
+	  function Block(params)                                            {"use strict";
+	    this.id = uid()
+	    this.parentBlockListId = params.parentBlockListId
+	    this.content = null
+	    this.type = params.type || 'text'
+	  }
+	
+	  Block.prototype.toJSON=function()                                                         {"use strict";
+	    var json = { id: this.id, type: this.type, content: this.content }
+	
+	    var childBlockList = this.childBlockList()
+	
+	    if (childBlockList) {
+	      json.childBlockList = childBlockList.toJSON()
+	    }
+	
+	    return json
+	  };
+	
+	  Block.prototype.parentBlockList=function() {"use strict";
+	    return BlockListStore.find(this.parentBlockListId)
+	  };
+	
+	  Block.prototype.childBlockList=function() {"use strict";
+	    // To simulate Blocks with nested block lists, add a block list to every block.
+	    // TODO: remove once block types are implemented
+	    BlockListActions.create({ blockId: this.id })
+	
+	    return BlockListStore.findByBlockId(this.id)
+	  };
+	
+	  Block.prototype.update=function(newContent)         {"use strict";
+	    BlockActions.update({ blockId: this.id, content: newContent })
+	  };
+	
+	
+	
+	module.exports = Block
+	
+	var BlockListStore   = __webpack_require__(/*! ../stores/block_list_store */ 4)
+	var BlockListActions = __webpack_require__(/*! ../actions/block_list_actions */ 2)
+	var BlockActions     = __webpack_require__(/*! ../actions/block_actions */ 37)
+
+
+/***/ },
+/* 25 */
+/*!********************************************!*\
+  !*** ./colonel-kurtz/models/block_list.js ***!
+  \********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var uid = __webpack_require__(/*! ../utils/uid */ 7)
+	
+	var BlockList = function(params                                     ) {
+	  var id         = uid()
+	
+	  this.editorId = params.editorId
+	  this.blockId = params.blockId
+	  this.id = id
+	  this._blocks = []
+	}
+	
+	BlockList.prototype = {
+	
+	  toJSON:function() {
+	    return {
+	      id: this.id,
+	      blocks: this._blocks.map(BlockStore.find).map(function(b)  {return b.toJSON();})
+	    }
+	  },
+	
+	  all:function() {
+	    return this._blocks
+	  },
+	
+	  removeBlock:function(blockId) {
+	    this._blocks = this._blocks.filter(function(id)  {return id !== blockId;})
+	  },
+	
+	  insertBlock:function(block, position        ) {
+	    this._blocks.splice(position, 0, block.id)
+	  }
+	}
+	
+	module.exports = BlockList
+	
+	var BlockStore = __webpack_require__(/*! ../stores/block_store */ 14)
+
+
+/***/ },
+/* 26 */
+/*!************************************!*\
+  !*** ./colonel-kurtz/bus/index.js ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * The Bus emits a heartbeat whenever any store state has changed.
+	 * When Stores change, they can use this entity to broadcast
+	 * that state has changed.
+	 */
+	
+	var Immutable  = __webpack_require__(/*! immutable */ 13);
+	var invariant  = __webpack_require__(/*! react/lib/invariant */ 28);
+	
+	var _callbacks = Immutable.Set();
+	
+	var Bus = {
+	
+	  /**
+	   * Given a CALLBACK function, remove it from the Set of callbacks.
+	   * Throws an error if the callback is not included in the Set.
+	   */
+	  unsubscribe:function(callback) {
+	    if (true) {
+	      invariant(_callbacks.has(callback), 'Bus.stopListeningTo() was asked to remove callback that it was not subscribed to.');
+	    }
+	
+	    _callbacks = _callbacks.remove(callback);
+	  },
+	
+	  /**
+	   * Given a CALLBACK function, add it to the Set of all callbacks.
+	   */
+	  subscribe:function(callback) {
+	    if (true) {
+	      var type = typeof callback
+	      invariant(type === 'function', 'Bus.listenTo() expects a function, instead it received a ' + type)
+	    }
+	
+	    _callbacks = _callbacks.add(callback);
+	  },
+	
+	  /**
+	   * Trigger every callback in the Set
+	   */
+	  publish:function() {
+	    _callbacks.forEach(function(callback)  {return callback();});
+	  }
+	
+	}
+	
+	module.exports = Bus;
 
 
 /***/ },
@@ -5085,7 +5081,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var shallowEqual = __webpack_require__(/*! react/lib/shallowEqual */ 38);
+	var shallowEqual = __webpack_require__(/*! react/lib/shallowEqual */ 40);
 	
 	/**
 	 * If your React component's render function is "pure", e.g. it will render the
@@ -5184,7 +5180,8 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 29 */
+/* 29 */,
+/* 30 */
 /*!*****************************************!*\
   !*** ./vendor/medium-editor/style.scss ***!
   \*****************************************/
@@ -5193,8 +5190,8 @@ var ColonelKurtz =
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 30 */,
-/* 31 */
+/* 31 */,
+/* 32 */
 /*!***************************************!*\
   !*** ./vendor/medium-editor/index.js ***!
   \***************************************/
@@ -6802,7 +6799,6 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 32 */,
 /* 33 */
 /*!******************************!*\
   !*** ./~/react/lib/React.js ***!
@@ -6997,51 +6993,6 @@ var ColonelKurtz =
 
 /***/ },
 /* 34 */
-/*!************************************************!*\
-  !*** ./colonel-kurtz/actions/block_actions.js ***!
-  \************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var BlockConstants = __webpack_require__(/*! ../constants/block_constants */ 18)
-	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 20)
-	
-	var BlockActions = {
-	
-	  create:function(params                                                                  ) {
-	    Dispatcher.dispatch({
-	      type: BlockConstants.BLOCK_CREATE,
-	      blockType: params.blockType,
-	      parentBlockListId: params.parentBlockListId,
-	      position: params.position
-	    })
-	  },
-	
-	  destroy:function(params                                              ) {
-	    Dispatcher.dispatch({
-	      type: BlockConstants.BLOCK_DESTROY,
-	      blockId: params.blockId,
-	      parentBlockListId: params.parentBlockListId
-	    })
-	  },
-	
-	  update:function(params                                    ) {
-	    var $__0=     params,blockId=$__0.blockId,content=$__0.content
-	
-	    Dispatcher.dispatch({
-	      type: BlockConstants.BLOCK_UPDATE,
-	      blockId: blockId,
-	      content: content
-	    })
-	  }
-	
-	}
-	module.exports = BlockActions
-
-
-/***/ },
-/* 35 */
 /*!********************************************!*\
   !*** ./colonel-kurtz/components/editor.js ***!
   \********************************************/
@@ -7049,8 +7000,8 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React = __webpack_require__(/*! react */ 12)
-	var EditorBlockList = __webpack_require__(/*! ./editor_block_list */ 68)
+	var React = __webpack_require__(/*! react */ 10)
+	var EditorBlockList = __webpack_require__(/*! ./editor_block_list */ 67)
 	
 	var Editor = React.createClass({displayName: 'Editor',
 	
@@ -7064,7 +7015,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 36 */
+/* 35 */
 /*!***********************************************!*\
   !*** ./colonel-kurtz/components/previewer.js ***!
   \***********************************************/
@@ -7072,8 +7023,8 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React = __webpack_require__(/*! react */ 12)
-	var PreviewerBlockList = __webpack_require__(/*! ./previewer_block_list */ 69)
+	var React = __webpack_require__(/*! react */ 10)
+	var PreviewerBlockList = __webpack_require__(/*! ./previewer_block_list */ 68)
 	
 	var Previewer = React.createClass({displayName: 'Previewer',
 	
@@ -7089,7 +7040,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 37 */
+/* 36 */
 /*!**************************************************!*\
   !*** ./colonel-kurtz/components/json_console.js ***!
   \**************************************************/
@@ -7097,7 +7048,7 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React = __webpack_require__(/*! react */ 12)
+	var React = __webpack_require__(/*! react */ 10)
 	var BlockListStore = __webpack_require__(/*! ../stores/block_list_store */ 4)
 	
 	var JsonConsole = React.createClass({displayName: 'JsonConsole',
@@ -7138,54 +7089,76 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 38 */
-/*!*************************************!*\
-  !*** ./~/react/lib/shallowEqual.js ***!
-  \*************************************/
+/* 37 */
+/*!************************************************!*\
+  !*** ./colonel-kurtz/actions/block_actions.js ***!
+  \************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	/**
-	 * Copyright 2013-2014, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule shallowEqual
-	 */
+	/* @flow */
 	
-	"use strict";
+	var BlockConstants = __webpack_require__(/*! ../constants/block_constants */ 21)
+	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 23)
 	
-	/**
-	 * Performs equality by iterating through keys on an object and returning
-	 * false when any key has values which are not strictly equal between
-	 * objA and objB. Returns true when the values of all keys are strictly equal.
-	 *
-	 * @return {boolean}
-	 */
-	function shallowEqual(objA, objB) {
-	  if (objA === objB) {
-	    return true;
+	var BlockActions = {
+	
+	  create:function(params                                                                  ) {
+	    Dispatcher.dispatch({
+	      type: BlockConstants.BLOCK_CREATE,
+	      blockType: params.blockType,
+	      parentBlockListId: params.parentBlockListId,
+	      position: params.position
+	    })
+	  },
+	
+	  destroy:function(params                                              ) {
+	    Dispatcher.dispatch({
+	      type: BlockConstants.BLOCK_DESTROY,
+	      blockId: params.blockId,
+	      parentBlockListId: params.parentBlockListId
+	    })
+	  },
+	
+	  update:function(blockId        , content        ) {
+	    Dispatcher.dispatch({ type: BlockConstants.BLOCK_UPDATE, blockId:blockId, content:content })
 	  }
-	  var key;
-	  // Test for A's keys different from B.
-	  for (key in objA) {
-	    if (objA.hasOwnProperty(key) &&
-	        (!objB.hasOwnProperty(key) || objA[key] !== objB[key])) {
-	      return false;
-	    }
-	  }
-	  // Test for B's keys missing from A.
-	  for (key in objB) {
-	    if (objB.hasOwnProperty(key) && !objA.hasOwnProperty(key)) {
-	      return false;
-	    }
-	  }
-	  return true;
+	
 	}
+	module.exports = BlockActions
+
+
+/***/ },
+/* 38 */
+/*!***********************************************!*\
+  !*** ./colonel-kurtz/components/ui/button.js ***!
+  \***********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(/*! react */ 10);
+	var Ink   = __webpack_require__(/*! react-ink */ 131);
 	
-	module.exports = shallowEqual;
+	var Button = React.createClass({displayName: 'Button',
+	
+	  getDefaultProps:function() {
+	    return {
+	      inkColor : null,
+	      tagName  : 'button'
+	    }
+	  },
+	
+	  render:function() {
+	    var $__0=       this.props,children=$__0.children,inkColor=$__0.inkColor,tagName=$__0.tagName,attrs=(function(source, exclusion) {var rest = {};var hasOwn = Object.prototype.hasOwnProperty;if (source == null) {throw new TypeError();}for (var key in source) {if (hasOwn.call(source, key) && !hasOwn.call(exclusion, key)) {rest[key] = source[key];}}return rest;})($__0,{children:1,inkColor:1,tagName:1});
+	
+	    return (
+	      React.createElement(tagName, attrs, [
+	        children,
+	        React.createElement(Ink, {key: "__ink", color: inkColor })
+	      ])
+	    );
+	  }
+	});
+	
+	module.exports = Button;
 
 
 /***/ },
@@ -7250,40 +7223,58 @@ var ColonelKurtz =
 
 /***/ },
 /* 40 */
-/*!***********************************************!*\
-  !*** ./colonel-kurtz/components/ui/button.js ***!
-  \***********************************************/
+/*!*************************************!*\
+  !*** ./~/react/lib/shallowEqual.js ***!
+  \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	var React = __webpack_require__(/*! react */ 12);
-	var Ink   = __webpack_require__(/*! react-ink */ 132);
+	/**
+	 * Copyright 2013-2014, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule shallowEqual
+	 */
 	
-	var Button = React.createClass({displayName: 'Button',
+	"use strict";
 	
-	  getDefaultProps:function() {
-	    return {
-	      inkColor : null,
-	      tagName  : 'button'
-	    }
-	  },
-	
-	  render:function() {
-	    var $__0=       this.props,children=$__0.children,inkColor=$__0.inkColor,tagName=$__0.tagName,attrs=(function(source, exclusion) {var rest = {};var hasOwn = Object.prototype.hasOwnProperty;if (source == null) {throw new TypeError();}for (var key in source) {if (hasOwn.call(source, key) && !hasOwn.call(exclusion, key)) {rest[key] = source[key];}}return rest;})($__0,{children:1,inkColor:1,tagName:1});
-	
-	    return (
-	      React.createElement(tagName, attrs, [
-	        children,
-	        React.createElement(Ink, {key: "__ink", color: inkColor })
-	      ])
-	    );
+	/**
+	 * Performs equality by iterating through keys on an object and returning
+	 * false when any key has values which are not strictly equal between
+	 * objA and objB. Returns true when the values of all keys are strictly equal.
+	 *
+	 * @return {boolean}
+	 */
+	function shallowEqual(objA, objB) {
+	  if (objA === objB) {
+	    return true;
 	  }
-	});
+	  var key;
+	  // Test for A's keys different from B.
+	  for (key in objA) {
+	    if (objA.hasOwnProperty(key) &&
+	        (!objB.hasOwnProperty(key) || objA[key] !== objB[key])) {
+	      return false;
+	    }
+	  }
+	  // Test for B's keys missing from A.
+	  for (key in objB) {
+	    if (objB.hasOwnProperty(key) && !objA.hasOwnProperty(key)) {
+	      return false;
+	    }
+	  }
+	  return true;
+	}
 	
-	module.exports = Button;
+	module.exports = shallowEqual;
 
 
 /***/ },
-/* 41 */
+/* 41 */,
+/* 42 */
 /*!************************************************!*\
   !*** ./~/object.assign/~/object-keys/index.js ***!
   \************************************************/
@@ -7362,7 +7353,6 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 42 */,
 /* 43 */
 /*!**********************************************!*\
   !*** ./~/react/lib/DOMPropertyOperations.js ***!
@@ -7810,9 +7800,9 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 76);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 78);
 	
-	var traverseAllChildren = __webpack_require__(/*! ./traverseAllChildren */ 77);
+	var traverseAllChildren = __webpack_require__(/*! ./traverseAllChildren */ 79);
 	var warning = __webpack_require__(/*! ./warning */ 74);
 	
 	var twoArgumentPooler = PooledClass.twoArgumentPooler;
@@ -7966,8 +7956,8 @@ var ColonelKurtz =
 	"use strict";
 	
 	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
-	var ReactOwner = __webpack_require__(/*! ./ReactOwner */ 78);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 79);
+	var ReactOwner = __webpack_require__(/*! ./ReactOwner */ 76);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 77);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 63);
 	var invariant = __webpack_require__(/*! ./invariant */ 28);
@@ -8421,12 +8411,12 @@ var ColonelKurtz =
 	var ReactEmptyComponent = __webpack_require__(/*! ./ReactEmptyComponent */ 80);
 	var ReactErrorUtils = __webpack_require__(/*! ./ReactErrorUtils */ 81);
 	var ReactLegacyElement = __webpack_require__(/*! ./ReactLegacyElement */ 56);
-	var ReactOwner = __webpack_require__(/*! ./ReactOwner */ 78);
+	var ReactOwner = __webpack_require__(/*! ./ReactOwner */ 76);
 	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 59);
 	var ReactPropTransferer = __webpack_require__(/*! ./ReactPropTransferer */ 82);
 	var ReactPropTypeLocations = __webpack_require__(/*! ./ReactPropTypeLocations */ 83);
 	var ReactPropTypeLocationNames = __webpack_require__(/*! ./ReactPropTypeLocationNames */ 84);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 79);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 77);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 63);
 	var instantiateReactComponent = __webpack_require__(/*! ./instantiateReactComponent */ 85);
@@ -13875,25 +13865,6 @@ var ColonelKurtz =
 
 /***/ },
 /* 67 */
-/*!*************************!*\
-  !*** ./~/flux/index.js ***!
-  \*************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright (c) 2014, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 */
-	
-	module.exports.Dispatcher = __webpack_require__(/*! ./lib/Dispatcher */ 131)
-
-
-/***/ },
-/* 68 */
 /*!*******************************************************!*\
   !*** ./colonel-kurtz/components/editor_block_list.js ***!
   \*******************************************************/
@@ -13901,7 +13872,7 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React = __webpack_require__(/*! react */ 12)
+	var React = __webpack_require__(/*! react */ 10)
 	var EditorBlock = __webpack_require__(/*! ./editor_block */ 127)
 	var AddBlockButton = __webpack_require__(/*! ./add_block_button */ 128)
 	var ActsLikeBlockList = __webpack_require__(/*! ../mixins/acts_like_block_list */ 129)
@@ -13942,7 +13913,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 69 */
+/* 68 */
 /*!**********************************************************!*\
   !*** ./colonel-kurtz/components/previewer_block_list.js ***!
   \**********************************************************/
@@ -13950,7 +13921,7 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React = __webpack_require__(/*! react */ 12)
+	var React = __webpack_require__(/*! react */ 10)
 	var PreviewerBlock = __webpack_require__(/*! ./previewer_block */ 130)
 	var ActsLikeBlockList = __webpack_require__(/*! ../mixins/acts_like_block_list */ 129)
 	
@@ -13975,6 +13946,25 @@ var ColonelKurtz =
 	})
 	
 	module.exports = PreviewerBlockList
+
+
+/***/ },
+/* 69 */
+/*!*************************!*\
+  !*** ./~/flux/index.js ***!
+  \*************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright (c) 2014, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 */
+	
+	module.exports.Dispatcher = __webpack_require__(/*! ./lib/Dispatcher */ 132)
 
 
 /***/ },
@@ -14528,315 +14518,6 @@ var ColonelKurtz =
 
 /***/ },
 /* 76 */
-/*!************************************!*\
-  !*** ./~/react/lib/PooledClass.js ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2014, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule PooledClass
-	 */
-	
-	"use strict";
-	
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
-	
-	/**
-	 * Static poolers. Several custom versions for each potential number of
-	 * arguments. A completely generic pooler is easy to implement, but would
-	 * require accessing the `arguments` object. In each of these, `this` refers to
-	 * the Class itself, not an instance. If any others are needed, simply add them
-	 * here, or in their own files.
-	 */
-	var oneArgumentPooler = function(copyFieldsFrom) {
-	  var Klass = this;
-	  if (Klass.instancePool.length) {
-	    var instance = Klass.instancePool.pop();
-	    Klass.call(instance, copyFieldsFrom);
-	    return instance;
-	  } else {
-	    return new Klass(copyFieldsFrom);
-	  }
-	};
-	
-	var twoArgumentPooler = function(a1, a2) {
-	  var Klass = this;
-	  if (Klass.instancePool.length) {
-	    var instance = Klass.instancePool.pop();
-	    Klass.call(instance, a1, a2);
-	    return instance;
-	  } else {
-	    return new Klass(a1, a2);
-	  }
-	};
-	
-	var threeArgumentPooler = function(a1, a2, a3) {
-	  var Klass = this;
-	  if (Klass.instancePool.length) {
-	    var instance = Klass.instancePool.pop();
-	    Klass.call(instance, a1, a2, a3);
-	    return instance;
-	  } else {
-	    return new Klass(a1, a2, a3);
-	  }
-	};
-	
-	var fiveArgumentPooler = function(a1, a2, a3, a4, a5) {
-	  var Klass = this;
-	  if (Klass.instancePool.length) {
-	    var instance = Klass.instancePool.pop();
-	    Klass.call(instance, a1, a2, a3, a4, a5);
-	    return instance;
-	  } else {
-	    return new Klass(a1, a2, a3, a4, a5);
-	  }
-	};
-	
-	var standardReleaser = function(instance) {
-	  var Klass = this;
-	  (true ? invariant(
-	    instance instanceof Klass,
-	    'Trying to release an instance into a pool of a different type.'
-	  ) : invariant(instance instanceof Klass));
-	  if (instance.destructor) {
-	    instance.destructor();
-	  }
-	  if (Klass.instancePool.length < Klass.poolSize) {
-	    Klass.instancePool.push(instance);
-	  }
-	};
-	
-	var DEFAULT_POOL_SIZE = 10;
-	var DEFAULT_POOLER = oneArgumentPooler;
-	
-	/**
-	 * Augments `CopyConstructor` to be a poolable class, augmenting only the class
-	 * itself (statically) not adding any prototypical fields. Any CopyConstructor
-	 * you give this may have a `poolSize` property, and will look for a
-	 * prototypical `destructor` on instances (optional).
-	 *
-	 * @param {Function} CopyConstructor Constructor that can be used to reset.
-	 * @param {Function} pooler Customizable pooler.
-	 */
-	var addPoolingTo = function(CopyConstructor, pooler) {
-	  var NewKlass = CopyConstructor;
-	  NewKlass.instancePool = [];
-	  NewKlass.getPooled = pooler || DEFAULT_POOLER;
-	  if (!NewKlass.poolSize) {
-	    NewKlass.poolSize = DEFAULT_POOL_SIZE;
-	  }
-	  NewKlass.release = standardReleaser;
-	  return NewKlass;
-	};
-	
-	var PooledClass = {
-	  addPoolingTo: addPoolingTo,
-	  oneArgumentPooler: oneArgumentPooler,
-	  twoArgumentPooler: twoArgumentPooler,
-	  threeArgumentPooler: threeArgumentPooler,
-	  fiveArgumentPooler: fiveArgumentPooler
-	};
-	
-	module.exports = PooledClass;
-
-
-/***/ },
-/* 77 */
-/*!********************************************!*\
-  !*** ./~/react/lib/traverseAllChildren.js ***!
-  \********************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2014, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule traverseAllChildren
-	 */
-	
-	"use strict";
-	
-	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
-	var ReactInstanceHandles = __webpack_require__(/*! ./ReactInstanceHandles */ 55);
-	
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
-	
-	var SEPARATOR = ReactInstanceHandles.SEPARATOR;
-	var SUBSEPARATOR = ':';
-	
-	/**
-	 * TODO: Test that:
-	 * 1. `mapChildren` transforms strings and numbers into `ReactTextComponent`.
-	 * 2. it('should fail when supplied duplicate key', function() {
-	 * 3. That a single child and an array with one item have the same key pattern.
-	 * });
-	 */
-	
-	var userProvidedKeyEscaperLookup = {
-	  '=': '=0',
-	  '.': '=1',
-	  ':': '=2'
-	};
-	
-	var userProvidedKeyEscapeRegex = /[=.:]/g;
-	
-	function userProvidedKeyEscaper(match) {
-	  return userProvidedKeyEscaperLookup[match];
-	}
-	
-	/**
-	 * Generate a key string that identifies a component within a set.
-	 *
-	 * @param {*} component A component that could contain a manual key.
-	 * @param {number} index Index that is used if a manual key is not provided.
-	 * @return {string}
-	 */
-	function getComponentKey(component, index) {
-	  if (component && component.key != null) {
-	    // Explicit key
-	    return wrapUserProvidedKey(component.key);
-	  }
-	  // Implicit key determined by the index in the set
-	  return index.toString(36);
-	}
-	
-	/**
-	 * Escape a component key so that it is safe to use in a reactid.
-	 *
-	 * @param {*} key Component key to be escaped.
-	 * @return {string} An escaped string.
-	 */
-	function escapeUserProvidedKey(text) {
-	  return ('' + text).replace(
-	    userProvidedKeyEscapeRegex,
-	    userProvidedKeyEscaper
-	  );
-	}
-	
-	/**
-	 * Wrap a `key` value explicitly provided by the user to distinguish it from
-	 * implicitly-generated keys generated by a component's index in its parent.
-	 *
-	 * @param {string} key Value of a user-provided `key` attribute
-	 * @return {string}
-	 */
-	function wrapUserProvidedKey(key) {
-	  return '$' + escapeUserProvidedKey(key);
-	}
-	
-	/**
-	 * @param {?*} children Children tree container.
-	 * @param {!string} nameSoFar Name of the key path so far.
-	 * @param {!number} indexSoFar Number of children encountered until this point.
-	 * @param {!function} callback Callback to invoke with each child found.
-	 * @param {?*} traverseContext Used to pass information throughout the traversal
-	 * process.
-	 * @return {!number} The number of children in this subtree.
-	 */
-	var traverseAllChildrenImpl =
-	  function(children, nameSoFar, indexSoFar, callback, traverseContext) {
-	    var nextName, nextIndex;
-	    var subtreeCount = 0;  // Count of children found in the current subtree.
-	    if (Array.isArray(children)) {
-	      for (var i = 0; i < children.length; i++) {
-	        var child = children[i];
-	        nextName = (
-	          nameSoFar +
-	          (nameSoFar ? SUBSEPARATOR : SEPARATOR) +
-	          getComponentKey(child, i)
-	        );
-	        nextIndex = indexSoFar + subtreeCount;
-	        subtreeCount += traverseAllChildrenImpl(
-	          child,
-	          nextName,
-	          nextIndex,
-	          callback,
-	          traverseContext
-	        );
-	      }
-	    } else {
-	      var type = typeof children;
-	      var isOnlyChild = nameSoFar === '';
-	      // If it's the only child, treat the name as if it was wrapped in an array
-	      // so that it's consistent if the number of children grows
-	      var storageName =
-	        isOnlyChild ? SEPARATOR + getComponentKey(children, 0) : nameSoFar;
-	      if (children == null || type === 'boolean') {
-	        // All of the above are perceived as null.
-	        callback(traverseContext, null, storageName, indexSoFar);
-	        subtreeCount = 1;
-	      } else if (type === 'string' || type === 'number' ||
-	                 ReactElement.isValidElement(children)) {
-	        callback(traverseContext, children, storageName, indexSoFar);
-	        subtreeCount = 1;
-	      } else if (type === 'object') {
-	        (true ? invariant(
-	          !children || children.nodeType !== 1,
-	          'traverseAllChildren(...): Encountered an invalid child; DOM ' +
-	          'elements are not valid children of React components.'
-	        ) : invariant(!children || children.nodeType !== 1));
-	        for (var key in children) {
-	          if (children.hasOwnProperty(key)) {
-	            nextName = (
-	              nameSoFar + (nameSoFar ? SUBSEPARATOR : SEPARATOR) +
-	              wrapUserProvidedKey(key) + SUBSEPARATOR +
-	              getComponentKey(children[key], 0)
-	            );
-	            nextIndex = indexSoFar + subtreeCount;
-	            subtreeCount += traverseAllChildrenImpl(
-	              children[key],
-	              nextName,
-	              nextIndex,
-	              callback,
-	              traverseContext
-	            );
-	          }
-	        }
-	      }
-	    }
-	    return subtreeCount;
-	  };
-	
-	/**
-	 * Traverses children that are typically specified as `props.children`, but
-	 * might also be specified through attributes:
-	 *
-	 * - `traverseAllChildren(this.props.children, ...)`
-	 * - `traverseAllChildren(this.props.leftPanelChildren, ...)`
-	 *
-	 * The `traverseContext` is an optional argument that is passed through the
-	 * entire traversal. It can be used to store accumulations or anything else that
-	 * the callback might find relevant.
-	 *
-	 * @param {?*} children Children tree object.
-	 * @param {!function} callback To invoke upon traversing each child.
-	 * @param {?*} traverseContext Context for traversal.
-	 * @return {!number} The number of children in this subtree.
-	 */
-	function traverseAllChildren(children, callback, traverseContext) {
-	  if (children == null) {
-	    return 0;
-	  }
-	
-	  return traverseAllChildrenImpl(children, '', 0, callback, traverseContext);
-	}
-	
-	module.exports = traverseAllChildren;
-
-
-/***/ },
-/* 78 */
 /*!***********************************!*\
   !*** ./~/react/lib/ReactOwner.js ***!
   \***********************************/
@@ -14997,7 +14678,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 79 */
+/* 77 */
 /*!*************************************!*\
   !*** ./~/react/lib/ReactUpdates.js ***!
   \*************************************/
@@ -15017,7 +14698,7 @@ var ColonelKurtz =
 	"use strict";
 	
 	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 134);
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 76);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 78);
 	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 49);
 	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 59);
 	var Transaction = __webpack_require__(/*! ./Transaction */ 135);
@@ -15289,6 +14970,315 @@ var ColonelKurtz =
 	};
 	
 	module.exports = ReactUpdates;
+
+
+/***/ },
+/* 78 */
+/*!************************************!*\
+  !*** ./~/react/lib/PooledClass.js ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-2014, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule PooledClass
+	 */
+	
+	"use strict";
+	
+	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	
+	/**
+	 * Static poolers. Several custom versions for each potential number of
+	 * arguments. A completely generic pooler is easy to implement, but would
+	 * require accessing the `arguments` object. In each of these, `this` refers to
+	 * the Class itself, not an instance. If any others are needed, simply add them
+	 * here, or in their own files.
+	 */
+	var oneArgumentPooler = function(copyFieldsFrom) {
+	  var Klass = this;
+	  if (Klass.instancePool.length) {
+	    var instance = Klass.instancePool.pop();
+	    Klass.call(instance, copyFieldsFrom);
+	    return instance;
+	  } else {
+	    return new Klass(copyFieldsFrom);
+	  }
+	};
+	
+	var twoArgumentPooler = function(a1, a2) {
+	  var Klass = this;
+	  if (Klass.instancePool.length) {
+	    var instance = Klass.instancePool.pop();
+	    Klass.call(instance, a1, a2);
+	    return instance;
+	  } else {
+	    return new Klass(a1, a2);
+	  }
+	};
+	
+	var threeArgumentPooler = function(a1, a2, a3) {
+	  var Klass = this;
+	  if (Klass.instancePool.length) {
+	    var instance = Klass.instancePool.pop();
+	    Klass.call(instance, a1, a2, a3);
+	    return instance;
+	  } else {
+	    return new Klass(a1, a2, a3);
+	  }
+	};
+	
+	var fiveArgumentPooler = function(a1, a2, a3, a4, a5) {
+	  var Klass = this;
+	  if (Klass.instancePool.length) {
+	    var instance = Klass.instancePool.pop();
+	    Klass.call(instance, a1, a2, a3, a4, a5);
+	    return instance;
+	  } else {
+	    return new Klass(a1, a2, a3, a4, a5);
+	  }
+	};
+	
+	var standardReleaser = function(instance) {
+	  var Klass = this;
+	  (true ? invariant(
+	    instance instanceof Klass,
+	    'Trying to release an instance into a pool of a different type.'
+	  ) : invariant(instance instanceof Klass));
+	  if (instance.destructor) {
+	    instance.destructor();
+	  }
+	  if (Klass.instancePool.length < Klass.poolSize) {
+	    Klass.instancePool.push(instance);
+	  }
+	};
+	
+	var DEFAULT_POOL_SIZE = 10;
+	var DEFAULT_POOLER = oneArgumentPooler;
+	
+	/**
+	 * Augments `CopyConstructor` to be a poolable class, augmenting only the class
+	 * itself (statically) not adding any prototypical fields. Any CopyConstructor
+	 * you give this may have a `poolSize` property, and will look for a
+	 * prototypical `destructor` on instances (optional).
+	 *
+	 * @param {Function} CopyConstructor Constructor that can be used to reset.
+	 * @param {Function} pooler Customizable pooler.
+	 */
+	var addPoolingTo = function(CopyConstructor, pooler) {
+	  var NewKlass = CopyConstructor;
+	  NewKlass.instancePool = [];
+	  NewKlass.getPooled = pooler || DEFAULT_POOLER;
+	  if (!NewKlass.poolSize) {
+	    NewKlass.poolSize = DEFAULT_POOL_SIZE;
+	  }
+	  NewKlass.release = standardReleaser;
+	  return NewKlass;
+	};
+	
+	var PooledClass = {
+	  addPoolingTo: addPoolingTo,
+	  oneArgumentPooler: oneArgumentPooler,
+	  twoArgumentPooler: twoArgumentPooler,
+	  threeArgumentPooler: threeArgumentPooler,
+	  fiveArgumentPooler: fiveArgumentPooler
+	};
+	
+	module.exports = PooledClass;
+
+
+/***/ },
+/* 79 */
+/*!********************************************!*\
+  !*** ./~/react/lib/traverseAllChildren.js ***!
+  \********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-2014, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule traverseAllChildren
+	 */
+	
+	"use strict";
+	
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
+	var ReactInstanceHandles = __webpack_require__(/*! ./ReactInstanceHandles */ 55);
+	
+	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	
+	var SEPARATOR = ReactInstanceHandles.SEPARATOR;
+	var SUBSEPARATOR = ':';
+	
+	/**
+	 * TODO: Test that:
+	 * 1. `mapChildren` transforms strings and numbers into `ReactTextComponent`.
+	 * 2. it('should fail when supplied duplicate key', function() {
+	 * 3. That a single child and an array with one item have the same key pattern.
+	 * });
+	 */
+	
+	var userProvidedKeyEscaperLookup = {
+	  '=': '=0',
+	  '.': '=1',
+	  ':': '=2'
+	};
+	
+	var userProvidedKeyEscapeRegex = /[=.:]/g;
+	
+	function userProvidedKeyEscaper(match) {
+	  return userProvidedKeyEscaperLookup[match];
+	}
+	
+	/**
+	 * Generate a key string that identifies a component within a set.
+	 *
+	 * @param {*} component A component that could contain a manual key.
+	 * @param {number} index Index that is used if a manual key is not provided.
+	 * @return {string}
+	 */
+	function getComponentKey(component, index) {
+	  if (component && component.key != null) {
+	    // Explicit key
+	    return wrapUserProvidedKey(component.key);
+	  }
+	  // Implicit key determined by the index in the set
+	  return index.toString(36);
+	}
+	
+	/**
+	 * Escape a component key so that it is safe to use in a reactid.
+	 *
+	 * @param {*} key Component key to be escaped.
+	 * @return {string} An escaped string.
+	 */
+	function escapeUserProvidedKey(text) {
+	  return ('' + text).replace(
+	    userProvidedKeyEscapeRegex,
+	    userProvidedKeyEscaper
+	  );
+	}
+	
+	/**
+	 * Wrap a `key` value explicitly provided by the user to distinguish it from
+	 * implicitly-generated keys generated by a component's index in its parent.
+	 *
+	 * @param {string} key Value of a user-provided `key` attribute
+	 * @return {string}
+	 */
+	function wrapUserProvidedKey(key) {
+	  return '$' + escapeUserProvidedKey(key);
+	}
+	
+	/**
+	 * @param {?*} children Children tree container.
+	 * @param {!string} nameSoFar Name of the key path so far.
+	 * @param {!number} indexSoFar Number of children encountered until this point.
+	 * @param {!function} callback Callback to invoke with each child found.
+	 * @param {?*} traverseContext Used to pass information throughout the traversal
+	 * process.
+	 * @return {!number} The number of children in this subtree.
+	 */
+	var traverseAllChildrenImpl =
+	  function(children, nameSoFar, indexSoFar, callback, traverseContext) {
+	    var nextName, nextIndex;
+	    var subtreeCount = 0;  // Count of children found in the current subtree.
+	    if (Array.isArray(children)) {
+	      for (var i = 0; i < children.length; i++) {
+	        var child = children[i];
+	        nextName = (
+	          nameSoFar +
+	          (nameSoFar ? SUBSEPARATOR : SEPARATOR) +
+	          getComponentKey(child, i)
+	        );
+	        nextIndex = indexSoFar + subtreeCount;
+	        subtreeCount += traverseAllChildrenImpl(
+	          child,
+	          nextName,
+	          nextIndex,
+	          callback,
+	          traverseContext
+	        );
+	      }
+	    } else {
+	      var type = typeof children;
+	      var isOnlyChild = nameSoFar === '';
+	      // If it's the only child, treat the name as if it was wrapped in an array
+	      // so that it's consistent if the number of children grows
+	      var storageName =
+	        isOnlyChild ? SEPARATOR + getComponentKey(children, 0) : nameSoFar;
+	      if (children == null || type === 'boolean') {
+	        // All of the above are perceived as null.
+	        callback(traverseContext, null, storageName, indexSoFar);
+	        subtreeCount = 1;
+	      } else if (type === 'string' || type === 'number' ||
+	                 ReactElement.isValidElement(children)) {
+	        callback(traverseContext, children, storageName, indexSoFar);
+	        subtreeCount = 1;
+	      } else if (type === 'object') {
+	        (true ? invariant(
+	          !children || children.nodeType !== 1,
+	          'traverseAllChildren(...): Encountered an invalid child; DOM ' +
+	          'elements are not valid children of React components.'
+	        ) : invariant(!children || children.nodeType !== 1));
+	        for (var key in children) {
+	          if (children.hasOwnProperty(key)) {
+	            nextName = (
+	              nameSoFar + (nameSoFar ? SUBSEPARATOR : SEPARATOR) +
+	              wrapUserProvidedKey(key) + SUBSEPARATOR +
+	              getComponentKey(children[key], 0)
+	            );
+	            nextIndex = indexSoFar + subtreeCount;
+	            subtreeCount += traverseAllChildrenImpl(
+	              children[key],
+	              nextName,
+	              nextIndex,
+	              callback,
+	              traverseContext
+	            );
+	          }
+	        }
+	      }
+	    }
+	    return subtreeCount;
+	  };
+	
+	/**
+	 * Traverses children that are typically specified as `props.children`, but
+	 * might also be specified through attributes:
+	 *
+	 * - `traverseAllChildren(this.props.children, ...)`
+	 * - `traverseAllChildren(this.props.leftPanelChildren, ...)`
+	 *
+	 * The `traverseContext` is an optional argument that is passed through the
+	 * entire traversal. It can be used to store accumulations or anything else that
+	 * the callback might find relevant.
+	 *
+	 * @param {?*} children Children tree object.
+	 * @param {!function} callback To invoke upon traversing each child.
+	 * @param {?*} traverseContext Context for traversal.
+	 * @return {!number} The number of children in this subtree.
+	 */
+	function traverseAllChildren(children, callback, traverseContext) {
+	  if (children == null) {
+	    return 0;
+	  }
+	
+	  return traverseAllChildrenImpl(children, '', 0, callback, traverseContext);
+	}
+	
+	module.exports = traverseAllChildren;
 
 
 /***/ },
@@ -16829,7 +16819,7 @@ var ColonelKurtz =
 	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 142);
 	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 146);
 	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 66);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 79);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 77);
 	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 148);
 	
 	var isEventSupported = __webpack_require__(/*! ./isEventSupported */ 93);
@@ -18091,7 +18081,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 79);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 77);
 	var Transaction = __webpack_require__(/*! ./Transaction */ 135);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 63);
@@ -18363,7 +18353,7 @@ var ColonelKurtz =
 	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
 	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 52);
 	var ReactMount = __webpack_require__(/*! ./ReactMount */ 57);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 79);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 77);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 63);
 	var invariant = __webpack_require__(/*! ./invariant */ 28);
@@ -18602,7 +18592,7 @@ var ColonelKurtz =
 	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 47);
 	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
 	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 52);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 79);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 77);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 63);
 	
@@ -18794,7 +18784,7 @@ var ColonelKurtz =
 	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 47);
 	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
 	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 52);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 79);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 77);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 63);
 	var invariant = __webpack_require__(/*! ./invariant */ 28);
@@ -18936,10 +18926,10 @@ var ColonelKurtz =
 	
 	var EventListener = __webpack_require__(/*! ./EventListener */ 160);
 	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 66);
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 76);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 78);
 	var ReactInstanceHandles = __webpack_require__(/*! ./ReactInstanceHandles */ 55);
 	var ReactMount = __webpack_require__(/*! ./ReactMount */ 57);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 79);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 77);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 63);
 	var getEventTarget = __webpack_require__(/*! ./getEventTarget */ 161);
@@ -19133,7 +19123,7 @@ var ColonelKurtz =
 	var ReactNativeComponent = __webpack_require__(/*! ./ReactNativeComponent */ 137);
 	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 59);
 	var ReactRootIndex = __webpack_require__(/*! ./ReactRootIndex */ 119);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 79);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 77);
 	
 	var ReactInjection = {
 	  Component: ReactComponent.injection,
@@ -19179,7 +19169,7 @@ var ColonelKurtz =
 	var getActiveElement = __webpack_require__(/*! ./getActiveElement */ 163);
 	var isTextInputElement = __webpack_require__(/*! ./isTextInputElement */ 149);
 	var keyOf = __webpack_require__(/*! ./keyOf */ 86);
-	var shallowEqual = __webpack_require__(/*! ./shallowEqual */ 38);
+	var shallowEqual = __webpack_require__(/*! ./shallowEqual */ 40);
 	
 	var topLevelTypes = EventConstants.topLevelTypes;
 	
@@ -20449,7 +20439,7 @@ var ColonelKurtz =
 	
 	var ReactTextComponent = __webpack_require__(/*! ./ReactTextComponent */ 62);
 	
-	var traverseAllChildren = __webpack_require__(/*! ./traverseAllChildren */ 77);
+	var traverseAllChildren = __webpack_require__(/*! ./traverseAllChildren */ 79);
 	var warning = __webpack_require__(/*! ./warning */ 74);
 	
 	/**
@@ -20562,7 +20552,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var adler32 = __webpack_require__(/*! ./adler32 */ 175);
+	var adler32 = __webpack_require__(/*! ./adler32 */ 180);
 	
 	var ReactMarkupChecksum = {
 	  CHECKSUM_ATTR_NAME: 'data-react-checksum',
@@ -20618,9 +20608,9 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 76);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 78);
 	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 134);
-	var ReactPutListenerQueue = __webpack_require__(/*! ./ReactPutListenerQueue */ 176);
+	var ReactPutListenerQueue = __webpack_require__(/*! ./ReactPutListenerQueue */ 181);
 	var Transaction = __webpack_require__(/*! ./Transaction */ 135);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 63);
@@ -20726,30 +20716,26 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React = __webpack_require__(/*! react */ 12)
+	var ActLikeBlockWithBlockList = __webpack_require__(/*! ../mixins/acts_like_block_with_block_list */ 175)
+	var AppConstants = __webpack_require__(/*! constants/app_constants */ 19)
+	var Block = __webpack_require__(/*! ./block */ 176)
+	var React = __webpack_require__(/*! react */ 10)
 	var RemoveBlockButton = __webpack_require__(/*! ./remove_block_button */ 177)
-	var ActLikeBlockWithBlockList = __webpack_require__(/*! ../mixins/acts_like_block_with_block_list */ 178)
-	var AppConstants = __webpack_require__(/*! constants/app_constants */ 26)
 	
 	var EditorBlock = React.createClass({displayName: 'EditorBlock',
 	
 	  mixins: [ ActLikeBlockWithBlockList ],
 	
 	  listComponent:function() {
-	    return __webpack_require__(/*! ./editor_block_list */ 68)
-	  },
-	
-	  updateContent:function(content) {
-	    this.state.block.update(content)
+	    return __webpack_require__(/*! ./editor_block_list */ 67)
 	  },
 	
 	  render:function()      {
-	    var $__0=     this.state.block,id=$__0.id,parentBlockListId=$__0.parentBlockListId
-	    var BlockType = this.state.block.component()
+	    var $__0=       this.state.block,content=$__0.content,id=$__0.id,type=$__0.type,parentBlockListId=$__0.parentBlockListId
 	
-	    return(
+	    return (
 	      React.createElement("div", {className: "colonel-block"}, 
-	        React.createElement(BlockType, {mode:  AppConstants.EDIT_MODE, initialContent:  this.state.block.content, updateContent:  this.updateContent}), 
+	        React.createElement(Block, {block:  this.state.block, mode:  AppConstants.EDIT_MODE}), 
 	
 	        React.createElement("div", {className: "colonel-toolbar"}, 
 	          React.createElement(RemoveBlockButton, {blockId: id, blockListId: parentBlockListId })
@@ -20774,12 +20760,12 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React = __webpack_require__(/*! react */ 12)
-	var Button = __webpack_require__(/*! ./ui/button */ 40)
-	var BlockActions = __webpack_require__(/*! ../actions/block_actions */ 34)
+	var React = __webpack_require__(/*! react */ 10)
+	var Button = __webpack_require__(/*! ./ui/button */ 38)
+	var BlockActions = __webpack_require__(/*! ../actions/block_actions */ 37)
 	var BlockType = __webpack_require__(/*! ../stores/block_type_store */ 5)
-	var Strings = __webpack_require__(/*! constants/strings */ 179)
-	var Monitor = __webpack_require__(/*! ../mixins/monitor */ 180)
+	var Strings = __webpack_require__(/*! constants/strings */ 178)
+	var Monitor = __webpack_require__(/*! ../mixins/monitor */ 179)
 	
 	var AddBlockButton = React.createClass({displayName: 'AddBlockButton',
 	
@@ -20826,9 +20812,9 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React = __webpack_require__(/*! react */ 12)
+	var React = __webpack_require__(/*! react */ 10)
 	var BlockListStore = __webpack_require__(/*! ../stores/block_list_store */ 4)
-	var Monitor = __webpack_require__(/*! ./monitor */ 180)
+	var Monitor = __webpack_require__(/*! ./monitor */ 179)
 	
 	var ActsLikeBlockList = {
 	
@@ -20867,24 +20853,23 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React = __webpack_require__(/*! react */ 12)
-	var ActLikeBlockWithBlockList = __webpack_require__(/*! ../mixins/acts_like_block_with_block_list */ 178)
-	var AppConstants = __webpack_require__(/*! constants/app_constants */ 26)
+	var AppConstants = __webpack_require__(/*! constants/app_constants */ 19)
+	var ActLikeBlockWithBlockList = __webpack_require__(/*! ../mixins/acts_like_block_with_block_list */ 175)
+	var Block = __webpack_require__(/*! ./block */ 176)
+	var React = __webpack_require__(/*! react */ 10)
 	
 	var PreviewerBlock = React.createClass({displayName: 'PreviewerBlock',
 	
 	  mixins: [ ActLikeBlockWithBlockList ],
 	
 	  listComponent:function() {
-	    return __webpack_require__(/*! ./previewer_block_list */ 69)
+	    return __webpack_require__(/*! ./previewer_block_list */ 68)
 	  },
 	
 	  render:function()      {
-	    var BlockType = this.state.block.component()
-	
-	    return(
+	    return (
 	      React.createElement("div", null, 
-	        React.createElement(BlockType, {mode:  AppConstants.PREVIEW_MODE, initialContent:  this.state.block.content}), 
+	        React.createElement(Block, {block:  this.state.block, mode:  AppConstants.PREVIEW_MODE}), 
 	         this.childBlockListComponent() 
 	      )
 	    )
@@ -20897,6 +20882,15 @@ var ColonelKurtz =
 
 /***/ },
 /* 131 */
+/*!*********************************!*\
+  !*** ./~/react-ink/dist/ink.js ***!
+  \*********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	!function(t,e){if(true)module.exports=e(__webpack_require__(/*! react */ 10));else if("function"==typeof define&&define.amd)define(["react"],e);else{var n=e("object"==typeof exports?require("react"):t.react);for(var r in n)("object"==typeof exports?exports:t)[r]=n[r]}}(this,function(t){return function(t){function e(r){if(n[r])return n[r].exports;var o=n[r]={exports:{},id:r,loaded:!1};return t[r].call(o.exports,o,o.exports,e),o.loaded=!0,o.exports}var n={};return e.m=t,e.c=n,e.p="",e(0)}([function(t,e,n){var r=n(1),o=n(9),i=n(2),s=n(4),a=n(6),u=n(5),c=r.PropTypes,p=0,f=r.createClass({displayName:"Ink",mixins:[s],propTypes:{background:c.bool,duration:u(0),opacity:a(0,1),radius:u(0),recenter:c.bool},getDefaultProps:function(){return{background:!0,duration:1500,opacity:.2,radius:150,recenter:!0}},getInitialState:function(){return{store:o()}},tick:function(){this.forceUpdate()},componentDidMount:function(){this.state.store.subscribe(this.tick)},componentWillUnmount:function(){this.state.store.dispose()},pushBlot:function(t){var e=this.getDOMNode().getBoundingClientRect(),n=e.bottom-e.top,r=e.right-e.left;this.state.store.add({duration:this.props.duration,maxOpacity:this.props.opacity,mouseDown:i(),mouseUp:0,radius:Math.min(this.props.radius,Math.max(n,r)),recenter:this.props.recenter,x:t.clientX-e.left,y:t.clientY-e.top,size:Math.max(n,r),height:n,width:r})},popBlot:function(){this.state.store.release(i())},makeBlot:function(t,e){return r.createElement("circle",{key:e,r:t.radius,opacity:t.opacity,transform:t.transform})},getBackdrop:function(){var t=this.props.background?this.state.store.getTotalOpacity():0;return r.createElement("rect",{width:"100%",height:"100%",opacity:t})},render:function(){return r.createElement("svg",{className:"ink",style:{color:this.props.color},onTouchStart:this._onPress,onTouchEnd:this._onRelease,onTouchCancel:this._onRelease,onTouchLeave:this._onRelease,onMouseDown:this._onPress,onMouseUp:this._onRelease,onMouseLeave:this._onRelease},this.getBackdrop(),this.state.store.map(this.makeBlot))},_onPress:function(t){var e=t,n=e.button,r=e.ctrlKey,o=e.touches;if(o)for(var i=0;i<o.length;i++)this.pushBlot(o[i]);else n!==p||r||this.pushBlot(t)},_onRelease:function(){this.popBlot()}});t.exports=f},function(e){e.exports=t},function(t){var e=Date.now||function(){return+new Date};"undefined"!=typeof performance&&performance.now&&(e=performance.now.bind(performance)),t.exports=e},function(t,e,n){(function(e){"use strict";var n=function(t,n,r,o,i,s,a,u){if("production"!==e.env.NODE_ENV&&void 0===n)throw new Error("invariant requires an error message argument");if(!t){var c;if(void 0===n)c=new Error("Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings.");else{var p=[r,o,i,s,a,u],f=0;c=new Error("Invariant Violation: "+n.replace(/%s/g,function(){return p[f++]}))}throw c.framesToPop=1,c}};t.exports=n}).call(e,n(11))},function(t,e,n){"use strict";var r=n(10),o={shouldComponentUpdate:function(t,e){return!r(this.props,t)||!r(this.state,e)}};t.exports=o},function(t,e,n){var r=n(1).PropTypes;t.exports=function(t){return function(e,n,o){if(!e||n in e!=!1){var i=r.number(e,n,o);if(i)return i;var s=e[n];return t>s?new RangeError("Invalid `"+n+"` value given to component `"+o+"`. Expected >= "+t+" , instead got "+s+"."):void 0}}}},function(t,e,n){var r=n(1).PropTypes,o=n(3);t.exports=function(t,e){return o(e>t,"Lower limit of type `inRange` must be greater than upper limit"),function(n,o,i){if(!n||o in n!=!1){var s=r.number(n,o,i);if(s)return s;var a=n[o];return t>a||a>e?new RangeError("Invalid `"+o+"` value given to component `"+i+"`. Expected between "+t+" and "+e+", instead got "+a+"."):void 0}}}},function(t){t.exports={easeOutSin:function(t,e,n,r){return n*Math.sin(t/r*(Math.PI/2))+e},easeOutQuint:function(t,e,n,r){return n*((t=t/r-1)*t*t*t*t+1)+e}}},function(t,e,n){var r=n(7).easeOutQuint,o=n(2),i=Math,s=(i.max,i.min),a=Math.sqrt(2),u={getPress:function(t){return s(t.duration,o()-t.mouseDown)},getRelease:function(t){return t.mouseUp>0?o()-t.mouseUp:0},getBlotRadius:function(t){var e=.85*r(u.getPress(t),0,t.radius,t.duration),n=.15*r(u.getRelease(t),0,t.radius,t.duration);return e+n},getBlotOpacity:function(t){return r(u.getRelease(t),t.maxOpacity,-t.maxOpacity,t.duration)},getBlotOuterOpacity:function(t){return s(r(u.getPress(t),0,.3,3*t.duration),u.getBlotOpacity(t))},getBlotTransform:function(t){var e=t,n=(e.duration,e.recenter),r=e.x,o=e.y,i=e.size,c=e.width,p=e.height,f=r,d=o;if(n){var l=s(1,u.getBlotRadius(t)/i*2/a);f+=l*(c/2-r),d+=l*(p/2-o)}var h=(u.getBlotRadius(t)/t.radius).toFixed(3);return"translate("+f.toFixed(3)+","+d.toFixed(3)+") scale("+h+", "+h+") "}};t.exports=u},function(t,e,n){var r=n(8),o=n(3);t.exports=function(){var t,e=[],n=[],i=!1,s={dispose:function(){e.length=0,s.stop()},publicize:function(){for(var t=0,n=e.length;n>t;t++)e[t]()},subscribe:function(t){o("function"==typeof t,"Ink.Store subscribe method expects a callback function"),e.push(t)},unsubscribe:function(t){var n=e.indexOf(t);n>-1&&e.splice(n,1)},forEach:function(t,e){return n.forEach(t,e)},map:function(t,e){return n.map(t,e)},play:function(){i||(i=!0,s.update())},stop:function(){i=!1,cancelAnimationFrame(t)},getTotalOpacity:function(){for(var t=0,e=0,r=n.length;r>e;e++)t+=n[e].outerOpacity;return t},update:function(){for(var e=0,o=n.length;o>e;e++)n[e].opacity=r.getBlotOpacity(n[e]),n[e].outerOpacity=r.getBlotOuterOpacity(n[e]),n[e].transform=r.getBlotTransform(n[e]);s.prune(),s.publicize(),n.length?t=requestAnimationFrame(s.update):s.stop()},prune:function(){for(var t=0;t<n.length;)n[t].opacity<=.01?n.splice(t,1):t++},add:function(t){n.push(t),s.play()},release:function(t){for(var e=0,r=n.length;r>e;e++)n[e].mouseUp=n[e].mouseUp||t;s.play()}};return s}},function(t){"use strict";function e(t,e){if(t===e)return!0;var n;for(n in t)if(t.hasOwnProperty(n)&&(!e.hasOwnProperty(n)||t[n]!==e[n]))return!1;for(n in e)if(e.hasOwnProperty(n)&&!t.hasOwnProperty(n))return!1;return!0}t.exports=e},function(t){function e(){}var n=t.exports={};n.nextTick=function(){var t="undefined"!=typeof window&&window.setImmediate,e="undefined"!=typeof window&&window.MutationObserver,n="undefined"!=typeof window&&window.postMessage&&window.addEventListener;if(t)return function(t){return window.setImmediate(t)};var r=[];if(e){var o=document.createElement("div"),i=new MutationObserver(function(){var t=r.slice();r.length=0,t.forEach(function(t){t()})});return i.observe(o,{attributes:!0}),function(t){r.length||o.setAttribute("yes","no"),r.push(t)}}return n?(window.addEventListener("message",function(t){var e=t.source;if((e===window||null===e)&&"process-tick"===t.data&&(t.stopPropagation(),r.length>0)){var n=r.shift();n()}},!0),function(t){r.push(t),window.postMessage("process-tick","*")}):function(t){setTimeout(t,0)}}(),n.title="browser",n.browser=!0,n.env={},n.argv=[],n.on=e,n.addListener=e,n.once=e,n.off=e,n.removeListener=e,n.removeAllListeners=e,n.emit=e,n.binding=function(){throw new Error("process.binding is not supported")},n.cwd=function(){return"/"},n.chdir=function(){throw new Error("process.chdir is not supported")}}])});
+
+/***/ },
+/* 132 */
 /*!**********************************!*\
   !*** ./~/flux/lib/Dispatcher.js ***!
   \**********************************/
@@ -20916,7 +20910,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var invariant = __webpack_require__(/*! ./invariant */ 181);
+	var invariant = __webpack_require__(/*! ./invariant */ 182);
 	
 	var _lastID = 1;
 	var _prefix = 'ID_';
@@ -21155,15 +21149,6 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 132 */
-/*!*********************************!*\
-  !*** ./~/react-ink/dist/ink.js ***!
-  \*********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	!function(t,e){if(true)module.exports=e(__webpack_require__(/*! react */ 12));else if("function"==typeof define&&define.amd)define(["react"],e);else{var n=e("object"==typeof exports?require("react"):t.react);for(var r in n)("object"==typeof exports?exports:t)[r]=n[r]}}(this,function(t){return function(t){function e(r){if(n[r])return n[r].exports;var o=n[r]={exports:{},id:r,loaded:!1};return t[r].call(o.exports,o,o.exports,e),o.loaded=!0,o.exports}var n={};return e.m=t,e.c=n,e.p="",e(0)}([function(t,e,n){var r=n(1),o=n(9),i=n(2),s=n(4),a=n(6),u=n(5),c=r.PropTypes,p=0,f=r.createClass({displayName:"Ink",mixins:[s],propTypes:{background:c.bool,duration:u(0),opacity:a(0,1),radius:u(0),recenter:c.bool},getDefaultProps:function(){return{background:!0,duration:1500,opacity:.2,radius:150,recenter:!0}},getInitialState:function(){return{store:o()}},tick:function(){this.forceUpdate()},componentDidMount:function(){this.state.store.subscribe(this.tick)},componentWillUnmount:function(){this.state.store.dispose()},pushBlot:function(t){var e=this.getDOMNode().getBoundingClientRect(),n=e.bottom-e.top,r=e.right-e.left;this.state.store.add({duration:this.props.duration,maxOpacity:this.props.opacity,mouseDown:i(),mouseUp:0,radius:Math.min(this.props.radius,Math.max(n,r)),recenter:this.props.recenter,x:t.clientX-e.left,y:t.clientY-e.top,size:Math.max(n,r),height:n,width:r})},popBlot:function(){this.state.store.release(i())},makeBlot:function(t,e){return r.createElement("circle",{key:e,r:t.radius,opacity:t.opacity,transform:t.transform})},getBackdrop:function(){var t=this.props.background?this.state.store.getTotalOpacity():0;return r.createElement("rect",{width:"100%",height:"100%",opacity:t})},render:function(){return r.createElement("svg",{className:"ink",style:{color:this.props.color},onTouchStart:this._onPress,onTouchEnd:this._onRelease,onTouchCancel:this._onRelease,onTouchLeave:this._onRelease,onMouseDown:this._onPress,onMouseUp:this._onRelease,onMouseLeave:this._onRelease},this.getBackdrop(),this.state.store.map(this.makeBlot))},_onPress:function(t){var e=t,n=e.button,r=e.ctrlKey,o=e.touches;if(o)for(var i=0;i<o.length;i++)this.pushBlot(o[i]);else n!==p||r||this.pushBlot(t)},_onRelease:function(){this.popBlot()}});t.exports=f},function(e){e.exports=t},function(t){var e=Date.now||function(){return+new Date};"undefined"!=typeof performance&&performance.now&&(e=performance.now.bind(performance)),t.exports=e},function(t,e,n){(function(e){"use strict";var n=function(t,n,r,o,i,s,a,u){if("production"!==e.env.NODE_ENV&&void 0===n)throw new Error("invariant requires an error message argument");if(!t){var c;if(void 0===n)c=new Error("Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings.");else{var p=[r,o,i,s,a,u],f=0;c=new Error("Invariant Violation: "+n.replace(/%s/g,function(){return p[f++]}))}throw c.framesToPop=1,c}};t.exports=n}).call(e,n(11))},function(t,e,n){"use strict";var r=n(10),o={shouldComponentUpdate:function(t,e){return!r(this.props,t)||!r(this.state,e)}};t.exports=o},function(t,e,n){var r=n(1).PropTypes;t.exports=function(t){return function(e,n,o){if(!e||n in e!=!1){var i=r.number(e,n,o);if(i)return i;var s=e[n];return t>s?new RangeError("Invalid `"+n+"` value given to component `"+o+"`. Expected >= "+t+" , instead got "+s+"."):void 0}}}},function(t,e,n){var r=n(1).PropTypes,o=n(3);t.exports=function(t,e){return o(e>t,"Lower limit of type `inRange` must be greater than upper limit"),function(n,o,i){if(!n||o in n!=!1){var s=r.number(n,o,i);if(s)return s;var a=n[o];return t>a||a>e?new RangeError("Invalid `"+o+"` value given to component `"+i+"`. Expected between "+t+" and "+e+", instead got "+a+"."):void 0}}}},function(t){t.exports={easeOutSin:function(t,e,n,r){return n*Math.sin(t/r*(Math.PI/2))+e},easeOutQuint:function(t,e,n,r){return n*((t=t/r-1)*t*t*t*t+1)+e}}},function(t,e,n){var r=n(7).easeOutQuint,o=n(2),i=Math,s=(i.max,i.min),a=Math.sqrt(2),u={getPress:function(t){return s(t.duration,o()-t.mouseDown)},getRelease:function(t){return t.mouseUp>0?o()-t.mouseUp:0},getBlotRadius:function(t){var e=.85*r(u.getPress(t),0,t.radius,t.duration),n=.15*r(u.getRelease(t),0,t.radius,t.duration);return e+n},getBlotOpacity:function(t){return r(u.getRelease(t),t.maxOpacity,-t.maxOpacity,t.duration)},getBlotOuterOpacity:function(t){return s(r(u.getPress(t),0,.3,3*t.duration),u.getBlotOpacity(t))},getBlotTransform:function(t){var e=t,n=(e.duration,e.recenter),r=e.x,o=e.y,i=e.size,c=e.width,p=e.height,f=r,d=o;if(n){var l=s(1,u.getBlotRadius(t)/i*2/a);f+=l*(c/2-r),d+=l*(p/2-o)}var h=(u.getBlotRadius(t)/t.radius).toFixed(3);return"translate("+f.toFixed(3)+","+d.toFixed(3)+") scale("+h+", "+h+") "}};t.exports=u},function(t,e,n){var r=n(8),o=n(3);t.exports=function(){var t,e=[],n=[],i=!1,s={dispose:function(){e.length=0,s.stop()},publicize:function(){for(var t=0,n=e.length;n>t;t++)e[t]()},subscribe:function(t){o("function"==typeof t,"Ink.Store subscribe method expects a callback function"),e.push(t)},unsubscribe:function(t){var n=e.indexOf(t);n>-1&&e.splice(n,1)},forEach:function(t,e){return n.forEach(t,e)},map:function(t,e){return n.map(t,e)},play:function(){i||(i=!0,s.update())},stop:function(){i=!1,cancelAnimationFrame(t)},getTotalOpacity:function(){for(var t=0,e=0,r=n.length;r>e;e++)t+=n[e].outerOpacity;return t},update:function(){for(var e=0,o=n.length;o>e;e++)n[e].opacity=r.getBlotOpacity(n[e]),n[e].outerOpacity=r.getBlotOuterOpacity(n[e]),n[e].transform=r.getBlotTransform(n[e]);s.prune(),s.publicize(),n.length?t=requestAnimationFrame(s.update):s.stop()},prune:function(){for(var t=0;t<n.length;)n[t].opacity<=.01?n.splice(t,1):t++},add:function(t){n.push(t),s.play()},release:function(t){for(var e=0,r=n.length;r>e;e++)n[e].mouseUp=n[e].mouseUp||t;s.play()}};return s}},function(t){"use strict";function e(t,e){if(t===e)return!0;var n;for(n in t)if(t.hasOwnProperty(n)&&(!e.hasOwnProperty(n)||t[n]!==e[n]))return!1;for(n in e)if(e.hasOwnProperty(n)&&!t.hasOwnProperty(n))return!1;return!0}t.exports=e},function(t){function e(){}var n=t.exports={};n.nextTick=function(){var t="undefined"!=typeof window&&window.setImmediate,e="undefined"!=typeof window&&window.MutationObserver,n="undefined"!=typeof window&&window.postMessage&&window.addEventListener;if(t)return function(t){return window.setImmediate(t)};var r=[];if(e){var o=document.createElement("div"),i=new MutationObserver(function(){var t=r.slice();r.length=0,t.forEach(function(t){t()})});return i.observe(o,{attributes:!0}),function(t){r.length||o.setAttribute("yes","no"),r.push(t)}}return n?(window.addEventListener("message",function(t){var e=t.source;if((e===window||null===e)&&"process-tick"===t.data&&(t.stopPropagation(),r.length>0)){var n=r.shift();n()}},!0),function(t){r.push(t),window.postMessage("process-tick","*")}):function(t){setTimeout(t,0)}}(),n.title="browser",n.browser=!0,n.env={},n.argv=[],n.on=e,n.addListener=e,n.once=e,n.off=e,n.removeListener=e,n.removeAllListeners=e,n.emit=e,n.binding=function(){throw new Error("process.binding is not supported")},n.cwd=function(){return"/"},n.chdir=function(){throw new Error("process.chdir is not supported")}}])});
-
-/***/ },
 /* 133 */
 /*!************************************!*\
   !*** ./~/react/lib/emptyObject.js ***!
@@ -21212,7 +21197,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 76);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 78);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 63);
 	var invariant = __webpack_require__(/*! ./invariant */ 28);
@@ -21813,7 +21798,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var camelize = __webpack_require__(/*! ./camelize */ 182);
+	var camelize = __webpack_require__(/*! ./camelize */ 183);
 	
 	var msPattern = /^-ms-/;
 	
@@ -21927,7 +21912,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var hyphenate = __webpack_require__(/*! ./hyphenate */ 183);
+	var hyphenate = __webpack_require__(/*! ./hyphenate */ 184);
 	
 	var msPattern = /^ms-/;
 	
@@ -21977,8 +21962,8 @@ var ColonelKurtz =
 	var EventPluginRegistry = __webpack_require__(/*! ./EventPluginRegistry */ 143);
 	var EventPluginUtils = __webpack_require__(/*! ./EventPluginUtils */ 44);
 	
-	var accumulateInto = __webpack_require__(/*! ./accumulateInto */ 184);
-	var forEachAccumulated = __webpack_require__(/*! ./forEachAccumulated */ 185);
+	var accumulateInto = __webpack_require__(/*! ./accumulateInto */ 185);
+	var forEachAccumulated = __webpack_require__(/*! ./forEachAccumulated */ 186);
 	var invariant = __webpack_require__(/*! ./invariant */ 28);
 	
 	/**
@@ -22639,8 +22624,8 @@ var ColonelKurtz =
 	var EventConstants = __webpack_require__(/*! ./EventConstants */ 75);
 	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 142);
 	
-	var accumulateInto = __webpack_require__(/*! ./accumulateInto */ 184);
-	var forEachAccumulated = __webpack_require__(/*! ./forEachAccumulated */ 185);
+	var accumulateInto = __webpack_require__(/*! ./accumulateInto */ 185);
+	var forEachAccumulated = __webpack_require__(/*! ./forEachAccumulated */ 186);
 	
 	var PropagationPhases = EventConstants.PropagationPhases;
 	var getListener = EventPluginHub.getListener;
@@ -22838,7 +22823,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 76);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 78);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 63);
 	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 124);
@@ -23053,10 +23038,10 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ReactDOMSelection = __webpack_require__(/*! ./ReactDOMSelection */ 186);
+	var ReactDOMSelection = __webpack_require__(/*! ./ReactDOMSelection */ 187);
 	
 	var containsNode = __webpack_require__(/*! ./containsNode */ 120);
-	var focusNode = __webpack_require__(/*! ./focusNode */ 187);
+	var focusNode = __webpack_require__(/*! ./focusNode */ 188);
 	var getActiveElement = __webpack_require__(/*! ./getActiveElement */ 163);
 	
 	function isInDocument(node) {
@@ -23297,7 +23282,7 @@ var ColonelKurtz =
 	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 169);
 	var ViewportMetrics = __webpack_require__(/*! ./ViewportMetrics */ 145);
 	
-	var getEventModifierState = __webpack_require__(/*! ./getEventModifierState */ 188);
+	var getEventModifierState = __webpack_require__(/*! ./getEventModifierState */ 189);
 	
 	/**
 	 * @interface MouseEvent
@@ -23387,7 +23372,7 @@ var ColonelKurtz =
 	"use strict";
 	
 	var CSSPropertyOperations = __webpack_require__(/*! ./CSSPropertyOperations */ 90);
-	var DOMChildrenOperations = __webpack_require__(/*! ./DOMChildrenOperations */ 189);
+	var DOMChildrenOperations = __webpack_require__(/*! ./DOMChildrenOperations */ 190);
 	var DOMPropertyOperations = __webpack_require__(/*! ./DOMPropertyOperations */ 43);
 	var ReactMount = __webpack_require__(/*! ./ReactMount */ 57);
 	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 59);
@@ -23576,10 +23561,10 @@ var ColonelKurtz =
 	"use strict";
 	
 	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 134);
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 76);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 78);
 	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 92);
 	var ReactInputSelection = __webpack_require__(/*! ./ReactInputSelection */ 150);
-	var ReactPutListenerQueue = __webpack_require__(/*! ./ReactPutListenerQueue */ 176);
+	var ReactPutListenerQueue = __webpack_require__(/*! ./ReactPutListenerQueue */ 181);
 	var Transaction = __webpack_require__(/*! ./Transaction */ 135);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 63);
@@ -23843,7 +23828,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var focusNode = __webpack_require__(/*! ./focusNode */ 187);
+	var focusNode = __webpack_require__(/*! ./focusNode */ 188);
 	
 	var AutoFocusMixin = {
 	  componentDidMount: function() {
@@ -23878,8 +23863,8 @@ var ColonelKurtz =
 	
 	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 92);
 	
-	var accumulateInto = __webpack_require__(/*! ./accumulateInto */ 184);
-	var forEachAccumulated = __webpack_require__(/*! ./forEachAccumulated */ 185);
+	var accumulateInto = __webpack_require__(/*! ./accumulateInto */ 185);
+	var forEachAccumulated = __webpack_require__(/*! ./forEachAccumulated */ 186);
 	var invariant = __webpack_require__(/*! ./invariant */ 28);
 	
 	function remove(event) {
@@ -24411,8 +24396,8 @@ var ColonelKurtz =
 	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 169);
 	
 	var getEventCharCode = __webpack_require__(/*! ./getEventCharCode */ 171);
-	var getEventKey = __webpack_require__(/*! ./getEventKey */ 190);
-	var getEventModifierState = __webpack_require__(/*! ./getEventModifierState */ 188);
+	var getEventKey = __webpack_require__(/*! ./getEventKey */ 191);
+	var getEventModifierState = __webpack_require__(/*! ./getEventModifierState */ 189);
 	
 	/**
 	 * @interface KeyboardEvent
@@ -24550,7 +24535,7 @@ var ColonelKurtz =
 	
 	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 169);
 	
-	var getEventModifierState = __webpack_require__(/*! ./getEventModifierState */ 188);
+	var getEventModifierState = __webpack_require__(/*! ./getEventModifierState */ 189);
 	
 	/**
 	 * @interface TouchEvent
@@ -25010,7 +24995,7 @@ var ColonelKurtz =
 	 * @typechecks
 	 */
 	
-	var performance = __webpack_require__(/*! ./performance */ 191);
+	var performance = __webpack_require__(/*! ./performance */ 192);
 	
 	/**
 	 * Detect if we can use `window.performance.now()` and gracefully fallback to
@@ -25045,7 +25030,7 @@ var ColonelKurtz =
 	 * @typechecks
 	 */
 	
-	var isNode = __webpack_require__(/*! ./isNode */ 192);
+	var isNode = __webpack_require__(/*! ./isNode */ 193);
 	
 	/**
 	 * @param {*} object The object to check.
@@ -25060,6 +25045,187 @@ var ColonelKurtz =
 
 /***/ },
 /* 175 */
+/*!*****************************************************************!*\
+  !*** ./colonel-kurtz/mixins/acts_like_block_with_block_list.js ***!
+  \*****************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var React = __webpack_require__(/*! react */ 10)
+	var BlockStore = __webpack_require__(/*! ../stores/block_store */ 14)
+	
+	var ActsLikeBlockWithBlockList = {
+	
+	  getInitialState:function()         {
+	    return {
+	      block: BlockStore.find(this.props.initialBlockId)
+	    }
+	  },
+	
+	  childBlockListComponent:function()               {
+	    var childBlockList = this.state.block.childBlockList()
+	
+	    if (childBlockList) {
+	      var ListComponent = this.listComponent()
+	      return React.createElement(ListComponent, {initialBlockListId:  childBlockList.id})
+	    }
+	  }
+	
+	}
+	
+	module.exports = ActsLikeBlockWithBlockList
+
+
+/***/ },
+/* 176 */
+/*!*******************************************!*\
+  !*** ./colonel-kurtz/components/block.js ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var AppConstants = __webpack_require__(/*! constants/app_constants */ 19)
+	var BlockActions = __webpack_require__(/*! ../actions/block_actions */ 37)
+	var BlockType    = __webpack_require__(/*! ../stores/block_type_store */ 5)
+	var Monitor      = __webpack_require__(/*! ../mixins/monitor */ 179)
+	var React        = __webpack_require__(/*! react */ 10)
+	
+	var Block = React.createClass({displayName: 'Block',
+	
+	  mixins: [ Monitor ],
+	
+	  getState:function() {
+	    return BlockType.find(this.props.block.type)
+	  },
+	
+	  render:function()      {
+	    var $__0=     this.props,block=$__0.block,props=(function(source, exclusion) {var rest = {};var hasOwn = Object.prototype.hasOwnProperty;if (source == null) {throw new TypeError();}for (var key in source) {if (hasOwn.call(source, key) && !hasOwn.call(exclusion, key)) {rest[key] = source[key];}}return rest;})($__0,{block:1})
+	    var $__1=    this.state,Component=$__1.component
+	
+	    return React.createElement(Component, React.__spread({initialContent:  block.content, updateContent:  this._onUpdateContent},   props ))
+	  },
+	
+	  _onUpdateContent:function(content) {
+	    BlockActions.update(this.props.block.id, content)
+	  }
+	
+	})
+	
+	module.exports = Block
+
+
+/***/ },
+/* 177 */
+/*!*********************************************************!*\
+  !*** ./colonel-kurtz/components/remove_block_button.js ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var React = __webpack_require__(/*! react */ 10)
+	var Button = __webpack_require__(/*! ./ui/button */ 38)
+	var BlockActions = __webpack_require__(/*! ../actions/block_actions */ 37)
+	var Strings = __webpack_require__(/*! constants/strings */ 178)
+	
+	var RemoveBlockButton = React.createClass({displayName: 'RemoveBlockButton',
+	
+	  removeBlock:function() {
+	    var $__0=      this.props,blockId=$__0.blockId,parentBlockListId=$__0.blockListId
+	
+	    BlockActions.destroy({ blockId:blockId, parentBlockListId:parentBlockListId })
+	  },
+	
+	  render:function()      {
+	    return (
+	      React.createElement(Button, {'aria-label':  Strings.remove.label, className: "colonel-btn colonel-btn-icon", onClick:  this._onClick}, 
+	        "×"
+	      )
+	    )
+	  },
+	
+	  _onClick:function() {
+	    var answer = confirm(Strings.remove.confirm)
+	
+	    if (answer) {
+	      this.removeBlock()
+	    }
+	  }
+	
+	})
+	
+	module.exports = RemoveBlockButton
+
+
+/***/ },
+/* 178 */
+/*!********************************************!*\
+  !*** ./colonel-kurtz/constants/strings.js ***!
+  \********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = {
+	  'remove' : {
+	    'label'  : 'Remove this block',
+	    'confirm': 'Are you sure you want to remove this block?'
+	  },
+	
+	  'add' : {
+	    'label' : 'Add a new block'
+	  }
+	}
+
+
+/***/ },
+/* 179 */
+/*!*****************************************!*\
+  !*** ./colonel-kurtz/mixins/monitor.js ***!
+  \*****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Listens to the Bus and calls a provided `getState` function when
+	 * the Bus publishes.
+	 */
+	
+	var Bus       = __webpack_require__(/*! ../bus */ 26);
+	var invariant = __webpack_require__(/*! react/lib/invariant */ 28);
+	
+	var Monitor = {
+	
+	  getInitialState:function()         {
+	    if (true) {
+	      invariant(this.getState, "Monitor mixin requires `getState` implementation.");
+	    }
+	
+	    return this.getState();
+	  },
+	
+	  updateState:function() {
+	    this.setState(this.getState());
+	  },
+	
+	  componentDidMount:function() {
+	    Bus.subscribe(this.updateState);
+	  },
+	
+	  componentWillUnmount:function() {
+	    Bus.unsubscribe(this.updateState);
+	  },
+	
+	  componentWillReceiveProps:function() {
+	    this.updateState();
+	  }
+	
+	};
+	
+	module.exports = Monitor;
+
+
+/***/ },
+/* 180 */
 /*!********************************!*\
   !*** ./~/react/lib/adler32.js ***!
   \********************************/
@@ -25100,7 +25266,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 176 */
+/* 181 */
 /*!**********************************************!*\
   !*** ./~/react/lib/ReactPutListenerQueue.js ***!
   \**********************************************/
@@ -25119,7 +25285,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 76);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 78);
 	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 92);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 63);
@@ -25163,149 +25329,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 177 */
-/*!*********************************************************!*\
-  !*** ./colonel-kurtz/components/remove_block_button.js ***!
-  \*********************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var React = __webpack_require__(/*! react */ 12)
-	var Button = __webpack_require__(/*! ./ui/button */ 40)
-	var BlockActions = __webpack_require__(/*! ../actions/block_actions */ 34)
-	var Strings = __webpack_require__(/*! constants/strings */ 179)
-	
-	var RemoveBlockButton = React.createClass({displayName: 'RemoveBlockButton',
-	
-	  removeBlock:function() {
-	    var $__0=      this.props,blockId=$__0.blockId,parentBlockListId=$__0.blockListId
-	
-	    BlockActions.destroy({ blockId:blockId, parentBlockListId:parentBlockListId })
-	  },
-	
-	  render:function()      {
-	    return (
-	      React.createElement(Button, {'aria-label':  Strings.remove.label, className: "colonel-btn colonel-btn-icon", onClick:  this._onClick}, 
-	        "×"
-	      )
-	    )
-	  },
-	
-	  _onClick:function() {
-	    var answer = confirm(Strings.remove.confirm)
-	
-	    if (answer) {
-	      this.removeBlock()
-	    }
-	  }
-	
-	})
-	
-	module.exports = RemoveBlockButton
-
-
-/***/ },
-/* 178 */
-/*!*****************************************************************!*\
-  !*** ./colonel-kurtz/mixins/acts_like_block_with_block_list.js ***!
-  \*****************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var React = __webpack_require__(/*! react */ 12)
-	var BlockStore = __webpack_require__(/*! ../stores/block_store */ 14)
-	
-	var ActsLikeBlockWithBlockList = {
-	
-	  getInitialState:function()         {
-	    return {
-	      block: BlockStore.find(this.props.initialBlockId)
-	    }
-	  },
-	
-	  childBlockListComponent:function()               {
-	    var childBlockList = this.state.block.childBlockList()
-	
-	    if (childBlockList) {
-	      var ListComponent = this.listComponent()
-	      return React.createElement(ListComponent, {initialBlockListId:  childBlockList.id})
-	    }
-	  }
-	
-	}
-	
-	module.exports = ActsLikeBlockWithBlockList
-
-
-/***/ },
-/* 179 */
-/*!********************************************!*\
-  !*** ./colonel-kurtz/constants/strings.js ***!
-  \********************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = {
-	  'remove' : {
-	    'label'  : 'Remove this block',
-	    'confirm': 'Are you sure you want to remove this block?'
-	  },
-	
-	  'add' : {
-	    'label' : 'Add a new block'
-	  }
-	}
-
-
-/***/ },
-/* 180 */
-/*!*****************************************!*\
-  !*** ./colonel-kurtz/mixins/monitor.js ***!
-  \*****************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Listens to the Bus and calls a provided `getState` function when
-	 * the Bus publishes.
-	 */
-	
-	var Bus       = __webpack_require__(/*! ../bus */ 23);
-	var invariant = __webpack_require__(/*! react/lib/invariant */ 28);
-	
-	var Monitor = {
-	
-	  getInitialState:function()         {
-	    if (true) {
-	      invariant(this.getState, "Monitor mixin requires `getState` implementation.");
-	    }
-	
-	    return this.getState();
-	  },
-	
-	  updateState:function() {
-	    this.setState(this.getState());
-	  },
-	
-	  componentDidMount:function() {
-	    Bus.subscribe(this.updateState);
-	  },
-	
-	  componentWillUnmount:function() {
-	    Bus.unsubscribe(this.updateState);
-	  },
-	
-	  componentWillReceiveProps:function() {
-	    this.updateState();
-	  }
-	
-	};
-	
-	module.exports = Monitor;
-
-
-/***/ },
-/* 181 */
+/* 182 */
 /*!*********************************!*\
   !*** ./~/flux/lib/invariant.js ***!
   \*********************************/
@@ -25367,7 +25391,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 182 */
+/* 183 */
 /*!*********************************!*\
   !*** ./~/react/lib/camelize.js ***!
   \*********************************/
@@ -25406,7 +25430,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 183 */
+/* 184 */
 /*!**********************************!*\
   !*** ./~/react/lib/hyphenate.js ***!
   \**********************************/
@@ -25446,7 +25470,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 184 */
+/* 185 */
 /*!***************************************!*\
   !*** ./~/react/lib/accumulateInto.js ***!
   \***************************************/
@@ -25517,7 +25541,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 185 */
+/* 186 */
 /*!*******************************************!*\
   !*** ./~/react/lib/forEachAccumulated.js ***!
   \*******************************************/
@@ -25555,7 +25579,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 186 */
+/* 187 */
 /*!******************************************!*\
   !*** ./~/react/lib/ReactDOMSelection.js ***!
   \******************************************/
@@ -25576,7 +25600,7 @@ var ColonelKurtz =
 	
 	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 66);
 	
-	var getNodeForCharacterOffset = __webpack_require__(/*! ./getNodeForCharacterOffset */ 193);
+	var getNodeForCharacterOffset = __webpack_require__(/*! ./getNodeForCharacterOffset */ 194);
 	var getTextContentAccessor = __webpack_require__(/*! ./getTextContentAccessor */ 152);
 	
 	/**
@@ -25771,7 +25795,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 187 */
+/* 188 */
 /*!**********************************!*\
   !*** ./~/react/lib/focusNode.js ***!
   \**********************************/
@@ -25807,7 +25831,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 188 */
+/* 189 */
 /*!**********************************************!*\
   !*** ./~/react/lib/getEventModifierState.js ***!
   \**********************************************/
@@ -25861,7 +25885,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 189 */
+/* 190 */
 /*!**********************************************!*\
   !*** ./~/react/lib/DOMChildrenOperations.js ***!
   \**********************************************/
@@ -25881,7 +25905,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var Danger = __webpack_require__(/*! ./Danger */ 194);
+	var Danger = __webpack_require__(/*! ./Danger */ 195);
 	var ReactMultiChildUpdateTypes = __webpack_require__(/*! ./ReactMultiChildUpdateTypes */ 122);
 	
 	var getTextContentAccessor = __webpack_require__(/*! ./getTextContentAccessor */ 152);
@@ -26041,7 +26065,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 190 */
+/* 191 */
 /*!************************************!*\
   !*** ./~/react/lib/getEventKey.js ***!
   \************************************/
@@ -26153,7 +26177,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 191 */
+/* 192 */
 /*!************************************!*\
   !*** ./~/react/lib/performance.js ***!
   \************************************/
@@ -26188,7 +26212,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 192 */
+/* 193 */
 /*!*******************************!*\
   !*** ./~/react/lib/isNode.js ***!
   \*******************************/
@@ -26223,7 +26247,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 193 */
+/* 194 */
 /*!**************************************************!*\
   !*** ./~/react/lib/getNodeForCharacterOffset.js ***!
   \**************************************************/
@@ -26305,7 +26329,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 194 */
+/* 195 */
 /*!*******************************!*\
   !*** ./~/react/lib/Danger.js ***!
   \*******************************/
@@ -26329,9 +26353,9 @@ var ColonelKurtz =
 	
 	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 66);
 	
-	var createNodesFromMarkup = __webpack_require__(/*! ./createNodesFromMarkup */ 195);
+	var createNodesFromMarkup = __webpack_require__(/*! ./createNodesFromMarkup */ 196);
 	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 124);
-	var getMarkupWrap = __webpack_require__(/*! ./getMarkupWrap */ 196);
+	var getMarkupWrap = __webpack_require__(/*! ./getMarkupWrap */ 197);
 	var invariant = __webpack_require__(/*! ./invariant */ 28);
 	
 	var OPEN_TAG_NAME_EXP = /^(<[^ \/>]+)/;
@@ -26496,7 +26520,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 195 */
+/* 196 */
 /*!**********************************************!*\
   !*** ./~/react/lib/createNodesFromMarkup.js ***!
   \**********************************************/
@@ -26518,8 +26542,8 @@ var ColonelKurtz =
 	
 	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 66);
 	
-	var createArrayFrom = __webpack_require__(/*! ./createArrayFrom */ 197);
-	var getMarkupWrap = __webpack_require__(/*! ./getMarkupWrap */ 196);
+	var createArrayFrom = __webpack_require__(/*! ./createArrayFrom */ 198);
+	var getMarkupWrap = __webpack_require__(/*! ./getMarkupWrap */ 197);
 	var invariant = __webpack_require__(/*! ./invariant */ 28);
 	
 	/**
@@ -26591,7 +26615,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 196 */
+/* 197 */
 /*!**************************************!*\
   !*** ./~/react/lib/getMarkupWrap.js ***!
   \**************************************/
@@ -26713,7 +26737,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 197 */
+/* 198 */
 /*!****************************************!*\
   !*** ./~/react/lib/createArrayFrom.js ***!
   \****************************************/
@@ -26731,7 +26755,7 @@ var ColonelKurtz =
 	 * @typechecks
 	 */
 	
-	var toArray = __webpack_require__(/*! ./toArray */ 198);
+	var toArray = __webpack_require__(/*! ./toArray */ 199);
 	
 	/**
 	 * Perform a heuristic test to determine if an object is "array-like".
@@ -26806,7 +26830,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 198 */
+/* 199 */
 /*!********************************!*\
   !*** ./~/react/lib/toArray.js ***!
   \********************************/
