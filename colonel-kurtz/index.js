@@ -7,7 +7,6 @@ var BlockTypeActions = require('./actions/block_type_actions')
 var BlockListStore   = require('./stores/block_list_store')
 var BlockTypeStore   = require('./stores/block_type_store')
 var BlockTypeMixin   = require('mixins/block_type')
-var exportGlobal     = require('./utils/export_global')
 var uid              = require('./utils/uid')
 var assign           = require('object.assign')
 
