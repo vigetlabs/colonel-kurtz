@@ -18,7 +18,11 @@ var Medium = React.createClass({
   // Block content is managed via calls to setContent(), which updates both
   // this component's state as well as the block instance's content.
 
-  mixins: [BlockType],
+  mixins: [ BlockType ],
+
+  shouldComponentUpdate() {
+    return false
+  },
 
   defaultContent() {
     return {

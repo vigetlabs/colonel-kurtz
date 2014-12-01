@@ -1,9 +1,9 @@
 /* @flow */
 
-var React = require('react')
-var EditorBlock = require('./editor_block')
-var AddBlockButton = require('./add_block_button')
 var ActsLikeBlockList = require('../mixins/acts_like_block_list')
+var BlockMenu = require('./block_menu')
+var EditorBlock = require('./editor_block')
+var React = require('react')
 
 var EditorBlockList = React.createClass({
 
@@ -16,20 +16,16 @@ var EditorBlockList = React.createClass({
       return (
         <div key={ blockId }>
           <EditorBlock initialBlockId={ blockId } />
-          <div className="colonel-dropzone">
-            <AddBlockButton position={ i + 1 } blockListId={ blockListId } />
-          </div>
+          <BlockMenu position={ i + 1 } blockListId={ blockListId } />
         </div>
       )
     })
   },
 
   render(): any {
-    return(
+    return (
       <div className="colonel-blocks">
-        <div className="colonel-dropzone">
-          <AddBlockButton position={ 0 } blockListId={ this.blockListId() } />
-        </div>
+        <BlockMenu blockListId={ this.blockListId() } />
         { this.blockComponents() }
       </div>
     )

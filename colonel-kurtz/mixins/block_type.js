@@ -3,11 +3,8 @@
 var React        = require('react')
 var AppConstants = require('constants/app_constants')
 var invariant    = require('react/lib/invariant')
-var Pure         = require('mixins/pure')
 
 var BlockType = {
-
-  mixins: [Pure],
 
   getInitialState() {
     if (__DEV__) {
