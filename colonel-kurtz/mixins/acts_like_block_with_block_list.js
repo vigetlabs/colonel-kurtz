@@ -1,22 +1,25 @@
 /* @flow */
 
-var React = require('react')
-var BlockStore = require('../stores/block_store')
+var React     = require('react')
+var Block     = require('../stores/block_store')
+var BlockList = require('../stores/block_list_store')
 
 var ActsLikeBlockWithBlockList = {
 
   getInitialState(): Object {
+    var id = this.props.initialBlockId;
+
     return {
-      block: BlockStore.find(this.props.initialBlockId)
+      block     : Block.find(id),
+      blockList : BlockList.findByBlockId(id)
     }
   },
 
   childBlockListComponent(): ReactElement {
-    var childBlockList = this.state.block.childBlockList()
+    var ListComponent = this.listComponent()
 
-    if (childBlockList) {
-      var ListComponent = this.listComponent()
-      return <ListComponent initialBlockListId={ childBlockList.id } />
+    if (this.state.blockList) {
+      return <ListComponent initialBlockListId={ this.state.blockList.id } />
     }
   }
 

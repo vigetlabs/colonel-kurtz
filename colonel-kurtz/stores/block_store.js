@@ -14,9 +14,7 @@ var BlockStore = {
   },
 
   find(id: number): Block {
-    return BlockStore.all().find(function(block) {
-      return block.id === id
-    })
+    return BlockStore.all().find(block => block.id === id )
   },
 
   _create(parentBlockListId: number, type: string): Block {
@@ -29,16 +27,9 @@ var BlockStore = {
     return block
   },
 
-  _destroy(blockId: number) {
-    var block = BlockStore.find(blockId)
-
-    if (block) {
-      var removalIndex = _blocks.indexOf(block)
-
-      _blocks = _blocks.splice(removalIndex, 1)
-
-      Bus.publish()
-    }
+  _destroy(id: number) {
+    _blocks = _blocks.filter(b => b.id !== id)
+    Bus.publish()
   },
 
   _update(blockId: number, content: Object) {
@@ -47,7 +38,6 @@ var BlockStore = {
     if (block) {
       // This could probably be done more immutably, but seems fine as is.
       block.content = content
-
       Bus.publish()
     }
   },

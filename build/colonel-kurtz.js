@@ -50,7 +50,7 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React            = __webpack_require__(/*! react */ 12)
+	var React            = __webpack_require__(/*! react */ 10)
 	var Immutable        = __webpack_require__(/*! immutable */ 13)
 	var App              = __webpack_require__(/*! ./components/app */ 1)
 	var BlockListActions = __webpack_require__(/*! ./actions/block_list_actions */ 2)
@@ -60,9 +60,9 @@ var ColonelKurtz =
 	var BlockTypeMixin   = __webpack_require__(/*! mixins/block_type */ 8)
 	var exportGlobal     = __webpack_require__(/*! ./utils/export_global */ 6)
 	var uid              = __webpack_require__(/*! ./utils/uid */ 7)
-	var assign           = __webpack_require__(/*! object.assign */ 10)
+	var assign           = __webpack_require__(/*! object.assign */ 11)
 	
-	__webpack_require__(/*! array.prototype.find */ 11)
+	__webpack_require__(/*! array.prototype.find */ 12)
 	__webpack_require__(/*! style/colonel */ 15)
 	
 	var _instances = []
@@ -164,7 +164,7 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React = __webpack_require__(/*! react */ 12)
+	var React = __webpack_require__(/*! react */ 10)
 	var AppConstants = __webpack_require__(/*! ../constants/app_constants */ 19)
 	var ModeSelection = __webpack_require__(/*! ./mode_selection */ 17)
 	var ContentSection = __webpack_require__(/*! ./content_section */ 18)
@@ -261,14 +261,13 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var Actions        = __webpack_require__(/*! ../actions/block_list_actions */ 2)
-	var Block          = __webpack_require__(/*! ../models/block */ 24)
-	var BlockList      = __webpack_require__(/*! ../models/block_list */ 25)
-	var BlockStore     = __webpack_require__(/*! ../stores/block_store */ 14)
-	var Constants      = __webpack_require__(/*! ../constants/block_list_constants */ 20)
-	var Dispatcher     = __webpack_require__(/*! ../dispatcher */ 23)
-	var Immutable      = __webpack_require__(/*! immutable */ 13)
-	var Bus            = __webpack_require__(/*! ../bus */ 26)
+	var Actions    = __webpack_require__(/*! ../actions/block_list_actions */ 2)
+	var BlockList  = __webpack_require__(/*! ../models/block_list */ 24)
+	var BlockStore = __webpack_require__(/*! ../stores/block_store */ 14)
+	var Constants  = __webpack_require__(/*! ../constants/block_list_constants */ 20)
+	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 23)
+	var Immutable  = __webpack_require__(/*! immutable */ 13)
+	var Bus        = __webpack_require__(/*! ../bus */ 25)
 	
 	var _blockLists = Immutable.List()
 	
@@ -294,15 +293,20 @@ var ColonelKurtz =
 	    var blockList = new BlockList({ editorId: params.editorId, blockId: params.blockId })
 	
 	    _blockLists = _blockLists.push(blockList)
+	
+	    return blockList
 	  },
 	
 	  _addBlockToList:function(block       , position        ) {
 	    var blockList = this.find(block.parentBlockListId)
 	
-	    if (blockList) {
-	      blockList.insertBlock(block, position)
-	      Bus.publish()
+	    if (!blockList) {
+	      blockList = BlockListStore._create({ blockId: block.id })
 	    }
+	
+	    blockList.insertBlock(block, position)
+	
+	    Bus.publish()
 	  },
 	
 	  _removeBlockFromList:function(blockId        , blockListId        ) {
@@ -317,7 +321,7 @@ var ColonelKurtz =
 	  dispatchToken: Dispatcher.register(function(action) {
 	    switch (action.type) {
 	      case BlockConstants.BLOCK_CREATE:
-	        Dispatcher.waitFor([BlockStore.dispatchToken])
+	        Dispatcher.waitFor([ BlockStore.dispatchToken ])
 	        BlockListStore._addBlockToList(action.block, action.position)
 	        break
 	      case BlockConstants.BLOCK_DESTROY:
@@ -443,9 +447,9 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React        = __webpack_require__(/*! react */ 12)
+	var React        = __webpack_require__(/*! react */ 10)
 	var AppConstants = __webpack_require__(/*! constants/app_constants */ 19)
-	var invariant    = __webpack_require__(/*! react/lib/invariant */ 28)
+	var invariant    = __webpack_require__(/*! react/lib/invariant */ 26)
 	
 	var BlockType = {
 	
@@ -492,11 +496,11 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React        = __webpack_require__(/*! react */ 12)
-	var MediumEditor = __webpack_require__(/*! vendor/medium-editor */ 32)
+	var React        = __webpack_require__(/*! react */ 10)
+	var MediumEditor = __webpack_require__(/*! vendor/medium-editor */ 30)
 	var BlockType    = __webpack_require__(/*! mixins/block_type */ 8)
 	
-	__webpack_require__(/*! vendor/medium-editor/style */ 30)
+	__webpack_require__(/*! vendor/medium-editor/style */ 28)
 	
 	var Medium = React.createClass({displayName: 'Medium',
 	
@@ -564,6 +568,16 @@ var ColonelKurtz =
 
 /***/ },
 /* 10 */
+/*!**************************!*\
+  !*** ./~/react/react.js ***!
+  \**************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(/*! ./lib/React */ 31);
+
+
+/***/ },
+/* 11 */
 /*!**********************************!*\
   !*** ./~/object.assign/index.js ***!
   \**********************************/
@@ -572,7 +586,7 @@ var ColonelKurtz =
 	'use strict';
 	
 	// modified from https://github.com/es-shims/es6-shim
-	var keys = __webpack_require__(/*! object-keys */ 42);
+	var keys = __webpack_require__(/*! object-keys */ 39);
 	var canBeObject = function (obj) {
 		return typeof obj !== 'undefined' && obj !== null;
 	};
@@ -603,7 +617,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 11 */
+/* 12 */
 /*!*****************************************!*\
   !*** ./~/array.prototype.find/index.js ***!
   \*****************************************/
@@ -642,16 +656,6 @@ var ColonelKurtz =
 	    Array.prototype.find = find;
 	  }
 	})(this);
-
-
-/***/ },
-/* 12 */
-/*!**************************!*\
-  !*** ./~/react/react.js ***!
-  \**************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(/*! ./lib/React */ 33);
 
 
 /***/ },
@@ -4592,7 +4596,7 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var Bus        = __webpack_require__(/*! ../bus */ 26)
+	var Bus        = __webpack_require__(/*! ../bus */ 25)
 	var Constants  = __webpack_require__(/*! ../constants/block_constants */ 21)
 	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 23)
 	var Immutable  = __webpack_require__(/*! immutable */ 13)
@@ -4606,9 +4610,7 @@ var ColonelKurtz =
 	  },
 	
 	  find:function(id        )        {
-	    return BlockStore.all().find(function(block) {
-	      return block.id === id
-	    })
+	    return BlockStore.all().find(function(block)  {return block.id === id;} )
 	  },
 	
 	  _create:function(parentBlockListId        , type        )        {
@@ -4621,16 +4623,9 @@ var ColonelKurtz =
 	    return block
 	  },
 	
-	  _destroy:function(blockId        ) {
-	    var block = BlockStore.find(blockId)
-	
-	    if (block) {
-	      var removalIndex = _blocks.indexOf(block)
-	
-	      _blocks = _blocks.splice(removalIndex, 1)
-	
-	      Bus.publish()
-	    }
+	  _destroy:function(id        ) {
+	    _blocks = _blocks.filter(function(b)  {return b.id !== id;})
+	    Bus.publish()
 	  },
 	
 	  _update:function(blockId        , content        ) {
@@ -4639,7 +4634,6 @@ var ColonelKurtz =
 	    if (block) {
 	      // This could probably be done more immutably, but seems fine as is.
 	      block.content = content
-	
 	      Bus.publish()
 	    }
 	  },
@@ -4666,7 +4660,7 @@ var ColonelKurtz =
 	module.exports = BlockStore
 	
 	// This is to get around circular dependencies
-	var Block = __webpack_require__(/*! ../models/block */ 24)
+	var Block = __webpack_require__(/*! ../models/block */ 32)
 
 
 /***/ },
@@ -4688,8 +4682,8 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React = __webpack_require__(/*! react */ 12)
-	var Button = __webpack_require__(/*! ./ui/button */ 39);
+	var React = __webpack_require__(/*! react */ 10)
+	var Button = __webpack_require__(/*! ./ui/button */ 36);
 	var AppConstants = __webpack_require__(/*! ../constants/app_constants */ 19)
 	
 	var ModeSelection = React.createClass({displayName: 'ModeSelection',
@@ -4756,14 +4750,14 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React = __webpack_require__(/*! react */ 12)
+	var React = __webpack_require__(/*! react */ 10)
 	var Constants = __webpack_require__(/*! ../constants/app_constants */ 19)
 	
 	var _types    = {}
 	
-	_types[Constants.EDIT_MODE]         = __webpack_require__(/*! ../components/editor */ 34)
-	_types[Constants.PREVIEW_MODE]      = __webpack_require__(/*! ../components/previewer */ 35)
-	_types[Constants.JSON_CONSOLE_MODE] = __webpack_require__(/*! ../components/json_console */ 36)
+	_types[Constants.EDIT_MODE]         = __webpack_require__(/*! ../components/editor */ 33)
+	_types[Constants.PREVIEW_MODE]      = __webpack_require__(/*! ../components/previewer */ 34)
+	_types[Constants.JSON_CONSOLE_MODE] = __webpack_require__(/*! ../components/json_console */ 35)
 	
 	var ContentSection = React.createClass({displayName: 'ContentSection',
 	
@@ -4796,7 +4790,7 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 40)
+	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 37)
 	
 	var AppConstants = KeyMirror({
 	  EDIT_MODE : null,
@@ -4816,7 +4810,7 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 40)
+	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 37)
 	
 	var BlockListConstants = KeyMirror({
 	  BLOCK_LIST_CREATE  : null,
@@ -4836,7 +4830,7 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 40)
+	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 37)
 	
 	var BlockConstants = KeyMirror({
 	  BLOCK_CREATE    : null,
@@ -4859,7 +4853,7 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 40)
+	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 37)
 	
 	var BlockTypeConstants = KeyMirror({
 	  BLOCK_TYPE_CREATE : null
@@ -4886,74 +4880,13 @@ var ColonelKurtz =
 	 * See http://facebook.github.io/flux/docs/dispatcher.html
 	 */
 	
-	var Dispatcher = __webpack_require__(/*! flux */ 69).Dispatcher
+	var Dispatcher = __webpack_require__(/*! flux */ 66).Dispatcher
 	
 	module.exports = new Dispatcher()
 
 
 /***/ },
 /* 24 */
-/*!***************************************!*\
-  !*** ./colonel-kurtz/models/block.js ***!
-  \***************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var uid            = __webpack_require__(/*! ../utils/uid */ 7)
-	var BlockList      = __webpack_require__(/*! ./block_list */ 25)
-	var BlockTypeStore = __webpack_require__(/*! ../stores/block_type_store */ 5)
-	
-	
-	             
-	                            
-	
-	  function Block(params)                                            {"use strict";
-	    this.id = uid()
-	    this.parentBlockListId = params.parentBlockListId
-	    this.content = null
-	    this.type = params.type || 'text'
-	  }
-	
-	  Block.prototype.toJSON=function()                                                         {"use strict";
-	    var json = { id: this.id, type: this.type, content: this.content }
-	
-	    var childBlockList = this.childBlockList()
-	
-	    if (childBlockList) {
-	      json.childBlockList = childBlockList.toJSON()
-	    }
-	
-	    return json
-	  };
-	
-	  Block.prototype.parentBlockList=function() {"use strict";
-	    return BlockListStore.find(this.parentBlockListId)
-	  };
-	
-	  Block.prototype.childBlockList=function() {"use strict";
-	    // To simulate Blocks with nested block lists, add a block list to every block.
-	    // TODO: remove once block types are implemented
-	    BlockListActions.create({ blockId: this.id })
-	
-	    return BlockListStore.findByBlockId(this.id)
-	  };
-	
-	  Block.prototype.update=function(newContent)         {"use strict";
-	    BlockActions.update({ blockId: this.id, content: newContent })
-	  };
-	
-	
-	
-	module.exports = Block
-	
-	var BlockListStore   = __webpack_require__(/*! ../stores/block_list_store */ 4)
-	var BlockListActions = __webpack_require__(/*! ../actions/block_list_actions */ 2)
-	var BlockActions     = __webpack_require__(/*! ../actions/block_actions */ 37)
-
-
-/***/ },
-/* 25 */
 /*!********************************************!*\
   !*** ./colonel-kurtz/models/block_list.js ***!
   \********************************************/
@@ -5000,7 +4933,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 26 */
+/* 25 */
 /*!************************************!*\
   !*** ./colonel-kurtz/bus/index.js ***!
   \************************************/
@@ -5013,7 +4946,7 @@ var ColonelKurtz =
 	 */
 	
 	var Immutable  = __webpack_require__(/*! immutable */ 13);
-	var invariant  = __webpack_require__(/*! react/lib/invariant */ 28);
+	var invariant  = __webpack_require__(/*! react/lib/invariant */ 26);
 	
 	var _callbacks = Immutable.Set();
 	
@@ -5056,70 +4989,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 27 */
-/*!**************************************!*\
-  !*** ./colonel-kurtz/mixins/pure.js ***!
-  \**************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2014 Facebook, Inc.
-	 *
-	 * Licensed under the Apache License, Version 2.0 (the "License");
-	 * you may not use this file except in compliance with the License.
-	 * You may obtain a copy of the License at
-	 *
-	 * http://www.apache.org/licenses/LICENSE-2.0
-	 *
-	 * Unless required by applicable law or agreed to in writing, software
-	 * distributed under the License is distributed on an "AS IS" BASIS,
-	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	 * See the License for the specific language governing permissions and
-	 * limitations under the License.
-	 *
-	 * @providesModule ReactComponentWithPureRenderMixin
-	 */
-	
-	"use strict";
-	
-	var shallowEqual = __webpack_require__(/*! react/lib/shallowEqual */ 38);
-	
-	/**
-	 * If your React component's render function is "pure", e.g. it will render the
-	 * same result given the same props and state, provide this Mixin for a
-	 * considerable performance boost.
-	 *
-	 * Most React components have pure render functions.
-	 *
-	 * Example:
-	 *
-	 *   var ReactComponentWithPureRenderMixin =
-	 *     require('ReactComponentWithPureRenderMixin');
-	 *   React.createClass({
-	 *     mixins: [ReactComponentWithPureRenderMixin],
-	 *
-	 *     render: function() {
-	 *       return <div className={this.props.className}>foo</div>;
-	 *     }
-	 *   });
-	 *
-	 * Note: This only checks shallow equality for props and state. If these contain
-	 * complex data structures this mixin may have false-negatives for deeper
-	 * differences. Only mixin to components which have simple props and state, or
-	 * use `forceUpdate()` when you know deep data structures have changed.
-	 */
-	var ReactComponentWithPureRenderMixin = {
-	  shouldComponentUpdate: function(nextProps, nextState) {
-	    return !shallowEqual(this.props, nextProps) ||
-	    !shallowEqual(this.state, nextState);
-	  }
-	};
-	
-	module.exports = ReactComponentWithPureRenderMixin;
-
-
-/***/ },
-/* 28 */
+/* 26 */
 /*!**********************************!*\
   !*** ./~/react/lib/invariant.js ***!
   \**********************************/
@@ -5181,8 +5051,8 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 29 */,
-/* 30 */
+/* 27 */,
+/* 28 */
 /*!*****************************************!*\
   !*** ./vendor/medium-editor/style.scss ***!
   \*****************************************/
@@ -5191,8 +5061,8 @@ var ColonelKurtz =
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 31 */,
-/* 32 */
+/* 29 */,
+/* 30 */
 /*!***************************************!*\
   !*** ./vendor/medium-editor/index.js ***!
   \***************************************/
@@ -6800,7 +6670,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 33 */
+/* 31 */
 /*!******************************!*\
   !*** ./~/react/lib/React.js ***!
   \******************************/
@@ -6819,30 +6689,30 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var DOMPropertyOperations = __webpack_require__(/*! ./DOMPropertyOperations */ 43);
-	var EventPluginUtils = __webpack_require__(/*! ./EventPluginUtils */ 44);
-	var ReactChildren = __webpack_require__(/*! ./ReactChildren */ 45);
-	var ReactComponent = __webpack_require__(/*! ./ReactComponent */ 46);
-	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 47);
-	var ReactContext = __webpack_require__(/*! ./ReactContext */ 48);
-	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 49);
-	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
-	var ReactElementValidator = __webpack_require__(/*! ./ReactElementValidator */ 51);
-	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 52);
-	var ReactDOMComponent = __webpack_require__(/*! ./ReactDOMComponent */ 53);
-	var ReactDefaultInjection = __webpack_require__(/*! ./ReactDefaultInjection */ 54);
-	var ReactInstanceHandles = __webpack_require__(/*! ./ReactInstanceHandles */ 55);
-	var ReactLegacyElement = __webpack_require__(/*! ./ReactLegacyElement */ 56);
-	var ReactMount = __webpack_require__(/*! ./ReactMount */ 57);
-	var ReactMultiChild = __webpack_require__(/*! ./ReactMultiChild */ 58);
-	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 59);
-	var ReactPropTypes = __webpack_require__(/*! ./ReactPropTypes */ 60);
-	var ReactServerRendering = __webpack_require__(/*! ./ReactServerRendering */ 61);
-	var ReactTextComponent = __webpack_require__(/*! ./ReactTextComponent */ 62);
+	var DOMPropertyOperations = __webpack_require__(/*! ./DOMPropertyOperations */ 41);
+	var EventPluginUtils = __webpack_require__(/*! ./EventPluginUtils */ 42);
+	var ReactChildren = __webpack_require__(/*! ./ReactChildren */ 43);
+	var ReactComponent = __webpack_require__(/*! ./ReactComponent */ 44);
+	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 45);
+	var ReactContext = __webpack_require__(/*! ./ReactContext */ 46);
+	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 47);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 48);
+	var ReactElementValidator = __webpack_require__(/*! ./ReactElementValidator */ 49);
+	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 50);
+	var ReactDOMComponent = __webpack_require__(/*! ./ReactDOMComponent */ 51);
+	var ReactDefaultInjection = __webpack_require__(/*! ./ReactDefaultInjection */ 52);
+	var ReactInstanceHandles = __webpack_require__(/*! ./ReactInstanceHandles */ 53);
+	var ReactLegacyElement = __webpack_require__(/*! ./ReactLegacyElement */ 54);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 55);
+	var ReactMultiChild = __webpack_require__(/*! ./ReactMultiChild */ 56);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 57);
+	var ReactPropTypes = __webpack_require__(/*! ./ReactPropTypes */ 58);
+	var ReactServerRendering = __webpack_require__(/*! ./ReactServerRendering */ 59);
+	var ReactTextComponent = __webpack_require__(/*! ./ReactTextComponent */ 60);
 	
-	var assign = __webpack_require__(/*! ./Object.assign */ 63);
-	var deprecated = __webpack_require__(/*! ./deprecated */ 64);
-	var onlyChild = __webpack_require__(/*! ./onlyChild */ 65);
+	var assign = __webpack_require__(/*! ./Object.assign */ 61);
+	var deprecated = __webpack_require__(/*! ./deprecated */ 62);
+	var onlyChild = __webpack_require__(/*! ./onlyChild */ 63);
 	
 	ReactDefaultInjection.inject();
 	
@@ -6941,7 +6811,7 @@ var ColonelKurtz =
 	}
 	
 	if (true) {
-	  var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 66);
+	  var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 64);
 	  if (ExecutionEnvironment.canUseDOM && window.top === window.self) {
 	
 	    // If we're in Chrome, look for the devtools marker and provide a download
@@ -6993,7 +6863,46 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 34 */
+/* 32 */
+/*!***************************************!*\
+  !*** ./colonel-kurtz/models/block.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var BlockList = __webpack_require__(/*! ../stores/block_list_store */ 4)
+	var uid       = __webpack_require__(/*! ../utils/uid */ 7)
+	
+	
+	             
+	                            
+	
+	  function Block(params)                                            {"use strict";
+	    this.id = uid()
+	    this.parentBlockListId = params.parentBlockListId
+	    this.content = null
+	    this.type = params.type || 'text'
+	  }
+	
+	  Block.prototype.toJSON=function()                                                         {"use strict";
+	    var json = { id: this.id, type: this.type, content: this.content }
+	
+	    var childBlockList = BlockList.findByBlockId(this.id)
+	
+	    if (childBlockList) {
+	      json.childBlockList = childBlockList.toJSON()
+	    }
+	
+	    return json
+	  };
+	
+	
+	module.exports = Block
+
+
+/***/ },
+/* 33 */
 /*!********************************************!*\
   !*** ./colonel-kurtz/components/editor.js ***!
   \********************************************/
@@ -7001,8 +6910,8 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React = __webpack_require__(/*! react */ 12)
-	var EditorBlockList = __webpack_require__(/*! ./editor_block_list */ 67)
+	var React = __webpack_require__(/*! react */ 10)
+	var EditorBlockList = __webpack_require__(/*! ./editor_block_list */ 40)
 	
 	var Editor = React.createClass({displayName: 'Editor',
 	
@@ -7016,7 +6925,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 35 */
+/* 34 */
 /*!***********************************************!*\
   !*** ./colonel-kurtz/components/previewer.js ***!
   \***********************************************/
@@ -7024,8 +6933,8 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React = __webpack_require__(/*! react */ 12)
-	var PreviewerBlockList = __webpack_require__(/*! ./previewer_block_list */ 68)
+	var React = __webpack_require__(/*! react */ 10)
+	var PreviewerBlockList = __webpack_require__(/*! ./previewer_block_list */ 65)
 	
 	var Previewer = React.createClass({displayName: 'Previewer',
 	
@@ -7041,7 +6950,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 36 */
+/* 35 */
 /*!**************************************************!*\
   !*** ./colonel-kurtz/components/json_console.js ***!
   \**************************************************/
@@ -7049,7 +6958,7 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React = __webpack_require__(/*! react */ 12)
+	var React = __webpack_require__(/*! react */ 10)
 	var BlockListStore = __webpack_require__(/*! ../stores/block_list_store */ 4)
 	
 	var JsonConsole = React.createClass({displayName: 'JsonConsole',
@@ -7090,104 +6999,14 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 37 */
-/*!************************************************!*\
-  !*** ./colonel-kurtz/actions/block_actions.js ***!
-  \************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var BlockConstants = __webpack_require__(/*! ../constants/block_constants */ 21)
-	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 23)
-	
-	var BlockActions = {
-	
-	  create:function(params                                                                  ) {
-	    Dispatcher.dispatch({
-	      type: BlockConstants.BLOCK_CREATE,
-	      blockType: params.blockType,
-	      parentBlockListId: params.parentBlockListId,
-	      position: params.position
-	    })
-	  },
-	
-	  destroy:function(params                                              ) {
-	    Dispatcher.dispatch({
-	      type: BlockConstants.BLOCK_DESTROY,
-	      blockId: params.blockId,
-	      parentBlockListId: params.parentBlockListId
-	    })
-	  },
-	
-	  update:function(blockId        , content        ) {
-	    Dispatcher.dispatch({ type: BlockConstants.BLOCK_UPDATE, blockId:blockId, content:content })
-	  }
-	
-	}
-	module.exports = BlockActions
-
-
-/***/ },
-/* 38 */
-/*!*************************************!*\
-  !*** ./~/react/lib/shallowEqual.js ***!
-  \*************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2014, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule shallowEqual
-	 */
-	
-	"use strict";
-	
-	/**
-	 * Performs equality by iterating through keys on an object and returning
-	 * false when any key has values which are not strictly equal between
-	 * objA and objB. Returns true when the values of all keys are strictly equal.
-	 *
-	 * @return {boolean}
-	 */
-	function shallowEqual(objA, objB) {
-	  if (objA === objB) {
-	    return true;
-	  }
-	  var key;
-	  // Test for A's keys different from B.
-	  for (key in objA) {
-	    if (objA.hasOwnProperty(key) &&
-	        (!objB.hasOwnProperty(key) || objA[key] !== objB[key])) {
-	      return false;
-	    }
-	  }
-	  // Test for B's keys missing from A.
-	  for (key in objB) {
-	    if (objB.hasOwnProperty(key) && !objA.hasOwnProperty(key)) {
-	      return false;
-	    }
-	  }
-	  return true;
-	}
-	
-	module.exports = shallowEqual;
-
-
-/***/ },
-/* 39 */
+/* 36 */
 /*!***********************************************!*\
   !*** ./colonel-kurtz/components/ui/button.js ***!
   \***********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	var React = __webpack_require__(/*! react */ 12);
-	var Ink   = __webpack_require__(/*! react-ink */ 131);
+	var React = __webpack_require__(/*! react */ 10);
+	var Ink   = __webpack_require__(/*! react-ink */ 128);
 	
 	var Button = React.createClass({displayName: 'Button',
 	
@@ -7214,7 +7033,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 40 */
+/* 37 */
 /*!**********************************!*\
   !*** ./~/react/lib/keyMirror.js ***!
   \**********************************/
@@ -7234,7 +7053,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	/**
 	 * Constructs an enumeration with keys equal to their value.
@@ -7274,8 +7093,8 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 41 */,
-/* 42 */
+/* 38 */,
+/* 39 */
 /*!************************************************!*\
   !*** ./~/object.assign/~/object-keys/index.js ***!
   \************************************************/
@@ -7286,7 +7105,7 @@ var ColonelKurtz =
 	// modified from https://github.com/es-shims/es5-shim
 	var has = Object.prototype.hasOwnProperty;
 	var toString = Object.prototype.toString;
-	var isArgs = __webpack_require__(/*! ./isArguments */ 70);
+	var isArgs = __webpack_require__(/*! ./isArguments */ 67);
 	var hasDontEnumBug = !({'toString': null}).propertyIsEnumerable('toString');
 	var hasProtoEnumBug = (function () {}).propertyIsEnumerable('prototype');
 	var dontEnums = [
@@ -7354,7 +7173,52 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 43 */
+/* 40 */
+/*!*******************************************************!*\
+  !*** ./colonel-kurtz/components/editor_block_list.js ***!
+  \*******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var ActsLikeBlockList = __webpack_require__(/*! ../mixins/acts_like_block_list */ 68)
+	var BlockMenu = __webpack_require__(/*! ./block_menu */ 69)
+	var EditorBlock = __webpack_require__(/*! ./editor_block */ 70)
+	var React = __webpack_require__(/*! react */ 10)
+	
+	var EditorBlockList = React.createClass({displayName: 'EditorBlockList',
+	
+	  mixins: [ ActsLikeBlockList ],
+	
+	  blockComponents:function()                       {
+	    var blockListId = this.blockListId()
+	
+	    return this.state.blockIds.map(function(blockId, i) {
+	      return (
+	        React.createElement("div", {key: blockId }, 
+	          React.createElement(EditorBlock, {initialBlockId: blockId }), 
+	          React.createElement(BlockMenu, {position:  i + 1, blockListId: blockListId })
+	        )
+	      )
+	    })
+	  },
+	
+	  render:function()      {
+	    return (
+	      React.createElement("div", {className: "colonel-blocks"}, 
+	        React.createElement(BlockMenu, {blockListId:  this.blockListId() }), 
+	         this.blockComponents() 
+	      )
+	    )
+	  }
+	
+	})
+	
+	module.exports = EditorBlockList
+
+
+/***/ },
+/* 41 */
 /*!**********************************************!*\
   !*** ./~/react/lib/DOMPropertyOperations.js ***!
   \**********************************************/
@@ -7556,7 +7420,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 44 */
+/* 42 */
 /*!*****************************************!*\
   !*** ./~/react/lib/EventPluginUtils.js ***!
   \*****************************************/
@@ -7575,9 +7439,9 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 75);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 126);
 	
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	/**
 	 * Injected dependencies:
@@ -7782,7 +7646,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 45 */
+/* 43 */
 /*!**************************************!*\
   !*** ./~/react/lib/ReactChildren.js ***!
   \**************************************/
@@ -7801,9 +7665,9 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 76);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 75);
 	
-	var traverseAllChildren = __webpack_require__(/*! ./traverseAllChildren */ 77);
+	var traverseAllChildren = __webpack_require__(/*! ./traverseAllChildren */ 76);
 	var warning = __webpack_require__(/*! ./warning */ 74);
 	
 	var twoArgumentPooler = PooledClass.twoArgumentPooler;
@@ -7937,7 +7801,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 46 */
+/* 44 */
 /*!***************************************!*\
   !*** ./~/react/lib/ReactComponent.js ***!
   \***************************************/
@@ -7956,13 +7820,13 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
-	var ReactOwner = __webpack_require__(/*! ./ReactOwner */ 78);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 79);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 48);
+	var ReactOwner = __webpack_require__(/*! ./ReactOwner */ 77);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 78);
 	
-	var assign = __webpack_require__(/*! ./Object.assign */ 63);
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
-	var keyMirror = __webpack_require__(/*! ./keyMirror */ 40);
+	var assign = __webpack_require__(/*! ./Object.assign */ 61);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
+	var keyMirror = __webpack_require__(/*! ./keyMirror */ 37);
 	
 	/**
 	 * Every React component is in one of these life cycles.
@@ -8385,7 +8249,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 47 */
+/* 45 */
 /*!************************************************!*\
   !*** ./~/react/lib/ReactCompositeComponent.js ***!
   \************************************************/
@@ -8404,29 +8268,29 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ReactComponent = __webpack_require__(/*! ./ReactComponent */ 46);
-	var ReactContext = __webpack_require__(/*! ./ReactContext */ 48);
-	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 49);
-	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
-	var ReactElementValidator = __webpack_require__(/*! ./ReactElementValidator */ 51);
-	var ReactEmptyComponent = __webpack_require__(/*! ./ReactEmptyComponent */ 80);
-	var ReactErrorUtils = __webpack_require__(/*! ./ReactErrorUtils */ 81);
-	var ReactLegacyElement = __webpack_require__(/*! ./ReactLegacyElement */ 56);
-	var ReactOwner = __webpack_require__(/*! ./ReactOwner */ 78);
-	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 59);
-	var ReactPropTransferer = __webpack_require__(/*! ./ReactPropTransferer */ 82);
-	var ReactPropTypeLocations = __webpack_require__(/*! ./ReactPropTypeLocations */ 83);
-	var ReactPropTypeLocationNames = __webpack_require__(/*! ./ReactPropTypeLocationNames */ 84);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 79);
+	var ReactComponent = __webpack_require__(/*! ./ReactComponent */ 44);
+	var ReactContext = __webpack_require__(/*! ./ReactContext */ 46);
+	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 47);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 48);
+	var ReactElementValidator = __webpack_require__(/*! ./ReactElementValidator */ 49);
+	var ReactEmptyComponent = __webpack_require__(/*! ./ReactEmptyComponent */ 79);
+	var ReactErrorUtils = __webpack_require__(/*! ./ReactErrorUtils */ 80);
+	var ReactLegacyElement = __webpack_require__(/*! ./ReactLegacyElement */ 54);
+	var ReactOwner = __webpack_require__(/*! ./ReactOwner */ 77);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 57);
+	var ReactPropTransferer = __webpack_require__(/*! ./ReactPropTransferer */ 81);
+	var ReactPropTypeLocations = __webpack_require__(/*! ./ReactPropTypeLocations */ 82);
+	var ReactPropTypeLocationNames = __webpack_require__(/*! ./ReactPropTypeLocationNames */ 83);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 78);
 	
-	var assign = __webpack_require__(/*! ./Object.assign */ 63);
-	var instantiateReactComponent = __webpack_require__(/*! ./instantiateReactComponent */ 85);
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
-	var keyMirror = __webpack_require__(/*! ./keyMirror */ 40);
-	var keyOf = __webpack_require__(/*! ./keyOf */ 86);
-	var monitorCodeUse = __webpack_require__(/*! ./monitorCodeUse */ 87);
-	var mapObject = __webpack_require__(/*! ./mapObject */ 88);
-	var shouldUpdateReactComponent = __webpack_require__(/*! ./shouldUpdateReactComponent */ 89);
+	var assign = __webpack_require__(/*! ./Object.assign */ 61);
+	var instantiateReactComponent = __webpack_require__(/*! ./instantiateReactComponent */ 84);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
+	var keyMirror = __webpack_require__(/*! ./keyMirror */ 37);
+	var keyOf = __webpack_require__(/*! ./keyOf */ 85);
+	var monitorCodeUse = __webpack_require__(/*! ./monitorCodeUse */ 86);
+	var mapObject = __webpack_require__(/*! ./mapObject */ 87);
+	var shouldUpdateReactComponent = __webpack_require__(/*! ./shouldUpdateReactComponent */ 88);
 	var warning = __webpack_require__(/*! ./warning */ 74);
 	
 	var MIXINS_KEY = keyOf({mixins: null});
@@ -9830,7 +9694,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 48 */
+/* 46 */
 /*!*************************************!*\
   !*** ./~/react/lib/ReactContext.js ***!
   \*************************************/
@@ -9849,7 +9713,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var assign = __webpack_require__(/*! ./Object.assign */ 63);
+	var assign = __webpack_require__(/*! ./Object.assign */ 61);
 	
 	/**
 	 * Keeps track of the current context.
@@ -9899,7 +9763,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 49 */
+/* 47 */
 /*!******************************************!*\
   !*** ./~/react/lib/ReactCurrentOwner.js ***!
   \******************************************/
@@ -9940,7 +9804,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 50 */
+/* 48 */
 /*!*************************************!*\
   !*** ./~/react/lib/ReactElement.js ***!
   \*************************************/
@@ -9959,8 +9823,8 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ReactContext = __webpack_require__(/*! ./ReactContext */ 48);
-	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 49);
+	var ReactContext = __webpack_require__(/*! ./ReactContext */ 46);
+	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 47);
 	
 	var warning = __webpack_require__(/*! ./warning */ 74);
 	
@@ -10191,7 +10055,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 51 */
+/* 49 */
 /*!**********************************************!*\
   !*** ./~/react/lib/ReactElementValidator.js ***!
   \**********************************************/
@@ -10217,11 +10081,11 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
-	var ReactPropTypeLocations = __webpack_require__(/*! ./ReactPropTypeLocations */ 83);
-	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 49);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 48);
+	var ReactPropTypeLocations = __webpack_require__(/*! ./ReactPropTypeLocations */ 82);
+	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 47);
 	
-	var monitorCodeUse = __webpack_require__(/*! ./monitorCodeUse */ 87);
+	var monitorCodeUse = __webpack_require__(/*! ./monitorCodeUse */ 86);
 	
 	/**
 	 * Warn if there's no key explicitly set on dynamic arrays of children or
@@ -10466,7 +10330,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 52 */
+/* 50 */
 /*!*********************************!*\
   !*** ./~/react/lib/ReactDOM.js ***!
   \*********************************/
@@ -10486,11 +10350,11 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
-	var ReactElementValidator = __webpack_require__(/*! ./ReactElementValidator */ 51);
-	var ReactLegacyElement = __webpack_require__(/*! ./ReactLegacyElement */ 56);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 48);
+	var ReactElementValidator = __webpack_require__(/*! ./ReactElementValidator */ 49);
+	var ReactLegacyElement = __webpack_require__(/*! ./ReactLegacyElement */ 54);
 	
-	var mapObject = __webpack_require__(/*! ./mapObject */ 88);
+	var mapObject = __webpack_require__(/*! ./mapObject */ 87);
 	
 	/**
 	 * Create a factory that creates HTML tag elements.
@@ -10654,7 +10518,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 53 */
+/* 51 */
 /*!******************************************!*\
   !*** ./~/react/lib/ReactDOMComponent.js ***!
   \******************************************/
@@ -10674,22 +10538,22 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var CSSPropertyOperations = __webpack_require__(/*! ./CSSPropertyOperations */ 90);
+	var CSSPropertyOperations = __webpack_require__(/*! ./CSSPropertyOperations */ 89);
 	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 71);
-	var DOMPropertyOperations = __webpack_require__(/*! ./DOMPropertyOperations */ 43);
-	var ReactBrowserComponentMixin = __webpack_require__(/*! ./ReactBrowserComponentMixin */ 91);
-	var ReactComponent = __webpack_require__(/*! ./ReactComponent */ 46);
-	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 92);
-	var ReactMount = __webpack_require__(/*! ./ReactMount */ 57);
-	var ReactMultiChild = __webpack_require__(/*! ./ReactMultiChild */ 58);
-	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 59);
+	var DOMPropertyOperations = __webpack_require__(/*! ./DOMPropertyOperations */ 41);
+	var ReactBrowserComponentMixin = __webpack_require__(/*! ./ReactBrowserComponentMixin */ 90);
+	var ReactComponent = __webpack_require__(/*! ./ReactComponent */ 44);
+	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 91);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 55);
+	var ReactMultiChild = __webpack_require__(/*! ./ReactMultiChild */ 56);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 57);
 	
-	var assign = __webpack_require__(/*! ./Object.assign */ 63);
+	var assign = __webpack_require__(/*! ./Object.assign */ 61);
 	var escapeTextForBrowser = __webpack_require__(/*! ./escapeTextForBrowser */ 72);
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
-	var isEventSupported = __webpack_require__(/*! ./isEventSupported */ 93);
-	var keyOf = __webpack_require__(/*! ./keyOf */ 86);
-	var monitorCodeUse = __webpack_require__(/*! ./monitorCodeUse */ 87);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
+	var isEventSupported = __webpack_require__(/*! ./isEventSupported */ 92);
+	var keyOf = __webpack_require__(/*! ./keyOf */ 85);
+	var monitorCodeUse = __webpack_require__(/*! ./monitorCodeUse */ 86);
 	
 	var deleteListener = ReactBrowserEventEmitter.deleteListener;
 	var listenTo = ReactBrowserEventEmitter.listenTo;
@@ -11146,7 +11010,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 54 */
+/* 52 */
 /*!**********************************************!*\
   !*** ./~/react/lib/ReactDefaultInjection.js ***!
   \**********************************************/
@@ -11165,37 +11029,37 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var BeforeInputEventPlugin = __webpack_require__(/*! ./BeforeInputEventPlugin */ 94);
-	var ChangeEventPlugin = __webpack_require__(/*! ./ChangeEventPlugin */ 95);
-	var ClientReactRootIndex = __webpack_require__(/*! ./ClientReactRootIndex */ 96);
-	var CompositionEventPlugin = __webpack_require__(/*! ./CompositionEventPlugin */ 97);
-	var DefaultEventPluginOrder = __webpack_require__(/*! ./DefaultEventPluginOrder */ 98);
-	var EnterLeaveEventPlugin = __webpack_require__(/*! ./EnterLeaveEventPlugin */ 99);
-	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 66);
-	var HTMLDOMPropertyConfig = __webpack_require__(/*! ./HTMLDOMPropertyConfig */ 100);
-	var MobileSafariClickEventPlugin = __webpack_require__(/*! ./MobileSafariClickEventPlugin */ 101);
-	var ReactBrowserComponentMixin = __webpack_require__(/*! ./ReactBrowserComponentMixin */ 91);
+	var BeforeInputEventPlugin = __webpack_require__(/*! ./BeforeInputEventPlugin */ 93);
+	var ChangeEventPlugin = __webpack_require__(/*! ./ChangeEventPlugin */ 94);
+	var ClientReactRootIndex = __webpack_require__(/*! ./ClientReactRootIndex */ 95);
+	var CompositionEventPlugin = __webpack_require__(/*! ./CompositionEventPlugin */ 96);
+	var DefaultEventPluginOrder = __webpack_require__(/*! ./DefaultEventPluginOrder */ 97);
+	var EnterLeaveEventPlugin = __webpack_require__(/*! ./EnterLeaveEventPlugin */ 98);
+	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 64);
+	var HTMLDOMPropertyConfig = __webpack_require__(/*! ./HTMLDOMPropertyConfig */ 99);
+	var MobileSafariClickEventPlugin = __webpack_require__(/*! ./MobileSafariClickEventPlugin */ 100);
+	var ReactBrowserComponentMixin = __webpack_require__(/*! ./ReactBrowserComponentMixin */ 90);
 	var ReactComponentBrowserEnvironment =
-	  __webpack_require__(/*! ./ReactComponentBrowserEnvironment */ 102);
-	var ReactDefaultBatchingStrategy = __webpack_require__(/*! ./ReactDefaultBatchingStrategy */ 103);
-	var ReactDOMComponent = __webpack_require__(/*! ./ReactDOMComponent */ 53);
-	var ReactDOMButton = __webpack_require__(/*! ./ReactDOMButton */ 104);
-	var ReactDOMForm = __webpack_require__(/*! ./ReactDOMForm */ 105);
-	var ReactDOMImg = __webpack_require__(/*! ./ReactDOMImg */ 106);
-	var ReactDOMInput = __webpack_require__(/*! ./ReactDOMInput */ 107);
-	var ReactDOMOption = __webpack_require__(/*! ./ReactDOMOption */ 108);
-	var ReactDOMSelect = __webpack_require__(/*! ./ReactDOMSelect */ 109);
-	var ReactDOMTextarea = __webpack_require__(/*! ./ReactDOMTextarea */ 110);
-	var ReactEventListener = __webpack_require__(/*! ./ReactEventListener */ 111);
-	var ReactInjection = __webpack_require__(/*! ./ReactInjection */ 112);
-	var ReactInstanceHandles = __webpack_require__(/*! ./ReactInstanceHandles */ 55);
-	var ReactMount = __webpack_require__(/*! ./ReactMount */ 57);
-	var SelectEventPlugin = __webpack_require__(/*! ./SelectEventPlugin */ 113);
-	var ServerReactRootIndex = __webpack_require__(/*! ./ServerReactRootIndex */ 114);
-	var SimpleEventPlugin = __webpack_require__(/*! ./SimpleEventPlugin */ 115);
-	var SVGDOMPropertyConfig = __webpack_require__(/*! ./SVGDOMPropertyConfig */ 116);
+	  __webpack_require__(/*! ./ReactComponentBrowserEnvironment */ 101);
+	var ReactDefaultBatchingStrategy = __webpack_require__(/*! ./ReactDefaultBatchingStrategy */ 102);
+	var ReactDOMComponent = __webpack_require__(/*! ./ReactDOMComponent */ 51);
+	var ReactDOMButton = __webpack_require__(/*! ./ReactDOMButton */ 103);
+	var ReactDOMForm = __webpack_require__(/*! ./ReactDOMForm */ 104);
+	var ReactDOMImg = __webpack_require__(/*! ./ReactDOMImg */ 105);
+	var ReactDOMInput = __webpack_require__(/*! ./ReactDOMInput */ 106);
+	var ReactDOMOption = __webpack_require__(/*! ./ReactDOMOption */ 107);
+	var ReactDOMSelect = __webpack_require__(/*! ./ReactDOMSelect */ 108);
+	var ReactDOMTextarea = __webpack_require__(/*! ./ReactDOMTextarea */ 109);
+	var ReactEventListener = __webpack_require__(/*! ./ReactEventListener */ 110);
+	var ReactInjection = __webpack_require__(/*! ./ReactInjection */ 111);
+	var ReactInstanceHandles = __webpack_require__(/*! ./ReactInstanceHandles */ 53);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 55);
+	var SelectEventPlugin = __webpack_require__(/*! ./SelectEventPlugin */ 112);
+	var ServerReactRootIndex = __webpack_require__(/*! ./ServerReactRootIndex */ 113);
+	var SimpleEventPlugin = __webpack_require__(/*! ./SimpleEventPlugin */ 114);
+	var SVGDOMPropertyConfig = __webpack_require__(/*! ./SVGDOMPropertyConfig */ 115);
 	
-	var createFullPageComponent = __webpack_require__(/*! ./createFullPageComponent */ 117);
+	var createFullPageComponent = __webpack_require__(/*! ./createFullPageComponent */ 116);
 	
 	function inject() {
 	  ReactInjection.EventEmitter.injectReactEventListener(
@@ -11268,7 +11132,7 @@ var ColonelKurtz =
 	  if (true) {
 	    var url = (ExecutionEnvironment.canUseDOM && window.location.href) || '';
 	    if ((/[?&]react_perf\b/).test(url)) {
-	      var ReactDefaultPerf = __webpack_require__(/*! ./ReactDefaultPerf */ 118);
+	      var ReactDefaultPerf = __webpack_require__(/*! ./ReactDefaultPerf */ 117);
 	      ReactDefaultPerf.start();
 	    }
 	  }
@@ -11280,7 +11144,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 55 */
+/* 53 */
 /*!*********************************************!*\
   !*** ./~/react/lib/ReactInstanceHandles.js ***!
   \*********************************************/
@@ -11300,9 +11164,9 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ReactRootIndex = __webpack_require__(/*! ./ReactRootIndex */ 119);
+	var ReactRootIndex = __webpack_require__(/*! ./ReactRootIndex */ 118);
 	
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	var SEPARATOR = '.';
 	var SEPARATOR_LENGTH = SEPARATOR.length;
@@ -11620,7 +11484,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 56 */
+/* 54 */
 /*!*******************************************!*\
   !*** ./~/react/lib/ReactLegacyElement.js ***!
   \*******************************************/
@@ -11639,10 +11503,10 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 49);
+	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 47);
 	
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
-	var monitorCodeUse = __webpack_require__(/*! ./monitorCodeUse */ 87);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
+	var monitorCodeUse = __webpack_require__(/*! ./monitorCodeUse */ 86);
 	var warning = __webpack_require__(/*! ./warning */ 74);
 	
 	var legacyFactoryLogs = {};
@@ -11872,7 +11736,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 57 */
+/* 55 */
 /*!***********************************!*\
   !*** ./~/react/lib/ReactMount.js ***!
   \***********************************/
@@ -11892,19 +11756,19 @@ var ColonelKurtz =
 	"use strict";
 	
 	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 71);
-	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 92);
-	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 49);
-	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
-	var ReactLegacyElement = __webpack_require__(/*! ./ReactLegacyElement */ 56);
-	var ReactInstanceHandles = __webpack_require__(/*! ./ReactInstanceHandles */ 55);
-	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 59);
+	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 91);
+	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 47);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 48);
+	var ReactLegacyElement = __webpack_require__(/*! ./ReactLegacyElement */ 54);
+	var ReactInstanceHandles = __webpack_require__(/*! ./ReactInstanceHandles */ 53);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 57);
 	
-	var containsNode = __webpack_require__(/*! ./containsNode */ 120);
-	var deprecated = __webpack_require__(/*! ./deprecated */ 64);
-	var getReactRootElementInContainer = __webpack_require__(/*! ./getReactRootElementInContainer */ 121);
-	var instantiateReactComponent = __webpack_require__(/*! ./instantiateReactComponent */ 85);
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
-	var shouldUpdateReactComponent = __webpack_require__(/*! ./shouldUpdateReactComponent */ 89);
+	var containsNode = __webpack_require__(/*! ./containsNode */ 119);
+	var deprecated = __webpack_require__(/*! ./deprecated */ 62);
+	var getReactRootElementInContainer = __webpack_require__(/*! ./getReactRootElementInContainer */ 120);
+	var instantiateReactComponent = __webpack_require__(/*! ./instantiateReactComponent */ 84);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
+	var shouldUpdateReactComponent = __webpack_require__(/*! ./shouldUpdateReactComponent */ 88);
 	var warning = __webpack_require__(/*! ./warning */ 74);
 	
 	var createElement = ReactLegacyElement.wrapCreateElement(
@@ -12575,7 +12439,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 58 */
+/* 56 */
 /*!****************************************!*\
   !*** ./~/react/lib/ReactMultiChild.js ***!
   \****************************************/
@@ -12595,12 +12459,12 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ReactComponent = __webpack_require__(/*! ./ReactComponent */ 46);
-	var ReactMultiChildUpdateTypes = __webpack_require__(/*! ./ReactMultiChildUpdateTypes */ 122);
+	var ReactComponent = __webpack_require__(/*! ./ReactComponent */ 44);
+	var ReactMultiChildUpdateTypes = __webpack_require__(/*! ./ReactMultiChildUpdateTypes */ 121);
 	
-	var flattenChildren = __webpack_require__(/*! ./flattenChildren */ 123);
-	var instantiateReactComponent = __webpack_require__(/*! ./instantiateReactComponent */ 85);
-	var shouldUpdateReactComponent = __webpack_require__(/*! ./shouldUpdateReactComponent */ 89);
+	var flattenChildren = __webpack_require__(/*! ./flattenChildren */ 122);
+	var instantiateReactComponent = __webpack_require__(/*! ./instantiateReactComponent */ 84);
+	var shouldUpdateReactComponent = __webpack_require__(/*! ./shouldUpdateReactComponent */ 88);
 	
 	/**
 	 * Updating children of a component may trigger recursive updates. The depth is
@@ -13010,7 +12874,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 59 */
+/* 57 */
 /*!**********************************!*\
   !*** ./~/react/lib/ReactPerf.js ***!
   \**********************************/
@@ -13099,7 +12963,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 60 */
+/* 58 */
 /*!***************************************!*\
   !*** ./~/react/lib/ReactPropTypes.js ***!
   \***************************************/
@@ -13118,11 +12982,11 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
-	var ReactPropTypeLocationNames = __webpack_require__(/*! ./ReactPropTypeLocationNames */ 84);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 48);
+	var ReactPropTypeLocationNames = __webpack_require__(/*! ./ReactPropTypeLocationNames */ 83);
 	
-	var deprecated = __webpack_require__(/*! ./deprecated */ 64);
-	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 126);
+	var deprecated = __webpack_require__(/*! ./deprecated */ 62);
+	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 123);
 	
 	/**
 	 * Collection of methods that allow declaration and validation of props that are
@@ -13460,7 +13324,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 61 */
+/* 59 */
 /*!*********************************************!*\
   !*** ./~/react/lib/ReactServerRendering.js ***!
   \*********************************************/
@@ -13479,14 +13343,14 @@ var ColonelKurtz =
 	 */
 	"use strict";
 	
-	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
-	var ReactInstanceHandles = __webpack_require__(/*! ./ReactInstanceHandles */ 55);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 48);
+	var ReactInstanceHandles = __webpack_require__(/*! ./ReactInstanceHandles */ 53);
 	var ReactMarkupChecksum = __webpack_require__(/*! ./ReactMarkupChecksum */ 124);
 	var ReactServerRenderingTransaction =
 	  __webpack_require__(/*! ./ReactServerRenderingTransaction */ 125);
 	
-	var instantiateReactComponent = __webpack_require__(/*! ./instantiateReactComponent */ 85);
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var instantiateReactComponent = __webpack_require__(/*! ./instantiateReactComponent */ 84);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	/**
 	 * @param {ReactElement} element
@@ -13545,7 +13409,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 62 */
+/* 60 */
 /*!*******************************************!*\
   !*** ./~/react/lib/ReactTextComponent.js ***!
   \*******************************************/
@@ -13565,11 +13429,11 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var DOMPropertyOperations = __webpack_require__(/*! ./DOMPropertyOperations */ 43);
-	var ReactComponent = __webpack_require__(/*! ./ReactComponent */ 46);
-	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
+	var DOMPropertyOperations = __webpack_require__(/*! ./DOMPropertyOperations */ 41);
+	var ReactComponent = __webpack_require__(/*! ./ReactComponent */ 44);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 48);
 	
-	var assign = __webpack_require__(/*! ./Object.assign */ 63);
+	var assign = __webpack_require__(/*! ./Object.assign */ 61);
 	var escapeTextForBrowser = __webpack_require__(/*! ./escapeTextForBrowser */ 72);
 	
 	/**
@@ -13658,7 +13522,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 63 */
+/* 61 */
 /*!**************************************!*\
   !*** ./~/react/lib/Object.assign.js ***!
   \**************************************/
@@ -13712,7 +13576,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 64 */
+/* 62 */
 /*!***********************************!*\
   !*** ./~/react/lib/deprecated.js ***!
   \***********************************/
@@ -13729,7 +13593,7 @@ var ColonelKurtz =
 	 * @providesModule deprecated
 	 */
 	
-	var assign = __webpack_require__(/*! ./Object.assign */ 63);
+	var assign = __webpack_require__(/*! ./Object.assign */ 61);
 	var warning = __webpack_require__(/*! ./warning */ 74);
 	
 	/**
@@ -13768,7 +13632,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 65 */
+/* 63 */
 /*!**********************************!*\
   !*** ./~/react/lib/onlyChild.js ***!
   \**********************************/
@@ -13786,9 +13650,9 @@ var ColonelKurtz =
 	 */
 	"use strict";
 	
-	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 48);
 	
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	/**
 	 * Returns the first child in a collection of children and verifies that there
@@ -13813,7 +13677,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 66 */
+/* 64 */
 /*!*********************************************!*\
   !*** ./~/react/lib/ExecutionEnvironment.js ***!
   \*********************************************/
@@ -13865,52 +13729,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 67 */
-/*!*******************************************************!*\
-  !*** ./colonel-kurtz/components/editor_block_list.js ***!
-  \*******************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var ActsLikeBlockList = __webpack_require__(/*! ../mixins/acts_like_block_list */ 129)
-	var BlockMenu = __webpack_require__(/*! ./block_menu */ 200)
-	var EditorBlock = __webpack_require__(/*! ./editor_block */ 127)
-	var React = __webpack_require__(/*! react */ 12)
-	
-	var EditorBlockList = React.createClass({displayName: 'EditorBlockList',
-	
-	  mixins: [ ActsLikeBlockList ],
-	
-	  blockComponents:function()                       {
-	    var blockListId = this.blockListId()
-	
-	    return this.state.blockIds.map(function(blockId, i) {
-	      return (
-	        React.createElement("div", {key: blockId }, 
-	          React.createElement(EditorBlock, {initialBlockId: blockId }), 
-	          React.createElement(BlockMenu, {position:  i + 1, blockListId: blockListId })
-	        )
-	      )
-	    })
-	  },
-	
-	  render:function()      {
-	    return (
-	      React.createElement("div", {className: "colonel-blocks"}, 
-	        React.createElement(BlockMenu, {blockListId:  this.blockListId() }), 
-	         this.blockComponents() 
-	      )
-	    )
-	  }
-	
-	})
-	
-	module.exports = EditorBlockList
-
-
-/***/ },
-/* 68 */
+/* 65 */
 /*!**********************************************************!*\
   !*** ./colonel-kurtz/components/previewer_block_list.js ***!
   \**********************************************************/
@@ -13918,9 +13737,9 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React = __webpack_require__(/*! react */ 12)
-	var PreviewerBlock = __webpack_require__(/*! ./previewer_block */ 130)
-	var ActsLikeBlockList = __webpack_require__(/*! ../mixins/acts_like_block_list */ 129)
+	var React = __webpack_require__(/*! react */ 10)
+	var PreviewerBlock = __webpack_require__(/*! ./previewer_block */ 127)
+	var ActsLikeBlockList = __webpack_require__(/*! ../mixins/acts_like_block_list */ 68)
 	
 	var PreviewerBlockList = React.createClass({displayName: 'PreviewerBlockList',
 	
@@ -13946,7 +13765,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 69 */
+/* 66 */
 /*!*************************!*\
   !*** ./~/flux/index.js ***!
   \*************************/
@@ -13961,11 +13780,11 @@ var ColonelKurtz =
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 */
 	
-	module.exports.Dispatcher = __webpack_require__(/*! ./lib/Dispatcher */ 132)
+	module.exports.Dispatcher = __webpack_require__(/*! ./lib/Dispatcher */ 129)
 
 
 /***/ },
-/* 70 */
+/* 67 */
 /*!******************************************************!*\
   !*** ./~/object.assign/~/object-keys/isArguments.js ***!
   \******************************************************/
@@ -13992,6 +13811,138 @@ var ColonelKurtz =
 
 
 /***/ },
+/* 68 */
+/*!******************************************************!*\
+  !*** ./colonel-kurtz/mixins/acts_like_block_list.js ***!
+  \******************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var React = __webpack_require__(/*! react */ 10)
+	var BlockListStore = __webpack_require__(/*! ../stores/block_list_store */ 4)
+	var Monitor = __webpack_require__(/*! ./monitor */ 130)
+	
+	var ActsLikeBlockList = {
+	
+	  mixins: [ Monitor ],
+	
+	  getState:function()                            {
+	    return {
+	      blockIds: this.blockIds()
+	    }
+	  },
+	
+	  blockList:function() {
+	    return BlockListStore.find(this.blockListId())
+	  },
+	
+	  blockListId:function()         {
+	    return this.props.initialBlockListId
+	  },
+	
+	  blockIds:function()                {
+	    var blockList = this.blockList()
+	    return blockList? blockList.all() : []
+	  }
+	
+	}
+	
+	module.exports = ActsLikeBlockList
+
+
+/***/ },
+/* 69 */
+/*!************************************************!*\
+  !*** ./colonel-kurtz/components/block_menu.js ***!
+  \************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var AddBlock  = __webpack_require__(/*! ./add_block */ 131)
+	var BlockType = __webpack_require__(/*! ../stores/block_type_store */ 5)
+	var Monitor   = __webpack_require__(/*! ../mixins/monitor */ 130)
+	var React     = __webpack_require__(/*! react */ 10)
+	
+	var BlockMenu = React.createClass({displayName: 'BlockMenu',
+	
+	  mixins: [ Monitor ],
+	
+	  getDefaultProps:function() {
+	    return {
+	      position: 0
+	    }
+	  },
+	
+	  getState:function() {
+	    return {
+	      types: BlockType.keys()
+	    }
+	  },
+	
+	  getButton:function(type) {
+	    return React.createElement(AddBlock, React.__spread({key: type, type: type },   this.props ))
+	  },
+	
+	  render:function()      {
+	    return (
+	      React.createElement("nav", {className: "colonel-menu", role: "navigation"}, 
+	         this.state.types.map(this.getButton) 
+	      )
+	    )
+	  }
+	
+	})
+	
+	module.exports = BlockMenu
+
+
+/***/ },
+/* 70 */
+/*!**************************************************!*\
+  !*** ./colonel-kurtz/components/editor_block.js ***!
+  \**************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var ActLikeBlockWithBlockList = __webpack_require__(/*! ../mixins/acts_like_block_with_block_list */ 132)
+	var AppConstants = __webpack_require__(/*! constants/app_constants */ 19)
+	var Block = __webpack_require__(/*! ./block */ 133)
+	var React = __webpack_require__(/*! react */ 10)
+	var RemoveBlockButton = __webpack_require__(/*! ./remove_block_button */ 134)
+	
+	var EditorBlock = React.createClass({displayName: 'EditorBlock',
+	
+	  mixins: [ ActLikeBlockWithBlockList ],
+	
+	  listComponent:function() {
+	    return __webpack_require__(/*! ./editor_block_list */ 40)
+	  },
+	
+	  render:function()      {
+	    var $__0=       this.state.block,content=$__0.content,id=$__0.id,type=$__0.type,parentBlockListId=$__0.parentBlockListId
+	
+	    return (
+	      React.createElement("div", {className: "colonel-block"}, 
+	        React.createElement(Block, {block:  this.state.block, mode:  AppConstants.EDIT_MODE}), 
+	
+	        React.createElement("div", {className: "colonel-toolbar"}, 
+	          React.createElement(RemoveBlockButton, {blockId: id, blockListId: parentBlockListId })
+	        ), 
+	
+	         this.childBlockListComponent() 
+	      )
+	    )
+	  }
+	
+	})
+	
+	module.exports = EditorBlock
+
+
+/***/ },
 /* 71 */
 /*!************************************!*\
   !*** ./~/react/lib/DOMProperty.js ***!
@@ -14014,7 +13965,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	function checkMask(value, bitmask) {
 	  return (value & bitmask) === bitmask;
@@ -14404,7 +14355,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 126);
+	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 123);
 	
 	/**
 	 * Similar to invariant but only logs a warning if the condition is not met.
@@ -14436,85 +14387,6 @@ var ColonelKurtz =
 
 /***/ },
 /* 75 */
-/*!***************************************!*\
-  !*** ./~/react/lib/EventConstants.js ***!
-  \***************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2014, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule EventConstants
-	 */
-	
-	"use strict";
-	
-	var keyMirror = __webpack_require__(/*! ./keyMirror */ 40);
-	
-	var PropagationPhases = keyMirror({bubbled: null, captured: null});
-	
-	/**
-	 * Types of raw signals from the browser caught at the top level.
-	 */
-	var topLevelTypes = keyMirror({
-	  topBlur: null,
-	  topChange: null,
-	  topClick: null,
-	  topCompositionEnd: null,
-	  topCompositionStart: null,
-	  topCompositionUpdate: null,
-	  topContextMenu: null,
-	  topCopy: null,
-	  topCut: null,
-	  topDoubleClick: null,
-	  topDrag: null,
-	  topDragEnd: null,
-	  topDragEnter: null,
-	  topDragExit: null,
-	  topDragLeave: null,
-	  topDragOver: null,
-	  topDragStart: null,
-	  topDrop: null,
-	  topError: null,
-	  topFocus: null,
-	  topInput: null,
-	  topKeyDown: null,
-	  topKeyPress: null,
-	  topKeyUp: null,
-	  topLoad: null,
-	  topMouseDown: null,
-	  topMouseMove: null,
-	  topMouseOut: null,
-	  topMouseOver: null,
-	  topMouseUp: null,
-	  topPaste: null,
-	  topReset: null,
-	  topScroll: null,
-	  topSelectionChange: null,
-	  topSubmit: null,
-	  topTextInput: null,
-	  topTouchCancel: null,
-	  topTouchEnd: null,
-	  topTouchMove: null,
-	  topTouchStart: null,
-	  topWheel: null
-	});
-	
-	var EventConstants = {
-	  topLevelTypes: topLevelTypes,
-	  PropagationPhases: PropagationPhases
-	};
-	
-	module.exports = EventConstants;
-
-
-/***/ },
-/* 76 */
 /*!************************************!*\
   !*** ./~/react/lib/PooledClass.js ***!
   \************************************/
@@ -14533,7 +14405,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	/**
 	 * Static poolers. Several custom versions for each potential number of
@@ -14635,7 +14507,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 77 */
+/* 76 */
 /*!********************************************!*\
   !*** ./~/react/lib/traverseAllChildren.js ***!
   \********************************************/
@@ -14654,10 +14526,10 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
-	var ReactInstanceHandles = __webpack_require__(/*! ./ReactInstanceHandles */ 55);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 48);
+	var ReactInstanceHandles = __webpack_require__(/*! ./ReactInstanceHandles */ 53);
 	
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	var SEPARATOR = ReactInstanceHandles.SEPARATOR;
 	var SUBSEPARATOR = ':';
@@ -14823,7 +14695,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 78 */
+/* 77 */
 /*!***********************************!*\
   !*** ./~/react/lib/ReactOwner.js ***!
   \***********************************/
@@ -14842,8 +14714,8 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var emptyObject = __webpack_require__(/*! ./emptyObject */ 133);
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var emptyObject = __webpack_require__(/*! ./emptyObject */ 135);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	/**
 	 * ReactOwners are capable of storing references to owned components.
@@ -14984,7 +14856,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 79 */
+/* 78 */
 /*!*************************************!*\
   !*** ./~/react/lib/ReactUpdates.js ***!
   \*************************************/
@@ -15003,14 +14875,14 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 134);
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 76);
-	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 49);
-	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 59);
-	var Transaction = __webpack_require__(/*! ./Transaction */ 135);
+	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 136);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 75);
+	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 47);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 57);
+	var Transaction = __webpack_require__(/*! ./Transaction */ 137);
 	
-	var assign = __webpack_require__(/*! ./Object.assign */ 63);
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var assign = __webpack_require__(/*! ./Object.assign */ 61);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	var warning = __webpack_require__(/*! ./warning */ 74);
 	
 	var dirtyComponents = [];
@@ -15279,7 +15151,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 80 */
+/* 79 */
 /*!********************************************!*\
   !*** ./~/react/lib/ReactEmptyComponent.js ***!
   \********************************************/
@@ -15298,9 +15170,9 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 48);
 	
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	var component;
 	// This registry keeps track of the React IDs of the components that rendered to
@@ -15361,7 +15233,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 81 */
+/* 80 */
 /*!****************************************!*\
   !*** ./~/react/lib/ReactErrorUtils.js ***!
   \****************************************/
@@ -15400,7 +15272,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 82 */
+/* 81 */
 /*!********************************************!*\
   !*** ./~/react/lib/ReactPropTransferer.js ***!
   \********************************************/
@@ -15419,10 +15291,10 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var assign = __webpack_require__(/*! ./Object.assign */ 63);
-	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 126);
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
-	var joinClasses = __webpack_require__(/*! ./joinClasses */ 136);
+	var assign = __webpack_require__(/*! ./Object.assign */ 61);
+	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 123);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
+	var joinClasses = __webpack_require__(/*! ./joinClasses */ 138);
 	var warning = __webpack_require__(/*! ./warning */ 74);
 	
 	var didWarn = false;
@@ -15572,7 +15444,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 83 */
+/* 82 */
 /*!***********************************************!*\
   !*** ./~/react/lib/ReactPropTypeLocations.js ***!
   \***********************************************/
@@ -15591,7 +15463,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var keyMirror = __webpack_require__(/*! ./keyMirror */ 40);
+	var keyMirror = __webpack_require__(/*! ./keyMirror */ 37);
 	
 	var ReactPropTypeLocations = keyMirror({
 	  prop: null,
@@ -15603,7 +15475,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 84 */
+/* 83 */
 /*!***************************************************!*\
   !*** ./~/react/lib/ReactPropTypeLocationNames.js ***!
   \***************************************************/
@@ -15636,7 +15508,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 85 */
+/* 84 */
 /*!**************************************************!*\
   !*** ./~/react/lib/instantiateReactComponent.js ***!
   \**************************************************/
@@ -15658,10 +15530,10 @@ var ColonelKurtz =
 	
 	var warning = __webpack_require__(/*! ./warning */ 74);
 	
-	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
-	var ReactLegacyElement = __webpack_require__(/*! ./ReactLegacyElement */ 56);
-	var ReactNativeComponent = __webpack_require__(/*! ./ReactNativeComponent */ 137);
-	var ReactEmptyComponent = __webpack_require__(/*! ./ReactEmptyComponent */ 80);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 48);
+	var ReactLegacyElement = __webpack_require__(/*! ./ReactLegacyElement */ 54);
+	var ReactNativeComponent = __webpack_require__(/*! ./ReactNativeComponent */ 139);
+	var ReactEmptyComponent = __webpack_require__(/*! ./ReactEmptyComponent */ 79);
 	
 	/**
 	 * Given an `element` create an instance that will actually be mounted.
@@ -15755,7 +15627,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 86 */
+/* 85 */
 /*!******************************!*\
   !*** ./~/react/lib/keyOf.js ***!
   \******************************/
@@ -15798,7 +15670,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 87 */
+/* 86 */
 /*!***************************************!*\
   !*** ./~/react/lib/monitorCodeUse.js ***!
   \***************************************/
@@ -15817,7 +15689,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	/**
 	 * Provides open-source compatible instrumentation for monitoring certain API
@@ -15837,7 +15709,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 88 */
+/* 87 */
 /*!**********************************!*\
   !*** ./~/react/lib/mapObject.js ***!
   \**********************************/
@@ -15897,7 +15769,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 89 */
+/* 88 */
 /*!***************************************************!*\
   !*** ./~/react/lib/shouldUpdateReactComponent.js ***!
   \***************************************************/
@@ -15942,7 +15814,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 90 */
+/* 89 */
 /*!**********************************************!*\
   !*** ./~/react/lib/CSSPropertyOperations.js ***!
   \**********************************************/
@@ -15962,12 +15834,12 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var CSSProperty = __webpack_require__(/*! ./CSSProperty */ 138);
-	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 66);
+	var CSSProperty = __webpack_require__(/*! ./CSSProperty */ 140);
+	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 64);
 	
-	var camelizeStyleName = __webpack_require__(/*! ./camelizeStyleName */ 139);
-	var dangerousStyleValue = __webpack_require__(/*! ./dangerousStyleValue */ 140);
-	var hyphenateStyleName = __webpack_require__(/*! ./hyphenateStyleName */ 141);
+	var camelizeStyleName = __webpack_require__(/*! ./camelizeStyleName */ 141);
+	var dangerousStyleValue = __webpack_require__(/*! ./dangerousStyleValue */ 142);
+	var hyphenateStyleName = __webpack_require__(/*! ./hyphenateStyleName */ 143);
 	var memoizeStringOnly = __webpack_require__(/*! ./memoizeStringOnly */ 73);
 	var warning = __webpack_require__(/*! ./warning */ 74);
 	
@@ -16082,7 +15954,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 91 */
+/* 90 */
 /*!***************************************************!*\
   !*** ./~/react/lib/ReactBrowserComponentMixin.js ***!
   \***************************************************/
@@ -16101,10 +15973,10 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ReactEmptyComponent = __webpack_require__(/*! ./ReactEmptyComponent */ 80);
-	var ReactMount = __webpack_require__(/*! ./ReactMount */ 57);
+	var ReactEmptyComponent = __webpack_require__(/*! ./ReactEmptyComponent */ 79);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 55);
 	
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	var ReactBrowserComponentMixin = {
 	  /**
@@ -16130,7 +16002,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 92 */
+/* 91 */
 /*!*************************************************!*\
   !*** ./~/react/lib/ReactBrowserEventEmitter.js ***!
   \*************************************************/
@@ -16150,14 +16022,14 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 75);
-	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 142);
-	var EventPluginRegistry = __webpack_require__(/*! ./EventPluginRegistry */ 143);
-	var ReactEventEmitterMixin = __webpack_require__(/*! ./ReactEventEmitterMixin */ 144);
-	var ViewportMetrics = __webpack_require__(/*! ./ViewportMetrics */ 145);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 126);
+	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 144);
+	var EventPluginRegistry = __webpack_require__(/*! ./EventPluginRegistry */ 145);
+	var ReactEventEmitterMixin = __webpack_require__(/*! ./ReactEventEmitterMixin */ 146);
+	var ViewportMetrics = __webpack_require__(/*! ./ViewportMetrics */ 147);
 	
-	var assign = __webpack_require__(/*! ./Object.assign */ 63);
-	var isEventSupported = __webpack_require__(/*! ./isEventSupported */ 93);
+	var assign = __webpack_require__(/*! ./Object.assign */ 61);
+	var isEventSupported = __webpack_require__(/*! ./isEventSupported */ 92);
 	
 	/**
 	 * Summary of `ReactBrowserEventEmitter` event handling:
@@ -16492,7 +16364,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 93 */
+/* 92 */
 /*!*****************************************!*\
   !*** ./~/react/lib/isEventSupported.js ***!
   \*****************************************/
@@ -16511,7 +16383,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 66);
+	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 64);
 	
 	var useHasFeature;
 	if (ExecutionEnvironment.canUseDOM) {
@@ -16564,7 +16436,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 94 */
+/* 93 */
 /*!***********************************************!*\
   !*** ./~/react/lib/BeforeInputEventPlugin.js ***!
   \***********************************************/
@@ -16584,12 +16456,12 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 75);
-	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 146);
-	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 66);
-	var SyntheticInputEvent = __webpack_require__(/*! ./SyntheticInputEvent */ 147);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 126);
+	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 148);
+	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 64);
+	var SyntheticInputEvent = __webpack_require__(/*! ./SyntheticInputEvent */ 149);
 	
-	var keyOf = __webpack_require__(/*! ./keyOf */ 86);
+	var keyOf = __webpack_require__(/*! ./keyOf */ 85);
 	
 	var canUseTextInputEvent = (
 	  ExecutionEnvironment.canUseDOM &&
@@ -16793,7 +16665,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 95 */
+/* 94 */
 /*!******************************************!*\
   !*** ./~/react/lib/ChangeEventPlugin.js ***!
   \******************************************/
@@ -16812,16 +16684,16 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 75);
-	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 142);
-	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 146);
-	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 66);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 79);
-	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 148);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 126);
+	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 144);
+	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 148);
+	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 64);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 78);
+	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 150);
 	
-	var isEventSupported = __webpack_require__(/*! ./isEventSupported */ 93);
-	var isTextInputElement = __webpack_require__(/*! ./isTextInputElement */ 149);
-	var keyOf = __webpack_require__(/*! ./keyOf */ 86);
+	var isEventSupported = __webpack_require__(/*! ./isEventSupported */ 92);
+	var isTextInputElement = __webpack_require__(/*! ./isTextInputElement */ 151);
+	var keyOf = __webpack_require__(/*! ./keyOf */ 85);
 	
 	var topLevelTypes = EventConstants.topLevelTypes;
 	
@@ -17182,7 +17054,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 96 */
+/* 95 */
 /*!*********************************************!*\
   !*** ./~/react/lib/ClientReactRootIndex.js ***!
   \*********************************************/
@@ -17214,7 +17086,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 97 */
+/* 96 */
 /*!***********************************************!*\
   !*** ./~/react/lib/CompositionEventPlugin.js ***!
   \***********************************************/
@@ -17234,14 +17106,14 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 75);
-	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 146);
-	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 66);
-	var ReactInputSelection = __webpack_require__(/*! ./ReactInputSelection */ 150);
-	var SyntheticCompositionEvent = __webpack_require__(/*! ./SyntheticCompositionEvent */ 151);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 126);
+	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 148);
+	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 64);
+	var ReactInputSelection = __webpack_require__(/*! ./ReactInputSelection */ 152);
+	var SyntheticCompositionEvent = __webpack_require__(/*! ./SyntheticCompositionEvent */ 153);
 	
-	var getTextContentAccessor = __webpack_require__(/*! ./getTextContentAccessor */ 152);
-	var keyOf = __webpack_require__(/*! ./keyOf */ 86);
+	var getTextContentAccessor = __webpack_require__(/*! ./getTextContentAccessor */ 154);
+	var keyOf = __webpack_require__(/*! ./keyOf */ 85);
 	
 	var END_KEYCODES = [9, 13, 27, 32]; // Tab, Return, Esc, Space
 	var START_KEYCODE = 229;
@@ -17480,7 +17352,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 98 */
+/* 97 */
 /*!************************************************!*\
   !*** ./~/react/lib/DefaultEventPluginOrder.js ***!
   \************************************************/
@@ -17499,7 +17371,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	 var keyOf = __webpack_require__(/*! ./keyOf */ 86);
+	 var keyOf = __webpack_require__(/*! ./keyOf */ 85);
 	
 	/**
 	 * Module that is injectable into `EventPluginHub`, that specifies a
@@ -17527,7 +17399,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 99 */
+/* 98 */
 /*!**********************************************!*\
   !*** ./~/react/lib/EnterLeaveEventPlugin.js ***!
   \**********************************************/
@@ -17547,12 +17419,12 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 75);
-	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 146);
-	var SyntheticMouseEvent = __webpack_require__(/*! ./SyntheticMouseEvent */ 153);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 126);
+	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 148);
+	var SyntheticMouseEvent = __webpack_require__(/*! ./SyntheticMouseEvent */ 155);
 	
-	var ReactMount = __webpack_require__(/*! ./ReactMount */ 57);
-	var keyOf = __webpack_require__(/*! ./keyOf */ 86);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 55);
+	var keyOf = __webpack_require__(/*! ./keyOf */ 85);
 	
 	var topLevelTypes = EventConstants.topLevelTypes;
 	var getFirstReactDOM = ReactMount.getFirstReactDOM;
@@ -17674,7 +17546,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 100 */
+/* 99 */
 /*!**********************************************!*\
   !*** ./~/react/lib/HTMLDOMPropertyConfig.js ***!
   \**********************************************/
@@ -17696,7 +17568,7 @@ var ColonelKurtz =
 	"use strict";
 	
 	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 71);
-	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 66);
+	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 64);
 	
 	var MUST_USE_ATTRIBUTE = DOMProperty.injection.MUST_USE_ATTRIBUTE;
 	var MUST_USE_PROPERTY = DOMProperty.injection.MUST_USE_PROPERTY;
@@ -17867,7 +17739,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 101 */
+/* 100 */
 /*!*****************************************************!*\
   !*** ./~/react/lib/MobileSafariClickEventPlugin.js ***!
   \*****************************************************/
@@ -17887,9 +17759,9 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 75);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 126);
 	
-	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 126);
+	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 123);
 	
 	var topLevelTypes = EventConstants.topLevelTypes;
 	
@@ -17932,7 +17804,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 102 */
+/* 101 */
 /*!*********************************************************!*\
   !*** ./~/react/lib/ReactComponentBrowserEnvironment.js ***!
   \*********************************************************/
@@ -17953,15 +17825,15 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ReactDOMIDOperations = __webpack_require__(/*! ./ReactDOMIDOperations */ 154);
+	var ReactDOMIDOperations = __webpack_require__(/*! ./ReactDOMIDOperations */ 156);
 	var ReactMarkupChecksum = __webpack_require__(/*! ./ReactMarkupChecksum */ 124);
-	var ReactMount = __webpack_require__(/*! ./ReactMount */ 57);
-	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 59);
-	var ReactReconcileTransaction = __webpack_require__(/*! ./ReactReconcileTransaction */ 155);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 55);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 57);
+	var ReactReconcileTransaction = __webpack_require__(/*! ./ReactReconcileTransaction */ 157);
 	
-	var getReactRootElementInContainer = __webpack_require__(/*! ./getReactRootElementInContainer */ 121);
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
-	var setInnerHTML = __webpack_require__(/*! ./setInnerHTML */ 156);
+	var getReactRootElementInContainer = __webpack_require__(/*! ./getReactRootElementInContainer */ 120);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
+	var setInnerHTML = __webpack_require__(/*! ./setInnerHTML */ 158);
 	
 	
 	var ELEMENT_NODE_TYPE = 1;
@@ -18059,7 +17931,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 103 */
+/* 102 */
 /*!*****************************************************!*\
   !*** ./~/react/lib/ReactDefaultBatchingStrategy.js ***!
   \*****************************************************/
@@ -18078,11 +17950,11 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 79);
-	var Transaction = __webpack_require__(/*! ./Transaction */ 135);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 78);
+	var Transaction = __webpack_require__(/*! ./Transaction */ 137);
 	
-	var assign = __webpack_require__(/*! ./Object.assign */ 63);
-	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 126);
+	var assign = __webpack_require__(/*! ./Object.assign */ 61);
+	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 123);
 	
 	var RESET_BATCHED_UPDATES = {
 	  initialize: emptyFunction,
@@ -18139,7 +18011,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 104 */
+/* 103 */
 /*!***************************************!*\
   !*** ./~/react/lib/ReactDOMButton.js ***!
   \***************************************/
@@ -18158,13 +18030,13 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var AutoFocusMixin = __webpack_require__(/*! ./AutoFocusMixin */ 157);
-	var ReactBrowserComponentMixin = __webpack_require__(/*! ./ReactBrowserComponentMixin */ 91);
-	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 47);
-	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
-	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 52);
+	var AutoFocusMixin = __webpack_require__(/*! ./AutoFocusMixin */ 159);
+	var ReactBrowserComponentMixin = __webpack_require__(/*! ./ReactBrowserComponentMixin */ 90);
+	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 45);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 48);
+	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 50);
 	
-	var keyMirror = __webpack_require__(/*! ./keyMirror */ 40);
+	var keyMirror = __webpack_require__(/*! ./keyMirror */ 37);
 	
 	// Store a reference to the <button> `ReactDOMComponent`. TODO: use string
 	var button = ReactElement.createFactory(ReactDOM.button.type);
@@ -18211,7 +18083,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 105 */
+/* 104 */
 /*!*************************************!*\
   !*** ./~/react/lib/ReactDOMForm.js ***!
   \*************************************/
@@ -18230,12 +18102,12 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 75);
-	var LocalEventTrapMixin = __webpack_require__(/*! ./LocalEventTrapMixin */ 158);
-	var ReactBrowserComponentMixin = __webpack_require__(/*! ./ReactBrowserComponentMixin */ 91);
-	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 47);
-	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
-	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 52);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 126);
+	var LocalEventTrapMixin = __webpack_require__(/*! ./LocalEventTrapMixin */ 160);
+	var ReactBrowserComponentMixin = __webpack_require__(/*! ./ReactBrowserComponentMixin */ 90);
+	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 45);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 48);
+	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 50);
 	
 	// Store a reference to the <form> `ReactDOMComponent`. TODO: use string
 	var form = ReactElement.createFactory(ReactDOM.form.type);
@@ -18268,7 +18140,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 106 */
+/* 105 */
 /*!************************************!*\
   !*** ./~/react/lib/ReactDOMImg.js ***!
   \************************************/
@@ -18287,12 +18159,12 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 75);
-	var LocalEventTrapMixin = __webpack_require__(/*! ./LocalEventTrapMixin */ 158);
-	var ReactBrowserComponentMixin = __webpack_require__(/*! ./ReactBrowserComponentMixin */ 91);
-	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 47);
-	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
-	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 52);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 126);
+	var LocalEventTrapMixin = __webpack_require__(/*! ./LocalEventTrapMixin */ 160);
+	var ReactBrowserComponentMixin = __webpack_require__(/*! ./ReactBrowserComponentMixin */ 90);
+	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 45);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 48);
+	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 50);
 	
 	// Store a reference to the <img> `ReactDOMComponent`. TODO: use string
 	var img = ReactElement.createFactory(ReactDOM.img.type);
@@ -18323,7 +18195,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 107 */
+/* 106 */
 /*!**************************************!*\
   !*** ./~/react/lib/ReactDOMInput.js ***!
   \**************************************/
@@ -18342,18 +18214,18 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var AutoFocusMixin = __webpack_require__(/*! ./AutoFocusMixin */ 157);
-	var DOMPropertyOperations = __webpack_require__(/*! ./DOMPropertyOperations */ 43);
-	var LinkedValueUtils = __webpack_require__(/*! ./LinkedValueUtils */ 159);
-	var ReactBrowserComponentMixin = __webpack_require__(/*! ./ReactBrowserComponentMixin */ 91);
-	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 47);
-	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
-	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 52);
-	var ReactMount = __webpack_require__(/*! ./ReactMount */ 57);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 79);
+	var AutoFocusMixin = __webpack_require__(/*! ./AutoFocusMixin */ 159);
+	var DOMPropertyOperations = __webpack_require__(/*! ./DOMPropertyOperations */ 41);
+	var LinkedValueUtils = __webpack_require__(/*! ./LinkedValueUtils */ 161);
+	var ReactBrowserComponentMixin = __webpack_require__(/*! ./ReactBrowserComponentMixin */ 90);
+	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 45);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 48);
+	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 50);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 55);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 78);
 	
-	var assign = __webpack_require__(/*! ./Object.assign */ 63);
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var assign = __webpack_require__(/*! ./Object.assign */ 61);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	// Store a reference to the <input> `ReactDOMComponent`. TODO: use string
 	var input = ReactElement.createFactory(ReactDOM.input.type);
@@ -18506,7 +18378,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 108 */
+/* 107 */
 /*!***************************************!*\
   !*** ./~/react/lib/ReactDOMOption.js ***!
   \***************************************/
@@ -18525,10 +18397,10 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ReactBrowserComponentMixin = __webpack_require__(/*! ./ReactBrowserComponentMixin */ 91);
-	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 47);
-	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
-	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 52);
+	var ReactBrowserComponentMixin = __webpack_require__(/*! ./ReactBrowserComponentMixin */ 90);
+	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 45);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 48);
+	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 50);
 	
 	var warning = __webpack_require__(/*! ./warning */ 74);
 	
@@ -18564,7 +18436,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 109 */
+/* 108 */
 /*!***************************************!*\
   !*** ./~/react/lib/ReactDOMSelect.js ***!
   \***************************************/
@@ -18583,15 +18455,15 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var AutoFocusMixin = __webpack_require__(/*! ./AutoFocusMixin */ 157);
-	var LinkedValueUtils = __webpack_require__(/*! ./LinkedValueUtils */ 159);
-	var ReactBrowserComponentMixin = __webpack_require__(/*! ./ReactBrowserComponentMixin */ 91);
-	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 47);
-	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
-	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 52);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 79);
+	var AutoFocusMixin = __webpack_require__(/*! ./AutoFocusMixin */ 159);
+	var LinkedValueUtils = __webpack_require__(/*! ./LinkedValueUtils */ 161);
+	var ReactBrowserComponentMixin = __webpack_require__(/*! ./ReactBrowserComponentMixin */ 90);
+	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 45);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 48);
+	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 50);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 78);
 	
-	var assign = __webpack_require__(/*! ./Object.assign */ 63);
+	var assign = __webpack_require__(/*! ./Object.assign */ 61);
 	
 	// Store a reference to the <select> `ReactDOMComponent`. TODO: use string
 	var select = ReactElement.createFactory(ReactDOM.select.type);
@@ -18755,7 +18627,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 110 */
+/* 109 */
 /*!*****************************************!*\
   !*** ./~/react/lib/ReactDOMTextarea.js ***!
   \*****************************************/
@@ -18774,17 +18646,17 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var AutoFocusMixin = __webpack_require__(/*! ./AutoFocusMixin */ 157);
-	var DOMPropertyOperations = __webpack_require__(/*! ./DOMPropertyOperations */ 43);
-	var LinkedValueUtils = __webpack_require__(/*! ./LinkedValueUtils */ 159);
-	var ReactBrowserComponentMixin = __webpack_require__(/*! ./ReactBrowserComponentMixin */ 91);
-	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 47);
-	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
-	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 52);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 79);
+	var AutoFocusMixin = __webpack_require__(/*! ./AutoFocusMixin */ 159);
+	var DOMPropertyOperations = __webpack_require__(/*! ./DOMPropertyOperations */ 41);
+	var LinkedValueUtils = __webpack_require__(/*! ./LinkedValueUtils */ 161);
+	var ReactBrowserComponentMixin = __webpack_require__(/*! ./ReactBrowserComponentMixin */ 90);
+	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 45);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 48);
+	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 50);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 78);
 	
-	var assign = __webpack_require__(/*! ./Object.assign */ 63);
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var assign = __webpack_require__(/*! ./Object.assign */ 61);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	var warning = __webpack_require__(/*! ./warning */ 74);
 	
@@ -18901,7 +18773,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 111 */
+/* 110 */
 /*!*******************************************!*\
   !*** ./~/react/lib/ReactEventListener.js ***!
   \*******************************************/
@@ -18921,16 +18793,16 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventListener = __webpack_require__(/*! ./EventListener */ 160);
-	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 66);
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 76);
-	var ReactInstanceHandles = __webpack_require__(/*! ./ReactInstanceHandles */ 55);
-	var ReactMount = __webpack_require__(/*! ./ReactMount */ 57);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 79);
+	var EventListener = __webpack_require__(/*! ./EventListener */ 162);
+	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 64);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 75);
+	var ReactInstanceHandles = __webpack_require__(/*! ./ReactInstanceHandles */ 53);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 55);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 78);
 	
-	var assign = __webpack_require__(/*! ./Object.assign */ 63);
-	var getEventTarget = __webpack_require__(/*! ./getEventTarget */ 161);
-	var getUnboundedScrollPosition = __webpack_require__(/*! ./getUnboundedScrollPosition */ 162);
+	var assign = __webpack_require__(/*! ./Object.assign */ 61);
+	var getEventTarget = __webpack_require__(/*! ./getEventTarget */ 163);
+	var getUnboundedScrollPosition = __webpack_require__(/*! ./getUnboundedScrollPosition */ 164);
 	
 	/**
 	 * Finds the parent React component of `node`.
@@ -19092,7 +18964,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 112 */
+/* 111 */
 /*!***************************************!*\
   !*** ./~/react/lib/ReactInjection.js ***!
   \***************************************/
@@ -19112,15 +18984,15 @@ var ColonelKurtz =
 	"use strict";
 	
 	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 71);
-	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 142);
-	var ReactComponent = __webpack_require__(/*! ./ReactComponent */ 46);
-	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 47);
-	var ReactEmptyComponent = __webpack_require__(/*! ./ReactEmptyComponent */ 80);
-	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 92);
-	var ReactNativeComponent = __webpack_require__(/*! ./ReactNativeComponent */ 137);
-	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 59);
-	var ReactRootIndex = __webpack_require__(/*! ./ReactRootIndex */ 119);
-	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 79);
+	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 144);
+	var ReactComponent = __webpack_require__(/*! ./ReactComponent */ 44);
+	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 45);
+	var ReactEmptyComponent = __webpack_require__(/*! ./ReactEmptyComponent */ 79);
+	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 91);
+	var ReactNativeComponent = __webpack_require__(/*! ./ReactNativeComponent */ 139);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 57);
+	var ReactRootIndex = __webpack_require__(/*! ./ReactRootIndex */ 118);
+	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 78);
 	
 	var ReactInjection = {
 	  Component: ReactComponent.injection,
@@ -19139,7 +19011,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 113 */
+/* 112 */
 /*!******************************************!*\
   !*** ./~/react/lib/SelectEventPlugin.js ***!
   \******************************************/
@@ -19158,15 +19030,15 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 75);
-	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 146);
-	var ReactInputSelection = __webpack_require__(/*! ./ReactInputSelection */ 150);
-	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 148);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 126);
+	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 148);
+	var ReactInputSelection = __webpack_require__(/*! ./ReactInputSelection */ 152);
+	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 150);
 	
-	var getActiveElement = __webpack_require__(/*! ./getActiveElement */ 163);
-	var isTextInputElement = __webpack_require__(/*! ./isTextInputElement */ 149);
-	var keyOf = __webpack_require__(/*! ./keyOf */ 86);
-	var shallowEqual = __webpack_require__(/*! ./shallowEqual */ 38);
+	var getActiveElement = __webpack_require__(/*! ./getActiveElement */ 165);
+	var isTextInputElement = __webpack_require__(/*! ./isTextInputElement */ 151);
+	var keyOf = __webpack_require__(/*! ./keyOf */ 85);
+	var shallowEqual = __webpack_require__(/*! ./shallowEqual */ 166);
 	
 	var topLevelTypes = EventConstants.topLevelTypes;
 	
@@ -19341,7 +19213,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 114 */
+/* 113 */
 /*!*********************************************!*\
   !*** ./~/react/lib/ServerReactRootIndex.js ***!
   \*********************************************/
@@ -19379,7 +19251,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 115 */
+/* 114 */
 /*!******************************************!*\
   !*** ./~/react/lib/SimpleEventPlugin.js ***!
   \******************************************/
@@ -19398,23 +19270,23 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 75);
-	var EventPluginUtils = __webpack_require__(/*! ./EventPluginUtils */ 44);
-	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 146);
-	var SyntheticClipboardEvent = __webpack_require__(/*! ./SyntheticClipboardEvent */ 164);
-	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 148);
-	var SyntheticFocusEvent = __webpack_require__(/*! ./SyntheticFocusEvent */ 165);
-	var SyntheticKeyboardEvent = __webpack_require__(/*! ./SyntheticKeyboardEvent */ 166);
-	var SyntheticMouseEvent = __webpack_require__(/*! ./SyntheticMouseEvent */ 153);
-	var SyntheticDragEvent = __webpack_require__(/*! ./SyntheticDragEvent */ 167);
-	var SyntheticTouchEvent = __webpack_require__(/*! ./SyntheticTouchEvent */ 168);
-	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 169);
-	var SyntheticWheelEvent = __webpack_require__(/*! ./SyntheticWheelEvent */ 170);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 126);
+	var EventPluginUtils = __webpack_require__(/*! ./EventPluginUtils */ 42);
+	var EventPropagators = __webpack_require__(/*! ./EventPropagators */ 148);
+	var SyntheticClipboardEvent = __webpack_require__(/*! ./SyntheticClipboardEvent */ 167);
+	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 150);
+	var SyntheticFocusEvent = __webpack_require__(/*! ./SyntheticFocusEvent */ 168);
+	var SyntheticKeyboardEvent = __webpack_require__(/*! ./SyntheticKeyboardEvent */ 169);
+	var SyntheticMouseEvent = __webpack_require__(/*! ./SyntheticMouseEvent */ 155);
+	var SyntheticDragEvent = __webpack_require__(/*! ./SyntheticDragEvent */ 170);
+	var SyntheticTouchEvent = __webpack_require__(/*! ./SyntheticTouchEvent */ 171);
+	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 172);
+	var SyntheticWheelEvent = __webpack_require__(/*! ./SyntheticWheelEvent */ 173);
 	
-	var getEventCharCode = __webpack_require__(/*! ./getEventCharCode */ 171);
+	var getEventCharCode = __webpack_require__(/*! ./getEventCharCode */ 174);
 	
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
-	var keyOf = __webpack_require__(/*! ./keyOf */ 86);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
+	var keyOf = __webpack_require__(/*! ./keyOf */ 85);
 	var warning = __webpack_require__(/*! ./warning */ 74);
 	
 	var topLevelTypes = EventConstants.topLevelTypes;
@@ -19812,7 +19684,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 116 */
+/* 115 */
 /*!*********************************************!*\
   !*** ./~/react/lib/SVGDOMPropertyConfig.js ***!
   \*********************************************/
@@ -19911,7 +19783,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 117 */
+/* 116 */
 /*!************************************************!*\
   !*** ./~/react/lib/createFullPageComponent.js ***!
   \************************************************/
@@ -19932,10 +19804,10 @@ var ColonelKurtz =
 	"use strict";
 	
 	// Defeat circular references by requiring this directly.
-	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 47);
-	var ReactElement = __webpack_require__(/*! ./ReactElement */ 50);
+	var ReactCompositeComponent = __webpack_require__(/*! ./ReactCompositeComponent */ 45);
+	var ReactElement = __webpack_require__(/*! ./ReactElement */ 48);
 	
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	/**
 	 * Create a component that will throw an exception when unmounted.
@@ -19977,7 +19849,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 118 */
+/* 117 */
 /*!*****************************************!*\
   !*** ./~/react/lib/ReactDefaultPerf.js ***!
   \*****************************************/
@@ -19998,11 +19870,11 @@ var ColonelKurtz =
 	"use strict";
 	
 	var DOMProperty = __webpack_require__(/*! ./DOMProperty */ 71);
-	var ReactDefaultPerfAnalysis = __webpack_require__(/*! ./ReactDefaultPerfAnalysis */ 172);
-	var ReactMount = __webpack_require__(/*! ./ReactMount */ 57);
-	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 59);
+	var ReactDefaultPerfAnalysis = __webpack_require__(/*! ./ReactDefaultPerfAnalysis */ 175);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 55);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 57);
 	
-	var performanceNow = __webpack_require__(/*! ./performanceNow */ 173);
+	var performanceNow = __webpack_require__(/*! ./performanceNow */ 176);
 	
 	function roundFloat(val) {
 	  return Math.floor(val * 100) / 100;
@@ -20244,7 +20116,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 119 */
+/* 118 */
 /*!***************************************!*\
   !*** ./~/react/lib/ReactRootIndex.js ***!
   \***************************************/
@@ -20282,7 +20154,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 120 */
+/* 119 */
 /*!*************************************!*\
   !*** ./~/react/lib/containsNode.js ***!
   \*************************************/
@@ -20300,7 +20172,7 @@ var ColonelKurtz =
 	 * @typechecks
 	 */
 	
-	var isTextNode = __webpack_require__(/*! ./isTextNode */ 174);
+	var isTextNode = __webpack_require__(/*! ./isTextNode */ 177);
 	
 	/*jslint bitwise:true */
 	
@@ -20333,7 +20205,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 121 */
+/* 120 */
 /*!*******************************************************!*\
   !*** ./~/react/lib/getReactRootElementInContainer.js ***!
   \*******************************************************/
@@ -20375,7 +20247,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 122 */
+/* 121 */
 /*!***************************************************!*\
   !*** ./~/react/lib/ReactMultiChildUpdateTypes.js ***!
   \***************************************************/
@@ -20394,7 +20266,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var keyMirror = __webpack_require__(/*! ./keyMirror */ 40);
+	var keyMirror = __webpack_require__(/*! ./keyMirror */ 37);
 	
 	/**
 	 * When a component's children are updated, a series of update configuration
@@ -20415,7 +20287,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 123 */
+/* 122 */
 /*!****************************************!*\
   !*** ./~/react/lib/flattenChildren.js ***!
   \****************************************/
@@ -20434,9 +20306,9 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ReactTextComponent = __webpack_require__(/*! ./ReactTextComponent */ 62);
+	var ReactTextComponent = __webpack_require__(/*! ./ReactTextComponent */ 60);
 	
-	var traverseAllChildren = __webpack_require__(/*! ./traverseAllChildren */ 77);
+	var traverseAllChildren = __webpack_require__(/*! ./traverseAllChildren */ 76);
 	var warning = __webpack_require__(/*! ./warning */ 74);
 	
 	/**
@@ -20489,6 +20361,47 @@ var ColonelKurtz =
 
 
 /***/ },
+/* 123 */
+/*!**************************************!*\
+  !*** ./~/react/lib/emptyFunction.js ***!
+  \**************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-2014, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule emptyFunction
+	 */
+	
+	function makeEmptyFunction(arg) {
+	  return function() {
+	    return arg;
+	  };
+	}
+	
+	/**
+	 * This function accepts and discards inputs; it has no side effects. This is
+	 * primarily useful idiomatically for overridable function endpoints which
+	 * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
+	 */
+	function emptyFunction() {}
+	
+	emptyFunction.thatReturns = makeEmptyFunction;
+	emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
+	emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
+	emptyFunction.thatReturnsNull = makeEmptyFunction(null);
+	emptyFunction.thatReturnsThis = function() { return this; };
+	emptyFunction.thatReturnsArgument = function(arg) { return arg; };
+	
+	module.exports = emptyFunction;
+
+
+/***/ },
 /* 124 */
 /*!********************************************!*\
   !*** ./~/react/lib/ReactMarkupChecksum.js ***!
@@ -20508,7 +20421,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var adler32 = __webpack_require__(/*! ./adler32 */ 175);
+	var adler32 = __webpack_require__(/*! ./adler32 */ 178);
 	
 	var ReactMarkupChecksum = {
 	  CHECKSUM_ATTR_NAME: 'data-react-checksum',
@@ -20564,13 +20477,13 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 76);
-	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 134);
-	var ReactPutListenerQueue = __webpack_require__(/*! ./ReactPutListenerQueue */ 176);
-	var Transaction = __webpack_require__(/*! ./Transaction */ 135);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 75);
+	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 136);
+	var ReactPutListenerQueue = __webpack_require__(/*! ./ReactPutListenerQueue */ 179);
+	var Transaction = __webpack_require__(/*! ./Transaction */ 137);
 	
-	var assign = __webpack_require__(/*! ./Object.assign */ 63);
-	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 126);
+	var assign = __webpack_require__(/*! ./Object.assign */ 61);
+	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 123);
 	
 	/**
 	 * Provides a `CallbackQueue` queue for collecting `onDOMReady` callbacks
@@ -20665,9 +20578,9 @@ var ColonelKurtz =
 
 /***/ },
 /* 126 */
-/*!**************************************!*\
-  !*** ./~/react/lib/emptyFunction.js ***!
-  \**************************************/
+/*!***************************************!*\
+  !*** ./~/react/lib/EventConstants.js ***!
+  \***************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -20678,120 +20591,72 @@ var ColonelKurtz =
 	 * LICENSE file in the root directory of this source tree. An additional grant
 	 * of patent rights can be found in the PATENTS file in the same directory.
 	 *
-	 * @providesModule emptyFunction
+	 * @providesModule EventConstants
 	 */
 	
-	function makeEmptyFunction(arg) {
-	  return function() {
-	    return arg;
-	  };
-	}
+	"use strict";
+	
+	var keyMirror = __webpack_require__(/*! ./keyMirror */ 37);
+	
+	var PropagationPhases = keyMirror({bubbled: null, captured: null});
 	
 	/**
-	 * This function accepts and discards inputs; it has no side effects. This is
-	 * primarily useful idiomatically for overridable function endpoints which
-	 * always need to be callable, since JS lacks a null-call idiom ala Cocoa.
+	 * Types of raw signals from the browser caught at the top level.
 	 */
-	function emptyFunction() {}
+	var topLevelTypes = keyMirror({
+	  topBlur: null,
+	  topChange: null,
+	  topClick: null,
+	  topCompositionEnd: null,
+	  topCompositionStart: null,
+	  topCompositionUpdate: null,
+	  topContextMenu: null,
+	  topCopy: null,
+	  topCut: null,
+	  topDoubleClick: null,
+	  topDrag: null,
+	  topDragEnd: null,
+	  topDragEnter: null,
+	  topDragExit: null,
+	  topDragLeave: null,
+	  topDragOver: null,
+	  topDragStart: null,
+	  topDrop: null,
+	  topError: null,
+	  topFocus: null,
+	  topInput: null,
+	  topKeyDown: null,
+	  topKeyPress: null,
+	  topKeyUp: null,
+	  topLoad: null,
+	  topMouseDown: null,
+	  topMouseMove: null,
+	  topMouseOut: null,
+	  topMouseOver: null,
+	  topMouseUp: null,
+	  topPaste: null,
+	  topReset: null,
+	  topScroll: null,
+	  topSelectionChange: null,
+	  topSubmit: null,
+	  topTextInput: null,
+	  topTouchCancel: null,
+	  topTouchEnd: null,
+	  topTouchMove: null,
+	  topTouchStart: null,
+	  topWheel: null
+	});
 	
-	emptyFunction.thatReturns = makeEmptyFunction;
-	emptyFunction.thatReturnsFalse = makeEmptyFunction(false);
-	emptyFunction.thatReturnsTrue = makeEmptyFunction(true);
-	emptyFunction.thatReturnsNull = makeEmptyFunction(null);
-	emptyFunction.thatReturnsThis = function() { return this; };
-	emptyFunction.thatReturnsArgument = function(arg) { return arg; };
+	var EventConstants = {
+	  topLevelTypes: topLevelTypes,
+	  PropagationPhases: PropagationPhases
+	};
 	
-	module.exports = emptyFunction;
+	module.exports = EventConstants;
 
 
 /***/ },
 /* 127 */
-/*!**************************************************!*\
-  !*** ./colonel-kurtz/components/editor_block.js ***!
-  \**************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var ActLikeBlockWithBlockList = __webpack_require__(/*! ../mixins/acts_like_block_with_block_list */ 177)
-	var AppConstants = __webpack_require__(/*! constants/app_constants */ 19)
-	var Block = __webpack_require__(/*! ./block */ 178)
-	var React = __webpack_require__(/*! react */ 12)
-	var RemoveBlockButton = __webpack_require__(/*! ./remove_block_button */ 179)
-	
-	var EditorBlock = React.createClass({displayName: 'EditorBlock',
-	
-	  mixins: [ ActLikeBlockWithBlockList ],
-	
-	  listComponent:function() {
-	    return __webpack_require__(/*! ./editor_block_list */ 67)
-	  },
-	
-	  render:function()      {
-	    var $__0=       this.state.block,content=$__0.content,id=$__0.id,type=$__0.type,parentBlockListId=$__0.parentBlockListId
-	
-	    return (
-	      React.createElement("div", {className: "colonel-block"}, 
-	        React.createElement(Block, {block:  this.state.block, mode:  AppConstants.EDIT_MODE}), 
-	
-	        React.createElement("div", {className: "colonel-toolbar"}, 
-	          React.createElement(RemoveBlockButton, {blockId: id, blockListId: parentBlockListId })
-	        ), 
-	
-	         this.childBlockListComponent() 
-	      )
-	    )
-	  }
-	
-	})
-	
-	module.exports = EditorBlock
-
-
-/***/ },
-/* 128 */,
-/* 129 */
-/*!******************************************************!*\
-  !*** ./colonel-kurtz/mixins/acts_like_block_list.js ***!
-  \******************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var React = __webpack_require__(/*! react */ 12)
-	var BlockListStore = __webpack_require__(/*! ../stores/block_list_store */ 4)
-	var Monitor = __webpack_require__(/*! ./monitor */ 181)
-	
-	var ActsLikeBlockList = {
-	
-	  mixins: [ Monitor ],
-	
-	  getState:function()                            {
-	    return {
-	      blockIds: this.blockIds()
-	    }
-	  },
-	
-	  blockList:function() {
-	    return BlockListStore.find(this.blockListId())
-	  },
-	
-	  blockListId:function()         {
-	    return this.props.initialBlockListId
-	  },
-	
-	  blockIds:function()                {
-	    var blockList = this.blockList()
-	    return blockList? blockList.all() : []
-	  }
-	
-	}
-	
-	module.exports = ActsLikeBlockList
-
-
-/***/ },
-/* 130 */
 /*!*****************************************************!*\
   !*** ./colonel-kurtz/components/previewer_block.js ***!
   \*****************************************************/
@@ -20800,16 +20665,16 @@ var ColonelKurtz =
 	/* @flow */
 	
 	var AppConstants = __webpack_require__(/*! constants/app_constants */ 19)
-	var ActLikeBlockWithBlockList = __webpack_require__(/*! ../mixins/acts_like_block_with_block_list */ 177)
-	var Block = __webpack_require__(/*! ./block */ 178)
-	var React = __webpack_require__(/*! react */ 12)
+	var ActLikeBlockWithBlockList = __webpack_require__(/*! ../mixins/acts_like_block_with_block_list */ 132)
+	var Block = __webpack_require__(/*! ./block */ 133)
+	var React = __webpack_require__(/*! react */ 10)
 	
 	var PreviewerBlock = React.createClass({displayName: 'PreviewerBlock',
 	
 	  mixins: [ ActLikeBlockWithBlockList ],
 	
 	  listComponent:function() {
-	    return __webpack_require__(/*! ./previewer_block_list */ 68)
+	    return __webpack_require__(/*! ./previewer_block_list */ 65)
 	  },
 	
 	  render:function()      {
@@ -20827,16 +20692,16 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 131 */
+/* 128 */
 /*!*********************************!*\
   !*** ./~/react-ink/dist/ink.js ***!
   \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	!function(t,e){if(true)module.exports=e(__webpack_require__(/*! react */ 12));else if("function"==typeof define&&define.amd)define(["react"],e);else{var n=e("object"==typeof exports?require("react"):t.react);for(var r in n)("object"==typeof exports?exports:t)[r]=n[r]}}(this,function(t){return function(t){function e(r){if(n[r])return n[r].exports;var o=n[r]={exports:{},id:r,loaded:!1};return t[r].call(o.exports,o,o.exports,e),o.loaded=!0,o.exports}var n={};return e.m=t,e.c=n,e.p="",e(0)}([function(t,e,n){var r=n(1),o=n(9),i=n(2),s=n(4),a=n(6),u=n(5),c=r.PropTypes,p=0,f=r.createClass({displayName:"Ink",mixins:[s],propTypes:{background:c.bool,duration:u(0),opacity:a(0,1),radius:u(0),recenter:c.bool},getDefaultProps:function(){return{background:!0,duration:1500,opacity:.2,radius:150,recenter:!0}},getInitialState:function(){return{store:o()}},tick:function(){this.forceUpdate()},componentDidMount:function(){this.state.store.subscribe(this.tick)},componentWillUnmount:function(){this.state.store.dispose()},pushBlot:function(t){var e=this.getDOMNode().getBoundingClientRect(),n=e.bottom-e.top,r=e.right-e.left;this.state.store.add({duration:this.props.duration,maxOpacity:this.props.opacity,mouseDown:i(),mouseUp:0,radius:Math.min(this.props.radius,Math.max(n,r)),recenter:this.props.recenter,x:t.clientX-e.left,y:t.clientY-e.top,size:Math.max(n,r),height:n,width:r})},popBlot:function(){this.state.store.release(i())},makeBlot:function(t,e){return r.createElement("circle",{key:e,r:t.radius,opacity:t.opacity,transform:t.transform})},getBackdrop:function(){var t=this.props.background?this.state.store.getTotalOpacity():0;return r.createElement("rect",{width:"100%",height:"100%",opacity:t})},render:function(){return r.createElement("svg",{className:"ink",style:{color:this.props.color},onTouchStart:this._onPress,onTouchEnd:this._onRelease,onTouchCancel:this._onRelease,onTouchLeave:this._onRelease,onMouseDown:this._onPress,onMouseUp:this._onRelease,onMouseLeave:this._onRelease},this.getBackdrop(),this.state.store.map(this.makeBlot))},_onPress:function(t){var e=t,n=e.button,r=e.ctrlKey,o=e.touches;if(o)for(var i=0;i<o.length;i++)this.pushBlot(o[i]);else n!==p||r||this.pushBlot(t)},_onRelease:function(){this.popBlot()}});t.exports=f},function(e){e.exports=t},function(t){var e=Date.now||function(){return+new Date};"undefined"!=typeof performance&&performance.now&&(e=performance.now.bind(performance)),t.exports=e},function(t,e,n){(function(e){"use strict";var n=function(t,n,r,o,i,s,a,u){if("production"!==e.env.NODE_ENV&&void 0===n)throw new Error("invariant requires an error message argument");if(!t){var c;if(void 0===n)c=new Error("Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings.");else{var p=[r,o,i,s,a,u],f=0;c=new Error("Invariant Violation: "+n.replace(/%s/g,function(){return p[f++]}))}throw c.framesToPop=1,c}};t.exports=n}).call(e,n(11))},function(t,e,n){"use strict";var r=n(10),o={shouldComponentUpdate:function(t,e){return!r(this.props,t)||!r(this.state,e)}};t.exports=o},function(t,e,n){var r=n(1).PropTypes;t.exports=function(t){return function(e,n,o){if(!e||n in e!=!1){var i=r.number(e,n,o);if(i)return i;var s=e[n];return t>s?new RangeError("Invalid `"+n+"` value given to component `"+o+"`. Expected >= "+t+" , instead got "+s+"."):void 0}}}},function(t,e,n){var r=n(1).PropTypes,o=n(3);t.exports=function(t,e){return o(e>t,"Lower limit of type `inRange` must be greater than upper limit"),function(n,o,i){if(!n||o in n!=!1){var s=r.number(n,o,i);if(s)return s;var a=n[o];return t>a||a>e?new RangeError("Invalid `"+o+"` value given to component `"+i+"`. Expected between "+t+" and "+e+", instead got "+a+"."):void 0}}}},function(t){t.exports={easeOutSin:function(t,e,n,r){return n*Math.sin(t/r*(Math.PI/2))+e},easeOutQuint:function(t,e,n,r){return n*((t=t/r-1)*t*t*t*t+1)+e}}},function(t,e,n){var r=n(7).easeOutQuint,o=n(2),i=Math,s=(i.max,i.min),a=Math.sqrt(2),u={getPress:function(t){return s(t.duration,o()-t.mouseDown)},getRelease:function(t){return t.mouseUp>0?o()-t.mouseUp:0},getBlotRadius:function(t){var e=.85*r(u.getPress(t),0,t.radius,t.duration),n=.15*r(u.getRelease(t),0,t.radius,t.duration);return e+n},getBlotOpacity:function(t){return r(u.getRelease(t),t.maxOpacity,-t.maxOpacity,t.duration)},getBlotOuterOpacity:function(t){return s(r(u.getPress(t),0,.3,3*t.duration),u.getBlotOpacity(t))},getBlotTransform:function(t){var e=t,n=(e.duration,e.recenter),r=e.x,o=e.y,i=e.size,c=e.width,p=e.height,f=r,d=o;if(n){var l=s(1,u.getBlotRadius(t)/i*2/a);f+=l*(c/2-r),d+=l*(p/2-o)}var h=(u.getBlotRadius(t)/t.radius).toFixed(3);return"translate("+f.toFixed(3)+","+d.toFixed(3)+") scale("+h+", "+h+") "}};t.exports=u},function(t,e,n){var r=n(8),o=n(3);t.exports=function(){var t,e=[],n=[],i=!1,s={dispose:function(){e.length=0,s.stop()},publicize:function(){for(var t=0,n=e.length;n>t;t++)e[t]()},subscribe:function(t){o("function"==typeof t,"Ink.Store subscribe method expects a callback function"),e.push(t)},unsubscribe:function(t){var n=e.indexOf(t);n>-1&&e.splice(n,1)},forEach:function(t,e){return n.forEach(t,e)},map:function(t,e){return n.map(t,e)},play:function(){i||(i=!0,s.update())},stop:function(){i=!1,cancelAnimationFrame(t)},getTotalOpacity:function(){for(var t=0,e=0,r=n.length;r>e;e++)t+=n[e].outerOpacity;return t},update:function(){for(var e=0,o=n.length;o>e;e++)n[e].opacity=r.getBlotOpacity(n[e]),n[e].outerOpacity=r.getBlotOuterOpacity(n[e]),n[e].transform=r.getBlotTransform(n[e]);s.prune(),s.publicize(),n.length?t=requestAnimationFrame(s.update):s.stop()},prune:function(){for(var t=0;t<n.length;)n[t].opacity<=.01?n.splice(t,1):t++},add:function(t){n.push(t),s.play()},release:function(t){for(var e=0,r=n.length;r>e;e++)n[e].mouseUp=n[e].mouseUp||t;s.play()}};return s}},function(t){"use strict";function e(t,e){if(t===e)return!0;var n;for(n in t)if(t.hasOwnProperty(n)&&(!e.hasOwnProperty(n)||t[n]!==e[n]))return!1;for(n in e)if(e.hasOwnProperty(n)&&!t.hasOwnProperty(n))return!1;return!0}t.exports=e},function(t){function e(){}var n=t.exports={};n.nextTick=function(){var t="undefined"!=typeof window&&window.setImmediate,e="undefined"!=typeof window&&window.MutationObserver,n="undefined"!=typeof window&&window.postMessage&&window.addEventListener;if(t)return function(t){return window.setImmediate(t)};var r=[];if(e){var o=document.createElement("div"),i=new MutationObserver(function(){var t=r.slice();r.length=0,t.forEach(function(t){t()})});return i.observe(o,{attributes:!0}),function(t){r.length||o.setAttribute("yes","no"),r.push(t)}}return n?(window.addEventListener("message",function(t){var e=t.source;if((e===window||null===e)&&"process-tick"===t.data&&(t.stopPropagation(),r.length>0)){var n=r.shift();n()}},!0),function(t){r.push(t),window.postMessage("process-tick","*")}):function(t){setTimeout(t,0)}}(),n.title="browser",n.browser=!0,n.env={},n.argv=[],n.on=e,n.addListener=e,n.once=e,n.off=e,n.removeListener=e,n.removeAllListeners=e,n.emit=e,n.binding=function(){throw new Error("process.binding is not supported")},n.cwd=function(){return"/"},n.chdir=function(){throw new Error("process.chdir is not supported")}}])});
+	!function(t,e){if(true)module.exports=e(__webpack_require__(/*! react */ 10));else if("function"==typeof define&&define.amd)define(["react"],e);else{var n=e("object"==typeof exports?require("react"):t.react);for(var r in n)("object"==typeof exports?exports:t)[r]=n[r]}}(this,function(t){return function(t){function e(r){if(n[r])return n[r].exports;var o=n[r]={exports:{},id:r,loaded:!1};return t[r].call(o.exports,o,o.exports,e),o.loaded=!0,o.exports}var n={};return e.m=t,e.c=n,e.p="",e(0)}([function(t,e,n){var r=n(1),o=n(9),i=n(2),s=n(4),a=n(6),u=n(5),c=r.PropTypes,p=0,f=r.createClass({displayName:"Ink",mixins:[s],propTypes:{background:c.bool,duration:u(0),opacity:a(0,1),radius:u(0),recenter:c.bool},getDefaultProps:function(){return{background:!0,duration:1500,opacity:.2,radius:150,recenter:!0}},getInitialState:function(){return{store:o()}},tick:function(){this.forceUpdate()},componentDidMount:function(){this.state.store.subscribe(this.tick)},componentWillUnmount:function(){this.state.store.dispose()},pushBlot:function(t){var e=this.getDOMNode().getBoundingClientRect(),n=e.bottom-e.top,r=e.right-e.left;this.state.store.add({duration:this.props.duration,maxOpacity:this.props.opacity,mouseDown:i(),mouseUp:0,radius:Math.min(this.props.radius,Math.max(n,r)),recenter:this.props.recenter,x:t.clientX-e.left,y:t.clientY-e.top,size:Math.max(n,r),height:n,width:r})},popBlot:function(){this.state.store.release(i())},makeBlot:function(t,e){return r.createElement("circle",{key:e,r:t.radius,opacity:t.opacity,transform:t.transform})},getBackdrop:function(){var t=this.props.background?this.state.store.getTotalOpacity():0;return r.createElement("rect",{width:"100%",height:"100%",opacity:t})},render:function(){return r.createElement("svg",{className:"ink",style:{color:this.props.color},onTouchStart:this._onPress,onTouchEnd:this._onRelease,onTouchCancel:this._onRelease,onTouchLeave:this._onRelease,onMouseDown:this._onPress,onMouseUp:this._onRelease,onMouseLeave:this._onRelease},this.getBackdrop(),this.state.store.map(this.makeBlot))},_onPress:function(t){var e=t,n=e.button,r=e.ctrlKey,o=e.touches;if(o)for(var i=0;i<o.length;i++)this.pushBlot(o[i]);else n!==p||r||this.pushBlot(t)},_onRelease:function(){this.popBlot()}});t.exports=f},function(e){e.exports=t},function(t){var e=Date.now||function(){return+new Date};"undefined"!=typeof performance&&performance.now&&(e=performance.now.bind(performance)),t.exports=e},function(t,e,n){(function(e){"use strict";var n=function(t,n,r,o,i,s,a,u){if("production"!==e.env.NODE_ENV&&void 0===n)throw new Error("invariant requires an error message argument");if(!t){var c;if(void 0===n)c=new Error("Minified exception occurred; use the non-minified dev environment for the full error message and additional helpful warnings.");else{var p=[r,o,i,s,a,u],f=0;c=new Error("Invariant Violation: "+n.replace(/%s/g,function(){return p[f++]}))}throw c.framesToPop=1,c}};t.exports=n}).call(e,n(11))},function(t,e,n){"use strict";var r=n(10),o={shouldComponentUpdate:function(t,e){return!r(this.props,t)||!r(this.state,e)}};t.exports=o},function(t,e,n){var r=n(1).PropTypes;t.exports=function(t){return function(e,n,o){if(!e||n in e!=!1){var i=r.number(e,n,o);if(i)return i;var s=e[n];return t>s?new RangeError("Invalid `"+n+"` value given to component `"+o+"`. Expected >= "+t+" , instead got "+s+"."):void 0}}}},function(t,e,n){var r=n(1).PropTypes,o=n(3);t.exports=function(t,e){return o(e>t,"Lower limit of type `inRange` must be greater than upper limit"),function(n,o,i){if(!n||o in n!=!1){var s=r.number(n,o,i);if(s)return s;var a=n[o];return t>a||a>e?new RangeError("Invalid `"+o+"` value given to component `"+i+"`. Expected between "+t+" and "+e+", instead got "+a+"."):void 0}}}},function(t){t.exports={easeOutSin:function(t,e,n,r){return n*Math.sin(t/r*(Math.PI/2))+e},easeOutQuint:function(t,e,n,r){return n*((t=t/r-1)*t*t*t*t+1)+e}}},function(t,e,n){var r=n(7).easeOutQuint,o=n(2),i=Math,s=(i.max,i.min),a=Math.sqrt(2),u={getPress:function(t){return s(t.duration,o()-t.mouseDown)},getRelease:function(t){return t.mouseUp>0?o()-t.mouseUp:0},getBlotRadius:function(t){var e=.85*r(u.getPress(t),0,t.radius,t.duration),n=.15*r(u.getRelease(t),0,t.radius,t.duration);return e+n},getBlotOpacity:function(t){return r(u.getRelease(t),t.maxOpacity,-t.maxOpacity,t.duration)},getBlotOuterOpacity:function(t){return s(r(u.getPress(t),0,.3,3*t.duration),u.getBlotOpacity(t))},getBlotTransform:function(t){var e=t,n=(e.duration,e.recenter),r=e.x,o=e.y,i=e.size,c=e.width,p=e.height,f=r,d=o;if(n){var l=s(1,u.getBlotRadius(t)/i*2/a);f+=l*(c/2-r),d+=l*(p/2-o)}var h=(u.getBlotRadius(t)/t.radius).toFixed(3);return"translate("+f.toFixed(3)+","+d.toFixed(3)+") scale("+h+", "+h+") "}};t.exports=u},function(t,e,n){var r=n(8),o=n(3);t.exports=function(){var t,e=[],n=[],i=!1,s={dispose:function(){e.length=0,s.stop()},publicize:function(){for(var t=0,n=e.length;n>t;t++)e[t]()},subscribe:function(t){o("function"==typeof t,"Ink.Store subscribe method expects a callback function"),e.push(t)},unsubscribe:function(t){var n=e.indexOf(t);n>-1&&e.splice(n,1)},forEach:function(t,e){return n.forEach(t,e)},map:function(t,e){return n.map(t,e)},play:function(){i||(i=!0,s.update())},stop:function(){i=!1,cancelAnimationFrame(t)},getTotalOpacity:function(){for(var t=0,e=0,r=n.length;r>e;e++)t+=n[e].outerOpacity;return t},update:function(){for(var e=0,o=n.length;o>e;e++)n[e].opacity=r.getBlotOpacity(n[e]),n[e].outerOpacity=r.getBlotOuterOpacity(n[e]),n[e].transform=r.getBlotTransform(n[e]);s.prune(),s.publicize(),n.length?t=requestAnimationFrame(s.update):s.stop()},prune:function(){for(var t=0;t<n.length;)n[t].opacity<=.01?n.splice(t,1):t++},add:function(t){n.push(t),s.play()},release:function(t){for(var e=0,r=n.length;r>e;e++)n[e].mouseUp=n[e].mouseUp||t;s.play()}};return s}},function(t){"use strict";function e(t,e){if(t===e)return!0;var n;for(n in t)if(t.hasOwnProperty(n)&&(!e.hasOwnProperty(n)||t[n]!==e[n]))return!1;for(n in e)if(e.hasOwnProperty(n)&&!t.hasOwnProperty(n))return!1;return!0}t.exports=e},function(t){function e(){}var n=t.exports={};n.nextTick=function(){var t="undefined"!=typeof window&&window.setImmediate,e="undefined"!=typeof window&&window.MutationObserver,n="undefined"!=typeof window&&window.postMessage&&window.addEventListener;if(t)return function(t){return window.setImmediate(t)};var r=[];if(e){var o=document.createElement("div"),i=new MutationObserver(function(){var t=r.slice();r.length=0,t.forEach(function(t){t()})});return i.observe(o,{attributes:!0}),function(t){r.length||o.setAttribute("yes","no"),r.push(t)}}return n?(window.addEventListener("message",function(t){var e=t.source;if((e===window||null===e)&&"process-tick"===t.data&&(t.stopPropagation(),r.length>0)){var n=r.shift();n()}},!0),function(t){r.push(t),window.postMessage("process-tick","*")}):function(t){setTimeout(t,0)}}(),n.title="browser",n.browser=!0,n.env={},n.argv=[],n.on=e,n.addListener=e,n.once=e,n.off=e,n.removeListener=e,n.removeAllListeners=e,n.emit=e,n.binding=function(){throw new Error("process.binding is not supported")},n.cwd=function(){return"/"},n.chdir=function(){throw new Error("process.chdir is not supported")}}])});
 
 /***/ },
-/* 132 */
+/* 129 */
 /*!**********************************!*\
   !*** ./~/flux/lib/Dispatcher.js ***!
   \**********************************/
@@ -20856,7 +20721,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var invariant = __webpack_require__(/*! ./invariant */ 182);
+	var invariant = __webpack_require__(/*! ./invariant */ 180);
 	
 	var _lastID = 1;
 	var _prefix = 'ID_';
@@ -21095,7 +20960,210 @@ var ColonelKurtz =
 
 
 /***/ },
+/* 130 */
+/*!*****************************************!*\
+  !*** ./colonel-kurtz/mixins/monitor.js ***!
+  \*****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Listens to the Bus and calls a provided `getState` function when
+	 * the Bus publishes.
+	 */
+	
+	var Bus       = __webpack_require__(/*! ../bus */ 25);
+	var invariant = __webpack_require__(/*! react/lib/invariant */ 26);
+	
+	var Monitor = {
+	
+	  getInitialState:function()         {
+	    if (true) {
+	      invariant(this.getState, "Monitor mixin requires `getState` implementation.");
+	    }
+	
+	    return this.getState();
+	  },
+	
+	  updateState:function() {
+	    this.setState(this.getState());
+	  },
+	
+	  componentDidMount:function() {
+	    Bus.subscribe(this.updateState);
+	  },
+	
+	  componentWillUnmount:function() {
+	    Bus.unsubscribe(this.updateState);
+	  },
+	
+	  componentWillReceiveProps:function() {
+	    this.updateState();
+	  }
+	
+	};
+	
+	module.exports = Monitor;
+
+
+/***/ },
+/* 131 */
+/*!***********************************************!*\
+  !*** ./colonel-kurtz/components/add_block.js ***!
+  \***********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var React        = __webpack_require__(/*! react */ 10)
+	var Button       = __webpack_require__(/*! ./ui/button */ 36)
+	var BlockActions = __webpack_require__(/*! ../actions/block_actions */ 181)
+	var Strings      = __webpack_require__(/*! constants/strings */ 182)
+	
+	var AddBlock = React.createClass({displayName: 'AddBlock',
+	
+	  render:function()      {
+	    var $__0=    this.props,type=$__0.type
+	
+	    return (
+	      React.createElement(Button, {key: type, 'aria-label':  Strings.add.label, className: "colonel-btn colonel-btn-icon", onClick:  this._onClick}, 
+	         type[0] 
+	      )
+	    )
+	  },
+	
+	  _onClick:function() {
+	    var $__0=       this.props,parentBlockListId=$__0.blockListId,blockType=$__0.type,position=$__0.position
+	
+	    BlockActions.create({ parentBlockListId:parentBlockListId, position:position, blockType:blockType })
+	  }
+	
+	})
+	
+	module.exports = AddBlock
+
+
+/***/ },
+/* 132 */
+/*!*****************************************************************!*\
+  !*** ./colonel-kurtz/mixins/acts_like_block_with_block_list.js ***!
+  \*****************************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var React     = __webpack_require__(/*! react */ 10)
+	var Block     = __webpack_require__(/*! ../stores/block_store */ 14)
+	var BlockList = __webpack_require__(/*! ../stores/block_list_store */ 4)
+	
+	var ActsLikeBlockWithBlockList = {
+	
+	  getInitialState:function()         {
+	    var id = this.props.initialBlockId;
+	
+	    return {
+	      block     : Block.find(id),
+	      blockList : BlockList.findByBlockId(id)
+	    }
+	  },
+	
+	  childBlockListComponent:function()               {
+	    var ListComponent = this.listComponent()
+	
+	    if (this.state.blockList) {
+	      return React.createElement(ListComponent, {initialBlockListId:  this.state.blockList.id})
+	    }
+	  }
+	
+	}
+	
+	module.exports = ActsLikeBlockWithBlockList
+
+
+/***/ },
 /* 133 */
+/*!*******************************************!*\
+  !*** ./colonel-kurtz/components/block.js ***!
+  \*******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var AppConstants = __webpack_require__(/*! constants/app_constants */ 19)
+	var BlockActions = __webpack_require__(/*! ../actions/block_actions */ 181)
+	var BlockType    = __webpack_require__(/*! ../stores/block_type_store */ 5)
+	var Monitor      = __webpack_require__(/*! ../mixins/monitor */ 130)
+	var Pure         = __webpack_require__(/*! ../mixins/pure */ 183)
+	var React        = __webpack_require__(/*! react */ 10)
+	
+	var Block = React.createClass({displayName: 'Block',
+	
+	  mixins: [ Monitor, Pure ],
+	
+	  getState:function() {
+	    return BlockType.find(this.props.block.type)
+	  },
+	
+	  render:function()      {
+	    var $__0=     this.props,block=$__0.block,props=(function(source, exclusion) {var rest = {};var hasOwn = Object.prototype.hasOwnProperty;if (source == null) {throw new TypeError();}for (var key in source) {if (hasOwn.call(source, key) && !hasOwn.call(exclusion, key)) {rest[key] = source[key];}}return rest;})($__0,{block:1})
+	    var $__1=    this.state,Component=$__1.component
+	
+	    return React.createElement(Component, React.__spread({initialContent:  block.content, updateContent:  this._onUpdateContent},   props ))
+	  },
+	
+	  _onUpdateContent:function(content) {
+	    BlockActions.update(this.props.block.id, content)
+	  }
+	
+	})
+	
+	module.exports = Block
+
+
+/***/ },
+/* 134 */
+/*!*********************************************************!*\
+  !*** ./colonel-kurtz/components/remove_block_button.js ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var React = __webpack_require__(/*! react */ 10)
+	var Button = __webpack_require__(/*! ./ui/button */ 36)
+	var BlockActions = __webpack_require__(/*! ../actions/block_actions */ 181)
+	var Strings = __webpack_require__(/*! constants/strings */ 182)
+	
+	var RemoveBlockButton = React.createClass({displayName: 'RemoveBlockButton',
+	
+	  removeBlock:function() {
+	    var $__0=      this.props,blockId=$__0.blockId,parentBlockListId=$__0.blockListId
+	
+	    BlockActions.destroy({ blockId:blockId, parentBlockListId:parentBlockListId })
+	  },
+	
+	  render:function()      {
+	    return (
+	      React.createElement(Button, {'aria-label':  Strings.remove.label, className: "colonel-btn colonel-btn-icon", onClick:  this._onClick}, 
+	        "×"
+	      )
+	    )
+	  },
+	
+	  _onClick:function() {
+	    var answer = confirm(Strings.remove.confirm)
+	
+	    if (answer) {
+	      this.removeBlock()
+	    }
+	  }
+	
+	})
+	
+	module.exports = RemoveBlockButton
+
+
+/***/ },
+/* 135 */
 /*!************************************!*\
   !*** ./~/react/lib/emptyObject.js ***!
   \************************************/
@@ -21124,7 +21192,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 134 */
+/* 136 */
 /*!**************************************!*\
   !*** ./~/react/lib/CallbackQueue.js ***!
   \**************************************/
@@ -21143,10 +21211,10 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 76);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 75);
 	
-	var assign = __webpack_require__(/*! ./Object.assign */ 63);
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var assign = __webpack_require__(/*! ./Object.assign */ 61);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	/**
 	 * A specialized pseudo-event module to help keep track of components waiting to
@@ -21229,7 +21297,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 135 */
+/* 137 */
 /*!************************************!*\
   !*** ./~/react/lib/Transaction.js ***!
   \************************************/
@@ -21248,7 +21316,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	/**
 	 * `Transaction` creates a black box that is able to wrap any method such that
@@ -21475,7 +21543,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 136 */
+/* 138 */
 /*!************************************!*\
   !*** ./~/react/lib/joinClasses.js ***!
   \************************************/
@@ -21523,7 +21591,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 137 */
+/* 139 */
 /*!*********************************************!*\
   !*** ./~/react/lib/ReactNativeComponent.js ***!
   \*********************************************/
@@ -21542,8 +21610,8 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var assign = __webpack_require__(/*! ./Object.assign */ 63);
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var assign = __webpack_require__(/*! ./Object.assign */ 61);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	var genericComponentClass = null;
 	// This registry keeps track of wrapper classes around native tags
@@ -21601,7 +21669,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 138 */
+/* 140 */
 /*!************************************!*\
   !*** ./~/react/lib/CSSProperty.js ***!
   \************************************/
@@ -21724,7 +21792,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 139 */
+/* 141 */
 /*!******************************************!*\
   !*** ./~/react/lib/camelizeStyleName.js ***!
   \******************************************/
@@ -21744,7 +21812,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var camelize = __webpack_require__(/*! ./camelize */ 183);
+	var camelize = __webpack_require__(/*! ./camelize */ 184);
 	
 	var msPattern = /^-ms-/;
 	
@@ -21773,7 +21841,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 140 */
+/* 142 */
 /*!********************************************!*\
   !*** ./~/react/lib/dangerousStyleValue.js ***!
   \********************************************/
@@ -21793,7 +21861,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var CSSProperty = __webpack_require__(/*! ./CSSProperty */ 138);
+	var CSSProperty = __webpack_require__(/*! ./CSSProperty */ 140);
 	
 	var isUnitlessNumber = CSSProperty.isUnitlessNumber;
 	
@@ -21838,7 +21906,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 141 */
+/* 143 */
 /*!*******************************************!*\
   !*** ./~/react/lib/hyphenateStyleName.js ***!
   \*******************************************/
@@ -21858,7 +21926,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var hyphenate = __webpack_require__(/*! ./hyphenate */ 184);
+	var hyphenate = __webpack_require__(/*! ./hyphenate */ 185);
 	
 	var msPattern = /^ms-/;
 	
@@ -21886,7 +21954,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 142 */
+/* 144 */
 /*!***************************************!*\
   !*** ./~/react/lib/EventPluginHub.js ***!
   \***************************************/
@@ -21905,12 +21973,12 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventPluginRegistry = __webpack_require__(/*! ./EventPluginRegistry */ 143);
-	var EventPluginUtils = __webpack_require__(/*! ./EventPluginUtils */ 44);
+	var EventPluginRegistry = __webpack_require__(/*! ./EventPluginRegistry */ 145);
+	var EventPluginUtils = __webpack_require__(/*! ./EventPluginUtils */ 42);
 	
-	var accumulateInto = __webpack_require__(/*! ./accumulateInto */ 185);
-	var forEachAccumulated = __webpack_require__(/*! ./forEachAccumulated */ 186);
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var accumulateInto = __webpack_require__(/*! ./accumulateInto */ 186);
+	var forEachAccumulated = __webpack_require__(/*! ./forEachAccumulated */ 187);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	/**
 	 * Internal store for event listeners
@@ -22167,7 +22235,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 143 */
+/* 145 */
 /*!********************************************!*\
   !*** ./~/react/lib/EventPluginRegistry.js ***!
   \********************************************/
@@ -22187,7 +22255,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	/**
 	 * Injectable ordering of event plugins.
@@ -22452,7 +22520,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 144 */
+/* 146 */
 /*!***********************************************!*\
   !*** ./~/react/lib/ReactEventEmitterMixin.js ***!
   \***********************************************/
@@ -22471,7 +22539,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 142);
+	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 144);
 	
 	function runEventQueueInBatch(events) {
 	  EventPluginHub.enqueueEvents(events);
@@ -22509,7 +22577,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 145 */
+/* 147 */
 /*!****************************************!*\
   !*** ./~/react/lib/ViewportMetrics.js ***!
   \****************************************/
@@ -22528,7 +22596,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var getUnboundedScrollPosition = __webpack_require__(/*! ./getUnboundedScrollPosition */ 162);
+	var getUnboundedScrollPosition = __webpack_require__(/*! ./getUnboundedScrollPosition */ 164);
 	
 	var ViewportMetrics = {
 	
@@ -22548,7 +22616,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 146 */
+/* 148 */
 /*!*****************************************!*\
   !*** ./~/react/lib/EventPropagators.js ***!
   \*****************************************/
@@ -22567,11 +22635,11 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var EventConstants = __webpack_require__(/*! ./EventConstants */ 75);
-	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 142);
+	var EventConstants = __webpack_require__(/*! ./EventConstants */ 126);
+	var EventPluginHub = __webpack_require__(/*! ./EventPluginHub */ 144);
 	
-	var accumulateInto = __webpack_require__(/*! ./accumulateInto */ 185);
-	var forEachAccumulated = __webpack_require__(/*! ./forEachAccumulated */ 186);
+	var accumulateInto = __webpack_require__(/*! ./accumulateInto */ 186);
+	var forEachAccumulated = __webpack_require__(/*! ./forEachAccumulated */ 187);
 	
 	var PropagationPhases = EventConstants.PropagationPhases;
 	var getListener = EventPluginHub.getListener;
@@ -22695,7 +22763,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 147 */
+/* 149 */
 /*!********************************************!*\
   !*** ./~/react/lib/SyntheticInputEvent.js ***!
   \********************************************/
@@ -22715,7 +22783,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 148);
+	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 150);
 	
 	/**
 	 * @interface Event
@@ -22749,7 +22817,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 148 */
+/* 150 */
 /*!***************************************!*\
   !*** ./~/react/lib/SyntheticEvent.js ***!
   \***************************************/
@@ -22769,11 +22837,11 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 76);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 75);
 	
-	var assign = __webpack_require__(/*! ./Object.assign */ 63);
-	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 126);
-	var getEventTarget = __webpack_require__(/*! ./getEventTarget */ 161);
+	var assign = __webpack_require__(/*! ./Object.assign */ 61);
+	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 123);
+	var getEventTarget = __webpack_require__(/*! ./getEventTarget */ 163);
 	
 	/**
 	 * @interface Event
@@ -22914,7 +22982,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 149 */
+/* 151 */
 /*!*******************************************!*\
   !*** ./~/react/lib/isTextInputElement.js ***!
   \*******************************************/
@@ -22965,7 +23033,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 150 */
+/* 152 */
 /*!********************************************!*\
   !*** ./~/react/lib/ReactInputSelection.js ***!
   \********************************************/
@@ -22984,11 +23052,11 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ReactDOMSelection = __webpack_require__(/*! ./ReactDOMSelection */ 187);
+	var ReactDOMSelection = __webpack_require__(/*! ./ReactDOMSelection */ 191);
 	
-	var containsNode = __webpack_require__(/*! ./containsNode */ 120);
-	var focusNode = __webpack_require__(/*! ./focusNode */ 188);
-	var getActiveElement = __webpack_require__(/*! ./getActiveElement */ 163);
+	var containsNode = __webpack_require__(/*! ./containsNode */ 119);
+	var focusNode = __webpack_require__(/*! ./focusNode */ 190);
+	var getActiveElement = __webpack_require__(/*! ./getActiveElement */ 165);
 	
 	function isInDocument(node) {
 	  return containsNode(document.documentElement, node);
@@ -23108,7 +23176,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 151 */
+/* 153 */
 /*!**************************************************!*\
   !*** ./~/react/lib/SyntheticCompositionEvent.js ***!
   \**************************************************/
@@ -23128,7 +23196,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 148);
+	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 150);
 	
 	/**
 	 * @interface Event
@@ -23161,7 +23229,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 152 */
+/* 154 */
 /*!***********************************************!*\
   !*** ./~/react/lib/getTextContentAccessor.js ***!
   \***********************************************/
@@ -23180,7 +23248,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 66);
+	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 64);
 	
 	var contentKey = null;
 	
@@ -23205,7 +23273,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 153 */
+/* 155 */
 /*!********************************************!*\
   !*** ./~/react/lib/SyntheticMouseEvent.js ***!
   \********************************************/
@@ -23225,10 +23293,10 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 169);
-	var ViewportMetrics = __webpack_require__(/*! ./ViewportMetrics */ 145);
+	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 172);
+	var ViewportMetrics = __webpack_require__(/*! ./ViewportMetrics */ 147);
 	
-	var getEventModifierState = __webpack_require__(/*! ./getEventModifierState */ 189);
+	var getEventModifierState = __webpack_require__(/*! ./getEventModifierState */ 188);
 	
 	/**
 	 * @interface MouseEvent
@@ -23295,7 +23363,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 154 */
+/* 156 */
 /*!*********************************************!*\
   !*** ./~/react/lib/ReactDOMIDOperations.js ***!
   \*********************************************/
@@ -23317,14 +23385,14 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var CSSPropertyOperations = __webpack_require__(/*! ./CSSPropertyOperations */ 90);
-	var DOMChildrenOperations = __webpack_require__(/*! ./DOMChildrenOperations */ 190);
-	var DOMPropertyOperations = __webpack_require__(/*! ./DOMPropertyOperations */ 43);
-	var ReactMount = __webpack_require__(/*! ./ReactMount */ 57);
-	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 59);
+	var CSSPropertyOperations = __webpack_require__(/*! ./CSSPropertyOperations */ 89);
+	var DOMChildrenOperations = __webpack_require__(/*! ./DOMChildrenOperations */ 189);
+	var DOMPropertyOperations = __webpack_require__(/*! ./DOMPropertyOperations */ 41);
+	var ReactMount = __webpack_require__(/*! ./ReactMount */ 55);
+	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 57);
 	
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
-	var setInnerHTML = __webpack_require__(/*! ./setInnerHTML */ 156);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
+	var setInnerHTML = __webpack_require__(/*! ./setInnerHTML */ 158);
 	
 	/**
 	 * Errors for properties that should not be updated with `updatePropertyById()`.
@@ -23486,7 +23554,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 155 */
+/* 157 */
 /*!**************************************************!*\
   !*** ./~/react/lib/ReactReconcileTransaction.js ***!
   \**************************************************/
@@ -23506,14 +23574,14 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 134);
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 76);
-	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 92);
-	var ReactInputSelection = __webpack_require__(/*! ./ReactInputSelection */ 150);
-	var ReactPutListenerQueue = __webpack_require__(/*! ./ReactPutListenerQueue */ 176);
-	var Transaction = __webpack_require__(/*! ./Transaction */ 135);
+	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 136);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 75);
+	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 91);
+	var ReactInputSelection = __webpack_require__(/*! ./ReactInputSelection */ 152);
+	var ReactPutListenerQueue = __webpack_require__(/*! ./ReactPutListenerQueue */ 179);
+	var Transaction = __webpack_require__(/*! ./Transaction */ 137);
 	
-	var assign = __webpack_require__(/*! ./Object.assign */ 63);
+	var assign = __webpack_require__(/*! ./Object.assign */ 61);
 	
 	/**
 	 * Ensures that, when possible, the selection range (currently selected text
@@ -23669,7 +23737,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 156 */
+/* 158 */
 /*!*************************************!*\
   !*** ./~/react/lib/setInnerHTML.js ***!
   \*************************************/
@@ -23688,7 +23756,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 66);
+	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 64);
 	
 	var WHITESPACE_TEST = /^[ \r\n\t\f]/;
 	var NONVISIBLE_TEST = /<(!--|link|noscript|meta|script|style)[ \r\n\t\f\/>]/;
@@ -23754,7 +23822,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 157 */
+/* 159 */
 /*!***************************************!*\
   !*** ./~/react/lib/AutoFocusMixin.js ***!
   \***************************************/
@@ -23774,7 +23842,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var focusNode = __webpack_require__(/*! ./focusNode */ 188);
+	var focusNode = __webpack_require__(/*! ./focusNode */ 190);
 	
 	var AutoFocusMixin = {
 	  componentDidMount: function() {
@@ -23788,7 +23856,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 158 */
+/* 160 */
 /*!********************************************!*\
   !*** ./~/react/lib/LocalEventTrapMixin.js ***!
   \********************************************/
@@ -23807,11 +23875,11 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 92);
+	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 91);
 	
-	var accumulateInto = __webpack_require__(/*! ./accumulateInto */ 185);
-	var forEachAccumulated = __webpack_require__(/*! ./forEachAccumulated */ 186);
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var accumulateInto = __webpack_require__(/*! ./accumulateInto */ 186);
+	var forEachAccumulated = __webpack_require__(/*! ./forEachAccumulated */ 187);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	function remove(event) {
 	  event.remove();
@@ -23843,7 +23911,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 159 */
+/* 161 */
 /*!*****************************************!*\
   !*** ./~/react/lib/LinkedValueUtils.js ***!
   \*****************************************/
@@ -23863,9 +23931,9 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ReactPropTypes = __webpack_require__(/*! ./ReactPropTypes */ 60);
+	var ReactPropTypes = __webpack_require__(/*! ./ReactPropTypes */ 58);
 	
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	var hasReadOnlyValue = {
 	  'button': true,
@@ -24004,7 +24072,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 160 */
+/* 162 */
 /*!**************************************!*\
   !*** ./~/react/lib/EventListener.js ***!
   \**************************************/
@@ -24029,7 +24097,7 @@ var ColonelKurtz =
 	 * @typechecks
 	 */
 	
-	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 126);
+	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 123);
 	
 	/**
 	 * Upstream version of event listener. Does not take into account specific
@@ -24099,7 +24167,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 161 */
+/* 163 */
 /*!***************************************!*\
   !*** ./~/react/lib/getEventTarget.js ***!
   \***************************************/
@@ -24137,7 +24205,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 162 */
+/* 164 */
 /*!***************************************************!*\
   !*** ./~/react/lib/getUnboundedScrollPosition.js ***!
   \***************************************************/
@@ -24184,7 +24252,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 163 */
+/* 165 */
 /*!*****************************************!*\
   !*** ./~/react/lib/getActiveElement.js ***!
   \*****************************************/
@@ -24220,7 +24288,58 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 164 */
+/* 166 */
+/*!*************************************!*\
+  !*** ./~/react/lib/shallowEqual.js ***!
+  \*************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-2014, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule shallowEqual
+	 */
+	
+	"use strict";
+	
+	/**
+	 * Performs equality by iterating through keys on an object and returning
+	 * false when any key has values which are not strictly equal between
+	 * objA and objB. Returns true when the values of all keys are strictly equal.
+	 *
+	 * @return {boolean}
+	 */
+	function shallowEqual(objA, objB) {
+	  if (objA === objB) {
+	    return true;
+	  }
+	  var key;
+	  // Test for A's keys different from B.
+	  for (key in objA) {
+	    if (objA.hasOwnProperty(key) &&
+	        (!objB.hasOwnProperty(key) || objA[key] !== objB[key])) {
+	      return false;
+	    }
+	  }
+	  // Test for B's keys missing from A.
+	  for (key in objB) {
+	    if (objB.hasOwnProperty(key) && !objA.hasOwnProperty(key)) {
+	      return false;
+	    }
+	  }
+	  return true;
+	}
+	
+	module.exports = shallowEqual;
+
+
+/***/ },
+/* 167 */
 /*!************************************************!*\
   !*** ./~/react/lib/SyntheticClipboardEvent.js ***!
   \************************************************/
@@ -24240,7 +24359,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 148);
+	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 150);
 	
 	/**
 	 * @interface Event
@@ -24273,7 +24392,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 165 */
+/* 168 */
 /*!********************************************!*\
   !*** ./~/react/lib/SyntheticFocusEvent.js ***!
   \********************************************/
@@ -24293,7 +24412,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 169);
+	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 172);
 	
 	/**
 	 * @interface FocusEvent
@@ -24319,7 +24438,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 166 */
+/* 169 */
 /*!***********************************************!*\
   !*** ./~/react/lib/SyntheticKeyboardEvent.js ***!
   \***********************************************/
@@ -24339,11 +24458,11 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 169);
+	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 172);
 	
-	var getEventCharCode = __webpack_require__(/*! ./getEventCharCode */ 171);
-	var getEventKey = __webpack_require__(/*! ./getEventKey */ 191);
-	var getEventModifierState = __webpack_require__(/*! ./getEventModifierState */ 189);
+	var getEventCharCode = __webpack_require__(/*! ./getEventCharCode */ 174);
+	var getEventKey = __webpack_require__(/*! ./getEventKey */ 192);
+	var getEventModifierState = __webpack_require__(/*! ./getEventModifierState */ 188);
 	
 	/**
 	 * @interface KeyboardEvent
@@ -24413,7 +24532,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 167 */
+/* 170 */
 /*!*******************************************!*\
   !*** ./~/react/lib/SyntheticDragEvent.js ***!
   \*******************************************/
@@ -24433,7 +24552,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var SyntheticMouseEvent = __webpack_require__(/*! ./SyntheticMouseEvent */ 153);
+	var SyntheticMouseEvent = __webpack_require__(/*! ./SyntheticMouseEvent */ 155);
 	
 	/**
 	 * @interface DragEvent
@@ -24459,7 +24578,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 168 */
+/* 171 */
 /*!********************************************!*\
   !*** ./~/react/lib/SyntheticTouchEvent.js ***!
   \********************************************/
@@ -24479,9 +24598,9 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 169);
+	var SyntheticUIEvent = __webpack_require__(/*! ./SyntheticUIEvent */ 172);
 	
-	var getEventModifierState = __webpack_require__(/*! ./getEventModifierState */ 189);
+	var getEventModifierState = __webpack_require__(/*! ./getEventModifierState */ 188);
 	
 	/**
 	 * @interface TouchEvent
@@ -24514,7 +24633,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 169 */
+/* 172 */
 /*!*****************************************!*\
   !*** ./~/react/lib/SyntheticUIEvent.js ***!
   \*****************************************/
@@ -24534,9 +24653,9 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 148);
+	var SyntheticEvent = __webpack_require__(/*! ./SyntheticEvent */ 150);
 	
-	var getEventTarget = __webpack_require__(/*! ./getEventTarget */ 161);
+	var getEventTarget = __webpack_require__(/*! ./getEventTarget */ 163);
 	
 	/**
 	 * @interface UIEvent
@@ -24583,7 +24702,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 170 */
+/* 173 */
 /*!********************************************!*\
   !*** ./~/react/lib/SyntheticWheelEvent.js ***!
   \********************************************/
@@ -24603,7 +24722,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var SyntheticMouseEvent = __webpack_require__(/*! ./SyntheticMouseEvent */ 153);
+	var SyntheticMouseEvent = __webpack_require__(/*! ./SyntheticMouseEvent */ 155);
 	
 	/**
 	 * @interface WheelEvent
@@ -24651,7 +24770,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 171 */
+/* 174 */
 /*!*****************************************!*\
   !*** ./~/react/lib/getEventCharCode.js ***!
   \*****************************************/
@@ -24710,7 +24829,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 172 */
+/* 175 */
 /*!*************************************************!*\
   !*** ./~/react/lib/ReactDefaultPerfAnalysis.js ***!
   \*************************************************/
@@ -24727,7 +24846,7 @@ var ColonelKurtz =
 	 * @providesModule ReactDefaultPerfAnalysis
 	 */
 	
-	var assign = __webpack_require__(/*! ./Object.assign */ 63);
+	var assign = __webpack_require__(/*! ./Object.assign */ 61);
 	
 	// Don't try to save users less than 1.2ms (a number I made up)
 	var DONT_CARE_THRESHOLD = 1.2;
@@ -24923,7 +25042,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 173 */
+/* 176 */
 /*!***************************************!*\
   !*** ./~/react/lib/performanceNow.js ***!
   \***************************************/
@@ -24941,7 +25060,7 @@ var ColonelKurtz =
 	 * @typechecks
 	 */
 	
-	var performance = __webpack_require__(/*! ./performance */ 192);
+	var performance = __webpack_require__(/*! ./performance */ 193);
 	
 	/**
 	 * Detect if we can use `window.performance.now()` and gracefully fallback to
@@ -24958,7 +25077,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 174 */
+/* 177 */
 /*!***********************************!*\
   !*** ./~/react/lib/isTextNode.js ***!
   \***********************************/
@@ -24976,7 +25095,7 @@ var ColonelKurtz =
 	 * @typechecks
 	 */
 	
-	var isNode = __webpack_require__(/*! ./isNode */ 193);
+	var isNode = __webpack_require__(/*! ./isNode */ 194);
 	
 	/**
 	 * @param {*} object The object to check.
@@ -24990,7 +25109,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 175 */
+/* 178 */
 /*!********************************!*\
   !*** ./~/react/lib/adler32.js ***!
   \********************************/
@@ -25031,7 +25150,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 176 */
+/* 179 */
 /*!**********************************************!*\
   !*** ./~/react/lib/ReactPutListenerQueue.js ***!
   \**********************************************/
@@ -25050,10 +25169,10 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var PooledClass = __webpack_require__(/*! ./PooledClass */ 76);
-	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 92);
+	var PooledClass = __webpack_require__(/*! ./PooledClass */ 75);
+	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 91);
 	
-	var assign = __webpack_require__(/*! ./Object.assign */ 63);
+	var assign = __webpack_require__(/*! ./Object.assign */ 61);
 	
 	function ReactPutListenerQueue() {
 	  this.listenersToPut = [];
@@ -25094,189 +25213,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 177 */
-/*!*****************************************************************!*\
-  !*** ./colonel-kurtz/mixins/acts_like_block_with_block_list.js ***!
-  \*****************************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var React = __webpack_require__(/*! react */ 12)
-	var BlockStore = __webpack_require__(/*! ../stores/block_store */ 14)
-	
-	var ActsLikeBlockWithBlockList = {
-	
-	  getInitialState:function()         {
-	    return {
-	      block: BlockStore.find(this.props.initialBlockId)
-	    }
-	  },
-	
-	  childBlockListComponent:function()               {
-	    var childBlockList = this.state.block.childBlockList()
-	
-	    if (childBlockList) {
-	      var ListComponent = this.listComponent()
-	      return React.createElement(ListComponent, {initialBlockListId:  childBlockList.id})
-	    }
-	  }
-	
-	}
-	
-	module.exports = ActsLikeBlockWithBlockList
-
-
-/***/ },
-/* 178 */
-/*!*******************************************!*\
-  !*** ./colonel-kurtz/components/block.js ***!
-  \*******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var AppConstants = __webpack_require__(/*! constants/app_constants */ 19)
-	var BlockActions = __webpack_require__(/*! ../actions/block_actions */ 37)
-	var BlockType    = __webpack_require__(/*! ../stores/block_type_store */ 5)
-	var Monitor      = __webpack_require__(/*! ../mixins/monitor */ 181)
-	var Pure         = __webpack_require__(/*! ../mixins/pure */ 27)
-	var React        = __webpack_require__(/*! react */ 12)
-	
-	var Block = React.createClass({displayName: 'Block',
-	
-	  mixins: [ Monitor, Pure ],
-	
-	  getState:function() {
-	    return BlockType.find(this.props.block.type)
-	  },
-	
-	  render:function()      {
-	    var $__0=     this.props,block=$__0.block,props=(function(source, exclusion) {var rest = {};var hasOwn = Object.prototype.hasOwnProperty;if (source == null) {throw new TypeError();}for (var key in source) {if (hasOwn.call(source, key) && !hasOwn.call(exclusion, key)) {rest[key] = source[key];}}return rest;})($__0,{block:1})
-	    var $__1=    this.state,Component=$__1.component
-	
-	    return React.createElement(Component, React.__spread({initialContent:  block.content, updateContent:  this._onUpdateContent},   props ))
-	  },
-	
-	  _onUpdateContent:function(content) {
-	    BlockActions.update(this.props.block.id, content)
-	  }
-	
-	})
-	
-	module.exports = Block
-
-
-/***/ },
-/* 179 */
-/*!*********************************************************!*\
-  !*** ./colonel-kurtz/components/remove_block_button.js ***!
-  \*********************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var React = __webpack_require__(/*! react */ 12)
-	var Button = __webpack_require__(/*! ./ui/button */ 39)
-	var BlockActions = __webpack_require__(/*! ../actions/block_actions */ 37)
-	var Strings = __webpack_require__(/*! constants/strings */ 180)
-	
-	var RemoveBlockButton = React.createClass({displayName: 'RemoveBlockButton',
-	
-	  removeBlock:function() {
-	    var $__0=      this.props,blockId=$__0.blockId,parentBlockListId=$__0.blockListId
-	
-	    BlockActions.destroy({ blockId:blockId, parentBlockListId:parentBlockListId })
-	  },
-	
-	  render:function()      {
-	    return (
-	      React.createElement(Button, {'aria-label':  Strings.remove.label, className: "colonel-btn colonel-btn-icon", onClick:  this._onClick}, 
-	        "×"
-	      )
-	    )
-	  },
-	
-	  _onClick:function() {
-	    var answer = confirm(Strings.remove.confirm)
-	
-	    if (answer) {
-	      this.removeBlock()
-	    }
-	  }
-	
-	})
-	
-	module.exports = RemoveBlockButton
-
-
-/***/ },
 /* 180 */
-/*!********************************************!*\
-  !*** ./colonel-kurtz/constants/strings.js ***!
-  \********************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = {
-	  'remove' : {
-	    'label'  : 'Remove this block',
-	    'confirm': 'Are you sure you want to remove this block?'
-	  },
-	
-	  'add' : {
-	    'label' : 'Add a new block'
-	  }
-	}
-
-
-/***/ },
-/* 181 */
-/*!*****************************************!*\
-  !*** ./colonel-kurtz/mixins/monitor.js ***!
-  \*****************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Listens to the Bus and calls a provided `getState` function when
-	 * the Bus publishes.
-	 */
-	
-	var Bus       = __webpack_require__(/*! ../bus */ 26);
-	var invariant = __webpack_require__(/*! react/lib/invariant */ 28);
-	
-	var Monitor = {
-	
-	  getInitialState:function()         {
-	    if (true) {
-	      invariant(this.getState, "Monitor mixin requires `getState` implementation.");
-	    }
-	
-	    return this.getState();
-	  },
-	
-	  updateState:function() {
-	    this.setState(this.getState());
-	  },
-	
-	  componentDidMount:function() {
-	    Bus.subscribe(this.updateState);
-	  },
-	
-	  componentWillUnmount:function() {
-	    Bus.unsubscribe(this.updateState);
-	  },
-	
-	  componentWillReceiveProps:function() {
-	    this.updateState();
-	  }
-	
-	};
-	
-	module.exports = Monitor;
-
-
-/***/ },
-/* 182 */
 /*!*********************************!*\
   !*** ./~/flux/lib/invariant.js ***!
   \*********************************/
@@ -25338,7 +25275,128 @@ var ColonelKurtz =
 
 
 /***/ },
+/* 181 */
+/*!************************************************!*\
+  !*** ./colonel-kurtz/actions/block_actions.js ***!
+  \************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var BlockConstants = __webpack_require__(/*! ../constants/block_constants */ 21)
+	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 23)
+	
+	var BlockActions = {
+	
+	  create:function(params                                                                  ) {
+	    Dispatcher.dispatch({
+	      type: BlockConstants.BLOCK_CREATE,
+	      blockType: params.blockType,
+	      parentBlockListId: params.parentBlockListId,
+	      position: params.position
+	    })
+	  },
+	
+	  destroy:function(params                                              ) {
+	    Dispatcher.dispatch({
+	      type: BlockConstants.BLOCK_DESTROY,
+	      blockId: params.blockId,
+	      parentBlockListId: params.parentBlockListId
+	    })
+	  },
+	
+	  update:function(blockId        , content        ) {
+	    Dispatcher.dispatch({ type: BlockConstants.BLOCK_UPDATE, blockId:blockId, content:content })
+	  }
+	
+	}
+	module.exports = BlockActions
+
+
+/***/ },
+/* 182 */
+/*!********************************************!*\
+  !*** ./colonel-kurtz/constants/strings.js ***!
+  \********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = {
+	  'remove' : {
+	    'label'  : 'Remove this block',
+	    'confirm': 'Are you sure you want to remove this block?'
+	  },
+	
+	  'add' : {
+	    'label' : 'Add a new block'
+	  }
+	}
+
+
+/***/ },
 /* 183 */
+/*!**************************************!*\
+  !*** ./colonel-kurtz/mixins/pure.js ***!
+  \**************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-2014 Facebook, Inc.
+	 *
+	 * Licensed under the Apache License, Version 2.0 (the "License");
+	 * you may not use this file except in compliance with the License.
+	 * You may obtain a copy of the License at
+	 *
+	 * http://www.apache.org/licenses/LICENSE-2.0
+	 *
+	 * Unless required by applicable law or agreed to in writing, software
+	 * distributed under the License is distributed on an "AS IS" BASIS,
+	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 * See the License for the specific language governing permissions and
+	 * limitations under the License.
+	 *
+	 * @providesModule ReactComponentWithPureRenderMixin
+	 */
+	
+	"use strict";
+	
+	var shallowEqual = __webpack_require__(/*! react/lib/shallowEqual */ 166);
+	
+	/**
+	 * If your React component's render function is "pure", e.g. it will render the
+	 * same result given the same props and state, provide this Mixin for a
+	 * considerable performance boost.
+	 *
+	 * Most React components have pure render functions.
+	 *
+	 * Example:
+	 *
+	 *   var ReactComponentWithPureRenderMixin =
+	 *     require('ReactComponentWithPureRenderMixin');
+	 *   React.createClass({
+	 *     mixins: [ReactComponentWithPureRenderMixin],
+	 *
+	 *     render: function() {
+	 *       return <div className={this.props.className}>foo</div>;
+	 *     }
+	 *   });
+	 *
+	 * Note: This only checks shallow equality for props and state. If these contain
+	 * complex data structures this mixin may have false-negatives for deeper
+	 * differences. Only mixin to components which have simple props and state, or
+	 * use `forceUpdate()` when you know deep data structures have changed.
+	 */
+	var ReactComponentWithPureRenderMixin = {
+	  shouldComponentUpdate: function(nextProps, nextState) {
+	    return !shallowEqual(this.props, nextProps) ||
+	    !shallowEqual(this.state, nextState);
+	  }
+	};
+	
+	module.exports = ReactComponentWithPureRenderMixin;
+
+
+/***/ },
+/* 184 */
 /*!*********************************!*\
   !*** ./~/react/lib/camelize.js ***!
   \*********************************/
@@ -25377,7 +25435,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 184 */
+/* 185 */
 /*!**********************************!*\
   !*** ./~/react/lib/hyphenate.js ***!
   \**********************************/
@@ -25417,7 +25475,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 185 */
+/* 186 */
 /*!***************************************!*\
   !*** ./~/react/lib/accumulateInto.js ***!
   \***************************************/
@@ -25436,7 +25494,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	/**
 	 *
@@ -25488,7 +25546,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 186 */
+/* 187 */
 /*!*******************************************!*\
   !*** ./~/react/lib/forEachAccumulated.js ***!
   \*******************************************/
@@ -25526,7 +25584,277 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 187 */
+/* 188 */
+/*!**********************************************!*\
+  !*** ./~/react/lib/getEventModifierState.js ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013 Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule getEventModifierState
+	 * @typechecks static-only
+	 */
+	
+	"use strict";
+	
+	/**
+	 * Translation from modifier key to the associated property in the event.
+	 * @see http://www.w3.org/TR/DOM-Level-3-Events/#keys-Modifiers
+	 */
+	
+	var modifierKeyToProp = {
+	  'Alt': 'altKey',
+	  'Control': 'ctrlKey',
+	  'Meta': 'metaKey',
+	  'Shift': 'shiftKey'
+	};
+	
+	// IE8 does not implement getModifierState so we simply map it to the only
+	// modifier keys exposed by the event itself, does not support Lock-keys.
+	// Currently, all major browsers except Chrome seems to support Lock-keys.
+	function modifierStateGetter(keyArg) {
+	  /*jshint validthis:true */
+	  var syntheticEvent = this;
+	  var nativeEvent = syntheticEvent.nativeEvent;
+	  if (nativeEvent.getModifierState) {
+	    return nativeEvent.getModifierState(keyArg);
+	  }
+	  var keyProp = modifierKeyToProp[keyArg];
+	  return keyProp ? !!nativeEvent[keyProp] : false;
+	}
+	
+	function getEventModifierState(nativeEvent) {
+	  return modifierStateGetter;
+	}
+	
+	module.exports = getEventModifierState;
+
+
+/***/ },
+/* 189 */
+/*!**********************************************!*\
+  !*** ./~/react/lib/DOMChildrenOperations.js ***!
+  \**********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-2014, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule DOMChildrenOperations
+	 * @typechecks static-only
+	 */
+	
+	"use strict";
+	
+	var Danger = __webpack_require__(/*! ./Danger */ 195);
+	var ReactMultiChildUpdateTypes = __webpack_require__(/*! ./ReactMultiChildUpdateTypes */ 121);
+	
+	var getTextContentAccessor = __webpack_require__(/*! ./getTextContentAccessor */ 154);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
+	
+	/**
+	 * The DOM property to use when setting text content.
+	 *
+	 * @type {string}
+	 * @private
+	 */
+	var textContentAccessor = getTextContentAccessor();
+	
+	/**
+	 * Inserts `childNode` as a child of `parentNode` at the `index`.
+	 *
+	 * @param {DOMElement} parentNode Parent node in which to insert.
+	 * @param {DOMElement} childNode Child node to insert.
+	 * @param {number} index Index at which to insert the child.
+	 * @internal
+	 */
+	function insertChildAt(parentNode, childNode, index) {
+	  // By exploiting arrays returning `undefined` for an undefined index, we can
+	  // rely exclusively on `insertBefore(node, null)` instead of also using
+	  // `appendChild(node)`. However, using `undefined` is not allowed by all
+	  // browsers so we must replace it with `null`.
+	  parentNode.insertBefore(
+	    childNode,
+	    parentNode.childNodes[index] || null
+	  );
+	}
+	
+	var updateTextContent;
+	if (textContentAccessor === 'textContent') {
+	  /**
+	   * Sets the text content of `node` to `text`.
+	   *
+	   * @param {DOMElement} node Node to change
+	   * @param {string} text New text content
+	   */
+	  updateTextContent = function(node, text) {
+	    node.textContent = text;
+	  };
+	} else {
+	  /**
+	   * Sets the text content of `node` to `text`.
+	   *
+	   * @param {DOMElement} node Node to change
+	   * @param {string} text New text content
+	   */
+	  updateTextContent = function(node, text) {
+	    // In order to preserve newlines correctly, we can't use .innerText to set
+	    // the contents (see #1080), so we empty the element then append a text node
+	    while (node.firstChild) {
+	      node.removeChild(node.firstChild);
+	    }
+	    if (text) {
+	      var doc = node.ownerDocument || document;
+	      node.appendChild(doc.createTextNode(text));
+	    }
+	  };
+	}
+	
+	/**
+	 * Operations for updating with DOM children.
+	 */
+	var DOMChildrenOperations = {
+	
+	  dangerouslyReplaceNodeWithMarkup: Danger.dangerouslyReplaceNodeWithMarkup,
+	
+	  updateTextContent: updateTextContent,
+	
+	  /**
+	   * Updates a component's children by processing a series of updates. The
+	   * update configurations are each expected to have a `parentNode` property.
+	   *
+	   * @param {array<object>} updates List of update configurations.
+	   * @param {array<string>} markupList List of markup strings.
+	   * @internal
+	   */
+	  processUpdates: function(updates, markupList) {
+	    var update;
+	    // Mapping from parent IDs to initial child orderings.
+	    var initialChildren = null;
+	    // List of children that will be moved or removed.
+	    var updatedChildren = null;
+	
+	    for (var i = 0; update = updates[i]; i++) {
+	      if (update.type === ReactMultiChildUpdateTypes.MOVE_EXISTING ||
+	          update.type === ReactMultiChildUpdateTypes.REMOVE_NODE) {
+	        var updatedIndex = update.fromIndex;
+	        var updatedChild = update.parentNode.childNodes[updatedIndex];
+	        var parentID = update.parentID;
+	
+	        (true ? invariant(
+	          updatedChild,
+	          'processUpdates(): Unable to find child %s of element. This ' +
+	          'probably means the DOM was unexpectedly mutated (e.g., by the ' +
+	          'browser), usually due to forgetting a <tbody> when using tables, ' +
+	          'nesting tags like <form>, <p>, or <a>, or using non-SVG elements '+
+	          'in an <svg> parent. Try inspecting the child nodes of the element ' +
+	          'with React ID `%s`.',
+	          updatedIndex,
+	          parentID
+	        ) : invariant(updatedChild));
+	
+	        initialChildren = initialChildren || {};
+	        initialChildren[parentID] = initialChildren[parentID] || [];
+	        initialChildren[parentID][updatedIndex] = updatedChild;
+	
+	        updatedChildren = updatedChildren || [];
+	        updatedChildren.push(updatedChild);
+	      }
+	    }
+	
+	    var renderedMarkup = Danger.dangerouslyRenderMarkup(markupList);
+	
+	    // Remove updated children first so that `toIndex` is consistent.
+	    if (updatedChildren) {
+	      for (var j = 0; j < updatedChildren.length; j++) {
+	        updatedChildren[j].parentNode.removeChild(updatedChildren[j]);
+	      }
+	    }
+	
+	    for (var k = 0; update = updates[k]; k++) {
+	      switch (update.type) {
+	        case ReactMultiChildUpdateTypes.INSERT_MARKUP:
+	          insertChildAt(
+	            update.parentNode,
+	            renderedMarkup[update.markupIndex],
+	            update.toIndex
+	          );
+	          break;
+	        case ReactMultiChildUpdateTypes.MOVE_EXISTING:
+	          insertChildAt(
+	            update.parentNode,
+	            initialChildren[update.parentID][update.fromIndex],
+	            update.toIndex
+	          );
+	          break;
+	        case ReactMultiChildUpdateTypes.TEXT_CONTENT:
+	          updateTextContent(
+	            update.parentNode,
+	            update.textContent
+	          );
+	          break;
+	        case ReactMultiChildUpdateTypes.REMOVE_NODE:
+	          // Already removed by the for-loop above.
+	          break;
+	      }
+	    }
+	  }
+	
+	};
+	
+	module.exports = DOMChildrenOperations;
+
+
+/***/ },
+/* 190 */
+/*!**********************************!*\
+  !*** ./~/react/lib/focusNode.js ***!
+  \**********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2014, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule focusNode
+	 */
+	
+	"use strict";
+	
+	/**
+	 * @param {DOMElement} node input/textarea to focus
+	 */
+	function focusNode(node) {
+	  // IE8 can throw "Can't move focus to the control because it is invisible,
+	  // not enabled, or of a type that does not accept the focus." for all kinds of
+	  // reasons that are too expensive and fragile to test.
+	  try {
+	    node.focus();
+	  } catch(e) {
+	  }
+	}
+	
+	module.exports = focusNode;
+
+
+/***/ },
+/* 191 */
 /*!******************************************!*\
   !*** ./~/react/lib/ReactDOMSelection.js ***!
   \******************************************/
@@ -25545,10 +25873,10 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 66);
+	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 64);
 	
-	var getNodeForCharacterOffset = __webpack_require__(/*! ./getNodeForCharacterOffset */ 194);
-	var getTextContentAccessor = __webpack_require__(/*! ./getTextContentAccessor */ 152);
+	var getNodeForCharacterOffset = __webpack_require__(/*! ./getNodeForCharacterOffset */ 196);
+	var getTextContentAccessor = __webpack_require__(/*! ./getTextContentAccessor */ 154);
 	
 	/**
 	 * While `isCollapsed` is available on the Selection object and `collapsed`
@@ -25742,277 +26070,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 188 */
-/*!**********************************!*\
-  !*** ./~/react/lib/focusNode.js ***!
-  \**********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2014, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule focusNode
-	 */
-	
-	"use strict";
-	
-	/**
-	 * @param {DOMElement} node input/textarea to focus
-	 */
-	function focusNode(node) {
-	  // IE8 can throw "Can't move focus to the control because it is invisible,
-	  // not enabled, or of a type that does not accept the focus." for all kinds of
-	  // reasons that are too expensive and fragile to test.
-	  try {
-	    node.focus();
-	  } catch(e) {
-	  }
-	}
-	
-	module.exports = focusNode;
-
-
-/***/ },
-/* 189 */
-/*!**********************************************!*\
-  !*** ./~/react/lib/getEventModifierState.js ***!
-  \**********************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013 Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule getEventModifierState
-	 * @typechecks static-only
-	 */
-	
-	"use strict";
-	
-	/**
-	 * Translation from modifier key to the associated property in the event.
-	 * @see http://www.w3.org/TR/DOM-Level-3-Events/#keys-Modifiers
-	 */
-	
-	var modifierKeyToProp = {
-	  'Alt': 'altKey',
-	  'Control': 'ctrlKey',
-	  'Meta': 'metaKey',
-	  'Shift': 'shiftKey'
-	};
-	
-	// IE8 does not implement getModifierState so we simply map it to the only
-	// modifier keys exposed by the event itself, does not support Lock-keys.
-	// Currently, all major browsers except Chrome seems to support Lock-keys.
-	function modifierStateGetter(keyArg) {
-	  /*jshint validthis:true */
-	  var syntheticEvent = this;
-	  var nativeEvent = syntheticEvent.nativeEvent;
-	  if (nativeEvent.getModifierState) {
-	    return nativeEvent.getModifierState(keyArg);
-	  }
-	  var keyProp = modifierKeyToProp[keyArg];
-	  return keyProp ? !!nativeEvent[keyProp] : false;
-	}
-	
-	function getEventModifierState(nativeEvent) {
-	  return modifierStateGetter;
-	}
-	
-	module.exports = getEventModifierState;
-
-
-/***/ },
-/* 190 */
-/*!**********************************************!*\
-  !*** ./~/react/lib/DOMChildrenOperations.js ***!
-  \**********************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2014, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule DOMChildrenOperations
-	 * @typechecks static-only
-	 */
-	
-	"use strict";
-	
-	var Danger = __webpack_require__(/*! ./Danger */ 195);
-	var ReactMultiChildUpdateTypes = __webpack_require__(/*! ./ReactMultiChildUpdateTypes */ 122);
-	
-	var getTextContentAccessor = __webpack_require__(/*! ./getTextContentAccessor */ 152);
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
-	
-	/**
-	 * The DOM property to use when setting text content.
-	 *
-	 * @type {string}
-	 * @private
-	 */
-	var textContentAccessor = getTextContentAccessor();
-	
-	/**
-	 * Inserts `childNode` as a child of `parentNode` at the `index`.
-	 *
-	 * @param {DOMElement} parentNode Parent node in which to insert.
-	 * @param {DOMElement} childNode Child node to insert.
-	 * @param {number} index Index at which to insert the child.
-	 * @internal
-	 */
-	function insertChildAt(parentNode, childNode, index) {
-	  // By exploiting arrays returning `undefined` for an undefined index, we can
-	  // rely exclusively on `insertBefore(node, null)` instead of also using
-	  // `appendChild(node)`. However, using `undefined` is not allowed by all
-	  // browsers so we must replace it with `null`.
-	  parentNode.insertBefore(
-	    childNode,
-	    parentNode.childNodes[index] || null
-	  );
-	}
-	
-	var updateTextContent;
-	if (textContentAccessor === 'textContent') {
-	  /**
-	   * Sets the text content of `node` to `text`.
-	   *
-	   * @param {DOMElement} node Node to change
-	   * @param {string} text New text content
-	   */
-	  updateTextContent = function(node, text) {
-	    node.textContent = text;
-	  };
-	} else {
-	  /**
-	   * Sets the text content of `node` to `text`.
-	   *
-	   * @param {DOMElement} node Node to change
-	   * @param {string} text New text content
-	   */
-	  updateTextContent = function(node, text) {
-	    // In order to preserve newlines correctly, we can't use .innerText to set
-	    // the contents (see #1080), so we empty the element then append a text node
-	    while (node.firstChild) {
-	      node.removeChild(node.firstChild);
-	    }
-	    if (text) {
-	      var doc = node.ownerDocument || document;
-	      node.appendChild(doc.createTextNode(text));
-	    }
-	  };
-	}
-	
-	/**
-	 * Operations for updating with DOM children.
-	 */
-	var DOMChildrenOperations = {
-	
-	  dangerouslyReplaceNodeWithMarkup: Danger.dangerouslyReplaceNodeWithMarkup,
-	
-	  updateTextContent: updateTextContent,
-	
-	  /**
-	   * Updates a component's children by processing a series of updates. The
-	   * update configurations are each expected to have a `parentNode` property.
-	   *
-	   * @param {array<object>} updates List of update configurations.
-	   * @param {array<string>} markupList List of markup strings.
-	   * @internal
-	   */
-	  processUpdates: function(updates, markupList) {
-	    var update;
-	    // Mapping from parent IDs to initial child orderings.
-	    var initialChildren = null;
-	    // List of children that will be moved or removed.
-	    var updatedChildren = null;
-	
-	    for (var i = 0; update = updates[i]; i++) {
-	      if (update.type === ReactMultiChildUpdateTypes.MOVE_EXISTING ||
-	          update.type === ReactMultiChildUpdateTypes.REMOVE_NODE) {
-	        var updatedIndex = update.fromIndex;
-	        var updatedChild = update.parentNode.childNodes[updatedIndex];
-	        var parentID = update.parentID;
-	
-	        (true ? invariant(
-	          updatedChild,
-	          'processUpdates(): Unable to find child %s of element. This ' +
-	          'probably means the DOM was unexpectedly mutated (e.g., by the ' +
-	          'browser), usually due to forgetting a <tbody> when using tables, ' +
-	          'nesting tags like <form>, <p>, or <a>, or using non-SVG elements '+
-	          'in an <svg> parent. Try inspecting the child nodes of the element ' +
-	          'with React ID `%s`.',
-	          updatedIndex,
-	          parentID
-	        ) : invariant(updatedChild));
-	
-	        initialChildren = initialChildren || {};
-	        initialChildren[parentID] = initialChildren[parentID] || [];
-	        initialChildren[parentID][updatedIndex] = updatedChild;
-	
-	        updatedChildren = updatedChildren || [];
-	        updatedChildren.push(updatedChild);
-	      }
-	    }
-	
-	    var renderedMarkup = Danger.dangerouslyRenderMarkup(markupList);
-	
-	    // Remove updated children first so that `toIndex` is consistent.
-	    if (updatedChildren) {
-	      for (var j = 0; j < updatedChildren.length; j++) {
-	        updatedChildren[j].parentNode.removeChild(updatedChildren[j]);
-	      }
-	    }
-	
-	    for (var k = 0; update = updates[k]; k++) {
-	      switch (update.type) {
-	        case ReactMultiChildUpdateTypes.INSERT_MARKUP:
-	          insertChildAt(
-	            update.parentNode,
-	            renderedMarkup[update.markupIndex],
-	            update.toIndex
-	          );
-	          break;
-	        case ReactMultiChildUpdateTypes.MOVE_EXISTING:
-	          insertChildAt(
-	            update.parentNode,
-	            initialChildren[update.parentID][update.fromIndex],
-	            update.toIndex
-	          );
-	          break;
-	        case ReactMultiChildUpdateTypes.TEXT_CONTENT:
-	          updateTextContent(
-	            update.parentNode,
-	            update.textContent
-	          );
-	          break;
-	        case ReactMultiChildUpdateTypes.REMOVE_NODE:
-	          // Already removed by the for-loop above.
-	          break;
-	      }
-	    }
-	  }
-	
-	};
-	
-	module.exports = DOMChildrenOperations;
-
-
-/***/ },
-/* 191 */
+/* 192 */
 /*!************************************!*\
   !*** ./~/react/lib/getEventKey.js ***!
   \************************************/
@@ -26032,7 +26090,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var getEventCharCode = __webpack_require__(/*! ./getEventCharCode */ 171);
+	var getEventCharCode = __webpack_require__(/*! ./getEventCharCode */ 174);
 	
 	/**
 	 * Normalization of deprecated HTML5 `key` values
@@ -26124,7 +26182,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 192 */
+/* 193 */
 /*!************************************!*\
   !*** ./~/react/lib/performance.js ***!
   \************************************/
@@ -26144,7 +26202,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 66);
+	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 64);
 	
 	var performance;
 	
@@ -26159,7 +26217,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 193 */
+/* 194 */
 /*!*******************************!*\
   !*** ./~/react/lib/isNode.js ***!
   \*******************************/
@@ -26194,88 +26252,6 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 194 */
-/*!**************************************************!*\
-  !*** ./~/react/lib/getNodeForCharacterOffset.js ***!
-  \**************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2014, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule getNodeForCharacterOffset
-	 */
-	
-	"use strict";
-	
-	/**
-	 * Given any node return the first leaf node without children.
-	 *
-	 * @param {DOMElement|DOMTextNode} node
-	 * @return {DOMElement|DOMTextNode}
-	 */
-	function getLeafNode(node) {
-	  while (node && node.firstChild) {
-	    node = node.firstChild;
-	  }
-	  return node;
-	}
-	
-	/**
-	 * Get the next sibling within a container. This will walk up the
-	 * DOM if a node's siblings have been exhausted.
-	 *
-	 * @param {DOMElement|DOMTextNode} node
-	 * @return {?DOMElement|DOMTextNode}
-	 */
-	function getSiblingNode(node) {
-	  while (node) {
-	    if (node.nextSibling) {
-	      return node.nextSibling;
-	    }
-	    node = node.parentNode;
-	  }
-	}
-	
-	/**
-	 * Get object describing the nodes which contain characters at offset.
-	 *
-	 * @param {DOMElement|DOMTextNode} root
-	 * @param {number} offset
-	 * @return {?object}
-	 */
-	function getNodeForCharacterOffset(root, offset) {
-	  var node = getLeafNode(root);
-	  var nodeStart = 0;
-	  var nodeEnd = 0;
-	
-	  while (node) {
-	    if (node.nodeType == 3) {
-	      nodeEnd = nodeStart + node.textContent.length;
-	
-	      if (nodeStart <= offset && nodeEnd >= offset) {
-	        return {
-	          node: node,
-	          offset: offset - nodeStart
-	        };
-	      }
-	
-	      nodeStart = nodeEnd;
-	    }
-	
-	    node = getLeafNode(getSiblingNode(node));
-	  }
-	}
-	
-	module.exports = getNodeForCharacterOffset;
-
-
-/***/ },
 /* 195 */
 /*!*******************************!*\
   !*** ./~/react/lib/Danger.js ***!
@@ -26298,12 +26274,12 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 66);
+	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 64);
 	
-	var createNodesFromMarkup = __webpack_require__(/*! ./createNodesFromMarkup */ 196);
-	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 126);
-	var getMarkupWrap = __webpack_require__(/*! ./getMarkupWrap */ 197);
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var createNodesFromMarkup = __webpack_require__(/*! ./createNodesFromMarkup */ 197);
+	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 123);
+	var getMarkupWrap = __webpack_require__(/*! ./getMarkupWrap */ 198);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	var OPEN_TAG_NAME_EXP = /^(<[^ \/>]+)/;
 	var RESULT_INDEX_ATTR = 'data-danger-index';
@@ -26468,6 +26444,88 @@ var ColonelKurtz =
 
 /***/ },
 /* 196 */
+/*!**************************************************!*\
+  !*** ./~/react/lib/getNodeForCharacterOffset.js ***!
+  \**************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-2014, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule getNodeForCharacterOffset
+	 */
+	
+	"use strict";
+	
+	/**
+	 * Given any node return the first leaf node without children.
+	 *
+	 * @param {DOMElement|DOMTextNode} node
+	 * @return {DOMElement|DOMTextNode}
+	 */
+	function getLeafNode(node) {
+	  while (node && node.firstChild) {
+	    node = node.firstChild;
+	  }
+	  return node;
+	}
+	
+	/**
+	 * Get the next sibling within a container. This will walk up the
+	 * DOM if a node's siblings have been exhausted.
+	 *
+	 * @param {DOMElement|DOMTextNode} node
+	 * @return {?DOMElement|DOMTextNode}
+	 */
+	function getSiblingNode(node) {
+	  while (node) {
+	    if (node.nextSibling) {
+	      return node.nextSibling;
+	    }
+	    node = node.parentNode;
+	  }
+	}
+	
+	/**
+	 * Get object describing the nodes which contain characters at offset.
+	 *
+	 * @param {DOMElement|DOMTextNode} root
+	 * @param {number} offset
+	 * @return {?object}
+	 */
+	function getNodeForCharacterOffset(root, offset) {
+	  var node = getLeafNode(root);
+	  var nodeStart = 0;
+	  var nodeEnd = 0;
+	
+	  while (node) {
+	    if (node.nodeType == 3) {
+	      nodeEnd = nodeStart + node.textContent.length;
+	
+	      if (nodeStart <= offset && nodeEnd >= offset) {
+	        return {
+	          node: node,
+	          offset: offset - nodeStart
+	        };
+	      }
+	
+	      nodeStart = nodeEnd;
+	    }
+	
+	    node = getLeafNode(getSiblingNode(node));
+	  }
+	}
+	
+	module.exports = getNodeForCharacterOffset;
+
+
+/***/ },
+/* 197 */
 /*!**********************************************!*\
   !*** ./~/react/lib/createNodesFromMarkup.js ***!
   \**********************************************/
@@ -26487,11 +26545,11 @@ var ColonelKurtz =
 	
 	/*jslint evil: true, sub: true */
 	
-	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 66);
+	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 64);
 	
-	var createArrayFrom = __webpack_require__(/*! ./createArrayFrom */ 198);
-	var getMarkupWrap = __webpack_require__(/*! ./getMarkupWrap */ 197);
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var createArrayFrom = __webpack_require__(/*! ./createArrayFrom */ 199);
+	var getMarkupWrap = __webpack_require__(/*! ./getMarkupWrap */ 198);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	/**
 	 * Dummy container used to render all markup.
@@ -26562,7 +26620,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 197 */
+/* 198 */
 /*!**************************************!*\
   !*** ./~/react/lib/getMarkupWrap.js ***!
   \**************************************/
@@ -26579,9 +26637,9 @@ var ColonelKurtz =
 	 * @providesModule getMarkupWrap
 	 */
 	
-	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 66);
+	var ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 64);
 	
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	/**
 	 * Dummy container used to detect which wraps are necessary.
@@ -26684,7 +26742,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 198 */
+/* 199 */
 /*!****************************************!*\
   !*** ./~/react/lib/createArrayFrom.js ***!
   \****************************************/
@@ -26702,7 +26760,7 @@ var ColonelKurtz =
 	 * @typechecks
 	 */
 	
-	var toArray = __webpack_require__(/*! ./toArray */ 199);
+	var toArray = __webpack_require__(/*! ./toArray */ 200);
 	
 	/**
 	 * Perform a heuristic test to determine if an object is "array-like".
@@ -26777,7 +26835,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 199 */
+/* 200 */
 /*!********************************!*\
   !*** ./~/react/lib/toArray.js ***!
   \********************************/
@@ -26795,7 +26853,7 @@ var ColonelKurtz =
 	 * @typechecks
 	 */
 	
-	var invariant = __webpack_require__(/*! ./invariant */ 28);
+	var invariant = __webpack_require__(/*! ./invariant */ 26);
 	
 	/**
 	 * Convert array-like objects to arrays.
@@ -26851,90 +26909,6 @@ var ColonelKurtz =
 	}
 	
 	module.exports = toArray;
-
-
-/***/ },
-/* 200 */
-/*!************************************************!*\
-  !*** ./colonel-kurtz/components/block_menu.js ***!
-  \************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var AddBlock  = __webpack_require__(/*! ./add_block */ 201)
-	var BlockType = __webpack_require__(/*! ../stores/block_type_store */ 5)
-	var Monitor   = __webpack_require__(/*! ../mixins/monitor */ 181)
-	var React     = __webpack_require__(/*! react */ 12)
-	
-	var BlockMenu = React.createClass({displayName: 'BlockMenu',
-	
-	  mixins: [ Monitor ],
-	
-	  getDefaultProps:function() {
-	    return {
-	      position: 0
-	    }
-	  },
-	
-	  getState:function() {
-	    return {
-	      types: BlockType.keys()
-	    }
-	  },
-	
-	  getButton:function(type) {
-	    return React.createElement(AddBlock, React.__spread({key: type, type: type },   this.props ))
-	  },
-	
-	  render:function()      {
-	    return (
-	      React.createElement("nav", {className: "colonel-menu", role: "navigation"}, 
-	         this.state.types.map(this.getButton) 
-	      )
-	    )
-	  }
-	
-	})
-	
-	module.exports = BlockMenu
-
-
-/***/ },
-/* 201 */
-/*!***********************************************!*\
-  !*** ./colonel-kurtz/components/add_block.js ***!
-  \***********************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var React        = __webpack_require__(/*! react */ 12)
-	var Button       = __webpack_require__(/*! ./ui/button */ 39)
-	var BlockActions = __webpack_require__(/*! ../actions/block_actions */ 37)
-	var Strings      = __webpack_require__(/*! constants/strings */ 180)
-	
-	var AddBlock = React.createClass({displayName: 'AddBlock',
-	
-	  render:function()      {
-	    var $__0=    this.props,type=$__0.type
-	
-	    return (
-	      React.createElement(Button, {key: type, 'aria-label':  Strings.add.label, className: "colonel-btn colonel-btn-icon", onClick:  this._onClick}, 
-	         type[0] 
-	      )
-	    )
-	  },
-	
-	  _onClick:function() {
-	    var $__0=       this.props,parentBlockListId=$__0.blockListId,blockType=$__0.type,position=$__0.position
-	
-	    BlockActions.create({ parentBlockListId:parentBlockListId, position:position, blockType:blockType })
-	  }
-	
-	})
-	
-	module.exports = AddBlock
 
 
 /***/ }
