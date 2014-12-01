@@ -1,6 +1,7 @@
 /* @flow */
 
 var BlockList  = require('../models/block_list')
+var BlockConstants = require('../constants/block_constants')
 var BlockStore = require('../stores/block_store')
 var Constants  = require('../constants/block_list_constants')
 var Dispatcher = require('../dispatcher')
@@ -13,24 +14,6 @@ var BlockListStore = {
 
   all(): Array<BlockList> {
     return _blockLists
-  },
-
-  serialize(id) {
-    var list = this.find(id);
-
-    return {
-      id: id,
-      blocks: list.all().map(BlockStore.find).map(function(block) {
-        var childBlockList = BlockListStore.findByBlockId(block.id)
-
-        return {
-          id: block.id,
-          type: block.type,
-          content: block.content,
-          childBlockList: BlockListStore.serialize(childBlockList.id)
-        }
-      })
-    }
   },
 
   findByEditorId(editorId: number) {
@@ -96,6 +79,3 @@ var BlockListStore = {
 }
 
 module.exports = BlockListStore
-
-// This is to get around circular dependencies
-var BlockConstants = require('../constants/block_constants')

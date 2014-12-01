@@ -261,6 +261,7 @@ var ColonelKurtz =
 	/* @flow */
 	
 	var BlockList  = __webpack_require__(/*! ../models/block_list */ 24)
+	var BlockConstants = __webpack_require__(/*! ../constants/block_constants */ 21)
 	var BlockStore = __webpack_require__(/*! ../stores/block_store */ 14)
 	var Constants  = __webpack_require__(/*! ../constants/block_list_constants */ 20)
 	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 23)
@@ -273,24 +274,6 @@ var ColonelKurtz =
 	
 	  all:function()                   {
 	    return _blockLists
-	  },
-	
-	  serialize:function(id) {
-	    var list = this.find(id);
-	
-	    return {
-	      id: id,
-	      blocks: list.all().map(BlockStore.find).map(function(block) {
-	        var childBlockList = BlockListStore.findByBlockId(block.id)
-	
-	        return {
-	          id: block.id,
-	          type: block.type,
-	          content: block.content,
-	          childBlockList: BlockListStore.serialize(childBlockList.id)
-	        }
-	      })
-	    }
 	  },
 	
 	  findByEditorId:function(editorId        ) {
@@ -356,9 +339,6 @@ var ColonelKurtz =
 	}
 	
 	module.exports = BlockListStore
-	
-	// This is to get around circular dependencies
-	var BlockConstants = __webpack_require__(/*! ../constants/block_constants */ 21)
 
 
 /***/ },
