@@ -2,18 +2,17 @@
 
 var uid            = require('../utils/uid')
 var BlockList      = require('./block_list')
-var BlockTypeStore = require('stores/block_type_store')
+var BlockTypeStore = require('../stores/block_type_store')
 
 class Block {
   id: number;
   parentBlockListId: number;
 
-  constructor(params: {parentBlockListId: number}) {
+  constructor(params: {parentBlockListId: number; type: string}) {
     this.id = uid()
     this.parentBlockListId = params.parentBlockListId
     this.content = null
-    // TODO: Demo only. Replace with actual block type determination.
-    this.type = Math.random() > 0.5 ? 'medium' : 'text'
+    this.type = params.type || 'text'
   }
 
   toJSON(): {id: number; content: any; childBlockList: ?BlockList} {
