@@ -12,6 +12,10 @@ var BlockTypeStore = {
     return _blockTypes
   },
 
+  keys() {
+    return _blockTypes.toArray().map(b => b.id)
+  },
+
   find(id): Block {
     return BlockTypeStore.all().find(function(blockType) {
       return blockType.id === id

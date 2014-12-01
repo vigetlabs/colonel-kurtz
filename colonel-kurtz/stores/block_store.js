@@ -19,8 +19,8 @@ var BlockStore = {
     })
   },
 
-  _create(parentBlockListId: number): Block {
-    var block = new Block({ parentBlockListId })
+  _create(parentBlockListId: number, type: string): Block {
+    var block = new Block({ parentBlockListId, type })
 
     _blocks = _blocks.push(block)
 
@@ -55,7 +55,7 @@ var BlockStore = {
   dispatchToken: Dispatcher.register(function(action) {
     switch (action.type) {
       case Constants.BLOCK_CREATE:
-        var block = BlockStore._create(action.parentBlockListId)
+        var block = BlockStore._create(action.parentBlockListId, action.blockType)
         action.block = block
         break
       case Constants.BLOCK_DESTROY:
