@@ -1,5 +1,4 @@
 /* @flow */
-
 var uid = require('../utils/uid')
 
 var BlockList = function(params: {editorId: number; blockId: number}) {
@@ -23,6 +22,16 @@ BlockList.prototype = {
 
   insertBlock(block, position: number) {
     this._blocks.splice(position, 0, block.id)
+  },
+
+  toJSON() {
+    // Note: This is to get around circular dependency issues
+    var Block = require('../stores/block_store')
+
+    return {
+      id: this.id,
+      blocks: this.all().map(id => Block.find(id).toJSON())
+    }
   }
 }
 

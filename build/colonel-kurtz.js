@@ -49,7 +49,6 @@ var ColonelKurtz =
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
-	
 	var React            = __webpack_require__(/*! react */ 10)
 	var Immutable        = __webpack_require__(/*! immutable */ 13)
 	var App              = __webpack_require__(/*! ./components/app */ 1)
@@ -58,10 +57,9 @@ var ColonelKurtz =
 	var BlockListStore   = __webpack_require__(/*! ./stores/block_list_store */ 4)
 	var BlockTypeStore   = __webpack_require__(/*! ./stores/block_type_store */ 5)
 	var BlockTypeMixin   = __webpack_require__(/*! mixins/block_type */ 8)
-	var exportGlobal     = __webpack_require__(/*! ./utils/export_global */ 6)
+	var exportGlobal     = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./utils/export_global\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()))
 	var uid              = __webpack_require__(/*! ./utils/uid */ 7)
 	var assign           = __webpack_require__(/*! object.assign */ 11)
-	var Serializer       = __webpack_require__(/*! ./stores/serializer_store */ 201)
 	
 	__webpack_require__(/*! array.prototype.find */ 12)
 	__webpack_require__(/*! style/colonel */ 15)
@@ -96,7 +94,7 @@ var ColonelKurtz =
 	  };
 	
 	  ColonelKurtz.prototype.toJSON=function() {"use strict";
-	    return Serializer.serializeBlockList(this.rootBlockList().id)
+	    return BlockListStore.find(this.rootBlockList().id).toJSON()
 	  };
 	
 	  ColonelKurtz.prototype.toHtml=function()         {"use strict";
@@ -150,8 +148,6 @@ var ColonelKurtz =
 	ColonelKurtz.addBlockType('medium', __webpack_require__(/*! components/block_types/medium */ 9))
 	
 	module.exports = ColonelKurtz
-	
-	exportGlobal('ColonelKurtz', ColonelKurtz)
 
 
 /***/ },
@@ -260,13 +256,13 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var BlockList  = __webpack_require__(/*! ../models/block_list */ 24)
 	var BlockConstants = __webpack_require__(/*! ../constants/block_constants */ 21)
-	var BlockStore = __webpack_require__(/*! ../stores/block_store */ 14)
-	var Constants  = __webpack_require__(/*! ../constants/block_list_constants */ 20)
-	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 23)
-	var Immutable  = __webpack_require__(/*! immutable */ 13)
-	var Bus        = __webpack_require__(/*! ../bus */ 25)
+	var BlockList      = __webpack_require__(/*! ../models/block_list */ 24)
+	var BlockStore     = __webpack_require__(/*! ../stores/block_store */ 14)
+	var Bus            = __webpack_require__(/*! ../bus */ 25)
+	var Constants      = __webpack_require__(/*! ../constants/block_list_constants */ 20)
+	var Dispatcher     = __webpack_require__(/*! ../dispatcher */ 23)
+	var Immutable      = __webpack_require__(/*! immutable */ 13)
 	
 	var _blockLists = Immutable.List()
 	
@@ -276,16 +272,20 @@ var ColonelKurtz =
 	    return _blockLists
 	  },
 	
-	  findByEditorId:function(editorId        ) {
-	    return this.all().find(function(blockList)  {return blockList.editorId === editorId;}) || null
+	  findByKey:function(key, value) {
+	    return this.all().find(function(item)  {return item[key] === value;}) || null
 	  },
 	
-	  findByBlockId:function(blockId        ) {
-	    return this.all().find(function(blockList)  {return blockList.blockId === blockId;}) || null
+	  findByEditorId:function(id        ) {
+	    return BlockListStore.findByKey('editorId', id)
+	  },
+	
+	  findByBlockId:function(id        ) {
+	    return BlockListStore.findByKey('blockId', id)
 	  },
 	
 	  find:function(id        ) {
-	    return this.all().find(function(list)  {return list.id === id;}) || null
+	    return BlockListStore.findByKey('id', id)
 	  },
 	
 	  _create:function(params        )       {
@@ -392,33 +392,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 6 */
-/*!**********************************************!*\
-  !*** ./colonel-kurtz/utils/export_global.js ***!
-  \**********************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	                          
-	                          
-	
-	var exportGlobal = function(name        , object     ) {
-	    if (typeof(GLOBAL) !== "undefined")  {
-	        GLOBAL[name] = object
-	    }
-	    else if (typeof(window) !== "undefined") {
-	        window[name] = object
-	    }
-	    else {
-	        throw new Error("Unknown run-time environment. Currently only browsers and Node.js are supported.")
-	    }
-	}
-	
-	module.exports = exportGlobal
-
-
-/***/ },
+/* 6 */,
 /* 7 */
 /*!************************************!*\
   !*** ./colonel-kurtz/utils/uid.js ***!
@@ -4889,7 +4863,6 @@ var ColonelKurtz =
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
-	
 	var uid = __webpack_require__(/*! ../utils/uid */ 7)
 	
 	var BlockList = function(params                                     ) {
@@ -4913,6 +4886,16 @@ var ColonelKurtz =
 	
 	  insertBlock:function(block, position        ) {
 	    this._blocks.splice(position, 0, block.id)
+	  },
+	
+	  toJSON:function() {
+	    // Note: This is to get around circular dependency issues
+	    var Block = __webpack_require__(/*! ../stores/block_store */ 14)
+	
+	    return {
+	      id: this.id,
+	      blocks: this.all().map(function(id)  {return Block.find(id).toJSON();})
+	    }
 	  }
 	}
 	
@@ -6857,19 +6840,31 @@ var ColonelKurtz =
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
-	
-	var uid = __webpack_require__(/*! ../utils/uid */ 7)
+	var uid       = __webpack_require__(/*! ../utils/uid */ 7)
+	var BlockList = __webpack_require__(/*! ../stores/block_list_store */ 4)
 	
 	
 	             
 	                            
 	
-	  function Block(params)                                            {"use strict";
+	  function Block(params)                                              {"use strict";
 	    this.id = uid()
 	    this.parentBlockListId = params.parentBlockListId
 	    this.content = null
 	    this.type = params.type || 'text'
 	  }
+	
+	  Block.prototype.toJSON=function() {"use strict";
+	    // Note: This is to get around circular dependency issues
+	    var BlockList = __webpack_require__(/*! ../stores/block_list_store */ 4)
+	
+	    return {
+	      childBlockList : BlockList.findByBlockId(this.id).toJSON(),
+	      content        : this.content,
+	      id             : this.id,
+	      type           : this.type
+	    }
+	  };
 	
 	
 	module.exports = Block
@@ -6932,7 +6927,7 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var Serializer = __webpack_require__(/*! ../stores/serializer_store */ 201)
+	var BlockList = __webpack_require__(/*! ../stores/block_list_store */ 4)
 	var Monitor   = __webpack_require__(/*! ../mixins/monitor */ 175)
 	var React     = __webpack_require__(/*! react */ 10)
 	
@@ -6948,17 +6943,13 @@ var ColonelKurtz =
 	
 	  getState:function()         {
 	    return {
-	      data: Serializer.serializeBlockList(this.props.initialBlockListId)
+	      list: BlockList.find(this.props.initialBlockListId)
 	    }
-	  },
-	
-	  toJSON:function()         {
-	    return this.state.data
 	  },
 	
 	  render:function()      {
 	    return (
-	      React.createElement("pre", null,  JSON.stringify(this, undefined, this.props.indentation) )
+	      React.createElement("pre", null,  JSON.stringify(this.state.list, undefined, this.props.indentation) )
 	    )
 	  }
 	
@@ -26878,35 +26869,6 @@ var ColonelKurtz =
 	}
 	
 	module.exports = toArray;
-
-
-/***/ },
-/* 201 */
-/*!**************************************************!*\
-  !*** ./colonel-kurtz/stores/serializer_store.js ***!
-  \**************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	var Block     = __webpack_require__(/*! ../stores/block_store */ 14)
-	var BlockList = __webpack_require__(/*! ../stores/block_list_store */ 4)
-	
-	var Serializer = {
-	
-	  serializeBlock:function(id) {
-	    var $__0=     Block.find(id),type=$__0.type,content=$__0.content
-	    var childBlockList = Serializer.serializeBlockList(BlockList.findByBlockId(id).id)
-	
-	    return { id:id, type:type, content:content, childBlockList:childBlockList }
-	  },
-	
-	  serializeBlockList:function(id) {
-	    var blocks = BlockList.find(id).all().map(Serializer.serializeBlock)
-	    return { id:id, blocks:blocks }
-	  }
-	}
-	
-	module.exports = Serializer
 
 
 /***/ }

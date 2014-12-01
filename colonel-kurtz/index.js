@@ -1,5 +1,4 @@
 /* @flow */
-
 var React            = require('react')
 var Immutable        = require('immutable')
 var App              = require('./components/app')
@@ -11,7 +10,6 @@ var BlockTypeMixin   = require('mixins/block_type')
 var exportGlobal     = require('./utils/export_global')
 var uid              = require('./utils/uid')
 var assign           = require('object.assign')
-var Serializer       = require('./stores/serializer_store')
 
 require('array.prototype.find')
 require('style/colonel')
@@ -46,7 +44,7 @@ class ColonelKurtz {
   }
 
   toJSON() {
-    return Serializer.serializeBlockList(this.rootBlockList().id)
+    return BlockListStore.find(this.rootBlockList().id).toJSON()
   }
 
   toHtml(): string {
@@ -100,5 +98,3 @@ ColonelKurtz.createBlock = function(blockClass) {
 ColonelKurtz.addBlockType('medium', require('components/block_types/medium'))
 
 module.exports = ColonelKurtz
-
-exportGlobal('ColonelKurtz', ColonelKurtz)

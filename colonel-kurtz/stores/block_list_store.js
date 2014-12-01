@@ -1,12 +1,12 @@
 /* @flow */
 
-var BlockList  = require('../models/block_list')
 var BlockConstants = require('../constants/block_constants')
-var BlockStore = require('../stores/block_store')
-var Constants  = require('../constants/block_list_constants')
-var Dispatcher = require('../dispatcher')
-var Immutable  = require('immutable')
-var Bus        = require('../bus')
+var BlockList      = require('../models/block_list')
+var BlockStore     = require('../stores/block_store')
+var Bus            = require('../bus')
+var Constants      = require('../constants/block_list_constants')
+var Dispatcher     = require('../dispatcher')
+var Immutable      = require('immutable')
 
 var _blockLists = Immutable.List()
 
@@ -16,16 +16,20 @@ var BlockListStore = {
     return _blockLists
   },
 
-  findByEditorId(editorId: number) {
-    return this.all().find(blockList => blockList.editorId === editorId) || null
+  findByKey(key, value) {
+    return this.all().find(item => item[key] === value) || null
   },
 
-  findByBlockId(blockId: number) {
-    return this.all().find(blockList => blockList.blockId === blockId) || null
+  findByEditorId(id: number) {
+    return BlockListStore.findByKey('editorId', id)
+  },
+
+  findByBlockId(id: number) {
+    return BlockListStore.findByKey('blockId', id)
   },
 
   find(id: number) {
-    return this.all().find((list) => list.id === id) || null
+    return BlockListStore.findByKey('id', id)
   },
 
   _create(params: Object): void {

@@ -1,6 +1,6 @@
 /* @flow */
 
-var Serializer = require('../stores/serializer_store')
+var BlockList = require('../stores/block_list_store')
 var Monitor   = require('../mixins/monitor')
 var React     = require('react')
 
@@ -16,17 +16,13 @@ var JsonConsole = React.createClass({
 
   getState(): Object {
     return {
-      data: Serializer.serializeBlockList(this.props.initialBlockListId)
+      list: BlockList.find(this.props.initialBlockListId)
     }
-  },
-
-  toJSON(): Object {
-    return this.state.data
   },
 
   render(): any {
     return (
-      <pre>{ JSON.stringify(this, undefined, this.props.indentation) }</pre>
+      <pre>{ JSON.stringify(this.state.list, undefined, this.props.indentation) }</pre>
     )
   }
 
