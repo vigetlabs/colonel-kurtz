@@ -6941,15 +6941,16 @@ var ColonelKurtz =
 	               
 	
 	  function Block(params)                                             {"use strict";
+	    this.content = null
 	    this.id = uid()
 	    this.parentBlockListId = params.parentBlockListId
-	    this.content = null
 	    this.type = params.type || 'text'
 	  }
 	
 	  Block.prototype.toJSON=function()         {"use strict";
 	    // Note: This is to get around circular dependency issues
 	    var BlockList = __webpack_require__(/*! ../stores/block_list_store */ 4)
+	
 	    var blockList = BlockList.findByBlockId(this.id)
 	
 	    return {
