@@ -5,13 +5,50 @@
     <title>Colonel Kurtz</title>
     <link rel="stylesheet" href="../build/colonel-kurtz.css">
     <style>
+      html {
+        height: 100%;
+      }
+
       body {
+        display: table;
+        height: 100%;
         margin: 0;
+        width: 100%;
+      }
+
+      #app,
+      #show {
+        height: 100%;
+        display: table-cell;
+        vertical-align: top;
+      }
+
+      #app {
+        box-shadow: 1px 0 2px rgba(0, 0, 0, 0.05);
+        height: 100%;
+        width: 62.5%;
+      }
+
+      #show {
+        width: 37.5%;
+      }
+
+      #output {
+        background: transparent;
+        border: 0;
+        height: 100%;
+        padding: 16px;
+        width: 100%;
       }
     </style>
   </head>
   <body>
     <div id="app"></div>
+
+    <div id="show">
+      <textarea id="output"></textarea>
+    </div>
+
     <script src="../build/colonel-kurtz.js"></script>
     <script src="example.js"></script>
   </body>
