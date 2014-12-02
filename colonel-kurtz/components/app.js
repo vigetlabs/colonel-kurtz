@@ -1,6 +1,6 @@
 /* @flow */
 
-var AppConstants   = require('../constants/app_constants')
+var Modes          = require('../constants/mode_constants')
 var ContentSection = require('./content_section')
 var ModeSelection  = require('./mode_selection')
 var React          = require('react')
@@ -9,7 +9,7 @@ var App = React.createClass({
 
   getInitialState() {
     return {
-      mode: AppConstants.EDIT_MODE
+      mode: Modes.EDIT_MODE
     }
   },
 

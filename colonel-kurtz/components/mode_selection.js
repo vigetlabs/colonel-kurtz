@@ -1,24 +1,23 @@
 /* @flow */
 
-var React = require('react')
+var React  = require('react')
 var Button = require('./ui/button');
-var AppConstants = require('../constants/app_constants')
+var Modes  = require('../constants/mode_constants')
 
 var ModeSelection = React.createClass({
 
   propType: {
-    mode    : React.PropTypes.oneOf(AppConstants),
+    mode    : React.PropTypes.oneOf(Object.keys(Modes)),
     modes   : React.PropTypes.object,
     setMode : React.PropTypes.func
   },
 
   getDefaultProps(): Object {
     return {
-      mode: AppConstants.EDIT_MODE,
+      mode: Modes.EDIT_MODE,
       modes: {
-        'Edit'    : AppConstants.EDIT_MODE,
-        'Preview' : AppConstants.PREVIEW_MODE,
-        'JSON'    : AppConstants.JSON_CONSOLE_MODE
+        'Edit'    : Modes.EDIT_MODE,
+        'Preview' : Modes.PREVIEW_MODE
       }
     }
   },

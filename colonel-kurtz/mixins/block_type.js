@@ -11,9 +11,9 @@
  * @flow
  */
 
-var React        = require('react')
-var AppConstants = require('../constants/app_constants')
-var invariant    = require('react/lib/invariant')
+var React     = require('react')
+var Modes     = require('../constants/mode_constants')
+var invariant = require('react/lib/invariant')
 
 var BlockType = {
 
@@ -28,13 +28,13 @@ var BlockType = {
   },
 
   setContent(content:string): void {
-    this.setState({ content: content }, function() {
+    this.setState({ content }, function() {
       this.props.updateContent(this.state.content)
     })
   },
 
   editMode(): boolean {
-    return this.props.mode === AppConstants.EDIT_MODE
+    return this.props.mode === Modes.EDIT_MODE
   },
 
   render(): ReactElement {

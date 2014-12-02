@@ -1,3 +1,3 @@
 module.exports = {
-  Medium: require('../addons/medium')
+  Medium : require('../addons/medium')
 }

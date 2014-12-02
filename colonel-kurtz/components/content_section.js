@@ -1,18 +1,17 @@
 /* @flow */
 
-var React = require('react')
-var Constants = require('../constants/app_constants')
+var React  = require('react')
+var Modes  = require('../constants/mode_constants')
 
-var _types    = {}
+var _types = {}
 
-_types[Constants.EDIT_MODE]         = require('../components/editor')
-_types[Constants.PREVIEW_MODE]      = require('../components/previewer')
-_types[Constants.JSON_CONSOLE_MODE] = require('../components/json_console')
+_types[Modes.EDIT_MODE]    = require('../components/editor')
+_types[Modes.PREVIEW_MODE] = require('../components/previewer')
 
 var ContentSection = React.createClass({
 
   propTypes: {
-    mode: React.PropTypes.oneOf(Object.keys(Constants)).isRequired,
+    mode: React.PropTypes.oneOf(Object.keys(_types)).isRequired,
     initialBlockListId: React.PropTypes.number.isRequired
   },
 

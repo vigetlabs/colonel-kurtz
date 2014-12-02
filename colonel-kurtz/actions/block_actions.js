@@ -5,7 +5,7 @@ var Dispatcher = require('../dispatcher')
 
 var BlockActions = {
 
-  create(params: {parentBlockListId: number; position: number; blockType: string}) {
+  create(params: { parentBlockListId: number; position: number; blockType: string }) {
     Dispatcher.dispatch({
       type: BlockConstants.BLOCK_CREATE,
       blockType: params.blockType,
@@ -14,7 +14,7 @@ var BlockActions = {
     })
   },
 
-  destroy(params: {blockId: number; parentBlockListId: number}) {
+  destroy(params: { blockId: number; parentBlockListId: number }) {
     Dispatcher.dispatch({
       type: BlockConstants.BLOCK_DESTROY,
       blockId: params.blockId,

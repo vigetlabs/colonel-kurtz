@@ -1,6 +1,5 @@
 /* @flow */
 
-var AppConstants = require('../constants/app_constants')
 var BlockActions = require('../actions/block_actions')
 var BlockType    = require('../stores/block_type_store')
 var Monitor      = require('../mixins/monitor')
