@@ -53,7 +53,6 @@ describe('Stores - Block List', function() {
     expect(BlockListStore.findByBlockId(last.blockId)).toEqual(last)
   })
 
-
   it ('can push a block into a list', function() {
     BlockListStore._create({ })
 
