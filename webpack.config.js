@@ -12,7 +12,6 @@ module.exports = {
   output: {
     path: './build/',
     filename: '[name].js',
-    sourceMapFilename: '[name].js.map',
     libraryTarget: 'var',
     library: 'ColonelKurtz'
   },
@@ -23,7 +22,7 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin("colonel-kurtz.css"),
+    new ExtractTextPlugin("style.css"),
     new WebPack.DefinePlugin({
       '__DEV__' : process.env.NODE_ENV !== 'production'
     })
@@ -33,7 +32,7 @@ module.exports = {
     loaders: [
       {
         test    : /\.s(c|a)ss$/,
-        loader  : ExtractTextPlugin.extract('style-loader', 'css-loader!autoprefixer-loader!sass-loader')
+        loader  : ExtractTextPlugin.extract('style-loader', 'css-loader?sourceMap!autoprefixer-loader!sass-loader')
       },
       {
         test    : /\.jsx*$/,

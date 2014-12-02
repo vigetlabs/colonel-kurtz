@@ -58,6 +58,7 @@
     "array.prototype.find": "latest",
     "flux": "latest",
     "immutable": "latest",
+    "object-assign": "^2.0.0",
     "object.assign": "latest",
     "react": ">= 0.12.1",
     "react-ink": "^1.0.4"
