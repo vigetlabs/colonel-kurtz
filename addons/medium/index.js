@@ -12,6 +12,8 @@ var Editor    = require('./editor')
 var Previewer = require('./previewer')
 var React     = require('react')
 
+require('./vendor/medium-editor/style')
+
 var Medium = {
 
   defaultContent(): { html: string } {

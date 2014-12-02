@@ -4,8 +4,6 @@ var MediumEditor = require('./vendor/medium-editor')
 var React        = require('react')
 var Types        = React.PropTypes
 
-require('./vendor/medium-editor/style')
-
 var Editor = React.createClass({
 
   propTypes: {
@@ -29,9 +27,7 @@ var Editor = React.createClass({
 
   render(): any {
     return (
-      <div className="colonel-block-content">
-        <div className="colonel-block-editor" onBlur={ this._onBlur } role="textarea" aria-multiline="true" ref="editor" dangerouslySetInnerHTML={{ __html: this.props.html }} />
-      </div>
+      <div className="colonel-block-editor" onBlur={ this._onBlur } role="textarea" aria-multiline="true" ref="editor" dangerouslySetInnerHTML={{ __html: this.props.html }} />
     )
   },
 
@@ -40,7 +36,7 @@ var Editor = React.createClass({
 
     this.props.onBlur({
       text: editor.textContent,
-      html: editor.innerHtml
+      html: editor.innerHTML
     })
   }
 

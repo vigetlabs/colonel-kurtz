@@ -19,7 +19,11 @@ var Block = React.createClass({
     var { block, ...props } = this.props
     var { component:Component } = this.state
 
-    return <Component initialContent={ block.content } updateContent={ this._onUpdateContent } { ...props } />
+    return (
+      <div className="colonel-block-content">
+        <Component initialContent={ block.content } updateContent={ this._onUpdateContent } { ...props } />
+      </div>
+    )
   },
 
   _onUpdateContent(content) {

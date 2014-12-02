@@ -15,8 +15,8 @@ var Button = React.createClass({
 
     return (
       React.createElement(tagName, attrs, [
-        children,
-        <Ink key="__ink" color={ inkColor }/>
+        <Ink key="__ink" color={ inkColor } />,
+        children
       ])
     );
   }
