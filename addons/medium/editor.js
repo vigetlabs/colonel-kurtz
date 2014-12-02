@@ -36,8 +36,11 @@ var Editor = React.createClass({
   },
 
   _onBlur() {
+    var editor = this.refs.editor.getDOMNode()
+
     this.props.onBlur({
-      html: this.refs.editor.getDOMNode().innerHTML
+      text: editor.textContent,
+      html: editor.innerHtml
     })
   }
 
