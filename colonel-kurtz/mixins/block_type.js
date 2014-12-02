@@ -1,4 +1,15 @@
-/* @flow */
+/* Begin: Common Block Type Interface
+ *
+ * Each block type component must include the BlockType mixin and implement:
+ * - defaultContent()
+ * - renderEditor()
+ * - renderPreviewer()
+ *
+ * Block content is managed via calls to setContent(), which updates both
+ * this component's state as well as the block instance's content.
+ *
+ * @flow
+ */
 
 var React        = require('react')
 var AppConstants = require('../constants/app_constants')

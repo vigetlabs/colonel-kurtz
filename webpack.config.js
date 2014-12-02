@@ -6,7 +6,7 @@ module.exports = {
   devtool : 'source-map',
 
   entry: {
-    'colonel-kurtz': './colonel-kurtz/index.js'
+    'colonel-kurtz' : './colonel-kurtz/index.js'
   },
 
   output: {
@@ -19,7 +19,7 @@ module.exports = {
 
   resolve: {
     extensions: ['', '.js', '.jsx', '.json', '.scss'],
-    modulesDirectories: [ 'web_modules', 'node_modules', 'colonel-kurtz', 'vendor' ]
+    modulesDirectories: [ 'web_modules', 'node_modules', 'colonel-kurtz']
   },
 
   plugins: [

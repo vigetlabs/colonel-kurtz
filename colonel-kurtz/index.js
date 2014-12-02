@@ -3,8 +3,7 @@ var App              = require('./components/app')
 var BlockListActions = require('./actions/block_list_actions')
 var BlockListStore   = require('./stores/block_list_store')
 var BlockTypeActions = require('./actions/block_type_actions')
-var BlockTypeMixin   = require('./mixins/block_type')
-var BlockTypeStore   = require('./stores/block_type_store')
+var BlockTypeMixin   = require('mixins/block_type')
 var Immutable        = require('immutable')
 var React            = require('react')
 var assign           = require('object.assign')
@@ -75,27 +74,31 @@ class ColonelKurtz {
   _rootBlockListId(): number {
     var rootBlockList = this.rootBlockList()
 
-    if(rootBlockList) {
+    if (rootBlockList) {
       return rootBlockList.id
     }
   }
 
 }
 
-ColonelKurtz.addBlockType = function(id: string, component: ReactElement) {
+ColonelKurtz.addBlockType = function(id: string, component: any) {
+  if (React.isValidElement(component) === false) {
+    component = ColonelKurtz.createBlock(component)
+  }
+
   BlockTypeActions.create({ id, component })
 }
 
 ColonelKurtz.createBlock = function(blockClass) {
+  var mixins = blockClass.mixins || []
+
+  mixins = mixins.concat(BlockTypeMixin)
+
   return React.createClass(
-    assign(blockClass, {
-      React: React,
-      mixins: [BlockTypeMixin]
-    })
+    assign({}, blockClass, { React, mixins })
   )
 }
 
-// Add core block types
-ColonelKurtz.addBlockType('medium', require('components/block_types/medium'))
+ColonelKurtz.addons = require('./addons')
 
 module.exports = ColonelKurtz
