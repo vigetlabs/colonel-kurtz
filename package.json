@@ -49,6 +49,7 @@
     "jest-cli": "^0.1.18",
     "json-loader": "^0.5.1",
     "jsx-loader": "^0.12.2",
+    "react-tools": "^0.12.1",
     "sass-loader": "^0.3.1",
     "style-loader": "^0.8.2",
     "webpack": "^1.4.13"

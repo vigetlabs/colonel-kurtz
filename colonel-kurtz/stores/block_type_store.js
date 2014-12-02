@@ -1,5 +1,6 @@
 /* @flow */
 
+var React      = require('react')
 var Constants  = require('../constants/block_type_constants')
 var Dispatcher = require('../dispatcher')
 var Immutable  = require('immutable')
@@ -12,8 +13,8 @@ var BlockTypeStore = {
     return _blockTypes.toArray().map(b => b.id)
   },
 
-  find (id:number): Object {
-    return _blockTypes.find(b => b.id === id)
+  find (id:number): ?Object {
+    return _blockTypes.find(b => b.id === id) || null
   },
 
   _create (id: string, component: ReactElement): void {
