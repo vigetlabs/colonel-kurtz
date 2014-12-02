@@ -6,9 +6,11 @@ var BlockTypeActions = require('./actions/block_type_actions')
 var BlockTypeMixin   = require('mixins/block_type')
 var Immutable        = require('immutable')
 var React            = require('react')
-var assign           = require('object.assign')
 var uid              = require('./utils/uid')
 var Dispatcher       = require('./dispatcher')
+
+// Polyfill Object.assign for splat arguments
+Object.assign = require('object.assign')
 
 require('array.prototype.find')
 require('style/colonel')
@@ -103,7 +105,7 @@ ColonelKurtz.createBlock = function(blockClass) {
   mixins = mixins.concat(BlockTypeMixin)
 
   return React.createClass(
-    assign({}, blockClass, { React, mixins })
+    Object.assign({}, blockClass, { React, mixins })
   )
 }
 
