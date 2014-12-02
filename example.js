@@ -7,20 +7,27 @@ ColonelKurtz.addBlockType('text', {
   },
 
   renderEditor: function() {
-    var editor = this.React.createElement('div', { className: 'colonel-block-editor', onBlur: this.onEditorBlur, role: 'textarea', 'aria-multiline': 'true', ref: 'editor', contentEditable: true }, this.state.content.text);
-    return this.React.createElement('div', { className: 'colonel-block-content' }, editor);
+    return this.React.createElement('div', {
+      'aria-multiline': 'true',
+      className: 'colonel-block-editor',
+      contentEditable: true,
+      onBlur: this.onEditorBlur,
+      ref: 'editor',
+      role: 'textarea'
+    }, this.state.content.text)
   },
 
   renderPreviewer: function() {
-    return this.React.createElement('p', null, this.state.content.text);
+    return this.React.createElement('p', null, this.state.content.text)
   },
 
   onEditorBlur: function() {
-    var content = { text: this.refs.editor.getDOMNode().innerHTML };
-    this.setContent(content);
+    this.setContent({
+      text: this.refs.editor.getDOMNode().innerHTML
+    })
   }
 
-});
+})
 
 ColonelKurtz.addBlockType('medium', ColonelKurtz.addons.Medium)
 
