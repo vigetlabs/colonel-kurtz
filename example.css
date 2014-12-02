@@ -1,0 +1,45 @@
+html {
+  height: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+* {
+  -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+body {
+  display: table;
+  height: 100%;
+  margin: 0;
+  width: 100%;
+}
+
+#app,
+#show {
+  height: 100%;
+  display: table-cell;
+  vertical-align: top;
+}
+
+#app {
+  height: 100%;
+  width: 62.5%;
+}
+
+#show {
+  background: #fafafa;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.15) inset;
+  width: 37.5%;
+}
+
+#output {
+  background: transparent;
+  border: 0;
+  height: 100%;
+  padding: 16px;
+  width: 100%;
+}
