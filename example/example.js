@@ -24,4 +24,9 @@ ColonelKurtz.addBlockType('text', {
 
 ColonelKurtz.addBlockType('medium', ColonelKurtz.addons.Medium)
 
-new ColonelKurtz(document.getElementById('app')).render();
+var editor = new ColonelKurtz(document.getElementById('app')).render()
+var output = document.getElementById('output')
+
+editor.addCallback(function(json) {
+  output.value = JSON.stringify(json, null, 4)
+})

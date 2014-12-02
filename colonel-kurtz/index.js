@@ -8,11 +8,16 @@ var Immutable        = require('immutable')
 var React            = require('react')
 var assign           = require('object.assign')
 var uid              = require('./utils/uid')
+var Dispatcher       = require('./dispatcher')
 
 require('array.prototype.find')
 require('style/colonel')
 
 var _instances = []
+
+Dispatcher.register(function(): void {
+  _instances.map(i => i.simulateChange())
+})
 
 class ColonelKurtz {
   _callbacks: Immutable.Set<Function>;
@@ -29,8 +34,9 @@ class ColonelKurtz {
     BlockListActions.create({ editorId: this.id })
   }
 
-  render(): void {
+  render(): ColonelKurtz {
     React.render(this._rootComponent(), this._getDomElement())
+    return this
   }
 
   simulateChange(): void {
@@ -66,8 +72,10 @@ class ColonelKurtz {
   }
 
   _runCallbacks(): void {
+    var json = this.toJSON()
+
     this._callbacks.forEach(function(callback){
-      callback()
+      callback(json)
     })
   }
 

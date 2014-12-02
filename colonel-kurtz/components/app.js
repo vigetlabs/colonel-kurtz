@@ -1,9 +1,9 @@
 /* @flow */
 
-var React = require('react')
-var AppConstants = require('../constants/app_constants')
-var ModeSelection = require('./mode_selection')
+var AppConstants   = require('../constants/app_constants')
 var ContentSection = require('./content_section')
+var ModeSelection  = require('./mode_selection')
+var React          = require('react')
 
 var App = React.createClass({
 
@@ -22,7 +22,7 @@ var App = React.createClass({
   },
 
   render(): any {
-    return(
+    return (
       <div className="colonel">
         <ModeSelection mode={ this.state.mode } setMode={ this.setMode } />
         <ContentSection mode={ this.state.mode } initialBlockListId={ this.getBlockListId() } />
