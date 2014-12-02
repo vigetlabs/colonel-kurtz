@@ -49,16 +49,16 @@ var ColonelKurtz =
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
-	var React            = __webpack_require__(/*! react */ 11)
-	var Immutable        = __webpack_require__(/*! immutable */ 12)
 	var App              = __webpack_require__(/*! ./components/app */ 1)
 	var BlockListActions = __webpack_require__(/*! ./actions/block_list_actions */ 2)
-	var BlockTypeActions = __webpack_require__(/*! ./actions/block_type_actions */ 3)
 	var BlockListStore   = __webpack_require__(/*! ./stores/block_list_store */ 4)
+	var BlockTypeActions = __webpack_require__(/*! ./actions/block_type_actions */ 3)
+	var BlockTypeMixin   = __webpack_require__(/*! ./mixins/block_type */ 7)
 	var BlockTypeStore   = __webpack_require__(/*! ./stores/block_type_store */ 5)
-	var BlockTypeMixin   = __webpack_require__(/*! mixins/block_type */ 7)
-	var uid              = __webpack_require__(/*! ./utils/uid */ 6)
+	var Immutable        = __webpack_require__(/*! immutable */ 12)
+	var React            = __webpack_require__(/*! react */ 11)
 	var assign           = __webpack_require__(/*! object.assign */ 9)
+	var uid              = __webpack_require__(/*! ./utils/uid */ 6)
 	
 	__webpack_require__(/*! array.prototype.find */ 10)
 	__webpack_require__(/*! style/colonel */ 13)
@@ -93,7 +93,9 @@ var ColonelKurtz =
 	  };
 	
 	  ColonelKurtz.prototype.toJSON=function() {"use strict";
-	    return BlockListStore.find(this.rootBlockList().id).toJSON()
+	    var root = BlockListStore.find(this.rootBlockList().id)
+	
+	    return root ? root.toJSON() : {}
 	  };
 	
 	  ColonelKurtz.prototype.toHtml=function()         {"use strict";
@@ -130,7 +132,7 @@ var ColonelKurtz =
 	
 	
 	
-	ColonelKurtz.addBlockType = function(id, component) {
+	ColonelKurtz.addBlockType = function(id        , component              ) {
 	  BlockTypeActions.create({ id:id, component:component })
 	}
 	
@@ -202,8 +204,8 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var BlockListConstants = __webpack_require__(/*! ../constants/block_list_constants */ 20)
-	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 19)
+	var BlockListConstants = __webpack_require__(/*! ../constants/block_list_constants */ 19)
+	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 22)
 	
 	var BlockListActions = {
 	
@@ -229,20 +231,23 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var Constants  = __webpack_require__(/*! constants/block_type_constants */ 22)
-	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 19)
+	var Constants  = __webpack_require__(/*! ../constants/block_type_constants */ 20)
+	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 22)
 	
 	var BlockTypeActions = {
 	
-	  create:function(params) {
+	  create:function(params                                       )        {
+	    var type        = Constants.BLOCK_TYPE_CREATE
+	
 	    Dispatcher.dispatch({
-	      type: Constants.BLOCK_TYPE_CREATE,
+	      component: params.component,
 	      id: params.id,
-	      component: params.component
+	      type: type
 	    })
 	  }
 	
 	}
+	
 	module.exports = BlockTypeActions
 
 
@@ -259,8 +264,8 @@ var ColonelKurtz =
 	var BlockList      = __webpack_require__(/*! ../models/block_list */ 23)
 	var BlockStore     = __webpack_require__(/*! ../stores/block_store */ 18)
 	var Bus            = __webpack_require__(/*! ../bus */ 24)
-	var Constants      = __webpack_require__(/*! ../constants/block_list_constants */ 20)
-	var Dispatcher     = __webpack_require__(/*! ../dispatcher */ 19)
+	var Constants      = __webpack_require__(/*! ../constants/block_list_constants */ 19)
+	var Dispatcher     = __webpack_require__(/*! ../dispatcher */ 22)
 	var Immutable      = __webpack_require__(/*! immutable */ 12)
 	
 	var _blockLists = Immutable.List()
@@ -271,19 +276,19 @@ var ColonelKurtz =
 	    return _blockLists
 	  },
 	
-	  findByKey:function(key, value) {
+	  findByKey:function(key       , value    )      {
 	    return this.all().find(function(item)  {return item[key] === value;}) || null
 	  },
 	
-	  findByEditorId:function(id        ) {
+	  findByEditorId:function(id        )             {
 	    return BlockListStore.findByKey('editorId', id)
 	  },
 	
-	  findByBlockId:function(id        ) {
+	  findByBlockId:function(id        )             {
 	    return BlockListStore.findByKey('blockId', id)
 	  },
 	
-	  find:function(id        ) {
+	  find:function(id        )             {
 	    return BlockListStore.findByKey('id', id)
 	  },
 	
@@ -293,19 +298,22 @@ var ColonelKurtz =
 	    _blockLists = _blockLists.push(blockList)
 	  },
 	
-	  _createFromParent:function(block, position)       {
+	  _createFromParent:function(block      , position       )       {
 	    var parent = this.find(block.parentBlockListId)
-	    var blockList = new BlockList({ editorId: parent.editorId, blockId: block.id})
 	
-	    _blockLists = _blockLists.push(blockList)
+	    if (parent) {
+	      var blockList = new BlockList({ editorId: parent.editorId, blockId: block.id})
+	      _blockLists = _blockLists.push(blockList)
+	    }
 	  },
 	
-	  _addBlockToList:function(block       , position        ) {
+	  _addBlockToList:function(block       , position        )       {
 	    var blockList = this.find(block.parentBlockListId)
 	
-	    blockList.insertBlock(block, position)
-	
-	    Bus.publish()
+	    if (blockList) {
+	      blockList.insertBlock(block, position)
+	      Bus.publish()
+	    }
 	  },
 	
 	  _removeBlockFromList:function(blockId        , blockListId        ) {
@@ -349,33 +357,27 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var Constants  = __webpack_require__(/*! ../constants/block_type_constants */ 22)
-	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 19)
+	var Constants  = __webpack_require__(/*! ../constants/block_type_constants */ 20)
+	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 22)
 	var Immutable  = __webpack_require__(/*! immutable */ 12)
 	
 	var _blockTypes = Immutable.List()
 	
 	var BlockTypeStore = {
 	
-	  all:function()               {
-	    return _blockTypes
-	  },
-	
-	  keys:function() {
+	  keys:function()                {
 	    return _blockTypes.toArray().map(function(b)  {return b.id;})
 	  },
 	
-	  find:function(id)        {
-	    return BlockTypeStore.all().find(function(blockType) {
-	      return blockType.id === id
-	    })
+	  find:function (id       )         {
+	    return _blockTypes.find(function(b)  {return b.id === id;})
 	  },
 	
-	  _create:function(id, component) {
+	  _create:function (id        , component              )       {
 	    _blockTypes = _blockTypes.push({ id:id, component:component })
 	  },
 	
-	  dispatchToken: Dispatcher.register(function(action) {
+	  dispatchToken: Dispatcher.register(function(action        ) {
 	    switch (action.type) {
 	      case Constants.BLOCK_TYPE_CREATE:
 	        BlockTypeStore._create(action.id, action.component)
@@ -418,12 +420,12 @@ var ColonelKurtz =
 	/* @flow */
 	
 	var React        = __webpack_require__(/*! react */ 11)
-	var AppConstants = __webpack_require__(/*! constants/app_constants */ 17)
+	var AppConstants = __webpack_require__(/*! ../constants/app_constants */ 17)
 	var invariant    = __webpack_require__(/*! react/lib/invariant */ 25)
 	
 	var BlockType = {
 	
-	  getInitialState:function() {
+	  getInitialState:function()         {
 	    if (true) {
 	      invariant(this.defaultContent, "BlockType mixin requires `defaultContent` implementation.");
 	    }
@@ -433,17 +435,17 @@ var ColonelKurtz =
 	    }
 	  },
 	
-	  setContent:function(content) {
+	  setContent:function(content       )       {
 	    this.setState({ content: content }, function() {
 	      this.props.updateContent(this.state.content)
 	    })
 	  },
 	
-	  editMode:function() {
+	  editMode:function()          {
 	    return this.props.mode === AppConstants.EDIT_MODE
 	  },
 	
-	  render:function() {
+	  render:function()               {
 	    if (true) {
 	      invariant(this.renderEditor, "BlockType mixin requires `renderEditor` implementation.");
 	      invariant(this.renderPreviewer, "BlockType mixin requires `renderPreviewer` implementation.");
@@ -467,10 +469,10 @@ var ColonelKurtz =
 	/* @flow */
 	
 	var React        = __webpack_require__(/*! react */ 11)
-	var MediumEditor = __webpack_require__(/*! vendor/medium-editor */ 29)
+	var MediumEditor = __webpack_require__(/*! vendor/medium-editor */ 28)
 	var BlockType    = __webpack_require__(/*! mixins/block_type */ 7)
 	
-	__webpack_require__(/*! vendor/medium-editor/style */ 27)
+	__webpack_require__(/*! vendor/medium-editor/style */ 26)
 	
 	var Medium = React.createClass({displayName: 'Medium',
 	
@@ -486,17 +488,17 @@ var ColonelKurtz =
 	
 	  mixins: [ BlockType ],
 	
-	  shouldComponentUpdate:function() {
+	  shouldComponentUpdate:function(props        , state        )          {
 	    return false
 	  },
 	
-	  defaultContent:function() {
+	  defaultContent:function()                   {
 	    return {
 	      html: ''
 	    }
 	  },
 	
-	  renderEditor:function() {
+	  renderEditor:function()      {
 	    return (
 	      React.createElement("div", {className: "colonel-block-content"}, 
 	        React.createElement("div", {className: "colonel-block-editor", onBlur:  this.onEditorBlur, role: "textarea", 'aria-multiline': "true", ref: "editor", dangerouslySetInnerHTML: { __html: this.state.content.html}})
@@ -504,7 +506,7 @@ var ColonelKurtz =
 	    )
 	  },
 	
-	  renderPreviewer:function() {
+	  renderPreviewer:function()      {
 	    return (
 	      React.createElement("div", {dangerouslySetInnerHTML: { __html: this.state.content.html}})
 	    )
@@ -512,7 +514,7 @@ var ColonelKurtz =
 	
 	  // End: Common Block Type Interface
 	
-	  componentDidMount:function() {
+	  componentDidMount:function()       {
 	    if (this.editMode()) {
 	      this.setState({
 	        editor: new MediumEditor(this.refs.editor.getDOMNode(), this.props.options)
@@ -520,13 +522,13 @@ var ColonelKurtz =
 	    }
 	  },
 	
-	  componentWillUnmount:function() {
+	  componentWillUnmount:function()       {
 	    if (this.editMode()) {
 	      this.state.editor.deactivate()
 	    }
 	  },
 	
-	  onEditorBlur:function() {
+	  onEditorBlur:function()       {
 	    var htmlContent = { html: this.refs.editor.getDOMNode().innerHTML }
 	    this.setContent(htmlContent)
 	  },
@@ -4577,7 +4579,7 @@ var ColonelKurtz =
 	/* @flow */
 	
 	var React = __webpack_require__(/*! react */ 11)
-	var Button = __webpack_require__(/*! ./ui/button */ 36);
+	var Button = __webpack_require__(/*! ./ui/button */ 35);
 	var AppConstants = __webpack_require__(/*! ../constants/app_constants */ 17)
 	
 	var ModeSelection = React.createClass({displayName: 'ModeSelection',
@@ -4684,7 +4686,7 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 35)
+	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 36)
 	
 	var AppConstants = KeyMirror({
 	  EDIT_MODE : null,
@@ -4707,7 +4709,7 @@ var ColonelKurtz =
 	var Bus        = __webpack_require__(/*! ../bus */ 24)
 	var Block      = __webpack_require__(/*! ../models/block */ 34)
 	var Constants  = __webpack_require__(/*! ../constants/block_constants */ 21)
-	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 19)
+	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 22)
 	var Immutable  = __webpack_require__(/*! immutable */ 12)
 	
 	var _blocks = Immutable.List()
@@ -4771,6 +4773,67 @@ var ColonelKurtz =
 
 /***/ },
 /* 19 */
+/*!*********************************************************!*\
+  !*** ./colonel-kurtz/constants/block_list_constants.js ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 36)
+	
+	var BlockListConstants = KeyMirror({
+	  BLOCK_LIST_CREATE  : null,
+	  BLOCK_LIST_CREATED : null,
+	  BLOCK_LIST_CHANGE  : null
+	})
+	
+	module.exports = BlockListConstants
+
+
+/***/ },
+/* 20 */
+/*!*********************************************************!*\
+  !*** ./colonel-kurtz/constants/block_type_constants.js ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 36)
+	
+	var BlockTypeConstants = KeyMirror({
+	  BLOCK_TYPE_CREATE : null
+	})
+	
+	module.exports = BlockTypeConstants
+
+
+/***/ },
+/* 21 */
+/*!****************************************************!*\
+  !*** ./colonel-kurtz/constants/block_constants.js ***!
+  \****************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 36)
+	
+	var BlockConstants = KeyMirror({
+	  BLOCK_CREATE    : null,
+	  BLOCK_CREATED   : null,
+	  BLOCK_DESTROY   : null,
+	  BLOCK_DESTROYED : null,
+	  BLOCK_UPDATE    : null
+	
+	})
+	
+	module.exports = BlockConstants
+
+
+/***/ },
+/* 22 */
 /*!*******************************************!*\
   !*** ./colonel-kurtz/dispatcher/index.js ***!
   \*******************************************/
@@ -4793,67 +4856,6 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 20 */
-/*!*********************************************************!*\
-  !*** ./colonel-kurtz/constants/block_list_constants.js ***!
-  \*********************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 35)
-	
-	var BlockListConstants = KeyMirror({
-	  BLOCK_LIST_CREATE  : null,
-	  BLOCK_LIST_CREATED : null,
-	  BLOCK_LIST_CHANGE  : null
-	})
-	
-	module.exports = BlockListConstants
-
-
-/***/ },
-/* 21 */
-/*!****************************************************!*\
-  !*** ./colonel-kurtz/constants/block_constants.js ***!
-  \****************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 35)
-	
-	var BlockConstants = KeyMirror({
-	  BLOCK_CREATE    : null,
-	  BLOCK_CREATED   : null,
-	  BLOCK_DESTROY   : null,
-	  BLOCK_DESTROYED : null,
-	  BLOCK_UPDATE    : null
-	
-	})
-	
-	module.exports = BlockConstants
-
-
-/***/ },
-/* 22 */
-/*!*********************************************************!*\
-  !*** ./colonel-kurtz/constants/block_type_constants.js ***!
-  \*********************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 35)
-	
-	var BlockTypeConstants = KeyMirror({
-	  BLOCK_TYPE_CREATE : null
-	})
-	
-	module.exports = BlockTypeConstants
-
-
-/***/ },
 /* 23 */
 /*!********************************************!*\
   !*** ./colonel-kurtz/models/block_list.js ***!
@@ -4864,29 +4866,31 @@ var ColonelKurtz =
 	var uid = __webpack_require__(/*! ../utils/uid */ 6)
 	
 	
-	             
 	                  
+	                   
+	             
+	                         
 	
-	 function BlockList(params)                                        {"use strict";
+	  function BlockList(params)                                        {"use strict";
 	    this.editorId = params.editorId
 	    this.blockId = params.blockId
-	    this.id = uid()
+	    this.id      = uid()
 	    this.$BlockList_blocks = []
 	  }
 	
-	  BlockList.prototype.all=function() {"use strict";
+	  BlockList.prototype.all=function()         {"use strict";
 	    return this.$BlockList_blocks
 	  };
 	
-	  BlockList.prototype.removeBlock=function(blockId) {"use strict";
+	  BlockList.prototype.removeBlock=function(blockId)               {"use strict";
 	    this.$BlockList_blocks = this.$BlockList_blocks.filter(function(id)  {return id !== blockId;})
 	  };
 	
-	  BlockList.prototype.insertBlock=function(block, position)         {"use strict";
+	  BlockList.prototype.insertBlock=function(block      , position)               {"use strict";
 	    this.$BlockList_blocks.splice(position, 0, block.id)
 	  };
 	
-	  BlockList.prototype.toJSON=function() {"use strict";
+	  BlockList.prototype.toJSON=function()          {"use strict";
 	    // Note: This is to get around circular dependency issues
 	    var Block = __webpack_require__(/*! ../stores/block_store */ 18)
 	
@@ -5020,8 +5024,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 26 */,
-/* 27 */
+/* 26 */
 /*!*****************************************!*\
   !*** ./vendor/medium-editor/style.scss ***!
   \*****************************************/
@@ -5030,8 +5033,8 @@ var ColonelKurtz =
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 28 */,
-/* 29 */
+/* 27 */,
+/* 28 */
 /*!***************************************!*\
   !*** ./vendor/medium-editor/index.js ***!
   \***************************************/
@@ -6639,6 +6642,7 @@ var ColonelKurtz =
 
 
 /***/ },
+/* 29 */,
 /* 30 */
 /*!******************************!*\
   !*** ./~/react/lib/React.js ***!
@@ -6931,22 +6935,25 @@ var ColonelKurtz =
 	var BlockList = __webpack_require__(/*! ../stores/block_list_store */ 4)
 	
 	
+	                   
 	             
 	                            
+	               
 	
-	  function Block(params)                                              {"use strict";
+	  function Block(params)                                             {"use strict";
 	    this.id = uid()
 	    this.parentBlockListId = params.parentBlockListId
 	    this.content = null
 	    this.type = params.type || 'text'
 	  }
 	
-	  Block.prototype.toJSON=function() {"use strict";
+	  Block.prototype.toJSON=function()         {"use strict";
 	    // Note: This is to get around circular dependency issues
 	    var BlockList = __webpack_require__(/*! ../stores/block_list_store */ 4)
+	    var blockList = BlockList.findByBlockId(this.id)
 	
 	    return {
-	      childBlockList : BlockList.findByBlockId(this.id).toJSON(),
+	      childBlockList : blockList ? blockList.toJSON() : [],
 	      content        : this.content,
 	      id             : this.id,
 	      type           : this.type
@@ -6959,6 +6966,40 @@ var ColonelKurtz =
 
 /***/ },
 /* 35 */
+/*!***********************************************!*\
+  !*** ./colonel-kurtz/components/ui/button.js ***!
+  \***********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(/*! react */ 11);
+	var Ink   = __webpack_require__(/*! react-ink */ 129);
+	
+	var Button = React.createClass({displayName: 'Button',
+	
+	  getDefaultProps:function() {
+	    return {
+	      inkColor : null,
+	      tagName  : 'button'
+	    }
+	  },
+	
+	  render:function() {
+	    var $__0=       this.props,children=$__0.children,inkColor=$__0.inkColor,tagName=$__0.tagName,attrs=(function(source, exclusion) {var rest = {};var hasOwn = Object.prototype.hasOwnProperty;if (source == null) {throw new TypeError();}for (var key in source) {if (hasOwn.call(source, key) && !hasOwn.call(exclusion, key)) {rest[key] = source[key];}}return rest;})($__0,{children:1,inkColor:1,tagName:1});
+	
+	    return (
+	      React.createElement(tagName, attrs, [
+	        children,
+	        React.createElement(Ink, {key: "__ink", color: inkColor })
+	      ])
+	    );
+	  }
+	});
+	
+	module.exports = Button;
+
+
+/***/ },
+/* 36 */
 /*!**********************************!*\
   !*** ./~/react/lib/keyMirror.js ***!
   \**********************************/
@@ -7015,40 +7056,6 @@ var ColonelKurtz =
 	};
 	
 	module.exports = keyMirror;
-
-
-/***/ },
-/* 36 */
-/*!***********************************************!*\
-  !*** ./colonel-kurtz/components/ui/button.js ***!
-  \***********************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(/*! react */ 11);
-	var Ink   = __webpack_require__(/*! react-ink */ 129);
-	
-	var Button = React.createClass({displayName: 'Button',
-	
-	  getDefaultProps:function() {
-	    return {
-	      inkColor : null,
-	      tagName  : 'button'
-	    }
-	  },
-	
-	  render:function() {
-	    var $__0=       this.props,children=$__0.children,inkColor=$__0.inkColor,tagName=$__0.tagName,attrs=(function(source, exclusion) {var rest = {};var hasOwn = Object.prototype.hasOwnProperty;if (source == null) {throw new TypeError();}for (var key in source) {if (hasOwn.call(source, key) && !hasOwn.call(exclusion, key)) {rest[key] = source[key];}}return rest;})($__0,{children:1,inkColor:1,tagName:1});
-	
-	    return (
-	      React.createElement(tagName, attrs, [
-	        children,
-	        React.createElement(Ink, {key: "__ink", color: inkColor })
-	      ])
-	    );
-	  }
-	});
-	
-	module.exports = Button;
 
 
 /***/ },
@@ -7740,7 +7747,7 @@ var ColonelKurtz =
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 59);
 	var invariant = __webpack_require__(/*! ./invariant */ 25);
-	var keyMirror = __webpack_require__(/*! ./keyMirror */ 35);
+	var keyMirror = __webpack_require__(/*! ./keyMirror */ 36);
 	
 	/**
 	 * Every React component is in one of these life cycles.
@@ -8200,7 +8207,7 @@ var ColonelKurtz =
 	var assign = __webpack_require__(/*! ./Object.assign */ 59);
 	var instantiateReactComponent = __webpack_require__(/*! ./instantiateReactComponent */ 82);
 	var invariant = __webpack_require__(/*! ./invariant */ 25);
-	var keyMirror = __webpack_require__(/*! ./keyMirror */ 35);
+	var keyMirror = __webpack_require__(/*! ./keyMirror */ 36);
 	var keyOf = __webpack_require__(/*! ./keyOf */ 83);
 	var monitorCodeUse = __webpack_require__(/*! ./monitorCodeUse */ 84);
 	var mapObject = __webpack_require__(/*! ./mapObject */ 85);
@@ -14278,7 +14285,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var keyMirror = __webpack_require__(/*! ./keyMirror */ 35);
+	var keyMirror = __webpack_require__(/*! ./keyMirror */ 36);
 	
 	var PropagationPhases = keyMirror({bubbled: null, captured: null});
 	
@@ -15415,7 +15422,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var keyMirror = __webpack_require__(/*! ./keyMirror */ 35);
+	var keyMirror = __webpack_require__(/*! ./keyMirror */ 36);
 	
 	var ReactPropTypeLocations = keyMirror({
 	  prop: null,
@@ -17988,7 +17995,7 @@ var ColonelKurtz =
 	var ReactElement = __webpack_require__(/*! ./ReactElement */ 46);
 	var ReactDOM = __webpack_require__(/*! ./ReactDOM */ 48);
 	
-	var keyMirror = __webpack_require__(/*! ./keyMirror */ 35);
+	var keyMirror = __webpack_require__(/*! ./keyMirror */ 36);
 	
 	// Store a reference to the <button> `ReactDOMComponent`. TODO: use string
 	var button = ReactElement.createFactory(ReactDOM.button.type);
@@ -20218,7 +20225,7 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var keyMirror = __webpack_require__(/*! ./keyMirror */ 35);
+	var keyMirror = __webpack_require__(/*! ./keyMirror */ 36);
 	
 	/**
 	 * When a component's children are updated, a series of update configuration
@@ -20537,22 +20544,22 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var React = __webpack_require__(/*! react */ 11)
-	var BlockListStore = __webpack_require__(/*! ../stores/block_list_store */ 4)
-	var Monitor = __webpack_require__(/*! ./monitor */ 65)
+	var BlockList = __webpack_require__(/*! ../stores/block_list_store */ 4)
+	var Monitor   = __webpack_require__(/*! ./monitor */ 65)
+	var React     = __webpack_require__(/*! react */ 11)
 	
 	var ActsLikeBlockList = {
 	
 	  mixins: [ Monitor ],
 	
-	  getState:function()                            {
+	  getState:function()                              {
 	    return {
 	      blockIds: this.blockIds()
 	    }
 	  },
 	
-	  blockList:function() {
-	    return BlockListStore.find(this.blockListId())
+	  blockList:function()      {
+	    return BlockList.find(this.blockListId())
 	  },
 	
 	  blockListId:function()         {
@@ -20587,19 +20594,19 @@ var ColonelKurtz =
 	
 	  mixins: [ Monitor ],
 	
-	  getDefaultProps:function() {
+	  getDefaultProps:function()                       {
 	    return {
 	      position: 0
 	    }
 	  },
 	
-	  getState:function() {
+	  getState:function()                           {
 	    return {
 	      types: BlockType.keys()
 	    }
 	  },
 	
-	  getButton:function(type) {
+	  getButton:function(type       )      {
 	    return React.createElement(AddBlock, React.__spread({key: type, type: type },   this.props ))
 	  },
 	
@@ -25024,9 +25031,9 @@ var ColonelKurtz =
 	/* @flow */
 	
 	var React        = __webpack_require__(/*! react */ 11)
-	var Button       = __webpack_require__(/*! ./ui/button */ 36)
+	var Button       = __webpack_require__(/*! ./ui/button */ 35)
 	var BlockActions = __webpack_require__(/*! ../actions/block_actions */ 191)
-	var Strings      = __webpack_require__(/*! constants/strings */ 192)
+	var Strings      = __webpack_require__(/*! ../constants/strings */ 192)
 	
 	var AddBlock = React.createClass({displayName: 'AddBlock',
 	
@@ -25097,7 +25104,7 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var AppConstants = __webpack_require__(/*! constants/app_constants */ 17)
+	var AppConstants = __webpack_require__(/*! ../constants/app_constants */ 17)
 	var BlockActions = __webpack_require__(/*! ../actions/block_actions */ 191)
 	var BlockType    = __webpack_require__(/*! ../stores/block_type_store */ 5)
 	var Monitor      = __webpack_require__(/*! ../mixins/monitor */ 65)
@@ -25108,7 +25115,7 @@ var ColonelKurtz =
 	
 	  mixins: [ Monitor, Pure ],
 	
-	  getState:function() {
+	  getState:function()          {
 	    return BlockType.find(this.props.block.type)
 	  },
 	
@@ -25138,7 +25145,7 @@ var ColonelKurtz =
 	/* @flow */
 	
 	var React = __webpack_require__(/*! react */ 11)
-	var Button = __webpack_require__(/*! ./ui/button */ 36)
+	var Button = __webpack_require__(/*! ./ui/button */ 35)
 	var BlockActions = __webpack_require__(/*! ../actions/block_actions */ 191)
 	var Strings = __webpack_require__(/*! constants/strings */ 192)
 	
@@ -26099,7 +26106,7 @@ var ColonelKurtz =
 	/* @flow */
 	
 	var BlockConstants = __webpack_require__(/*! ../constants/block_constants */ 21)
-	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 19)
+	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 22)
 	
 	var BlockActions = {
 	

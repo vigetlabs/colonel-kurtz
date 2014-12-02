@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=development webpack -wd",
     "build": "NODE_ENV=production webpack -p",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest colonel-kurtz"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 /* @flow */
 
-var AppConstants = require('constants/app_constants')
+var AppConstants = require('../constants/app_constants')
 var BlockActions = require('../actions/block_actions')
 var BlockType    = require('../stores/block_type_store')
 var Monitor      = require('../mixins/monitor')
@@ -11,7 +11,7 @@ var Block = React.createClass({
 
   mixins: [ Monitor, Pure ],
 
-  getState() {
+  getState(): ?Object {
     return BlockType.find(this.props.block.type)
   },
 

@@ -1,14 +1,14 @@
 /* @flow */
-var React            = require('react')
-var Immutable        = require('immutable')
 var App              = require('./components/app')
 var BlockListActions = require('./actions/block_list_actions')
-var BlockTypeActions = require('./actions/block_type_actions')
 var BlockListStore   = require('./stores/block_list_store')
+var BlockTypeActions = require('./actions/block_type_actions')
+var BlockTypeMixin   = require('./mixins/block_type')
 var BlockTypeStore   = require('./stores/block_type_store')
-var BlockTypeMixin   = require('mixins/block_type')
-var uid              = require('./utils/uid')
+var Immutable        = require('immutable')
+var React            = require('react')
 var assign           = require('object.assign')
+var uid              = require('./utils/uid')
 
 require('array.prototype.find')
 require('style/colonel')
@@ -43,7 +43,9 @@ class ColonelKurtz {
   }
 
   toJSON() {
-    return BlockListStore.find(this.rootBlockList().id).toJSON()
+    var root = BlockListStore.find(this.rootBlockList().id)
+
+    return root ? root.toJSON() : {}
   }
 
   toHtml(): string {
@@ -80,7 +82,7 @@ class ColonelKurtz {
 
 }
 
-ColonelKurtz.addBlockType = function(id, component) {
+ColonelKurtz.addBlockType = function(id: string, component: ReactElement) {
   BlockTypeActions.create({ id, component })
 }
 

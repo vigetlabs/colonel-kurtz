@@ -8,25 +8,19 @@ var _blockTypes = Immutable.List()
 
 var BlockTypeStore = {
 
-  all(): Array<Block> {
-    return _blockTypes
-  },
-
-  keys() {
+  keys(): Array<string> {
     return _blockTypes.toArray().map(b => b.id)
   },
 
-  find(id): Block {
-    return BlockTypeStore.all().find(function(blockType) {
-      return blockType.id === id
-    })
+  find (id:number): Object {
+    return _blockTypes.find(b => b.id === id)
   },
 
-  _create(id, component) {
+  _create (id: string, component: ReactElement): void {
     _blockTypes = _blockTypes.push({ id, component })
   },
 
-  dispatchToken: Dispatcher.register(function(action) {
+  dispatchToken: Dispatcher.register(function(action: Object) {
     switch (action.type) {
       case Constants.BLOCK_TYPE_CREATE:
         BlockTypeStore._create(action.id, action.component)

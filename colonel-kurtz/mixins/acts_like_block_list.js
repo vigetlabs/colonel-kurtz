@@ -1,21 +1,21 @@
 /* @flow */
 
-var React = require('react')
-var BlockListStore = require('../stores/block_list_store')
-var Monitor = require('./monitor')
+var BlockList = require('../stores/block_list_store')
+var Monitor   = require('./monitor')
+var React     = require('react')
 
 var ActsLikeBlockList = {
 
   mixins: [ Monitor ],
 
-  getState(): {blockIds: Array<number>} {
+  getState(): { blockIds: Array<number> } {
     return {
       blockIds: this.blockIds()
     }
   },
 
-  blockList() {
-    return BlockListStore.find(this.blockListId())
+  blockList(): any {
+    return BlockList.find(this.blockListId())
   },
 
   blockListId(): number {

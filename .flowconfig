@@ -1,3 +1,7 @@
-[ignore]
-
 [include]
+node_modules
+colonel-kurtz
+
+[ignore]
+vendor
+colonel-kurtz/style

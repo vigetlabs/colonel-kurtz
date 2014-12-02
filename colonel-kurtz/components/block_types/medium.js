@@ -20,17 +20,17 @@ var Medium = React.createClass({
 
   mixins: [ BlockType ],
 
-  shouldComponentUpdate() {
+  shouldComponentUpdate(props: Object, state: Object): boolean {
     return false
   },
 
-  defaultContent() {
+  defaultContent(): { html: string } {
     return {
       html: ''
     }
   },
 
-  renderEditor() {
+  renderEditor(): any {
     return (
       <div className="colonel-block-content">
         <div className="colonel-block-editor" onBlur={ this.onEditorBlur } role="textarea" aria-multiline="true" ref="editor" dangerouslySetInnerHTML={{ __html: this.state.content.html }} />
@@ -38,7 +38,7 @@ var Medium = React.createClass({
     )
   },
 
-  renderPreviewer() {
+  renderPreviewer(): any {
     return (
       <div dangerouslySetInnerHTML={{ __html: this.state.content.html }}></div>
     )
@@ -46,7 +46,7 @@ var Medium = React.createClass({
 
   // End: Common Block Type Interface
 
-  componentDidMount() {
+  componentDidMount(): void {
     if (this.editMode()) {
       this.setState({
         editor: new MediumEditor(this.refs.editor.getDOMNode(), this.props.options)
@@ -54,13 +54,13 @@ var Medium = React.createClass({
     }
   },
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     if (this.editMode()) {
       this.state.editor.deactivate()
     }
   },
 
-  onEditorBlur() {
+  onEditorBlur(): void {
     var htmlContent = { html: this.refs.editor.getDOMNode().innerHTML }
     this.setContent(htmlContent)
   },

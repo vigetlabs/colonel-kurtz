@@ -2,29 +2,31 @@
 var uid = require('../utils/uid')
 
 class BlockList {
-  id: number;
   blockId: number;
+  editorId: number;
+  id: number;
+  _blocks: Array<number>;
 
- constructor(params: { editorId: number; blockId: number }) {
+  constructor(params: { editorId: number; blockId: number }) {
     this.editorId = params.editorId
     this.blockId = params.blockId
-    this.id = uid()
+    this.id      = uid()
     this._blocks = []
   }
 
-  all() {
+  all() : Array {
     return this._blocks
   }
 
-  removeBlock(blockId) {
+  removeBlock(blockId:number) : void {
     this._blocks = this._blocks.filter(id => id !== blockId)
   }
 
-  insertBlock(block, position: number) {
+  insertBlock(block:Block, position:number) : void {
     this._blocks.splice(position, 0, block.id)
   }
 
-  toJSON() {
+  toJSON() : Object {
     // Note: This is to get around circular dependency issues
     var Block = require('../stores/block_store')
 

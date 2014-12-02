@@ -33,7 +33,7 @@ var BlockStore = {
     Bus.publish()
   },
 
-  _update(blockId: number, content: Object) {
+  _update(blockId: number, content: string) {
     var block = BlockStore.find(blockId)
 
     if (block) {

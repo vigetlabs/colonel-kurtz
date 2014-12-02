@@ -9,19 +9,19 @@ var BlockMenu = React.createClass({
 
   mixins: [ Monitor ],
 
-  getDefaultProps() {
+  getDefaultProps(): { position: number } {
     return {
       position: 0
     }
   },
 
-  getState() {
+  getState(): { types: Array<string> } {
     return {
       types: BlockType.keys()
     }
   },
 
-  getButton(type) {
+  getButton(type:string): any {
     return <AddBlock key={ type } type={ type } { ...this.props } />
   },
 

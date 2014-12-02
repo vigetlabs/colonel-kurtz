@@ -16,19 +16,19 @@ var BlockListStore = {
     return _blockLists
   },
 
-  findByKey(key, value) {
+  findByKey(key:string, value:any): any {
     return this.all().find(item => item[key] === value) || null
   },
 
-  findByEditorId(id: number) {
+  findByEditorId(id: number): ?BlockList {
     return BlockListStore.findByKey('editorId', id)
   },
 
-  findByBlockId(id: number) {
+  findByBlockId(id: number): ?BlockList {
     return BlockListStore.findByKey('blockId', id)
   },
 
-  find(id: number) {
+  find(id: number): ?BlockList {
     return BlockListStore.findByKey('id', id)
   },
 
@@ -38,19 +38,22 @@ var BlockListStore = {
     _blockLists = _blockLists.push(blockList)
   },
 
-  _createFromParent(block, position): void {
+  _createFromParent(block:Block, position:number): void {
     var parent = this.find(block.parentBlockListId)
-    var blockList = new BlockList({ editorId: parent.editorId, blockId: block.id})
 
-    _blockLists = _blockLists.push(blockList)
+    if (parent) {
+      var blockList = new BlockList({ editorId: parent.editorId, blockId: block.id})
+      _blockLists = _blockLists.push(blockList)
+    }
   },
 
-  _addBlockToList(block: Block, position: number) {
+  _addBlockToList(block: Block, position: number) :void {
     var blockList = this.find(block.parentBlockListId)
 
-    blockList.insertBlock(block, position)
-
-    Bus.publish()
+    if (blockList) {
+      blockList.insertBlock(block, position)
+      Bus.publish()
+    }
   },
 
   _removeBlockFromList(blockId: number, blockListId: number) {

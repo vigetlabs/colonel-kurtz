@@ -3,7 +3,7 @@
 var React        = require('react')
 var Button       = require('./ui/button')
 var BlockActions = require('../actions/block_actions')
-var Strings      = require('constants/strings')
+var Strings      = require('../constants/strings')
 
 var AddBlock = React.createClass({
 
