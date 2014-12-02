@@ -1,4 +1,19 @@
-/* @flow */
+/**
+ * Colonel Kurts
+ * A custom block editor
+ * @flow
+ */
+
+// Polyfill Object.assign for splat arguments
+if (!Object.assign) {
+  Object.assign = require('object-assign');
+}
+
+// Polyfill Array.prototype.find for easy record retrieval
+if (!Array.prototype.find) {
+  require('array.prototype.find')
+}
+
 var App              = require('./components/app')
 var BlockListActions = require('./actions/block_list_actions')
 var BlockListStore   = require('./stores/block_list_store')
@@ -9,10 +24,6 @@ var React            = require('react')
 var uid              = require('./utils/uid')
 var Dispatcher       = require('./dispatcher')
 
-// Polyfill Object.assign for splat arguments
-Object.assign = require('object.assign')
-
-require('array.prototype.find')
 require('style/colonel')
 
 var _instances = []
@@ -49,7 +60,7 @@ class ColonelKurtz {
     this._callbacks = this._callbacks.add(callback)
   }
 
-  toJSON() {
+  toJSON(): Object {
     var root = BlockListStore.find(this.rootBlockList().id)
 
     return root ? root.toJSON() : {}
@@ -59,7 +70,7 @@ class ColonelKurtz {
     return React.renderToStaticMarkup(this._rootComponent())
   }
 
-  rootBlockList() {
+  rootBlockList(): ?BlockList {
     return BlockListStore.findByEditorId(this.id)
   }
 

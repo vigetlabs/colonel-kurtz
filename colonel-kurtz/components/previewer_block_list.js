@@ -1,8 +1,8 @@
 /* @flow */
 
-var React = require('react')
-var PreviewerBlock = require('./previewer_block')
 var ActsLikeBlockList = require('../mixins/acts_like_block_list')
+var PreviewerBlock    = require('./previewer_block')
+var React             = require('react')
 
 var PreviewerBlockList = React.createClass({
 

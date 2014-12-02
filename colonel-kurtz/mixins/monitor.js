@@ -1,6 +1,8 @@
 /**
  * Listens to the Bus and calls a provided `getState` function when
  * the Bus publishes.
+ *
+ * @flow
  */
 
 var Bus       = require('../bus');
@@ -16,19 +18,19 @@ var Monitor = {
     return this.getState();
   },
 
-  updateState() {
+  updateState(): void {
     this.setState(this.getState());
   },
 
-  componentDidMount() {
+  componentDidMount(): void {
     Bus.subscribe(this.updateState);
   },
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     Bus.unsubscribe(this.updateState);
   },
 
-  componentWillReceiveProps() {
+  componentWillReceiveProps(): void {
     this.updateState();
   }
 

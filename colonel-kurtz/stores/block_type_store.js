@@ -1,9 +1,9 @@
 /* @flow */
 
-var React      = require('react')
 var Constants  = require('../constants/block_type_constants')
 var Dispatcher = require('../dispatcher')
 var Immutable  = require('immutable')
+var React      = require('react')
 
 var _blockTypes = Immutable.List()
 

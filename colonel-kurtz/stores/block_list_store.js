@@ -16,6 +16,10 @@ var BlockListStore = {
     return _blockLists
   },
 
+  last() {
+    return _blockLists.last()
+  },
+
   findByKey(key:string, value:any): any {
     return this.all().find(item => item[key] === value) || null
   },

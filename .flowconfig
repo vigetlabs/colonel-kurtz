@@ -1,7 +1,8 @@
 [include]
 node_modules
 colonel-kurtz
+addons
 
 [ignore]
 vendor
-colonel-kurtz/style
+./**/*.scss
