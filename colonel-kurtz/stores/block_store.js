@@ -14,8 +14,12 @@ var BlockStore = {
     return _blocks
   },
 
+  last() {
+    return _blocks.last()
+  },
+
   find(id: number): Block {
-    return BlockStore.all().find(block => block.id === id )
+    return _blocks.find(block => block.id === id )
   },
 
   _create(parentBlockListId: number, type: string): Block {
