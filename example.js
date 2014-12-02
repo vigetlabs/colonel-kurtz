@@ -1,4 +1,5 @@
-var TextBlock = ColonelKurtz.createBlock({
+ColonelKurtz.addBlockType('text', {
+
   defaultContent: function() {
     return {
       text: "I'm a plain text block."
@@ -18,8 +19,9 @@ var TextBlock = ColonelKurtz.createBlock({
     var content = { text: this.refs.editor.getDOMNode().innerHTML };
     this.setContent(content);
   }
+
 });
 
-ColonelKurtz.addBlockType('text', TextBlock);
+ColonelKurtz.addBlockType('medium', ColonelKurtz.addons.Medium)
 
 new ColonelKurtz(document.getElementById('app')).render();
