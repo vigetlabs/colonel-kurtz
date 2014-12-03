@@ -18,12 +18,15 @@ ColonelKurtz.addBlockType('text', {
   },
 
   renderPreviewer: function() {
-    return this.React.createElement('p', null, this.state.content.text)
+    return this.React.createElement('p', null, this.state.content.html)
   },
 
   onEditorBlur: function() {
+    var el = this.refs.editor.getDOMNode()
+
     this.setContent({
-      text: this.refs.editor.getDOMNode().innerHTML
+      text: el.textContent,
+      html: el.innerHTML
     })
   }
 
@@ -31,9 +34,20 @@ ColonelKurtz.addBlockType('text', {
 
 ColonelKurtz.addBlockType('medium', ColonelKurtz.addons.Medium)
 
-var editor = new ColonelKurtz(document.getElementById('app')).render()
+var seed = {};
+
+try {
+  seed = JSON.parse(localStorage.getItem('seed'))
+} catch(x) {}
+
+var editor = new ColonelKurtz({
+  el   : document.getElementById('app'),
+  seed : seed
+}).render()
+
 var output = document.getElementById('output')
 
 editor.addCallback(function(json) {
   output.value = JSON.stringify(json, null, 4)
+  localStorage.setItem('seed', JSON.stringify(json))
 })
