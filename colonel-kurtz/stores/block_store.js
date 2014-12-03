@@ -24,7 +24,7 @@ var BlockStore = {
 
   _create({ content, type, parentBlockListId }):Block {
     var block = new Block({ content, type, parentBlockListId })
-console.log(type)
+
     _blocks = _blocks.push(block)
 
     Bus.publish()

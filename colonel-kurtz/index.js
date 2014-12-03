@@ -22,6 +22,7 @@ var Immutable        = require('immutable')
 var React            = require('react')
 var uid              = require('./utils/uid')
 var Bus              = require('./bus')
+var seed             = require('./utils/seed')
 
 require('style/colonel')
 
@@ -40,20 +41,10 @@ class ColonelKurtz {
     BlockListActions.create({ editorId: this.id })
 
     if (config.seed) {
-      this.seed(BlockListStore.last().id, config.seed)
+      seed(BlockListStore.last().id, config.seed)
     }
 
     setTimeout(this.simulateChange.bind(this), 10)
-  }
-
-  seed(parentBlockListId, blocks) {
-    blocks.forEach(function(block, position) {
-      BlockActions.create({ position, parentBlockListId, ...block })
-
-      if ('blocks' in block) {
-        this.seed(BlockListStore.last().id, block.blocks)
-      }
-    }, this)
   }
 
   render(): ColonelKurtz {
