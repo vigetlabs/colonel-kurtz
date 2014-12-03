@@ -27,8 +27,8 @@ var ModeSelection = React.createClass({
 
     var props = {
       className : "colonel-tabs-btn",
-      disabled  :  mode === modes[key],
-      onClick   :  this._onModeClick
+      disabled  : mode === modes[key],
+      onClick   : e => this._onModeClick(e, modes[key])
     }
 
     return (
@@ -52,9 +52,10 @@ var ModeSelection = React.createClass({
     )
   },
 
-  _onModeClick(e: Event): void {
+  _onModeClick(e: Event, mode: string): void {
     e.preventDefault()
-    this.props.onChange(this.props.mode)
+
+    this.props.onChange(mode)
   }
 
 })
