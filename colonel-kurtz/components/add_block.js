@@ -17,10 +17,12 @@ var AddBlock = React.createClass({
     )
   },
 
-  _onClick() {
+  _onClick(e) {
     var { blockListId: parentBlockListId,type: blockType, position } = this.props
 
     BlockActions.create({ parentBlockListId, position, blockType })
+
+    e.preventDefault()
   }
 
 })
