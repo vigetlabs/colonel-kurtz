@@ -4,8 +4,13 @@ var Modes          = require('../constants/mode_constants')
 var ContentSection = require('./content_section')
 var ModeSelection  = require('./mode_selection')
 var React          = require('react')
+var Types          = React.PropTypes
 
 var App = React.createClass({
+
+  propTypes: {
+    root: Types.number.isRequired
+  },
 
   getInitialState() {
     return {
@@ -13,19 +18,15 @@ var App = React.createClass({
     }
   },
 
-  getBlockListId(): number {
-    return this.props.editor.rootBlockList().id
-  },
-
   setMode(mode: string): Function {
-    return () => this.setState({ mode: mode })
+    return () => this.setState({ mode })
   },
 
   render(): any {
     return (
       <div className="colonel">
         <ModeSelection mode={ this.state.mode } setMode={ this.setMode } />
-        <ContentSection mode={ this.state.mode } initialBlockListId={ this.getBlockListId() } />
+        <ContentSection mode={ this.state.mode } initialBlockListId={ this.props.root } />
       </div>
     )
   }

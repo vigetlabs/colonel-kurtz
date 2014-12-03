@@ -71,7 +71,7 @@ class ColonelKurtz {
   // Private
 
   _rootComponent(): ReactElement {
-    return <App editor={ this } />
+    return <App root={ this.rootBlockList().id } />
   }
 
   _getDomElement(): Element {
