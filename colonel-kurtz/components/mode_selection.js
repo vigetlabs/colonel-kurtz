@@ -7,9 +7,9 @@ var Modes  = require('../constants/mode_constants')
 var ModeSelection = React.createClass({
 
   propType: {
-    mode    : React.PropTypes.oneOf(Object.keys(Modes)),
-    modes   : React.PropTypes.object,
-    setMode : React.PropTypes.func
+    mode     : React.PropTypes.oneOf(Object.keys(Modes)),
+    modes    : React.PropTypes.object,
+    onChange : React.PropTypes.func.isRequired
   },
 
   getDefaultProps(): Object {
@@ -26,15 +26,14 @@ var ModeSelection = React.createClass({
     var { mode, modes, setMode } = this.props
 
     var props = {
-      onClick: setMode(modes[key]),
-      disabled: mode === modes[key]
+      className : "colonel-tabs-btn",
+      disabled  :  mode === modes[key],
+      onClick   :  this._onModeClick
     }
 
     return (
       <li key={ key } className="colonel-tabs-list-item" role="tab">
-        <Button className="colonel-tabs-btn" { ...props }>
-          { key }
-        </Button>
+        <Button { ...props }>{ key }</Button>
       </li>
     )
   },
@@ -51,6 +50,11 @@ var ModeSelection = React.createClass({
         </ul>
       </nav>
     )
+  },
+
+  _onModeClick(e: Event): void {
+    e.preventDefault()
+    this.props.onChange(this.props.mode)
   }
 
 })

@@ -18,7 +18,6 @@ var App              = require('./components/app')
 var BlockListActions = require('./actions/block_list_actions')
 var BlockListStore   = require('./stores/block_list_store')
 var BlockTypeActions = require('./actions/block_type_actions')
-var BlockTypeMixin   = require('mixins/block_type')
 var Immutable        = require('immutable')
 var React            = require('react')
 var uid              = require('./utils/uid')
@@ -55,7 +54,7 @@ class ColonelKurtz {
   }
 
   toJSON(): Object {
-    var root = BlockListStore.find(this.rootBlockList().id)
+    var root = BlockListStore.findByEditorId(this.id)
 
     return root ? root.toJSON() : {}
   }
@@ -64,14 +63,10 @@ class ColonelKurtz {
     return React.renderToStaticMarkup(this._rootComponent())
   }
 
-  rootBlockList(): ?BlockList {
-    return BlockListStore.findByEditorId(this.id)
-  }
-
   // Private
 
   _rootComponent(): ReactElement {
-    return <App root={ this.rootBlockList().id } />
+    return <App editorId={ this.id } />
   }
 
   _getDomElement(): Element {
@@ -86,15 +81,10 @@ class ColonelKurtz {
     })
   }
 
-  _rootBlockListId(): number {
-    var rootBlockList = this.rootBlockList()
-
-    if (rootBlockList) {
-      return rootBlockList.id
-    }
-  }
-
 }
+
+
+ColonelKurtz.createBlock = require('./utils/createBlock.js')
 
 ColonelKurtz.addBlockType = function(id: string, component: any) {
   if (React.isValidElement(component) === false) {
@@ -104,16 +94,6 @@ ColonelKurtz.addBlockType = function(id: string, component: any) {
   BlockTypeActions.create({ id, component })
 }
 
-ColonelKurtz.createBlock = function(blockClass) {
-  var mixins = blockClass.mixins || []
-
-  mixins = mixins.concat(BlockTypeMixin)
-
-  return React.createClass(
-    Object.assign({}, blockClass, { React, mixins })
-  )
-}
-
-ColonelKurtz.addons = require('./addons')
+ColonelKurtz.addons      = require('./addons')
 
 module.exports = ColonelKurtz

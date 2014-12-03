@@ -32,7 +32,9 @@
     "scriptPreprocessor": "<rootDir>/jestPreprocessor.js",
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/react",
-      "<rootDir>/node_modules/immutable"
+      "<rootDir>/node_modules/immutable",
+      "<rootDir>/node_modules/object-assign",
+      "<rootDir>/node_modules/array.prototype.find"
     ],
     "globals": {
       "__DEV__": true
