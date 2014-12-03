@@ -1,12 +1,18 @@
 jest.dontMock('../block_type_store')
 
+// Necessary polyfill
+Object.assign = require('object-assign')
+
 describe('Stores - Block Type', function() {
 
   it ('can create a record', function() {
     var BlockTypeStore = require('../block_type_store')
     var React = require('react')
 
-    BlockTypeStore._create('foo', React.createClass({ render() { return (<p>Test</p>) }}))
+    BlockTypeStore._create({
+      id: 'foo',
+      component: React.createClass({ render() { return (<p>Test</p>) }})
+    })
 
     expect(BlockTypeStore.find('foo')).not.toEqual(null)
   })
@@ -15,7 +21,10 @@ describe('Stores - Block Type', function() {
     var BlockTypeStore = require('../block_type_store')
     var React = require('react')
 
-    BlockTypeStore._create('foo', React.createClass({ render() { return (<p>Test</p>) }}))
+    BlockTypeStore._create({
+      id: 'foo',
+      component: React.createClass({ render() { return (<p>Test</p>) }})
+    })
 
     expect(BlockTypeStore.keys()).toEqual([ 'foo' ])
   })

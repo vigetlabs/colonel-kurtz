@@ -1,5 +1,8 @@
 jest.dontMock('../addBlockType')
 
+// Necessary polyfill
+Object.assign = require('object-assign')
+
 describe('Utils - addBlockType', function() {
   var React            = require('react')
   var BlockTypeActions = require('../../actions/block_type_actions')
