@@ -10,6 +10,10 @@ var Block = React.createClass({
 
   mixins: [ Monitor, Pure ],
 
+  propTypes: {
+    block: React.PropTypes.any.isRequired
+  },
+
   getState(): ?Object {
     return BlockType.find(this.props.block.type)
   },
