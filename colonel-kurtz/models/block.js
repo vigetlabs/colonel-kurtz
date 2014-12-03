@@ -22,10 +22,9 @@ class Block {
     var blockList = BlockList.findByBlockId(this.id)
 
     return {
-      childBlockList : blockList ? blockList.toJSON() : [],
-      content        : this.content,
-      id             : this.id,
-      type           : this.type
+      blocks  : blockList ? blockList.toJSON() : [],
+      content : this.content,
+      type    : this.type
     }
   }
 }
