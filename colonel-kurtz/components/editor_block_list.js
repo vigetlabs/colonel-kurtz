@@ -11,11 +11,12 @@ var EditorBlockList = React.createClass({
 
   blockComponents(): ?Array<ReactElement> {
     var blockListId = this.blockListId()
+    var editor = this.props.editor
 
     return this.state.blockIds.map(function(blockId, i) {
       return (
         <div key={ blockId }>
-          <EditorBlock initialBlockId={ blockId } />
+          <EditorBlock initialBlockId={ blockId } editor={ editor } />
           <BlockMenu position={ i + 1 } blockListId={ blockListId } />
         </div>
       )

@@ -25,7 +25,7 @@ var EditorBlock = React.createClass({
           <RemoveBlockButton blockId={ id } blockListId={ parentBlockListId } />
         </div>
 
-        { this.childBlockListComponent() }
+        { this.props.editor.nesting && this.childBlockListComponent() }
       </div>
     )
   }

@@ -15,6 +15,7 @@ if (!Array.prototype.find) {
 }
 
 var App              = require('./components/app')
+var EditorActions    = require('./actions/editor_actions')
 var BlockActions     = require('./actions/block_actions')
 var BlockListActions = require('./actions/block_list_actions')
 var BlockListStore   = require('./stores/block_list_store')
@@ -31,10 +32,12 @@ class ColonelKurtz {
   el: Element;
   id: number;
 
-  constructor(config: { el: Element; seed: ?Object }) {
+  constructor(config: { el: Element; nesting: ?boolean; seed: ?Object }) {
     this.id = uid()
     this.el = config.el
     this._callbacks = Immutable.Set([])
+
+    EditorActions.create({ id: this.id, ...config })
 
     Bus.subscribe(() => this.simulateChange())
 
