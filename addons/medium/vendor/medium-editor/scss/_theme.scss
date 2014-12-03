@@ -22,8 +22,9 @@ $medium_editor_link_color:    rgba(#000, 0.875);
     padding: 0;
 
     button {
-      background-color: transparent;
+      background: transparent;
       border: none;
+      border-radius: 0;
       border-right: 1px solid $medium_editor_border_color;
       box-shadow: 0 1px 0 rgba(#fff, 0.875) inset;
       color: $medium_editor_link_color;
@@ -32,17 +33,18 @@ $medium_editor_link_color:    rgba(#000, 0.875);
       line-height: 16px;
       min-width: $medium_editor_button_size;
       padding: 8px 0;
+      text-shadow: none;
       transition: background-color .2s ease-in, color .2s ease-in;
 
       &:hover {
-        background-color: #f2f2f2;
+        background: #f2f2f2;
       }
-    }
 
-    .medium-editor-button-active {
-      background-color: #009688;
-      box-shadow: inset 0 0 1px rgba(#000, 0.15);
-      color: #FFF;
+      &.medium-editor-button-active {
+        background: #009688;
+        box-shadow: inset 0 0 1px rgba(#000, 0.15);
+        color: #FFF;
+      }
     }
 
     .medium-editor-button-last {
