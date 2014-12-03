@@ -83,7 +83,7 @@ class ColonelKurtz {
 
 }
 
-
+ColonelKurtz.addons      = require('./addons')
 ColonelKurtz.createBlock = require('./utils/createBlock.js')
 
 ColonelKurtz.addBlockType = function(id: string, component: any) {
@@ -93,7 +93,5 @@ ColonelKurtz.addBlockType = function(id: string, component: any) {
 
   BlockTypeActions.create({ id, component })
 }
-
-ColonelKurtz.addons      = require('./addons')
 
 module.exports = ColonelKurtz
