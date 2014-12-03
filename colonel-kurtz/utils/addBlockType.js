@@ -9,10 +9,12 @@ var BlockTypeActions = require('../actions/block_type_actions')
 var createBlock      = require('./createBlock')
 var React            = require('react')
 
-module.exports = function (id: string, component: any): void {
+module.exports = function (options: Object): void {
+  var component = options.component
+
   if (React.isValidElement(component) === false) {
     component = createBlock(component)
   }
 
-  BlockTypeActions.create({ id, component })
+  BlockTypeActions.create({ ...options, component })
 }

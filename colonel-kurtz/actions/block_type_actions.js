@@ -5,14 +5,10 @@ var Dispatcher = require('../dispatcher')
 
 var BlockTypeActions = {
 
-  create(params:{ id:string; component:ReactElement  }) : void {
+  create(params: ?Object) : void {
     var type:string = Constants.BLOCK_TYPE_CREATE
 
-    Dispatcher.dispatch({
-      component: params.component,
-      id: params.id,
-      type: type
-    })
+    Dispatcher.dispatch({ type, params })
   }
 
 }
