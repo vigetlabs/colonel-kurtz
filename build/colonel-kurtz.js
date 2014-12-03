@@ -4676,7 +4676,7 @@ var ColonelKurtz =
 	
 	    invariant(index >= 0, 'Unable to find editor with an id of ' + id)
 	
-	    _editors = _editors.set(index, Object.assign({}, defaults, editor, params ))
+	    _editors = _editors.set(index, Object.assign({}, _defaults, editor, params ))
 	
 	    Bus.publish()
 	  },
@@ -14033,8 +14033,8 @@ var ColonelKurtz =
 
 	/* @flow */
 	
-	var AddBlock  = __webpack_require__(/*! ./add_block */ 138)
-	var BlockType = __webpack_require__(/*! ../stores/block_type_store */ 139)
+	var AddBlock  = __webpack_require__(/*! ./add_block */ 139)
+	var BlockType = __webpack_require__(/*! ../stores/block_type_store */ 140)
 	var Monitor   = __webpack_require__(/*! ../mixins/monitor */ 21)
 	var React     = __webpack_require__(/*! react */ 14)
 	
@@ -14084,7 +14084,7 @@ var ColonelKurtz =
 	var Modes = __webpack_require__(/*! constants/mode_constants */ 33)
 	var Block = __webpack_require__(/*! ./block */ 137)
 	var React = __webpack_require__(/*! react */ 14)
-	var RemoveBlockButton = __webpack_require__(/*! ./remove_block_button */ 140)
+	var RemoveBlockButton = __webpack_require__(/*! ./remove_block_button */ 138)
 	
 	var EditorBlock = React.createClass({displayName: 'EditorBlock',
 	
@@ -15127,11 +15127,11 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 142);
+	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 143);
 	var PooledClass = __webpack_require__(/*! ./PooledClass */ 83);
 	var ReactCurrentOwner = __webpack_require__(/*! ./ReactCurrentOwner */ 55);
 	var ReactPerf = __webpack_require__(/*! ./ReactPerf */ 65);
-	var Transaction = __webpack_require__(/*! ./Transaction */ 143);
+	var Transaction = __webpack_require__(/*! ./Transaction */ 144);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 69);
 	var invariant = __webpack_require__(/*! ./invariant */ 27);
@@ -15546,7 +15546,7 @@ var ColonelKurtz =
 	var assign = __webpack_require__(/*! ./Object.assign */ 69);
 	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 131);
 	var invariant = __webpack_require__(/*! ./invariant */ 27);
-	var joinClasses = __webpack_require__(/*! ./joinClasses */ 144);
+	var joinClasses = __webpack_require__(/*! ./joinClasses */ 142);
 	var warning = __webpack_require__(/*! ./warning */ 81);
 	
 	var didWarn = false;
@@ -18203,7 +18203,7 @@ var ColonelKurtz =
 	"use strict";
 	
 	var ReactUpdates = __webpack_require__(/*! ./ReactUpdates */ 86);
-	var Transaction = __webpack_require__(/*! ./Transaction */ 143);
+	var Transaction = __webpack_require__(/*! ./Transaction */ 144);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 69);
 	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 131);
@@ -20730,9 +20730,9 @@ var ColonelKurtz =
 	"use strict";
 	
 	var PooledClass = __webpack_require__(/*! ./PooledClass */ 83);
-	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 142);
+	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 143);
 	var ReactPutListenerQueue = __webpack_require__(/*! ./ReactPutListenerQueue */ 185);
-	var Transaction = __webpack_require__(/*! ./Transaction */ 143);
+	var Transaction = __webpack_require__(/*! ./Transaction */ 144);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 69);
 	var emptyFunction = __webpack_require__(/*! ./emptyFunction */ 131);
@@ -21143,7 +21143,7 @@ var ColonelKurtz =
 	/* @flow */
 	
 	var BlockActions = __webpack_require__(/*! ../actions/block_actions */ 4)
-	var BlockType    = __webpack_require__(/*! ../stores/block_type_store */ 139)
+	var BlockType    = __webpack_require__(/*! ../stores/block_type_store */ 140)
 	var Monitor      = __webpack_require__(/*! ../mixins/monitor */ 21)
 	var Pure         = __webpack_require__(/*! ../mixins/pure */ 187)
 	var React        = __webpack_require__(/*! react */ 14)
@@ -21178,6 +21178,49 @@ var ColonelKurtz =
 
 /***/ },
 /* 138 */
+/*!*********************************************************!*\
+  !*** ./colonel-kurtz/components/remove_block_button.js ***!
+  \*********************************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var React = __webpack_require__(/*! react */ 14)
+	var Button = __webpack_require__(/*! ./ui/button */ 39)
+	var BlockActions = __webpack_require__(/*! ../actions/block_actions */ 4)
+	var Strings = __webpack_require__(/*! ../constants/strings */ 188)
+	
+	var RemoveBlockButton = React.createClass({displayName: 'RemoveBlockButton',
+	
+	  removeBlock:function() {
+	    var $__0=      this.props,blockId=$__0.blockId,parentBlockListId=$__0.blockListId
+	
+	    BlockActions.destroy({ blockId:blockId, parentBlockListId:parentBlockListId })
+	  },
+	
+	  render:function()      {
+	    return (
+	      React.createElement(Button, {'aria-label':  Strings.remove.label, className: "colonel-btn colonel-btn-icon colonel-btn-remove", onClick:  this._onClick}, 
+	        "×"
+	      )
+	    )
+	  },
+	
+	  _onClick:function() {
+	    var answer = confirm(Strings.remove.confirm)
+	
+	    if (answer) {
+	      this.removeBlock()
+	    }
+	  }
+	
+	})
+	
+	module.exports = RemoveBlockButton
+
+
+/***/ },
+/* 139 */
 /*!***********************************************!*\
   !*** ./colonel-kurtz/components/add_block.js ***!
   \***********************************************/
@@ -21216,7 +21259,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 139 */
+/* 140 */
 /*!**************************************************!*\
   !*** ./colonel-kurtz/stores/block_type_store.js ***!
   \**************************************************/
@@ -21261,49 +21304,6 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 140 */
-/*!*********************************************************!*\
-  !*** ./colonel-kurtz/components/remove_block_button.js ***!
-  \*********************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var React = __webpack_require__(/*! react */ 14)
-	var Button = __webpack_require__(/*! ./ui/button */ 39)
-	var BlockActions = __webpack_require__(/*! ../actions/block_actions */ 4)
-	var Strings = __webpack_require__(/*! ../constants/strings */ 188)
-	
-	var RemoveBlockButton = React.createClass({displayName: 'RemoveBlockButton',
-	
-	  removeBlock:function() {
-	    var $__0=      this.props,blockId=$__0.blockId,parentBlockListId=$__0.blockListId
-	
-	    BlockActions.destroy({ blockId:blockId, parentBlockListId:parentBlockListId })
-	  },
-	
-	  render:function()      {
-	    return (
-	      React.createElement(Button, {'aria-label':  Strings.remove.label, className: "colonel-btn colonel-btn-icon colonel-btn-remove", onClick:  this._onClick}, 
-	        "×"
-	      )
-	    )
-	  },
-	
-	  _onClick:function() {
-	    var answer = confirm(Strings.remove.confirm)
-	
-	    if (answer) {
-	      this.removeBlock()
-	    }
-	  }
-	
-	})
-	
-	module.exports = RemoveBlockButton
-
-
-/***/ },
 /* 141 */
 /*!************************************!*\
   !*** ./~/react/lib/emptyObject.js ***!
@@ -21334,6 +21334,54 @@ var ColonelKurtz =
 
 /***/ },
 /* 142 */
+/*!************************************!*\
+  !*** ./~/react/lib/joinClasses.js ***!
+  \************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-2014, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule joinClasses
+	 * @typechecks static-only
+	 */
+	
+	"use strict";
+	
+	/**
+	 * Combines multiple className strings into one.
+	 * http://jsperf.com/joinclasses-args-vs-array
+	 *
+	 * @param {...?string} classes
+	 * @return {string}
+	 */
+	function joinClasses(className/*, ... */) {
+	  if (!className) {
+	    className = '';
+	  }
+	  var nextClass;
+	  var argLength = arguments.length;
+	  if (argLength > 1) {
+	    for (var ii = 1; ii < argLength; ii++) {
+	      nextClass = arguments[ii];
+	      if (nextClass) {
+	        className = (className ? className + ' ' : '') + nextClass;
+	      }
+	    }
+	  }
+	  return className;
+	}
+	
+	module.exports = joinClasses;
+
+
+/***/ },
+/* 143 */
 /*!**************************************!*\
   !*** ./~/react/lib/CallbackQueue.js ***!
   \**************************************/
@@ -21438,7 +21486,7 @@ var ColonelKurtz =
 
 
 /***/ },
-/* 143 */
+/* 144 */
 /*!************************************!*\
   !*** ./~/react/lib/Transaction.js ***!
   \************************************/
@@ -21681,54 +21729,6 @@ var ColonelKurtz =
 	};
 	
 	module.exports = Transaction;
-
-
-/***/ },
-/* 144 */
-/*!************************************!*\
-  !*** ./~/react/lib/joinClasses.js ***!
-  \************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/**
-	 * Copyright 2013-2014, Facebook, Inc.
-	 * All rights reserved.
-	 *
-	 * This source code is licensed under the BSD-style license found in the
-	 * LICENSE file in the root directory of this source tree. An additional grant
-	 * of patent rights can be found in the PATENTS file in the same directory.
-	 *
-	 * @providesModule joinClasses
-	 * @typechecks static-only
-	 */
-	
-	"use strict";
-	
-	/**
-	 * Combines multiple className strings into one.
-	 * http://jsperf.com/joinclasses-args-vs-array
-	 *
-	 * @param {...?string} classes
-	 * @return {string}
-	 */
-	function joinClasses(className/*, ... */) {
-	  if (!className) {
-	    className = '';
-	  }
-	  var nextClass;
-	  var argLength = arguments.length;
-	  if (argLength > 1) {
-	    for (var ii = 1; ii < argLength; ii++) {
-	      nextClass = arguments[ii];
-	      if (nextClass) {
-	        className = (className ? className + ' ' : '') + nextClass;
-	      }
-	    }
-	  }
-	  return className;
-	}
-	
-	module.exports = joinClasses;
 
 
 /***/ },
@@ -23715,12 +23715,12 @@ var ColonelKurtz =
 	
 	"use strict";
 	
-	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 142);
+	var CallbackQueue = __webpack_require__(/*! ./CallbackQueue */ 143);
 	var PooledClass = __webpack_require__(/*! ./PooledClass */ 83);
 	var ReactBrowserEventEmitter = __webpack_require__(/*! ./ReactBrowserEventEmitter */ 99);
 	var ReactInputSelection = __webpack_require__(/*! ./ReactInputSelection */ 158);
 	var ReactPutListenerQueue = __webpack_require__(/*! ./ReactPutListenerQueue */ 185);
-	var Transaction = __webpack_require__(/*! ./Transaction */ 143);
+	var Transaction = __webpack_require__(/*! ./Transaction */ 144);
 	
 	var assign = __webpack_require__(/*! ./Object.assign */ 69);
 	

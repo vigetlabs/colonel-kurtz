@@ -34,7 +34,7 @@ var EditorStore = {
 
     invariant(index >= 0, 'Unable to find editor with an id of ' + id)
 
-    _editors = _editors.set(index, { ...defaults, ...editor, ...params })
+    _editors = _editors.set(index, { ..._defaults, ...editor, ...params })
 
     Bus.publish()
   },
