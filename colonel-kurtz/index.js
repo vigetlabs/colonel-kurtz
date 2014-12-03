@@ -17,7 +17,6 @@ if (!Array.prototype.find) {
 var App              = require('./components/app')
 var BlockListActions = require('./actions/block_list_actions')
 var BlockListStore   = require('./stores/block_list_store')
-var BlockTypeActions = require('./actions/block_type_actions')
 var Immutable        = require('immutable')
 var React            = require('react')
 var uid              = require('./utils/uid')
@@ -83,15 +82,8 @@ class ColonelKurtz {
 
 }
 
-ColonelKurtz.addons      = require('./addons')
-ColonelKurtz.createBlock = require('./utils/createBlock.js')
-
-ColonelKurtz.addBlockType = function(id: string, component: any) {
-  if (React.isValidElement(component) === false) {
-    component = ColonelKurtz.createBlock(component)
-  }
-
-  BlockTypeActions.create({ id, component })
-}
+ColonelKurtz.addons       = require('./addons')
+ColonelKurtz.createBlock  = require('./utils/createBlock')
+ColonelKurtz.addBlockType = require('./utils/addBlockType')
 
 module.exports = ColonelKurtz
