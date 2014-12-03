@@ -77,10 +77,11 @@ var BlockListStore = {
         BlockListStore._createFromParent(action.block, action.position)
         break
       case BlockConstants.BLOCK_DESTROY:
+        Dispatcher.waitFor([ BlockStore.dispatchToken ])
         BlockListStore._removeBlockFromList(action.blockId, action.parentBlockListId)
         break
       case Constants.BLOCK_LIST_CREATE:
-        BlockListStore._create({ editorId: action.editorId, blockId: action.blockId })
+        BlockListStore._create(action.params)
         break
       default:
         // do nothing

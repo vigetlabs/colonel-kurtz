@@ -5,17 +5,25 @@ var Dispatcher = require('../dispatcher')
 
 var BlockActions = {
 
-  create(params: { parentBlockListId: number; position: number; blockType: string }) {
-    Dispatcher.dispatch({ type: BlockConstants.BLOCK_CREATE, ...params })
+  create(params: { content: ?Object; parentBlockListId: number; position: number; blockType: string }) {
+    var type     = BlockConstants.BLOCK_CREATE
+    var position = params.position
+
+    Dispatcher.dispatch({ type, params, position })
   },
 
   destroy(params: { blockId: number; parentBlockListId: number }) {
-    Dispatcher.dispatch({ type: BlockConstants.BLOCK_DESTROY, ...params })
+    var type = BlockConstants.BLOCK_DESTROY
+
+    Dispatcher.dispatch({ type, ...params })
   },
 
   update(blockId: number, content: string) {
-    Dispatcher.dispatch({ type: BlockConstants.BLOCK_UPDATE, blockId, content })
+    var type = BlockConstants.BLOCK_UPDATE
+
+    Dispatcher.dispatch({ type, blockId, content })
   }
 
 }
+
 module.exports = BlockActions

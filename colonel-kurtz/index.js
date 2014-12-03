@@ -15,6 +15,7 @@ if (!Array.prototype.find) {
 }
 
 var App              = require('./components/app')
+var BlockActions     = require('./actions/block_actions')
 var BlockListActions = require('./actions/block_list_actions')
 var BlockListStore   = require('./stores/block_list_store')
 var Immutable        = require('immutable')
@@ -29,14 +30,30 @@ class ColonelKurtz {
   el: Element;
   id: number;
 
-  constructor(el: Element) {
-    this.el = el
+  constructor(config: { el: Element }) {
     this.id = uid()
+    this.el = config.el
     this._callbacks = Immutable.Set([])
 
     Bus.subscribe(() => this.simulateChange())
 
     BlockListActions.create({ editorId: this.id })
+
+    if (config.seed) {
+      this.seed(BlockListStore.last().id, config.seed)
+    }
+
+    setTimeout(this.simulateChange.bind(this), 10)
+  }
+
+  seed(parentBlockListId, blocks) {
+    blocks.forEach(function(block, position) {
+      BlockActions.create({ position, parentBlockListId, ...block })
+
+      if ('blocks' in block) {
+        this.seed(BlockListStore.last().id, block.blocks)
+      }
+    }, this)
   }
 
   render(): ColonelKurtz {

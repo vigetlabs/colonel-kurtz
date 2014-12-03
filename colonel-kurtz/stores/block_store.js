@@ -22,9 +22,9 @@ var BlockStore = {
     return _blocks.find(block => block.id === id )
   },
 
-  _create(parentBlockListId: number, type: string): Block {
-    var block = new Block({ parentBlockListId, type })
-
+  _create({ content, type, parentBlockListId }):Block {
+    var block = new Block({ content, type, parentBlockListId })
+console.log(type)
     _blocks = _blocks.push(block)
 
     Bus.publish()
@@ -50,7 +50,7 @@ var BlockStore = {
   dispatchToken: Dispatcher.register(function(action) {
     switch (action.type) {
       case Constants.BLOCK_CREATE:
-        var block = BlockStore._create(action.parentBlockListId, action.blockType)
+        var block = BlockStore._create(action.params)
         action.block = block
         break
       case Constants.BLOCK_DESTROY:

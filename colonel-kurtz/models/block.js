@@ -8,8 +8,8 @@ class Block {
   parentBlockListId: number;
   type: string;
 
-  constructor(params: { parentBlockListId: number; type: string }){
-    this.content = null
+  constructor(params: { content: ?Object; parentBlockListId: number; type: string }){
+    this.content = params.content || null
     this.id = uid()
     this.parentBlockListId = params.parentBlockListId
     this.type = params.type || 'text'
