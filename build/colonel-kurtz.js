@@ -4655,14 +4655,6 @@ var ColonelKurtz =
 	
 	var EditorStore = {
 	
-	  all:function() {
-	    return _editors
-	  },
-	
-	  last:function() {
-	    return _editors.last()
-	  },
-	
 	  find:function(id) {
 	    return _editors.find(function(block)  {return block.id === id;} ) || null
 	  },

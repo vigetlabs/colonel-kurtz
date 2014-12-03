@@ -13,14 +13,6 @@ var _defaults = {
 
 var EditorStore = {
 
-  all() {
-    return _editors
-  },
-
-  last() {
-    return _editors.last()
-  },
-
   find(id) {
     return _editors.find(block => block.id === id ) || null
   },
