@@ -1,5 +1,5 @@
 .colonel {
-  background: #fff;
+  background: #fafafa;
   box-sizing: border-box;
   font-family: $colonel-font-family;
   font-size: 16px;
@@ -10,4 +10,8 @@
   *:before {
     box-sizing: inherit;
   }
+}
+
+.colonel-content {
+  box-shadow: inset 0 1px 0 #fff;
 }

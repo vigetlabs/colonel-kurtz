@@ -3,11 +3,16 @@
   position: relative;
 }
 
+.colonel-blocks {
+  padding-top: 1px;
+}
+
 .colonel-block {
+  background: #fff;
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(#000, 0.4);
   padding-bottom: 1px;
-  margin: 16px;
+  margin: 0 16px;
 }
 
 .colonel-block-content {

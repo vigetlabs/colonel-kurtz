@@ -8,6 +8,7 @@ $colonel-tabs-font: 600 14px/16px sans-serif !default;
 .colonel-tabs {
   color: $colonel-tabs-color;
   background: $colonel-tabs-background;
+  box-shadow: inset 0 -1px 1px rgba(#000, 0.15);
   padding: $colonel-tabs-padding;
 }
 
