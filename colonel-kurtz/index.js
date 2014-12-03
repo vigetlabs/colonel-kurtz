@@ -22,27 +22,21 @@ var BlockTypeMixin   = require('mixins/block_type')
 var Immutable        = require('immutable')
 var React            = require('react')
 var uid              = require('./utils/uid')
-var Dispatcher       = require('./dispatcher')
+var Bus              = require('./bus')
 
 require('style/colonel')
 
-var _instances = []
-
-Dispatcher.register(function(): void {
-  _instances.map(i => i.simulateChange())
-})
-
 class ColonelKurtz {
   _callbacks: Immutable.Set<Function>;
-  domElement: Element;
+  el: Element;
   id: number;
 
-  constructor(domElement: Element) {
+  constructor(el: Element) {
+    this.el = el
     this.id = uid()
-    this.domElement = domElement
     this._callbacks = Immutable.Set([])
 
-    _instances.push(this)
+    Bus.subscribe(() => this.simulateChange())
 
     BlockListActions.create({ editorId: this.id })
   }
@@ -81,7 +75,7 @@ class ColonelKurtz {
   }
 
   _getDomElement(): Element {
-    return this.domElement
+    return this.el
   }
 
   _runCallbacks(): void {
