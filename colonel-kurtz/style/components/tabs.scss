@@ -3,7 +3,7 @@ $colonel-tabs-background: $colonel-primary !default;
 $colonel-tabs-border-width: 3px !default;
 $colonel-tabs-color: $colonel-muted-light !default;
 $colonel-tabs-color-focus: $colonel-text-light !default;
-$colonel-tabs-font: 500 14px/16px sans-serif !default;
+$colonel-tabs-font: 600 14px/16px sans-serif !default;
 
 .colonel-tabs {
   color: $colonel-tabs-color;
@@ -21,9 +21,12 @@ $colonel-tabs-font: 500 14px/16px sans-serif !default;
   display: inline-block;
 }
 
-.colonel-tabs-btn {
+// The extra selection is necessary to get around ActiveAdmin (curse it!)
+.colonel-tabs-list .colonel-tabs-btn {
   background: transparent;
   border: 0;
+  border-radius: 0;
+  box-shadow: none;
   color: inherit;
   cursor: pointer;
   font: $colonel-tabs-font;
@@ -32,6 +35,7 @@ $colonel-tabs-font: 500 14px/16px sans-serif !default;
   overflow: hidden;
   padding: 16px;
   position: relative;
+  text-shadow: none;
   text-transform: uppercase;
   transition: 0.2s color;
   -webkit-appearance: button;
@@ -47,7 +51,9 @@ $colonel-tabs-font: 500 14px/16px sans-serif !default;
     width: 100%;
   }
 
-  &:focus {
+  &:focus,
+  &:hover {
+    background: transparent;
     outline: none;
 
     &:after {
@@ -63,6 +69,11 @@ $colonel-tabs-font: 500 14px/16px sans-serif !default;
   &:focus,
   &:disabled {
     color: $colonel-tabs-color-focus;
+  }
+
+  &:active {
+    border: 0;
+    box-shadow: none;
   }
 
   &::-moz-focus-inner {
