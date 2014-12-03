@@ -31,7 +31,7 @@ class ColonelKurtz {
   el: Element;
   id: number;
 
-  constructor(config: { el: Element, seed: ?Object }) {
+  constructor(config: { el: Element; seed: ?Object }) {
     this.id = uid()
     this.el = config.el
     this._callbacks = Immutable.Set([])
