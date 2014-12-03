@@ -23,6 +23,7 @@ var EditorBlockList = React.createClass({
   },
 
   render(): any {
+
     return (
       <div className="colonel-blocks">
         <BlockMenu block={ this.props.block } blockListId={ this.blockListId() } />
