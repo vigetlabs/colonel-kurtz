@@ -24,6 +24,9 @@ describe('Utils - createBlock', function() {
       mixins: [ BlockType ]
     })
 
+    // React will throw an error if the same mixin is included twice
+    // due to namespace collisions. By creating the component, this
+    // checks to make sure no collisions occur
     var test = <Component />
   })
 
