@@ -19,7 +19,7 @@ var ActsLikeBlockWithBlockList = {
     var ListComponent = this.listComponent()
 
     if (this.state.blockList) {
-      return <ListComponent initialBlockListId={ this.state.blockList.id } />
+      return <ListComponent block={ this.state.block } initialBlockListId={ this.state.blockList.id } />
     }
   }
 

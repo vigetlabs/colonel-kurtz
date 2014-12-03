@@ -1,38 +1,17 @@
-ColonelKurtz.addBlockType('text', {
-
-  defaultContent: function() {
-    return {
-      text: "I'm a plain text block."
-    };
-  },
-
-  renderEditor: function() {
-    return this.React.createElement('div', {
-      'aria-multiline': 'true',
-      className: 'colonel-block-editor',
-      contentEditable: true,
-      onBlur: this.onEditorBlur,
-      ref: 'editor',
-      role: 'textarea'
-    }, this.state.content.text)
-  },
-
-  renderPreviewer: function() {
-    return this.React.createElement('p', null, this.state.content.html)
-  },
-
-  onEditorBlur: function() {
-    var el = this.refs.editor.getDOMNode()
-
-    this.setContent({
-      text: el.textContent,
-      html: el.innerHTML
-    })
-  }
-
+ColonelKurtz.addBlockType({
+  id: 'medium',
+  component: ColonelKurtz.addons.Medium
 })
 
-ColonelKurtz.addBlockType('medium', ColonelKurtz.addons.Medium)
+ColonelKurtz.addBlockType({
+  id: 'list',
+  nest: ['medium'],
+  component: {
+    defaultContent  : function() { return null },
+    renderEditor    : function() { return null },
+    renderPreviewer : function() { return null }
+  }
+})
 
 var seed = {};
 

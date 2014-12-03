@@ -1,9 +1,9 @@
 /* @flow */
 
 var ActsLikeBlockList = require('../mixins/acts_like_block_list')
-var BlockMenu         = require('./block_menu')
-var EditorBlock       = require('./editor_block')
-var React             = require('react')
+var BlockMenu = require('./block_menu')
+var EditorBlock = require('./editor_block')
+var React = require('react')
 
 var EditorBlockList = React.createClass({
 
@@ -11,19 +11,19 @@ var EditorBlockList = React.createClass({
 
   blockComponents(): ?Array<ReactElement> {
     var blockListId = this.blockListId()
-    var block = this.props.block
 
     return this.state.blockIds.map(function(blockId, i) {
       return (
         <div key={ blockId }>
           <EditorBlock initialBlockId={ blockId } />
-          <BlockMenu block={ block } blockListId={ blockListId } position={ i + 1 } />
+          <BlockMenu block={ this.props.block } blockListId={ this.blockListId() } position={ i + 1 } />
         </div>
       )
     }, this)
   },
 
   render(): any {
+
     return (
       <div className="colonel-blocks">
         <BlockMenu block={ this.props.block } blockListId={ this.blockListId() } />

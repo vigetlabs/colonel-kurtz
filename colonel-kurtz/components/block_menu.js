@@ -16,8 +16,10 @@ var BlockMenu = React.createClass({
   },
 
   getState(): { types: Array<string> } {
+    var block = this.props.block
+
     return {
-      types: BlockType.keys()
+      types: block ? BlockType.find(block.type).nest : BlockType.keys()
     }
   },
 
@@ -25,13 +27,17 @@ var BlockMenu = React.createClass({
     return <AddBlock key={ type } type={ type } { ...this.props } />
   },
 
-  render(): any {
+  getNavigation() {
     return (
       <nav className="colonel-menu" role="navigation">
         { this.state.types.map(this.getButton) }
       </nav>
     )
-  }
+  },
+
+  render(): any {
+    return this.state.types ? this.getNavigation() : null
+  },
 
 })
 

@@ -4,8 +4,12 @@ var Constants  = require('../constants/block_type_constants')
 var Dispatcher = require('../dispatcher')
 var Immutable  = require('immutable')
 var React      = require('react')
+var invariant  = require('react/lib/invariant')
 
 var _blockTypes = Immutable.List()
+var _defaults   = {
+  nest: null
+}
 
 var BlockTypeStore = {
 
@@ -17,14 +21,18 @@ var BlockTypeStore = {
     return _blockTypes.find(b => b.id === id) || null
   },
 
-  _create (id: string, component: ReactElement): void {
-    _blockTypes = _blockTypes.push({ id, component })
+  _create (params: Object): void {
+    var record = { ..._defaults, ...params }
+
+    invariant(record.id, 'BlockType must have an identifier')
+
+    _blockTypes = _blockTypes.push(record)
   },
 
   dispatchToken: Dispatcher.register(function(action: Object) {
     switch (action.type) {
       case Constants.BLOCK_TYPE_CREATE:
-        BlockTypeStore._create(action.id, action.component)
+        BlockTypeStore._create(action.params)
         break
       default:
         // do nothing

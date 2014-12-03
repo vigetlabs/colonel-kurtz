@@ -10,7 +10,7 @@ var ActsLikeBlockList = {
 
   getState(): { blockIds: Array<number> } {
     return {
-      blockIds: this.blockIds()
+      blockIds : this.blockIds()
     }
   },
 

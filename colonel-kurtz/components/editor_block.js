@@ -15,7 +15,7 @@ var EditorBlock = React.createClass({
   },
 
   render(): any {
-    var { content, id, type, parentBlockListId } = this.state.block
+    var { id, parentBlockListId } = this.state.block
 
     return (
       <div className="colonel-block">
