@@ -26,9 +26,9 @@ var EditorStore = {
   },
 
   _create(params) {
-    var mode   = Modes.EDIT_MODE
     var editor = { ..._defaults, ...params }
 
+    invariant(Modes[editor.mode], 'Unacceptable mode for editor: ' + editor.mode)
     invariant(EditorStore.find(editor.id) === null, 'Editors must have a unique identifier')
 
     _editors = _editors.push(editor)

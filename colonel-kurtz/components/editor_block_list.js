@@ -20,7 +20,7 @@ var EditorBlockList = React.createClass({
           <BlockMenu position={ i + 1 } blockListId={ blockListId } />
         </div>
       )
-    }, this)
+    })
   },
 
   render(): any {
