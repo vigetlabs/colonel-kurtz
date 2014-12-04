@@ -3,7 +3,8 @@
 var HasBlockList = require('../mixins/has_block_list')
 var BlockMenu    = require('./block_menu')
 var EditorBlock  = require('./editor_block')
-var React        = require('react')
+var React        = require('react/addons')
+var Animation    = React.addons.CSSTransitionGroup;
 
 var EditorBlockList = React.createClass({
 
@@ -27,7 +28,9 @@ var EditorBlockList = React.createClass({
     return (
       <div className="col-blocks">
         <BlockMenu block={ this.props.block } blockListId={ this.blockListId() } />
-        { this.blockComponents() }
+        <Animation transitionName="col-block">
+          { this.blockComponents() }
+        </Animation>
       </div>
     )
   }

@@ -62,3 +62,27 @@
   @extend .col-block-editor;
   color: $colonel-text-dark;
 }
+
+// Transitions
+// -------------------------------------------------- //
+
+.col-block-enter {
+  opacity: 0.01;
+  transform: scale(0.98);
+  transition: 0.28s all;
+}
+
+.col-block-enter.col-block-enter-active {
+  opacity: 1;
+  transform: none;
+}
+
+.col-block-leave {
+  opacity: 1;
+  transition: 0.28s all;
+}
+
+.col-block-leave.col-block-leave-active {
+  opacity: 0.01;
+  transform: scale(0.98);
+}
