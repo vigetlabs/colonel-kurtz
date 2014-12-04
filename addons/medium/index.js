@@ -21,11 +21,11 @@ var Medium = {
   },
 
   renderEditor(): any {
-    return <Editor onBlur={ this.setContent } html={ this.state.content.html } />
+    return <Editor onBlur={ this.setContent } { ...this.state.content } />
   },
 
   renderPreviewer(): any {
-    return <Previewer html={ this.state.content.html } />
+    return <Previewer { ...this.state.content } />
   }
 
 }

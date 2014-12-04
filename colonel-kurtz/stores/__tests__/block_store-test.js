@@ -1,4 +1,8 @@
 jest.dontMock('../block_store')
+jest.dontMock('../../models/block')
+
+// Necessary polyfills
+Object.assign = require('object-assign')
 
 describe('Stores - Block', function() {
 
@@ -45,9 +49,21 @@ describe('Stores - Block', function() {
 
       var last = BlockStore.last()
 
-      BlockStore._update(last.id, 'foo')
+      BlockStore._update(last.id, { text: 'foo' })
 
-      expect(BlockStore.last().content).toEqual('foo')
+      expect(BlockStore.last().content.text).toEqual('foo')
+    })
+
+    it ('merges the content property', function() {
+      var BlockStore = require('../block_store')
+
+      BlockStore._create({ content: { first: 'one' }})
+
+      var last = BlockStore.last()
+
+      BlockStore._update(last.id, { second: 'two' })
+
+      expect(Object.keys(BlockStore.last().content)).toEqual([ 'first', 'second' ])
     })
 
   })

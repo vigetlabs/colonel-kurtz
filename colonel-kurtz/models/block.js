@@ -3,7 +3,7 @@ var uid       = require('../utils/uid')
 var BlockList = require('../stores/block_list_store')
 
 class Block {
-  content: ?string;
+  content: ?Object;
   id: number;
   parentBlockListId: number;
   type: string;

@@ -22,7 +22,7 @@ var BlockStore = {
     return _blocks.find(block => block.id === id )
   },
 
-  _create({ content, type, parentBlockListId }):Block {
+  _create({ content, type, parentBlockListId }): Block {
     var block = new Block({ content, type, parentBlockListId })
 
     _blocks = _blocks.push(block)
@@ -37,12 +37,11 @@ var BlockStore = {
     Bus.publish()
   },
 
-  _update(blockId: number, content: string) {
+  _update(blockId: number, content: ?Object) {
     var block = BlockStore.find(blockId)
 
     if (block) {
-      // This could probably be done more immutably, but seems fine as is.
-      block.content = content
+      block.content = { ...block.content, ...content }
       Bus.publish()
     }
   },

@@ -28,7 +28,7 @@ var BlockType = {
   },
 
   setContent(content:string): void {
-    this.setState({ content }, function() {
+    this.setState({ content: { ...this.state.content, ...content } }, function() {
       this.props.updateContent(this.state.content)
     })
   },
