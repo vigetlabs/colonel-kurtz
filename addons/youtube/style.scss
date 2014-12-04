@@ -1,0 +1,45 @@
+/**
+ * YouTube Block Type
+ */
+
+.col-youtube-player {
+  display: block;
+  padding-bottom: percentage(3/4);
+  position: relative;
+}
+
+.col-youtube-frame {
+  border: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.col-youtube-fieldset {
+  border: 0;
+  margin: 0;
+  padding: 8px 8px 12px;
+}
+
+.col-youtube-field {
+  padding: 8px 8px 4px;
+}
+
+.col-youtube-label {
+  color: #777;
+  display: block;
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+.col-youtube-input {
+  border: 1px solid #d9d9d9;
+  border-width: 0 0 1px;
+  color: #222;
+  display: block;
+  font-size: 14px;
+  padding-bottom: 4px;
+  width: 100%;
+}
