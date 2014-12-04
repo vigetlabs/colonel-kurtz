@@ -18,8 +18,8 @@ var Editor = React.createClass({
         firstHeader  : 'h1',
         secondHeader : 'h2',
         delay        : 500,
-        diffLeft     : 25,
-        diffTop      : 10
+        diffLeft     : 0,
+        diffTop      : -10
       }
     }
   },

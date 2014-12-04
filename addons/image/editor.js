@@ -20,7 +20,7 @@ var Editor = React.createClass({
         <Graphic src={ src } caption={ caption } credit={ credit } />
 
         <fieldset className="col-img-fieldset">
-          <Field label="Source" type="url" value={ src } name="image_src" onChange={ this._onSrcChange }/>
+          <Field label="Image Source" type="url" value={ src } name="image_src" onChange={ this._onSrcChange }/>
           <Field label="Caption" type="text" value={ caption } name="image_caption" onChange={ this._onCaptionChange } />
           <Field label="Credit" type="text" value={ credit } name="image_credit" onChange={ this._onCreditChange } />
         </fieldset>
