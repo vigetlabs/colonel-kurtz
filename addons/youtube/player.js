@@ -5,11 +5,11 @@ var _baseUrl = "https://www.youtube.com/embed/"
 var Player = React.createClass({
 
   render() {
-    var { src } = this.props
+    var { video_id } = this.props
 
-    return src ? (
+    return video_id ? (
       <div className="col-youtube-player">
-        <iframe className="col-youtube-frame" src={ _baseUrl + src } frameBorder="0" allowFullScreen></iframe>
+        <iframe className="col-youtube-frame" src={ _baseUrl + video_id } frameBorder="0" allowFullScreen></iframe>
       </div>
     ) : null
   },

@@ -11,21 +11,21 @@ var Editor = React.createClass({
   },
 
   render() {
-    var { src } = this.props
+    var { video_id } = this.props
 
     return (
       <div className="col-youtube">
-        <Player src={ src } />
+        <Player video_id={ video_id } />
 
         <fieldset className="col-youtube-fieldset">
-          <Field label="YouTube Video ID" value={ src } name="image_src" onChange={ this._onSrcChange }/>
+          <Field label="YouTube Video ID" value={ video_id } name="youtube_video_id" onChange={ this._onChange }/>
         </fieldset>
       </div>
     )
   },
 
-  _onSrcChange(e) {
-    this.props.onChange({ src: e.currentTarget.value })
+  _onChange(e) {
+    this.props.onChange({ video_id: e.currentTarget.value })
   }
 
 })

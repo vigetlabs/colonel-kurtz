@@ -17,7 +17,6 @@ var Editor = React.createClass({
         buttons      : [ 'header1', 'header2', 'bold', 'italic', 'underline', 'anchor', 'quote',  'unorderedlist', 'orderedlist' ],
         firstHeader  : 'h1',
         secondHeader : 'h2',
-        delay        : 500,
         diffLeft     : 0,
         diffTop      : -10
       }

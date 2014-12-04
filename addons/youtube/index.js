@@ -15,7 +15,7 @@ require('./style')
 var YouTube = {
 
   defaultContent(): { src: string } {
-    return { src: '' }
+    return { video_id: '' }
   },
 
   renderEditor(): any {
