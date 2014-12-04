@@ -15,7 +15,7 @@ ColonelKurtz.addBlockType({
 ColonelKurtz.addBlockType({
   id        : 'youtube',
   icon      : 'icons/youtube.svg',
-  label     : 'Create a new YouTbue block',
+  label     : 'Create a new YouTube block',
   component : ColonelKurtz.addons.YouTube
 })
 
