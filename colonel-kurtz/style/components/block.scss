@@ -68,7 +68,7 @@
 
 .col-block-enter {
   opacity: 0.01;
-  transform: scale(0.98);
+  transform: scale(0.98) translateY(-5px);
   transition: 0.28s all;
 }
 
@@ -79,10 +79,10 @@
 
 .col-block-leave {
   opacity: 1;
-  transition: 0.28s all;
+  transition: 0.48s all;
 }
 
 .col-block-leave.col-block-leave-active {
   opacity: 0.01;
-  transform: scale(0.98);
+  transform: scale(0.95);
 }
