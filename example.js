@@ -23,7 +23,7 @@ ColonelKurtz.addBlockType({
   id        : 'list',
   icon      : 'icons/list.svg',
   label     : 'Create a new list block',
-  nest      : [ 'medium' ],
+  nest      : [ 'medium', 'image', 'youtube' ],
   component : {
     defaultContent  : function() { return null },
     renderEditor    : function() { return null },
