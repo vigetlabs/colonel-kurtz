@@ -20,15 +20,33 @@
 }
 
 .colonel-btn-icon {
-  background: #fff;
+  background: transparent;
+  border: 0;
   border-radius: 4px;
-  box-shadow: 0 0 1px $colonel-muted-dark, 0 1px 2px rgba(#000, 0.15);
   color: $colonel-muted-dark;
-  font-size: 14px;
+  cursor: pointer;
+  font: 500 12px/16px $colonel-font-family;
+  height: 40px;
   margin: 4px;
-  min-width: 0;
-  padding: 8px 0;
-  width: 32px;
+  opacity: 0.54;
+  padding: 8px;
+  position: relative;
+  text-align: center;
+  transition: 0.3s all;
+  width: 40px;
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  &:focus,
+  &:hover {
+    background: #fff;
+    box-shadow: 0 0 1px $colonel-muted-dark, 0 1px 2px rgba(#000, 0.15);
+    opacity: 1;
+    outline: none;
+  }
 
   &:active {
     box-shadow: 0 0 1px $colonel-muted-dark;
@@ -37,14 +55,21 @@
 
 .colonel-btn-remove {
   background: transparent;
+  border: 0;
   box-shadow: none;
+  cursor: pointer;
+  font: 500 16px/16px $colonel-font-family;
+  color: $colonel-muted-dark;
   border-radius: 50%;
-  z-index: 100;
-  padding: 12px 0;
+  padding: 0;
+  height: 40px;
   width: 40px;
+  transition: 0.4s all;
 
   &:hover,
   &:focus {
     color: $colonel-danger;
+    font-weight: 700;
+    outline: none;
   }
 }

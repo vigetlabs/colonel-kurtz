@@ -1,17 +1,23 @@
 ColonelKurtz.addBlockType({
-  id: 'medium',
-  component: ColonelKurtz.addons.Medium
+  id        : 'medium',
+  icon      : 'icons/text.svg',
+  label     : 'Create a new text block',
+  component : ColonelKurtz.addons.Medium
 })
 
 ColonelKurtz.addBlockType({
-  id: 'image',
-  component: ColonelKurtz.addons.Image
+  id        : 'image',
+  icon      : 'icons/image.svg',
+  label     : 'Create a new image block',
+  component : ColonelKurtz.addons.Image
 })
 
 ColonelKurtz.addBlockType({
-  id: 'list',
-  nest: ['medium'],
-  component: {
+  id        : 'list',
+  icon      : 'icons/list.svg',
+  label     : 'Create a new list block',
+  nest      : [ 'medium' ],
+  component : {
     defaultContent  : function() { return null },
     renderEditor    : function() { return null },
     renderPreviewer : function() { return null }

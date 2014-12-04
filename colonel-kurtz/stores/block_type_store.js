@@ -8,7 +8,8 @@ var invariant  = require('react/lib/invariant')
 
 var _blockTypes = Immutable.List()
 var _defaults   = {
-  nest: null
+  icon : null,
+  nest : null
 }
 
 var BlockTypeStore = {

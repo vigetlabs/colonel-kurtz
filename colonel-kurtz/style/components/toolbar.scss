@@ -1,6 +1,7 @@
 .colonel-toolbar {
-  right: 0;
+  right: 4px;
   position: absolute;
   text-align: right;
-  top: 0;
+  top: 4px;
+  z-index: 1000;
 }
