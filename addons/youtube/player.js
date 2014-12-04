@@ -1,5 +1,7 @@
 var React = require('react')
 
+var _baseUrl = "https://www.youtube.com/embed/"
+
 var Player = React.createClass({
 
   render() {
@@ -7,7 +9,7 @@ var Player = React.createClass({
 
     return src ? (
       <div className="col-youtube-player">
-        <iframe className="col-youtube-frame" src={ src } frameBorder="0" allowFullScreen></iframe>
+        <iframe className="col-youtube-frame" src={ _baseUrl + src } frameBorder="0" allowFullScreen></iframe>
       </div>
     ) : null
   },

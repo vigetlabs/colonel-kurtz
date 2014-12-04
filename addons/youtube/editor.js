@@ -18,7 +18,7 @@ var Editor = React.createClass({
         <Player src={ src } />
 
         <fieldset className="col-youtube-fieldset">
-          <Field label="YouTube Embed URL" type="url" value={ src } name="image_src" onChange={ this._onSrcChange }/>
+          <Field label="YouTube Video ID" type="url" value={ src } name="image_src" onChange={ this._onSrcChange }/>
         </fieldset>
       </div>
     )
