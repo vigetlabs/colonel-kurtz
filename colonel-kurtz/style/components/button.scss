@@ -69,6 +69,7 @@
 
   &:hover,
   &:focus {
+    background: rgba(#fff, 0.85);
     color: $colonel-danger;
     font-weight: 700;
     outline: none;

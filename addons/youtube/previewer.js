@@ -1,11 +1,12 @@
-var React = require('react')
+var React  = require('react')
+var Player = require('./player')
 
 var Previewer = React.createClass({
 
   render() {
     return (
       <div className="col-youtube">
-        <Player src={ src } />
+        <Player src={ this.props.src } />
       </div>
     )
   }
