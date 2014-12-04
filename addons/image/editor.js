@@ -1,4 +1,4 @@
-var Field   = require('./field')
+var Field   = require('../common/field')
 var Graphic = require('./graphic')
 var React   = require('react')
 var Types   = React.PropTypes

@@ -5,7 +5,6 @@
 
 var React = require('react')
 var Types = React.PropTypes
-var Field = require('./field')
 
 var Graphic = React.createClass({
 

@@ -1,7 +1,7 @@
-var Field   = require('./field')
+var Field   = require('../common/field')
+var Player  = require('./player')
 var React   = require('react')
 var Types   = React.PropTypes
-var Player  = require('./player')
 
 var Editor = React.createClass({
 
@@ -18,7 +18,7 @@ var Editor = React.createClass({
         <Player src={ src } />
 
         <fieldset className="col-youtube-fieldset">
-          <Field label="YouTube Video ID" type="url" value={ src } name="image_src" onChange={ this._onSrcChange }/>
+          <Field label="YouTube Video ID" value={ src } name="image_src" onChange={ this._onSrcChange }/>
         </fieldset>
       </div>
     )

@@ -8,6 +8,12 @@ var Types = React.PropTypes
 
 var Field = React.createClass({
 
+  getDefaultProps() {
+    return {
+      type: 'text'
+    }
+  },
+
   render(): any {
     var { label, name, type, ...props } = this.props
 
