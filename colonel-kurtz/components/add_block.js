@@ -11,10 +11,6 @@ var AddBlock = React.createClass({
 
   mixins: [ Monitor ],
 
-  propTypes: {
-    label: React.PropTypes.string.isRequired
-  },
-
   getState() {
     return BlockType.find(this.props.type)
   },

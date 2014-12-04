@@ -7,7 +7,7 @@ var Player = React.createClass({
 
     return src ? (
       <div className="col-youtube-player">
-        <iframe className="col-youtube-frame" src={ src } frameborder="0" allowfullscreen></iframe>
+        <iframe className="col-youtube-frame" src={ src } frameBorder="0" allowFullScreen></iframe>
       </div>
     ) : null
   },
