@@ -4,6 +4,11 @@ ColonelKurtz.addBlockType({
 })
 
 ColonelKurtz.addBlockType({
+  id: 'image',
+  component: ColonelKurtz.addons.Image
+})
+
+ColonelKurtz.addBlockType({
   id: 'list',
   nest: ['medium'],
   component: {
