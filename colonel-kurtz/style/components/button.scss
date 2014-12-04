@@ -1,3 +1,11 @@
+// Reset
+.colonel button {
+  &::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+}
+
 .col-btn {
   background: transparent;
   border: 0;
@@ -37,7 +45,8 @@
 
   img {
     display: block;
-    max-width: 100%;
+    margin: 0 auto;
+    width: 100%;
   }
 
   &:focus,
