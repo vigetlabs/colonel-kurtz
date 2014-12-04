@@ -1,8 +1,3 @@
-/**
- * @jsx
- * @flow
- */
-
 var React = require('react')
 var Types = React.PropTypes
 
@@ -14,7 +9,7 @@ var Field = React.createClass({
     }
   },
 
-  render(): any {
+  render() {
     var { label, name, type, ...props } = this.props
 
     return (

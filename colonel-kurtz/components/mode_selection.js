@@ -22,7 +22,7 @@ var ModeSelection = React.createClass({
     }
   },
 
-  getTab(key): any {
+  getTab(key:string): any {
     var { mode, modes, setMode } = this.props
 
     var props = {

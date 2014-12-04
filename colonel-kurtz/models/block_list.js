@@ -14,11 +14,11 @@ class BlockList {
     this._blocks = []
   }
 
-  all() : Array {
+  all(): Array {
     return this._blocks
   }
 
-  removeBlock(blockId:number) : void {
+  removeBlock(blockId:number): void {
     this._blocks = this._blocks.filter(id => id !== blockId)
   }
 
@@ -26,7 +26,7 @@ class BlockList {
     this._blocks.splice(position, 0, block.id)
   }
 
-  toJSON() : Object {
+  toJSON(): Object {
     // Note: This is to get around circular dependency issues
     var Block = require('../stores/block_store')
 

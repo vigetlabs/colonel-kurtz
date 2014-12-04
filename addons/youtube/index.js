@@ -2,8 +2,6 @@
  * Image Colonel Kurtz Addon
  * This component adds a basic image block type, including a
  * src, caption, and credit
- *
- * @flow
  */
 
 var Editor    = require('./editor')
@@ -14,15 +12,15 @@ require('./style')
 
 var YouTube = {
 
-  defaultContent(): { src: string } {
+  defaultContent() {
     return { video_id: '' }
   },
 
-  renderEditor(): any {
+  renderEditor() {
     return <Editor onChange={ this.setContent } { ...this.state.content } />
   },
 
-  renderPreviewer(): any {
+  renderPreviewer() {
     return <Previewer { ...this.state.content } />
   }
 

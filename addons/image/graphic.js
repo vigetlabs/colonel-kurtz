@@ -1,8 +1,3 @@
-/**
- * @jsx
- * @flow
- */
-
 var React = require('react')
 var Types = React.PropTypes
 
@@ -16,7 +11,7 @@ var Graphic = React.createClass({
     ) : null
   },
 
-  render(): any {
+  render() {
     var { src, credit } = this.props
 
     return src ? (

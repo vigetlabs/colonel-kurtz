@@ -27,7 +27,7 @@ var Block = React.createClass({
     )
   },
 
-  _onUpdateContent(content): void {
+  _onUpdateContent(content:Object): void {
     BlockActions.update(this.props.block.id, content)
   }
 

@@ -1,11 +1,8 @@
 /**
- * Medium Colonel Kurtz Addon
  * This component adds a medium.com-like rich text editor block type.
  *
  * Source for this component can be found here:
  * https://github.com/daviferreira/medium-editor
- *
- * @flow
  */
 
 var Editor    = require('./editor')
@@ -16,15 +13,15 @@ require('./vendor/medium-editor/style')
 
 var Medium = {
 
-  defaultContent(): { html: string } {
-    return { html: '' }
+  defaultContent() {
+    return { html: '', text: '' }
   },
 
-  renderEditor(): any {
+  renderEditor() {
     return <Editor onBlur={ this.setContent } { ...this.state.content } />
   },
 
-  renderPreviewer(): any {
+  renderPreviewer() {
     return <Previewer { ...this.state.content } />
   }
 

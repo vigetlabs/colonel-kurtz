@@ -9,7 +9,7 @@ var React     = require('react')
 var BlockType = require('../mixins/block_type')
 var assign    = require('object-assign')
 
-module.exports = function (spec: Object): ReactElement {
+module.exports = function (spec: Object): any {
   var mixins = spec.mixins || []
 
   if (mixins.indexOf(BlockType) < 0) {

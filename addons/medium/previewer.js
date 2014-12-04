@@ -1,10 +1,8 @@
-/* @flow */
-
 var React = require('react')
 
 var Previewer = React.createClass({
 
-  render(): any {
+  render() {
     return (
       <div className="col-block-content">
         <div className="col-block-editor-preview" dangerouslySetInnerHTML={{ __html: this.props.html }} />

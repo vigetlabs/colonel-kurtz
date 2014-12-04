@@ -1,5 +1,3 @@
-/** @flow */
-
 var MediumEditor = require('./vendor/medium-editor')
 var React        = require('react')
 var Types        = React.PropTypes
@@ -14,30 +12,31 @@ var Editor = React.createClass({
   getDefaultProps() {
     return {
       options: {
-        buttons      : [ 'header1', 'header2', 'bold', 'italic', 'underline', 'anchor', 'quote',  'unorderedlist', 'orderedlist' ],
-        firstHeader  : 'h1',
-        secondHeader : 'h2',
-        diffLeft     : 0,
-        diffTop      : -10
+        buttons: [ 'header1', 'header2', 'bold', 'italic', 'underline', 'anchor', 'quote',  'unorderedlist', 'orderedlist' ],
+        firstHeader: 'h1',
+        secondHeader: 'h2',
+        diffLeft: 0,
+        diffTop: -10,
+        disableDoubleReturn: true
       }
     }
   },
 
-  shouldComponentUpdate(props: Object, state: Object): boolean {
+  shouldComponentUpdate(props: Object, state: Object){
     return false
   },
 
-  componentDidMount(): void {
+  componentDidMount() {
     this.setState({
       editor: new MediumEditor(this.refs.editor.getDOMNode(), this.props.options)
     })
   },
 
-  componentWillUnmount(): void {
+  componentWillUnmount() {
     this.state.editor.deactivate()
   },
 
-  render(): any {
+  render() {
     return (
       <div className="col-block-content">
         <div className="col-block-editor" onBlur={ this._onBlur } role="textarea" aria-multiline="true" ref="editor" dangerouslySetInnerHTML={{ __html: this.props.html }} />

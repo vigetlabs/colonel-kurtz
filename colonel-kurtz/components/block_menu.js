@@ -23,11 +23,11 @@ var BlockMenu = React.createClass({
     }
   },
 
-  getButton(type:string): any {
+  getButton(type:string): ReactElement {
     return <AddBlock key={ type } type={ type } { ...this.props } />
   },
 
-  getNavigation() {
+  getNavigation(): ReactElement {
     return (
       <nav className="col-menu" role="navigation">
         { this.state.types.map(this.getButton) }
