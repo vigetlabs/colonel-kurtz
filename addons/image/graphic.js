@@ -19,12 +19,12 @@ var Graphic = React.createClass({
   render(): any {
     var { src, credit } = this.props
 
-    return (
+    return src ? (
       <figure className="col-img-figure">
         <img className="col-img-graphic" src={ src } alt="" />
         { this.getCaption() }
       </figure>
-    )
+    ) : null
   }
 
 })
