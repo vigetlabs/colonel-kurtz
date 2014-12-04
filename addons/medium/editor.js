@@ -11,6 +11,19 @@ var Editor = React.createClass({
     onBlur : Types.func.isRequired
   },
 
+  getDefaultProps() {
+    return {
+      options: {
+        buttons      : [ 'header1', 'header2', 'bold', 'italic', 'underline', 'anchor', 'quote',  'unorderedlist', 'orderedlist' ],
+        firstHeader  : 'h1',
+        secondHeader : 'h2',
+        delay        : 500,
+        diffLeft     : 25,
+        diffTop      : 10
+      }
+    }
+  },
+
   shouldComponentUpdate(props: Object, state: Object): boolean {
     return false
   },

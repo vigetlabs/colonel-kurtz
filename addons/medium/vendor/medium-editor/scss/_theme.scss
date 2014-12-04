@@ -13,7 +13,8 @@ $medium_editor_link_color:    rgba(#000, 0.875);
   top: -8px;
 }
 
-.medium-editor-toolbar {
+.medium-editor-toolbar,
+.medium-editor-toolbar-anchor-preview {
   background-color: $medium_editor_bgcolor;
   border-radius: 2px;
   filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.3)) drop-shadow(0 0 1px rgba(0, 0, 0, 0.15));
@@ -83,11 +84,6 @@ $medium_editor_link_color:    rgba(#000, 0.875);
   a {
     color: $medium_editor_link_color;
   }
-}
-
-.medium-editor-toolbar-anchor-preview {
-  background: $medium_editor_bgcolor;
-  color: $medium_editor_link_color;
 }
 
 .medium-editor-placeholder:after {

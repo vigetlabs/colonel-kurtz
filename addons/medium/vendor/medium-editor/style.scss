@@ -21,6 +21,7 @@
   @extend %medium-toolbar-arrow;
   border-width: 0 8px 8px 8px;
   top: -8px;
+  z-index: 1;
 }
 
 .medium-editor-toolbar,
@@ -69,13 +70,15 @@
 }
 
 .medium-editor-anchor-preview {
-  i {
-    cursor: pointer;
-    display: inline-block;
-    font-style: normal;
-    margin: 5px 5px 5px 10px;
-    text-decoration: underline;
-  }
+  margin-top: 12px;
+}
+
+.medium-editor-toolbar-anchor-preview-inner {
+  cursor: pointer;
+  display: block;
+  font: italic 14px/1 Roboto, sans-serif;
+  padding: 12px;
+  text-decoration: underline;
 }
 
 
@@ -98,7 +101,7 @@
 
   input,
   a {
-    font-family: HelveticaNeue, Helvetica, Arial, sans-serif;
+    font-family: Roboto, sans-serif;
   }
 
   .medium-editor-toolbar-anchor-input,
@@ -125,10 +128,16 @@
 
   a {
     display: inline-block;
-    font-size: 24px;
+    font-family: Roboto, sans-serif;
+    font-size: 16px;
     font-weight: bolder;
-    margin: 0 10px;
+    height: 36px;
+    line-height: 1;
+    margin: 0;
+    padding: 12px;
+    text-align: center;
     text-decoration: none;
+    width: 36px;
   }
 }
 
