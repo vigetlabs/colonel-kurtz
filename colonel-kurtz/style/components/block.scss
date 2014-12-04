@@ -48,3 +48,8 @@
   }
 
 }
+
+.col-block-editor-preview {
+  @extend .col-block-editor;
+  color: $colonel-text-dark;
+}
