@@ -14,8 +14,8 @@ require('./style')
 
 var YouTube = {
 
-  defaultContent(): { src: string; caption: string; credit: string } {
-    return { src: '', caption: '', credit: '' }
+  defaultContent(): { src: string } {
+    return { src: '' }
   },
 
   renderEditor(): any {
