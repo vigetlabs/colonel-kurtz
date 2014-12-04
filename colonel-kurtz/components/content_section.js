@@ -1,7 +1,7 @@
 /* @flow */
 
-var React  = require('react')
-var Modes  = require('../constants/mode_constants')
+var React = require('react')
+var Modes = require('../constants/mode_constants')
 
 var _types = {}
 

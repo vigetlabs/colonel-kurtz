@@ -44,6 +44,7 @@ $colonel-tabs-font: 600 14px/16px sans-serif !default;
   &:after {
     background: $colonel-muted-light;
     bottom: -$colonel-tabs-border-width;
+    box-shadow: 0 -1px 1px rgba(#000, 0.1);
     content: "";
     height: $colonel-tabs-border-width;
     left: 0;

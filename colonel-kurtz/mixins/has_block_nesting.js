@@ -4,7 +4,7 @@ var React     = require('react')
 var Block     = require('../stores/block_store')
 var BlockList = require('../stores/block_list_store')
 
-var ActsLikeBlockWithBlockList = {
+var HasBlockNesting = {
 
   getInitialState(): Object {
     var id = this.props.initialBlockId;
@@ -25,4 +25,4 @@ var ActsLikeBlockWithBlockList = {
 
 }
 
-module.exports = ActsLikeBlockWithBlockList
+module.exports = HasBlockNesting

@@ -10,9 +10,7 @@ if (!Object.assign) {
 }
 
 // Polyfill Array.prototype.find for easy record retrieval
-if (!Array.prototype.find) {
-  require('array.prototype.find')
-}
+require('array.prototype.find')
 
 var App              = require('./components/app')
 var BlockActions     = require('./actions/block_actions')
@@ -34,7 +32,7 @@ class ColonelKurtz {
   constructor(config: { el: Element; seed: ?Object }) {
     this.id = uid()
     this.el = config.el
-    this._callbacks = Immutable.Set([])
+    this._callbacks = Immutable.Set()
 
     Bus.subscribe(() => this.simulateChange())
 

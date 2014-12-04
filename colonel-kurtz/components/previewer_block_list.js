@@ -1,12 +1,12 @@
 /* @flow */
 
-var ActsLikeBlockList = require('../mixins/acts_like_block_list')
-var PreviewerBlock    = require('./previewer_block')
-var React             = require('react')
+var HasBlockList   = require('../mixins/has_block_list')
+var PreviewerBlock = require('./previewer_block')
+var React          = require('react')
 
 var PreviewerBlockList = React.createClass({
 
-  mixins: [ ActsLikeBlockList ],
+  mixins: [ HasBlockList ],
 
   blockComponents(): Array<ReactElement> {
     return this.state.blockIds.map(function(blockId) {

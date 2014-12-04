@@ -4,7 +4,7 @@ var BlockList = require('../stores/block_list_store')
 var Monitor   = require('./monitor')
 var React     = require('react')
 
-var ActsLikeBlockList = {
+var HasBlockList = {
 
   mixins: [ Monitor ],
 
@@ -29,4 +29,4 @@ var ActsLikeBlockList = {
 
 }
 
-module.exports = ActsLikeBlockList
+module.exports = HasBlockList

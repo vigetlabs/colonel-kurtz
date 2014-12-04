@@ -1,11 +1,11 @@
 /* @flow */
 
-var React = require('react')
-var Button = require('./ui/button')
+var React        = require('react')
+var Button       = require('./ui/button')
 var BlockActions = require('../actions/block_actions')
-var Strings = require('../constants/strings')
+var Strings      = require('../constants/strings')
 
-var RemoveBlockButton = React.createClass({
+var RemoveBlock = React.createClass({
 
   removeBlock() {
     var { blockId, blockListId: parentBlockListId } = this.props
@@ -31,4 +31,4 @@ var RemoveBlockButton = React.createClass({
 
 })
 
-module.exports = RemoveBlockButton
+module.exports = RemoveBlock

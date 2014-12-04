@@ -1,6 +1,6 @@
 /* @flow */
 
-var React = require('react')
+var React              = require('react')
 var PreviewerBlockList = require('./previewer_block_list')
 
 var Previewer = React.createClass({
