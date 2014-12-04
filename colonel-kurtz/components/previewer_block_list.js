@@ -16,7 +16,7 @@ var PreviewerBlockList = React.createClass({
 
   render(): any {
     return (
-      <div className="colonel-blocks">
+      <div className="col-blocks">
         { this.blockComponents() }
       </div>
     )

@@ -18,10 +18,10 @@ var EditorBlock = React.createClass({
     var { id, parentBlockListId } = this.state.block
 
     return (
-      <div className="colonel-block">
+      <div className="col-block">
         <Block block={ this.state.block } mode={ Modes.EDIT_MODE } />
 
-        <div className="colonel-toolbar">
+        <div className="col-toolbar">
           <RemoveBlock blockId={ id } blockListId={ parentBlockListId } />
         </div>
 

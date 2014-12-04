@@ -5,25 +5,25 @@ $colonel-tabs-color: $colonel-muted-light !default;
 $colonel-tabs-color-focus: $colonel-text-light !default;
 $colonel-tabs-font: 500 14px/16px sans-serif !default;
 
-.colonel-tabs {
+.col-tabs {
   color: $colonel-tabs-color;
   background: $colonel-tabs-background;
   box-shadow: inset 0 -1px 1px rgba(#000, 0.15);
   padding: $colonel-tabs-padding;
 }
 
-.colonel-tabs-list {
+.col-tabs-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.colonel-tabs-list-item {
+.col-tabs-list-item {
   display: inline-block;
 }
 
 // The extra selection is necessary to get around ActiveAdmin (curse it!)
-.colonel-tabs-list .colonel-tabs-btn {
+.col-tabs-list .col-tabs-btn {
   background: transparent;
   border: 0;
   border-radius: 0;

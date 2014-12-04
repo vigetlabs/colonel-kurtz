@@ -15,7 +15,7 @@ var RemoveBlock = React.createClass({
 
   render(): any {
     return (
-      <Button aria-label={ Strings.remove.label } className="colonel-btn-remove" onClick={ this._onClick }>
+      <Button aria-label={ Strings.remove.label } className="col-btn-remove" onClick={ this._onClick }>
         &times;
       </Button>
     )

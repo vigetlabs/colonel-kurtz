@@ -1,13 +1,13 @@
-.colonel-blocks,
-.colonel-block {
+.col-blocks,
+.col-block {
   position: relative;
 }
 
-.colonel-blocks {
+.col-blocks {
   padding-top: 1px;
 }
 
-.colonel-block {
+.col-block {
   background: #fff;
   border-radius: 2px;
   box-shadow: 0 1px 3px rgba(#000, 0.4);
@@ -15,12 +15,14 @@
   margin: 0 16px;
 }
 
-.colonel-block-content {
+.col-block-content {
   color: $colonel-muted-dark;
   padding: 16px 48px 16px 16px;
 }
 
-.colonel-block-editor {
+.col-block-editor {
+  line-height: 1.75;
+  font-size: 16px;
   min-height: 16px;
 
   h1,

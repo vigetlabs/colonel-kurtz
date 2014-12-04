@@ -29,7 +29,7 @@ var BlockMenu = React.createClass({
 
   getNavigation() {
     return (
-      <nav className="colonel-menu" role="navigation">
+      <nav className="col-menu" role="navigation">
         { this.state.types.map(this.getButton) }
       </nav>
     )

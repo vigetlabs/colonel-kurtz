@@ -19,7 +19,7 @@ var ContentSection = React.createClass({
     var ContentType = _types[this.props.mode]
 
     return (
-      <div className="colonel-content">
+      <div className="col-content">
         <ContentType initialBlockListId={ this.props.initialBlockListId } />
       </div>
     )

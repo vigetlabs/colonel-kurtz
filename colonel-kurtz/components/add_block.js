@@ -23,7 +23,7 @@ var AddBlock = React.createClass({
     var { icon, id, label } = this.state
 
     return (
-      <Button key={ id } aria-label={ label } className="colonel-btn-icon" onClick={ this._onClick }>
+      <Button key={ id } aria-label={ label } className="col-btn-icon" onClick={ this._onClick }>
         <img src={ icon } alt={ id } aria-hidden="true" />
       </Button>
     )

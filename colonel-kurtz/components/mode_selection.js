@@ -26,13 +26,13 @@ var ModeSelection = React.createClass({
     var { mode, modes, setMode } = this.props
 
     var props = {
-      className : "colonel-tabs-btn",
+      className : "col-tabs-btn",
       disabled  : mode === modes[key],
       onClick   : e => this._onModeClick(e, modes[key])
     }
 
     return (
-      <li key={ key } className="colonel-tabs-list-item" role="tab">
+      <li key={ key } className="col-tabs-list-item" role="tab">
         <Button { ...props }>{ key }</Button>
       </li>
     )
@@ -44,8 +44,8 @@ var ModeSelection = React.createClass({
 
   render(): any {
     return (
-      <nav role="navigation" className="colonel-tabs">
-        <ul className="colonel-tabs-list" role="tablist">
+      <nav role="navigation" className="col-tabs">
+        <ul className="col-tabs-list" role="tablist">
           { this.getTabs() }
         </ul>
       </nav>

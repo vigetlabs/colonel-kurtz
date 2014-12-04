@@ -1,4 +1,4 @@
-.colonel-btn {
+.col-btn {
   background: transparent;
   border: 0;
   border-radius: 4px;
@@ -19,7 +19,7 @@
   }
 }
 
-.colonel-btn-icon {
+.col-btn-icon {
   background: transparent;
   border: 0;
   border-radius: 4px;
@@ -53,18 +53,19 @@
   }
 }
 
-.colonel-btn-remove {
-  background: transparent;
+.col-btn-remove {
+  background: rgba(#fff, 0.25);
   border: 0;
+  border-radius: 50%;
   box-shadow: none;
   cursor: pointer;
   font: 500 16px/16px $colonel-font-family;
   color: $colonel-muted-dark;
-  border-radius: 50%;
-  padding: 0;
   height: 40px;
-  width: 40px;
+  padding: 0;
+  text-shadow: none;
   transition: 0.4s all;
+  width: 40px;
 
   &:hover,
   &:focus {

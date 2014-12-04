@@ -27,8 +27,8 @@ var Editor = React.createClass({
 
   render(): any {
     return (
-      <div className="colonel-block-content">
-        <div className="colonel-block-editor" onBlur={ this._onBlur } role="textarea" aria-multiline="true" ref="editor" dangerouslySetInnerHTML={{ __html: this.props.html }} />
+      <div className="col-block-content">
+        <div className="col-block-editor" onBlur={ this._onBlur } role="textarea" aria-multiline="true" ref="editor" dangerouslySetInnerHTML={{ __html: this.props.html }} />
       </div>
     )
   },
