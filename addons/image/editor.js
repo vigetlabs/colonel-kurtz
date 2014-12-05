@@ -6,23 +6,23 @@ var Types   = React.PropTypes
 var Editor = React.createClass({
 
   propTypes: {
-    src      : Types.string,
-    caption  : Types.string,
-    credit   : Types.string,
-    onChange : Types.func.isRequired
+    src         : Types.string,
+    caption     : Types.string,
+    attribution : Types.string,
+    onChange    : Types.func.isRequired
   },
 
   render() {
-    var { src, caption, credit } = this.props
+    var { src, caption, attribution } = this.props
 
     return (
       <div className="col-img">
-        <Graphic src={ src } caption={ caption } credit={ credit } />
+        <Graphic { ...this.props } />
 
         <fieldset className="col-img-fieldset">
           <Field label="Image Source" type="url" value={ src } name="image_src" onChange={ this._onSrcChange }/>
           <Field label="Caption" type="text" value={ caption } name="image_caption" onChange={ this._onCaptionChange } />
-          <Field label="Credit" type="text" value={ credit } name="image_credit" onChange={ this._onCreditChange } />
+          <Field label="Attribution" type="text" value={ attribution } name="image_attribution" onChange={ this._onAttributionChange } />
         </fieldset>
       </div>
     )
@@ -36,8 +36,8 @@ var Editor = React.createClass({
     this.props.onChange({ caption: e.currentTarget.value })
   },
 
-  _onCreditChange(e) {
-    this.props.onChange({ credit: e.currentTarget.value })
+  _onAttributionChange(e) {
+    this.props.onChange({ attribution: e.currentTarget.value })
   }
 
 })

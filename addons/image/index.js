@@ -13,7 +13,7 @@ require('./style')
 var Image = {
 
   defaultContent() {
-    return { src: '', caption: '', credit: '' }
+    return { src: '', caption: '', attribution: '' }
   },
 
   renderEditor() {
