@@ -22,12 +22,6 @@ var BlockTypeStore = {
     return _blockTypes.find(b => b.id === id) || null
   },
 
-  typesFor(id) {
-    var record = BlockTypeStore.find(id)
-
-    return record ? record.types : null
-  },
-
   _create (params: Object): void {
     var record = { ..._defaults, ...params }
 

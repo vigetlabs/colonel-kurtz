@@ -23,10 +23,9 @@ var BlockMenu = React.createClass({
     var { block, editor } = this.props
 
     // If there is a given block, then use the accepted types provided by that definition
-    // Otherwise, fallback to the editor. If no definition exists for the editor
-    // then return all
+    // Otherwise, fallback to the editor.
     return {
-      types: block ? BlockType.typesFor(block.type) : editor.types
+      types: block ? BlockType.find(block.type).types : editor.types
     }
   },
 
