@@ -16,6 +16,7 @@ var App              = require('./components/app')
 var BlockActions     = require('./actions/block_actions')
 var BlockListActions = require('./actions/block_list_actions')
 var BlockListStore   = require('./stores/block_list_store')
+var EditorActions    = require('./actions/editor_actions')
 var Immutable        = require('immutable')
 var React            = require('react')
 var uid              = require('./utils/uid')
@@ -36,6 +37,7 @@ class ColonelKurtz {
 
     Bus.subscribe(() => this.simulateChange())
 
+    EditorActions.create({ id: this.id, ...config })
     BlockListActions.create({ editorId: this.id })
 
     if (config.seed) {
