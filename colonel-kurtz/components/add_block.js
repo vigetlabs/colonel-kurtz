@@ -26,7 +26,7 @@ var AddBlock = React.createClass({
   },
 
   _onClick(e) {
-    var { blockListId: parentBlockListId, type, position } = this.props
+    var { parentBlockListId, type, position } = this.props
 
     BlockActions.create({ parentBlockListId, position, type })
 

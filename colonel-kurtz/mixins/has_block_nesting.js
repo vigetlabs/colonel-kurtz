@@ -6,6 +6,10 @@ var BlockList = require('../stores/block_list_store')
 
 var HasBlockNesting = {
 
+  propTypes: {
+    editor: React.PropTypes.any.isRequired
+  },
+
   getInitialState(): Object {
     var id = this.props.initialBlockId;
 
@@ -16,10 +20,12 @@ var HasBlockNesting = {
   },
 
   childBlockListComponent(): ReactElement {
-    var ListComponent = this.listComponent()
+    var { block, blockList } = this.state;
+    var { editor }           = this.props;
+    var ListComponent        = this.listComponent()
 
-    if (this.state.blockList) {
-      return <ListComponent block={ this.state.block } initialBlockListId={ this.state.blockList.id } />
+    if (blockList) {
+      return <ListComponent block={ block } editor={ editor } initialBlockListId={ blockList.id } />
     }
   }
 

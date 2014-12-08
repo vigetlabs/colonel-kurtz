@@ -9,6 +9,10 @@ var BlockMenu = React.createClass({
 
   mixins: [ Monitor ],
 
+  propTypes: {
+    editor: React.PropTypes.any.isRequired
+  },
+
   getDefaultProps(): { position: number } {
     return {
       position: 0
@@ -16,15 +20,20 @@ var BlockMenu = React.createClass({
   },
 
   getState(): { types: Array<string> } {
-    var block = this.props.block
+    var { block, editor } = this.props
 
+    // If there is a given block, then use the accepted types provided by that definition
+    // Otherwise, fallback to the editor. If no definition exists for the editor
+    // then return all
     return {
-      types: block ? BlockType.find(block.type).nest : BlockType.keys()
+      types: block ? BlockType.typesFor(block.type) : editor.types
     }
   },
 
   getButton(type:string): ReactElement {
-    return <AddBlock key={ type } type={ type } { ...this.props } />
+    var { parentBlockListId, position } = this.props
+
+    return <AddBlock key={ type } type={ type } parentBlockListId={ parentBlockListId } position={ position }/>
   },
 
   getNavigation(): ReactElement {

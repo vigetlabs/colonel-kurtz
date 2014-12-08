@@ -35,7 +35,7 @@ var App = React.createClass({
     return (
       <div className="colonel">
         <ModeSelection mode={ editor.mode } onChange={ this._onModeChange } />
-        <ContentSection mode={ editor.mode } initialBlockListId={ blockList.id } />
+        <ContentSection editor={ editor } initialBlockListId={ blockList.id } />
       </div>
     )
   },

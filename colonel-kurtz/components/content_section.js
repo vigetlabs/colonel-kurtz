@@ -11,16 +11,17 @@ _types[Modes.PREVIEW_MODE] = require('../components/previewer')
 var ContentSection = React.createClass({
 
   propTypes: {
-    mode: React.PropTypes.oneOf(Object.keys(_types)).isRequired,
-    initialBlockListId: React.PropTypes.number.isRequired
+    editor             : React.PropTypes.any.isRequired,
+    initialBlockListId : React.PropTypes.number.isRequired
   },
 
   render(): any {
-    var ContentType = _types[this.props.mode]
+    var editor      = this.props.editor
+    var ContentType = _types[editor.mode]
 
     return (
       <div className="col-content">
-        <ContentType initialBlockListId={ this.props.initialBlockListId } />
+        <ContentType editor={ editor }initialBlockListId={ this.props.initialBlockListId } />
       </div>
     )
   }

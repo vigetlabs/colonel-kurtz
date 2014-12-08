@@ -9,7 +9,7 @@ var invariant  = require('react/lib/invariant')
 var _blockTypes = Immutable.List()
 var _defaults   = {
   icon  : null,
-  types : []
+  types : null
 }
 
 var BlockTypeStore = {
@@ -20,6 +20,12 @@ var BlockTypeStore = {
 
   find (id:number): ?Object {
     return _blockTypes.find(b => b.id === id) || null
+  },
+
+  typesFor(id) {
+    var record = BlockTypeStore.find(id)
+
+    return record ? record.types : null
   },
 
   _create (params: Object): void {
