@@ -46,7 +46,7 @@ var EditorStore = {
         break
       case Constants.EDITOR_UPDATE:
         EditorStore._update(action.id, action.params)
-          break
+        break
       default:
         // do nothing
     }
