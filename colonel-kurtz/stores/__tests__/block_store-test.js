@@ -1,9 +1,6 @@
 jest.dontMock('../block_store')
 jest.dontMock('../../models/block')
 
-// Necessary polyfills
-Object.assign = require('object-assign')
-
 describe('Stores - Block', function() {
 
   it ('can retrieve all records associated with it', function() {

@@ -20,16 +20,17 @@
     {
       "name": "Lawson Kurtz",
       "email": "lawson.kurtz@viget.com",
-      "url": "http://viget.com/"
+      "url": "http://viget.com"
     },
     {
       "name": "Nate Hunzaker",
       "email": "nate.hunzaker@viget.com",
-      "url": "http://viget.com/"
+      "url": "http://viget.com"
     }
   ],
   "jest": {
-    "scriptPreprocessor": "<rootDir>/jestPreprocessor.js",
+    "scriptPreprocessor": "<rootDir>/lib/jestPreprocessor.js",
+    "setupEnvScriptFile": "<rootDir>/lib/jestSetup.js",
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/react",
       "<rootDir>/node_modules/immutable",

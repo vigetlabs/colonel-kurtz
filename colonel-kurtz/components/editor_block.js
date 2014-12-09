@@ -22,7 +22,7 @@ var EditorBlock = React.createClass({
         <Block block={ this.state.block } mode={ Modes.EDIT_MODE } />
 
         <div className="col-toolbar">
-          <RemoveBlock blockId={ id } blockListId={ parentBlockListId } />
+          <RemoveBlock blockId={ id } parentBlockListId={ parentBlockListId } />
         </div>
 
         { this.childBlockListComponent() }

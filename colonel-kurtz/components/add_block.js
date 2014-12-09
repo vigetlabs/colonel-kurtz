@@ -1,17 +1,20 @@
 /* @flow */
 
-var React        = require('react')
 var BlockType    = require('../stores/block_type_store')
 var Button       = require('./ui/button')
 var BlockActions = require('../actions/block_actions')
-var Strings      = require('../constants/strings')
-var Monitor      = require('../mixins/monitor')
+var React        = require('react')
+var Types        = React.PropTypes
 
 var AddBlock = React.createClass({
 
-  mixins: [ Monitor ],
+  propTypes: {
+    parentBlockListId : Types.number.isRequired,
+    position          : Types.number,
+    type              : Types.string.isRequired
+  },
 
-  getState() {
+  getInitialState() {
     return BlockType.find(this.props.type)
   },
 
@@ -19,7 +22,7 @@ var AddBlock = React.createClass({
     var { icon, id, label } = this.state
 
     return (
-      <Button key={ id } aria-label={ label } className="col-btn-icon" onClick={ this._onClick }>
+      <Button aria-label={ label } className="col-btn-icon" onClick={ this._onClick }>
         <img src={ icon } alt={ id } aria-hidden="true" />
       </Button>
     )

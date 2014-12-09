@@ -1,8 +1,5 @@
 jest.dontMock('../block_type_store')
 
-// Necessary polyfill
-Object.assign = require('object-assign')
-
 describe('Stores - Block Type', function() {
 
   it ('can create a record', function() {

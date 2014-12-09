@@ -1,16 +1,16 @@
 /* @flow */
 
-var React        = require('react')
-var Button       = require('./ui/button')
 var BlockActions = require('../actions/block_actions')
+var Button       = require('./ui/button')
+var React        = require('react')
 var Strings      = require('../constants/strings')
+var Types        = React.PropTypes
 
 var RemoveBlock = React.createClass({
 
-  removeBlock() {
-    var { blockId, blockListId: parentBlockListId } = this.props
-
-    BlockActions.destroy({ blockId, parentBlockListId })
+  propTypes: {
+    blockId           : Types.number.isRequired,
+    parentBlockListId : Types.number.isRequired
   },
 
   render(): any {
@@ -21,11 +21,14 @@ var RemoveBlock = React.createClass({
     )
   },
 
-  _onClick() {
+  _onClick(e) {
     var answer = confirm(Strings.remove.confirm)
+    var { blockId, parentBlockListId } = this.props
+
+    e.preventDefault();
 
     if (answer) {
-      this.removeBlock()
+      BlockActions.destroy({ blockId, parentBlockListId })
     }
   }
 

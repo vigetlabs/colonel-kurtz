@@ -1,18 +1,21 @@
-$colonel-font-family: Roboto, sans-serif;
-$colonel-primary: #009688 !default;
-$colonel-accent: #cddc39 !default;
-$colonel-danger: #f44336 !default;
-$colonel-text-light: rgba(#fff, 0.875) !default;
-$colonel-text-dark: rgba(#000, 0.875) !default;
-$colonel-muted-light: rgba(#fff, 0.4) !default;
-$colonel-muted-dark: rgba(#000, 0.5) !default;
+$colonel-font-family : Roboto, sans-serif;
+$colonel-primary     : #009688 !default;
+$colonel-accent      : #cddc39 !default;
+$colonel-danger      : #f44336 !default;
+$colonel-text-light  : rgba(#fff, 0.875) !default;
+$colonel-text-dark   : rgba(#000, 0.875) !default;
+$colonel-muted-light : rgba(#fff, 0.4) !default;
+$colonel-muted-dark  : rgba(#000, 0.5) !default;
 
 @import 'generators/functions';
 
 @import 'components/colonel';
-@import 'components/button';
-@import 'components/tabs';
-@import 'components/ink';
-@import 'components/block';
-@import 'components/toolbar';
-@import 'components/menu';
+
+.colonel {
+  @import 'components/button';
+  @import 'components/tabs';
+  @import 'components/ink';
+  @import 'components/block';
+  @import 'components/toolbar';
+  @import 'components/menu';
+}
