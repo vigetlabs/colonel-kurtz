@@ -21,7 +21,7 @@ var ContentSection = React.createClass({
 
     return (
       <div className="col-content">
-        <ContentType editor={ editor }initialBlockListId={ this.props.initialBlockListId } />
+        <ContentType editor={ editor } initialBlockListId={ this.props.initialBlockListId } />
       </div>
     )
   }
