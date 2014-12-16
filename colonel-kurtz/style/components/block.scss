@@ -22,47 +22,6 @@
   padding: 16px 48px 16px 16px;
 }
 
-.col-block-editor {
-  line-height: 1.75;
-  font-size: 16px;
-  min-height: 16px;
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin-top: 0;
-  }
-
-  p {
-    margin: 0;
-  }
-
-  p + p {
-    margin-top: 16px;
-  }
-
-  blockquote {
-    border-left: 3px solid #777;
-    padding: 8px 0 8px 24px;
-    margin: 16px;
-    font: italic 18px/1 Georgia, serif;
-  }
-
-  &:focus {
-    color: $colonel-text-dark;
-    outline: 0;
-  }
-
-}
-
-.col-block-editor-preview {
-  @extend .col-block-editor;
-  color: $colonel-text-dark;
-}
-
 // Transitions
 // -------------------------------------------------- //
 
