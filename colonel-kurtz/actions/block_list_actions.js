@@ -10,6 +10,11 @@ var BlockListActions = {
     var type = BlockListConstants.BLOCK_LIST_CREATE
 
     Dispatcher.dispatch({ type, params })
+  },
+
+  move(blockListId: number, anchorId: number, focusId: number) {
+    var type = BlockListConstants.BLOCK_LIST_MOVE;
+    Dispatcher.dispatch({ type, blockListId, anchorId, focusId })
   }
 
 }

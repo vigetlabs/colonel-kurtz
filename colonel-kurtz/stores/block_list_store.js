@@ -55,7 +55,7 @@ var BlockListStore = {
     var blockList = this.find(block.parentBlockListId)
 
     if (blockList) {
-      blockList.insertBlock(block, position)
+      blockList.insertBlock(block.id, position)
       Bus.publish()
     }
   },
@@ -65,6 +65,15 @@ var BlockListStore = {
 
     if (blockList) {
       blockList.removeBlock(blockId)
+      Bus.publish()
+    }
+  },
+
+  _move(blockListId, anchorId: number, focusId: number) {
+    var blockList = this.find(blockListId)
+
+    if (blockList) {
+      blockList.move(anchorId, focusId)
       Bus.publish()
     }
   },
@@ -83,11 +92,13 @@ var BlockListStore = {
       case Constants.BLOCK_LIST_CREATE:
         BlockListStore._create(action.params)
         break
+      case Constants.BLOCK_LIST_MOVE:
+        BlockListStore._move(action.blockListId, action.anchorId, action.focusId)
+        break
       default:
         // do nothing
     }
   })
-
 }
 
 module.exports = BlockListStore

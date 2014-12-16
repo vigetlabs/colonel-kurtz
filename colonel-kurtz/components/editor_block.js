@@ -1,10 +1,12 @@
 /* @flow */
 
-var HasBlockNesting = require('../mixins/has_block_nesting')
-var Modes           = require('../constants/mode_constants')
-var Block           = require('./block')
-var React           = require('react')
-var RemoveBlock     = require('./remove_block')
+var Block            = require('./block')
+var BlockListActions = require('../actions/block_list_actions')
+var Draggable        = require('./draggable')
+var HasBlockNesting  = require('../mixins/has_block_nesting')
+var Modes            = require('../constants/mode_constants')
+var React            = require('react')
+var RemoveBlock      = require('./remove_block')
 
 var EditorBlock = React.createClass({
 
@@ -18,7 +20,8 @@ var EditorBlock = React.createClass({
     var { id, parentBlockListId } = this.state.block
 
     return (
-      <div className="col-block">
+      <Draggable className="col-block" transmit={ id } onDrop={ this._onDrop }>
+
         <Block block={ this.state.block } mode={ Modes.EDIT_MODE } />
 
         <div className="col-toolbar">
@@ -26,8 +29,14 @@ var EditorBlock = React.createClass({
         </div>
 
         { this.childBlockListComponent() }
-      </div>
+
+      </Draggable>
     )
+  },
+
+  _onDrop(anchorId, focusId) {
+    var { parentBlockListId:blockListId } = this.state.block
+    BlockListActions.move(blockListId, anchorId, focusId)
   }
 
 })

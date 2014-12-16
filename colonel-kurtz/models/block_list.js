@@ -18,12 +18,27 @@ class BlockList {
     return this._blocks
   }
 
+  has(id) {
+    return this.indexOf(id) > -1
+  }
+
+  indexOf(id) {
+    return this._blocks.indexOf(id)
+  }
+
   removeBlock(blockId:number): void {
     this._blocks = this._blocks.filter(id => id !== blockId)
   }
 
-  insertBlock(block:Block, position:number) : void {
-    this._blocks.splice(position, 0, block.id)
+  insertBlock(blockId:number, position:number): void {
+    this._blocks.splice(position, 0, blockId)
+  }
+
+  move(anchorId:number, focusId:number): void {
+    var from = this.indexOf(anchorId)
+    var to   = this.indexOf(focusId)
+
+    this._blocks.splice(to, 0, this._blocks.splice(from, 1)[0]);
   }
 
   toJSON(): Object {

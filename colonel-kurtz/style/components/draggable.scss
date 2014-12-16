@@ -1,0 +1,44 @@
+$col-draggable-stretch: -12px;
+
+.col-draggable {
+  border: 2px dashed transparent;
+  transition: 1s all;
+
+  &:after {
+    border-radius: 3px;
+    border: 2px dashed transparent;
+    bottom: $col-draggable-stretch;
+    content: "";
+    left: $col-draggable-stretch;
+    position: absolute;
+    right: $col-draggable-stretch;
+    top: $col-draggable-stretch;
+    transition: 0.75s all;
+    z-index: 0;
+  }
+}
+
+.col-draggable-children {
+  position: relative;
+  transition: 0.75s all;
+  z-index: 1;
+}
+
+.col-draggable.col-dragging{
+  background: transparent;
+  box-shadow: none;
+  transition: 0.3s all;
+
+  &:after {
+    border-color: #ddd;
+  }
+
+  .col-draggable-children {
+    opacity: 0;
+    transition: 0.25s all;
+  }
+}
+
+.col-draggable.col-droppable:after {
+  border-color: #aaa;
+}

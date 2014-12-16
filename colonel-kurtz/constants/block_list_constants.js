@@ -3,9 +3,8 @@
 var KeyMirror = require('react/lib/keyMirror')
 
 var BlockListConstants = KeyMirror({
-  BLOCK_LIST_CREATE  : null,
-  BLOCK_LIST_CREATED : null,
-  BLOCK_LIST_CHANGE  : null
+  BLOCK_LIST_CREATE : null,
+  BLOCK_LIST_MOVE   : null
 })
 
 module.exports = BlockListConstants
