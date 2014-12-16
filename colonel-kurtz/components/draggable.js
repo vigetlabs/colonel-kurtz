@@ -10,8 +10,8 @@ var cx    = React.addons.classSet
 var Draggable = React.createClass({
 
   propTypes: {
-    onDrop   : Types.func.isRequired,
-    transmit : Types.any.isRequired
+    onDrop  : Types.func.isRequired,
+    message : Types.any.isRequired
   },
 
   getDefaultProps() {
@@ -48,9 +48,9 @@ var Draggable = React.createClass({
   },
 
   _onDragStart(e) {
-    var { transmit, dropEffect } = this.props
+    var { message, dropEffect } = this.props
 
-    e.dataTransfer.setData('text/plain', JSON.stringify(transmit))
+    e.dataTransfer.setData('text/plain', JSON.stringify(message))
     e.dataTransfer.dropEffect = dropEffect
 
     this.setState({ dragging: true })
@@ -71,10 +71,7 @@ var Draggable = React.createClass({
   _onDrop(e) {
     e.preventDefault()
 
-    var transmission = JSON.parse(e.dataTransfer.getData('text/plain'))
-    var receiver     = this.props.transmit;
-
-    this.props.onDrop(transmission, receiver);
+    this.props.onDrop(JSON.parse(e.dataTransfer.getData('text/plain')))
 
     this.setState({ droppable: false, dragging: false })
   }

@@ -31,4 +31,14 @@ describe('Models - Block List', function() {
     expect(b.all()).toEqual([ 0 ])
   })
 
+  it ('can move a block', function() {
+    var b = new BlockList({})
+
+    b.insertBlock(0, 0)
+    b.insertBlock(1, 1)
+    b.move(1, 0)
+
+    expect(b.all()).toEqual([ 1, 0 ])
+  })
+
 })

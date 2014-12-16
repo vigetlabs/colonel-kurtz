@@ -1,5 +1,5 @@
 /* @flow */
-var uid = require('../utils/uid')
+var uid  = require('../utils/uid')
 
 class BlockList {
   blockId: number;
@@ -34,9 +34,9 @@ class BlockList {
     this._blocks.splice(position, 0, blockId)
   }
 
-  move(anchorId:number, focusId:number): void {
-    var from = this.indexOf(anchorId)
-    var to   = this.indexOf(focusId)
+  move(fromId:number, toId:number): void {
+    var from = this.indexOf(fromId)
+    var to   = this.indexOf(toId)
 
     this._blocks.splice(to, 0, this._blocks.splice(from, 1)[0]);
   }

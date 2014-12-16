@@ -69,11 +69,11 @@ var BlockListStore = {
     }
   },
 
-  _move(blockListId, anchorId: number, focusId: number) {
+  _move(blockListId, fromId: number, toId: number) {
     var blockList = this.find(blockListId)
 
     if (blockList) {
-      blockList.move(anchorId, focusId)
+      blockList.move(fromId, toId)
       Bus.publish()
     }
   },
@@ -93,7 +93,7 @@ var BlockListStore = {
         BlockListStore._create(action.params)
         break
       case Constants.BLOCK_LIST_MOVE:
-        BlockListStore._move(action.blockListId, action.anchorId, action.focusId)
+        BlockListStore._move(action.blockListId, action.fromId, action.toId)
         break
       default:
         // do nothing

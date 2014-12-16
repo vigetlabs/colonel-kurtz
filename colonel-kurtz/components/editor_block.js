@@ -20,7 +20,7 @@ var EditorBlock = React.createClass({
     var { id, parentBlockListId } = this.state.block
 
     return (
-      <Draggable className="col-block" transmit={ id } onDrop={ this._onDrop }>
+      <Draggable className="col-block" message={ id } onDrop={ this._onDrop }>
 
         <Block block={ this.state.block } mode={ Modes.EDIT_MODE } />
 
@@ -34,9 +34,9 @@ var EditorBlock = React.createClass({
     )
   },
 
-  _onDrop(anchorId, focusId) {
-    var { parentBlockListId:blockListId } = this.state.block
-    BlockListActions.move(blockListId, anchorId, focusId)
+  _onDrop(fromId) {
+    var { id: toId, parentBlockListId:blockListId } = this.state.block
+    BlockListActions.move(blockListId, fromId, toId)
   }
 
 })

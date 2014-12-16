@@ -12,9 +12,9 @@ var BlockListActions = {
     Dispatcher.dispatch({ type, params })
   },
 
-  move(blockListId: number, anchorId: number, focusId: number) {
+  move(blockListId: number, fromId: number, toId: number) {
     var type = BlockListConstants.BLOCK_LIST_MOVE;
-    Dispatcher.dispatch({ type, blockListId, anchorId, focusId })
+    Dispatcher.dispatch({ type, blockListId, fromId, toId })
   }
 
 }
