@@ -10,8 +10,8 @@ var cx    = React.addons.classSet
 var Draggable = React.createClass({
 
   propTypes: {
-    transmit : Types.any.isRequired,
-    onDrop   : Types.func.isRequired
+    onDrop   : Types.func.isRequired,
+    transmit : Types.any.isRequired
   },
 
   getDefaultProps() {

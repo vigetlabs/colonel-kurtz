@@ -7,7 +7,7 @@ describe('Models - Block List', function() {
   it ('can insert a block', function() {
     var b = new BlockList({})
 
-    b.insertBlock({ id: 0 }, 0)
+    b.insertBlock(0, 0)
 
     expect(b.all()).toEqual([ 0 ])
   })
@@ -15,8 +15,8 @@ describe('Models - Block List', function() {
   it ('can insert a block at a given index', function() {
     var b = new BlockList({})
 
-    b.insertBlock({ id: 0 }, 0)
-    b.insertBlock({ id: 1 }, 1)
+    b.insertBlock(0, 0)
+    b.insertBlock(1, 1)
 
     expect(b.all()).toEqual([ 0, 1])
   })
@@ -24,8 +24,8 @@ describe('Models - Block List', function() {
   it ('can remove a block', function() {
     var b = new BlockList({})
 
-    b.insertBlock({ id: 0 }, 0)
-    b.insertBlock({ id: 1 }, 1)
+    b.insertBlock(0, 0)
+    b.insertBlock(1, 1)
     b.removeBlock(1)
 
     expect(b.all()).toEqual([ 0 ])
