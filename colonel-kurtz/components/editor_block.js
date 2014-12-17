@@ -2,7 +2,7 @@
 
 var Block            = require('./block')
 var BlockListActions = require('../actions/block_list_actions')
-var Draggable        = require('./draggable')
+var Dragon           = require('react-dragon')
 var HasBlockNesting  = require('../mixins/has_block_nesting')
 var Modes            = require('../constants/mode_constants')
 var React            = require('react')
@@ -20,7 +20,7 @@ var EditorBlock = React.createClass({
     var { id, parentBlockListId } = this.state.block
 
     return (
-      <Draggable className="col-block" message={ id } onDrop={ this._onDrop }>
+      <Dragon className="col-block" message={ id } onDrop={ this._onDrop }>
 
         <Block block={ this.state.block } mode={ Modes.EDIT_MODE } />
 
@@ -30,13 +30,12 @@ var EditorBlock = React.createClass({
 
         { this.childBlockListComponent() }
 
-      </Draggable>
+      </Dragon>
     )
   },
 
-  _onDrop(fromId) {
-    var { id: toId, parentBlockListId:blockListId } = this.state.block
-    BlockListActions.move(blockListId, fromId, toId)
+  _onDrop(fromId, toId) {
+    BlockListActions.move(this.state.block.parentBlockListId, fromId, toId)
   }
 
 })

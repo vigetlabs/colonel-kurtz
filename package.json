@@ -48,6 +48,7 @@
     "autoprefixer-loader": "^1.0.0",
     "css-loader": "^0.9.0",
     "envify-loader": "^0.1.0",
+    "react-dragon": "vigetlabs/react-dragon",
     "extract-text-webpack-plugin": "^0.3.5",
     "jest-cli": "^0.1.18",
     "json-loader": "^0.5.1",

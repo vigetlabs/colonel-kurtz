@@ -1,44 +1,74 @@
-$col-draggable-stretch: -12px;
+/**
+ * Draggable
+ * Uses the react-dragon component
+ * https://github.com/vigetlabs/react-dragon
+ */
 
-.col-draggable {
+$dragon-stretch: -12px;
+
+.dragon {
   border: 2px dashed transparent;
-  transition: 1s all;
+  position: relative;
+  transition: 1s all cubic-bezier(.06,.86,.36,1.14);
+  transform: translateZ(0);
+
+  &:before {
+    color: rgba(#000, 0.4);
+    content: "☰";
+    left: 16px;
+    line-height: 16px;
+    margin-top: -12px;
+    position: absolute;
+    pointer-events: none;
+    transition: 0.3s all;
+    top: 50%;
+  }
 
   &:after {
     border-radius: 3px;
     border: 2px dashed transparent;
-    bottom: $col-draggable-stretch;
+    bottom: $dragon-stretch;
     content: "";
-    left: $col-draggable-stretch;
+    left: $dragon-stretch;
     position: absolute;
-    right: $col-draggable-stretch;
-    top: $col-draggable-stretch;
+    right: $dragon-stretch;
+    top: $dragon-stretch;
     transition: 0.75s all;
     z-index: 0;
   }
 }
 
-.col-draggable-children {
+.dragon-children {
+  padding-left: 48px;
   position: relative;
   transition: 0.75s all;
   z-index: 1;
 }
 
-.col-draggable.col-dragging {
+.dragon-dragging {
   background: transparent;
   box-shadow: none;
   transition: 0.3s all;
+  transform: translateZ(0) scale(0.98);
+
+  &:before {
+    opacity: 0;
+  }
 
   &:after {
     border-color: #ddd;
   }
 
-  .col-draggable-children {
+  .dragon-children {
     opacity: 0;
     transition: 0.25s all;
   }
 }
 
-.col-draggable.col-droppable:after {
-  border-color: #aaa;
+.dragon-droppable {
+  transform: translateZ(0) scale(1.01);
+
+  &:after {
+    border-color: #aaa;
+  }
 }
