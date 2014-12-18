@@ -2,7 +2,7 @@
   "name": "colonel-kurtz",
   "version": "0.0.0",
   "description": "A block editor",
-  "main": "colonel-kurtz/index.js",
+  "main": "build/colonel-kurtz.js",
   "scripts": {
     "start": "NODE_ENV=development webpack -wd",
     "prepublish": "NODE_ENV=production webpack -p --optimize-occurence-order --optimize-dedupe",
@@ -63,7 +63,6 @@
     "flux": "latest",
     "immutable": "latest",
     "object-assign": "^2.0.0",
-    "react": ">= 0.12.1",
-    "react-ink": "^1.0.4"
+    "react": ">= 0.12.1"
   }
 }

@@ -12,8 +12,12 @@ module.exports = {
   output: {
     path: './build/',
     filename: '[name].js',
-    libraryTarget: 'var',
-    library: 'ColonelKurtz'
+    libraryTarget: 'commonjs2'
+  },
+
+  externals: {
+    'react'        : 'react',
+    'react/addons' : 'react/addons'
   },
 
   resolve: {
