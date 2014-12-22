@@ -10,7 +10,6 @@ $dragon-stretch: -12px;
   border: 2px dashed transparent;
   position: relative;
   transition: 1s all cubic-bezier(.06,.86,.36,1.14);
-  transform: translateZ(0);
 
   &:before {
     color: rgba(#000, 0.4);
@@ -34,15 +33,13 @@ $dragon-stretch: -12px;
     right: $dragon-stretch;
     top: $dragon-stretch;
     transition: 0.75s all;
-    z-index: 0;
+    z-index: -1;
   }
 }
 
 .dragon-children {
   padding-left: 48px;
-  position: relative;
   transition: 0.75s all;
-  z-index: 1;
 }
 
 .dragon-dragging {

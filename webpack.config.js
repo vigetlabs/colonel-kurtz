@@ -6,7 +6,7 @@ module.exports = {
   devtool : 'source-map',
 
   entry: {
-    'colonel-kurtz' : './colonel-kurtz/index.js'
+    'js/colonel-kurtz' : './colonel-kurtz/index.js'
   },
 
   output: {
@@ -26,7 +26,7 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin("style.css"),
+    new ExtractTextPlugin("css/colonel-kurtz.css"),
     new WebPack.DefinePlugin({
       '__DEV__' : process.env.NODE_ENV !== 'production'
     })
