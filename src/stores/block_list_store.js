@@ -1,6 +1,5 @@
 /* @flow */
 
-var BlockConstants = require('../constants/block_constants')
 var BlockList      = require('../models/block_list')
 var BlockStore     = require('../stores/block_store')
 var Bus            = require('../bus')
@@ -80,12 +79,12 @@ var BlockListStore = {
 
   dispatchToken: Dispatcher.register(function(action) {
     switch (action.type) {
-      case BlockConstants.BLOCK_CREATE:
+      case require('../actions/block/create'):
         Dispatcher.waitFor([ BlockStore.dispatchToken ])
         BlockListStore._addBlockToList(action.block, action.position)
         BlockListStore._createFromParent(action.block, action.position)
         break
-      case BlockConstants.BLOCK_DESTROY:
+      case require('../actions/block/destroy'):
         Dispatcher.waitFor([ BlockStore.dispatchToken ])
         BlockListStore._removeBlockFromList(action.blockId, action.parentBlockListId)
         break

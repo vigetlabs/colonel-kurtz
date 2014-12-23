@@ -13,7 +13,6 @@ if (!Object.assign) {
 require('array.prototype.find')
 
 var App              = require('./components/app')
-var BlockActions     = require('./actions/block_actions')
 var BlockListActions = require('./actions/block_list_actions')
 var BlockListStore   = require('./stores/block_list_store')
 var EditorActions    = require('./actions/editor_actions')

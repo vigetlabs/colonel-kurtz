@@ -1,10 +1,10 @@
 /* @flow */
 
-var BlockActions = require('../actions/block_actions')
-var BlockType    = require('../stores/block_type_store')
-var Monitor      = require('../mixins/monitor')
-var Pure         = require('../mixins/pure')
-var React        = require('react')
+var BlockType   = require('../stores/block_type_store')
+var Monitor     = require('../mixins/monitor')
+var Pure        = require('../mixins/pure')
+var React       = require('react')
+var UpdateBlock = require('../actions/block/update')
 
 var Block = React.createClass({
 
@@ -28,7 +28,7 @@ var Block = React.createClass({
   },
 
   _onUpdateContent(content:Object): void {
-    BlockActions.update(this.props.block.id, content)
+    UpdateBlock(this.props.block.id, content)
   }
 
 })

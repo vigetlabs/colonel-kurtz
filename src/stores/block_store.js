@@ -2,7 +2,6 @@
 
 var Bus        = require('../bus')
 var Block      = require('../models/block')
-var Constants  = require('../constants/block_constants')
 var Dispatcher = require('../dispatcher')
 var Immutable  = require('immutable')
 
@@ -48,14 +47,14 @@ var BlockStore = {
 
   dispatchToken: Dispatcher.register(function(action) {
     switch (action.type) {
-      case Constants.BLOCK_CREATE:
+      case require('../actions/block/create'):
         var block = BlockStore._create(action.params)
         action.block = block
         break
-      case Constants.BLOCK_DESTROY:
+      case require('../actions/block/destroy'):
         BlockStore._destroy(action.blockId)
         break
-      case Constants.BLOCK_UPDATE:
+      case require('../actions/block/update'):
         BlockStore._update(action.blockId, action.content)
         break
       default:

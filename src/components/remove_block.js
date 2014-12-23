@@ -1,7 +1,7 @@
 /* @flow */
 
-var BlockActions = require('../actions/block_actions')
 var Button       = require('./ui/button')
+var DestroyBlock = require('../actions/block/destroy')
 var React        = require('react')
 var Strings      = require('../constants/strings')
 var Types        = React.PropTypes
@@ -28,7 +28,7 @@ var RemoveBlock = React.createClass({
     e.preventDefault();
 
     if (answer) {
-      BlockActions.destroy({ blockId, parentBlockListId })
+      DestroyBlock({ blockId, parentBlockListId })
     }
   }
 

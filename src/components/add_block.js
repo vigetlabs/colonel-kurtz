@@ -1,10 +1,10 @@
 /* @flow */
 
-var BlockType    = require('../stores/block_type_store')
-var Button       = require('./ui/button')
-var BlockActions = require('../actions/block_actions')
-var React        = require('react')
-var Types        = React.PropTypes
+var BlockType   = require('../stores/block_type_store')
+var Button      = require('./ui/button')
+var CreateBlock = require('../actions/block/create')
+var React       = require('react')
+var Types       = React.PropTypes
 
 var AddBlock = React.createClass({
 
@@ -31,7 +31,7 @@ var AddBlock = React.createClass({
   _onClick(e) {
     var { parentBlockListId, type, position } = this.props
 
-    BlockActions.create({ parentBlockListId, position, type })
+    CreateBlock({ parentBlockListId, position, type })
 
     e.preventDefault()
   }
