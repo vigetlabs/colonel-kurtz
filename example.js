@@ -10,28 +10,28 @@ ColonelKurtz.addBlockType({
   id        : 'medium',
   icon      : 'icons/text.svg',
   label     : 'Create a new text block',
-  component : ColonelKurtz.addons.Medium
+  component : require('../addons/medium')
 })
 
 ColonelKurtz.addBlockType({
   id        : 'image',
   icon      : 'icons/image.svg',
   label     : 'Create a new image block',
-  component : ColonelKurtz.addons.Image
+  component : require('../addons/image')
 })
 
 ColonelKurtz.addBlockType({
   id        : 'youtube',
   icon      : 'icons/youtube.svg',
   label     : 'Create a new YouTube block',
-  component : ColonelKurtz.addons.YouTube
+  component : require('../addons/youtube')
 })
 
 ColonelKurtz.addBlockType({
   id        : 'list_item',
   icon      : 'icons/add.svg',
   label     : 'Create a new list item',
-  component : ColonelKurtz.addons.Medium
+  component : require('../addons/medium')
 })
 
 ColonelKurtz.addBlockType({
