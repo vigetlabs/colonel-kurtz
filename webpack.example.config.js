@@ -1,23 +1,16 @@
-var WebPack           = require('webpack')
-var ExtractTextPlugin = require("extract-text-webpack-plugin")
+var WebPack = require('webpack')
 
 module.exports = {
   debug   : true,
   devtool : 'source-map',
 
   entry: {
-    'js/colonel-kurtz' : './colonel-kurtz/index.js'
+    'example.build' : './example/example.js'
   },
 
   output: {
-    path: './build/',
-    filename: '[name].js',
-    libraryTarget: 'commonjs2'
-  },
-
-  externals: {
-    'react'        : 'react',
-    'react/addons' : 'react/addons'
+    path: './example',
+    filename: '[name].js'
   },
 
   resolve: {
@@ -26,7 +19,6 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin("css/colonel-kurtz.css"),
     new WebPack.DefinePlugin({
       '__DEV__' : process.env.NODE_ENV !== 'production'
     })
@@ -36,7 +28,7 @@ module.exports = {
     loaders: [
       {
         test    : /\.s*(c|a)ss$/,
-        loader  : ExtractTextPlugin.extract('style-loader', 'css-loader!autoprefixer-loader!sass-loader')
+        loader  : 'style-loader!css-loader!autoprefixer-loader!sass-loader'
       },
       {
         test    : /\.jsx*$/,

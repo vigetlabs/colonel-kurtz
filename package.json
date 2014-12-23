@@ -4,7 +4,7 @@
   "description": "A block editor",
   "main": "build/js/colonel-kurtz.js",
   "scripts": {
-    "start": "NODE_ENV=development webpack -wd",
+    "start": "NODE_ENV=development webpack -wd --config webpack.example.config.js",
     "prepublish": "NODE_ENV=production webpack -p --optimize-occurence-order --optimize-dedupe",
     "test": "jest colonel-kurtz"
   },
