@@ -14,15 +14,15 @@ class BlockList {
     this._blocks = []
   }
 
-  all(): Array {
+  all(): Array<number> {
     return this._blocks
   }
 
-  has(id) {
+  has(id: number): boolean {
     return this.indexOf(id) > -1
   }
 
-  indexOf(id) {
+  indexOf(id: number): number {
     return this._blocks.indexOf(id)
   }
 

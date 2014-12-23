@@ -21,7 +21,8 @@ var BlockStore = {
     return _blocks.find(block => block.id === id )
   },
 
-  _create({ content, type, parentBlockListId }): Block {
+  // content: ?Object, type: string, parentBlockListId: number
+  _create({ content, type, parentBlockListId } : { content: ?Object; type: string; parentBlockListId: number }): Block {
     var block = new Block({ content, type, parentBlockListId })
 
     _blocks = _blocks.push(block)

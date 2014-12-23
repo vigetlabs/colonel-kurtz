@@ -4,17 +4,10 @@ var BlockType   = require('../stores/block_type_store')
 var Button      = require('./ui/button')
 var CreateBlock = require('../actions/block/create')
 var React       = require('react')
-var Types       = React.PropTypes
 
 var AddBlock = React.createClass({
 
-  propTypes: {
-    parentBlockListId : Types.number.isRequired,
-    position          : Types.number,
-    type              : Types.string.isRequired
-  },
-
-  getInitialState() {
+  getInitialState(): ?Object {
     return BlockType.find(this.props.type)
   },
 
@@ -28,10 +21,10 @@ var AddBlock = React.createClass({
     )
   },
 
-  _onClick(e) {
+  _onClick(e:Event): void {
     var { parentBlockListId, type, position } = this.props
 
-    CreateBlock({ parentBlockListId, position, type })
+    CreateBlock({ parentBlockListId, position, type, content: null })
 
     e.preventDefault()
   }

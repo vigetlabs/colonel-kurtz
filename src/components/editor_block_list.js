@@ -8,9 +8,11 @@ var Animation    = React.addons.CSSTransitionGroup;
 
 var EditorBlockList = React.createClass({
 
+  propTypes: {},
+
   mixins: [ HasBlockList ],
 
-  getBlockMenu(position) {
+  getBlockMenu(position: number): any {
     var { block, editor } = this.props
 
     return (
@@ -18,11 +20,11 @@ var EditorBlockList = React.createClass({
     )
   },
 
-  getBlock(blockId, i) {
+  getBlock(blockId: number, index: number): any {
     return (
       <div key={ blockId }>
         <EditorBlock initialBlockId={ blockId } editor={ this.props.editor } />
-        { this.getBlockMenu(i + 1) }
+        { this.getBlockMenu(index + 1) }
       </div>
     )
   },

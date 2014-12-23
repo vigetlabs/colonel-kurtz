@@ -34,9 +34,8 @@ var BlockListStore = {
     return BlockListStore.findByKey('id', id)
   },
 
-  _create(params: Object): void {
-    var blockList = new BlockList({ editorId: params.editorId, blockId: params.blockId })
-
+  _create(editorId: number): void {
+    var blockList = new BlockList({ editorId })
     _blockLists = _blockLists.push(blockList)
   },
 
@@ -67,7 +66,7 @@ var BlockListStore = {
     }
   },
 
-  _move(blockListId, fromId: number, toId: number) {
+  _move(blockListId: number, fromId: number, toId: number) {
     var blockList = this.find(blockListId)
 
     if (blockList) {
@@ -91,7 +90,7 @@ var BlockListStore = {
         break
 
       case require('../actions/block_list/create'):
-        BlockListStore._create(action.params)
+        BlockListStore._create(action.editorId)
         break
 
       case require('../actions/block_list/move'):

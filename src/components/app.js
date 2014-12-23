@@ -40,7 +40,7 @@ var App = React.createClass({
     )
   },
 
-  _onModeChange(mode): void {
+  _onModeChange(mode: string): void {
     UpdateEditor(this.props.editorId, { mode })
   }
 

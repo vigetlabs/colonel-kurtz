@@ -12,7 +12,7 @@ var EditorBlock = React.createClass({
 
   mixins: [ HasBlockNesting ],
 
-  listComponent() {
+  listComponent(): ReactElement {
     return require('./editor_block_list')
   },
 
@@ -34,7 +34,7 @@ var EditorBlock = React.createClass({
     )
   },
 
-  _onDrop(fromId, toId) {
+  _onDrop(fromId: number, toId: number) {
     MoveBlock(this.state.block.parentBlockListId, fromId, toId)
   }
 

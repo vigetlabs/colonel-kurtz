@@ -37,7 +37,7 @@ class ColonelKurtz {
     Bus.subscribe(() => this.simulateChange())
 
     CreateEditor({ id: this.id, ...config })
-    CreateBlockList({ editorId: this.id })
+    CreateBlockList(this.id)
 
     if (config.seed) {
       seed(BlockListStore.last().id, config.seed)

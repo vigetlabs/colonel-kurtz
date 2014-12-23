@@ -46,9 +46,10 @@ describe('Stores - Block List', function() {
   })
 
   it ('can find a record by block id', function() {
-    BlockListStore._create({ blockId: 2 })
+    BlockListStore._create(2)
 
-    var last = BlockListStore.last()
+    var last = BlockListStore.findByEditorId(2)
+    last.blockId = 2
 
     expect(BlockListStore.findByBlockId(last.blockId)).toEqual(last)
   })
