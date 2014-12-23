@@ -1,6 +1,6 @@
 # Colonel Kurtz
 
-A block editor
+A block editor. Still a work in progress; updates will be rather unstable.
 
 [ ![Codeship Status for vigetlabs/colonel-kurtz](https://codeship.com/projects/09586580-5c8a-0132-59ca-1a777663c9d2/status)](https://codeship.com/projects/50884)
 
