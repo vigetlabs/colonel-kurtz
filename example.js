@@ -1,3 +1,11 @@
+/**
+ * ColonelKurtz Example
+*/
+
+require('./example.css')
+
+var ColonelKurtz = require('../src');
+
 ColonelKurtz.addBlockType({
   id        : 'medium',
   icon      : 'icons/text.svg',
