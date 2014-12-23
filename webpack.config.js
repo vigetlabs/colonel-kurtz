@@ -6,10 +6,10 @@ module.exports = {
   devtool : 'source-map',
 
   entry: {
-    'js/colonel-kurtz'  : './src/index.js',
-    'js/addons/medium'  : './addons/medium/index.js',
-    'js/addons/image'   : './addons/image/index.js',
-    'js/addons/youtube' : './addons/youtube/index.js'
+    'colonel-kurtz'  : './src/index.js',
+    'addons/medium'  : './addons/medium/index.js',
+    'addons/image'   : './addons/image/index.js',
+    'addons/youtube' : './addons/youtube/index.js'
   },
 
   output: {
@@ -29,7 +29,7 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin("css/colonel-kurtz.css"),
+    new ExtractTextPlugin("colonel-kurtz.css"),
     new WebPack.DefinePlugin({
       '__DEV__' : process.env.NODE_ENV !== 'production'
     })
