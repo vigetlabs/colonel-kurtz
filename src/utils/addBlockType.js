@@ -5,9 +5,9 @@
  * @flow
  */
 
-var BlockTypeActions = require('../actions/block_type_actions')
-var createBlock      = require('./createBlock')
-var React            = require('react')
+var CreateBlockType = require('../actions/block_type/create')
+var React           = require('react')
+var createBlock     = require('./createBlock')
 
 module.exports = function (options: Object): void {
   var component = options.component
@@ -16,5 +16,5 @@ module.exports = function (options: Object): void {
     component = createBlock(component)
   }
 
-  BlockTypeActions.create({ ...options, component })
+  CreateBlockType({ ...options, component })
 }

@@ -1,6 +1,5 @@
 var BlockType  = require('./block_type_store')
 var Bus        = require('../bus')
-var Constants  = require('../constants/editor_constants')
 var Dispatcher = require('../dispatcher')
 var Immutable  = require('immutable')
 var Modes      = require('../constants/mode_constants')
@@ -44,12 +43,15 @@ var EditorStore = {
 
   dispatchToken: Dispatcher.register(function(action) {
     switch (action.type) {
-      case Constants.EDITOR_CREATE:
+
+      case require('../actions/editor/create'):
         EditorStore._create(action.params)
         break
-      case Constants.EDITOR_UPDATE:
+
+      case require('../actions/editor/update'):
         EditorStore._update(action.id, action.params)
         break
+
       default:
         // do nothing
     }

@@ -1,6 +1,5 @@
-var Dispatcher = require('../dispatcher')
+var Dispatcher = require('../../dispatcher')
 
-module.exports = function create (params) {
-  var type = Constants.EDITOR_CREATE
-  Dispatcher.dispatch({ type: create, params })
+module.exports = function CreateEditor (params) {
+  Dispatcher.dispatch({ type: CreateEditor, params })
 }

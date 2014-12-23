@@ -1,6 +1,5 @@
 /* @flow */
 
-var Constants  = require('../constants/block_type_constants')
 var Dispatcher = require('../dispatcher')
 var Immutable  = require('immutable')
 var React      = require('react')
@@ -32,9 +31,11 @@ var BlockTypeStore = {
 
   dispatchToken: Dispatcher.register(function(action: Object) {
     switch (action.type) {
-      case Constants.BLOCK_TYPE_CREATE:
+
+      case require('../actions/block_type/create'):
         BlockTypeStore._create(action.params)
         break
+
       default:
         // do nothing
     }

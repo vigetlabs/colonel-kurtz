@@ -1,6 +1,6 @@
 /* @flow */
 var Dispatcher = require('../../dispatcher')
 
-module.exports = function update (params: { blockId: number; parentBlockListId: number }) {
-  Dispatcher.dispatch({ type: update, ...params })
+module.exports = function UpdateBlock (blockId: number, content: Object) {
+  Dispatcher.dispatch({ type: UpdateBlock, blockId, content })
 }

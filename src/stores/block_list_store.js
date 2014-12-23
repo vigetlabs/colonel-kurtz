@@ -3,7 +3,6 @@
 var BlockList      = require('../models/block_list')
 var BlockStore     = require('../stores/block_store')
 var Bus            = require('../bus')
-var Constants      = require('../constants/block_list_constants')
 var Dispatcher     = require('../dispatcher')
 var Immutable      = require('immutable')
 
@@ -79,21 +78,26 @@ var BlockListStore = {
 
   dispatchToken: Dispatcher.register(function(action) {
     switch (action.type) {
+
       case require('../actions/block/create'):
         Dispatcher.waitFor([ BlockStore.dispatchToken ])
         BlockListStore._addBlockToList(action.block, action.position)
         BlockListStore._createFromParent(action.block, action.position)
         break
+
       case require('../actions/block/destroy'):
         Dispatcher.waitFor([ BlockStore.dispatchToken ])
         BlockListStore._removeBlockFromList(action.blockId, action.parentBlockListId)
         break
-      case Constants.BLOCK_LIST_CREATE:
+
+      case require('../actions/block_list/create'):
         BlockListStore._create(action.params)
         break
-      case Constants.BLOCK_LIST_MOVE:
+
+      case require('../actions/block_list/move'):
         BlockListStore._move(action.blockListId, action.fromId, action.toId)
         break
+
       default:
         // do nothing
     }

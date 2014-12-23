@@ -47,16 +47,20 @@ var BlockStore = {
 
   dispatchToken: Dispatcher.register(function(action) {
     switch (action.type) {
+
       case require('../actions/block/create'):
         var block = BlockStore._create(action.params)
         action.block = block
         break
+
       case require('../actions/block/destroy'):
         BlockStore._destroy(action.blockId)
         break
+
       case require('../actions/block/update'):
         BlockStore._update(action.blockId, action.content)
         break
+
       default:
         // do nothing
     }
