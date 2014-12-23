@@ -6,13 +6,13 @@
  */
 
 var BlockListStore = require('../stores/block_list_store')
-var EditorActions  = require('../actions/editor_actions')
-var EditorStore    = require('../stores/editor_store')
 var ContentSection = require('./content_section')
+var EditorStore    = require('../stores/editor_store')
 var ModeSelection  = require('./mode_selection')
 var Monitor        = require('../mixins/monitor')
 var React          = require('react')
 var Types          = React.PropTypes
+var UpdateEditor   = require('../actions/editor/update')
 
 var App = React.createClass({
 
@@ -41,7 +41,7 @@ var App = React.createClass({
   },
 
   _onModeChange(mode): void {
-    EditorActions.update(this.props.editorId, { mode })
+    UpdateEditor(this.props.editorId, { mode })
   }
 
 })

@@ -13,14 +13,14 @@ if (!Object.assign) {
 require('array.prototype.find')
 
 var App              = require('./components/app')
-var BlockListActions = require('./actions/block_list_actions')
 var BlockListStore   = require('./stores/block_list_store')
-var EditorActions    = require('./actions/editor_actions')
+var Bus              = require('./bus')
+var CreateBlockList  = require('./actions/block_list/create')
+var CreateEditor     = require('./actions/editor/create')
 var Immutable        = require('immutable')
 var React            = require('react')
-var uid              = require('./utils/uid')
-var Bus              = require('./bus')
 var seed             = require('./utils/seed')
+var uid              = require('./utils/uid')
 
 require('style/colonel')
 
@@ -36,8 +36,8 @@ class ColonelKurtz {
 
     Bus.subscribe(() => this.simulateChange())
 
-    EditorActions.create({ id: this.id, ...config })
-    BlockListActions.create({ editorId: this.id })
+    CreateEditor({ id: this.id, ...config })
+    CreateBlockList({ editorId: this.id })
 
     if (config.seed) {
       seed(BlockListStore.last().id, config.seed)

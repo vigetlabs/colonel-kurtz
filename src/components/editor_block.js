@@ -1,10 +1,10 @@
 /* @flow */
 
 var Block            = require('./block')
-var BlockListActions = require('../actions/block_list_actions')
 var Dragon           = require('react-dragon')
 var HasBlockNesting  = require('../mixins/has_block_nesting')
 var Modes            = require('../constants/mode_constants')
+var MoveBlock        = require('../actions/block_list/move')
 var React            = require('react')
 var RemoveBlock      = require('./remove_block')
 
@@ -35,7 +35,7 @@ var EditorBlock = React.createClass({
   },
 
   _onDrop(fromId, toId) {
-    BlockListActions.move(this.state.block.parentBlockListId, fromId, toId)
+    MoveBlock(this.state.block.parentBlockListId, fromId, toId)
   }
 
 })
