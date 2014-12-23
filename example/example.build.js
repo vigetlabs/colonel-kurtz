@@ -138,14 +138,14 @@
 	__webpack_require__(/*! array.prototype.find */ 18)
 	
 	var App              = __webpack_require__(/*! ./components/app */ 6)
-	var BlockListActions = __webpack_require__(/*! ./actions/block_list_actions */ 7)
 	var BlockListStore   = __webpack_require__(/*! ./stores/block_list_store */ 9)
-	var EditorActions    = __webpack_require__(/*! ./actions/editor_actions */ 8)
+	var Bus              = __webpack_require__(/*! ./bus */ 14)
+	var CreateBlockList  = __webpack_require__(/*! ./actions/block_list/create */ 241)
+	var CreateEditor     = __webpack_require__(/*! ./actions/editor/create */ 242)
 	var Immutable        = __webpack_require__(/*! immutable */ 21)
 	var React            = __webpack_require__(/*! react */ 19)
-	var uid              = __webpack_require__(/*! ./utils/uid */ 10)
-	var Bus              = __webpack_require__(/*! ./bus */ 14)
 	var seed             = __webpack_require__(/*! ./utils/seed */ 11)
+	var uid              = __webpack_require__(/*! ./utils/uid */ 10)
 	
 	__webpack_require__(/*! style/colonel */ 15)
 	
@@ -161,8 +161,8 @@
 	
 	    Bus.subscribe(function()  {return this.simulateChange();}.bind(this))
 	
-	    EditorActions.create(Object.assign({ id: this.id}, config ))
-	    BlockListActions.create({ editorId: this.id })
+	    CreateEditor(Object.assign({ id: this.id}, config ))
+	    CreateBlockList(this.id)
 	
 	    if (config.seed) {
 	      seed(BlockListStore.last().id, config.seed)
@@ -485,13 +485,13 @@
 	 */
 	
 	var BlockListStore = __webpack_require__(/*! ../stores/block_list_store */ 9)
-	var EditorActions  = __webpack_require__(/*! ../actions/editor_actions */ 8)
-	var EditorStore    = __webpack_require__(/*! ../stores/editor_store */ 22)
 	var ContentSection = __webpack_require__(/*! ./content_section */ 23)
+	var EditorStore    = __webpack_require__(/*! ../stores/editor_store */ 22)
 	var ModeSelection  = __webpack_require__(/*! ./mode_selection */ 24)
 	var Monitor        = __webpack_require__(/*! ../mixins/monitor */ 27)
 	var React          = __webpack_require__(/*! react */ 19)
 	var Types          = React.PropTypes
+	var UpdateEditor   = __webpack_require__(/*! ../actions/editor/update */ 243)
 	
 	var App = React.createClass({displayName: 'App',
 	
@@ -519,8 +519,8 @@
 	    )
 	  },
 	
-	  _onModeChange:function(mode)       {
-	    EditorActions.update(this.props.editorId, { mode:mode })
+	  _onModeChange:function(mode        )       {
+	    UpdateEditor(this.props.editorId, { mode:mode })
 	  }
 	
 	})
@@ -529,64 +529,8 @@
 
 
 /***/ },
-/* 7 */
-/*!*******************************************!*\
-  !*** ./src/actions/block_list_actions.js ***!
-  \*******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var BlockListConstants = __webpack_require__(/*! ../constants/block_list_constants */ 29)
-	
-	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 31)
-	
-	var BlockListActions = {
-	
-	  create:function(params                                       )       {
-	    var type = BlockListConstants.BLOCK_LIST_CREATE
-	
-	    Dispatcher.dispatch({ type:type, params:params })
-	  },
-	
-	  move:function(blockListId        , fromId        , toId        ) {
-	    var type = BlockListConstants.BLOCK_LIST_MOVE;
-	    Dispatcher.dispatch({ type:type, blockListId:blockListId, fromId:fromId, toId:toId })
-	  }
-	
-	}
-	
-	module.exports = BlockListActions
-
-
-/***/ },
-/* 8 */
-/*!***************************************!*\
-  !*** ./src/actions/editor_actions.js ***!
-  \***************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	var Constants  = __webpack_require__(/*! ../constants/editor_constants */ 38)
-	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 31)
-	
-	var EditorActions = {
-	
-	  create:function(params) {
-	    var type = Constants.EDITOR_CREATE
-	    Dispatcher.dispatch({ type:type, params:params })
-	  },
-	
-	  update:function(id, params) {
-	    var type = Constants.EDITOR_UPDATE
-	    Dispatcher.dispatch({ type:type, id:id, params:params })
-	  }
-	
-	}
-	
-	module.exports = EditorActions
-
-
-/***/ },
+/* 7 */,
+/* 8 */,
 /* 9 */
 /*!****************************************!*\
   !*** ./src/stores/block_list_store.js ***!
@@ -598,7 +542,6 @@
 	var BlockList      = __webpack_require__(/*! ../models/block_list */ 32)
 	var BlockStore     = __webpack_require__(/*! ../stores/block_store */ 25)
 	var Bus            = __webpack_require__(/*! ../bus */ 14)
-	var Constants      = __webpack_require__(/*! ../constants/block_list_constants */ 29)
 	var Dispatcher     = __webpack_require__(/*! ../dispatcher */ 31)
 	var Immutable      = __webpack_require__(/*! immutable */ 21)
 	
@@ -630,9 +573,8 @@
 	    return BlockListStore.findByKey('id', id)
 	  },
 	
-	  _create:function(params        )       {
-	    var blockList = new BlockList({ editorId: params.editorId, blockId: params.blockId })
-	
+	  _create:function(editorId        )       {
+	    var blockList = new BlockList({ editorId:editorId })
 	    _blockLists = _blockLists.push(blockList)
 	  },
 	
@@ -663,7 +605,7 @@
 	    }
 	  },
 	
-	  _move:function(blockListId, fromId        , toId        ) {
+	  _move:function(blockListId        , fromId        , toId        ) {
 	    var blockList = this.find(blockListId)
 	
 	    if (blockList) {
@@ -674,21 +616,26 @@
 	
 	  dispatchToken: Dispatcher.register(function(action) {
 	    switch (action.type) {
+	
 	      case __webpack_require__(/*! ../actions/block/create */ 33):
 	        Dispatcher.waitFor([ BlockStore.dispatchToken ])
 	        BlockListStore._addBlockToList(action.block, action.position)
 	        BlockListStore._createFromParent(action.block, action.position)
 	        break
+	
 	      case __webpack_require__(/*! ../actions/block/destroy */ 44):
 	        Dispatcher.waitFor([ BlockStore.dispatchToken ])
 	        BlockListStore._removeBlockFromList(action.blockId, action.parentBlockListId)
 	        break
-	      case Constants.BLOCK_LIST_CREATE:
-	        BlockListStore._create(action.params)
+	
+	      case __webpack_require__(/*! ../actions/block_list/create */ 241):
+	        BlockListStore._create(action.editorId)
 	        break
-	      case Constants.BLOCK_LIST_MOVE:
+	
+	      case __webpack_require__(/*! ../actions/block_list/move */ 240):
 	        BlockListStore._move(action.blockListId, action.fromId, action.toId)
 	        break
+	
 	      default:
 	        // do nothing
 	    }
@@ -735,7 +682,7 @@
 	
 	module.exports = function seed (parentBlockListId        , blocks       )       {
 	
-	  blocks.forEach(function(block, position) {
+	  blocks.forEach(function(block           , position        )       {
 	
 	    CreateBlock(Object.assign({ position:position, parentBlockListId:parentBlockListId}, block ))
 	
@@ -793,9 +740,9 @@
 	 * @flow
 	 */
 	
-	var BlockTypeActions = __webpack_require__(/*! ../actions/block_type_actions */ 26)
-	var createBlock      = __webpack_require__(/*! ./createBlock */ 12)
-	var React            = __webpack_require__(/*! react */ 19)
+	var CreateBlockType = __webpack_require__(/*! ../actions/block_type/create */ 244)
+	var React           = __webpack_require__(/*! react */ 19)
+	var createBlock     = __webpack_require__(/*! ./createBlock */ 12)
 	
 	module.exports = function (options        )       {
 	  var component = options.component
@@ -804,7 +751,7 @@
 	    component = createBlock(component)
 	  }
 	
-	  BlockTypeActions.create(Object.assign({}, options, {component:component }))
+	  CreateBlockType(Object.assign({}, options, {component:component }))
 	}
 
 
@@ -4941,7 +4888,6 @@
 
 	var BlockType  = __webpack_require__(/*! ./block_type_store */ 39)
 	var Bus        = __webpack_require__(/*! ../bus */ 14)
-	var Constants  = __webpack_require__(/*! ../constants/editor_constants */ 38)
 	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 31)
 	var Immutable  = __webpack_require__(/*! immutable */ 21)
 	var Modes      = __webpack_require__(/*! ../constants/mode_constants */ 40)
@@ -4985,12 +4931,15 @@
 	
 	  dispatchToken: Dispatcher.register(function(action) {
 	    switch (action.type) {
-	      case Constants.EDITOR_CREATE:
+	
+	      case __webpack_require__(/*! ../actions/editor/create */ 242):
 	        EditorStore._create(action.params)
 	        break
-	      case Constants.EDITOR_UPDATE:
+	
+	      case __webpack_require__(/*! ../actions/editor/update */ 243):
 	        EditorStore._update(action.id, action.params)
 	        break
+	
 	      default:
 	        // do nothing
 	    }
@@ -5143,7 +5092,8 @@
 	    return _blocks.find(function(block)  {return block.id === id;} )
 	  },
 	
-	  _create:function($__0    )        {var content=$__0.content,type=$__0.type,parentBlockListId=$__0.parentBlockListId;
+	  // content: ?Object, type: string, parentBlockListId: number
+	  _create:function($__0                                                                   )        {var content=$__0.content,type=$__0.type,parentBlockListId=$__0.parentBlockListId;
 	    var block = new Block({ content:content, type:type, parentBlockListId:parentBlockListId })
 	
 	    _blocks = _blocks.push(block)
@@ -5169,16 +5119,20 @@
 	
 	  dispatchToken: Dispatcher.register(function(action) {
 	    switch (action.type) {
+	
 	      case __webpack_require__(/*! ../actions/block/create */ 33):
 	        var block = BlockStore._create(action.params)
 	        action.block = block
 	        break
+	
 	      case __webpack_require__(/*! ../actions/block/destroy */ 44):
 	        BlockStore._destroy(action.blockId)
 	        break
+	
 	      case __webpack_require__(/*! ../actions/block/update */ 45):
 	        BlockStore._update(action.blockId, action.content)
 	        break
+	
 	      default:
 	        // do nothing
 	    }
@@ -5190,31 +5144,7 @@
 
 
 /***/ },
-/* 26 */
-/*!*******************************************!*\
-  !*** ./src/actions/block_type_actions.js ***!
-  \*******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var Constants  = __webpack_require__(/*! ../constants/block_type_constants */ 46)
-	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 31)
-	
-	var BlockTypeActions = {
-	
-	  create:function(params         )        {
-	    var type        = Constants.BLOCK_TYPE_CREATE
-	
-	    Dispatcher.dispatch({ type:type, params:params })
-	  }
-	
-	}
-	
-	module.exports = BlockTypeActions
-
-
-/***/ },
+/* 26 */,
 /* 27 */
 /*!*******************************!*\
   !*** ./src/mixins/monitor.js ***!
@@ -5323,25 +5253,7 @@
 
 
 /***/ },
-/* 29 */
-/*!***********************************************!*\
-  !*** ./src/constants/block_list_constants.js ***!
-  \***********************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 49)
-	
-	var BlockListConstants = KeyMirror({
-	  BLOCK_LIST_CREATE : null,
-	  BLOCK_LIST_MOVE   : null
-	})
-	
-	module.exports = BlockListConstants
-
-
-/***/ },
+/* 29 */,
 /* 30 */,
 /* 31 */
 /*!*********************************!*\
@@ -5388,15 +5300,15 @@
 	    this.$BlockList_blocks = []
 	  }
 	
-	  BlockList.prototype.all=function()        {"use strict";
+	  BlockList.prototype.all=function()                {"use strict";
 	    return this.$BlockList_blocks
 	  };
 	
-	  BlockList.prototype.has=function(id) {"use strict";
+	  BlockList.prototype.has=function(id)                  {"use strict";
 	    return this.indexOf(id) > -1
 	  };
 	
-	  BlockList.prototype.indexOf=function(id) {"use strict";
+	  BlockList.prototype.indexOf=function(id)                 {"use strict";
 	    return this.$BlockList_blocks.indexOf(id)
 	  };
 	
@@ -5437,10 +5349,10 @@
 	/* @flow */
 	var Dispatcher = __webpack_require__(/*! ../../dispatcher */ 31)
 	
-	module.exports = function create (params                                                                                 ) {
+	module.exports = function CreateBlock (params                                                                                 ) {
 	  var position = params.position
 	
-	  Dispatcher.dispatch({ type: create, params:params, position:position })
+	  Dispatcher.dispatch({ type: CreateBlock, params:params, position:position })
 	}
 
 
@@ -5622,21 +5534,7 @@
 
 
 /***/ },
-/* 38 */
-/*!*******************************************!*\
-  !*** ./src/constants/editor_constants.js ***!
-  \*******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 49)
-	
-	module.exports = KeyMirror({
-	  EDITOR_CREATE : null,
-	  EDITOR_UPDATE : null
-	})
-
-
-/***/ },
+/* 38 */,
 /* 39 */
 /*!****************************************!*\
   !*** ./src/stores/block_type_store.js ***!
@@ -5645,7 +5543,6 @@
 
 	/* @flow */
 	
-	var Constants  = __webpack_require__(/*! ../constants/block_type_constants */ 46)
 	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 31)
 	var Immutable  = __webpack_require__(/*! immutable */ 21)
 	var React      = __webpack_require__(/*! react */ 19)
@@ -5663,11 +5560,17 @@
 	    return _blockTypes.toArray().map(function(b)  {return b.id;})
 	  },
 	
-	  find:function (id       )          {
-	    return _blockTypes.find(function(b)  {return b.id === id;}) || null
+	  find:function (id        )         {
+	    var type = _blockTypes.find(function(b)  {return b.id === id;})
+	
+	    if (!type) {
+	      throw Error("BlockType " + type + " could not be found")
+	    }
+	
+	    return type
 	  },
 	
-	  _create:function (params        )       {
+	  _create:function (params           )       {
 	    var record = Object.assign({}, _defaults, params )
 	
 	    invariant(record.id, 'BlockType must have an identifier')
@@ -5677,9 +5580,11 @@
 	
 	  dispatchToken: Dispatcher.register(function(action        ) {
 	    switch (action.type) {
-	      case Constants.BLOCK_TYPE_CREATE:
+	
+	      case __webpack_require__(/*! ../actions/block_type/create */ 244):
 	        BlockTypeStore._create(action.params)
 	        break
+	
 	      default:
 	        // do nothing
 	    }
@@ -5810,8 +5715,8 @@
 	/* @flow */
 	var Dispatcher = __webpack_require__(/*! ../../dispatcher */ 31)
 	
-	module.exports = function destroy (params                                                ) {
-	  Dispatcher.dispatch(Object.assign({ type: destroy}, params ))
+	module.exports = function DestroyBlock (params                                                ) {
+	  Dispatcher.dispatch(Object.assign({ type: DestroyBlock}, params ))
 	}
 
 
@@ -5825,30 +5730,13 @@
 	/* @flow */
 	var Dispatcher = __webpack_require__(/*! ../../dispatcher */ 31)
 	
-	module.exports = function update (params                                                ) {
-	  Dispatcher.dispatch(Object.assign({ type: update}, params ))
+	module.exports = function UpdateBlock (blockId        , content        ) {
+	  Dispatcher.dispatch({ type: UpdateBlock, blockId:blockId, content:content })
 	}
 
 
 /***/ },
-/* 46 */
-/*!***********************************************!*\
-  !*** ./src/constants/block_type_constants.js ***!
-  \***********************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 49)
-	
-	var BlockTypeConstants = KeyMirror({
-	  BLOCK_TYPE_CREATE : null
-	})
-	
-	module.exports = BlockTypeConstants
-
-
-/***/ },
+/* 46 */,
 /* 47 */
 /*!******************************!*\
   !*** ./~/react/lib/React.js ***!
@@ -6526,9 +6414,11 @@
 	
 	var EditorBlockList = React.createClass({displayName: 'EditorBlockList',
 	
+	  propTypes: {},
+	
 	  mixins: [ HasBlockList ],
 	
-	  getBlockMenu:function(position) {
+	  getBlockMenu:function(position        )      {
 	    var $__0=     this.props,block=$__0.block,editor=$__0.editor
 	
 	    return (
@@ -6536,11 +6426,11 @@
 	    )
 	  },
 	
-	  getBlock:function(blockId, i) {
+	  getBlock:function(blockId        , index        )      {
 	    return (
 	      React.createElement("div", {key: blockId }, 
 	        React.createElement(EditorBlock, {initialBlockId: blockId, editor:  this.props.editor}), 
-	         this.getBlockMenu(i + 1) 
+	         this.getBlockMenu(index + 1) 
 	      )
 	    )
 	  },
@@ -14947,10 +14837,10 @@
 	/* @flow */
 	
 	var Block            = __webpack_require__(/*! ./block */ 156)
-	var BlockListActions = __webpack_require__(/*! ../actions/block_list_actions */ 7)
 	var Dragon           = __webpack_require__(/*! react-dragon */ 216)
 	var HasBlockNesting  = __webpack_require__(/*! ../mixins/has_block_nesting */ 157)
 	var Modes            = __webpack_require__(/*! ../constants/mode_constants */ 40)
+	var MoveBlock        = __webpack_require__(/*! ../actions/block_list/move */ 240)
 	var React            = __webpack_require__(/*! react */ 19)
 	var RemoveBlock      = __webpack_require__(/*! ./remove_block */ 158)
 	
@@ -14958,7 +14848,7 @@
 	
 	  mixins: [ HasBlockNesting ],
 	
-	  listComponent:function() {
+	  listComponent:function()               {
 	    return __webpack_require__(/*! ./editor_block_list */ 63)
 	  },
 	
@@ -14980,8 +14870,8 @@
 	    )
 	  },
 	
-	  _onDrop:function(fromId, toId) {
-	    BlockListActions.move(this.state.block.parentBlockListId, fromId, toId)
+	  _onDrop:function(fromId        , toId        ) {
+	    MoveBlock(this.state.block.parentBlockListId, fromId, toId)
 	  }
 	
 	})
@@ -21984,17 +21874,10 @@
 	var Button      = __webpack_require__(/*! ./ui/button */ 48)
 	var CreateBlock = __webpack_require__(/*! ../actions/block/create */ 33)
 	var React       = __webpack_require__(/*! react */ 19)
-	var Types       = React.PropTypes
 	
 	var AddBlock = React.createClass({displayName: 'AddBlock',
 	
-	  propTypes: {
-	    parentBlockListId : Types.number.isRequired,
-	    position          : Types.number,
-	    type              : Types.string.isRequired
-	  },
-	
-	  getInitialState:function() {
+	  getInitialState:function()          {
 	    return BlockType.find(this.props.type)
 	  },
 	
@@ -22008,10 +21891,10 @@
 	    )
 	  },
 	
-	  _onClick:function(e) {
+	  _onClick:function(e      )       {
 	    var $__0=      this.props,parentBlockListId=$__0.parentBlockListId,type=$__0.type,position=$__0.position
 	
-	    CreateBlock({ parentBlockListId:parentBlockListId, position:position, type:type })
+	    CreateBlock({ parentBlockListId:parentBlockListId, position:position, type:type, content: null })
 	
 	    e.preventDefault()
 	  }
@@ -29892,6 +29775,80 @@
 	}
 	
 	module.exports = toArray;
+
+
+/***/ },
+/* 240 */
+/*!****************************************!*\
+  !*** ./src/actions/block_list/move.js ***!
+  \****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	var Dispatcher = __webpack_require__(/*! ../../dispatcher */ 31)
+	
+	module.exports = function MoveBlockList (blockListId        , fromId        , toId        ) {
+	  Dispatcher.dispatch({ type: MoveBlockList, blockListId:blockListId, fromId:fromId, toId:toId })
+	}
+
+
+/***/ },
+/* 241 */
+/*!******************************************!*\
+  !*** ./src/actions/block_list/create.js ***!
+  \******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	var Dispatcher = __webpack_require__(/*! ../../dispatcher */ 31)
+	
+	module.exports = function CreateBlockList (editorId        )       {
+	  Dispatcher.dispatch({ type: CreateBlockList, editorId:editorId })
+	}
+
+
+/***/ },
+/* 242 */
+/*!**************************************!*\
+  !*** ./src/actions/editor/create.js ***!
+  \**************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var Dispatcher = __webpack_require__(/*! ../../dispatcher */ 31)
+	
+	module.exports = function CreateEditor (params) {
+	  Dispatcher.dispatch({ type: CreateEditor, params:params })
+	}
+
+
+/***/ },
+/* 243 */
+/*!**************************************!*\
+  !*** ./src/actions/editor/update.js ***!
+  \**************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	var Dispatcher = __webpack_require__(/*! ../../dispatcher */ 31)
+	
+	module.exports = function UpdateEditor (id, params) {
+	  Dispatcher.dispatch({ type: UpdateEditor, id:id, params:params })
+	}
+
+
+/***/ },
+/* 244 */
+/*!******************************************!*\
+  !*** ./src/actions/block_type/create.js ***!
+  \******************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var Dispatcher = __webpack_require__(/*! ../../dispatcher */ 31)
+	
+	module.exports = function CreateBlockType (params         )        {
+	  Dispatcher.dispatch({ type: CreateBlockType, params:params })
+	}
 
 
 /***/ }
