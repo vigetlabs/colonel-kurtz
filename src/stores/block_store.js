@@ -3,9 +3,8 @@
 var Bus        = require('../bus')
 var Block      = require('../models/block')
 var Dispatcher = require('../dispatcher')
-var Immutable  = require('immutable')
 
-var _blocks = Immutable.List()
+var _blocks = []
 
 var BlockStore = {
 
@@ -14,7 +13,7 @@ var BlockStore = {
   },
 
   last() {
-    return _blocks.last()
+    return _blocks[_blocks.length - 1]
   },
 
   find(id: number): Block {
@@ -25,7 +24,7 @@ var BlockStore = {
   _create({ content, type, parentBlockListId } : { content: ?Object; type: string; parentBlockListId: number }): Block {
     var block = new Block({ content, type, parentBlockListId })
 
-    _blocks = _blocks.push(block)
+    _blocks = _blocks.concat(block)
 
     Bus.publish()
 

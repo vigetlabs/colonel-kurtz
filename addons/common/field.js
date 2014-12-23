@@ -1,5 +1,4 @@
 var React = require('react')
-var Types = React.PropTypes
 
 var Field = React.createClass({
 

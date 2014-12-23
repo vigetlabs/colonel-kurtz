@@ -5,9 +5,7 @@ describe('Stores - Block', function() {
 
   it ('can retrieve all records associated with it', function() {
     var BlockStore = require('../block_store')
-    var Immutable = require('immutable')
-
-    expect(BlockStore.all() instanceof Immutable.List).toEqual(true)
+    expect(BlockStore.all() instanceof Array).toEqual(true)
   })
 
   describe('CRUD', function() {
@@ -17,7 +15,7 @@ describe('Stores - Block', function() {
 
       BlockStore._create({})
 
-      expect(BlockStore.all().size).toEqual(1)
+      expect(BlockStore.all().length).toEqual(1)
     })
 
     it ('can find a record by id', function() {
@@ -36,7 +34,7 @@ describe('Stores - Block', function() {
       BlockStore._create({})
       BlockStore._destroy(BlockStore.last().id)
 
-      expect(BlockStore.all().size).toEqual(0)
+      expect(BlockStore.all().length).toEqual(0)
     })
 
     it ('can update a record', function() {

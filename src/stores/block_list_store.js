@@ -1,12 +1,11 @@
 /* @flow */
 
-var BlockList      = require('../models/block_list')
-var BlockStore     = require('../stores/block_store')
-var Bus            = require('../bus')
-var Dispatcher     = require('../dispatcher')
-var Immutable      = require('immutable')
+var BlockList  = require('../models/block_list')
+var BlockStore = require('../stores/block_store')
+var Bus        = require('../bus')
+var Dispatcher = require('../dispatcher')
 
-var _blockLists = Immutable.List()
+var _blockLists = []
 
 var BlockListStore = {
 
@@ -15,7 +14,7 @@ var BlockListStore = {
   },
 
   last() {
-    return _blockLists.last()
+    return _blockLists[_blockLists.length - 1]
   },
 
   findByKey(key:string, value:any): any {
@@ -35,16 +34,15 @@ var BlockListStore = {
   },
 
   _create(editorId: number): void {
-    var blockList = new BlockList({ editorId })
-    _blockLists = _blockLists.push(blockList)
+    _blockLists = _blockLists.concat(new BlockList({ editorId }))
   },
 
-  _createFromParent(block:Block, position:number): void {
+  _createFromParent(block:Block): void {
     var parent = this.find(block.parentBlockListId)
 
     if (parent) {
       var blockList = new BlockList({ editorId: parent.editorId, blockId: block.id})
-      _blockLists = _blockLists.push(blockList)
+      _blockLists = _blockLists.concat(blockList)
     }
   },
 

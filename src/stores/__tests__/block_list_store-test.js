@@ -4,16 +4,15 @@ jest.dontMock('../../utils/uid')
 
 describe('Stores - Block List', function() {
   var BlockListStore = require('../block_list_store')
-  var Immutable = require('immutable')
 
   it ('can retrieve all records associated with it', function() {
-    expect(BlockListStore.all() instanceof Immutable.List).toEqual(true)
+    expect(BlockListStore.all() instanceof Array).toEqual(true)
   })
 
   it ('can create a record', function() {
     BlockListStore._create({})
 
-    expect(BlockListStore.all().size).toEqual(1)
+    expect(BlockListStore.all().length).toEqual(1)
   })
 
   it ('can create a record from a parent', function() {

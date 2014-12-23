@@ -17,7 +17,6 @@ var BlockListStore   = require('./stores/block_list_store')
 var Bus              = require('./bus')
 var CreateBlockList  = require('./actions/block_list/create')
 var CreateEditor     = require('./actions/editor/create')
-var Immutable        = require('immutable')
 var React            = require('react')
 var seed             = require('./utils/seed')
 var uid              = require('./utils/uid')
@@ -25,14 +24,14 @@ var uid              = require('./utils/uid')
 require('style/colonel')
 
 class ColonelKurtz {
-  _callbacks: Immutable.Set<Function>;
+  _callbacks: Array<Function>;
   el: Element;
   id: number;
 
   constructor(config: { el: Element; seed: ?Object }) {
     this.id = uid()
     this.el = config.el
-    this._callbacks = Immutable.Set()
+    this._callbacks = []
 
     Bus.subscribe(() => this.simulateChange())
 
@@ -56,7 +55,11 @@ class ColonelKurtz {
   }
 
   addCallback(callback: Function): void {
-    this._callbacks = this._callbacks.add(callback)
+    this._callbacks = this._callbacks.concat(callback)
+  }
+
+  removeCallback(callback: Function): void {
+    this._callbacks = this._callbacks.filter(c => c !== callback)
   }
 
   toJSON(): Object {
@@ -89,7 +92,6 @@ class ColonelKurtz {
 
 }
 
-ColonelKurtz.addons       = require('./addons')
 ColonelKurtz.createBlock  = require('./utils/createBlock')
 ColonelKurtz.addBlockType = require('./utils/addBlockType')
 

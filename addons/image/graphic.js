@@ -1,5 +1,4 @@
 var React = require('react')
-var Types = React.PropTypes
 
 var Graphic = React.createClass({
 
@@ -12,7 +11,7 @@ var Graphic = React.createClass({
   },
 
   render() {
-    var { src, credit } = this.props
+    var { src } = this.props
 
     return src ? (
       <figure className="col-img-figure">

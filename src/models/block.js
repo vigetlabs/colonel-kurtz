@@ -1,6 +1,5 @@
 /* @flow */
-var uid       = require('../utils/uid')
-var BlockList = require('../stores/block_list_store')
+var uid = require('../utils/uid')
 
 class Block {
   content: ?Object;

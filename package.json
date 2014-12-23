@@ -33,7 +33,6 @@
     "setupEnvScriptFile": "<rootDir>/lib/jestSetup.js",
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/react",
-      "<rootDir>/node_modules/immutable",
       "<rootDir>/node_modules/object-assign",
       "<rootDir>/node_modules/array.prototype.find"
     ],
@@ -58,11 +57,10 @@
     "style-loader": "^0.8.2",
     "webpack": "^1.4.14"
   },
-  "dependencies": {
-    "array.prototype.find": "latest",
-    "flux": "latest",
-    "immutable": "latest",
-    "object-assign": "^2.0.0",
+  "peerDependencies": {
+    "array.prototype.find": "*",
+    "object-assign": "*",
+    "flux": "*",
     "react": ">= 0.12.1"
   }
 }

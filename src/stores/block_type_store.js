@@ -1,11 +1,10 @@
 /* @flow */
 
 var Dispatcher = require('../dispatcher')
-var Immutable  = require('immutable')
 var React      = require('react')
 var invariant  = require('react/lib/invariant')
 
-var _blockTypes = Immutable.List()
+var _blockTypes = []
 var _defaults   = {
   icon  : null,
   types : null
@@ -14,7 +13,7 @@ var _defaults   = {
 var BlockTypeStore = {
 
   keys(): Array<string> {
-    return _blockTypes.toArray().map(b => b.id)
+    return _blockTypes.map(b => b.id)
   },
 
   find (id: number): Object {
@@ -32,7 +31,7 @@ var BlockTypeStore = {
 
     invariant(record.id, 'BlockType must have an identifier')
 
-    _blockTypes = _blockTypes.push(record)
+    _blockTypes = _blockTypes.concat(record)
   },
 
   dispatchToken: Dispatcher.register(function(action: Object) {

@@ -2,7 +2,7 @@ jest.dontMock('../index');
 
 describe('Bus', function() {
 
-  it ('can be subscribed to', function() {
+  it ('can subscribe callbacks', function() {
     var Bus = require('../index');
     var mock = jest.genMockFunction();
 
@@ -12,7 +12,7 @@ describe('Bus', function() {
     expect(mock).toBeCalled();
   })
 
-  it ('can be subscribed to', function() {
+  it ('can unsubscribed callbacks', function() {
     var Bus = require('../index');
     var mock = jest.genMockFunction();
 

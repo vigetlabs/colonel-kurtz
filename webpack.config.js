@@ -6,7 +6,10 @@ module.exports = {
   devtool : 'source-map',
 
   entry: {
-    'js/colonel-kurtz' : './src/index.js'
+    'js/colonel-kurtz'  : './src/index.js',
+    'js/addons/medium'  : './addons/medium/index.js',
+    'js/addons/image'   : './addons/image/index.js',
+    'js/addons/youtube' : './addons/youtube/index.js'
   },
 
   output: {

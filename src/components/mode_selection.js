@@ -23,7 +23,7 @@ var ModeSelection = React.createClass({
   },
 
   getTab(key:string): any {
-    var { mode, modes, setMode } = this.props
+    var { mode, modes } = this.props
 
     var props = {
       className : "col-tabs-btn",
