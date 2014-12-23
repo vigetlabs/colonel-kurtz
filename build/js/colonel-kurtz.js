@@ -43,9 +43,9 @@ module.exports =
 /************************************************************************/
 /******/ ([
 /* 0 */
-/*!********************************!*\
-  !*** ./colonel-kurtz/index.js ***!
-  \********************************/
+/*!**********************!*\
+  !*** ./src/index.js ***!
+  \**********************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -158,9 +158,9 @@ module.exports =
 
 /***/ },
 /* 2 */
-/*!*********************************!*\
-  !*** ./colonel-kurtz/addons.js ***!
-  \*********************************/
+/*!***********************!*\
+  !*** ./src/addons.js ***!
+  \***********************/
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -172,9 +172,9 @@ module.exports =
 
 /***/ },
 /* 3 */
-/*!*****************************************!*\
-  !*** ./colonel-kurtz/components/app.js ***!
-  \*****************************************/
+/*!*******************************!*\
+  !*** ./src/components/app.js ***!
+  \*******************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -230,14 +230,14 @@ module.exports =
 
 /***/ },
 /* 4 */
-/*!************************************************!*\
-  !*** ./colonel-kurtz/actions/block_actions.js ***!
-  \************************************************/
+/*!**************************************!*\
+  !*** ./src/actions/block_actions.js ***!
+  \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
 	
-	var BlockConstants = __webpack_require__(/*! ../constants/block_constants */ 24)
+	var BlockConstants = __webpack_require__(/*! ../constants/block_constants */ 23)
 	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 25)
 	
 	var BlockActions = {
@@ -268,14 +268,14 @@ module.exports =
 
 /***/ },
 /* 5 */
-/*!*****************************************************!*\
-  !*** ./colonel-kurtz/actions/block_list_actions.js ***!
-  \*****************************************************/
+/*!*******************************************!*\
+  !*** ./src/actions/block_list_actions.js ***!
+  \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
 	
-	var BlockListConstants = __webpack_require__(/*! ../constants/block_list_constants */ 23)
+	var BlockListConstants = __webpack_require__(/*! ../constants/block_list_constants */ 24)
 	
 	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 25)
 	
@@ -299,9 +299,9 @@ module.exports =
 
 /***/ },
 /* 6 */
-/*!*************************************************!*\
-  !*** ./colonel-kurtz/actions/editor_actions.js ***!
-  \*************************************************/
+/*!***************************************!*\
+  !*** ./src/actions/editor_actions.js ***!
+  \***************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var Constants  = __webpack_require__(/*! ../constants/editor_constants */ 32)
@@ -326,18 +326,18 @@ module.exports =
 
 /***/ },
 /* 7 */
-/*!**************************************************!*\
-  !*** ./colonel-kurtz/stores/block_list_store.js ***!
-  \**************************************************/
+/*!****************************************!*\
+  !*** ./src/stores/block_list_store.js ***!
+  \****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
 	
-	var BlockConstants = __webpack_require__(/*! ../constants/block_constants */ 24)
+	var BlockConstants = __webpack_require__(/*! ../constants/block_constants */ 23)
 	var BlockList      = __webpack_require__(/*! ../models/block_list */ 26)
 	var BlockStore     = __webpack_require__(/*! ../stores/block_store */ 19)
 	var Bus            = __webpack_require__(/*! ../bus */ 12)
-	var Constants      = __webpack_require__(/*! ../constants/block_list_constants */ 23)
+	var Constants      = __webpack_require__(/*! ../constants/block_list_constants */ 24)
 	var Dispatcher     = __webpack_require__(/*! ../dispatcher */ 25)
 	var Immutable      = __webpack_require__(/*! immutable */ 15)
 	
@@ -439,9 +439,9 @@ module.exports =
 
 /***/ },
 /* 8 */
-/*!************************************!*\
-  !*** ./colonel-kurtz/utils/uid.js ***!
-  \************************************/
+/*!**************************!*\
+  !*** ./src/utils/uid.js ***!
+  \**************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -457,9 +457,9 @@ module.exports =
 
 /***/ },
 /* 9 */
-/*!*************************************!*\
-  !*** ./colonel-kurtz/utils/seed.js ***!
-  \*************************************/
+/*!***************************!*\
+  !*** ./src/utils/seed.js ***!
+  \***************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -489,9 +489,9 @@ module.exports =
 
 /***/ },
 /* 10 */
-/*!********************************************!*\
-  !*** ./colonel-kurtz/utils/createBlock.js ***!
-  \********************************************/
+/*!**********************************!*\
+  !*** ./src/utils/createBlock.js ***!
+  \**********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -520,9 +520,9 @@ module.exports =
 
 /***/ },
 /* 11 */
-/*!*********************************************!*\
-  !*** ./colonel-kurtz/utils/addBlockType.js ***!
-  \*********************************************/
+/*!***********************************!*\
+  !*** ./src/utils/addBlockType.js ***!
+  \***********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -549,9 +549,9 @@ module.exports =
 
 /***/ },
 /* 12 */
-/*!************************************!*\
-  !*** ./colonel-kurtz/bus/index.js ***!
-  \************************************/
+/*!**************************!*\
+  !*** ./src/bus/index.js ***!
+  \**************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -4598,9 +4598,9 @@ module.exports =
 
 /***/ },
 /* 16 */
-/*!**********************************************!*\
-  !*** ./colonel-kurtz/stores/editor_store.js ***!
-  \**********************************************/
+/*!************************************!*\
+  !*** ./src/stores/editor_store.js ***!
+  \************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var BlockType  = __webpack_require__(/*! ./block_type_store */ 34)
@@ -4667,9 +4667,9 @@ module.exports =
 
 /***/ },
 /* 17 */
-/*!*****************************************************!*\
-  !*** ./colonel-kurtz/components/content_section.js ***!
-  \*****************************************************/
+/*!*******************************************!*\
+  !*** ./src/components/content_section.js ***!
+  \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -4707,9 +4707,9 @@ module.exports =
 
 /***/ },
 /* 18 */
-/*!****************************************************!*\
-  !*** ./colonel-kurtz/components/mode_selection.js ***!
-  \****************************************************/
+/*!******************************************!*\
+  !*** ./src/components/mode_selection.js ***!
+  \******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -4779,16 +4779,16 @@ module.exports =
 
 /***/ },
 /* 19 */
-/*!*********************************************!*\
-  !*** ./colonel-kurtz/stores/block_store.js ***!
-  \*********************************************/
+/*!***********************************!*\
+  !*** ./src/stores/block_store.js ***!
+  \***********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
 	
 	var Bus        = __webpack_require__(/*! ../bus */ 12)
 	var Block      = __webpack_require__(/*! ../models/block */ 38)
-	var Constants  = __webpack_require__(/*! ../constants/block_constants */ 24)
+	var Constants  = __webpack_require__(/*! ../constants/block_constants */ 23)
 	var Dispatcher = __webpack_require__(/*! ../dispatcher */ 25)
 	var Immutable  = __webpack_require__(/*! immutable */ 15)
 	
@@ -4856,9 +4856,9 @@ module.exports =
 
 /***/ },
 /* 20 */
-/*!*****************************************************!*\
-  !*** ./colonel-kurtz/actions/block_type_actions.js ***!
-  \*****************************************************/
+/*!*******************************************!*\
+  !*** ./src/actions/block_type_actions.js ***!
+  \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -4881,9 +4881,9 @@ module.exports =
 
 /***/ },
 /* 21 */
-/*!*****************************************!*\
-  !*** ./colonel-kurtz/mixins/monitor.js ***!
-  \*****************************************/
+/*!*******************************!*\
+  !*** ./src/mixins/monitor.js ***!
+  \*******************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -4929,9 +4929,9 @@ module.exports =
 
 /***/ },
 /* 22 */
-/*!********************************************!*\
-  !*** ./colonel-kurtz/mixins/block_type.js ***!
-  \********************************************/
+/*!**********************************!*\
+  !*** ./src/mixins/block_type.js ***!
+  \**********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* Begin: Common Block Type Interface
@@ -4989,28 +4989,9 @@ module.exports =
 
 /***/ },
 /* 23 */
-/*!*********************************************************!*\
-  !*** ./colonel-kurtz/constants/block_list_constants.js ***!
-  \*********************************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* @flow */
-	
-	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 42)
-	
-	var BlockListConstants = KeyMirror({
-	  BLOCK_LIST_CREATE : null,
-	  BLOCK_LIST_MOVE   : null
-	})
-	
-	module.exports = BlockListConstants
-
-
-/***/ },
-/* 24 */
-/*!****************************************************!*\
-  !*** ./colonel-kurtz/constants/block_constants.js ***!
-  \****************************************************/
+/*!******************************************!*\
+  !*** ./src/constants/block_constants.js ***!
+  \******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -5027,10 +5008,29 @@ module.exports =
 
 
 /***/ },
+/* 24 */
+/*!***********************************************!*\
+  !*** ./src/constants/block_list_constants.js ***!
+  \***********************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	/* @flow */
+	
+	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 42)
+	
+	var BlockListConstants = KeyMirror({
+	  BLOCK_LIST_CREATE : null,
+	  BLOCK_LIST_MOVE   : null
+	})
+	
+	module.exports = BlockListConstants
+
+
+/***/ },
 /* 25 */
-/*!*******************************************!*\
-  !*** ./colonel-kurtz/dispatcher/index.js ***!
-  \*******************************************/
+/*!*********************************!*\
+  !*** ./src/dispatcher/index.js ***!
+  \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -5051,9 +5051,9 @@ module.exports =
 
 /***/ },
 /* 26 */
-/*!********************************************!*\
-  !*** ./colonel-kurtz/models/block_list.js ***!
-  \********************************************/
+/*!**********************************!*\
+  !*** ./src/models/block_list.js ***!
+  \**********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -5113,9 +5113,9 @@ module.exports =
 
 /***/ },
 /* 27 */
-/*!******************************************!*\
-  !*** ./colonel-kurtz/style/colonel.scss ***!
-  \******************************************/
+/*!********************************!*\
+  !*** ./src/style/colonel.scss ***!
+  \********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	// removed by extract-text-webpack-plugin
@@ -5238,9 +5238,9 @@ module.exports =
 
 /***/ },
 /* 32 */
-/*!*****************************************************!*\
-  !*** ./colonel-kurtz/constants/editor_constants.js ***!
-  \*****************************************************/
+/*!*******************************************!*\
+  !*** ./src/constants/editor_constants.js ***!
+  \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var KeyMirror = __webpack_require__(/*! react/lib/keyMirror */ 42)
@@ -5254,9 +5254,9 @@ module.exports =
 /***/ },
 /* 33 */,
 /* 34 */
-/*!**************************************************!*\
-  !*** ./colonel-kurtz/stores/block_type_store.js ***!
-  \**************************************************/
+/*!****************************************!*\
+  !*** ./src/stores/block_type_store.js ***!
+  \****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -5308,9 +5308,9 @@ module.exports =
 
 /***/ },
 /* 35 */
-/*!***************************************************!*\
-  !*** ./colonel-kurtz/constants/mode_constants.js ***!
-  \***************************************************/
+/*!*****************************************!*\
+  !*** ./src/constants/mode_constants.js ***!
+  \*****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -5325,9 +5325,9 @@ module.exports =
 
 /***/ },
 /* 36 */
-/*!********************************************!*\
-  !*** ./colonel-kurtz/components/editor.js ***!
-  \********************************************/
+/*!**********************************!*\
+  !*** ./src/components/editor.js ***!
+  \**********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -5352,9 +5352,9 @@ module.exports =
 
 /***/ },
 /* 37 */
-/*!***********************************************!*\
-  !*** ./colonel-kurtz/components/previewer.js ***!
-  \***********************************************/
+/*!*************************************!*\
+  !*** ./src/components/previewer.js ***!
+  \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -5377,9 +5377,9 @@ module.exports =
 
 /***/ },
 /* 38 */
-/*!***************************************!*\
-  !*** ./colonel-kurtz/models/block.js ***!
-  \***************************************/
+/*!*****************************!*\
+  !*** ./src/models/block.js ***!
+  \*****************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -5418,9 +5418,9 @@ module.exports =
 
 /***/ },
 /* 39 */
-/*!*********************************************************!*\
-  !*** ./colonel-kurtz/constants/block_type_constants.js ***!
-  \*********************************************************/
+/*!***********************************************!*\
+  !*** ./src/constants/block_type_constants.js ***!
+  \***********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -5436,9 +5436,9 @@ module.exports =
 
 /***/ },
 /* 40 */
-/*!***********************************************!*\
-  !*** ./colonel-kurtz/components/ui/button.js ***!
-  \***********************************************/
+/*!*************************************!*\
+  !*** ./src/components/ui/button.js ***!
+  \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(/*! react */ 1);
@@ -5853,9 +5853,9 @@ module.exports =
 /* 54 */,
 /* 55 */,
 /* 56 */
-/*!*******************************************************!*\
-  !*** ./colonel-kurtz/components/editor_block_list.js ***!
-  \*******************************************************/
+/*!*********************************************!*\
+  !*** ./src/components/editor_block_list.js ***!
+  \*********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -5905,9 +5905,9 @@ module.exports =
 
 /***/ },
 /* 57 */
-/*!**********************************************************!*\
-  !*** ./colonel-kurtz/components/previewer_block_list.js ***!
-  \**********************************************************/
+/*!************************************************!*\
+  !*** ./src/components/previewer_block_list.js ***!
+  \************************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -7677,9 +7677,9 @@ module.exports =
 
 /***/ },
 /* 64 */
-/*!************************************************!*\
-  !*** ./colonel-kurtz/components/block_menu.js ***!
-  \************************************************/
+/*!**************************************!*\
+  !*** ./src/components/block_menu.js ***!
+  \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -7738,9 +7738,9 @@ module.exports =
 
 /***/ },
 /* 65 */
-/*!**************************************************!*\
-  !*** ./colonel-kurtz/components/editor_block.js ***!
-  \**************************************************/
+/*!****************************************!*\
+  !*** ./src/components/editor_block.js ***!
+  \****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -7790,9 +7790,9 @@ module.exports =
 
 /***/ },
 /* 66 */
-/*!************************************************!*\
-  !*** ./colonel-kurtz/mixins/has_block_list.js ***!
-  \************************************************/
+/*!**************************************!*\
+  !*** ./src/mixins/has_block_list.js ***!
+  \**************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -7831,9 +7831,9 @@ module.exports =
 
 /***/ },
 /* 67 */
-/*!*****************************************************!*\
-  !*** ./colonel-kurtz/components/previewer_block.js ***!
-  \*****************************************************/
+/*!*******************************************!*\
+  !*** ./src/components/previewer_block.js ***!
+  \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -8126,9 +8126,9 @@ module.exports =
 
 /***/ },
 /* 69 */
-/*!***********************************************!*\
-  !*** ./colonel-kurtz/components/add_block.js ***!
-  \***********************************************/
+/*!*************************************!*\
+  !*** ./src/components/add_block.js ***!
+  \*************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -8176,9 +8176,9 @@ module.exports =
 
 /***/ },
 /* 70 */
-/*!*******************************************!*\
-  !*** ./colonel-kurtz/components/block.js ***!
-  \*******************************************/
+/*!*********************************!*\
+  !*** ./src/components/block.js ***!
+  \*********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -8221,9 +8221,9 @@ module.exports =
 
 /***/ },
 /* 71 */
-/*!***************************************************!*\
-  !*** ./colonel-kurtz/mixins/has_block_nesting.js ***!
-  \***************************************************/
+/*!*****************************************!*\
+  !*** ./src/mixins/has_block_nesting.js ***!
+  \*****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -8264,9 +8264,9 @@ module.exports =
 
 /***/ },
 /* 72 */
-/*!**************************************************!*\
-  !*** ./colonel-kurtz/components/remove_block.js ***!
-  \**************************************************/
+/*!****************************************!*\
+  !*** ./src/components/remove_block.js ***!
+  \****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/* @flow */
@@ -8372,9 +8372,9 @@ module.exports =
 
 /***/ },
 /* 74 */
-/*!**************************************!*\
-  !*** ./colonel-kurtz/mixins/pure.js ***!
-  \**************************************/
+/*!****************************!*\
+  !*** ./src/mixins/pure.js ***!
+  \****************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -8435,9 +8435,9 @@ module.exports =
 
 /***/ },
 /* 75 */
-/*!********************************************!*\
-  !*** ./colonel-kurtz/constants/strings.js ***!
-  \********************************************/
+/*!**********************************!*\
+  !*** ./src/constants/strings.js ***!
+  \**********************************/
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
