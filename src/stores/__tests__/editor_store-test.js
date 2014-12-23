@@ -1,10 +1,8 @@
 jest.dontMock('../editor_store')
-jest.dontMock('../../constants/editor_constants')
 jest.dontMock('../../dispatcher')
 
 describe('Stores - Editor', function() {
   var EditorStore = require('../editor_store')
-  var Constants   = require('../../constants/editor_constants')
   var Dispatcher  = require('../../dispatcher')
 
   it ('can create a record', function() {
@@ -44,10 +42,6 @@ describe('Stores - Editor', function() {
     EditorStore._update('test3', { field: 'test' })
 
     expect(EditorStore.find('test3').field).toEqual('test')
-  })
-
-    it ('responds to EDITOR_CREATE', function() {
-
   })
 
 })

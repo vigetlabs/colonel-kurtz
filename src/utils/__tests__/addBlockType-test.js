@@ -5,7 +5,7 @@ Object.assign = require('object-assign')
 
 describe('Utils - addBlockType', function() {
   var React            = require('react')
-  var BlockTypeActions = require('../../actions/block_type_actions')
+  var CreateBlockType  = require('../../actions/block_type/create')
   var createBlock      = require('../createBlock')
   var addBlockType     = require('../addBlockType')
 
@@ -18,7 +18,7 @@ describe('Utils - addBlockType', function() {
 
     addBlockType('test', component)
 
-    expect(BlockTypeActions.create).toBeCalled()
+    expect(CreateBlockType).toBeCalled()
   })
 
   it ('if given an invalid react element, it attempts to make one', function() {
