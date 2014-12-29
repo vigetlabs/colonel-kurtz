@@ -1477,7 +1477,7 @@
 	    var editor = Object.assign({}, getDefaults(), params )
 	
 	    invariant(Modes[editor.mode], 'Unacceptable mode for editor: ' + editor.mode)
-	    invariant(EditorStore.find(editor.id, true) == null, 'Editors must have a unique identifier')
+	    invariant(!EditorStore.find(editor.id, true), 'Editors must have a unique identifier')
 	
 	    _editors = _editors.concat(editor)
 	
