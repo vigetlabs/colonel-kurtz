@@ -1,20 +1,20 @@
 /* @flow */
 
-var React  = require('react')
-var Button = require('./ui/button');
-var Modes  = require('../constants/mode_constants')
+var React        = require('react')
+var Button       = require('./ui/button');
+var Modes        = require('../constants/mode_constants')
+var Types        = React.PropTypes
+var UpdateEditor = require('../actions/editor/update')
 
 var ModeSelection = React.createClass({
 
   propType: {
-    mode     : React.PropTypes.oneOf(Object.keys(Modes)),
-    modes    : React.PropTypes.object,
-    onChange : React.PropTypes.func.isRequired
+    editor : Types.object.isRequired,
+    modes  : Types.object
   },
 
   getDefaultProps(): Object {
     return {
-      mode: Modes.EDIT_MODE,
       modes: {
         'Edit'    : Modes.EDIT_MODE,
         'Preview' : Modes.PREVIEW_MODE
@@ -23,11 +23,11 @@ var ModeSelection = React.createClass({
   },
 
   getTab(key:string): any {
-    var { mode, modes } = this.props
+    var { editor, modes } = this.props
 
     var props = {
       className : "col-tabs-btn",
-      disabled  : mode === modes[key],
+      disabled  : editor.mode === modes[key],
       onClick   : e => this._onModeClick(e, modes[key])
     }
 
@@ -43,19 +43,20 @@ var ModeSelection = React.createClass({
   },
 
   render(): any {
-    return (
+    var { mode, preview } = this.props.editor
+
+    return preview ? (
       <nav role="navigation" className="col-tabs">
         <ul className="col-tabs-list" role="tablist">
           { this.getTabs() }
         </ul>
       </nav>
-    )
+    ) : null
   },
 
   _onModeClick(e: Event, mode: string): void {
     e.preventDefault()
-
-    this.props.onChange(mode)
+    UpdateEditor(this.props.editor.id, { mode })
   }
 
 })

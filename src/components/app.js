@@ -12,7 +12,6 @@ var ModeSelection  = require('./mode_selection')
 var Monitor        = require('../mixins/monitor')
 var React          = require('react')
 var Types          = React.PropTypes
-var UpdateEditor   = require('../actions/editor/update')
 
 var App = React.createClass({
 
@@ -34,14 +33,10 @@ var App = React.createClass({
 
     return (
       <div className="colonel">
-        <ModeSelection mode={ editor.mode } onChange={ this._onModeChange } />
+        <ModeSelection editor={ editor } />
         <ContentSection editor={ editor } initialBlockListId={ blockList.id } />
       </div>
     )
-  },
-
-  _onModeChange(mode: string): void {
-    UpdateEditor(this.props.editorId, { mode })
   }
 
 })

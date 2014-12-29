@@ -7,8 +7,9 @@ var invariant  = require('react/lib/invariant')
 var _editors    = []
 var getDefaults = function() {
   return {
-    mode  : Modes.EDIT_MODE,
-    types : BlockType.keys()
+    mode    : Modes.EDIT_MODE,
+    types   : BlockType.keys(),
+    preview : true
   }
 }
 
