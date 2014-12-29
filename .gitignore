@@ -1,7 +1,4 @@
 .DS_Store
 node_modules
 npm-debug.log
-build/colonel-kurtz.css
-build/colonel-kurtz.css.map
-build/colonel-kurtz.js
-build/colonel-kurtz.js.map
+build
