@@ -40,11 +40,16 @@ var App = React.createClass({
       <div className="colonel" >
         <ModeSelection editor={ editor } />
         <ContentSection editor={ editor } initialBlockListId={ blockList.id } />
-        <button aria-label="Toggle fullscreen mode" className="col-fullscreen" onClick={ this.fullscreen }>
+        <button type="button" aria-label="Toggle fullscreen mode" className="col-fullscreen" onClick={ this._onFullscreenClick }>
           Fullscreen
         </button>
       </div>
     )
+  },
+
+  _onFullscreenClick(e: Event) {
+    e.preventDefault()
+    this.fullscreen()
   }
 
 })
