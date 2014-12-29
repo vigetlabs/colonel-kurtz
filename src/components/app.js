@@ -12,6 +12,7 @@ var ModeSelection  = require('./mode_selection')
 var Monitor        = require('../mixins/monitor')
 var React          = require('react')
 var Types          = React.PropTypes
+var fullscreen     = require('../utils/fullscreen')
 
 var App = React.createClass({
 
@@ -28,13 +29,20 @@ var App = React.createClass({
     }
   },
 
+  fullscreen() {
+    fullscreen(this.getDOMNode())
+  },
+
   render(): any {
     var { blockList, editor } = this.state
 
     return (
-      <div className="colonel">
+      <div className="colonel" >
         <ModeSelection editor={ editor } />
         <ContentSection editor={ editor } initialBlockListId={ blockList.id } />
+        <button aria-label="Toggle fullscreen mode" className="col-fullscreen" onClick={ this.fullscreen }>
+          Fullscreen
+        </button>
       </div>
     )
   }

@@ -1,0 +1,42 @@
+.col-fullscreen {
+  @extend .col-btn-icon;
+  border-radius: 50%;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  text-indent: 100%;
+  top: 0;
+  white-space: nowrap;
+
+  &:hover,
+  &:focus {
+    background: transparent;
+    box-shadow: none;
+  }
+
+  &:after,
+  &:before {
+    background: rgba(#fff, 0.5);
+    border: 2px solid transparent;
+    content: "";
+    height: 8px;
+    left: 50%;
+    margin: -4px 0 0 -7px;
+    position: absolute;
+    top: 50%;
+    width: 14px;
+  }
+
+  &:after {
+    background: none;
+    border-color: rgba(#fff, 0.5);
+    height: 18px;
+    left: 50%;
+    margin: -9px 0 0 -12px;
+    position: absolute;
+    top: 50%;
+    width: 24px;
+  }
+
+}
