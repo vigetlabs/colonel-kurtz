@@ -40,8 +40,6 @@ var EditorStore = {
     var editor = EditorStore.find(id)
     var index  = _editors.indexOf(editor)
 
-    invariant(index >= 0, 'Unable to find editor with an id of ' + id)
-
     _editors = _editors.concat()
     _editors[index] = { ...getDefaults(), ...editor, ...params }
 
