@@ -105,7 +105,6 @@
 	var editor = new ColonelKurtz({
 	  el      : document.getElementById('app'),
 	  seed    : seed,
-	    preview: false,
 	  types   : [ 'medium', 'image', 'youtube', 'list' ]
 	}).render()
 	
