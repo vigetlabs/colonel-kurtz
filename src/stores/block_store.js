@@ -3,6 +3,7 @@
 var Bus        = require('../bus')
 var Block      = require('../models/block')
 var Dispatcher = require('../dispatcher')
+var invariant  = require('react/lib/invariant')
 
 var _blocks = []
 
@@ -19,9 +20,7 @@ var BlockStore = {
   find(id: number): Block {
     var block:Block = _blocks.find(block => block.id === id )
 
-    if (!block) {
-      throw Error("Unable to find block with id of " + id)
-    }
+    invariant(block, "Unable to find block with id of %s", id)
 
     return block
   },

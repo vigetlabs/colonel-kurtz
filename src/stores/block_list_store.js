@@ -4,6 +4,7 @@ var BlockList  = require('../models/block_list')
 var BlockStore = require('../stores/block_store')
 var Bus        = require('../bus')
 var Dispatcher = require('../dispatcher')
+var invariant  = require('react/lib/invariant')
 
 var _blockLists = []
 
@@ -20,9 +21,7 @@ var BlockListStore = {
   findByKey(key: string, value: any): BlockList {
     var blockList:BlockList = this.all().find(item => item[key] === value)
 
-    if (!blockList) {
-      throw Error("Unable to find block list with value of " + key + " for " + value)
-    }
+    invariant(blockList, "Unable to find block list with value of %s for %s", key, value)
 
     return blockList
   },

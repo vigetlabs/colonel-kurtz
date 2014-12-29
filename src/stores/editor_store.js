@@ -18,8 +18,8 @@ var EditorStore = {
   find(id, safe) {
     var editor = _editors.find(block => block.id === id )
 
-    if (!editor && !safe) {
-      throw Error("Unable to find editor with an id of " + id)
+    if (!safe) {
+      invariant(editor, "Unable to find editor with an id of %s", id)
     }
 
     return editor

@@ -16,17 +16,15 @@ var BlockTypeStore = {
     return _blockTypes.map(b => b.id)
   },
 
-  find (id: number): Object {
+  find(id: number): Object {
     var type = _blockTypes.find(b => b.id === id)
 
-    if (!type) {
-      throw Error("Unable to find block type with an id of " + id)
-    }
+    invariant(type, "Unable to find block type with an id of %s")
 
     return type
   },
 
-  _create (params: BlockType): void {
+  _create(params: BlockType): void {
     var record = { ..._defaults, ...params }
 
     invariant(record.id, 'BlockType must have an identifier')
