@@ -21,7 +21,7 @@ var RemoveBlock = React.createClass({
     )
   },
 
-  _onClick(e) {
+  _onClick(e: Event): void {
     var answer = confirm(Strings.remove.confirm)
     var { blockId, parentBlockListId } = this.props
 

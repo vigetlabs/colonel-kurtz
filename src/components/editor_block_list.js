@@ -1,4 +1,4 @@
-/* @flow */
+/* @flow weak */
 
 var BlockMenu    = require('./block_menu')
 var EditorBlock  = require('./editor_block')

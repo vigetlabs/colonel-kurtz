@@ -7,7 +7,7 @@ class BlockList {
   id: number;
   _blocks: Array<number>;
 
-  constructor(params: { editorId: number; blockId: number }) {
+  constructor(params: { editorId: number; blockId: ?number }) {
     this.editorId = params.editorId
     this.blockId = params.blockId
     this.id      = uid()

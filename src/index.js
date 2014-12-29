@@ -62,10 +62,8 @@ class ColonelKurtz {
     this._callbacks = this._callbacks.filter(c => c !== callback)
   }
 
-  toJSON(): Array {
-    var root = BlockListStore.findByEditorId(this.id)
-
-    return root ? root.toJSON() : []
+  toJSON(): Array<Object> {
+    return BlockListStore.findByEditorId(this.id).toJSON()
   }
 
   toHtml(): string {
