@@ -620,11 +620,16 @@
 	      React.createElement("div", {className: "colonel"}, 
 	        React.createElement(ModeSelection, {editor: editor }), 
 	        React.createElement(ContentSection, {editor: editor, initialBlockListId:  blockList.id}), 
-	        React.createElement("button", {"aria-label": "Toggle fullscreen mode", className: "col-fullscreen", onClick:  this.fullscreen}, 
+	        React.createElement("button", {type: "button", "aria-label": "Toggle fullscreen mode", className: "col-fullscreen", onClick:  this._onFullscreenClick}, 
 	          "Fullscreen"
 	        )
 	      )
 	    )
+	  },
+	
+	  _onFullscreenClick:function(e       ) {
+	    e.preventDefault()
+	    this.fullscreen()
 	  }
 	
 	})
