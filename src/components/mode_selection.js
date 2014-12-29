@@ -1,8 +1,8 @@
 /* @flow */
 
-var React        = require('react')
 var Button       = require('./ui/button');
 var Modes        = require('../constants/mode_constants')
+var React        = require('react')
 var Types        = React.PropTypes
 var UpdateEditor = require('../actions/editor/update')
 
