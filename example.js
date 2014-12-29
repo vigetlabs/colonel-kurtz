@@ -54,9 +54,10 @@ try {
 } catch(x) {}
 
 var editor = new ColonelKurtz({
-  el    : document.getElementById('app'),
-  seed  : seed,
-  types : [ 'medium', 'image', 'youtube', 'list' ]
+  el      : document.getElementById('app'),
+  seed    : seed,
+    preview: false,
+  types   : [ 'medium', 'image', 'youtube', 'list' ]
 }).render()
 
 var output = document.getElementById('output')
