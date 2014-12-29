@@ -15,15 +15,21 @@ var getDefaults = function() {
 
 var EditorStore = {
 
-  find(id) {
-    return _editors.find(block => block.id === id ) || null
+  find(id, safe) {
+    var editor = _editors.find(block => block.id === id )
+
+    if (!editor && !safe) {
+      throw Error("Unable to find editor with an id of " + id)
+    }
+
+    return editor
   },
 
   _create(params) {
     var editor = { ...getDefaults(), ...params }
 
     invariant(Modes[editor.mode], 'Unacceptable mode for editor: ' + editor.mode)
-    invariant(EditorStore.find(editor.id) === null, 'Editors must have a unique identifier')
+    invariant(EditorStore.find(editor.id, true) == null, 'Editors must have a unique identifier')
 
     _editors = _editors.concat(editor)
 

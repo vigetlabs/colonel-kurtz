@@ -20,7 +20,7 @@ var BlockTypeStore = {
     var type = _blockTypes.find(b => b.id === id)
 
     if (!type) {
-      throw Error("BlockType " + type + " could not be found")
+      throw Error("Unable to find block type with an id of " + id)
     }
 
     return type

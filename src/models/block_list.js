@@ -41,7 +41,7 @@ class BlockList {
     this._blocks.splice(to, 0, this._blocks.splice(from, 1)[0]);
   }
 
-  toJSON(): Object {
+  toJSON(): Array<Object> {
     // Note: This is to get around circular dependency issues
     var Block = require('../stores/block_store')
 

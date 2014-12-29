@@ -12,7 +12,12 @@ module.exports = function seed (parentBlockListId: number, blocks: Array): void 
 
   blocks.forEach(function(block: SeedBlock, position: number): void {
 
-    CreateBlock({ position, parentBlockListId, ...block })
+    CreateBlock({
+      content: block.content,
+      parentBlockListId,
+      position,
+      type: block.type
+    })
 
     if (Array.isArray(block.blocks)) {
       seed(BlockListStore.last().id, block.blocks)

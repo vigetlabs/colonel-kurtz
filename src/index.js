@@ -33,10 +33,10 @@ class ColonelKurtz {
     this.el = config.el
     this._callbacks = []
 
-    Bus.subscribe(() => this.simulateChange())
-
     CreateEditor({ id: this.id, ...config })
     CreateBlockList(this.id)
+
+    Bus.subscribe(() => this.simulateChange())
 
     if (config.seed) {
       seed(BlockListStore.last().id, config.seed)
@@ -62,10 +62,10 @@ class ColonelKurtz {
     this._callbacks = this._callbacks.filter(c => c !== callback)
   }
 
-  toJSON(): Object {
+  toJSON(): Array {
     var root = BlockListStore.findByEditorId(this.id)
 
-    return root ? root.toJSON() : {}
+    return root ? root.toJSON() : []
   }
 
   toHtml(): string {

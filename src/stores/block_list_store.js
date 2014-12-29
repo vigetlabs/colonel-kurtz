@@ -17,19 +17,25 @@ var BlockListStore = {
     return _blockLists[_blockLists.length - 1]
   },
 
-  findByKey(key:string, value:any): any {
-    return this.all().find(item => item[key] === value) || null
+  findByKey(key: string, value: any): BlockList {
+    var blockList:BlockList = this.all().find(item => item[key] === value)
+
+    if (!blockList) {
+      throw Error("Unable to find block list with value of " + key + " for " + value)
+    }
+
+    return blockList
   },
 
-  findByEditorId(id: number): ?BlockList {
+  findByEditorId(id: number): BlockList {
     return BlockListStore.findByKey('editorId', id)
   },
 
-  findByBlockId(id: number): ?BlockList {
+  findByBlockId(id: number): BlockList {
     return BlockListStore.findByKey('blockId', id)
   },
 
-  find(id: number): ?BlockList {
+  find(id: number): BlockList {
     return BlockListStore.findByKey('id', id)
   },
 
@@ -39,38 +45,31 @@ var BlockListStore = {
 
   _createFromParent(block:Block): void {
     var parent = this.find(block.parentBlockListId)
+    var blockList = new BlockList({ editorId: parent.editorId, blockId: block.id})
 
-    if (parent) {
-      var blockList = new BlockList({ editorId: parent.editorId, blockId: block.id})
-      _blockLists = _blockLists.concat(blockList)
-    }
+    _blockLists = _blockLists.concat(blockList)
   },
 
   _addBlockToList(block: Block, position: number) :void {
     var blockList = this.find(block.parentBlockListId)
 
-    if (blockList) {
-      blockList.insertBlock(block.id, position)
-      Bus.publish()
-    }
+    blockList.insertBlock(block.id, position)
+    Bus.publish()
   },
 
   _removeBlockFromList(blockId: number, blockListId: number) {
     var blockList = this.find(blockListId)
 
-    if (blockList) {
-      blockList.removeBlock(blockId)
-      Bus.publish()
-    }
+    blockList.removeBlock(blockId)
+
+    Bus.publish()
   },
 
   _move(blockListId: number, fromId: number, toId: number) {
     var blockList = this.find(blockListId)
 
-    if (blockList) {
-      blockList.move(fromId, toId)
-      Bus.publish()
-    }
+    blockList.move(fromId, toId)
+    Bus.publish()
   },
 
   dispatchToken: Dispatcher.register(function(action) {
@@ -78,12 +77,11 @@ var BlockListStore = {
 
       case require('../actions/block/create'):
         Dispatcher.waitFor([ BlockStore.dispatchToken ])
-        BlockListStore._addBlockToList(action.block, action.position)
         BlockListStore._createFromParent(action.block, action.position)
+        BlockListStore._addBlockToList(action.block, action.position)
         break
 
       case require('../actions/block/destroy'):
-        Dispatcher.waitFor([ BlockStore.dispatchToken ])
         BlockListStore._removeBlockFromList(action.blockId, action.parentBlockListId)
         break
 

@@ -20,7 +20,7 @@ describe('Stores - Block List', function() {
 
     var parent = BlockListStore.last()
 
-    BlockListStore._createFromParent(parent, 1)
+    BlockListStore._createFromParent({ parentBlockListId: parent.id })
 
     var last = BlockListStore.last()
 

@@ -8,8 +8,6 @@ var Animation    = React.addons.CSSTransitionGroup;
 
 var EditorBlockList = React.createClass({
 
-  propTypes: {},
-
   mixins: [ HasBlockList ],
 
   getBlockMenu(position: number): any {

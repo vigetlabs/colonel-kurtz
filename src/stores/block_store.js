@@ -17,7 +17,13 @@ var BlockStore = {
   },
 
   find(id: number): Block {
-    return _blocks.find(block => block.id === id )
+    var block:Block = _blocks.find(block => block.id === id )
+
+    if (!block) {
+      throw Error("Unable to find block with id of " + id)
+    }
+
+    return block
   },
 
   // content: ?Object, type: string, parentBlockListId: number
@@ -39,10 +45,8 @@ var BlockStore = {
   _update(blockId: number, content: ?Object) {
     var block = BlockStore.find(blockId)
 
-    if (block) {
-      block.content = { ...block.content, ...content }
-      Bus.publish()
-    }
+    block.content = { ...block.content, ...content }
+    Bus.publish()
   },
 
   dispatchToken: Dispatcher.register(function(action) {
@@ -54,6 +58,7 @@ var BlockStore = {
         break
 
       case require('../actions/block/destroy'):
+        Dispatcher.waitFor([ require('./block_list_store').dispatchToken ])
         BlockStore._destroy(action.blockId)
         break
 
