@@ -64,7 +64,7 @@
 }
 
 .col-btn-remove {
-  background: rgba(#fff, 0.25);
+  background: transparent;
   border: 0;
   border-radius: 50%;
   box-shadow: none;
@@ -79,10 +79,8 @@
 
   &:hover,
   &:focus {
-    background: rgba(#fff, 0.85);
     color: $colonel-danger;
     font-weight: 700;
     outline: none;
-    box-shadow: 0 0 5px 3px rgba($colonel-danger, 0.4);
   }
 }

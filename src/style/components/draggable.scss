@@ -7,20 +7,21 @@
 $dragon-stretch: -12px;
 
 .dragon {
-  border: 2px dashed transparent;
+  cursor: move;
   position: relative;
   transition: 1s all cubic-bezier(.06,.86,.36,1.14);
 
   &:before {
-    color: rgba(#000, 0.4);
+    bottom: 12px;
+    color: rgba(#000, 0.875);
     content: "☰";
+    font-size: 12px;
     left: 16px;
     line-height: 16px;
-    margin-top: -12px;
-    position: absolute;
+    margin-top: -8px;
     pointer-events: none;
+    position: absolute;
     transition: 0.3s all;
-    top: 50%;
   }
 
   &:after {
@@ -38,7 +39,10 @@ $dragon-stretch: -12px;
 }
 
 .dragon-children {
-  padding-left: 48px;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(#000, 0.2), 0 -1px 2px rgba(#000, 0.1);
+  cursor: initial;
   transition: 0.75s all;
 }
 

@@ -1,25 +1,18 @@
 .col-blocks,
 .col-block {
-  margin:0 auto;
+  margin: 0 auto;
   max-width: 768px;
   position: relative;
 }
 
-.col-blocks {
-  padding: 1px;
-}
-
 .col-block {
-  background: #fff;
-  border-radius: 2px;
-  box-shadow: 0 1px 3px rgba(#000, 0.4);
-  padding-bottom: 1px;
+  background: #eee;
+  border-radius: 4px;
+  border: 1px solid #dfdfdf;
+  border-bottom: 0;
+  box-shadow: 0 1px 4px rgba(#000, 0.1), inset 0 1px 0 rgba(#fff, 0.25), inset 0 -1px 0 rgba(#000, 0.1);
   margin: 0 16px;
-}
-
-.col-block-content {
-  color: $colonel-muted-dark;
-  padding: 16px 48px 16px 16px;
+  padding: 8px 8px 40px;
 }
 
 // Transitions

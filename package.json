@@ -1,6 +1,6 @@
 {
   "name": "colonel-kurtz",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A block editor",
   "main": "build/colonel-kurtz.js",
   "scripts": {
@@ -44,14 +44,18 @@
   "bugs": "https://github.com/vigetlabs/colonel-kurtz/issues",
   "homepage": "https://github.com/vigetlabs/colonel-kurtz",
   "devDependencies": {
+    "array.prototype.find": "^1.0.0",
     "autoprefixer-loader": "^1.0.0",
     "css-loader": "^0.9.0",
     "envify-loader": "^0.1.0",
-    "react-dragon": "^0.0.2",
     "extract-text-webpack-plugin": "^0.3.5",
+    "flux": "^2.0.1",
     "jest-cli": "^0.2.1",
     "json-loader": "^0.5.1",
     "jsx-loader": "^0.12.2",
+    "object-assign": "^2.0.0",
+    "react": "^0.12.2",
+    "react-dragon": "^0.0.3",
     "react-tools": "^0.12.2",
     "sass-loader": "^0.3.1",
     "style-loader": "^0.8.2",

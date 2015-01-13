@@ -10,14 +10,11 @@ $colonel-muted-dark  : rgba(#000, 0.5) !default;
 @import 'generators/functions';
 
 @import 'components/colonel';
-
-.colonel {
-  @import 'components/button';
-  @import 'components/tabs';
-  @import 'components/ink';
-  @import 'components/block';
-  @import 'components/toolbar';
-  @import 'components/menu';
-  @import 'components/draggable';
-  @import 'components/fullscreen';
-}
+@import 'components/button';
+@import 'components/tabs';
+@import 'components/ink';
+@import 'components/block';
+@import 'components/toolbar';
+@import 'components/menu';
+@import 'components/draggable';
+@import 'components/fullscreen';

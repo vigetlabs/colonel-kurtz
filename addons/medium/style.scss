@@ -9,7 +9,7 @@ $col-medium-focus-color: rgba(#000, 0.875);
 .col-medium {
   line-height: 1.75;
   font-size: 16px;
-  min-height: 32px;
+  min-height: 28px;
 
   &:focus {
     color: $col-medium-focus-color;
@@ -44,4 +44,8 @@ $col-medium-focus-color: rgba(#000, 0.875);
 .col-medium-preview {
   @extend .col-medium;
   color: $col-medium-focus-color;
+}
+
+.col-block-medium {
+  padding: 16px;
 }

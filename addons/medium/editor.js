@@ -38,7 +38,7 @@ var Editor = React.createClass({
 
   render() {
     return (
-      <div className="col-block-content">
+      <div className="col-block-medium">
         <div className="col-medium" onBlur={ this._onBlur } role="textarea" aria-multiline="true" ref="editor" dangerouslySetInnerHTML={{ __html: this.props.html }} />
       </div>
     )
