@@ -55,7 +55,7 @@
     "jsx-loader": "^0.12.2",
     "object-assign": "^2.0.0",
     "react": "^0.12.2",
-    "react-dragon": "~0.0.4",
+    "react-dragon": "~0.0.5",
     "react-tools": "^0.12.2",
     "sass-loader": "^0.3.1",
     "style-loader": "^0.8.2",
