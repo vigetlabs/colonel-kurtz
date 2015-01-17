@@ -1,31 +1,26 @@
-jest.dontMock('../block_list_store')
-jest.dontMock('../../models/block_list')
-jest.dontMock('../../utils/uid')
+import Dispatcher     from 'dispatcher'
+import BlockListStore from 'stores/block_list_store'
 
 describe('Stores - Block List', function() {
-  var BlockListStore = require('../block_list_store')
 
   it ('can retrieve all records associated with it', function() {
-    expect(BlockListStore.all() instanceof Array).toEqual(true)
+    BlockListStore.all().should.be.an.instanceOf(Array)
   })
 
   it ('can create a record', function() {
     BlockListStore._create({})
 
-    expect(BlockListStore.all().length).toEqual(1)
+    BlockListStore.all().length.should.equal(1)
   })
 
   it ('can create a record from a parent', function() {
     BlockListStore._create({})
 
     var parent = BlockListStore.last()
+    var last   = BlockListStore._createFromParent({ parentBlockListId: parent.id })
 
-    BlockListStore._createFromParent({ parentBlockListId: parent.id })
-
-    var last = BlockListStore.last()
-
-    expect(last.editorId).toEqual(parent.editorId)
-    expect(last.blockId).toEqual(parent.blockId)
+    expect(last.editorId).to.equal(parent.editorId)
+    expect(last.blockId).to.equal(parent.blockId)
   })
 
   it ('can find a record', function() {
@@ -33,7 +28,20 @@ describe('Stores - Block List', function() {
 
     var last = BlockListStore.last()
 
-    expect(BlockListStore.find(last.id)).toEqual(last)
+    BlockListStore.find(last.id).should.equal(last)
+  })
+
+  it ('can move blocks', function() {
+    BlockListStore._create({})
+
+    var last = BlockListStore.last()
+
+    last.insertBlock(1, 0)
+    last.insertBlock(2, 1)
+
+    BlockListStore._move(last.id, 0, 1);
+
+    last.all().should.eql([2,1])
   })
 
   it ('can find a record by editor id', function() {
@@ -41,7 +49,7 @@ describe('Stores - Block List', function() {
 
     var last = BlockListStore.last()
 
-    expect(BlockListStore.findByEditorId(last.editorId)).toEqual(last)
+    BlockListStore.findByEditorId(last.editorId).should.equal(last)
   })
 
   it ('can find a record by block id', function() {
@@ -50,7 +58,7 @@ describe('Stores - Block List', function() {
     var last = BlockListStore.findByEditorId(2)
     last.blockId = 2
 
-    expect(BlockListStore.findByBlockId(last.blockId)).toEqual(last)
+    BlockListStore.findByBlockId(last.blockId).should.equal(last)
   })
 
   it ('can push a block into a list', function() {
@@ -60,7 +68,7 @@ describe('Stores - Block List', function() {
 
     BlockListStore._addBlockToList({ id: 1, parentBlockListId: last.id }, 0)
 
-    expect(last.all()).toEqual([ 1 ])
+    last.all().should.eql([ 1 ])
   })
 
   it ('can remove a block into a list', function() {
@@ -69,7 +77,42 @@ describe('Stores - Block List', function() {
 
     BlockListStore._removeBlockFromList(blockId, last.id)
 
-    expect(last.all()).toEqual([ ])
+    last.all().should.eql([])
   })
 
+  describe('when the Dispatcher triggers BLOCK_LIST_CREATE', function() {
+    import BlockListCreate from 'actions/block_list/create'
+
+    before(function() {
+      sinon.stub(BlockListStore, '_create')
+
+      Dispatcher.dispatch({ type: BlockListCreate, params: { type: 'test' }})
+    })
+
+    after(function() {
+      BlockListStore._create.restore()
+    })
+
+    it ('creates a record', function() {
+      BlockListStore._create.should.have.been.called
+    })
+  })
+
+  describe('when the Dispatcher triggers BLOCK_LIST_MOVE', function() {
+    import BlockListMove from 'actions/block_list/move'
+
+    before(function() {
+      sinon.stub(BlockListStore, '_move')
+
+      Dispatcher.dispatch({ type: BlockListMove, params: { type: 'test' }})
+    })
+
+    after(function() {
+      BlockListStore._move.restore()
+    })
+
+    it ('moves a record', function() {
+      BlockListStore._move.should.have.been.called
+    })
+  })
 })

@@ -11,13 +11,9 @@ var BlockListStore = require('../stores/block_list_store')
 module.exports = function seed (parentBlockListId: number, blocks: Array): void {
 
   blocks.forEach(function(block: SeedBlock, position: number): void {
+    let { content, type } = block
 
-    CreateBlock({
-      content: block.content,
-      parentBlockListId,
-      position,
-      type: block.type
-    })
+    CreateBlock({ content, parentBlockListId, position, type })
 
     if (Array.isArray(block.blocks)) {
       seed(BlockListStore.last().id, block.blocks)

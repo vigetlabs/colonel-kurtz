@@ -1,10 +1,7 @@
-var WebPack           = require('webpack')
+var Webpack           = require('webpack')
 var ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = {
-  debug   : true,
-  devtool : 'source-map',
-
   entry: {
     'colonel-kurtz'  : './src/index.js',
     'addons/medium'  : './addons/medium/index.js',
@@ -15,7 +12,8 @@ module.exports = {
   output: {
     path: './build/',
     filename: '[name].js',
-    libraryTarget: 'commonjs2'
+    libraryTarget: 'commonjs2',
+    devtoolModuleFilenameTemplate: '[resource-path]'
   },
 
   externals: {
@@ -24,14 +22,17 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json', '.scss'],
+    extensions: ['', '.js', '.jsx', '.json', '.scss', '.css'],
     modulesDirectories: [ 'web_modules', 'node_modules', 'src', 'lib', 'addons']
   },
 
   plugins: [
     new ExtractTextPlugin("colonel-kurtz.css"),
-    new WebPack.DefinePlugin({
-      '__DEV__' : process.env.NODE_ENV !== 'production'
+    new Webpack.DefinePlugin({
+      "__DEV__": process.env.NODE_ENV === 'development'
+    }),
+    new Webpack.ProvidePlugin({
+      to5Runtime: "imports?global=>{}!exports?global.to5Runtime!6to5/runtime"
     })
   ],
 
@@ -48,11 +49,7 @@ module.exports = {
       {
         test    : /\.jsx*$/,
         exclude : /node_modules/,
-        loader  : 'jsx-loader',
-        query   : {
-          harmony: true,
-          stripTypes: true
-        }
+        loader  : '6to5?experimental&runtime&modules=common',
       },
       {
         test    : /\.json$/,

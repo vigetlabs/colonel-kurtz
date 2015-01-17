@@ -19,9 +19,9 @@ var BlockListStore = {
   },
 
   findByKey(key: string, value: any): BlockList {
-    var blockList:BlockList = this.all().find(item => item[key] === value)
+    var blockList:BlockList = this.all().filter(item => item[key] === value)[0]
 
-    invariant(blockList, "Unable to find block list with value of %s for %s", key, value)
+    invariant(blockList, "Unable to find block list with an '%s' attribute of '%s'", key, value)
 
     return blockList
   },
@@ -39,7 +39,11 @@ var BlockListStore = {
   },
 
   _create(editorId: number): void {
-    _blockLists = _blockLists.concat(new BlockList({ editorId }))
+    var blockList = new BlockList({ editorId })
+
+    _blockLists = _blockLists.concat(blockList)
+
+    return blockList
   },
 
   _createFromParent(block:Block): void {
@@ -47,6 +51,8 @@ var BlockListStore = {
     var blockList = new BlockList({ editorId: parent.editorId, blockId: block.id})
 
     _blockLists = _blockLists.concat(blockList)
+
+    return blockList
   },
 
   _addBlockToList(block: Block, position: number) :void {

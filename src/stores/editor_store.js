@@ -16,7 +16,7 @@ var getDefaults = function() {
 var EditorStore = {
 
   find(id, safe) {
-    var editor = _editors.find(block => block.id === id )
+    var editor = _editors.filter(block => block.id === id )[0]
 
     if (!safe) {
       invariant(editor, "Unable to find editor with an id of %s", id)
@@ -56,9 +56,6 @@ var EditorStore = {
       case require('../actions/editor/update'):
         EditorStore._update(action.id, action.params)
         break
-
-      default:
-        // do nothing
     }
   })
 

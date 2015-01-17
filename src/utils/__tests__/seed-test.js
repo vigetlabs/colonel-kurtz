@@ -1,16 +1,13 @@
-jest.dontMock('../seed')
+import Dispatcher from 'dispatcher'
+import seed       from 'utils/seed'
 
 describe('Utils - seed', function() {
-  var CreateBlock    = require('../../actions/block/create')
-  var BlockListStore = require('../../stores/block_list_store')
-  var seed           = require('../seed')
-
-  Object.assign = require('object-assign')
 
   it ('given an id and a list of blocks, it injects data', function() {
+    let spy = sinon.stub(Dispatcher, 'dispatch')
     seed(0, [{}]);
-
-    expect(CreateBlock).toBeCalled()
+    spy.should.have.been.called
+    spy.restore()
   })
 
 })

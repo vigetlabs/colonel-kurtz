@@ -1,14 +1,12 @@
-jest.dontMock('../editor_store')
-jest.dontMock('../../dispatcher')
+import EditorStore from 'stores/editor_store'
+import Dispatcher  from 'dispatcher'
 
 describe('Stores - Editor', function() {
-  var EditorStore = require('../editor_store')
-  var Dispatcher  = require('../../dispatcher')
 
   it ('can create a record', function() {
     EditorStore._create({ id: 'test' })
 
-    expect(EditorStore.find('test')).toBeDefined()
+    EditorStore.find('test').should.be.ok
   })
 
   it ('throws an error if an editor is created in an invalid mode', function() {
@@ -20,7 +18,7 @@ describe('Stores - Editor', function() {
       threw = true
     }
 
-    expect(threw).toEqual(true)
+    threw.should.be.true
   })
 
   it ('throws an error if an editor id is not unique', function() {
@@ -33,7 +31,7 @@ describe('Stores - Editor', function() {
       threw = true
     }
 
-    expect(threw).toEqual(true)
+    threw.should.be.true
   })
 
   it ('can update a record', function() {
@@ -41,7 +39,39 @@ describe('Stores - Editor', function() {
 
     EditorStore._update('test3', { field: 'test' })
 
-    expect(EditorStore.find('test3').field).toEqual('test')
+    EditorStore.find('test3').should.have.property('field', 'test')
+  })
+
+  describe('when the Dispatcher triggers EDITOR_CREATE', function() {
+    import EditorCreate from 'actions/editor/create'
+
+    before(function() {
+      sinon.spy(EditorStore, '_create')
+      Dispatcher.dispatch({ type: EditorCreate, params: { id: 'test_create' }})
+    })
+
+    after(() => EditorStore._create.restore())
+
+    it ('creates a record', function() {
+      EditorStore._create.should.have.been.called
+    })
+  })
+
+  describe('when the Dispatcher triggers EDITOR_UPDATE', function() {
+    import EditorUpdate from 'actions/editor/update'
+
+    before(function() {
+      EditorStore._create({ id: 'test_update' })
+      sinon.spy(EditorStore, '_update')
+
+      Dispatcher.dispatch({ type: EditorUpdate, id: 'test_update' })
+    })
+
+    after(() => EditorStore._update.restore())
+
+    it ('updates a record', function() {
+      EditorStore._update.should.have.been.called
+    })
   })
 
 })

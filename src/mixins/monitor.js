@@ -11,9 +11,7 @@ var invariant = require('react/lib/invariant');
 var Monitor = {
 
   getInitialState(): Object {
-    if (__DEV__) {
-      invariant(this.getState, "Monitor mixin requires `getState` implementation.");
-    }
+    invariant(this.getState, "Monitor mixin requires `getState` implementation.");
 
     return this.getState();
   },

@@ -1,38 +1,65 @@
-jest.dontMock('../monitor')
+import Bus from 'bus'
+
+let Test = React.addons.TestUtils
 
 describe('Mixin - Monitor', function() {
-  var React = require('react/addons')
-  var Tools = React.addons.TestUtils
 
-  var getComponent = function() {
+  let getComponent = function() {
     return React.createClass({
       mixins: [ require('../monitor') ],
-      getState() { return {} },
+      getState() { return { state: 'new' } },
       render() { return (React.DOM.p()) }
     })
   }
 
   it ('subscribes to the bus when the component mounts', function() {
-    var Bus       = require('../../bus')
-    var Component = getComponent()
+    let Component = getComponent()
 
-    React.render(<Component />, document.body)
+    sinon.spy(Bus, 'subscribe')
 
-    expect(Bus.subscribe).toBeCalled()
+    Test.renderIntoDocument(<Component />)
+
+    Bus.subscribe.should.have.been.called
+
+    Bus.subscribe.restore()
   })
 
   it ('unsubscribes to the bus when the component mounts', function() {
-    var Bus       = require('../../bus')
-    var Component = React.createClass({
+    let Component = React.createClass({
       render() {
         return React.createElement(getComponent())
       }
     })
 
+    sinon.spy(Bus, 'unsubscribe')
+
     React.render(<Component />, document.body)
     React.render(<Component />, document.body)
 
-    expect(Bus.unsubscribe).toBeCalled()
+    Bus.unsubscribe.should.have.been.called
+
+    Bus.unsubscribe.restore()
+  })
+
+  it ('calls getState to update the state of the component', function() {
+    let Component = getComponent()
+    let component = Test.renderIntoDocument(<Component />)
+
+    component.setState({ state: 'stale' })
+    component.updateState();
+
+    component.state.should.have.property('state', 'new')
+  })
+
+  it ('calls updateState when it recieves new properties', function() {
+    let Component = getComponent()
+    let component = Test.renderIntoDocument(<Component />)
+
+    sinon.spy(component, 'updateState')
+
+    component.setProps({ foo: 'bar' })
+
+    component.updateState.should.have.been.called
   })
 
 })

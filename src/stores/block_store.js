@@ -18,7 +18,7 @@ var BlockStore = {
   },
 
   find(id: number): Block {
-    var block:Block = _blocks.find(block => block.id === id )
+    var block:Block = _blocks.filter(block => block.id === id )[0]
 
     invariant(block, "Unable to find block with id of %s", id)
 
@@ -64,9 +64,6 @@ var BlockStore = {
       case require('../actions/block/update'):
         BlockStore._update(action.blockId, action.content)
         break
-
-      default:
-        // do nothing
     }
   })
 

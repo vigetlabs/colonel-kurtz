@@ -17,7 +17,7 @@ var BlockTypeStore = {
   },
 
   find(id: number): Object {
-    var type = _blockTypes.find(b => b.id === id)
+    var type = _blockTypes.filter(b => b.id === id)[0]
 
     invariant(type, "Unable to find block type with an id of %s")
 
@@ -32,6 +32,10 @@ var BlockTypeStore = {
     _blockTypes = _blockTypes.concat(record)
   },
 
+  _remove(id: string): void {
+    _blockTypes = _blockTypes.filter(i => i.id !== id)
+  },
+
   dispatchToken: Dispatcher.register(function(action: Object) {
     switch (action.type) {
 
@@ -39,8 +43,6 @@ var BlockTypeStore = {
         BlockTypeStore._create(action.params)
         break
 
-      default:
-        // do nothing
     }
   })
 

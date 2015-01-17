@@ -7,7 +7,6 @@
 
 var React     = require('react')
 var BlockType = require('../mixins/block_type')
-var assign    = require('object-assign')
 
 module.exports = function (spec: Object): any {
   var mixins = spec.mixins || []
@@ -16,7 +15,5 @@ module.exports = function (spec: Object): any {
     mixins = mixins.concat(BlockType)
   }
 
-  return React.createClass(
-    assign({}, spec, { React, mixins })
-  )
+  return React.createClass({ ...spec, ...{ React, mixins }})
 }

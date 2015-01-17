@@ -18,10 +18,8 @@ class Block {
     // Note: This is to get around circular dependency issues
     var BlockList = require('../stores/block_list_store')
 
-    var blockList = BlockList.findByBlockId(this.id)
-
     return {
-      blocks  : blockList ? blockList.toJSON() : [],
+      blocks  : BlockList.findByBlockId(this.id).toJSON(),
       content : this.content,
       type    : this.type
     }

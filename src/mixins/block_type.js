@@ -5,8 +5,8 @@
  * - renderEditor()
  * - renderPreviewer()
  *
- * Block content is managed via calls to setContent(), which updates both
- * this component's state as well as the block instance's content.
+ * Calls to setContent() update both this component's state as well as
+ * the block instance's content.
  *
  * @flow
  */
@@ -17,18 +17,24 @@ var invariant = require('react/lib/invariant')
 
 var BlockType = {
 
-  getInitialState(): Object {
-    if (__DEV__) {
-      invariant(this.defaultContent, "BlockType mixin requires `defaultContent` implementation.");
+  getDefaultProps() {
+    return {
+      mode: Modes.EDIT_MODE
     }
+  },
+
+  getInitialState(): Object {
+    invariant(this.defaultContent, "BlockType mixin requires `defaultContent` implementation.");
 
     return {
       content: this.props.initialContent || this.defaultContent()
     }
   },
 
-  setContent(content: Object): void {
-    this.setState({ content: { ...this.state.content, ...content } }, function() {
+  setContent(params: Object): void {
+    let content = { ...this.state.content, ...params }
+
+    this.setState({ content }, function() {
       this.props.updateContent(this.state.content)
     })
   },
@@ -38,10 +44,8 @@ var BlockType = {
   },
 
   render(): ReactElement {
-    if (__DEV__) {
-      invariant(this.renderEditor, "BlockType mixin requires `renderEditor` implementation.");
-      invariant(this.renderPreviewer, "BlockType mixin requires `renderPreviewer` implementation.");
-    }
+    invariant(this.renderEditor, "BlockType mixin requires `renderEditor` implementation.");
+    invariant(this.renderPreviewer, "BlockType mixin requires `renderPreviewer` implementation.");
 
     return this.editMode() ? this.renderEditor() : this.renderPreviewer()
   }

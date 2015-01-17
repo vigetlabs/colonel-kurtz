@@ -1,26 +1,24 @@
-jest.dontMock('../index');
+import Bus from '../index'
 
-describe('Bus', function() {
+describe('Bus', () => {
 
   it ('can subscribe callbacks', function() {
-    var Bus = require('../index');
-    var mock = jest.genMockFunction();
+    let stub = sinon.stub()
 
-    Bus.subscribe(mock);
+    Bus.subscribe(stub);
     Bus.publish();
 
-    expect(mock).toBeCalled();
+    stub.should.have.been.called
   })
 
   it ('can unsubscribed callbacks', function() {
-    var Bus = require('../index');
-    var mock = jest.genMockFunction();
+    let stub = sinon.stub()
 
-    Bus.subscribe(mock);
-    Bus.unsubscribe(mock);
+    Bus.subscribe(stub);
+    Bus.unsubscribe(stub);
     Bus.publish();
 
-    expect(mock).not.toBeCalled();
+    stub.should.not.have.been.called
   });
 
 });

@@ -1,29 +1,47 @@
-jest.dontMock('../block_type_store')
+import Dispatcher     from 'dispatcher'
+import BlockTypeStore from 'stores/block_type_store'
 
 describe('Stores - Block Type', function() {
+  const ID = 'test'
+
+  afterEach(function() {
+    BlockTypeStore._remove(ID)
+  })
 
   it ('can create a record', function() {
-    var BlockTypeStore = require('../block_type_store')
-    var React = require('react')
-
     BlockTypeStore._create({
-      id: 'foo',
+      id: ID,
       component: React.createClass({ render() { return (<p>Test</p>) }})
     })
 
-    expect(BlockTypeStore.find('foo')).not.toEqual(null)
+    BlockTypeStore.find(ID).should.be.ok
   })
 
   it ('can get a list of all ids', function() {
-    var BlockTypeStore = require('../block_type_store')
-    var React = require('react')
-
     BlockTypeStore._create({
-      id: 'foo',
+      id: ID,
       component: React.createClass({ render() { return (<p>Test</p>) }})
     })
 
-    expect(BlockTypeStore.keys()).toEqual([ 'foo' ])
+    BlockTypeStore.keys().should.eql([ ID ])
+  })
+
+  describe('when the Dispatcher triggers BLOCK_TYPE_CREATE', function() {
+    import BlockTypeCreate from 'actions/block_type/create'
+
+    before(function() {
+      sinon.stub(BlockTypeStore, '_create')
+
+      Dispatcher.dispatch({ type: BlockTypeCreate, params: { type: 'test' }})
+    })
+
+    after(function() {
+      BlockTypeStore._create.restore()
+    })
+
+    it ('creates a record', function() {
+      BlockTypeStore._create.should.have.been.called
+    })
   })
 
 })

@@ -1,22 +1,29 @@
-jest.dontMock('../block')
+import Block from 'models/block'
+import BlockList from 'stores/block_list_store'
 
 describe('Models - Block', function() {
 
   it ('has a unique identifier', function() {
-    var uid = require('../../utils/uid')
-    var Block = require('../block')
-
-    new Block({})
-
-    expect(uid).toBeCalled()
-  })
-
-  it ('defaults to text if no type param is given', function() {
-    var Block = require('../block')
-
+    var a = new Block({})
     var b = new Block({})
 
-    expect(b.type).toEqual('text')
+    a.id.should.not.equal(b.id)
+  })
+
+  it ('defaults to the "text" type', function() {
+    var b = new Block({})
+
+    b.type.should.equal('text')
+  })
+
+  it ('can serialize', function() {
+    var parent = BlockList._create(0)
+    var block  = new Block({ content: { content: 'yeah' }, parentBlockListId: parent.id })
+    var list   = BlockList._createFromParent(block, 0)
+    var json   = block.toJSON()
+
+    json.should.have.property('type', 'text')
+    json.content.should.have.property('content', 'yeah')
   })
 
 })
