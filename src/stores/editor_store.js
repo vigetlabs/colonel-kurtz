@@ -49,11 +49,11 @@ var EditorStore = {
   dispatchToken: Dispatcher.register(function(action) {
     switch (action.type) {
 
-      case require('../actions/editor/create'):
+      case require('actions/editor/create'):
         EditorStore._create(action.params)
         break
 
-      case require('../actions/editor/update'):
+      case require('actions/editor/update'):
         EditorStore._update(action.id, action.params)
         break
     }

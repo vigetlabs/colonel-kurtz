@@ -1,13 +1,13 @@
 /* @flow */
 var uid  = require('../utils/uid')
 
-class BlockList {
+module.exports = class BlockList {
   blockId: number;
   editorId: number;
   id: number;
   _blocks: Array<number>;
 
-  constructor(params: { editorId: number; blockId: ?number }) {
+  constructor(params: { editorId: number; blockId: number }) {
     this.editorId = params.editorId
     this.blockId = params.blockId
     this.id      = uid()
@@ -49,5 +49,3 @@ class BlockList {
   }
 
 }
-
-module.exports = BlockList

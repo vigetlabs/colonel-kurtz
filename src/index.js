@@ -34,7 +34,6 @@ class ColonelKurtz {
     this._callbacks = []
 
     CreateEditor({ id: this.id, ...config })
-    CreateBlockList(this.id)
 
     Bus.subscribe(() => this.simulateChange())
 

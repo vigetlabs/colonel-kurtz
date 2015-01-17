@@ -17,9 +17,9 @@ describe('Models - Block', function() {
   })
 
   it ('can serialize', function() {
-    var parent = BlockList._create(0)
+    var parent = BlockList._createFromEditor(0)
     var block  = new Block({ content: { content: 'yeah' }, parentBlockListId: parent.id })
-    var list   = BlockList._createFromParent(block, 0)
+    var list   = BlockList._createFromParent(block, parent.id)
     var json   = block.toJSON()
 
     json.should.have.property('type', 'text')

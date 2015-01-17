@@ -1,20 +1,22 @@
 import Dispatcher     from 'dispatcher'
 import BlockListStore from 'stores/block_list_store'
 
-describe('Stores - Block List', function() {
+describe('BlockListStore', function() {
 
   it ('can retrieve all records associated with it', function() {
     BlockListStore.all().should.be.an.instanceOf(Array)
   })
 
-  it ('can create a record', function() {
-    BlockListStore._create({})
+  it ('can create a record based upon an editor', function() {
+    var item = BlockListStore._createFromEditor('test')
+
+    item.editorId.should.equal('test')
 
     BlockListStore.all().length.should.equal(1)
   })
 
   it ('can create a record from a parent', function() {
-    BlockListStore._create({})
+    BlockListStore._createFromEditor('test')
 
     var parent = BlockListStore.last()
     var last   = BlockListStore._createFromParent({ parentBlockListId: parent.id })
@@ -24,7 +26,7 @@ describe('Stores - Block List', function() {
   })
 
   it ('can find a record', function() {
-    BlockListStore._create({})
+    BlockListStore._createFromEditor('test')
 
     var last = BlockListStore.last()
 
@@ -32,7 +34,7 @@ describe('Stores - Block List', function() {
   })
 
   it ('can move blocks', function() {
-    BlockListStore._create({})
+    BlockListStore._createFromEditor('test')
 
     var last = BlockListStore.last()
 
@@ -45,7 +47,7 @@ describe('Stores - Block List', function() {
   })
 
   it ('can find a record by editor id', function() {
-    BlockListStore._create({ editorId: 2 })
+    BlockListStore._createFromEditor(2)
 
     var last = BlockListStore.last()
 
@@ -53,16 +55,16 @@ describe('Stores - Block List', function() {
   })
 
   it ('can find a record by block id', function() {
-    BlockListStore._create(2)
+    BlockListStore._createFromEditor('test')
 
-    var last = BlockListStore.findByEditorId(2)
+    var last = BlockListStore.findByEditorId('test')
     last.blockId = 2
 
     BlockListStore.findByBlockId(last.blockId).should.equal(last)
   })
 
   it ('can push a block into a list', function() {
-    BlockListStore._create({ })
+    BlockListStore._createFromEditor('test')
 
     var last = BlockListStore.last()
 
@@ -80,21 +82,21 @@ describe('Stores - Block List', function() {
     last.all().should.eql([])
   })
 
-  describe('when the Dispatcher triggers BLOCK_LIST_CREATE', function() {
-    import BlockListCreate from 'actions/block_list/create'
+  describe('when the Dispatcher triggers EDITOR_CREATE', function() {
+    import EditorCreate from 'actions/editor/create'
 
     before(function() {
-      sinon.stub(BlockListStore, '_create')
+      sinon.stub(BlockListStore, '_createFromEditor')
 
-      Dispatcher.dispatch({ type: BlockListCreate, params: { type: 'test' }})
+      Dispatcher.dispatch({ type: EditorCreate, params: { type: 'test' }})
     })
 
     after(function() {
-      BlockListStore._create.restore()
+      BlockListStore._createFromEditor.restore()
     })
 
     it ('creates a record', function() {
-      BlockListStore._create.should.have.been.called
+      BlockListStore._createFromEditor.should.have.been.called
     })
   })
 

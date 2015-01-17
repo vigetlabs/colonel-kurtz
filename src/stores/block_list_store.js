@@ -38,7 +38,7 @@ var BlockListStore = {
     return BlockListStore.findByKey('id', id)
   },
 
-  _create(editorId: number): void {
+  _createFromEditor(editorId: number): void {
     var blockList = new BlockList({ editorId })
 
     _blockLists = _blockLists.concat(blockList)
@@ -80,26 +80,23 @@ var BlockListStore = {
   dispatchToken: Dispatcher.register(function(action) {
     switch (action.type) {
 
-      case require('../actions/block/create'):
+      case require('actions/block/create'):
         Dispatcher.waitFor([ BlockStore.dispatchToken ])
         BlockListStore._createFromParent(action.block, action.position)
         BlockListStore._addBlockToList(action.block, action.position)
         break
 
-      case require('../actions/block/destroy'):
+      case require('actions/block/destroy'):
         BlockListStore._removeBlockFromList(action.blockId, action.parentBlockListId)
         break
 
-      case require('../actions/block_list/create'):
-        BlockListStore._create(action.editorId)
+      case require('actions/editor/create'):
+        BlockListStore._createFromEditor(action.params.id)
         break
 
-      case require('../actions/block_list/move'):
+      case require('actions/block_list/move'):
         BlockListStore._move(action.blockListId, action.fromId, action.toId)
         break
-
-      default:
-        // do nothing
     }
   })
 }
