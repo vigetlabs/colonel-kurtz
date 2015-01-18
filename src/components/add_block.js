@@ -22,9 +22,9 @@ var AddBlock = React.createClass({
   },
 
   _onClick(e:Event): void {
-    var { parentBlockListId, type, position } = this.props
+    var { parent, type, position } = this.props
 
-    CreateBlock({ parentBlockListId, position, type, content: null })
+    CreateBlock({ parent, position, type, content: null })
 
     e.preventDefault()
   }

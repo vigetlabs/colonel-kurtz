@@ -1,41 +1,35 @@
 /* @flow */
 
-var Block            = require('./block')
-var Dragon           = require('react-dragon')
-var HasBlockNesting  = require('../mixins/has_block_nesting')
-var Modes            = require('../constants/mode_constants')
-var MoveBlock        = require('../actions/block_list/move')
-var React            = require('react')
-var RemoveBlock      = require('./remove_block')
+var Block       = require('components/block')
+var Dragon      = require('react-dragon')
+var Modes       = require('constants/mode_constants')
+var MoveBlock   = require('actions/block/move')
+var React       = require('react')
+var RemoveBlock = require('components/remove_block')
 
 var EditorBlock = React.createClass({
 
-  mixins: [ HasBlockNesting ],
-
-  listComponent(): ReactElement {
-    return require('./editor_block_list')
-  },
-
   render(): any {
-    var { id, parentBlockListId } = this.state.block
+    var { block } = this.props
+    var EditorBlockList = require('./editor_block_list')
 
     return (
-      <Dragon className="col-block" message={ id } onDrop={ this._onDrop }>
+      <Dragon className="col-block" message={ block.id } onDrop={ this._onDrop }>
 
-        <Block block={ this.state.block } mode={ Modes.EDIT_MODE } />
+        <Block block={ block } mode={ Modes.EDIT_MODE } />
 
         <div className="col-toolbar">
-          <RemoveBlock blockId={ id } parentBlockListId={ parentBlockListId } />
+          <RemoveBlock block={ block } />
         </div>
 
-        { this.childBlockListComponent() }
+        <EditorBlockList block={ block } />
 
       </Dragon>
     )
   },
 
-  _onDrop(fromId: number, toId: number) {
-    MoveBlock(this.state.block.parentBlockListId, fromId, toId)
+  _onDrop(fromId: number) {
+    MoveBlock(fromId, this.props.block.id)
   }
 
 })

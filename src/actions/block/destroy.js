@@ -1,6 +1,6 @@
 /* @flow */
-var Dispatcher = require('../../dispatcher')
+var Dispatcher = require('dispatcher')
 
-module.exports = function DestroyBlock (params: { blockId: number; parentBlockListId: number }) {
-  Dispatcher.dispatch({ type: DestroyBlock, ...params })
+module.exports = function DestroyBlock (id: number) {
+  Dispatcher.dispatch({ type: DestroyBlock, id })
 }

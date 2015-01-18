@@ -4,22 +4,21 @@ var uid = require('../utils/uid')
 class Block {
   content: ?Object;
   id: number;
-  parentBlockListId: number;
+  parent: Block;
   type: string;
 
-  constructor(params: { content: ?Object; parentBlockListId: number; type: string }){
+  constructor(params: { content: ?Object; parent: Block; type: string }){
+    this.id      = uid()
     this.content = params.content || null
-    this.id = uid()
-    this.parentBlockListId = params.parentBlockListId
-    this.type = params.type || 'text'
+    this.parent  = params.parent
+    this.type    = params.type
   }
 
   toJSON(): Object {
-    // Note: This is to get around circular dependency issues
-    var BlockList = require('../stores/block_list_store')
+    var BlockStore = require('stores/block_store')
 
     return {
-      blocks  : BlockList.findByBlockId(this.id).toJSON(),
+      blocks  : BlockStore.childrenFor(this).map(i => i.toJSON()),
       content : this.content,
       type    : this.type
     }

@@ -1,39 +1,45 @@
 /* @flow weak */
 
-var BlockMenu    = require('./block_menu')
-var EditorBlock  = require('./editor_block')
-var HasBlockList = require('../mixins/has_block_list')
+var BlockMenu    = require('components/block_menu')
+var BlockStore   = require('stores/block_store')
+var EditorBlock  = require('components/editor_block')
+var Monitor      = require('mixins/monitor')
 var React        = require('react/addons')
+
 var Animation    = React.addons.CSSTransitionGroup;
 
 var EditorBlockList = React.createClass({
 
-  mixins: [ HasBlockList ],
+  mixins: [ Monitor ],
+
+  getState() {
+    return {
+      blocks: BlockStore.childrenFor(this.props.block)
+    }
+  },
 
   getBlockMenu(position: number): any {
-    var { block, editor } = this.props
+    var { block } = this.props
 
     return (
-      <BlockMenu key="block_menu" block={ block } editor={ editor } parentBlockListId={ this.blockListId() } position={ position } />
+      <BlockMenu key="block_menu" block={ block } position={ position } />
     )
   },
 
-  getBlock(blockId: number, index: number): any {
+  getBlock(block: number, index: number): any {
     return (
-      <div key={ blockId }>
-        <EditorBlock initialBlockId={ blockId } editor={ this.props.editor } />
+      <div key={ block.id }>
+        <EditorBlock block={ block } />
         { this.getBlockMenu(index + 1) }
       </div>
     )
   },
 
   render(): any {
-    var blockIds = this.state.blockIds
-
     return (
       <Animation component="div" className="col-blocks" transitionName="col-block">
         { this.getBlockMenu(0) }
-        { blockIds.map(this.getBlock) }
+        { this.state.blocks.map(this.getBlock) }
       </Animation>
     )
   }

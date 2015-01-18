@@ -60,7 +60,7 @@ $dragon-stretch: -12px;
     border-color: #ddd;
   }
 
-  .dragon-children {
+  > .dragon-children {
     opacity: 0;
     transition: 0.25s all;
   }

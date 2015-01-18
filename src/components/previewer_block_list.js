@@ -1,23 +1,30 @@
 /* @flow */
 
-var HasBlockList   = require('../mixins/has_block_list')
+var BlockStore     = require('stores/block_store')
+var Monitor        = require('mixins/monitor')
 var PreviewerBlock = require('./previewer_block')
 var React          = require('react')
 
 var PreviewerBlockList = React.createClass({
 
-  mixins: [ HasBlockList ],
+  mixins: [ Monitor ],
 
-  blockComponents(): Array<ReactElement> {
-    return this.state.blockIds.map(function(blockId) {
-      return <PreviewerBlock key={ blockId } initialBlockId={ blockId } />
-    })
+  getState() {
+    return {
+      blocks: BlockStore.childrenFor(this.props.block)
+    }
+  },
+
+  blockComponent(block): any {
+    return <PreviewerBlock key={ block.id } block={ block } />
   },
 
   render(): any {
+    var blocks = Block.childrenFor(this.props.block)
+
     return (
       <div className="col-blocks">
-        { this.blockComponents() }
+        { blocks.map(this.blockComponent) }
       </div>
     )
   }

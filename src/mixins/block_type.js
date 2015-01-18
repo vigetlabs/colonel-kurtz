@@ -17,7 +17,7 @@ var invariant = require('react/lib/invariant')
 
 var BlockType = {
 
-  getDefaultProps() {
+  getDefaultProps(): Object {
     return {
       mode: Modes.EDIT_MODE
     }
@@ -32,7 +32,7 @@ var BlockType = {
   },
 
   setContent(params: Object): void {
-    let content = { ...this.state.content, ...params }
+    var content = { ...this.state.content, ...params }
 
     this.setState({ content }, function() {
       this.props.updateContent(this.state.content)

@@ -2,6 +2,9 @@ var Webpack           = require('webpack')
 var ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = {
+  debug: true,
+  devtool: 'source-maps',
+
   entry: {
     'colonel-kurtz'  : './src/index.js',
     'addons/medium'  : './addons/medium/index.js',

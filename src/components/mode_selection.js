@@ -9,13 +9,15 @@ var UpdateEditor = require('../actions/editor/update')
 var ModeSelection = React.createClass({
 
   propType: {
-    editor : Types.object.isRequired,
-    modes  : Types.object
+    mode    : Types.oneOf(Object.keys(Modes)),
+    modes   : Types.object,
+    preview : Types.boolean
   },
 
   getDefaultProps(): Object {
     return {
-      modes: {
+      preview : true,
+      modes   : {
         'Edit'    : Modes.EDIT_MODE,
         'Preview' : Modes.PREVIEW_MODE
       }
@@ -23,11 +25,11 @@ var ModeSelection = React.createClass({
   },
 
   getTab(key:string): any {
-    var { editor, modes } = this.props
+    var { mode, modes } = this.props
 
     var props = {
       className : "col-tabs-btn",
-      disabled  : editor.mode === modes[key],
+      disabled  : mode === modes[key],
       onClick   : e => this._onModeClick(e, modes[key])
     }
 
@@ -43,7 +45,7 @@ var ModeSelection = React.createClass({
   },
 
   render(): any {
-    var { mode, preview } = this.props.editor
+    var { mode, preview } = this.props
 
     return preview ? (
       <nav role="navigation" className="col-tabs">
@@ -56,7 +58,7 @@ var ModeSelection = React.createClass({
 
   _onModeClick(e: Event, mode: string): void {
     e.preventDefault()
-    UpdateEditor(this.props.editor.id, { mode })
+    this.props.onChange(mode)
   }
 
 })
