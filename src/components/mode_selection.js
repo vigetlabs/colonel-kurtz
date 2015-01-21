@@ -9,7 +9,7 @@ var UpdateEditor = require('actions/editor/update')
 var ModeSelection = React.createClass({
 
   propType: {
-    editor : Types.any.isRequired,
+    editor : Types.object.isRequired,
     modes  : Types.object
   },
 

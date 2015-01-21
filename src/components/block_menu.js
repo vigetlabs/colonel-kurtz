@@ -32,7 +32,7 @@ var BlockMenu = React.createClass({
   getButton(type:string): ReactElement {
     var { block, position } = this.props
 
-    return React.createElement(AddBlock, { key: type, type, block, position })
+    return <AddBlock key={ type } type={ type } block={ block } position={ position } />
   },
 
   getNavigation(): ReactElement {

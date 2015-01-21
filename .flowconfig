@@ -1,7 +1,7 @@
 [include]
-addons
 node_modules
-src/**/*.*
+src
+addons
 
 [ignore]
 vendor
