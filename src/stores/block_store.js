@@ -10,7 +10,7 @@ var _blocks = []
 var BlockStore = {
 
   childrenFor(block): Array<Block> {
-    return _blocks.filter((d) => d.parent === block)
+    return _blocks.filter((b) => b.parent === block)
   },
 
   all(): Array<Block> {
@@ -22,7 +22,7 @@ var BlockStore = {
   },
 
   find(id: number): Block {
-    var block:Block = _blocks.filter(block => block.id === id )[0]
+    var block:Block = _blocks.filter((b) => b.id === id)[0]
 
     invariant(block, "Unable to find block with id of %s", id)
 

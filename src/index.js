@@ -5,12 +5,12 @@
  */
 
 var App          = require('components/app')
-var EditorStore  = require('stores/editor_store')
 var Bus          = require('bus')
+var EditorCreate = require('actions/editor/create')
+var EditorStore  = require('stores/editor_store')
 var React        = require('react')
 var seed         = require('utils/seed')
 var uid          = require('utils/uid')
-var EditorCreate = require('actions/editor/create')
 
 require('style/colonel')
 

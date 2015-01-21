@@ -1,6 +1,6 @@
 /* @flow */
 
-var React       = require('react/addons')
+var React       = require('react')
 var RemoveBlock = require('components/remove_block')
 
 var Toolbar = React.createClass({
