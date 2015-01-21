@@ -3,9 +3,6 @@
 */
 
 require('./example.css')
-require('../addons/medium/style')
-require('../addons/image/style')
-require('../addons/youtube/style')
 
 var ColonelKurtz = require('../src');
 
