@@ -45,17 +45,22 @@ var BlockStore = {
     return block
   },
 
-  _destroy(id: number, silent: boolean) {
-    var block    = this.find(id)
-    var children = this.childrenFor(block)
+  _destroy(id: number) {
+    var block    = BlockStore.find(id)
+    var children = BlockStore.childrenFor(block)
 
-    _blocks = _blocks.filter(b => b !== block)
+    _blocks = _blocks.reduce(function(memo, next) {
+      var node = next
 
-    children.forEach(b => BlockStore._destroy(b.id, true))
+      do {
+        if (node.id == id) return memo
+        node = node.parent
+      } while (node)
 
-    if (!silent) {
-      Bus.publish()
-    }
+      return memo.concat(next)
+    }, [])
+
+    Bus.publish()
   },
 
   _update(id: number, content: ?Object) {
