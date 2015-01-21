@@ -40,10 +40,6 @@ var App = React.createClass({
     )
   },
 
-  _onModeChange(mode) {
-    this.setState({ mode })
-  },
-
   _onFullscreenClick(e: Event) {
     e.preventDefault()
     this.fullscreen()
