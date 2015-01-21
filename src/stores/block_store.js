@@ -29,11 +29,12 @@ var BlockStore = {
     return block
   },
 
-  // content: ?Object, type: string, parentBlockListId: number
-  _create({ content, type, parent }, position) {
+  _create({ content, type, parent }, position: number): Block {
     var block = new Block({ content, type, parent })
 
-    if (position === undefined) {
+    if (position instanceof Block) {
+      position = BlockStore._indexOf(position.id) + 1
+    } else if (position == void 0) {
       position = _blocks.length
     }
 

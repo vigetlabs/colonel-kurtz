@@ -4,10 +4,13 @@
  * @flow
  */
 
-var App   = require('components/app')
-var Bus   = require('bus')
-var React = require('react')
-var seed  = require('utils/seed')
+var App          = require('components/app')
+var EditorStore  = require('stores/editor_store')
+var Bus          = require('bus')
+var React        = require('react')
+var seed         = require('utils/seed')
+var uid          = require('utils/uid')
+var EditorCreate = require('actions/editor/create')
 
 require('style/colonel')
 
@@ -15,12 +18,18 @@ class ColonelKurtz {
   _callbacks: Array<Function>;
   _options: Object;
   el: Element;
+  id: number;
 
   constructor(config: { el: Element; seed: ?Object }) {
+    this.id         = uid()
     this.el         = config.el
     this._callbacks = []
-    this._options   = config
-    this._root      = seed(this._root, config.seed || [])
+
+    EditorCreate({
+      id    : this.id,
+      block : seed(undefined, config.seed || []),
+      ...config
+    })
 
     Bus.subscribe(() => this.simulateChange())
 
@@ -45,7 +54,7 @@ class ColonelKurtz {
   }
 
   toJSON(): Array<Object> {
-    return this._root.toJSON().blocks
+    return EditorStore.find(this.id).block.toJSON().blocks
   }
 
   toHtml(): string {
@@ -55,7 +64,7 @@ class ColonelKurtz {
   // Private
 
   _rootComponent(): ReactElement {
-    return <App block={ this._root } { ...this.options } />
+    return <App editorId={ this.id } />
   }
 
   _getDomElement(): Element {

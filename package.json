@@ -5,7 +5,7 @@
   "main": "build/colonel-kurtz.js",
   "scripts": {
     "start": "NODE_ENV=development webpack -wd --config webpack.example.config.js",
-    "prepublish": "NODE_ENV=production webpack -p --optimize-occurence-order --optimize-dedupe",
+    "prepublish": "NODE_ENV=production webpack -p --optimize-occurence-order --optimize-dedupe --json > stats.json",
     "test": "karma start",
     "coveralls": "CONTINUOUS_INTEGRATION=true npm test && coveralls < coverage/report-lcov/lcov.info"
   },

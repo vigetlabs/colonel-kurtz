@@ -1,37 +1,42 @@
 /* @flow */
 
-var Block       = require('components/block')
-var Dragon      = require('react-dragon')
-var Modes       = require('constants/mode_constants')
-var MoveBlock   = require('actions/block/move')
-var React       = require('react')
-var RemoveBlock = require('components/remove_block')
+var Block     = require('components/block')
+var BlockMenu = require('components/block_menu')
+var HasBlocks = require('mixins/hasBlocks')
+var Orderable = require('components/orderable')
+var React     = require('react/addons')
+var Toolbar   = require('components/toolbar')
+var Animation = React.addons.CSSTransitionGroup;
 
 var EditorBlock = React.createClass({
 
-  render(): any {
-    var { block } = this.props
-    var EditorBlockList = require('./editor_block_list')
+  mixins: [ HasBlocks],
 
-    return (
-      <Dragon className="col-block" message={ block.id } onDrop={ this._onDrop }>
-
-        <Block block={ block } mode={ Modes.EDIT_MODE } />
-
-        <div className="col-toolbar">
-          <RemoveBlock block={ block } />
-        </div>
-
-        <EditorBlockList block={ block } />
-
-      </Dragon>
-    )
+  getBlock(block): any {
+    return <EditorBlock key={ block.id } block={ block } editor={ this.props.editor } />
   },
 
-  _onDrop(fromId: number) {
-    MoveBlock(fromId, this.props.block.id)
-  }
+  render(): any {
+    var { block, editor } = this.props
 
+    return (
+      <div>
+        <Orderable block={ block }>
+          <BlockMenu ref="prepend" block={ block } editor={ editor } position={ block.parent }/>
+
+          <Block block={ block } mode={ editor.mode } />
+
+          <Animation component="div" className="col-blocks" transitionName="col-block">
+            { this.state.blocks.map(this.getBlock) }
+          </Animation>
+
+          <Toolbar block={ block } />
+        </Orderable>
+
+        <BlockMenu ref="append" block={ block.parent } editor={ editor } position={ block } />
+      </div>
+    )
+  }
 })
 
 module.exports = EditorBlock

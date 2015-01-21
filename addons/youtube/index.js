@@ -8,8 +8,6 @@ var Editor    = require('./editor')
 var Previewer = require('./previewer')
 var React     = require('react')
 
-require('./style')
-
 var YouTube = {
 
   defaultContent() {

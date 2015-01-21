@@ -6,36 +6,36 @@
  */
 
 var ContentSection = require('./content_section')
+var EditorStore    = require('stores/editor_store')
 var Modes          = require('constants/mode_constants')
 var ModeSelection  = require('./mode_selection')
+var Monitor        = require('mixins/monitor')
 var React          = require('react')
+var Strings        = require('constants/strings')
 var fullscreen     = require('utils/fullscreen')
 
 var App = React.createClass({
 
-  fullscreen() {
-    fullscreen(this.getDOMNode())
-  },
+  mixins: [ Monitor ],
 
-  getInitialState() {
+  getState(): Object {
     return {
-      mode: Modes.EDIT_MODE
+      editor: EditorStore.find(this.props.editorId)
     }
   },
 
+  fullscreen(): void {
+    fullscreen(this.getDOMNode())
+  },
+
   render(): any {
-    var { block, preview } = this.props
-    var { mode } = this.state
+    var { editor } = this.state
 
     return (
       <div className="colonel" >
-        <ModeSelection preview={ preview } mode={ mode } onChange={ this._onModeChange }/>
-
-        <ContentSection mode={ mode } block={ block } />
-
-        <button type="button" aria-label="Toggle fullscreen mode" className="col-fullscreen" onClick={ this._onFullscreenClick }>
-          Fullscreen
-        </button>
+        <ModeSelection editor={ editor } />
+        <ContentSection editor={ editor } />
+        <button type="button" aria-label={ Strings.fullscreen } className="col-fullscreen" onClick={ this._onFullscreenClick }>Fullscreen</button>
       </div>
     )
   },

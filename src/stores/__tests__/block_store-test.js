@@ -1,6 +1,5 @@
-import Dispatcher     from 'dispatcher'
-import BlockStore     from 'stores/block_store'
-import BlockListStore from 'stores/block_list_store'
+import Dispatcher from 'dispatcher'
+import BlockStore from 'stores/block_store'
 
 describe('Stores - Block', function() {
 
@@ -59,16 +58,11 @@ describe('Stores - Block', function() {
 
     before(function() {
       sinon.spy(BlockStore, '_create')
-      sinon.stub(BlockListStore, '_createFromParent')
-      sinon.stub(BlockListStore, '_addBlockToList')
-
       Dispatcher.dispatch({ type: BlockCreate, params: { type: 'test' }})
     })
 
     after(function() {
       BlockStore._create.restore()
-      BlockListStore._createFromParent.restore()
-      BlockListStore._addBlockToList.restore()
     })
 
     it ('creates a record', function() {
@@ -81,14 +75,12 @@ describe('Stores - Block', function() {
 
      before(function() {
        sinon.stub(BlockStore, '_destroy')
-       sinon.stub(BlockListStore, '_removeBlockFromList')
 
        Dispatcher.dispatch({ type: BlockDestroy, id: 'test' })
      })
 
      after(function() {
        BlockStore._destroy.restore()
-       BlockListStore._removeBlockFromList.restore()
      })
 
      it ('removes a record', function() {

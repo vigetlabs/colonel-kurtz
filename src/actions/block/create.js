@@ -1,8 +1,6 @@
 /* @flow */
 var Dispatcher = require('dispatcher')
 
-module.exports = function CreateBlock (params: { content: ?Object; parent: number; position: number; type: string }) {
-  var position = params.position
-
+module.exports = function CreateBlock (params: Object, position: any) {
   Dispatcher.dispatch({ type: CreateBlock, params, position })
 }

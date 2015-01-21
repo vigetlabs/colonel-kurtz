@@ -30,10 +30,7 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin("colonel-kurtz.css"),
-    new Webpack.DefinePlugin({
-      "__DEV__": process.env.NODE_ENV === 'development'
-    }),
+    new ExtractTextPlugin("example.build.css"),
     new Webpack.ProvidePlugin({
       to5Runtime: "imports?global=>{}!exports?global.to5Runtime!6to5/runtime"
     })

@@ -1,35 +1,26 @@
-import Dispatcher    from 'dispatcher';
-import ModeSelection from '../mode_selection';
-import UpdateEditor  from '../../actions/editor/update';
+import ModeSelection from '../mode_selection'
+import UpdateEditor  from 'actions/editor/update'
+import Dispatcher    from 'dispatcher'
 
 let Test = React.addons.TestUtils
 
 describe('Components - ModeSelection', function() {
+  let editor    = { preview: true }
+  let component = Test.renderIntoDocument(<ModeSelection editor={ editor } />)
 
-  describe('when mounted', function() {
-    let component = Test.renderIntoDocument(<ModeSelection editor={{ preview: true }} />)
-    let button    = component.getDOMNode().querySelector('button:not([disabled])')
-
-    before(function() {
-      sinon.spy(Dispatcher, 'dispatch')
-    })
+  describe('when a button is clicked', function() {
+    let button = component.getDOMNode().querySelector('button:not([disabled])')
+    let stub   = sinon.stub(Dispatcher, 'dispatch')
 
     after(function() {
-      Dispatcher.dispatch.restore()
+      stub.restore()
     })
 
-    it ('executes the UpdateEditor action when clicking a tab', function() {
+    it ('executes the UpdateEditor callback property', function() {
       Test.Simulate.click(button)
-      Dispatcher.dispatch.getCall(0).args[0].should.have.property('type', UpdateEditor)
+      stub.getCall(0).args[0].type.should.equal(UpdateEditor)
     })
 
-  })
-
-  it ('renders nothing if the editor preview property is false', function() {
-    let editor    = { preview: false }
-    let component = Test.renderIntoDocument(<ModeSelection editor={ editor } />)
-
-    expect(component.getDOMNode()).to.be.null
   })
 
 })

@@ -1,18 +1,24 @@
 /* @flow */
 
-var Block = require('./block')
-var Modes = require('../constants/mode_constants')
-var React = require('react')
+var Block     = require('./block')
+var HasBlocks = require('mixins/hasBlocks')
+var React     = require('react')
 
 var PreviewerBlock = React.createClass({
 
+  mixins: [ HasBlocks],
+
+  getBlock(block): any {
+    return <PreviewerBlock key={ block.id } block={ block } editor={ this.props.editor } />
+  },
+
   render(): any {
-    var { block } = this.props
+    var { block, editor } = this.props
 
     return (
       <div>
-        <Block block={ block } mode={ Modes.PREVIEW_MODE } />
-        <PreviewerBlockList block={ block } />
+        <Block block={ block } mode={ editor.mode } />
+        { this.state.blocks.map(this.getBlock) }
       </div>
     )
   }

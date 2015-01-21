@@ -1,7 +1,7 @@
-var BlockType  = require('./block_type_store')
-var Bus        = require('../bus')
-var Dispatcher = require('../dispatcher')
-var Modes      = require('../constants/mode_constants')
+var BlockType  = require('stores/block_type_store')
+var Bus        = require('bus')
+var Dispatcher = require('dispatcher')
+var Modes      = require('constants/mode_constants')
 var invariant  = require('react/lib/invariant')
 
 var _editors    = []
