@@ -1,10 +1,10 @@
 /* @flow */
 
 var Button       = require('components/ui/button');
-var Modes        = require('constants/mode_constants')
 var React        = require('react')
 var Types        = React.PropTypes
 var UpdateEditor = require('actions/editor/update')
+var modes        = require('constants/mode_constants')
 
 var ModeSelection = React.createClass({
 
@@ -14,12 +14,7 @@ var ModeSelection = React.createClass({
   },
 
   getDefaultProps(): Object {
-    return {
-      modes : {
-        'Edit'    : Modes.EDIT_MODE,
-        'Preview' : Modes.PREVIEW_MODE
-      }
-    }
+    return { modes }
   },
 
   getTab(key:string): any {
