@@ -46,19 +46,13 @@ var BlockStore = {
   },
 
   _destroy(id: number) {
-    var block    = BlockStore.find(id)
-    var children = BlockStore.childrenFor(block)
+    _blocks = _blocks.filter(function(node) {
+      for (var n = node; n; n = n.parent) {
+        if (n.id == id) return false
+      }
 
-    _blocks = _blocks.reduce(function(memo, next) {
-      var node = next
-
-      do {
-        if (node.id == id) return memo
-        node = node.parent
-      } while (node)
-
-      return memo.concat(next)
-    }, [])
+      return true
+    })
 
     Bus.publish()
   },
@@ -67,6 +61,7 @@ var BlockStore = {
     var block = BlockStore.find(id)
 
     block.content = { ...block.content, ...content }
+
     Bus.publish()
   },
 
@@ -83,18 +78,10 @@ var BlockStore = {
     Bus.publish()
   },
 
-  _seed(parent, blocks): void {
-    if (!parent) {
-      parent = BlockStore._create({})
+  _seed(parent=BlockStore._create({}), items=[]): void {
+    for (let { blocks, content, type } of items)  {
+      BlockStore._seed(BlockStore._create({ content, parent, type }), blocks)
     }
-
-    blocks.forEach(function({ blocks, content, type }): void {
-      var next = BlockStore._create({ content, parent, type })
-
-      if (Array.isArray(blocks)) {
-        BlockStore._seed(next, blocks)
-      }
-    })
 
     return parent
   },
