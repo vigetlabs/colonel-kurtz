@@ -38,6 +38,7 @@
     "array.prototype.find": "^1.0.0",
     "autoprefixer-loader": "^1.0.0",
     "css-loader": "^0.9.0",
+    "diode": "vigetlabs/diode",
     "envify-loader": "^0.1.0",
     "exports-loader": "^0.6.2",
     "extract-text-webpack-plugin": "^0.3.5",

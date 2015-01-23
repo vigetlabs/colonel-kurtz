@@ -1,14 +1,14 @@
 /* @flow */
 
 var BlockType   = require('../stores/block_type_store')
-var Monitor     = require('../mixins/monitor')
 var Pure        = require('../mixins/pure')
+var Stateful    = require('diode/stateful')
 var React       = require('react')
 var UpdateBlock = require('../actions/block/update')
 
 var Block = React.createClass({
 
-  mixins: [ Monitor, Pure ],
+  mixins: [ STateful, Pure ],
 
   propTypes: {
     block: React.PropTypes.any.isRequired

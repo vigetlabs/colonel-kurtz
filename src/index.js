@@ -5,7 +5,7 @@
  */
 
 var App          = require('components/app')
-var Bus          = require('bus')
+var Diode        = require('diode')
 var EditorCreate = require('actions/editor/create')
 var EditorStore  = require('stores/editor_store')
 var React        = require('react')
@@ -31,7 +31,7 @@ class ColonelKurtz {
       ...config
     })
 
-    Bus.subscribe(() => this.simulateChange())
+    Diode.subscribe(() => this.simulateChange())
 
     setTimeout(this.simulateChange.bind(this), 10)
   }

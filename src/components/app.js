@@ -9,14 +9,14 @@ var ContentSection = require('./content_section')
 var EditorStore    = require('stores/editor_store')
 var Modes          = require('constants/mode_constants')
 var ModeSelection  = require('./mode_selection')
-var Monitor        = require('mixins/monitor')
 var React          = require('react')
+var Stateful       = require('diode/stateful')
 var Strings        = require('constants/strings')
 var fullscreen     = require('utils/fullscreen')
 
 var App = React.createClass({
 
-  mixins: [ Monitor ],
+  mixins: [ Stateful ],
 
   getState(): Object {
     return {

@@ -1,9 +1,9 @@
 var BlockStore = require('stores/block_store')
-var Monitor    = require('mixins/monitor')
 var React      = require('react')
+var Stateful   = require('diode/stateful')
 
 module.exports = {
-  mixins: [ Monitor ],
+  mixins: [ Stateful ],
 
   propTypes: {
     block: React.PropTypes.any.isRequired

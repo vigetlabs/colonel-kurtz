@@ -1,5 +1,5 @@
 var BlockType  = require('stores/block_type_store')
-var Bus        = require('bus')
+var Diode      = require('diode')
 var Dispatcher = require('dispatcher')
 var Modes      = require('constants/mode_constants')
 var invariant  = require('react/lib/invariant')
@@ -33,7 +33,7 @@ var EditorStore = {
 
     _editors = _editors.concat(editor)
 
-    Bus.publish()
+    Diode.publish()
   },
 
   _update(id, params) {
@@ -43,7 +43,7 @@ var EditorStore = {
     _editors = _editors.concat()
     _editors[index] = { ...getDefaults(), ...editor, ...params }
 
-    Bus.publish()
+    Diode.publish()
   },
 
   dispatchToken: Dispatcher.register(function(action) {

@@ -1,6 +1,6 @@
 /* @flow */
 
-var Bus        = require('../bus')
+var Diode      = require('diode')
 var Block      = require('../models/block')
 var Dispatcher = require('../dispatcher')
 var invariant  = require('react/lib/invariant')
@@ -40,7 +40,7 @@ var BlockStore = {
 
     _blocks.splice(position, 0, block)
 
-    Bus.publish()
+    Diode.publish()
 
     return block
   },
@@ -54,7 +54,7 @@ var BlockStore = {
       return true
     })
 
-    Bus.publish()
+    Diode.publish()
   },
 
   _update(id: number, content: ?Object) {
@@ -62,7 +62,7 @@ var BlockStore = {
 
     block.content = { ...block.content, ...content }
 
-    Bus.publish()
+    Diode.publish()
   },
 
   _indexOf(id: number): number {
@@ -75,7 +75,7 @@ var BlockStore = {
 
     _blocks.splice(to, 0, _blocks.splice(from, 1)[0]);
 
-    Bus.publish()
+    Diode.publish()
   },
 
   _seed(parent=BlockStore._create({}), items=[]): void {

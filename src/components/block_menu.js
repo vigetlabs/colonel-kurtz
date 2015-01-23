@@ -2,12 +2,12 @@
 
 var AddBlock  = require('./add_block')
 var BlockType = require('../stores/block_type_store')
-var Monitor   = require('../mixins/monitor')
 var React     = require('react')
+var Stateful  = require('diode/stateful')
 
 var BlockMenu = React.createClass({
 
-  mixins: [ Monitor ],
+  mixins: [ Stateful ],
 
   propTypes: {
     editor: React.PropTypes.any.isRequired
