@@ -7,8 +7,7 @@ var React       = require('react')
 var UpdateBlock = require('../actions/block/update')
 
 var Block = React.createClass({
-
-  mixins: [ STateful, Pure ],
+  mixins: [ Stateful, Pure ],
 
   propTypes: {
     block: React.PropTypes.any.isRequired

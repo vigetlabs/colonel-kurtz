@@ -5,8 +5,10 @@ var React        = require('react')
 var Types        = React.PropTypes
 var UpdateEditor = require('actions/editor/update')
 var modes        = require('constants/mode_constants')
+var Pure         = require('../mixins/pure')
 
 var ModeSelection = React.createClass({
+  mixins: [ Pure ],
 
   propType: {
     editor : Types.object.isRequired,
@@ -28,7 +30,7 @@ var ModeSelection = React.createClass({
 
     return (
       <li key={ key } className="col-tabs-list-item" role="tab">
-        <Button { ...props }>{ key }</Button>
+        <Button { ...props }>{ key.replace('_', ' ') }</Button>
       </li>
     )
   },

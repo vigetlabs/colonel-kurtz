@@ -1,10 +1,9 @@
 /* @flow weak */
-
+var Animation   = require('react/lib/ReactCSSTransitionGroup')
 var BlockMenu   = require('components/block_menu')
 var EditorBlock = require('components/editor_block')
 var HasBlocks   = require('mixins/hasBlocks')
-var React       = require('react/addons')
-var Animation   = React.addons.CSSTransitionGroup;
+var React       = require('react')
 
 var Editor = React.createClass({
 

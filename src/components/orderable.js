@@ -1,7 +1,7 @@
 /* @flow */
 var Dragon    = require('react-dragon')
 var MoveBlock = require('actions/block/move')
-var React     = require('react/addons')
+var React     = require('react')
 
 var Orderable = React.createClass({
 

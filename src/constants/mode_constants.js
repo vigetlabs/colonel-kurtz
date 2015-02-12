@@ -1,5 +1,3 @@
-/* @flow */
-
 var KeyMirror = require('react/lib/keyMirror')
 
 module.exports = KeyMirror({

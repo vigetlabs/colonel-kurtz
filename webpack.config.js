@@ -3,7 +3,7 @@ var ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = {
   debug: true,
-  devtool: 'source-maps',
+  devtool: 'source-map',
 
   entry: {
     'colonel-kurtz'  : './src/index.js',
@@ -20,8 +20,9 @@ module.exports = {
   },
 
   externals: {
-    'react'        : 'react',
-    'react/addons' : 'react/addons'
+    'react' : 'react',
+    'react/lib/ReactCSSTransitionGroup' : 'react/lib/ReactCSSTransitionGroup',
+    'react-ink' : 'react-ink'
   },
 
   resolve: {
@@ -30,9 +31,8 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin("example.build.css"),
-    new Webpack.ProvidePlugin({
-      to5Runtime: "imports?global=>{}!exports?global.to5Runtime!6to5/runtime"
+    new ExtractTextPlugin("example.build.css", {
+      disable: process.env.NODE_ENV !== 'production'
     })
   ],
 
@@ -40,7 +40,7 @@ module.exports = {
     loaders: [
       {
         test    : /\.s*(c|a)ss$/,
-        loader  : ExtractTextPlugin.extract('style-loader', 'css-loader!autoprefixer-loader!sass-loader')
+        loader  : ExtractTextPlugin.extract('style', 'css!autoprefixer!sass')
       },
       {
         test    : /\.jsx*$/,
@@ -49,11 +49,11 @@ module.exports = {
       {
         test    : /\.jsx*$/,
         exclude : /node_modules/,
-        loader  : '6to5?experimental&runtime&modules=common',
+        loader  : '6to5?experimental',
       },
       {
         test    : /\.json$/,
-        loader  : 'json-loader'
+        loader  : 'json'
       }
     ]
   }

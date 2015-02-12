@@ -1,15 +1,13 @@
 /* @flow */
-
+var Animation = require('react/lib/ReactCSSTransitionGroup')
 var Block     = require('components/block')
 var BlockMenu = require('components/block_menu')
 var HasBlocks = require('mixins/hasBlocks')
 var Orderable = require('components/orderable')
-var React     = require('react/addons')
+var React     = require('react')
 var Toolbar   = require('components/toolbar')
-var Animation = React.addons.CSSTransitionGroup;
 
 var EditorBlock = React.createClass({
-
   mixins: [ HasBlocks],
 
   getBlock(block): any {

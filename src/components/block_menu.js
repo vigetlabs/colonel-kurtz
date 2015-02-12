@@ -6,7 +6,6 @@ var React     = require('react')
 var Stateful  = require('diode/stateful')
 
 var BlockMenu = React.createClass({
-
   mixins: [ Stateful ],
 
   propTypes: {

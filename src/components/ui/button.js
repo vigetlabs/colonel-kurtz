@@ -1,22 +1,24 @@
-var React = require('react');
+import React from 'react'
+import Ink from 'react-ink'
 
-var Button = React.createClass({
+let Button = React.createClass({
 
   getDefaultProps() {
     return {
-      tagName  : 'button'
+      tagName : 'button'
     }
   },
 
   render() {
-    var { children, tagName, ...attrs } = this.props;
+    let { children, tagName, ...attrs } = this.props
 
     return (
       React.createElement(tagName, attrs, [
+        <Ink key="__ink" />,
         children
       ])
-    );
+    )
   }
-});
+})
 
-module.exports = Button;
+module.exports = Button
