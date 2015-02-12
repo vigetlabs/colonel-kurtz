@@ -1,5 +1,7 @@
-import EditorStore from 'stores/editor_store'
-import Dispatcher  from 'dispatcher'
+import EditorStore  from 'stores/editor_store'
+import Dispatcher   from 'dispatcher'
+import EditorUpdate from 'actions/editor/update'
+import EditorCreate from 'actions/editor/create'
 
 describe('Stores - Editor', function() {
 
@@ -43,8 +45,6 @@ describe('Stores - Editor', function() {
   })
 
   describe('when the Dispatcher triggers EDITOR_CREATE', function() {
-    import EditorCreate from 'actions/editor/create'
-
     before(function() {
       sinon.spy(EditorStore, '_create')
       Dispatcher.dispatch({ type: EditorCreate, params: { id: 'test_create' }})
@@ -58,8 +58,6 @@ describe('Stores - Editor', function() {
   })
 
   describe('when the Dispatcher triggers EDITOR_UPDATE', function() {
-    import EditorUpdate from 'actions/editor/update'
-
     before(function() {
       EditorStore._create({ id: 'test_update' })
       sinon.spy(EditorStore, '_update')

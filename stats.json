@@ -5,8 +5,8 @@
     "addons/medium.js from UglifyJs\nDropping unused function argument state [./~/envify-loader!./~/6to5-loader?experimental!./addons/medium/editor.js:29,0]\nDropping unused function argument props [./~/envify-loader!./~/6to5-loader?experimental!./addons/medium/editor.js:29,0]\nCondition always true [./~/envify-loader!./~/6to5-loader?experimental!./addons/medium/vendor/medium-editor.js:10,0]\nDropping unreachable code [./~/envify-loader!./~/6to5-loader?experimental!./addons/medium/vendor/medium-editor.js:14,0]\nDropping unused function argument e [./~/envify-loader!./~/6to5-loader?experimental!./addons/medium/vendor/medium-editor.js:1121,0]\nDropping unused function argument index [./~/envify-loader!./~/6to5-loader?experimental!./addons/medium/vendor/medium-editor.js:1176,0]"
   ],
   "version": "1.4.15",
-  "hash": "c7d75dab6439b454783a",
-  "time": 3923,
+  "hash": "64573263f78cc5a92438",
+  "time": 4259,
   "assetsByChunkName": {
     "colonel-kurtz": [
       "colonel-kurtz.js",
@@ -36,7 +36,7 @@
   "assets": [
     {
       "name": "colonel-kurtz.js",
-      "size": 24839,
+      "size": 24835,
       "chunks": [
         0
       ],
@@ -97,7 +97,7 @@
     },
     {
       "name": "colonel-kurtz.js.map",
-      "size": 171418,
+      "size": 171349,
       "chunks": [
         0
       ],
@@ -163,7 +163,7 @@
       "rendered": true,
       "initial": true,
       "entry": true,
-      "size": 58473,
+      "size": 58452,
       "names": [
         "colonel-kurtz"
       ],
@@ -932,7 +932,7 @@
           "id": 8,
           "identifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/diode/diode.js",
           "name": "./~/diode/diode.js",
-          "size": 1138,
+          "size": 1121,
           "cacheable": true,
           "built": true,
           "optional": false,
@@ -983,7 +983,7 @@
               "loc": "6:12-28"
             }
           ],
-          "source": "/**\n * The Diode emits a heartbeat whenever any store state has changed.\n * When Stores change, they can use this entity to broadcast\n * that state has changed.\n */\n\nvar _callbacks = []\nvar _tick      = null\n\n/**\n * Callbacks are eventually executed, Diode does not promise\n * immediate consistency so that state propagation can be batched\n */\nvar _flush = function() {\n  for (var i = 0, length = _callbacks.length; i < length; i++) {\n    _callbacks[i]()\n  }\n}\n\nvar Diode = {\n\n  /**\n   * Given a CALLBACK function, remove it from the Set of callbacks.\n   * Throws an error if the callback is not included in the Set.\n   */\n  unsubscribe: function(callback) {\n    _callbacks = _callbacks.filter(function(i) {\n      return i !== callback\n    });\n  },\n\n  /**\n   * Given a CALLBACK function, add it to the Set of all callbacks.\n   */\n  subscribe: function(callback) {\n    _callbacks = _callbacks.concat(callback)\n  },\n\n  /**\n   * Trigger every callback in the Set\n   */\n  publish: function() {\n    if (_callbacks.length > 0) {\n      cancelAnimationFrame(_tick)\n      _tick = requestAnimationFrame(_flush)\n    }\n  }\n\n}\n\nmodule.exports = Diode\n"
+          "source": "/**\n * The Diode emits a heartbeat whenever any store state has changed.\n * When Stores change, they can use this entity to broadcast\n * that state has changed.\n */\n\nvar _callbacks = []\nvar _tick      = null\n\n/**\n * Callbacks are eventually executed, Diode does not promise\n * immediate consistency so that state propagation can be batched\n */\nvar _flush = function() {\n  for (var i = 0; i < _callbacks.length; i++) {\n    _callbacks[i]()\n  }\n}\n\nvar Diode = {\n\n  /**\n   * Given a CALLBACK function, remove it from the Set of callbacks.\n   * Throws an error if the callback is not included in the Set.\n   */\n  unsubscribe: function(callback) {\n    _callbacks = _callbacks.filter(function(i) {\n      return i !== callback\n    });\n  },\n\n  /**\n   * Given a CALLBACK function, add it to the Set of all callbacks.\n   */\n  subscribe: function(callback) {\n    _callbacks = _callbacks.concat(callback)\n  },\n\n  /**\n   * Trigger every callback in the Set\n   */\n  publish: function() {\n    if (_callbacks.length > 0) {\n      cancelAnimationFrame(_tick)\n      _tick = requestAnimationFrame(_flush)\n    }\n  }\n\n}\n\nmodule.exports = Diode\n"
         },
         {
           "id": 9,
@@ -1367,7 +1367,7 @@
           "id": 21,
           "identifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/6to5-loader/index.js?experimental!/Users/nate/Development/web/colonel-kurtz/src/components/block.js",
           "name": "./src/components/block.js",
-          "size": 1448,
+          "size": 1446,
           "cacheable": true,
           "built": true,
           "optional": false,
@@ -1400,13 +1400,13 @@
               "loc": "5:12-30"
             }
           ],
-          "source": "\"use strict\";\n\nvar _objectWithoutProperties = function (obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; };\n\nvar _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };\n\n/* @flow */\n\nvar BlockType = require(\"../stores/block_type_store\");\nvar Pure = require(\"../mixins/pure\");\nvar Stateful = require(\"diode/stateful\");\nvar React = require(\"react\");\nvar UpdateBlock = require(\"../actions/block/update\");\n\nvar Block = React.createClass({\n  displayName: \"Block\",\n\n\n  mixins: [Stateful, Pure],\n\n  propTypes: {\n    block: React.PropTypes.any.isRequired\n  },\n\n  getState: function getState() {\n    return BlockType.find(this.props.block.type);\n  },\n\n  render: function render() {\n    var _props = this.props;\n    var block = _props.block;\n    var props = _objectWithoutProperties(_props, [\"block\"]);\n\n    var Component = this.state.component;\n\n\n    return React.createElement(Component, _extends({ initialContent: block.content, updateContent: this._onUpdateContent }, props));\n  },\n\n  _onUpdateContent: function _onUpdateContent(content) {\n    UpdateBlock(this.props.block.id, content);\n  }\n\n});\n\nmodule.exports = Block;"
+          "source": "\"use strict\";\n\nvar _objectWithoutProperties = function (obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; };\n\nvar _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };\n\n/* @flow */\n\nvar BlockType = require(\"../stores/block_type_store\");\nvar Pure = require(\"../mixins/pure\");\nvar Stateful = require(\"diode/stateful\");\nvar React = require(\"react\");\nvar UpdateBlock = require(\"../actions/block/update\");\n\nvar Block = React.createClass({\n  displayName: \"Block\",\n  mixins: [Stateful, Pure],\n\n  propTypes: {\n    block: React.PropTypes.any.isRequired\n  },\n\n  getState: function getState() {\n    return BlockType.find(this.props.block.type);\n  },\n\n  render: function render() {\n    var _props = this.props;\n    var block = _props.block;\n    var props = _objectWithoutProperties(_props, [\"block\"]);\n\n    var Component = this.state.component;\n\n\n    return React.createElement(Component, _extends({ initialContent: block.content, updateContent: this._onUpdateContent }, props));\n  },\n\n  _onUpdateContent: function _onUpdateContent(content) {\n    UpdateBlock(this.props.block.id, content);\n  }\n\n});\n\nmodule.exports = Block;"
         },
         {
           "id": 22,
           "identifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/6to5-loader/index.js?experimental!/Users/nate/Development/web/colonel-kurtz/src/components/block_menu.js",
           "name": "./src/components/block_menu.js",
-          "size": 1368,
+          "size": 1366,
           "cacheable": true,
           "built": true,
           "optional": false,
@@ -1439,7 +1439,7 @@
               "loc": "6:16-48"
             }
           ],
-          "source": "\"use strict\";\n\n/* @flow */\n\nvar AddBlock = require(\"./add_block\");\nvar BlockType = require(\"../stores/block_type_store\");\nvar React = require(\"react\");\nvar Stateful = require(\"diode/stateful\");\n\nvar BlockMenu = React.createClass({\n  displayName: \"BlockMenu\",\n\n\n  mixins: [Stateful],\n\n  propTypes: {\n    editor: React.PropTypes.any.isRequired\n  },\n\n  getDefaultProps: function getDefaultProps() {\n    return {\n      position: 0\n    };\n  },\n\n  getState: function getState() {\n    var _props = this.props;\n    var editor = _props.editor;\n    var block = _props.block;\n\n\n    // If there is a given block, then use the accepted types provided by that definition\n    // Otherwise, fallback to the editor.\n    return {\n      types: block.type ? BlockType.find(block.type).types : editor.types\n    };\n  },\n\n  getButton: function getButton(type) {\n    var _props = this.props;\n    var block = _props.block;\n    var position = _props.position;\n\n\n    return React.createElement(AddBlock, { key: type, type: type, block: block, position: position });\n  },\n\n  getNavigation: function getNavigation() {\n    return React.createElement(\n      \"nav\",\n      { className: \"col-menu\", role: \"navigation\" },\n      this.state.types.map(this.getButton)\n    );\n  },\n\n  render: function render() {\n    return this.state.types ? this.getNavigation() : null;\n  } });\n\nmodule.exports = BlockMenu;"
+          "source": "\"use strict\";\n\n/* @flow */\n\nvar AddBlock = require(\"./add_block\");\nvar BlockType = require(\"../stores/block_type_store\");\nvar React = require(\"react\");\nvar Stateful = require(\"diode/stateful\");\n\nvar BlockMenu = React.createClass({\n  displayName: \"BlockMenu\",\n  mixins: [Stateful],\n\n  propTypes: {\n    editor: React.PropTypes.any.isRequired\n  },\n\n  getDefaultProps: function getDefaultProps() {\n    return {\n      position: 0\n    };\n  },\n\n  getState: function getState() {\n    var _props = this.props;\n    var editor = _props.editor;\n    var block = _props.block;\n\n\n    // If there is a given block, then use the accepted types provided by that definition\n    // Otherwise, fallback to the editor.\n    return {\n      types: block.type ? BlockType.find(block.type).types : editor.types\n    };\n  },\n\n  getButton: function getButton(type) {\n    var _props = this.props;\n    var block = _props.block;\n    var position = _props.position;\n\n\n    return React.createElement(AddBlock, { key: type, type: type, block: block, position: position });\n  },\n\n  getNavigation: function getNavigation() {\n    return React.createElement(\n      \"nav\",\n      { className: \"col-menu\", role: \"navigation\" },\n      this.state.types.map(this.getButton)\n    );\n  },\n\n  render: function render() {\n    return this.state.types ? this.getNavigation() : null;\n  } });\n\nmodule.exports = BlockMenu;"
         },
         {
           "id": 23,
@@ -3355,7 +3355,7 @@
             2
           ],
           "assets": [],
-          "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/6to5-loader/index.js?experimental!/Users/nate/Development/web/colonel-kurtz/addons/image/previewer.js",
+          "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/6to5-loader/index.js?experimental!/Users/nate/Development/web/colonel-kurtz/addons/image/editor.js",
           "failed": false,
           "errors": 0,
           "warnings": 0,
@@ -4791,7 +4791,7 @@
       "id": 8,
       "identifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/diode/diode.js",
       "name": "./~/diode/diode.js",
-      "size": 1138,
+      "size": 1121,
       "cacheable": true,
       "built": true,
       "optional": false,
@@ -4842,7 +4842,7 @@
           "loc": "6:12-28"
         }
       ],
-      "source": "/**\n * The Diode emits a heartbeat whenever any store state has changed.\n * When Stores change, they can use this entity to broadcast\n * that state has changed.\n */\n\nvar _callbacks = []\nvar _tick      = null\n\n/**\n * Callbacks are eventually executed, Diode does not promise\n * immediate consistency so that state propagation can be batched\n */\nvar _flush = function() {\n  for (var i = 0, length = _callbacks.length; i < length; i++) {\n    _callbacks[i]()\n  }\n}\n\nvar Diode = {\n\n  /**\n   * Given a CALLBACK function, remove it from the Set of callbacks.\n   * Throws an error if the callback is not included in the Set.\n   */\n  unsubscribe: function(callback) {\n    _callbacks = _callbacks.filter(function(i) {\n      return i !== callback\n    });\n  },\n\n  /**\n   * Given a CALLBACK function, add it to the Set of all callbacks.\n   */\n  subscribe: function(callback) {\n    _callbacks = _callbacks.concat(callback)\n  },\n\n  /**\n   * Trigger every callback in the Set\n   */\n  publish: function() {\n    if (_callbacks.length > 0) {\n      cancelAnimationFrame(_tick)\n      _tick = requestAnimationFrame(_flush)\n    }\n  }\n\n}\n\nmodule.exports = Diode\n"
+      "source": "/**\n * The Diode emits a heartbeat whenever any store state has changed.\n * When Stores change, they can use this entity to broadcast\n * that state has changed.\n */\n\nvar _callbacks = []\nvar _tick      = null\n\n/**\n * Callbacks are eventually executed, Diode does not promise\n * immediate consistency so that state propagation can be batched\n */\nvar _flush = function() {\n  for (var i = 0; i < _callbacks.length; i++) {\n    _callbacks[i]()\n  }\n}\n\nvar Diode = {\n\n  /**\n   * Given a CALLBACK function, remove it from the Set of callbacks.\n   * Throws an error if the callback is not included in the Set.\n   */\n  unsubscribe: function(callback) {\n    _callbacks = _callbacks.filter(function(i) {\n      return i !== callback\n    });\n  },\n\n  /**\n   * Given a CALLBACK function, add it to the Set of all callbacks.\n   */\n  subscribe: function(callback) {\n    _callbacks = _callbacks.concat(callback)\n  },\n\n  /**\n   * Trigger every callback in the Set\n   */\n  publish: function() {\n    if (_callbacks.length > 0) {\n      cancelAnimationFrame(_tick)\n      _tick = requestAnimationFrame(_flush)\n    }\n  }\n\n}\n\nmodule.exports = Diode\n"
     },
     {
       "id": 9,
@@ -5002,7 +5002,7 @@
         2
       ],
       "assets": [],
-      "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/6to5-loader/index.js?experimental!/Users/nate/Development/web/colonel-kurtz/addons/image/previewer.js",
+      "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/6to5-loader/index.js?experimental!/Users/nate/Development/web/colonel-kurtz/addons/image/editor.js",
       "failed": false,
       "errors": 0,
       "warnings": 0,
@@ -5344,7 +5344,7 @@
       "id": 21,
       "identifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/6to5-loader/index.js?experimental!/Users/nate/Development/web/colonel-kurtz/src/components/block.js",
       "name": "./src/components/block.js",
-      "size": 1448,
+      "size": 1446,
       "cacheable": true,
       "built": true,
       "optional": false,
@@ -5377,13 +5377,13 @@
           "loc": "5:12-30"
         }
       ],
-      "source": "\"use strict\";\n\nvar _objectWithoutProperties = function (obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; };\n\nvar _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };\n\n/* @flow */\n\nvar BlockType = require(\"../stores/block_type_store\");\nvar Pure = require(\"../mixins/pure\");\nvar Stateful = require(\"diode/stateful\");\nvar React = require(\"react\");\nvar UpdateBlock = require(\"../actions/block/update\");\n\nvar Block = React.createClass({\n  displayName: \"Block\",\n\n\n  mixins: [Stateful, Pure],\n\n  propTypes: {\n    block: React.PropTypes.any.isRequired\n  },\n\n  getState: function getState() {\n    return BlockType.find(this.props.block.type);\n  },\n\n  render: function render() {\n    var _props = this.props;\n    var block = _props.block;\n    var props = _objectWithoutProperties(_props, [\"block\"]);\n\n    var Component = this.state.component;\n\n\n    return React.createElement(Component, _extends({ initialContent: block.content, updateContent: this._onUpdateContent }, props));\n  },\n\n  _onUpdateContent: function _onUpdateContent(content) {\n    UpdateBlock(this.props.block.id, content);\n  }\n\n});\n\nmodule.exports = Block;"
+      "source": "\"use strict\";\n\nvar _objectWithoutProperties = function (obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; };\n\nvar _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };\n\n/* @flow */\n\nvar BlockType = require(\"../stores/block_type_store\");\nvar Pure = require(\"../mixins/pure\");\nvar Stateful = require(\"diode/stateful\");\nvar React = require(\"react\");\nvar UpdateBlock = require(\"../actions/block/update\");\n\nvar Block = React.createClass({\n  displayName: \"Block\",\n  mixins: [Stateful, Pure],\n\n  propTypes: {\n    block: React.PropTypes.any.isRequired\n  },\n\n  getState: function getState() {\n    return BlockType.find(this.props.block.type);\n  },\n\n  render: function render() {\n    var _props = this.props;\n    var block = _props.block;\n    var props = _objectWithoutProperties(_props, [\"block\"]);\n\n    var Component = this.state.component;\n\n\n    return React.createElement(Component, _extends({ initialContent: block.content, updateContent: this._onUpdateContent }, props));\n  },\n\n  _onUpdateContent: function _onUpdateContent(content) {\n    UpdateBlock(this.props.block.id, content);\n  }\n\n});\n\nmodule.exports = Block;"
     },
     {
       "id": 22,
       "identifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/6to5-loader/index.js?experimental!/Users/nate/Development/web/colonel-kurtz/src/components/block_menu.js",
       "name": "./src/components/block_menu.js",
-      "size": 1368,
+      "size": 1366,
       "cacheable": true,
       "built": true,
       "optional": false,
@@ -5416,7 +5416,7 @@
           "loc": "6:16-48"
         }
       ],
-      "source": "\"use strict\";\n\n/* @flow */\n\nvar AddBlock = require(\"./add_block\");\nvar BlockType = require(\"../stores/block_type_store\");\nvar React = require(\"react\");\nvar Stateful = require(\"diode/stateful\");\n\nvar BlockMenu = React.createClass({\n  displayName: \"BlockMenu\",\n\n\n  mixins: [Stateful],\n\n  propTypes: {\n    editor: React.PropTypes.any.isRequired\n  },\n\n  getDefaultProps: function getDefaultProps() {\n    return {\n      position: 0\n    };\n  },\n\n  getState: function getState() {\n    var _props = this.props;\n    var editor = _props.editor;\n    var block = _props.block;\n\n\n    // If there is a given block, then use the accepted types provided by that definition\n    // Otherwise, fallback to the editor.\n    return {\n      types: block.type ? BlockType.find(block.type).types : editor.types\n    };\n  },\n\n  getButton: function getButton(type) {\n    var _props = this.props;\n    var block = _props.block;\n    var position = _props.position;\n\n\n    return React.createElement(AddBlock, { key: type, type: type, block: block, position: position });\n  },\n\n  getNavigation: function getNavigation() {\n    return React.createElement(\n      \"nav\",\n      { className: \"col-menu\", role: \"navigation\" },\n      this.state.types.map(this.getButton)\n    );\n  },\n\n  render: function render() {\n    return this.state.types ? this.getNavigation() : null;\n  } });\n\nmodule.exports = BlockMenu;"
+      "source": "\"use strict\";\n\n/* @flow */\n\nvar AddBlock = require(\"./add_block\");\nvar BlockType = require(\"../stores/block_type_store\");\nvar React = require(\"react\");\nvar Stateful = require(\"diode/stateful\");\n\nvar BlockMenu = React.createClass({\n  displayName: \"BlockMenu\",\n  mixins: [Stateful],\n\n  propTypes: {\n    editor: React.PropTypes.any.isRequired\n  },\n\n  getDefaultProps: function getDefaultProps() {\n    return {\n      position: 0\n    };\n  },\n\n  getState: function getState() {\n    var _props = this.props;\n    var editor = _props.editor;\n    var block = _props.block;\n\n\n    // If there is a given block, then use the accepted types provided by that definition\n    // Otherwise, fallback to the editor.\n    return {\n      types: block.type ? BlockType.find(block.type).types : editor.types\n    };\n  },\n\n  getButton: function getButton(type) {\n    var _props = this.props;\n    var block = _props.block;\n    var position = _props.position;\n\n\n    return React.createElement(AddBlock, { key: type, type: type, block: block, position: position });\n  },\n\n  getNavigation: function getNavigation() {\n    return React.createElement(\n      \"nav\",\n      { className: \"col-menu\", role: \"navigation\" },\n      this.state.types.map(this.getButton)\n    );\n  },\n\n  render: function render() {\n    return this.state.types ? this.getNavigation() : null;\n  } });\n\nmodule.exports = BlockMenu;"
     },
     {
       "id": 23,
@@ -6753,7 +6753,7 @@
       "prefetched": false,
       "chunks": [],
       "assets": [],
-      "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/youtube/style.scss",
+      "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/image/style.scss",
       "failed": false,
       "errors": 0,
       "warnings": 0,
@@ -6818,143 +6818,6 @@
   ],
   "filteredModules": 0,
   "children": [
-    {
-      "errors": [],
-      "warnings": [],
-      "assetsByChunkName": {},
-      "assets": [],
-      "chunks": [
-        {
-          "id": 0,
-          "rendered": true,
-          "initial": true,
-          "entry": true,
-          "size": 1217,
-          "names": [],
-          "files": [
-            "/Users/nate/Development/web/colonel-kurtz/node_modules/extract-text-webpack-plugin /Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/image/style.scss",
-            "/Users/nate/Development/web/colonel-kurtz/node_modules/extract-text-webpack-plugin /Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/image/style.scss.map"
-          ],
-          "parents": [],
-          "modules": [
-            {
-              "id": 0,
-              "identifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/image/style.scss",
-              "name": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/image/style.scss",
-              "size": 865,
-              "cacheable": true,
-              "built": true,
-              "optional": false,
-              "prefetched": false,
-              "chunks": [
-                0
-              ],
-              "assets": [],
-              "failed": false,
-              "errors": 0,
-              "warnings": 0,
-              "reasons": [],
-              "source": "exports = module.exports = require(\"/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js\")();\nexports.push([module.id, \".col-img-figure{margin:0;min-height:24px;position:relative}.col-img-graphic{display:block;margin:0 auto;max-width:100%}.col-img-caption{background:#fff;background:rgba(255,255,255,.8);bottom:0;box-shadow:inset 0 -1px 1px rgba(0,0,0,.1);color:#777;display:block;font-family:Georgia,sans-serif;font-style:italic;line-height:24px;left:0;padding:12px;position:absolute;right:0;text-align:center}.col-img-fieldset{border:0;margin:0;padding:8px 8px 12px}.col-img-field{padding:8px 8px 4px}.col-img-label{color:#777;display:block;float:none;font-size:13px;margin-bottom:8px;width:100%}.col-img-input{border:1px solid #d9d9d9;border-width:0 0 1px;color:#222;display:block;font-size:14px;padding-bottom:4px;width:100%}\", \"\"]);"
-            },
-            {
-              "id": 1,
-              "identifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js",
-              "name": "./~/css-loader/cssToString.js",
-              "size": 352,
-              "cacheable": true,
-              "built": true,
-              "optional": false,
-              "prefetched": false,
-              "chunks": [
-                0
-              ],
-              "assets": [],
-              "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/image/style.scss",
-              "failed": false,
-              "errors": 0,
-              "warnings": 0,
-              "reasons": [
-                {
-                  "moduleId": 0,
-                  "moduleIdentifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/image/style.scss",
-                  "module": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/image/style.scss",
-                  "moduleName": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/image/style.scss",
-                  "type": "cjs require",
-                  "userRequest": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js",
-                  "loc": "1:27-118"
-                }
-              ],
-              "source": "module.exports = function() {\r\n\tvar list = [];\r\n\tlist.toString = function toString() {\r\n\t\tvar result = [];\r\n\t\tfor(var i = 0; i < this.length; i++) {\r\n\t\t\tvar item = this[i];\r\n\t\t\tif(item[2]) {\r\n\t\t\t\tresult.push(\"@media \" + item[2] + \"{\" + item[1] + \"}\");\r\n\t\t\t} else {\r\n\t\t\t\tresult.push(item[1]);\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn result.join(\"\");\r\n\t};\r\n\treturn list;\r\n}"
-            }
-          ],
-          "filteredModules": 0,
-          "origins": [
-            {
-              "moduleId": 0,
-              "module": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/image/style.scss",
-              "moduleIdentifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/image/style.scss",
-              "moduleName": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/image/style.scss",
-              "loc": "",
-              "reasons": []
-            }
-          ]
-        }
-      ],
-      "modules": [
-        {
-          "id": 0,
-          "identifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/image/style.scss",
-          "name": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/image/style.scss",
-          "size": 865,
-          "cacheable": true,
-          "built": true,
-          "optional": false,
-          "prefetched": false,
-          "chunks": [
-            0
-          ],
-          "assets": [],
-          "failed": false,
-          "errors": 0,
-          "warnings": 0,
-          "reasons": [],
-          "source": "exports = module.exports = require(\"/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js\")();\nexports.push([module.id, \".col-img-figure{margin:0;min-height:24px;position:relative}.col-img-graphic{display:block;margin:0 auto;max-width:100%}.col-img-caption{background:#fff;background:rgba(255,255,255,.8);bottom:0;box-shadow:inset 0 -1px 1px rgba(0,0,0,.1);color:#777;display:block;font-family:Georgia,sans-serif;font-style:italic;line-height:24px;left:0;padding:12px;position:absolute;right:0;text-align:center}.col-img-fieldset{border:0;margin:0;padding:8px 8px 12px}.col-img-field{padding:8px 8px 4px}.col-img-label{color:#777;display:block;float:none;font-size:13px;margin-bottom:8px;width:100%}.col-img-input{border:1px solid #d9d9d9;border-width:0 0 1px;color:#222;display:block;font-size:14px;padding-bottom:4px;width:100%}\", \"\"]);"
-        },
-        {
-          "id": 1,
-          "identifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js",
-          "name": "./~/css-loader/cssToString.js",
-          "size": 352,
-          "cacheable": true,
-          "built": true,
-          "optional": false,
-          "prefetched": false,
-          "chunks": [
-            0
-          ],
-          "assets": [],
-          "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/image/style.scss",
-          "failed": false,
-          "errors": 0,
-          "warnings": 0,
-          "reasons": [
-            {
-              "moduleId": 0,
-              "moduleIdentifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/image/style.scss",
-              "module": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/image/style.scss",
-              "moduleName": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/image/style.scss",
-              "type": "cjs require",
-              "userRequest": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js",
-              "loc": "1:27-118"
-            }
-          ],
-          "source": "module.exports = function() {\r\n\tvar list = [];\r\n\tlist.toString = function toString() {\r\n\t\tvar result = [];\r\n\t\tfor(var i = 0; i < this.length; i++) {\r\n\t\t\tvar item = this[i];\r\n\t\t\tif(item[2]) {\r\n\t\t\t\tresult.push(\"@media \" + item[2] + \"{\" + item[1] + \"}\");\r\n\t\t\t} else {\r\n\t\t\t\tresult.push(item[1]);\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn result.join(\"\");\r\n\t};\r\n\treturn list;\r\n}"
-        }
-      ],
-      "filteredModules": 0,
-      "children": [],
-      "name": "extract-text-webpack-plugin"
-    },
     {
       "errors": [],
       "warnings": [],
@@ -7080,6 +6943,143 @@
               "moduleIdentifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/youtube/style.scss",
               "module": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/youtube/style.scss",
               "moduleName": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/youtube/style.scss",
+              "type": "cjs require",
+              "userRequest": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js",
+              "loc": "1:27-118"
+            }
+          ],
+          "source": "module.exports = function() {\r\n\tvar list = [];\r\n\tlist.toString = function toString() {\r\n\t\tvar result = [];\r\n\t\tfor(var i = 0; i < this.length; i++) {\r\n\t\t\tvar item = this[i];\r\n\t\t\tif(item[2]) {\r\n\t\t\t\tresult.push(\"@media \" + item[2] + \"{\" + item[1] + \"}\");\r\n\t\t\t} else {\r\n\t\t\t\tresult.push(item[1]);\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn result.join(\"\");\r\n\t};\r\n\treturn list;\r\n}"
+        }
+      ],
+      "filteredModules": 0,
+      "children": [],
+      "name": "extract-text-webpack-plugin"
+    },
+    {
+      "errors": [],
+      "warnings": [],
+      "assetsByChunkName": {},
+      "assets": [],
+      "chunks": [
+        {
+          "id": 0,
+          "rendered": true,
+          "initial": true,
+          "entry": true,
+          "size": 1217,
+          "names": [],
+          "files": [
+            "/Users/nate/Development/web/colonel-kurtz/node_modules/extract-text-webpack-plugin /Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/image/style.scss",
+            "/Users/nate/Development/web/colonel-kurtz/node_modules/extract-text-webpack-plugin /Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/image/style.scss.map"
+          ],
+          "parents": [],
+          "modules": [
+            {
+              "id": 0,
+              "identifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/image/style.scss",
+              "name": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/image/style.scss",
+              "size": 865,
+              "cacheable": true,
+              "built": true,
+              "optional": false,
+              "prefetched": false,
+              "chunks": [
+                0
+              ],
+              "assets": [],
+              "failed": false,
+              "errors": 0,
+              "warnings": 0,
+              "reasons": [],
+              "source": "exports = module.exports = require(\"/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js\")();\nexports.push([module.id, \".col-img-figure{margin:0;min-height:24px;position:relative}.col-img-graphic{display:block;margin:0 auto;max-width:100%}.col-img-caption{background:#fff;background:rgba(255,255,255,.8);bottom:0;box-shadow:inset 0 -1px 1px rgba(0,0,0,.1);color:#777;display:block;font-family:Georgia,sans-serif;font-style:italic;line-height:24px;left:0;padding:12px;position:absolute;right:0;text-align:center}.col-img-fieldset{border:0;margin:0;padding:8px 8px 12px}.col-img-field{padding:8px 8px 4px}.col-img-label{color:#777;display:block;float:none;font-size:13px;margin-bottom:8px;width:100%}.col-img-input{border:1px solid #d9d9d9;border-width:0 0 1px;color:#222;display:block;font-size:14px;padding-bottom:4px;width:100%}\", \"\"]);"
+            },
+            {
+              "id": 1,
+              "identifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js",
+              "name": "./~/css-loader/cssToString.js",
+              "size": 352,
+              "cacheable": true,
+              "built": true,
+              "optional": false,
+              "prefetched": false,
+              "chunks": [
+                0
+              ],
+              "assets": [],
+              "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/image/style.scss",
+              "failed": false,
+              "errors": 0,
+              "warnings": 0,
+              "reasons": [
+                {
+                  "moduleId": 0,
+                  "moduleIdentifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/image/style.scss",
+                  "module": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/image/style.scss",
+                  "moduleName": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/image/style.scss",
+                  "type": "cjs require",
+                  "userRequest": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js",
+                  "loc": "1:27-118"
+                }
+              ],
+              "source": "module.exports = function() {\r\n\tvar list = [];\r\n\tlist.toString = function toString() {\r\n\t\tvar result = [];\r\n\t\tfor(var i = 0; i < this.length; i++) {\r\n\t\t\tvar item = this[i];\r\n\t\t\tif(item[2]) {\r\n\t\t\t\tresult.push(\"@media \" + item[2] + \"{\" + item[1] + \"}\");\r\n\t\t\t} else {\r\n\t\t\t\tresult.push(item[1]);\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn result.join(\"\");\r\n\t};\r\n\treturn list;\r\n}"
+            }
+          ],
+          "filteredModules": 0,
+          "origins": [
+            {
+              "moduleId": 0,
+              "module": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/image/style.scss",
+              "moduleIdentifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/image/style.scss",
+              "moduleName": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/image/style.scss",
+              "loc": "",
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "modules": [
+        {
+          "id": 0,
+          "identifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/image/style.scss",
+          "name": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/image/style.scss",
+          "size": 865,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "assets": [],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "reasons": [],
+          "source": "exports = module.exports = require(\"/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js\")();\nexports.push([module.id, \".col-img-figure{margin:0;min-height:24px;position:relative}.col-img-graphic{display:block;margin:0 auto;max-width:100%}.col-img-caption{background:#fff;background:rgba(255,255,255,.8);bottom:0;box-shadow:inset 0 -1px 1px rgba(0,0,0,.1);color:#777;display:block;font-family:Georgia,sans-serif;font-style:italic;line-height:24px;left:0;padding:12px;position:absolute;right:0;text-align:center}.col-img-fieldset{border:0;margin:0;padding:8px 8px 12px}.col-img-field{padding:8px 8px 4px}.col-img-label{color:#777;display:block;float:none;font-size:13px;margin-bottom:8px;width:100%}.col-img-input{border:1px solid #d9d9d9;border-width:0 0 1px;color:#222;display:block;font-size:14px;padding-bottom:4px;width:100%}\", \"\"]);"
+        },
+        {
+          "id": 1,
+          "identifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js",
+          "name": "./~/css-loader/cssToString.js",
+          "size": 352,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "assets": [],
+          "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/image/style.scss",
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "reasons": [
+            {
+              "moduleId": 0,
+              "moduleIdentifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/image/style.scss",
+              "module": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/image/style.scss",
+              "moduleName": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/image/style.scss",
               "type": "cjs require",
               "userRequest": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js",
               "loc": "1:27-118"

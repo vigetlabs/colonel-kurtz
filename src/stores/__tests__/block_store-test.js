@@ -1,5 +1,8 @@
-import Dispatcher from 'dispatcher'
-import BlockStore from 'stores/block_store'
+import Dispatcher   from 'dispatcher'
+import BlockStore   from 'stores/block_store'
+import BlockCreate  from 'actions/block/create'
+import BlockDestroy from 'actions/block/destroy'
+import BlockUpdate  from 'actions/block/update'
 
 describe('Stores - Block', function() {
 
@@ -54,8 +57,6 @@ describe('Stores - Block', function() {
   })
 
   describe('when the Dispatcher triggers BLOCK_CREATE', function() {
-    import BlockCreate from 'actions/block/create'
-
     before(function() {
       sinon.spy(BlockStore, '_create')
       Dispatcher.dispatch({ type: BlockCreate, params: { type: 'test' }})
@@ -71,8 +72,6 @@ describe('Stores - Block', function() {
   })
 
    describe('when the Dispatcher triggers BLOCK_DESTROY', function() {
-     import BlockDestroy from 'actions/block/destroy'
-
      before(function() {
        sinon.stub(BlockStore, '_destroy')
 
@@ -89,8 +88,6 @@ describe('Stores - Block', function() {
    })
 
   describe('when the Dispatcher triggers BLOCK_UPDATE', function() {
-    import BlockUpdate from 'actions/block/update'
-
     before(function() {
       sinon.stub(BlockStore, '_update')
       Dispatcher.dispatch({ type: BlockUpdate, id: 'test' })

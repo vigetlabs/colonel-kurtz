@@ -1,5 +1,6 @@
-import Dispatcher     from 'dispatcher'
-import BlockTypeStore from 'stores/block_type_store'
+import Dispatcher      from 'dispatcher'
+import BlockTypeStore  from 'stores/block_type_store'
+import BlockTypeCreate from 'actions/block_type/create'
 
 describe('Stores - Block Type', function() {
   const ID = 'test'
@@ -27,8 +28,6 @@ describe('Stores - Block Type', function() {
   })
 
   describe('when the Dispatcher triggers BLOCK_TYPE_CREATE', function() {
-    import BlockTypeCreate from 'actions/block_type/create'
-
     before(function() {
       sinon.stub(BlockTypeStore, '_create')
 
