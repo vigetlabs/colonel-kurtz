@@ -21,6 +21,8 @@ module.exports = {
 
   externals: {
     'react' : 'react',
+    'diode' : 'diode',
+    'diode/stateful' : 'diode/stateful',
     'react/lib/ReactCSSTransitionGroup' : 'react/lib/ReactCSSTransitionGroup'
   },
 
