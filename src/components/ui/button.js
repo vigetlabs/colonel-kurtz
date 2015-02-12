@@ -1,11 +1,11 @@
 import React from 'react'
-import Ink from 'react-ink'
 
 let Button = React.createClass({
 
   getDefaultProps() {
     return {
-      tagName : 'button'
+      tagName : 'button',
+      type    : 'button'
     }
   },
 
@@ -14,7 +14,6 @@ let Button = React.createClass({
 
     return (
       React.createElement(tagName, attrs, [
-        <Ink key="__ink" />,
         children
       ])
     )

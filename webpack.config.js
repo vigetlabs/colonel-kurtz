@@ -21,8 +21,7 @@ module.exports = {
 
   externals: {
     'react' : 'react',
-    'react/lib/ReactCSSTransitionGroup' : 'react/lib/ReactCSSTransitionGroup',
-    'react-ink' : 'react-ink'
+    'react/lib/ReactCSSTransitionGroup' : 'react/lib/ReactCSSTransitionGroup'
   },
 
   resolve: {

@@ -14,25 +14,26 @@ module.exports = {
   },
 
   resolve : defaults.resolve,
-  plugins : []
+  plugins : [],
   module: {
     loaders: [
       {
         test    : /\.s*(c|a)ss$/,
-        loader  : 'style!css!autoprefixer!sass')
-    },
-    {
-      test    : /\.jsx*$/,
-      loader  : 'envify-loader'
-    },
-    {
-      test    : /\.jsx*$/,
-      exclude : /node_modules/,
-      loader  : '6to5?experimental',
-    },
-    {
-      test    : /\.json$/,
-      loader  : 'json'
-    }
-  ]
+        loader  : 'style!css!autoprefixer!sass'
+      },
+      {
+        test    : /\.jsx*$/,
+        loader  : 'envify-loader'
+      },
+      {
+        test    : /\.jsx*$/,
+        exclude : /node_modules/,
+        loader  : '6to5?experimental',
+      },
+      {
+        test    : /\.json$/,
+        loader  : 'json'
+      }
+    ]
+  }
 }
