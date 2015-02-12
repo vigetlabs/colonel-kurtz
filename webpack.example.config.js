@@ -14,6 +14,25 @@ module.exports = {
   },
 
   resolve : defaults.resolve,
-  plugins : defaults.plugins,
-  module  : defaults.module
+  plugins : []
+  module: {
+    loaders: [
+      {
+        test    : /\.s*(c|a)ss$/,
+        loader  : 'style!css!autoprefixer!sass')
+    },
+    {
+      test    : /\.jsx*$/,
+      loader  : 'envify-loader'
+    },
+    {
+      test    : /\.jsx*$/,
+      exclude : /node_modules/,
+      loader  : '6to5?experimental',
+    },
+    {
+      test    : /\.json$/,
+      loader  : 'json'
+    }
+  ]
 }

@@ -31,9 +31,7 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin("example.build.css", {
-      disable: process.env.NODE_ENV !== 'production'
-    })
+    new ExtractTextPlugin("colonel-kurtz.css")
   ],
 
   module: {

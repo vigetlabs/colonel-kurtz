@@ -6,7 +6,7 @@
   ],
   "version": "1.4.15",
   "hash": "64573263f78cc5a92438",
-  "time": 4259,
+  "time": 3697,
   "assetsByChunkName": {
     "colonel-kurtz": [
       "colonel-kurtz.js",
@@ -638,7 +638,7 @@
             0
           ],
           "assets": [],
-          "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/6to5-loader/index.js?experimental!/Users/nate/Development/web/colonel-kurtz/src/components/app.js",
+          "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/6to5-loader/index.js?experimental!/Users/nate/Development/web/colonel-kurtz/src/stores/editor_store.js",
           "failed": false,
           "errors": 0,
           "warnings": 0,
@@ -770,7 +770,7 @@
             0
           ],
           "assets": [],
-          "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/6to5-loader/index.js?experimental!/Users/nate/Development/web/colonel-kurtz/src/components/editor.js",
+          "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/6to5-loader/index.js?experimental!/Users/nate/Development/web/colonel-kurtz/src/components/previewer.js",
           "failed": false,
           "errors": 0,
           "warnings": 0,
@@ -1376,7 +1376,7 @@
             0
           ],
           "assets": [],
-          "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/6to5-loader/index.js?experimental!/Users/nate/Development/web/colonel-kurtz/src/components/editor_block.js",
+          "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/6to5-loader/index.js?experimental!/Users/nate/Development/web/colonel-kurtz/src/components/previewer_block.js",
           "failed": false,
           "errors": 0,
           "warnings": 0,
@@ -4497,7 +4497,7 @@
         0
       ],
       "assets": [],
-      "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/6to5-loader/index.js?experimental!/Users/nate/Development/web/colonel-kurtz/src/components/app.js",
+      "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/6to5-loader/index.js?experimental!/Users/nate/Development/web/colonel-kurtz/src/stores/editor_store.js",
       "failed": false,
       "errors": 0,
       "warnings": 0,
@@ -4629,7 +4629,7 @@
         0
       ],
       "assets": [],
-      "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/6to5-loader/index.js?experimental!/Users/nate/Development/web/colonel-kurtz/src/components/editor.js",
+      "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/6to5-loader/index.js?experimental!/Users/nate/Development/web/colonel-kurtz/src/components/previewer.js",
       "failed": false,
       "errors": 0,
       "warnings": 0,
@@ -5353,7 +5353,7 @@
         0
       ],
       "assets": [],
-      "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/6to5-loader/index.js?experimental!/Users/nate/Development/web/colonel-kurtz/src/components/editor_block.js",
+      "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/6to5-loader/index.js?experimental!/Users/nate/Development/web/colonel-kurtz/src/components/previewer_block.js",
       "failed": false,
       "errors": 0,
       "warnings": 0,
@@ -6753,7 +6753,7 @@
       "prefetched": false,
       "chunks": [],
       "assets": [],
-      "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/image/style.scss",
+      "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/youtube/style.scss",
       "failed": false,
       "errors": 0,
       "warnings": 0,
@@ -6818,143 +6818,6 @@
   ],
   "filteredModules": 0,
   "children": [
-    {
-      "errors": [],
-      "warnings": [],
-      "assetsByChunkName": {},
-      "assets": [],
-      "chunks": [
-        {
-          "id": 0,
-          "rendered": true,
-          "initial": true,
-          "entry": true,
-          "size": 1013,
-          "names": [],
-          "files": [
-            "/Users/nate/Development/web/colonel-kurtz/node_modules/extract-text-webpack-plugin /Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/youtube/style.scss",
-            "/Users/nate/Development/web/colonel-kurtz/node_modules/extract-text-webpack-plugin /Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/youtube/style.scss.map"
-          ],
-          "parents": [],
-          "modules": [
-            {
-              "id": 0,
-              "identifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/youtube/style.scss",
-              "name": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/youtube/style.scss",
-              "size": 661,
-              "cacheable": true,
-              "built": true,
-              "optional": false,
-              "prefetched": false,
-              "chunks": [
-                0
-              ],
-              "assets": [],
-              "failed": false,
-              "errors": 0,
-              "warnings": 0,
-              "reasons": [],
-              "source": "exports = module.exports = require(\"/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js\")();\nexports.push([module.id, \".col-youtube-player{display:block;padding-bottom:75%;position:relative;text-align:center}.col-youtube-frame{border:0;height:100%;left:0;position:absolute;top:0;width:100%}.col-youtube-fieldset{border:0;margin:0;padding:8px 8px 12px}.col-youtube-field{padding:8px 8px 4px}.col-youtube-label{color:#777;display:block;float:none;font-size:13px;margin-bottom:8px;width:100%}.col-youtube-input{border:1px solid #d9d9d9;border-width:0 0 1px;color:#222;display:block;font-size:14px;padding-bottom:4px;width:100%}\", \"\"]);"
-            },
-            {
-              "id": 1,
-              "identifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js",
-              "name": "./~/css-loader/cssToString.js",
-              "size": 352,
-              "cacheable": true,
-              "built": true,
-              "optional": false,
-              "prefetched": false,
-              "chunks": [
-                0
-              ],
-              "assets": [],
-              "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/youtube/style.scss",
-              "failed": false,
-              "errors": 0,
-              "warnings": 0,
-              "reasons": [
-                {
-                  "moduleId": 0,
-                  "moduleIdentifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/youtube/style.scss",
-                  "module": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/youtube/style.scss",
-                  "moduleName": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/youtube/style.scss",
-                  "type": "cjs require",
-                  "userRequest": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js",
-                  "loc": "1:27-118"
-                }
-              ],
-              "source": "module.exports = function() {\r\n\tvar list = [];\r\n\tlist.toString = function toString() {\r\n\t\tvar result = [];\r\n\t\tfor(var i = 0; i < this.length; i++) {\r\n\t\t\tvar item = this[i];\r\n\t\t\tif(item[2]) {\r\n\t\t\t\tresult.push(\"@media \" + item[2] + \"{\" + item[1] + \"}\");\r\n\t\t\t} else {\r\n\t\t\t\tresult.push(item[1]);\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn result.join(\"\");\r\n\t};\r\n\treturn list;\r\n}"
-            }
-          ],
-          "filteredModules": 0,
-          "origins": [
-            {
-              "moduleId": 0,
-              "module": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/youtube/style.scss",
-              "moduleIdentifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/youtube/style.scss",
-              "moduleName": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/youtube/style.scss",
-              "loc": "",
-              "reasons": []
-            }
-          ]
-        }
-      ],
-      "modules": [
-        {
-          "id": 0,
-          "identifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/youtube/style.scss",
-          "name": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/youtube/style.scss",
-          "size": 661,
-          "cacheable": true,
-          "built": true,
-          "optional": false,
-          "prefetched": false,
-          "chunks": [
-            0
-          ],
-          "assets": [],
-          "failed": false,
-          "errors": 0,
-          "warnings": 0,
-          "reasons": [],
-          "source": "exports = module.exports = require(\"/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js\")();\nexports.push([module.id, \".col-youtube-player{display:block;padding-bottom:75%;position:relative;text-align:center}.col-youtube-frame{border:0;height:100%;left:0;position:absolute;top:0;width:100%}.col-youtube-fieldset{border:0;margin:0;padding:8px 8px 12px}.col-youtube-field{padding:8px 8px 4px}.col-youtube-label{color:#777;display:block;float:none;font-size:13px;margin-bottom:8px;width:100%}.col-youtube-input{border:1px solid #d9d9d9;border-width:0 0 1px;color:#222;display:block;font-size:14px;padding-bottom:4px;width:100%}\", \"\"]);"
-        },
-        {
-          "id": 1,
-          "identifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js",
-          "name": "./~/css-loader/cssToString.js",
-          "size": 352,
-          "cacheable": true,
-          "built": true,
-          "optional": false,
-          "prefetched": false,
-          "chunks": [
-            0
-          ],
-          "assets": [],
-          "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/youtube/style.scss",
-          "failed": false,
-          "errors": 0,
-          "warnings": 0,
-          "reasons": [
-            {
-              "moduleId": 0,
-              "moduleIdentifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/youtube/style.scss",
-              "module": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/youtube/style.scss",
-              "moduleName": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/youtube/style.scss",
-              "type": "cjs require",
-              "userRequest": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js",
-              "loc": "1:27-118"
-            }
-          ],
-          "source": "module.exports = function() {\r\n\tvar list = [];\r\n\tlist.toString = function toString() {\r\n\t\tvar result = [];\r\n\t\tfor(var i = 0; i < this.length; i++) {\r\n\t\t\tvar item = this[i];\r\n\t\t\tif(item[2]) {\r\n\t\t\t\tresult.push(\"@media \" + item[2] + \"{\" + item[1] + \"}\");\r\n\t\t\t} else {\r\n\t\t\t\tresult.push(item[1]);\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn result.join(\"\");\r\n\t};\r\n\treturn list;\r\n}"
-        }
-      ],
-      "filteredModules": 0,
-      "children": [],
-      "name": "extract-text-webpack-plugin"
-    },
     {
       "errors": [],
       "warnings": [],
@@ -7080,6 +6943,143 @@
               "moduleIdentifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/image/style.scss",
               "module": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/image/style.scss",
               "moduleName": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/image/style.scss",
+              "type": "cjs require",
+              "userRequest": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js",
+              "loc": "1:27-118"
+            }
+          ],
+          "source": "module.exports = function() {\r\n\tvar list = [];\r\n\tlist.toString = function toString() {\r\n\t\tvar result = [];\r\n\t\tfor(var i = 0; i < this.length; i++) {\r\n\t\t\tvar item = this[i];\r\n\t\t\tif(item[2]) {\r\n\t\t\t\tresult.push(\"@media \" + item[2] + \"{\" + item[1] + \"}\");\r\n\t\t\t} else {\r\n\t\t\t\tresult.push(item[1]);\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn result.join(\"\");\r\n\t};\r\n\treturn list;\r\n}"
+        }
+      ],
+      "filteredModules": 0,
+      "children": [],
+      "name": "extract-text-webpack-plugin"
+    },
+    {
+      "errors": [],
+      "warnings": [],
+      "assetsByChunkName": {},
+      "assets": [],
+      "chunks": [
+        {
+          "id": 0,
+          "rendered": true,
+          "initial": true,
+          "entry": true,
+          "size": 1013,
+          "names": [],
+          "files": [
+            "/Users/nate/Development/web/colonel-kurtz/node_modules/extract-text-webpack-plugin /Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/youtube/style.scss",
+            "/Users/nate/Development/web/colonel-kurtz/node_modules/extract-text-webpack-plugin /Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/youtube/style.scss.map"
+          ],
+          "parents": [],
+          "modules": [
+            {
+              "id": 0,
+              "identifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/youtube/style.scss",
+              "name": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/youtube/style.scss",
+              "size": 661,
+              "cacheable": true,
+              "built": true,
+              "optional": false,
+              "prefetched": false,
+              "chunks": [
+                0
+              ],
+              "assets": [],
+              "failed": false,
+              "errors": 0,
+              "warnings": 0,
+              "reasons": [],
+              "source": "exports = module.exports = require(\"/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js\")();\nexports.push([module.id, \".col-youtube-player{display:block;padding-bottom:75%;position:relative;text-align:center}.col-youtube-frame{border:0;height:100%;left:0;position:absolute;top:0;width:100%}.col-youtube-fieldset{border:0;margin:0;padding:8px 8px 12px}.col-youtube-field{padding:8px 8px 4px}.col-youtube-label{color:#777;display:block;float:none;font-size:13px;margin-bottom:8px;width:100%}.col-youtube-input{border:1px solid #d9d9d9;border-width:0 0 1px;color:#222;display:block;font-size:14px;padding-bottom:4px;width:100%}\", \"\"]);"
+            },
+            {
+              "id": 1,
+              "identifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js",
+              "name": "./~/css-loader/cssToString.js",
+              "size": 352,
+              "cacheable": true,
+              "built": true,
+              "optional": false,
+              "prefetched": false,
+              "chunks": [
+                0
+              ],
+              "assets": [],
+              "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/youtube/style.scss",
+              "failed": false,
+              "errors": 0,
+              "warnings": 0,
+              "reasons": [
+                {
+                  "moduleId": 0,
+                  "moduleIdentifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/youtube/style.scss",
+                  "module": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/youtube/style.scss",
+                  "moduleName": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/youtube/style.scss",
+                  "type": "cjs require",
+                  "userRequest": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js",
+                  "loc": "1:27-118"
+                }
+              ],
+              "source": "module.exports = function() {\r\n\tvar list = [];\r\n\tlist.toString = function toString() {\r\n\t\tvar result = [];\r\n\t\tfor(var i = 0; i < this.length; i++) {\r\n\t\t\tvar item = this[i];\r\n\t\t\tif(item[2]) {\r\n\t\t\t\tresult.push(\"@media \" + item[2] + \"{\" + item[1] + \"}\");\r\n\t\t\t} else {\r\n\t\t\t\tresult.push(item[1]);\r\n\t\t\t}\r\n\t\t}\r\n\t\treturn result.join(\"\");\r\n\t};\r\n\treturn list;\r\n}"
+            }
+          ],
+          "filteredModules": 0,
+          "origins": [
+            {
+              "moduleId": 0,
+              "module": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/youtube/style.scss",
+              "moduleIdentifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/youtube/style.scss",
+              "moduleName": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/youtube/style.scss",
+              "loc": "",
+              "reasons": []
+            }
+          ]
+        }
+      ],
+      "modules": [
+        {
+          "id": 0,
+          "identifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/youtube/style.scss",
+          "name": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/youtube/style.scss",
+          "size": 661,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "assets": [],
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "reasons": [],
+          "source": "exports = module.exports = require(\"/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js\")();\nexports.push([module.id, \".col-youtube-player{display:block;padding-bottom:75%;position:relative;text-align:center}.col-youtube-frame{border:0;height:100%;left:0;position:absolute;top:0;width:100%}.col-youtube-fieldset{border:0;margin:0;padding:8px 8px 12px}.col-youtube-field{padding:8px 8px 4px}.col-youtube-label{color:#777;display:block;float:none;font-size:13px;margin-bottom:8px;width:100%}.col-youtube-input{border:1px solid #d9d9d9;border-width:0 0 1px;color:#222;display:block;font-size:14px;padding-bottom:4px;width:100%}\", \"\"]);"
+        },
+        {
+          "id": 1,
+          "identifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/envify-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js",
+          "name": "./~/css-loader/cssToString.js",
+          "size": 352,
+          "cacheable": true,
+          "built": true,
+          "optional": false,
+          "prefetched": false,
+          "chunks": [
+            0
+          ],
+          "assets": [],
+          "issuer": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/youtube/style.scss",
+          "failed": false,
+          "errors": 0,
+          "warnings": 0,
+          "reasons": [
+            {
+              "moduleId": 0,
+              "moduleIdentifier": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/autoprefixer-loader/index.js!/Users/nate/Development/web/colonel-kurtz/node_modules/sass-loader/index.js!/Users/nate/Development/web/colonel-kurtz/addons/youtube/style.scss",
+              "module": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/youtube/style.scss",
+              "moduleName": "./~/css-loader!./~/autoprefixer-loader!./~/sass-loader!./addons/youtube/style.scss",
               "type": "cjs require",
               "userRequest": "/Users/nate/Development/web/colonel-kurtz/node_modules/css-loader/cssToString.js",
               "loc": "1:27-118"
