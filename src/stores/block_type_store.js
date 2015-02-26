@@ -30,6 +30,10 @@ var BlockTypeStore = {
     invariant(record.id, 'BlockType must have an identifier')
 
     _blockTypes = _blockTypes.concat(record)
+  },
+
+  _remove(id) {
+    _blockTypes = _blockTypes.filter(i => i.id !== id)
   }
 }
 
