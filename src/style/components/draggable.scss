@@ -11,19 +11,6 @@ $dragon-stretch: -12px;
   position: relative;
   transition: 1s all cubic-bezier(.06,.86,.36,1.14);
 
-  &:before {
-    bottom: 12px;
-    color: rgba(#000, 0.875);
-    content: "☰";
-    font-size: 12px;
-    left: 16px;
-    line-height: 16px;
-    margin-top: -8px;
-    pointer-events: none;
-    position: absolute;
-    transition: 0.3s all;
-  }
-
   &:after {
     border-radius: 3px;
     border: 2px dashed transparent;

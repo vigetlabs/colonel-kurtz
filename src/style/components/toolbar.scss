@@ -1,7 +1,9 @@
 .col-toolbar {
-  bottom:0;
+  bottom: 0;
+  align-items: center;
+  display: flex;
   position: absolute;
   right: 0;
   text-align: right;
-  z-index: 1000;
+  top: 0;
 }

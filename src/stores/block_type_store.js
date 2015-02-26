@@ -30,22 +30,15 @@ var BlockTypeStore = {
     invariant(record.id, 'BlockType must have an identifier')
 
     _blockTypes = _blockTypes.concat(record)
-  },
-
-  _remove(id: string): void {
-    _blockTypes = _blockTypes.filter(i => i.id !== id)
-  },
-
-  dispatchToken: Dispatcher.register(function(action: Object) {
-    switch (action.type) {
-
-      case require('../actions/block_type/create'):
-        BlockTypeStore._create(action.params)
-        break
-
-    }
-  })
-
+  }
 }
 
 module.exports = BlockTypeStore
+
+Dispatcher.register(function(action: Object) {
+  switch (action.type) {
+    case require('../actions/block_type/create'):
+      BlockTypeStore._create(action.params)
+      break
+  }
+})

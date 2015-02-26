@@ -84,29 +84,28 @@ var BlockStore = {
     }
 
     return parent
-  },
-
-  dispatchToken: Dispatcher.register(function(action) {
-    switch (action.type) {
-
-      case require('actions/block/create'):
-        BlockStore._create(action.params, action.position)
-        break
-
-      case require('actions/block/destroy'):
-        BlockStore._destroy(action.id)
-        break
-
-      case require('actions/block/update'):
-        BlockStore._update(action.id, action.content)
-        break
-
-      case require('actions/block/move'):
-        BlockStore._move(action.fromId, action.toId)
-        break
-    }
-  })
-
+  }
 }
 
 module.exports = BlockStore
+
+Dispatcher.register(function(action) {
+  switch (action.type) {
+
+  case require('actions/block/create'):
+    BlockStore._create(action.params, action.position)
+    break
+
+  case require('actions/block/destroy'):
+    BlockStore._destroy(action.id)
+    break
+
+  case require('actions/block/update'):
+    BlockStore._update(action.id, action.content)
+    break
+
+  case require('actions/block/move'):
+    BlockStore._move(action.fromId, action.toId)
+    break
+  }
+})

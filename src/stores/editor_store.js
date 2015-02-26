@@ -44,21 +44,19 @@ var EditorStore = {
     _editors[index] = { ...getDefaults(), ...editor, ...params }
 
     Diode.publish()
-  },
-
-  dispatchToken: Dispatcher.register(function(action) {
-    switch (action.type) {
-
-      case require('actions/editor/create'):
-        EditorStore._create(action.params)
-        break
-
-      case require('actions/editor/update'):
-        EditorStore._update(action.id, action.params)
-        break
-    }
-  })
-
+  }
 }
 
 module.exports = EditorStore
+
+Dispatcher.register(function(action) {
+  switch (action.type) {
+    case require('actions/editor/create'):
+      EditorStore._create(action.params)
+      break
+
+    case require('actions/editor/update'):
+      EditorStore._update(action.id, action.params)
+      break
+  }
+})
