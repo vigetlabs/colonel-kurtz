@@ -24,7 +24,7 @@ var BlockType = {
   },
 
   getInitialState(): Object {
-    invariant(this.defaultContent, "BlockType mixin requires `defaultContent` implementation.");
+    invariant(this.defaultContent, "BlockType mixin requires `defaultContent` implementation.")
 
     return {
       content: this.props.initialContent || this.defaultContent()
@@ -39,15 +39,10 @@ var BlockType = {
     })
   },
 
-  editMode(): boolean {
-    return this.props.mode === Modes.EDIT_MODE
-  },
-
   render(): ReactElement {
-    invariant(this.renderEditor, "BlockType mixin requires `renderEditor` implementation.");
-    invariant(this.renderPreviewer, "BlockType mixin requires `renderPreviewer` implementation.");
+    invariant(this.renderEditor, "BlockType mixin requires `renderEditor` implementation.")
 
-    return this.editMode() ? this.renderEditor() : this.renderPreviewer()
+    return this.renderEditor()
   }
 
 }
