@@ -4,10 +4,9 @@ let Test = React.addons.TestUtils
 
 describe('Mixin - BlockType', function() {
   let Component = React.createClass({
-    mixins          : [BlockType],
-    defaultContent  : () => { return { defaultContent: true }},
-    renderEditor    : () => (<p>Editor</p>),
-    renderPreviewer : () => (<p>Previewer</p>)
+    mixins         : [BlockType],
+    defaultContent : () => { return { defaultContent: true }},
+    render         : () => (<p>Editor</p>)
   })
 
   describe("when mixed into a component with an initialContent property", function() {
@@ -21,18 +20,6 @@ describe('Mixin - BlockType', function() {
     it ("calls defaultContent to set the initial content state", function() {
       let mounted = Test.renderIntoDocument(<Component />)
       mounted.state.content.should.have.property('defaultContent', true)
-    })
-  })
-
-  describe("when mounted", function() {
-    it ("renders EDIT_MODE by default", function() {
-      let mounted = Test.renderIntoDocument(<Component />)
-      mounted.getDOMNode().textContent.should.equal('Editor')
-    })
-
-    it ("renders PREVIEW_MODE when the mode is not EDIT_MODE", function() {
-      let mounted = Test.renderIntoDocument(<Component mode="fiz" />)
-      mounted.getDOMNode().textContent.should.equal('Previewer')
     })
   })
 

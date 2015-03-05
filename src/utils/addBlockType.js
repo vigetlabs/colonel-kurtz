@@ -11,7 +11,7 @@ module.exports = function (...config) {
   config.forEach(function(options) {
     var component = options.component
 
-    if (React.isValidElement(component) === false) {
+    if (typeof component === 'object') {
       component = createBlock(component)
     }
 

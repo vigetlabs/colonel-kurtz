@@ -11,8 +11,8 @@ describe('Utils - createBlock', function() {
       getInitialState() {
         this.editMode.should.not.be.undefined
         return {}
-      }
-
+      },
+      render() { return null }
     })
 
     let test = <Component />
@@ -20,7 +20,8 @@ describe('Utils - createBlock', function() {
 
   it ('does not inject the BlockType mixin if it is already included', function() {
     var Component = createBlock({
-      mixins: [ BlockType ]
+      mixins: [ BlockType ],
+      render() { return null }
     })
 
     // React will throw an error if the same mixin is included twice
