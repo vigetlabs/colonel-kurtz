@@ -32,27 +32,37 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin("colonel-kurtz.css")
+    new ExtractTextPlugin("colonel-kurtz.css", {
+      disable: process.env.NODE_ENV !== 'production'
+    })
+  ],
+
+  postcss: [
+    require('autoprefixer-core'),
+    require('css-mqpacker'),
+    require('csswring')
   ],
 
   module: {
     loaders: [
       {
         test    : /\.s*(c|a)ss$/,
-        loader  : ExtractTextPlugin.extract('style', 'css!autoprefixer!sass')
-      },
-      {
-        test    : /\.jsx*$/,
-        loader  : 'envify-loader'
+        loader  : ExtractTextPlugin.extract('style', 'css!postcss!sass')
       },
       {
         test    : /\.jsx*$/,
         exclude : /node_modules/,
-        loader  : '6to5?experimental',
+        loader  : 'source-map!babel-loader?experimental'
       },
       {
         test    : /\.json$/,
         loader  : 'json'
+      }
+    ],
+    postLoaders: [
+      {
+        test    : /\.jsx*$/,
+        loader  : 'envify-loader'
       }
     ]
   }

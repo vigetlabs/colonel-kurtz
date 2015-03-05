@@ -25,14 +25,6 @@ $dragon-stretch: -12px;
   }
 }
 
-.dragon-children {
-  background: #fff;
-  border-radius: 2px;
-  box-shadow: 0 1px 2px rgba(#000, 0.2), 0 -1px 2px rgba(#000, 0.1);
-  cursor: initial;
-  transition: 0.75s all;
-}
-
 .dragon-dragging {
   background: transparent;
   box-shadow: none;

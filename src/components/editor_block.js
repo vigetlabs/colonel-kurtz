@@ -22,7 +22,9 @@ var EditorBlock = React.createClass({
         <Orderable block={ block }>
           <BlockMenu ref="prepend" block={ block } editor={ editor } position={ block.parent }/>
 
-          <Block block={ block } mode={ editor.mode } />
+          <div className="col-block-children">
+            <Block block={ block } mode={ editor.mode } />
+          </div>
 
           <Animation component="div" className="col-blocks" transitionName="col-block">
             { this.state.blocks.map(this.getBlock) }

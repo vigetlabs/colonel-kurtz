@@ -1,39 +1,26 @@
-var Webpack  = require('webpack')
-var defaults = require('./webpack.config')
+var Webpack = require('webpack')
+var config  = Object.create(require('./webpack.config'))
 
-module.exports = {
-  devtool: 'inline-source-map',
+config.hot     = true
+config.devtool = 'inline-source-map'
 
-  entry : {
-    'example.build' : './example/example.js'
-  },
+config.entry = [
+  "webpack-dev-server/client?http://localhost:8080",
+  'webpack/hot/dev-server',
+  './example/example.js'
+]
 
-  output : {
-    path     : './example',
-    filename : '[name].js'
-  },
+config.externals = {}
 
-  resolve : defaults.resolve,
-  plugins : [],
-  module: {
-    loaders: [
-      {
-        test    : /\.s*(c|a)ss$/,
-        loader  : 'style!css!autoprefixer!sass'
-      },
-      {
-        test    : /\.jsx*$/,
-        loader  : 'envify-loader'
-      },
-      {
-        test    : /\.jsx*$/,
-        exclude : /node_modules/,
-        loader  : '6to5?experimental',
-      },
-      {
-        test    : /\.json$/,
-        loader  : 'json'
-      }
-    ]
-  }
+config.module.loaders.unshift({
+  exclude : /node_modules/,
+  test    : /\.jsx*$/,
+  loader  : 'react-hot'
+})
+
+config.output = {
+  filename : 'example.build.js',
+  path     : './example'
 }
+
+module.exports = config

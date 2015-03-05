@@ -2,7 +2,6 @@
 
 var Dispatcher = require('../dispatcher')
 var React      = require('react')
-var invariant  = require('react/lib/invariant')
 
 var _blockTypes = []
 var _defaults   = {
@@ -19,7 +18,9 @@ var BlockTypeStore = {
   find(id: number): Object {
     var type = _blockTypes.filter(b => b.id === id)[0]
 
-    invariant(type, "Unable to find block type with an id of %s")
+    if (!type) {
+      throw new Error(`Unable to find block type with an id of ${ type }`)
+    }
 
     return type
   },
@@ -27,7 +28,9 @@ var BlockTypeStore = {
   _create(params: BlockType): void {
     var record = { ..._defaults, ...params }
 
-    invariant(record.id, 'BlockType must have an identifier')
+    if (!record.id) {
+      throw new Error(`BlockTypes must have a an identifier`)
+    }
 
     _blockTypes = _blockTypes.concat(record)
   },
