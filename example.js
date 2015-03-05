@@ -46,7 +46,6 @@ ColonelKurtz.addBlockTypes(
   }
 )
 
-
 var seed = {}
 
 try {
