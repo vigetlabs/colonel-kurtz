@@ -1,13 +1,11 @@
 var BlockType  = require('stores/block_type_store')
 var Diode      = require('diode')
 var Dispatcher = require('dispatcher')
-var Modes      = require('constants/mode_constants')
 var invariant  = require('react/lib/invariant')
 
 var _editors    = []
 var getDefaults = function() {
   return {
-    mode    : Modes.EDIT_MODE,
     types   : BlockType.keys(),
     preview : true
   }
@@ -28,7 +26,6 @@ var EditorStore = {
   _create(params) {
     var editor = { ...getDefaults(), ...params }
 
-    invariant(Modes[editor.mode], 'Unacceptable mode for editor: ' + editor.mode)
     invariant(!EditorStore.find(editor.id, true), 'Editors must have a unique identifier')
 
     _editors = _editors.concat(editor)
@@ -53,10 +50,6 @@ Dispatcher.register(function(action) {
   switch (action.type) {
     case require('actions/editor/create'):
       EditorStore._create(action.params)
-      break
-
-    case require('actions/editor/update'):
-      EditorStore._update(action.id, action.params)
       break
   }
 })

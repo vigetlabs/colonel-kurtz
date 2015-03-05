@@ -14,5 +14,4 @@ module.exports = {
       blocks: BlockStore.childrenFor(this.props.block)
     }
   }
-
 }

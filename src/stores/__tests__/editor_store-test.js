@@ -11,18 +11,6 @@ describe('Stores - Editor', function() {
     EditorStore.find('test').should.be.ok
   })
 
-  it ('throws an error if an editor is created in an invalid mode', function() {
-    var threw = false
-
-    try {
-      EditorStore._create({ id: 'test2', mode: 'invalid' })
-    } catch(x) {
-      threw = true
-    }
-
-    threw.should.be.true
-  })
-
   it ('throws an error if an editor id is not unique', function() {
     var threw = false
 

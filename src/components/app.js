@@ -5,14 +5,12 @@
  * @flow
  */
 
-var ContentSection = require('./content_section')
-var EditorStore    = require('stores/editor_store')
-var Modes          = require('constants/mode_constants')
-var ModeSelection  = require('./mode_selection')
-var React          = require('react')
-var Stateful       = require('diode/stateful')
-var Strings        = require('constants/strings')
-var fullscreen     = require('utils/fullscreen')
+var Editor      = require('../components/editor')
+var EditorStore = require('stores/editor_store')
+var React       = require('react')
+var Stateful    = require('diode/stateful')
+var Strings     = require('constants/strings')
+var fullscreen  = require('utils/fullscreen')
 
 var App = React.createClass({
 
@@ -33,8 +31,7 @@ var App = React.createClass({
 
     return (
       <div className="colonel" >
-        <ModeSelection editor={ editor } />
-        <ContentSection editor={ editor } />
+        <Editor editor={ editor } block={ editor.block } />
         <button type="button" aria-label={ Strings.fullscreen } className="col-fullscreen" onClick={ this._onFullscreenClick }>Fullscreen</button>
       </div>
     )
