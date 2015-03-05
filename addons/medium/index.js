@@ -16,7 +16,7 @@ var Medium = {
     return { html: '', text: '' }
   },
 
-  renderEditor() {
+  render() {
     return <Editor onBlur={ this.setContent } { ...this.state.content } />
   }
 

@@ -17,12 +17,6 @@ var invariant = require('react/lib/invariant')
 
 var BlockType = {
 
-  getDefaultProps(): Object {
-    return {
-      mode: Modes.EDIT_MODE
-    }
-  },
-
   getInitialState(): Object {
     invariant(this.defaultContent, "BlockType mixin requires `defaultContent` implementation.")
 
@@ -37,12 +31,6 @@ var BlockType = {
     this.setState({ content }, function() {
       this.props.updateContent(this.state.content)
     })
-  },
-
-  render(): ReactElement {
-    invariant(this.renderEditor, "BlockType mixin requires `renderEditor` implementation.")
-
-    return this.renderEditor()
   }
 
 }

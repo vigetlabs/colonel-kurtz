@@ -4,8 +4,8 @@
  * src, caption, and credit
  */
 
-var Editor    = require('./editor')
-var React     = require('react')
+var Editor = require('./editor')
+var React  = require('react')
 
 require('./style')
 
@@ -15,7 +15,7 @@ var YouTube = {
     return { video_id: '' }
   },
 
-  renderEditor() {
+  render() {
     return <Editor onChange={ this.setContent } { ...this.state.content } />
   }
 
