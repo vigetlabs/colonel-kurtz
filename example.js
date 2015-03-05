@@ -41,8 +41,7 @@ ColonelKurtz.addBlockType({
   types     : [ 'list_item' ],
   component : {
     defaultContent  : function() { return null },
-    renderEditor    : function() { return null },
-    renderPreviewer : function() { return null }
+    render          : function() { return null }
   }
 })
 
