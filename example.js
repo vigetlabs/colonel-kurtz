@@ -47,21 +47,21 @@ ColonelKurtz.addBlockTypes(
 )
 
 
-  var seed = {}
+var seed = {}
 
-  try {
-    seed = JSON.parse(localStorage.getItem('seed'))
-  } catch(x) {}
+try {
+  seed = JSON.parse(localStorage.getItem('seed'))
+} catch(x) {}
 
-  var editor = new ColonelKurtz({
-    el      : document.getElementById('app'),
-    seed    : seed,
-    types   : [ 'medium', 'image', 'youtube', 'list' ]
-  }).render()
+var editor = new ColonelKurtz({
+  el      : document.getElementById('app'),
+  seed    : seed,
+  types   : [ 'medium', 'image', 'youtube', 'list' ]
+}).render()
 
-  var output = document.getElementById('output')
+var output = document.getElementById('output')
 
-  editor.addCallback(function(json) {
-    output.value = JSON.stringify(json, null, 4)
-    localStorage.setItem('seed', JSON.stringify(json))
-  })
+editor.addCallback(function(json) {
+  output.value = JSON.stringify(json, null, 4)
+  localStorage.setItem('seed', JSON.stringify(json))
+})
