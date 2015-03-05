@@ -82,6 +82,6 @@ class ColonelKurtz {
 }
 
 ColonelKurtz.createBlock  = require('./utils/createBlock')
-ColonelKurtz.addBlockType = require('./utils/addBlockType')
+ColonelKurtz.addBlockType = ColonelKurtz.addBlockTypes = require('./utils/addBlockType')
 
 module.exports = ColonelKurtz
