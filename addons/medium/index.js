@@ -6,7 +6,6 @@
  */
 
 var Editor    = require('./editor')
-var Previewer = require('./previewer')
 var React     = require('react')
 
 require('./style')
@@ -19,10 +18,6 @@ var Medium = {
 
   renderEditor() {
     return <Editor onBlur={ this.setContent } { ...this.state.content } />
-  },
-
-  renderPreviewer() {
-    return <Previewer { ...this.state.content } />
   }
 
 }

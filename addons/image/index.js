@@ -5,7 +5,6 @@
  */
 
 var Editor    = require('./editor')
-var Previewer = require('./previewer')
 var React     = require('react')
 
 require('./style')
@@ -18,10 +17,6 @@ var Image = {
 
   renderEditor() {
     return <Editor onChange={ this.setContent } { ...this.state.content } />
-  },
-
-  renderPreviewer() {
-    return <Previewer { ...this.state.content } />
   }
 
 }
