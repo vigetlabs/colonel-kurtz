@@ -1,4 +1,5 @@
 import React from 'react'
+import Ink   from 'react-ink'
 
 let Button = React.createClass({
 
@@ -14,6 +15,7 @@ let Button = React.createClass({
 
     return (
       React.createElement(tagName, attrs, [
+        <Ink />,
         children
       ])
     )

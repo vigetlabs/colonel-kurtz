@@ -59,6 +59,7 @@
     "karma-webpack": "^1.5.0",
     "mocha": "^2.1.0",
     "postcss-loader": "^0.3.0",
+    "raw-loader": "^0.5.1",
     "react": "^0.12.2",
     "react-dragon": "~2.0.0",
     "react-hot-loader": "^1.1.7",

@@ -1,15 +1,9 @@
 .colonel {
   background: #fafafa;
-  box-sizing: border-box;
   font-family: $colonel-font-family;
   font-size: 16px;
+  height: 100%;
   position: relative;
-
-  *,
-  *:after,
-  *:before {
-    box-sizing: inherit;
-  }
 
   &:-webkit-full-screen {
     height: 100%;
@@ -17,7 +11,6 @@
     overflow-y: scroll;
     width: 100%;
   }
-
 }
 
 .col-content {

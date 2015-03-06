@@ -1,5 +1,6 @@
+$col-fullscreen-color: rgba(#000, 0.5);
+
 .col-fullscreen {
-  @extend .col-btn-icon;
   border-radius: 50%;
   overflow: hidden;
   padding: 0;
@@ -15,9 +16,13 @@
     box-shadow: none;
   }
 
+  .ink {
+    z-index: 1;
+  }
+
   &:after,
   &:before {
-    background: rgba(#fff, 0.5);
+    background: $col-fullscreen-color;
     border: 2px solid transparent;
     content: "";
     height: 8px;
@@ -30,7 +35,7 @@
 
   &:after {
     background: none;
-    border-color: rgba(#fff, 0.5);
+    border-color: $col-fullscreen-color;
     height: 18px;
     left: 50%;
     margin: -9px 0 0 -12px;

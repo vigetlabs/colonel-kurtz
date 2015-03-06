@@ -11,6 +11,7 @@ var React       = require('react')
 var Stateful    = require('diode/stateful')
 var Strings     = require('constants/strings')
 var fullscreen  = require('utils/fullscreen')
+var Button      = require('./ui/button')
 
 var App = React.createClass({
 
@@ -32,7 +33,11 @@ var App = React.createClass({
     return (
       <div className="colonel" >
         <Editor editor={ editor } block={ editor.block } />
-        <button type="button" aria-label={ Strings.fullscreen } className="col-fullscreen" onClick={ this._onFullscreenClick }>Fullscreen</button>
+        <Button aria-label={ Strings.fullscreen }
+                className="col-btn-icon col-fullscreen"
+                onClick={ this._onFullscreenClick }>
+          Fullscreen
+        </Button>
       </div>
     )
   },

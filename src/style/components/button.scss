@@ -1,21 +1,9 @@
-// Reset
-.colonel button {
-  &::-moz-focus-inner {
-    border: 0;
-    padding: 0;
-  }
-}
-
 .col-btn {
-  background: transparent;
-  border: 0;
-  border-radius: 4px;
   color: $colonel-primary;
-  cursor: pointer;
   font: 500 14px/16px $colonel-font-family;
   margin: 0 4px;
-  min-width: 64px;
-  padding: 10px 8px;
+  min-width: grid(8);
+  padding: 10px grid(1);
   position: relative;
   text-transform: uppercase;
   transition: 0.2s all;
@@ -28,9 +16,6 @@
 }
 
 .col-btn-icon {
-  background: transparent;
-  border: 0;
-  border-radius: 4px;
   box-shadow: none;
   color: $colonel-muted-dark;
   cursor: pointer;
@@ -60,27 +45,5 @@
 
   &:active {
     box-shadow: 0 0 1px $colonel-muted-dark;
-  }
-}
-
-.col-btn-remove {
-  background: transparent;
-  border: 0;
-  border-radius: 50%;
-  box-shadow: none;
-  cursor: pointer;
-  font: 500 20px/16px $colonel-font-family;
-  color: $colonel-muted-dark;
-  height: 40px;
-  padding: 0;
-  text-shadow: none;
-  transition: 0.4s all;
-  width: 40px;
-
-  &:hover,
-  &:focus {
-    color: $colonel-danger;
-    font-weight: 700;
-    outline: none;
   }
 }

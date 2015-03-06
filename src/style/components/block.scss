@@ -1,47 +1,25 @@
+$col-block-border-radius : 3px !default;
+$col-block-border-color  : #d0d0d0 !default;
+
 .col-blocks {
-  margin: 0 auto;
   max-width: 768px;
   position: relative;
 }
 
 .col-block {
   background: #eee;
-  border-radius: 4px;
-  border: 1px solid #dfdfdf;
-  border-bottom: 0;
-  box-shadow: 0 1px 4px rgba(#000, 0.1), inset 0 1px 0 rgba(#fff, 0.25), inset 0 -1px 0 rgba(#000, 0.1);
-  margin: 0 16px;
-  padding: 7px 40px 9px 8px;
+  border-radius: $col-block-border-radius;
+  border: 1px solid $col-block-border-color;
+  box-shadow: 0 1px 4px rgba(#000, 0.1);
+  margin: 0 unit(2);
+  padding: 0 unit(5) 0 0;
 }
 
 .col-block-children {
   background: #fff;
-  border-radius: 2px;
-  box-shadow: 0 1px 2px rgba(#000, 0.2), 0 -1px 2px rgba(#000, 0.1);
+  border-right: 1px solid $col-block-border-color;
+  border-top-left-radius: $col-block-border-radius;
+  border-bottom-left-radius: $col-block-border-radius;
   cursor: initial;
   transition: 0.75s all;
-}
-
-// Transitions
-// -------------------------------------------------- //
-
-.col-block-enter {
-  opacity: 0.01;
-  transform: scale(0.98) translateY(-5px);
-  transition: 0.28s all;
-}
-
-.col-block-enter.col-block-enter-active {
-  opacity: 1;
-  transform: none;
-}
-
-.col-block-leave {
-  opacity: 1;
-  transition: 0.48s all;
-}
-
-.col-block-leave.col-block-leave-active {
-  opacity: 0.01;
-  transform: scale(0.95);
 }

@@ -17,7 +17,7 @@ var Editor = React.createClass({
     var { block, editor } = this.props
 
     return (
-      <Animation component="div" className="col-content" transitionName="col-block">
+      <Animation component="div" className="col-content" transitionName="col-appear">
         <BlockMenu key="block_menu" block={ block } editor={ editor } />
         { this.state.blocks.map(this.getBlock) }
       </Animation>

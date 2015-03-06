@@ -11,6 +11,6 @@
   @return (strip-units($value) / $baseline) + rem;
 }
 
-@function unit($number, $value: $unit) {
+@function unit($number, $value: 8px) {
   @return $number * $value;
 }

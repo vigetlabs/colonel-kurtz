@@ -8,7 +8,7 @@ var React     = require('react')
 var Toolbar   = require('components/toolbar')
 
 var EditorBlock = React.createClass({
-  mixins: [ HasBlocks],
+  mixins: [ HasBlocks ],
 
   getBlock(block): any {
     return <EditorBlock key={ block.id } block={ block } editor={ this.props.editor } />
@@ -26,7 +26,7 @@ var EditorBlock = React.createClass({
             <Block block={ block } mode={ editor.mode } />
           </div>
 
-          <Animation component="div" className="col-blocks" transitionName="col-block">
+          <Animation component="div" className="col-blocks" transitionName="col-appear">
             { this.state.blocks.map(this.getBlock) }
           </Animation>
 

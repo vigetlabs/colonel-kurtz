@@ -27,8 +27,8 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json', '.scss', '.css'],
-    modulesDirectories: [ 'web_modules', 'node_modules', 'src', 'lib', 'addons']
+    extensions: ['', '.js', '.jsx', '.json', '.scss', '.css', '.svg'],
+    modulesDirectories: [ 'web_modules', 'node_modules', 'src', 'lib', 'addons', 'assets' ]
   },
 
   plugins: [
@@ -45,6 +45,10 @@ module.exports = {
 
   module: {
     loaders: [
+      {
+        test: /\.(svg)$/,
+        loader: 'raw'
+      },
       {
         test    : /\.s*(c|a)ss$/,
         loader  : ExtractTextPlugin.extract('style', 'css!postcss!sass')
