@@ -31,17 +31,8 @@ var EditorStore = {
     _editors = _editors.concat(editor)
 
     Diode.publish()
-  },
-
-  _update(id, params) {
-    var editor = EditorStore.find(id)
-    var index  = _editors.indexOf(editor)
-
-    _editors = _editors.concat()
-    _editors[index] = { ...getDefaults(), ...editor, ...params }
-
-    Diode.publish()
   }
+
 }
 
 module.exports = EditorStore
