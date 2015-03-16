@@ -27,7 +27,7 @@ class ColonelKurtz {
 
     EditorCreate({
       id    : this.id,
-      block : seed(undefined, config.seed || []),
+      block : seed(config.seed),
       ...config
     })
 

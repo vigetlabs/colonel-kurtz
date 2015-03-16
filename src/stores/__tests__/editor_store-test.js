@@ -26,7 +26,7 @@ describe('Stores - Editor', function() {
   describe('when the Dispatcher triggers EDITOR_CREATE', function() {
     before(function() {
       sinon.spy(EditorStore, '_create')
-      Dispatcher.dispatch({ type: EditorCreate, params: { id: 'test_create' }})
+      EditorCreate({ id: 'test_create' })
     })
 
     after(() => EditorStore._create.restore())

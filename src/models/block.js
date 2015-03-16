@@ -14,6 +14,10 @@ class Block {
     this.type    = params.type
   }
 
+  valueOf() {
+    return this.id
+  }
+
   toJSON(): Object {
     var BlockStore = require('stores/block_store')
 

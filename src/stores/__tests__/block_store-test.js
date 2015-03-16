@@ -3,11 +3,23 @@ import BlockStore   from 'stores/block_store'
 import BlockCreate  from 'actions/block/create'
 import BlockDestroy from 'actions/block/destroy'
 import BlockUpdate  from 'actions/block/update'
+import BlockMove    from 'actions/block/move'
 
 describe('Stores - Block', function() {
 
+  beforeEach(function() {
+    BlockStore._reset()
+  })
+
   it ('can retrieve all records associated with it', function() {
     BlockStore.all().should.be.an.instanceOf(Array)
+  })
+
+  it ('can get all children for a specific block', function() {
+    let parent = BlockStore._create({})
+    let child  = BlockStore._create({ parent })
+
+    BlockStore.childrenFor(parent).should.eql([ child ])
   })
 
   describe('CRUD', function() {
@@ -15,6 +27,14 @@ describe('Stores - Block', function() {
     it ('can create a record', function() {
       BlockStore._create({})
       BlockStore.all().length.should.equal(1)
+    })
+
+    it ('can accept another block for the position field', function() {
+      let first  = BlockStore._create({})
+      let second = BlockStore._create({})
+      let third  = BlockStore._create({}, first)
+
+      BlockStore._indexOf(third).should.equal(BlockStore._indexOf(first) + 1)
     })
 
     it ('can find a record by id', function() {
@@ -32,6 +52,15 @@ describe('Stores - Block', function() {
       BlockStore._destroy(created.id)
 
       BlockStore.all().length.should.equal(start)
+    })
+
+    it ('removes children of a removed parent', function() {
+      let parent = BlockStore._create({})
+      let child  = BlockStore._create({ parent })
+      let other  = BlockStore._create({})
+
+      BlockStore._destroy(parent)
+      BlockStore.all().length.should.equal(1)
     })
 
     it ('can update a record', function() {
@@ -59,7 +88,7 @@ describe('Stores - Block', function() {
   describe('when the Dispatcher triggers BLOCK_CREATE', function() {
     before(function() {
       sinon.spy(BlockStore, '_create')
-      Dispatcher.dispatch({ type: BlockCreate, params: { type: 'test' }})
+      BlockCreate({ type: 'test' })
     })
 
     after(function() {
@@ -74,8 +103,7 @@ describe('Stores - Block', function() {
    describe('when the Dispatcher triggers BLOCK_DESTROY', function() {
      before(function() {
        sinon.stub(BlockStore, '_destroy')
-
-       Dispatcher.dispatch({ type: BlockDestroy, id: 'test' })
+       BlockDestroy('test')
      })
 
      after(function() {
@@ -90,7 +118,7 @@ describe('Stores - Block', function() {
   describe('when the Dispatcher triggers BLOCK_UPDATE', function() {
     before(function() {
       sinon.stub(BlockStore, '_update')
-      Dispatcher.dispatch({ type: BlockUpdate, id: 'test' })
+      BlockUpdate('test')
     })
 
     after(function() {
@@ -99,6 +127,33 @@ describe('Stores - Block', function() {
 
     it ('removes a record', function() {
       BlockStore._update.should.have.been.called
+    })
+  })
+
+  describe('when the Dispatcher triggers BLOCK_MOVE', function() {
+    it ('moves one block before the other', function() {
+      let a = BlockStore._create({})
+      let b = BlockStore._create({})
+
+      BlockMove(b.id, a.id)
+
+      BlockStore._indexOf(a).should.equal(BlockStore._indexOf(b) + 1)
+    })
+  })
+
+  describe('when given a seed object', function() {
+    let seed = [{
+      blocks: [{ content: {} }, { content: {} }],
+      content: {}
+    }]
+
+    it ('properly injects blocks', function() {
+      let root          = BlockStore._seed(seed)
+      let children      = BlockStore.childrenFor(root)
+      let grandChildren = BlockStore.childrenFor(children[0])
+
+      children.length.should.equal(1)
+      grandChildren.length.should.equal(2)
     })
   })
 })

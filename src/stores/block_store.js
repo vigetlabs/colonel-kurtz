@@ -29,13 +29,11 @@ var BlockStore = {
     return block
   },
 
-  _create({ content, type, parent }, position: number): Block {
+  _create({ content, type, parent }, position=_blocks.length): Block {
     var block = new Block({ content, type, parent })
 
     if (position instanceof Block) {
       position = BlockStore._indexOf(position.id) + 1
-    } else if (position == void 0) {
-      position = _blocks.length
     }
 
     _blocks.splice(position, 0, block)
@@ -45,10 +43,12 @@ var BlockStore = {
     return block
   },
 
-  _destroy(id: number) {
+  _destroy(id: number|Block) {
+    let ref = id.valueOf()
+
     _blocks = _blocks.filter(function(node) {
       for (var n = node; n; n = n.parent) {
-        if (n.id == id) return false
+        if (n.id == ref) return false
       }
 
       return true
@@ -65,8 +65,13 @@ var BlockStore = {
     Diode.publish()
   },
 
-  _indexOf(id: number): number {
-    return _blocks.indexOf(BlockStore.find(id))
+  _reset() {
+    _blocks = []
+    Diode.publish()
+  },
+
+  _indexOf(ref: number|Block): number {
+    return _blocks.indexOf(BlockStore.find(ref.valueOf()))
   },
 
   _move(fromId: number, toId: number): void {
@@ -78,9 +83,10 @@ var BlockStore = {
     Diode.publish()
   },
 
-  _seed(parent=BlockStore._create({}), items=[]): void {
-    for (let { blocks, content, type } of items)  {
-      BlockStore._seed(BlockStore._create({ content, parent, type }), blocks)
+  _seed(items=[], parent=BlockStore._create({})): void {
+    for (var i = 0, len = items.length; i < len; i++) {
+      let { blocks, content, type } = items[i]
+      BlockStore._seed(blocks, BlockStore._create({ content, parent, type }))
     }
 
     return parent

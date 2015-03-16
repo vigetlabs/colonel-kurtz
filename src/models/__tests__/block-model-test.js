@@ -1,4 +1,5 @@
-import Block from 'models/block'
+import Block      from 'models/block'
+import BlockStore from 'stores/block_store'
 
 describe('Models - Block', function() {
 
@@ -10,11 +11,14 @@ describe('Models - Block', function() {
   })
 
   it ('can serialize', function() {
-    let block = new Block({ type: 'text', content: { content: 'yeah' }})
-    let json  = block.toJSON()
+    let parent = BlockStore._create({ type: 'text', content: 'parent' })
+    let child  = BlockStore._create({ type: 'text', content: 'child', parent })
+
+    let json  = parent.toJSON()
 
     json.should.have.property('type', 'text')
-    json.content.should.have.property('content', 'yeah')
+    json.should.have.property('content', 'parent')
+    json.blocks[0].should.have.property('content', 'child')
   })
 
 })
