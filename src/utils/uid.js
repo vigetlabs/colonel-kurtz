@@ -3,7 +3,7 @@
 var uidCounter = 0;
 
 var uid = function(): number {
-  return uidCounter += 1
+  return `c${ uidCounter += 1 }`
 }
 
 module.exports = uid

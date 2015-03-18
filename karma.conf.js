@@ -15,7 +15,7 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
-      'src/**/__tests__/*.js*': [ 'webpack' ],
+      'src/**/__tests__/*.js*': [ 'webpack' ]
     },
 
     reporters: [ 'nyan', 'coverage' ],
@@ -41,7 +41,7 @@ module.exports = function(config) {
         postLoaders: [
           {
             test: /\.jsx*$/,
-            exclude: /(__tests__|node_modules)\//,
+            exclude: /(__tests__|node_modules|vendor)\//,
             loader: 'istanbul-instrumenter'
           }
         ]

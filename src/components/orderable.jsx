@@ -5,6 +5,17 @@ var React     = require('react')
 
 var Orderable = React.createClass({
 
+  propTypes: {
+    block  : React.PropTypes.any.isRequired,
+    onDrop : React.PropTypes.func.isRequired
+  },
+
+  getDefaultProps() {
+    return {
+      onDrop: MoveBlock
+    }
+  },
+
   render(): any {
     var { block, children } = this.props
 
@@ -16,7 +27,7 @@ var Orderable = React.createClass({
   },
 
   _onDrop(fromId: number) {
-    MoveBlock(fromId, this.props.block.id)
+    this.props.onDrop(fromId, this.props.block.id)
   }
 
 })

@@ -9,7 +9,8 @@ var BlockMenu = React.createClass({
   mixins: [ Stateful ],
 
   propTypes: {
-    editor: React.PropTypes.any.isRequired
+    editor : React.PropTypes.any.isRequired,
+    block  : React.PropTypes.any.isRequired
   },
 
   getDefaultProps(): { position: number } {
@@ -36,7 +37,7 @@ var BlockMenu = React.createClass({
 
   getNavigation(): ReactElement {
     return (
-      <nav className="col-menu" role="navigation">
+      <nav ref="buttons" className="col-menu" role="navigation">
         { this.state.types.map(this.getButton) }
       </nav>
     )

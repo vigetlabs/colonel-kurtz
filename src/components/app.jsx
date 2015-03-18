@@ -5,17 +5,20 @@
  * @flow
  */
 
-var Editor      = require('../components/editor')
+var Editor      = require('./editor')
 var EditorStore = require('stores/editor_store')
+var Fullscreen  = require('./fullscreen')
 var React       = require('react')
 var Stateful    = require('diode/stateful')
-var Strings     = require('constants/strings')
-var fullscreen  = require('utils/fullscreen')
-var Button      = require('./ui/button')
+var fullscreen  = require('fullscreen')
 
 var App = React.createClass({
 
   mixins: [ Stateful ],
+
+  propTypes: {
+    editorId: React.PropTypes.string.isRequired
+  },
 
   getState(): Object {
     return {
@@ -23,7 +26,7 @@ var App = React.createClass({
     }
   },
 
-  fullscreen(): void {
+  goFullscreen(): void {
     fullscreen(this.getDOMNode())
   },
 
@@ -33,18 +36,9 @@ var App = React.createClass({
     return (
       <div className="colonel" >
         <Editor editor={ editor } block={ editor.block } />
-        <Button aria-label={ Strings.fullscreen }
-                className="col-btn-icon col-fullscreen"
-                onClick={ this._onFullscreenClick }>
-          Fullscreen
-        </Button>
+        <Fullscreen ref="fullscreen" onClick={ this.goFullscreen }  />
       </div>
     )
-  },
-
-  _onFullscreenClick(e: Event) {
-    e.preventDefault()
-    this.fullscreen()
   }
 
 })

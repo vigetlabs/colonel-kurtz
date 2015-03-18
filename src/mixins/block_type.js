@@ -12,7 +12,6 @@
  */
 
 var React     = require('react')
-var Modes     = require('../constants/mode_constants')
 var invariant = require('react/lib/invariant')
 
 var BlockType = {

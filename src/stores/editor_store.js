@@ -31,6 +31,8 @@ var EditorStore = {
     _editors = _editors.concat(editor)
 
     Diode.publish()
+
+    return editor
   }
 
 }

@@ -23,7 +23,7 @@ var EditorBlock = React.createClass({
           <BlockMenu ref="prepend" block={ block } editor={ editor } position={ block.parent }/>
 
           <div className="col-block-children">
-            <Block block={ block } mode={ editor.mode } />
+            <Block block={ block } />
           </div>
 
           <Animation component="div" className="col-blocks" transitionName="col-appear">

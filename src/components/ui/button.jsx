@@ -1,5 +1,5 @@
-import React from 'react'
-import Ink   from 'react-ink'
+let React = require('react')
+let Ink   = require('react-ink')
 
 let Button = React.createClass({
 
@@ -15,7 +15,7 @@ let Button = React.createClass({
 
     return (
       React.createElement(tagName, attrs, [
-        <Ink />,
+        <Ink key="__ink__"/>,
         children
       ])
     )
