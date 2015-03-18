@@ -2,10 +2,13 @@
 var Animation   = require('react/lib/ReactCSSTransitionGroup')
 var BlockStore  = require('stores/block_store')
 var BlockMenu   = require('components/block_menu')
-var EditorBlock = require('components/editor_block')
 var React       = require('react')
 
 var Editor = React.createClass({
+
+  propTypes: {
+    block: React.PropTypes.object.isRequired
+  },
 
   getBlock(block: Block): any {
     return <EditorBlock key={ block.id } block={ block } />

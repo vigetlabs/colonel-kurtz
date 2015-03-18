@@ -10,7 +10,7 @@ var Toolbar    = require('components/toolbar')
 var EditorBlock = React.createClass({
 
   getBlock(block): any {
-    return <EditorBlock key={ block.id } block={ block } />
+    return (<EditorBlock key={ block.id } block={ block } />)
   },
 
   render(): any {
