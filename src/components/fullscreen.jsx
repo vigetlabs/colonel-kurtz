@@ -1,8 +1,8 @@
-var React       = require('react')
-var Strings     = require('constants/strings')
-var Button      = require('./ui/button')
+let React   = require('react')
+let Strings = require('constants/strings')
+let Button  = require('./ui/button')
 
-var Fullscreen = React.createClass({
+let Fullscreen = React.createClass({
 
   propTypes: {
     onClick : React.PropTypes.func.isRequired

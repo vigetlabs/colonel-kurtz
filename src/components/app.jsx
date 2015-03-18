@@ -12,7 +12,7 @@ var BlockTypes  = require('stores/block_type_store')
 var EditorBlock = require('components/editor_block')
 var Fullscreen  = require('./fullscreen')
 var React       = require('react')
-var fullscreen  = require('fullscreen')
+var fullscreen  = require('vendor/requestFullscreen')
 
 var App = React.createClass({
 
