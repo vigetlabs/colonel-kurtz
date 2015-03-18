@@ -1,41 +1,46 @@
 /* @flow */
-var Animation  = require('react/lib/ReactCSSTransitionGroup')
-var Block      = require('components/block')
-var BlockMenu  = require('components/block_menu')
-var BlockStore = require('stores/block_store')
-var Orderable  = require('components/orderable')
-var React      = require('react')
-var Toolbar    = require('components/toolbar')
+let Animation  = require('react/lib/ReactCSSTransitionGroup')
+let Block      = require('components/block')
+let BlockMenu  = require('components/block_menu')
+let BlockStore = require('stores/block_store')
+let Orderable  = require('components/orderable')
+let React      = require('react')
+let Toolbar    = require('components/toolbar')
 
-var EditorBlock = React.createClass({
+let EditorBlock = React.createClass({
 
   getBlock(block): any {
     return (<EditorBlock key={ block.id } block={ block } />)
   },
 
-  render(): any {
-    var { block } = this.props
-    let children = BlockStore.childrenFor(block)
+  getBlockList() {
+    let children = BlockStore.childrenFor(this.props.block)
 
     return (
+      <Animation component="div" className="col-content" transitionName="col-appear">
+        { children.map(this.getBlock) }
+      </Animation>
+    )
+  },
+
+  render(): any {
+    let { block } = this.props
+
+    return block.parent ? (
       <div>
         <Orderable block={ block }>
-          <BlockMenu ref="prepend" block={ block } position={ block.parent }/>
+          <BlockMenu block={ block } position={ block.parent }/>
 
-          <div className="col-block-children">
-            <Block block={ block } />
-          </div>
+          <Block block={ block } />
 
-          <Animation component="div" className="col-blocks" transitionName="col-appear">
-            { children.map(this.getBlock) }
-          </Animation>
+          { this.getBlockList() }
 
           <Toolbar block={ block } />
         </Orderable>
 
-        <BlockMenu ref="append" block={ block.parent } position={ block } />
+        <BlockMenu block={ block.parent } position={ block } />
       </div>
-    )
+    ): this.getBlockList()
   }
 })
 

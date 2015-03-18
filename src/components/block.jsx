@@ -1,11 +1,11 @@
 /* @flow */
 
-var BlockType   = require('../stores/block_type_store')
-var Pure        = require('pure')
-var React       = require('react')
-var UpdateBlock = require('../actions/block/update')
+let BlockType   = require('../stores/block_type_store')
+let Pure        = require('pure')
+let React       = require('react')
+let UpdateBlock = require('../actions/block/update')
 
-var Block = React.createClass({
+let Block = React.createClass({
   mixins: [ Pure ],
 
   propTypes: {
@@ -13,14 +13,14 @@ var Block = React.createClass({
   },
 
   render(): any {
-    var { content, type } = this.props.block
-    var { component } = BlockType.find(type)
+    let { content, type } = this.props.block
+    let Component = BlockType.find(type).component
 
-    return React.createElement(component, {
-      ref            : 'block',
-      initialContent : content,
-      updateContent  : this._onUpdateContent
-    })
+    return (
+      <div className="col-block-children">
+        <Component ref="block" initialContent={ content } updateContent={ this._onUpdateContent }/>
+      </div>
+    )
   },
 
   _onUpdateContent(content:Object): void {

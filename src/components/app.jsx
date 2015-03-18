@@ -5,16 +5,15 @@
  * @flow
  */
 
-var Animation   = require('react/lib/ReactCSSTransitionGroup')
-var BlockMenu   = require('components/block_menu')
-var BlockStore  = require('stores/block_store')
-var BlockTypes  = require('stores/block_type_store')
-var EditorBlock = require('components/editor_block')
-var Fullscreen  = require('./fullscreen')
-var React       = require('react')
-var fullscreen  = require('vendor/requestFullscreen')
+let BlockMenu   = require('components/block_menu')
+let BlockStore  = require('stores/block_store')
+let BlockTypes  = require('stores/block_type_store')
+let EditorBlock = require('components/editor_block')
+let Fullscreen  = require('./fullscreen')
+let React       = require('react')
+let fullscreen  = require('vendor/requestFullscreen')
 
-var App = React.createClass({
+let App = React.createClass({
 
   childContextTypes: {
     types: React.PropTypes.array.isRequired
@@ -41,22 +40,14 @@ var App = React.createClass({
     this.props.onFullscreen(this.getDOMNode())
   },
 
-  getBlock(block: Block): any {
-    return (<EditorBlock key={ block.id } block={ block } />)
-  },
-
   render(): any {
     let { block } = this.props
-    let children = BlockStore.childrenFor(block)
 
     return (
       <div className="colonel" >
         <Fullscreen ref="fullscreen" onClick={ this.goFullscreen }  />
-
-        <Animation component="div" className="col-content" transitionName="col-appear">
-          <BlockMenu key="block_menu" block={ block } />
-          { children.map(this.getBlock) }
-        </Animation>
+        <BlockMenu block={ block } />
+        <EditorBlock block={ block } />
       </div>
     )
   }
