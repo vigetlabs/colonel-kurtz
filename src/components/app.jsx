@@ -29,19 +29,20 @@ var App = React.createClass({
 
   getDefaultProps() {
     return {
+      onFullscreen: fullscreen,
       types: BlockTypes.keys()
     }
   },
 
   goFullscreen(): void {
-    fullscreen(this.getDOMNode())
+    this.props.onFullscreen(this.getDOMNode())
   },
 
   render(): any {
     return (
       <div className="colonel" >
-        <Editor block={ this.props.block } />
         <Fullscreen ref="fullscreen" onClick={ this.goFullscreen }  />
+        <Editor block={ this.props.block } />
       </div>
     )
   }

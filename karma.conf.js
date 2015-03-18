@@ -37,7 +37,25 @@ module.exports = function(config) {
       resolve: webpack_config.resolve,
 
       module: {
-        loaders: webpack_config.module.loaders,
+        loaders: [
+          {
+            test: /\.(svg)$/,
+            loader: 'raw'
+          },
+          {
+            test    : /\.s*(c|a)ss$/,
+            loader  : 'style!css!postcss!sass'
+          },
+          {
+            test    : /\.jsx*$/,
+            exclude : /node_modules/,
+            loader  : 'source-map!babel-loader?experimental&loose&optional=runtime'
+          },
+          {
+            test    : /\.json$/,
+            loader  : 'json'
+          }
+        ],
         postLoaders: [
           {
             test: /\.jsx*$/,

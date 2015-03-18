@@ -35,6 +35,7 @@
   "devDependencies": {
     "autoprefixer-core": "^5.1.7",
     "babel-loader": "^4.2.0",
+    "babel-runtime": "^4.7.16",
     "coveralls": "^2.11.2",
     "css-loader": "^0.9.0",
     "css-mqpacker": "^3.0.1",
