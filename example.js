@@ -56,7 +56,7 @@ var editor = new ColonelKurtz({
   el      : document.getElementById('app'),
   seed    : seed,
   types   : [ 'medium', 'image', 'youtube', 'list' ]
-}).render()
+})
 
 var output = document.getElementById('output')
 
@@ -64,3 +64,5 @@ editor.addCallback(function(json) {
   output.value = JSON.stringify(json, null, 4)
   localStorage.setItem('seed', JSON.stringify(json))
 })
+
+editor.render()
