@@ -1,7 +1,6 @@
 var Webpack = require('webpack')
 var config  = Object.create(require('./webpack.config'))
 
-config.hot     = true
 config.devtool = 'inline-source-map'
 
 config.entry = [
@@ -11,6 +10,10 @@ config.entry = [
 ]
 
 config.externals = {}
+
+config.plugins.push(
+  new Webpack.HotModuleReplacementPlugin()
+)
 
 config.module.loaders.unshift({
   exclude : /node_modules/,
