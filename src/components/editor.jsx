@@ -10,15 +10,13 @@ var Editor = React.createClass({
   mixins: [ HasBlocks ],
 
   getBlock(block: Block): any {
-    return <EditorBlock key={ block.id } block={ block } editor={ this.props.editor } />
+    return <EditorBlock key={ block.id } block={ block } />
   },
 
   render(): any {
-    var { block, editor } = this.props
-
     return (
       <Animation component="div" className="col-content" transitionName="col-appear">
-        <BlockMenu key="block_menu" block={ block } editor={ editor } />
+        <BlockMenu key="block_menu" block={ this.props.block } />
         { this.state.blocks.map(this.getBlock) }
       </Animation>
     )

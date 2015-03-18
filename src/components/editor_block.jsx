@@ -11,16 +11,16 @@ var EditorBlock = React.createClass({
   mixins: [ HasBlocks ],
 
   getBlock(block): any {
-    return <EditorBlock key={ block.id } block={ block } editor={ this.props.editor } />
+    return <EditorBlock key={ block.id } block={ block } />
   },
 
   render(): any {
-    var { block, editor } = this.props
+    var { block } = this.props
 
     return (
       <div>
         <Orderable block={ block }>
-          <BlockMenu ref="prepend" block={ block } editor={ editor } position={ block.parent }/>
+          <BlockMenu ref="prepend" block={ block } position={ block.parent }/>
 
           <div className="col-block-children">
             <Block block={ block } />
@@ -33,7 +33,7 @@ var EditorBlock = React.createClass({
           <Toolbar block={ block } />
         </Orderable>
 
-        <BlockMenu ref="append" block={ block.parent } editor={ editor } position={ block } />
+        <BlockMenu ref="append" block={ block.parent } position={ block } />
       </div>
     )
   }

@@ -1,4 +1,3 @@
-import EditorStore from 'stores/editor_store'
 import ColonelKurtz from 'colonel'
 
 describe('Colonel', function() {
@@ -28,14 +27,6 @@ describe('Colonel', function() {
     mock.should.not.have.been.called
   })
 
-  it ('creates an editor when instantiated', function() {
-    let col = new ColonelKurtz({
-      el: document.createElement('div')
-    })
-
-    EditorStore.find(col.id).should.be.defined
-  })
-
   it ('can render', function() {
     let col = new ColonelKurtz({
       el: document.createElement('div')
@@ -44,6 +35,16 @@ describe('Colonel', function() {
     col.render()
 
     col.el.innerHTML.should.not.equal('')
+  })
+
+  it ('simulates a change when it renders', function(done) {
+    let col = new ColonelKurtz({
+      el: document.createElement('div')
+    })
+
+    col.addCallback(() => done())
+
+    col.render()
   })
 
 })

@@ -4,55 +4,50 @@
  * @flow
  */
 
-var App          = require('components/app')
-var Diode        = require('diode')
-var EditorCreate = require('actions/editor/create')
-var EditorStore  = require('stores/editor_store')
-var React        = require('react')
-var seed         = require('utils/seed')
-var uid          = require('utils/uid')
-var HeartBeat    = require('heartbeat')
+var App        = require('components/app')
+var Diode      = require('diode')
+var HeartBeat  = require('heartbeat')
+var React      = require('react')
+var seed       = require('utils/seed')
+var uid        = require('utils/uid')
 
 class ColonelKurtz {
-  _heartbeat: Object;
+  _heart: Object;
   el: Element;
   id: number;
 
   constructor(config: { el: Element; seed: ?Object }) {
-    this.id         = uid()
-    this.el         = config.el
-    this._heartbeat = HeartBeat()
+    this._heart = HeartBeat()
 
-    EditorCreate({
-      id    : this.id,
-      block : seed(config.seed),
-      ...config
-    })
+    this.block  = seed(config.seed)
+    this.types  = config.types
+    this.el     = config.el
 
     Diode.subscribe(this.simulateChange.bind(this))
-
-    this.simulateChange();
   }
 
   render(): ColonelKurtz {
-    React.render(<App editorId={ this.id } />, this.el)
+    React.render(<App block={ this.block } types={ this.types } />, this.el)
+
+    this.simulateChange()
+
     return this
   }
 
   addCallback(fn) {
-    this._heartbeat.listen(fn)
+    this._heart.listen(fn)
   }
 
   removeCallback(fn) {
-    this._heartbeat.ignore(fn)
+    this._heart.ignore(fn)
   }
 
   simulateChange() {
-    this._heartbeat.pump(this.toJSON())
+    this._heart.pump(this.toJSON())
   }
 
   toJSON(): Array<Object> {
-    return EditorStore.find(this.id).block.toJSON().blocks
+    return this.block.toJSON().blocks
   }
 
 }

@@ -1,11 +1,11 @@
-import EditorStore    from 'stores/editor_store'
 import BlockMenu      from  'components/block_menu'
 import BlockTypeStore from 'stores/block_type_store'
 import BlockStore     from 'stores/block_store'
 
 let TestUtils = React.addons.TestUtils
 
-describe('Components - AddBlock', function() {
+describe('Components - BlockMenu', function() {
+
   before(function() {
     BlockTypeStore._create({
       id: 'block-menu-test',
@@ -18,20 +18,33 @@ describe('Components - AddBlock', function() {
     })
   })
 
+  let Context = React.createClass({
+    childContextTypes: {
+      types: React.PropTypes.array.isRequired
+    },
+    getChildContext() {
+      return { types: this.props.types }
+    },
+    getDefaultProps() {
+      return { types: BlockTypeStore.keys() }
+    },
+    render() {
+      return <BlockMenu block={ this.props.block } ref="menu" />
+    }
+  })
+
   it ('can renders a list of available block types', function() {
     let block     = BlockStore._create({ })
-    let editor    = EditorStore._create({ id: 'block-menu-test-1', block })
-    let component = TestUtils.renderIntoDocument(<BlockMenu editor={ editor } block={ block } />)
+    let component = TestUtils.renderIntoDocument(<Context block={ block } />)
 
-    component.refs.should.have.property('buttons')
+    component.refs.menu.refs.should.have.property('buttons')
   })
 
   it ('can nothing if there are no available block types', function() {
     let block     = BlockStore._create({ type: 'block-menu-test' })
-    let editor    = EditorStore._create({ id: 'block-menu-test-2', block, types: [] })
-    let component = TestUtils.renderIntoDocument(<BlockMenu editor={ editor } block={ block } />)
+    let component = TestUtils.renderIntoDocument(<Context block={ block } />)
 
-    component.refs.should.not.have.property('buttons')
+    component.refs.menu.refs.should.not.have.property('buttons')
   })
 
 })

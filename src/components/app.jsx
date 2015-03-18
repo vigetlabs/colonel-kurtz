@@ -5,8 +5,8 @@
  * @flow
  */
 
+var BlockTypes  = require('stores/block_type_store')
 var Editor      = require('./editor')
-var EditorStore = require('stores/editor_store')
 var Fullscreen  = require('./fullscreen')
 var React       = require('react')
 var Stateful    = require('diode/stateful')
@@ -16,14 +16,28 @@ var App = React.createClass({
 
   mixins: [ Stateful ],
 
-  propTypes: {
-    editorId: React.PropTypes.string.isRequired
+  childContextTypes: {
+    types: React.PropTypes.array.isRequired
   },
 
-  getState(): Object {
+  propTypes: {
+    block: React.PropTypes.object.isRequired
+  },
+
+  getChildContext() {
     return {
-      editor: EditorStore.find(this.props.editorId)
+      types: this.props.types
     }
+  },
+
+  getDefaultProps() {
+    return {
+      types: BlockTypes.keys()
+    }
+  },
+
+  getState() {
+    return {}
   },
 
   goFullscreen(): void {
@@ -31,11 +45,9 @@ var App = React.createClass({
   },
 
   render(): any {
-    var { editor } = this.state
-
     return (
       <div className="colonel" >
-        <Editor editor={ editor } block={ editor.block } />
+        <Editor block={ this.props.block } />
         <Fullscreen ref="fullscreen" onClick={ this.goFullscreen }  />
       </div>
     )
