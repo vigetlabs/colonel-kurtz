@@ -31,7 +31,7 @@ var BlockMenu = React.createClass({
   getButton(type:string): ReactElement {
     var { block, position } = this.props
 
-    return <AddBlock key={ type } type={ type } block={ block } position={ position } />
+    return (<AddBlock key={ type } type={ type } block={ block } position={ position } />)
   },
 
   getNavigation(types): ReactElement {

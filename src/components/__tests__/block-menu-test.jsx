@@ -33,14 +33,14 @@ describe('Components - BlockMenu', function() {
     }
   })
 
-  it ('can renders a list of available block types', function() {
+  it ('renders a list of available block types with proper context', function() {
     let block     = BlockStore._create({ })
-    let component = TestUtils.renderIntoDocument(<Context block={ block } />)
+    let component = TestUtils.renderIntoDocument(<Context types={ BlockTypeStore.keys() } block={ block } />)
 
     component.refs.menu.refs.should.have.property('buttons')
   })
 
-  it ('can nothing if there are no available block types', function() {
+  it ('renders nothing if there are no available block types', function() {
     let block     = BlockStore._create({ type: 'block-menu-test' })
     let component = TestUtils.renderIntoDocument(<Context block={ block } />)
 
