@@ -6,7 +6,6 @@
  */
 
 let BlockMenu   = require('components/block_menu')
-let BlockStore  = require('stores/block_store')
 let BlockTypes  = require('stores/block_type_store')
 let EditorBlock = require('components/editor_block')
 let Fullscreen  = require('./fullscreen')
@@ -44,7 +43,7 @@ let App = React.createClass({
     let { block } = this.props
 
     return (
-      <div className="colonel" >
+      <div className="colonel">
         <Fullscreen ref="fullscreen" onClick={ this.goFullscreen }  />
         <BlockMenu block={ block } />
         <EditorBlock block={ block } />

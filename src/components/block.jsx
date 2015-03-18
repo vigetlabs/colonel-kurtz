@@ -17,7 +17,7 @@ let Block = React.createClass({
     let Component = BlockType.find(type).component
 
     return (
-      <div className="col-block-children">
+      <div className="col-block-child">
         <Component ref="block" initialContent={ content } updateContent={ this._onUpdateContent }/>
       </div>
     )
