@@ -9,12 +9,10 @@ var Diode     = require('diode')
 var HeartBeat = require('heartbeat')
 var React     = require('react')
 var seed      = require('utils/seed')
-var uid       = require('utils/uid')
 
 class ColonelKurtz {
   _heart: Object;
   el: Element;
-  id: number;
 
   constructor(config: { el: Element; seed: ?Object }) {
     this._heart = HeartBeat()
