@@ -1,14 +1,13 @@
 /* @flow */
-var Animation = require('react/lib/ReactCSSTransitionGroup')
-var Block     = require('components/block')
-var BlockMenu = require('components/block_menu')
-var HasBlocks = require('mixins/hasBlocks')
-var Orderable = require('components/orderable')
-var React     = require('react')
-var Toolbar   = require('components/toolbar')
+var Animation  = require('react/lib/ReactCSSTransitionGroup')
+var Block      = require('components/block')
+var BlockMenu  = require('components/block_menu')
+var BlockStore = require('stores/block_store')
+var Orderable  = require('components/orderable')
+var React      = require('react')
+var Toolbar    = require('components/toolbar')
 
 var EditorBlock = React.createClass({
-  mixins: [ HasBlocks ],
 
   getBlock(block): any {
     return <EditorBlock key={ block.id } block={ block } />
@@ -16,6 +15,7 @@ var EditorBlock = React.createClass({
 
   render(): any {
     var { block } = this.props
+    let children = BlockStore.childrenFor(block)
 
     return (
       <div>
@@ -27,7 +27,7 @@ var EditorBlock = React.createClass({
           </div>
 
           <Animation component="div" className="col-blocks" transitionName="col-appear">
-            { this.state.blocks.map(this.getBlock) }
+            { children.map(this.getBlock) }
           </Animation>
 
           <Toolbar block={ block } />

@@ -3,11 +3,8 @@
 var AddBlock  = require('./add_block')
 var BlockType = require('../stores/block_type_store')
 var React     = require('react')
-var Stateful  = require('diode/stateful')
 
 var BlockMenu = React.createClass({
-
-  mixins: [ Stateful ],
 
   contextTypes: {
     types: React.PropTypes.array.isRequired
@@ -23,14 +20,12 @@ var BlockMenu = React.createClass({
     }
   },
 
-  getState(): { types: Array<string> } {
+  getTypes(): { types: Array<string> } {
     var { block } = this.props
 
     // If there is a given block, then use the accepted types provided by that definition
     // Otherwise, fallback to the editor.
-    return {
-      types : block.type ? BlockType.find(block.type).types : this.context.types
-    }
+    return block.type ? BlockType.find(block.type).types : this.context.types
   },
 
   getButton(type:string): ReactElement {
@@ -39,16 +34,18 @@ var BlockMenu = React.createClass({
     return <AddBlock key={ type } type={ type } block={ block } position={ position } />
   },
 
-  getNavigation(): ReactElement {
+  getNavigation(types): ReactElement {
     return (
       <nav ref="buttons" className="col-menu" role="navigation">
-        { this.state.types.map(this.getButton) }
+        { types.map(this.getButton) }
       </nav>
     )
   },
 
   render(): any {
-    return this.state.types ? this.getNavigation() : null
+    let types = this.getTypes()
+
+    return types ? this.getNavigation(types) : null
   },
 
 })

@@ -21,7 +21,7 @@ class ColonelKurtz {
     this.types  = config.types
     this.el     = config.el
 
-    Diode.subscribe(this.simulateChange.bind(this))
+    Diode.subscribe(this.render.bind(this))
   }
 
   render(): ColonelKurtz {

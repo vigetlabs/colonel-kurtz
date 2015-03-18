@@ -9,12 +9,9 @@ var BlockTypes  = require('stores/block_type_store')
 var Editor      = require('./editor')
 var Fullscreen  = require('./fullscreen')
 var React       = require('react')
-var Stateful    = require('diode/stateful')
 var fullscreen  = require('fullscreen')
 
 var App = React.createClass({
-
-  mixins: [ Stateful ],
 
   childContextTypes: {
     types: React.PropTypes.array.isRequired
@@ -34,10 +31,6 @@ var App = React.createClass({
     return {
       types: BlockTypes.keys()
     }
-  },
-
-  getState() {
-    return {}
   },
 
   goFullscreen(): void {

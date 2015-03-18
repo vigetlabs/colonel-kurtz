@@ -3,23 +3,18 @@
 var BlockType   = require('../stores/block_type_store')
 var Pure        = require('pure')
 var React       = require('react')
-var Stateful    = require('diode/stateful')
 var UpdateBlock = require('../actions/block/update')
 
 var Block = React.createClass({
-  mixins: [ Stateful, Pure ],
+  mixins: [ Pure ],
 
   propTypes: {
     block: React.PropTypes.any.isRequired
   },
 
-  getState(): Object {
-    return BlockType.find(this.props.block.type)
-  },
-
   render(): any {
-    var { content   } = this.props.block
-    var { component } = this.state
+    var { content, type } = this.props.block
+    var { component } = BlockType.find(type)
 
     return React.createElement(component, {
       ref            : 'block',
