@@ -1,9 +1,7 @@
 /**
  * This is the root component that contains sections for
  * toggling between viewing modes and viewing managed content
- *
- * @flow
- */
+  */
 
 let BlockMenu   = require('components/block_menu')
 let BlockTypes  = require('stores/block_type_store')
