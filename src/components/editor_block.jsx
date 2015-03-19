@@ -38,18 +38,21 @@ let EditorBlock = React.createClass({
   },
 
   render(): any {
-    let { block } = this.props
+    let { actions, stores } = this.context
+    let { block   } = this.props
 
     return block.parent ? (
       <div>
         <Orderable block={ block }>
           <BlockMenu block={ block } position={ block.parent } />
 
-          <Block block={ block } />
+          <Block block={ block }
+                 blockType={ stores.blockTypes.find(block.type) }
+                 onUpdate={ actions.blocks.update } />
 
           { this.getBlockList() }
 
-          <Toolbar block={ block } />
+          <Toolbar block={ block } onDestroy={ actions.blocks.destroy } />
         </Orderable>
 
         <BlockMenu block={ block.parent } position={ block } />

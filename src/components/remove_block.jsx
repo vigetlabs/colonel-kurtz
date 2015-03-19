@@ -5,12 +5,9 @@ import closeIcon from 'icons/close'
 
 let RemoveBlock = React.createClass({
 
-  contextTypes: {
-    actions : React.PropTypes.object.isRequired
-  },
-
   propTypes: {
-    block : React.PropTypes.object.isRequired
+    block     : React.PropTypes.object.isRequired,
+    onDestroy : React.PropTypes.func.isRequired
   },
 
   render() {
@@ -23,7 +20,7 @@ let RemoveBlock = React.createClass({
 
   _onClick(e: Event) {
     e.preventDefault();
-    this.context.actions.blocks.destroy(this.props.block.id)
+    this.props.onDestroy(this.props.block.id)
   }
 
 })

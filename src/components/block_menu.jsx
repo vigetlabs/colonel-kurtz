@@ -22,7 +22,12 @@ var BlockMenu = React.createClass({
   getButton(blockType) {
     var { block, position } = this.props
 
-    return React.createElement(AddBlock, { key: blockType.id, block, blockType, position })
+    return React.createElement(AddBlock, {
+      key: blockType.id,
+      block,
+      blockType,
+      position
+    })
   },
 
   getNavigation(allowed) {

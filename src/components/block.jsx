@@ -3,34 +3,27 @@ import React from 'react'
 
 let Block = React.createClass({
 
-  contextTypes: {
-    actions : React.PropTypes.object.isRequired,
-    stores  : React.PropTypes.object.isRequired
-  },
-
   propTypes: {
-    block : React.PropTypes.object.isRequired
+    block     : React.PropTypes.object.isRequired,
+    blockType : React.PropTypes.object.isRequired,
+    onUpdate  : React.PropTypes.func.isRequired
   },
 
   mixins: [ Pure ],
 
   render() {
-    let { block }      = this.props
-    let { blockTypes } = this.context.stores
-
-    let Component = blockTypes.find(block.type).component
+    let { block, blockType }    = this.props
+    let { component:Component } = blockType
 
     return (
       <div className="col-block-child">
-        <Component ref="block"
-                   initialContent={ block.content }
-                   updateContent={ this._onUpdateContent } />
+        <Component ref="block" initialContent={ block.content } updateContent={ this._onUpdateContent } />
       </div>
     )
   },
 
   _onUpdateContent(content) {
-    this.context.actions.blocks.update(this.props.block.id, content)
+    this.props.onUpdate(this.props.block.id, content)
   }
 
 })

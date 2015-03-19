@@ -1,15 +1,14 @@
-/* @flow */
-
-var React       = require('react')
-var RemoveBlock = require('components/remove_block')
+import React       from 'react'
+import RemoveBlock from 'components/remove_block'
 
 var Toolbar = React.createClass({
 
   propTypes: {
-    block : React.PropTypes.object.isRequired
+    block     : React.PropTypes.object.isRequired,
+    onDestroy : React.PropTypes.func.isRequired
   },
 
-  render(): any {
+  render() {
     return (
       <div className="col-toolbar">
         <RemoveBlock block={ this.props.block } onDestroy={ this.props.onDestroy }/>
@@ -19,4 +18,4 @@ var Toolbar = React.createClass({
 
 })
 
-module.exports = Toolbar
+export default Toolbar
