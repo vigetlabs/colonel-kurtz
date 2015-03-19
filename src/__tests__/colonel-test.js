@@ -2,7 +2,7 @@ import ColonelKurtz from 'colonel'
 
 describe('Colonel', function() {
 
-  it ('can be subscribed to', function(done) {
+  it('can be subscribed to', function(done) {
     let col = new ColonelKurtz({
       el: document.createElement('div')
     })
@@ -37,14 +37,33 @@ describe('Colonel', function() {
     col.el.innerHTML.should.not.equal('')
   })
 
-  it ('simulates a change when it renders', function(done) {
-    let col = new ColonelKurtz({
-      el: document.createElement('div')
+  describe("Deprecated API", function() {
+
+    it ('supports addCallback', function(done) {
+      let col = new ColonelKurtz({
+        el: document.createElement('div')
+      })
+
+      col.addCallback(() => done())
+
+      col.simulateChange()
     })
 
-    col.addCallback(() => done())
+    it ('supports removeCallback', function() {
+      let col = new ColonelKurtz({
+        el: document.createElement('div')
+      })
 
-    col.render()
+      let mock = sinon.spy()
+
+      col.addCallback(mock)
+      col.removeCallback(mock)
+
+      col.simulateChange()
+
+      mock.should.not.have.been.called
+    })
+
   })
 
 })

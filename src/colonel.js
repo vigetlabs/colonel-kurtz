@@ -1,56 +1,68 @@
 /**
  * Colonel Kurts
  * A custom block editor
- * @flow
  */
 
-var App       = require('components/app')
-var Diode     = require('diode')
-var HeartBeat = require('heartbeat')
-var React     = require('react')
-var seed      = require('utils/seed')
+import App       from 'components/app'
+import React     from 'react'
+import Microcosm from 'microcosm'
+import warning   from 'warning'
 
-class ColonelKurtz {
-  _heart: Object;
-  el: Element;
+class ColonelKurtz extends Microcosm {
 
-  constructor(config: { el: Element; seed: ?Object }) {
-    this._heart = HeartBeat()
+  constructor({ el, seed, types }) {
+    super(seed)
 
-    this.block  = seed(config.seed)
-    this.types  = config.types
-    this.el     = config.el
+    this.addActions({
+      blocks     : require('actions/blocks'),
+      blockTypes : require('actions/blockTypes')
+    })
 
-    Diode.subscribe(this.render.bind(this))
+    this.addStores({
+      blocks     : require('stores/block_store'),
+      blockTypes : require('stores/block_type_store')
+    })
+
+    this.el    = el
+    this.types = types
+
+    this.listen(this.render.bind(this))
   }
 
-  render(): ColonelKurtz {
-    React.render(<App block={ this.block } types={ this.types } />, this.el)
+  render() {
+    let { actions, el, stores, types } = this
 
-    this.simulateChange()
+    let component = React.createElement(App, { actions, stores, allowed: types })
+
+    React.render(component, el)
 
     return this
   }
 
   addCallback(fn) {
-    this._heart.listen(fn)
+    warning('ColonelKurtz::addCallback will be deprecated in v3.0.0. Instead use listen.')
+    return this.listen(fn)
   }
 
   removeCallback(fn) {
-    this._heart.ignore(fn)
+    warning('ColonelKurtz::removeCallback will be deprecated in v3.0.0. Instead use ignore.')
+    return this.ignore(fn)
   }
 
   simulateChange() {
-    this._heart.pump(this.toJSON())
+    warning('ColonelKurtz::simulateChange will be deprecated in v3.0.0. Instead use pump.')
+    this.pump(this.toJSON())
   }
 
-  toJSON(): Array<Object> {
-    return this.block.toJSON().blocks
+  toJSON() {
+    return this.serialize().blocks
   }
 
 }
 
 ColonelKurtz.createBlock  = require('./utils/createBlock')
-ColonelKurtz.addBlockType = ColonelKurtz.addBlockTypes = require('./utils/addBlockType')
+ColonelKurtz.addBlockType = ColonelKurtz.addBlockTypes = function() {
+  warning('ColonelKurtz.addBlockType has been removed. Pass `blockTypes` as a key for seed data')
+}
 
-module.exports = ColonelKurtz
+export default ColonelKurtz

@@ -6,7 +6,7 @@ require('./example.css')
 
 var ColonelKurtz = require('../src')
 
-ColonelKurtz.addBlockTypes(
+let blockTypes = [
   {
     id        : 'medium',
     icon      : 'icons/text.svg',
@@ -44,25 +44,28 @@ ColonelKurtz.addBlockTypes(
       render          : function() { return null }
     }
   }
-)
+]
 
-var seed = {}
+var blocks = {}
 
 try {
-  seed = JSON.parse(localStorage.getItem('seed'))
+  blocks = JSON.parse(localStorage.getItem('seed'))
 } catch(x) {}
 
 var editor = new ColonelKurtz({
-  el      : document.getElementById('app'),
-  seed    : seed,
-  types   : [ 'medium', 'image', 'youtube', 'list' ]
+  el    : document.getElementById('app'),
+  seed  : { blocks, blockTypes },
+  types : [ 'medium', 'image', 'youtube', 'list' ]
 })
 
 var output = document.getElementById('output')
 
-editor.addCallback(function(json) {
+editor.listen(function() {
+  let json = editor.toJSON()
   output.value = JSON.stringify(json, null, 4)
   localStorage.setItem('seed', JSON.stringify(json))
 })
+
+editor.pump()
 
 editor.render()

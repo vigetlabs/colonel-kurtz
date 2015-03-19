@@ -1,24 +1,38 @@
-/* @flow */
-let Animation  = require('react/lib/ReactCSSTransitionGroup')
-let Block      = require('components/block')
-let BlockMenu  = require('components/block_menu')
-let BlockStore = require('stores/block_store')
-let Orderable  = require('components/orderable')
-let React      = require('react')
-let Toolbar    = require('components/toolbar')
+import Animation  from 'react/lib/ReactCSSTransitionGroup'
+import Block      from 'components/block'
+import BlockMenu  from 'components/block_menu'
+import BlockStore from 'stores/block_store'
+import Orderable  from 'components/orderable'
+import React      from 'react'
+import Toolbar    from 'components/toolbar'
 
 let EditorBlock = React.createClass({
 
+  contextTypes: {
+    actions : React.PropTypes.object.isRequired,
+    allowed : React.PropTypes.array.isRequired,
+    stores  : React.PropTypes.object.isRequired
+  },
+
+  propTypes: {
+    block : React.PropTypes.object.isRequired
+  },
+
   getBlock(block): any {
-    return (<EditorBlock key={ block.id } block={ block } />)
+    return React.createElement(EditorBlock, {
+      ...this.props,
+      key   : block.id,
+      block : block
+    })
   },
 
   getBlockList() {
-    let children = BlockStore.childrenFor(this.props.block)
+    let { block } = this.props
+    let { blocks } = this.context.stores
 
     return (
       <Animation component="div" className="col-content" transitionName="col-appear">
-        { children.map(this.getBlock) }
+        { blocks.childrenFor(block).map(this.getBlock) }
       </Animation>
     )
   },
@@ -29,7 +43,7 @@ let EditorBlock = React.createClass({
     return block.parent ? (
       <div>
         <Orderable block={ block }>
-          <BlockMenu block={ block } position={ block.parent }/>
+          <BlockMenu block={ block } position={ block.parent } />
 
           <Block block={ block } />
 

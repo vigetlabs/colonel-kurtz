@@ -5,4 +5,6 @@
 
 import 'style/colonel'
 
-export default require('colonel')
+import Colonel from 'colonel'
+
+export default Colonel

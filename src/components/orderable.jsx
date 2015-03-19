@@ -1,19 +1,15 @@
 /* @flow */
-var Dragon    = require('react-dragon')
-var MoveBlock = require('actions/block/move')
-var React     = require('react')
+var Dragon = require('react-dragon')
+var React  = require('react')
 
 var Orderable = React.createClass({
 
-  propTypes: {
-    block  : React.PropTypes.any.isRequired,
-    onDrop : React.PropTypes.func.isRequired
+  contextTypes: {
+    actions : React.PropTypes.object.isRequired
   },
 
-  getDefaultProps() {
-    return {
-      onDrop: MoveBlock
-    }
+  propTypes: {
+    block : React.PropTypes.any.isRequired
   },
 
   render(): any {
@@ -27,7 +23,7 @@ var Orderable = React.createClass({
   },
 
   _onDrop(fromId: number) {
-    this.props.onDrop(fromId, this.props.block.id)
+    this.context.actions.blocks.move(fromId, this.props.block.id)
   }
 
 })

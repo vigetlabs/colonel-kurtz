@@ -1,117 +1,114 @@
-/* @flow */
+var Block     = require('../models/block')
+var invariant = require('react/lib/invariant')
 
-var Diode      = require('diode')
-var Block      = require('../models/block')
-var Dispatcher = require('../dispatcher')
-var invariant  = require('react/lib/invariant')
+import { Store } from 'microcosm'
 
-var _blocks = []
+class BlockStore extends Store {
 
-var BlockStore = {
+  getInitialState(seed) {
+    this.state = []
 
-  childrenFor(block): Array<Block> {
-    return _blocks.filter((b) => b.parent === block)
-  },
+    this.deserialize(seed)
 
-  all(): Array<Block> {
-    return _blocks
-  },
+    return this.state
+  }
 
-  last() {
-    return _blocks[_blocks.length - 1]
-  },
+  register({ blocks }) {
+    return {
+      [blocks.create]  : this._create,
+      [blocks.destroy] : this._destroy,
+      [blocks.update]  : this._update,
+      [blocks.move]    : this._move
+    }
+  }
 
-  find(id: number): Block {
-    var block:Block = _blocks.filter((b) => b.id === id)[0]
+  childrenFor(block) {
+    return this.state.filter((b) => b.parent === block)
+  }
 
-    invariant(block, "Unable to find block with id of %s", id)
+  root() {
+    return this.state.filter(b => !b.parent)[0]
+  }
+
+  all() {
+    return this.state
+  }
+
+  find(id) {
+    var block = this.state.filter((b) => b.id === id)[0]
+
+    invariant(block, `Unable to find block with id of ${ id }`)
 
     return block
-  },
+  }
 
-  _create({ content, type, parent }, position=_blocks.length): Block {
-    var block = new Block({ content, type, parent })
+  _create({ content = null, parent, position = this.state.length, type }) {
+    var block = new Block({ content, parent, type })
 
     if (position instanceof Block) {
-      position = BlockStore._indexOf(position.id) + 1
+      position = this._indexOf(position) + 1
     }
 
-    _blocks.splice(position, 0, block)
-
-    Diode.publish()
+    this.state.splice(position, 0, block)
 
     return block
-  },
+  }
 
-  _destroy(id: number|Block) {
+  _destroy(id) {
     let ref = id.valueOf()
 
-    _blocks = _blocks.filter(function(node) {
+    this.state = this.state.filter(function(node) {
       for (var n = node; n; n = n.parent) {
         if (n.id == ref) return false
       }
 
       return true
     })
+  }
 
-    Diode.publish()
-  },
-
-  _update(id: number, content: ?Object) {
-    var block = BlockStore.find(id)
+  _update(id, content) {
+    var block = this.find(id)
 
     block.content = { ...block.content, ...content }
 
     Diode.publish()
-  },
+  }
 
   _reset() {
-    _blocks = []
-    Diode.publish()
-  },
+    this.state = []
+  }
 
-  _indexOf(ref: number|Block): number {
-    return _blocks.indexOf(BlockStore.find(ref.valueOf()))
-  },
+  _indexOf(ref) {
+    return this.state.indexOf(this.find(ref.valueOf()))
+  }
 
-  _move(fromId: number, toId: number): void {
-    var from = BlockStore._indexOf(fromId)
-    var to   = BlockStore._indexOf(toId)
+  _move({ fromId, toId }) {
+    var from = this._indexOf(fromId)
+    var to   = this._indexOf(toId)
 
-    _blocks.splice(to, 0, _blocks.splice(from, 1)[0]);
+    this.state.splice(to, 0, this.state.splice(from, 1)[0]);
+  }
 
-    Diode.publish()
-  },
-
-  _seed(items=[], parent=BlockStore._create({})): void {
+  deserialize(items=[], parent = this._create({})): void {
     for (var i = 0, len = items.length; i < len; i++) {
       let { blocks, content, type } = items[i]
-      BlockStore._seed(blocks, BlockStore._create({ content, parent, type }))
+      this.deserialize(blocks, this._create({ content, parent, type }))
     }
 
     return parent
   }
+
+  serialize() {
+    let children = this.childrenFor(this.root())
+
+    return children.map(function jsonify (block) {
+      return {
+        content : block.content,
+        type    : block.type,
+        blocks  : this.childrenFor(block).map(jsonify, this)
+      }
+    }, this)
+  }
 }
 
-module.exports = BlockStore
-
-Dispatcher.register(function(action) {
-  switch (action.type) {
-
-  case require('actions/block/create'):
-    BlockStore._create(action.params, action.position)
-    break
-
-  case require('actions/block/destroy'):
-    BlockStore._destroy(action.id)
-    break
-
-  case require('actions/block/update'):
-    BlockStore._update(action.id, action.content)
-    break
-
-  case require('actions/block/move'):
-    BlockStore._move(action.fromId, action.toId)
-    break
-  }
-})
+export default BlockStore

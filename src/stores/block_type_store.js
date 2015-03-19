@@ -1,46 +1,61 @@
 /* @flow */
 
-var Dispatcher = require('../dispatcher')
-var React      = require('react')
-var invariant  = require('react/lib/invariant')
+var invariant    = require('react/lib/invariant')
+var addBlockType = require('utils/addBlockType')
 
-var _blockTypes = []
-var _defaults   = {
+import { Store } from 'microcosm'
+
+var _defaults = {
   icon  : null,
   types : null
 }
 
-var BlockTypeStore = {
+class BlockTypeStore extends Store {
 
-  keys(): Array<string> {
-    return _blockTypes.map(b => b.id)
-  },
+  getInitialState(seed) {
+    return addBlockType(seed)
+  }
 
-  find(id: number): Object {
-    var type = _blockTypes.filter(b => b.id === id)[0]
+  register({ blockTypes }) {
+    return {
+      [blockTypes.create] : this._create
+    }
+  }
+
+  map(fn, scope = this) {
+    return this.state.map(fn, scope)
+  }
+
+  all() {
+    return this.state
+  }
+
+  within(types=[]) {
+    return this.state.filter(i => types.indexOf(i.id) > -1)
+  }
+
+  subset(type) {
+    return this.within(this.find(type).types)
+  }
+
+  find(id) {
+    var type = this.state.filter(b => b.id === id)[0]
 
     invariant(type, `Unable to find block type with an id of ${ type }`)
 
     return type
-  },
+  }
 
-  _create(params: BlockType): void {
+  _create(params) {
     invariant(params.id, `BlockTypes must have an identifier`)
 
-    _blockTypes = _blockTypes.concat({ ..._defaults, ...params })
-  },
+    this.state = this.state.concat({ ..._defaults, ...params })
+  }
 
   _remove(id) {
-    _blockTypes = _blockTypes.filter(i => i.id !== id)
+    this.state = this.state.filter(i => i.id !== id)
   }
+
 }
 
-module.exports = BlockTypeStore
-
-Dispatcher.register(function(action: Object) {
-  switch (action.type) {
-    case require('../actions/block_type/create'):
-      BlockTypeStore._create(action.params)
-      break
-  }
-})
+export default BlockTypeStore

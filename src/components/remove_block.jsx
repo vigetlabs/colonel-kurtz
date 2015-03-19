@@ -1,14 +1,19 @@
-/* @flow */
+import Button    from './ui/button'
+import Strings   from 'constants/strings'
+import React     from 'react'
+import closeIcon from 'icons/close'
 
-var Button       = require('./ui/button')
-var DestroyBlock = require('../actions/block/destroy')
-var Strings      = require('constants/strings')
-var React        = require('react')
-var closeIcon    = require('icons/close')
+let RemoveBlock = React.createClass({
 
-var RemoveBlock = React.createClass({
+  contextTypes: {
+    actions : React.PropTypes.object.isRequired
+  },
 
-  render(): any {
+  propTypes: {
+    block : React.PropTypes.object.isRequired
+  },
+
+  render() {
     return (
       <Button aria-label={ Strings.remove } className="col-btn-remove" onClick={ this._onClick }>
         <span dangerouslySetInnerHTML={{ __html: `${ closeIcon }` }} />
@@ -16,11 +21,11 @@ var RemoveBlock = React.createClass({
     )
   },
 
-  _onClick(e: Event): void {
+  _onClick(e: Event) {
     e.preventDefault();
-    DestroyBlock(this.props.block.id)
+    this.context.actions.blocks.destroy(this.props.block.id)
   }
 
 })
 
-module.exports = RemoveBlock
+export default RemoveBlock

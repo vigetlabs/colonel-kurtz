@@ -1,18 +1,20 @@
 /* @flow */
 
-var BlockType   = require('../stores/block_type_store')
-var Button      = require('./ui/button')
-var CreateBlock = require('../actions/block/create')
-var React       = require('react')
+var Button = require('./ui/button')
+var React  = require('react')
 
 var AddBlock = React.createClass({
 
-  getInitialState(): ?Object {
-    return BlockType.find(this.props.type)
+  contextTypes: {
+    actions : React.PropTypes.object.isRequired
+  },
+
+  propTypes: {
+    blockType: React.PropTypes.object.isRequired
   },
 
   render(): any {
-    var { icon, id, label } = this.state
+    var { icon, id, label } = this.props.blockType
 
     return (
       <Button aria-label={ label } className="col-btn-icon" onClick={ this._onClick }>
@@ -22,13 +24,13 @@ var AddBlock = React.createClass({
   },
 
   _onClick(e:Event): void {
-    var { block, position, type } = this.props
+    var { block, position, blockType } = this.props
 
-    CreateBlock({
-      content  : null,
-      parent   : block,
-      type     : type
-    }, position)
+    this.context.actions.blocks.create({
+      parent : block,
+      type   : blockType.id,
+      position
+    })
 
     e.preventDefault()
   }

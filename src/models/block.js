@@ -17,16 +17,6 @@ class Block {
   valueOf() {
     return this.id
   }
-
-  toJSON(): Object {
-    var BlockStore = require('stores/block_store')
-
-    return {
-      blocks  : BlockStore.childrenFor(this).map(i => i.toJSON()),
-      content : this.content,
-      type    : this.type
-    }
-  }
 }
 
 module.exports = Block

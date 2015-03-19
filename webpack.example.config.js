@@ -12,7 +12,8 @@ config.entry = [
 config.externals = {}
 
 config.plugins.push(
-  new Webpack.HotModuleReplacementPlugin()
+  new Webpack.HotModuleReplacementPlugin(),
+  new Webpack.NoErrorsPlugin()
 )
 
 config.module.loaders.unshift({

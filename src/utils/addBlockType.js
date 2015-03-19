@@ -3,18 +3,17 @@
  * valid React element, it produces one using ./createBlock
  */
 
-var CreateBlockType = require('../actions/block_type/create')
-var React           = require('react')
-var createBlock     = require('./createBlock')
+var React       = require('react')
+var createBlock = require('./createBlock')
 
-module.exports = function (...config) {
-  config.forEach(function(options) {
+module.exports = function (config=[]) {
+  return config.map(options => {
     var component = options.component
 
     if (typeof component === 'object') {
       component = createBlock(component)
     }
 
-    CreateBlockType({ ...options, component })
+    return { ...options, component }
   })
 }
