@@ -109,6 +109,7 @@ class BlockStore extends Store {
       }
     }, this)
   }
+
 }
 
 export default BlockStore

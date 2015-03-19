@@ -30,9 +30,13 @@ class ColonelKurtz extends Microcosm {
   }
 
   render() {
-    let { el, types } = this
+    let { el, stores, types } = this
 
-    let component = React.createElement(App, { flux: this, allowed: types })
+    let component = React.createElement(App, {
+      allowed : types,
+      flux    : this,
+      root    : stores.blocks.root()
+    })
 
     React.render(component, el)
 

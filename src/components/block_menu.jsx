@@ -9,7 +9,10 @@ var BlockMenu = React.createClass({
   },
 
   propTypes: {
-    block : React.PropTypes.any.isRequired,
+    allowed    : React.PropTypes.array.isRequired,
+    block      : React.PropTypes.object.isRequired,
+    blockTypes : React.PropTypes.object.isRequired,
+    onAdd      : React.PropTypes.func.isRequired
   },
 
   getDefaultProps() {
@@ -19,31 +22,28 @@ var BlockMenu = React.createClass({
   },
 
   getButton(blockType) {
-    var { block, position } = this.props
+    let { actions } = this.context.flux
 
-    return React.createElement(AddBlock, {
-      key   : blockType.id,
-      onAdd : this.context.flux.actions.blocks.create,
-      block, blockType, position
-    })
+    return (<AddBlock key={ blockType.id }
+                      onAdd={ actions.blocks.create }
+                      block={ this.props.block }
+                      position={ this.props.position }
+                      blockType={ blockType } />)
   },
 
-  getNavigation(allowed) {
-    return (
-      <nav ref="buttons" className="col-menu" role="navigation">
-        { allowed.map(this.getButton) }
-      </nav>
-    )
+  getBlockTypes() {
+    let { allowed } = this.context
+    let { block, blockTypes } = this.props
+
+    return block.parent ? blockTypes.subset(block.type) : blockTypes.within(allowed)
   },
 
   render() {
-    let { allowed, flux } = this.context
-    let { blockTypes } = flux.stores
-    let { block } = this.props
-
-    let whitelist = block.parent ? blockTypes.subset(block.type) : blockTypes.within(allowed)
-
-    return whitelist.length? this.getNavigation(whitelist) : null
+    return (
+      <nav className="col-menu" role="navigation">
+        { this.getBlockTypes().map(this.getButton) }
+      </nav>
+    )
   },
 
 })

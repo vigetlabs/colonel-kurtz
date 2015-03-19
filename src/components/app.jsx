@@ -27,11 +27,11 @@ let App = React.createClass({
   },
 
   render() {
-    let root = this.props.flux.stores.blocks.root()
+    let { root, flux } = this.props
 
     return (
       <div className="colonel">
-        <BlockMenu block={ root } position={ root } />
+        <BlockMenu block={ root } blockTypes={ flux.stores.blockTypes } />
         <EditorBlock block={ root } />
       </div>
     )

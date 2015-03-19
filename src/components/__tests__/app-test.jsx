@@ -4,7 +4,7 @@ import BlockTypeStore from 'stores/block_type_store'
 
 let TestUtils = React.addons.TestUtils
 
-describe('Components - App', function() {
+describe.only('Components - App', function() {
 
   before(function() {
     BlockTypeStore._create({

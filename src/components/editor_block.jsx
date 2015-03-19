@@ -1,10 +1,9 @@
-import Animation  from 'react/lib/ReactCSSTransitionGroup'
-import Block      from 'components/block'
-import BlockMenu  from 'components/block_menu'
-import BlockStore from 'stores/block_store'
-import Orderable  from 'components/orderable'
-import React      from 'react'
-import Toolbar    from 'components/toolbar'
+import Animation   from 'react/lib/ReactCSSTransitionGroup'
+import Block       from 'components/block'
+import BlockMenu   from 'components/block_menu'
+import Orderable   from 'components/orderable'
+import React       from 'react'
+import RemoveBlock from 'components/remove_block'
 
 let EditorBlock = React.createClass({
 
@@ -22,7 +21,7 @@ let EditorBlock = React.createClass({
   },
 
   getBlockList() {
-    let { block } = this.props
+    let { block }  = this.props
     let { blocks } = this.context.flux.stores
 
     return (
@@ -33,24 +32,25 @@ let EditorBlock = React.createClass({
   },
 
   render(): any {
-    let { actions, stores } = this.context.flux
+    let { allowed, flux } = this.context
+    let { blockTypes } = flux.stores
     let { block } = this.props
 
     return block.parent ? (
       <div>
-        <Orderable block={ block } onMove={ actions.blocks.move }>
-          <BlockMenu block={ block } position={ block.parent } />
+        <Orderable block={ block }>
+          <BlockMenu block={ block } blockTypes={ blockTypes } position={ block.parent } />
 
-          <Block block={ block }
-                 blockType={ stores.blockTypes.find(block.type) }
-                 onUpdate={ actions.blocks.update } />
+          <Block block={ block } blockType={ blockTypes.find(block.type) } />
 
           { this.getBlockList() }
 
-          <Toolbar block={ block } onDestroy={ actions.blocks.destroy } />
+          <div className="col-toolbar">
+            <RemoveBlock block={ block } onDestroy={ flux.actions.blocks.destroy } />
+          </div>
         </Orderable>
 
-        <BlockMenu block={ block.parent } position={ block } />
+        <BlockMenu block={ block.parent } blockTypes={ blockTypes } position={ block } />
       </div>
     ): this.getBlockList()
   }
