@@ -10,16 +10,13 @@ import React       from 'react'
 let App = React.createClass({
 
   propTypes: {
-    flux : React.PropTypes.object.isRequired
+    allowed : React.PropTypes.array,
+    flux    : React.PropTypes.object.isRequired
   },
 
-  childContextTypes: {
-    flux : React.PropTypes.object.isRequired
-  },
-
-  getChildContext() {
+  getDefaultProps() {
     return {
-      flux : this.props.flux
+      allowed: []
     }
   },
 
@@ -35,7 +32,9 @@ let App = React.createClass({
   },
 
   render() {
-    return (<div>{ this.props.root.map(this.getElement) }</div>)
+    let root = this.props.flux.stores.blocks.root()
+
+    return (<div>{ root.map(this.getElement) }</div>)
   }
 
 })

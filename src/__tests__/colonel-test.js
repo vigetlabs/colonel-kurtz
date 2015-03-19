@@ -7,9 +7,9 @@ describe('Colonel', function() {
       el: document.createElement('div')
     })
 
-    col.addCallback(() => done())
+    col.listen(() => done())
 
-    col.simulateChange()
+    col.pump()
   })
 
   it ('can be unsubscribed to', function() {
@@ -19,10 +19,10 @@ describe('Colonel', function() {
 
     let mock = sinon.spy()
 
-    col.addCallback(mock)
-    col.removeCallback(mock)
+    col.listen(mock)
+    col.ignore(mock)
 
-    col.simulateChange()
+    col.pump()
 
     mock.should.not.have.been.called
   })

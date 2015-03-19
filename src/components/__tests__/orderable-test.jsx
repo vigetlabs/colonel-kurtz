@@ -1,3 +1,4 @@
+import Block      from 'models/block'
 import Orderable  from 'components/orderable'
 import BlockStore from 'stores/block_store'
 
@@ -6,9 +7,9 @@ let TestUtils = React.addons.TestUtils
 describe('Components - Orderable', function() {
 
   it ('moves items that are dropped upon it', function() {
-    let block     = BlockStore._create({})
+    let block     = new Block({ content: {} })
     let mock      = sinon.mock()
-    let component = TestUtils.renderIntoDocument(<Orderable onDrop={ mock } block={ block } />)
+    let component = TestUtils.renderIntoDocument(<Orderable onMove={ mock } block={ block } />)
 
     TestUtils.Simulate.drop(component.getDOMNode(), {
       preventDefault : sinon.mock(),

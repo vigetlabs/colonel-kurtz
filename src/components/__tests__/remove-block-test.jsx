@@ -1,3 +1,4 @@
+import Block       from 'models/block'
 import RemoveBlock from 'components/remove_block'
 import BlockStore  from 'stores/block_store'
 
@@ -5,17 +6,14 @@ let TestUtils = React.addons.TestUtils
 
 describe('Components - RemoveBlock', function() {
 
-  it ('can render all children of a block', function(done) {
-    let block     = BlockStore._create({ type: 'app-test' })
-    let component = TestUtils.renderIntoDocument(<RemoveBlock block={ block } />)
+  it ('calls onDestroy when clicked', function() {
+    let block     = new Block({ type: 'app-test' })
+    let mock      = sinon.mock()
+    let component = TestUtils.renderIntoDocument(<RemoveBlock block={ block } onDestroy={ mock } />)
 
     TestUtils.Simulate.click(component.getDOMNode())
 
-    try {
-      BlockStore.find(block.id)
-    } catch(x) {
-      done()
-    }
+    mock.should.have.been.called
   })
 
 })

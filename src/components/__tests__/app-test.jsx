@@ -1,46 +1,39 @@
 import App            from '../app'
 import BlockStore     from 'stores/block_store'
 import BlockTypeStore from 'stores/block_type_store'
+import Colonel        from 'colonel'
 
 let TestUtils = React.addons.TestUtils
 
-describe.only('Components - App', function() {
+describe('Components - App', function() {
+  var app;
 
-  before(function() {
-    BlockTypeStore._create({
-      id: 'app-test',
-      component: React.createClass({
-        defaultContent() {},
-        render() {
-          return (<p>Test</p>)
-        }
-      })
+  beforeEach(function() {
+    app = new Colonel({
+      seed: {
+        blockTypes: [{
+          id: 'app-test',
+          component: React.createClass({
+            render() { return (<p/>)}
+          })
+        }]
+      }
     })
   })
 
   it ('can render when given a block', function() {
-    TestUtils.renderIntoDocument(<App block={ BlockStore._create({}) } />)
+    TestUtils.renderIntoDocument(<App flux={ app } />)
   })
 
   it ('can render all children of a block', function() {
-    let root = BlockStore._create({ type: 'app-test' })
+    let root = app.stores.blocks._create({ type: 'app-test' })
 
-    let a = BlockStore._create({ parent: root, type: 'app-test' })
-    let b = BlockStore._create({ parent: a, type: 'app-test' })
-    let c = BlockStore._create({ parent: b, type: 'app-test' })
-    let d = BlockStore._create({ parent: c, type: 'app-test' })
+    let a = app.stores.blocks._create({ parent: root, type: 'app-test' })
+    let b = app.stores.blocks._create({ parent: a, type: 'app-test' })
+    let c = app.stores.blocks._create({ parent: b, type: 'app-test' })
+    let d = app.stores.blocks._create({ parent: c, type: 'app-test' })
 
-    TestUtils.renderIntoDocument(<App block={ root } />)
+    TestUtils.renderIntoDocument(<App flux={ app } />)
   })
 
-  // TODO: This has been removed temporarily while we figure
-  // out the best way to manage menus and action bar items
-  it.skip ('can go fullscreen', function() {
-    let mock = sinon.mock()
-    let app  = TestUtils.renderIntoDocument(<App block={ BlockStore._create({}) } onFullscreen={ mock } />)
-
-    TestUtils.Simulate.click(app.refs.fullscreen.getDOMNode())
-
-    mock.should.have.been.called
-  })
 })

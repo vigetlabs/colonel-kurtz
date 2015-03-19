@@ -25,7 +25,7 @@ let EditorBlock = React.createClass({
 
     return (
       <Animation component="div" className="col-content" transitionName="col-appear">
-        { flux.blocks.childrenFor(block).map(this.getBlock) }
+        { flux.stores.blocks.childrenFor(block).map(this.getBlock) }
       </Animation>
     )
   },

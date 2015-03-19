@@ -70,8 +70,6 @@ class BlockStore extends Store {
     var block = this.find(params.id)
 
     block.content = { ...block.content, ...params.content }
-
-    Diode.publish()
   }
 
   _reset() {

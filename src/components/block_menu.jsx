@@ -20,10 +20,10 @@ var BlockMenu = React.createClass({
     let { block, onAdd, position } = this.props
 
     return (<AddBlock key={ blockType.id }
-                      onAdd={ onAdd }
                       block={ block }
-                      position={ position }
-                      blockType={ blockType } />)
+                      blockType={ blockType }
+                      onAdd={ onAdd }
+                      position={ position } />)
   },
 
   getBlockTypes() {

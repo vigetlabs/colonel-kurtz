@@ -1,24 +1,20 @@
-import AddBlock   from 'components/add_block'
-import BlockType  from 'stores/block_type_store'
-import BlockStore from 'stores/block_store'
+import AddBlock from 'components/add_block'
+import Block    from 'models/block'
 
 let TestUtils = React.addons.TestUtils
 
-describe.only('Components - AddBlock', function() {
-  before(function() {
-    BlockType._create({
-      id: 'text'
-    })
-  })
+describe('Components - AddBlock', function() {
+  let blockType = { id: 'c0', icon: 'fiz', label: 'fiz' }
+  let block = new Block({})
 
   it ('can create a new block of a given time when clicked', function() {
-    let component = TestUtils.renderIntoDocument(<AddBlock type="text" />)
-
-    let spy = sinon.spy(BlockStore, '_create')
+    let mock = sinon.mock()
+    let component = TestUtils.renderIntoDocument(
+      <AddBlock block={ block } blockType={ blockType } onAdd={ mock } />
+    )
 
     TestUtils.Simulate.click(component.getDOMNode())
 
-    spy.should.have.been.called
-    spy.restore()
+    mock.should.have.been.called
   })
 })

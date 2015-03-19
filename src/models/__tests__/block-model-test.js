@@ -1,5 +1,4 @@
-import Block      from 'models/block'
-import BlockStore from 'stores/block_store'
+import Block from 'models/block'
 
 describe('Models - Block', function() {
 
@@ -10,15 +9,9 @@ describe('Models - Block', function() {
     a.id.should.not.equal(b.id)
   })
 
-  it ('can serialize', function() {
-    let parent = BlockStore._create({ type: 'text', content: 'parent' })
-    let child  = BlockStore._create({ type: 'text', content: 'child', parent })
-
-    let json  = parent.toJSON()
-
-    json.should.have.property('type', 'text')
-    json.should.have.property('content', 'parent')
-    json.blocks[0].should.have.property('content', 'child')
+  it ('serialize to an id', function() {
+    let block = new Block({})
+    block.valueOf().should.equal(block.id)
   })
 
 })

@@ -1,42 +1,31 @@
 import Block          from 'components/block'
-import BlockTypeStore from 'stores/block_type_store'
-import BlockStore     from 'stores/block_store'
+import BlockModel     from 'models/block'
 
 let TestUtils = React.addons.TestUtils
 
-describe('Components - AddBlock', function() {
-  before(function() {
-    BlockTypeStore._create({
-      id: 'block-test',
-      component: React.createClass({
-        defaultContent() {},
-        render() {
-          return (<p>Test</p>)
-        }
-      })
-    })
+describe('Components - Block', function() {
+  let component = React.createClass({
+    render() {
+      return (<p>Test</p>)
+    }
   })
 
+  let block = new Block()
+
+  let blockType = { id: 'c0', icon: 'fiz', label: 'fiz', component }
+
   it ('can renders the component of its block type', function() {
-    let block     = BlockStore._create({ type: 'block-test' })
-    let component = TestUtils.renderIntoDocument(<Block block={ block } />)
+    let component = TestUtils.renderIntoDocument(<Block block={ block } blockType={ blockType } onUpdate={ sinon.mock() }/>)
 
     component.getDOMNode().textContent.should.equal('Test')
   })
 
   it ('passes an updateContent callback method to the block', function() {
-    let block     = BlockStore._create({ type: 'block-test' })
-    let component = TestUtils.renderIntoDocument(<Block block={ block } />)
+    let mock = sinon.mock()
+    let component = TestUtils.renderIntoDocument(<Block block={ block } blockType={ blockType } onUpdate={ mock }/>)
 
     component.refs.block.props.updateContent({ foo: 'bar' })
-    block.content.foo.should.equal('bar')
-  })
 
-  it ('passes initialContent to the block', function() {
-    let content   = { test: true }
-    let block     = BlockStore._create({ type: 'block-test', content })
-    let component = TestUtils.renderIntoDocument(<Block block={ block } />)
-
-    component.refs.block.props.should.have.property('initialContent', content)
+    mock.should.have.been.called
   })
 })
