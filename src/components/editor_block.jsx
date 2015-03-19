@@ -3,54 +3,58 @@ import Block       from 'components/block'
 import BlockMenu   from 'components/block_menu'
 import Orderable   from 'components/orderable'
 import React       from 'react'
-import RemoveBlock from 'components/remove_block'
+import Toolbar     from 'components/toolbar'
 
 let EditorBlock = React.createClass({
 
-  contextTypes: {
-    allowed : React.PropTypes.array.isRequired,
-    flux    : React.PropTypes.object.isRequired
-  },
-
   propTypes: {
-    block : React.PropTypes.object.isRequired
+    allowed    : React.PropTypes.array.isRequired,
+    block      : React.PropTypes.object.isRequired,
+    blockTypes : React.PropTypes.object.isRequired,
+    flux       : React.PropTypes.object.isRequired
   },
 
   getBlock(block): any {
-    return (<EditorBlock key={ block.id } block={ block } />)
+    let { allowed, blockTypes, flux } = this.props
+
+    return (<EditorBlock key={ block.id } flux={ flux } allowed={ allowed } block={ block } blockTypes={ blockTypes } />)
   },
 
   getBlockList() {
-    let { block }  = this.props
-    let { blocks } = this.context.flux.stores
+    let { block, flux }  = this.props
 
     return (
       <Animation component="div" className="col-content" transitionName="col-appear">
-        { blocks.childrenFor(block).map(this.getBlock) }
+        { flux.blocks.childrenFor(block).map(this.getBlock) }
       </Animation>
     )
   },
 
   render(): any {
-    let { allowed, flux } = this.context
-    let { blockTypes } = flux.stores
-    let { block } = this.props
+    let { allowed, block, blockTypes } = this.props
+    let { create, update, move, destroy } = this.props.flux.actions.blocks
 
     return block.parent ? (
       <div>
-        <Orderable block={ block }>
-          <BlockMenu block={ block } blockTypes={ blockTypes } position={ block.parent } />
+        <Orderable block={ block } onMove={ move }>
+          <BlockMenu allowed={ allowed }
+                     block={ block }
+                     blockTypes={ blockTypes }
+                     position={ block.parent }
+                     onAdd={ create } />
 
-          <Block block={ block } blockType={ blockTypes.find(block.type) } />
+          <Block block={ block } blockType={ blockTypes.find(block.type) } onUpdate={ update } />
 
           { this.getBlockList() }
 
-          <div className="col-toolbar">
-            <RemoveBlock block={ block } onDestroy={ flux.actions.blocks.destroy } />
-          </div>
+          <Toolbar block={ block } onDestroy={ destroy } />
         </Orderable>
 
-        <BlockMenu block={ block.parent } blockTypes={ blockTypes } position={ block } />
+        <BlockMenu allowed={ allowed }
+                   block={ block.parent }
+                   blockTypes={ blockTypes }
+                   position={ block }
+                   onAdd={ create } />
       </div>
     ): this.getBlockList()
   }

@@ -1,7 +1,5 @@
-/* @flow */
-
-var Button = require('./ui/button')
-var React  = require('react')
+import Button from './ui/button'
+import React  from 'react'
 
 var AddBlock = React.createClass({
 
@@ -10,7 +8,7 @@ var AddBlock = React.createClass({
     onAdd     : React.PropTypes.func.isRequired
   },
 
-  render(): any {
+  render() {
     var { icon, id, label } = this.props.blockType
 
     return (
@@ -20,7 +18,7 @@ var AddBlock = React.createClass({
     )
   },
 
-  _onClick(e:Event): void {
+  _onClick(e) {
     var { block, position, blockType } = this.props
 
     this.props.onAdd({
@@ -34,4 +32,4 @@ var AddBlock = React.createClass({
 
 })
 
-module.exports = AddBlock
+export default AddBlock

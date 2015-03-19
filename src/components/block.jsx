@@ -3,13 +3,10 @@ import React from 'react'
 
 let Block = React.createClass({
 
-  contextTypes: {
-    flux: React.PropTypes.object.isRequired
-  },
-
   propTypes: {
     block     : React.PropTypes.object.isRequired,
-    blockType : React.PropTypes.object.isRequired
+    blockType : React.PropTypes.object.isRequired,
+    onUpdate  : React.PropTypes.func.isRequired
   },
 
   mixins: [ Pure ],
@@ -26,7 +23,7 @@ let Block = React.createClass({
   },
 
   _onUpdateContent(content) {
-    this.context.flux.actions.blocks.update(this.props.block.id, content)
+    this.props.onUpdate(this.props.block.id, content)
   }
 
 })

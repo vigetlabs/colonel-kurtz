@@ -3,11 +3,6 @@ var React    = require('react')
 
 var BlockMenu = React.createClass({
 
-  contextTypes: {
-    allowed : React.PropTypes.array.isRequired,
-    flux    : React.PropTypes.object.isRequired
-  },
-
   propTypes: {
     allowed    : React.PropTypes.array.isRequired,
     block      : React.PropTypes.object.isRequired,
@@ -22,18 +17,17 @@ var BlockMenu = React.createClass({
   },
 
   getButton(blockType) {
-    let { actions } = this.context.flux
+    let { block, onAdd, position } = this.props
 
     return (<AddBlock key={ blockType.id }
-                      onAdd={ actions.blocks.create }
-                      block={ this.props.block }
-                      position={ this.props.position }
+                      onAdd={ onAdd }
+                      block={ block }
+                      position={ position }
                       blockType={ blockType } />)
   },
 
   getBlockTypes() {
-    let { allowed } = this.context
-    let { block, blockTypes } = this.props
+    let { allowed, block, blockTypes } = this.props
 
     return block.parent ? blockTypes.subset(block.type) : blockTypes.within(allowed)
   },

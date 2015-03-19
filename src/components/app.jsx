@@ -10,31 +10,32 @@ import React       from 'react'
 let App = React.createClass({
 
   propTypes: {
-    allowed : React.PropTypes.array.isRequired,
-    flux    : React.PropTypes.object.isRequired
+    flux : React.PropTypes.object.isRequired
   },
 
   childContextTypes: {
-    allowed : React.PropTypes.array.isRequired,
-    flux    : React.PropTypes.object.isRequired
+    flux : React.PropTypes.object.isRequired
   },
 
   getChildContext() {
     return {
-      allowed : this.props.allowed,
-      flux    : this.props.flux
+      flux : this.props.flux
     }
   },
 
-  render() {
-    let { root, flux } = this.props
+  getElement(block) {
+    let { allowed, flux } = this.props
 
     return (
-      <div className="colonel">
-        <BlockMenu block={ root } blockTypes={ flux.stores.blockTypes } />
-        <EditorBlock block={ root } />
+      <div className="colonel" key={ block.id }>
+        <BlockMenu allowed={ allowed } block={ block } blockTypes={ flux.stores.blockTypes } onAdd={ flux.actions.blocks.create } />
+        <EditorBlock allowed={ allowed } flux={ flux } block={ block } blockTypes={ flux.stores.blockTypes } />
       </div>
     )
+  },
+
+  render() {
+    return (<div>{ this.props.root.map(this.getElement) }</div>)
   }
 
 })

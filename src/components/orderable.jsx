@@ -1,6 +1,5 @@
-/* @flow */
-var Dragon = require('react-dragon')
-var React  = require('react')
+import Dragon from 'react-dragon'
+import React  from 'react'
 
 var Orderable = React.createClass({
 
@@ -9,7 +8,7 @@ var Orderable = React.createClass({
     onMove : React.PropTypes.func.isRequired
   },
 
-  render(): any {
+  render() {
     return (
       <Dragon className="col-block" message={ this.props.block.id } onDrop={ this._onDrop }>
         { this.props.children }
@@ -17,10 +16,10 @@ var Orderable = React.createClass({
     )
   },
 
-  _onDrop(fromId: number) {
+  _onDrop(fromId) {
     this.props.onMove(fromId, this.props.block.id)
   }
 
 })
 
-module.exports = Orderable
+export default Orderable

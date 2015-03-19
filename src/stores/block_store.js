@@ -27,7 +27,7 @@ class BlockStore extends Store {
   }
 
   root() {
-    return this.state.filter(b => !b.parent)[0]
+    return this.state.filter(b => !b.parent)
   }
 
   all() {
@@ -66,10 +66,10 @@ class BlockStore extends Store {
     })
   }
 
-  _update(id, content) {
-    var block = this.find(id)
+  _update(params) {
+    var block = this.find(params.id)
 
-    block.content = { ...block.content, ...content }
+    block.content = { ...block.content, ...params.content }
 
     Diode.publish()
   }
@@ -89,7 +89,7 @@ class BlockStore extends Store {
     this.state.splice(to, 0, this.state.splice(from, 1)[0]);
   }
 
-  deserialize(items=[], parent = this._create({})): void {
+  deserialize(items=[], parent): void {
     for (var i = 0, len = items.length; i < len; i++) {
       let { blocks, content, type } = items[i]
       this.deserialize(blocks, this._create({ content, parent, type }))
@@ -99,9 +99,7 @@ class BlockStore extends Store {
   }
 
   serialize() {
-    let children = this.childrenFor(this.root())
-
-    return children.map(function jsonify (block) {
+    return this.root().map(function jsonify (block) {
       return {
         content : block.content,
         type    : block.type,
