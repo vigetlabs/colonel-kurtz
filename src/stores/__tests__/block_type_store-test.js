@@ -1,6 +1,4 @@
-import Dispatcher      from 'dispatcher'
-import BlockTypeStore  from 'stores/block_type_store'
-import BlockTypeCreate from 'actions/block_type/create'
+import BlockTypeStore from 'stores/block_type_store'
 
 describe('Stores - Block Type', function() {
   const ID = 'test'

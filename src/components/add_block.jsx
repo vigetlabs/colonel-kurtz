@@ -5,12 +5,9 @@ var React  = require('react')
 
 var AddBlock = React.createClass({
 
-  contextTypes: {
-    actions : React.PropTypes.object.isRequired
-  },
-
   propTypes: {
-    blockType: React.PropTypes.object.isRequired
+    blockType : React.PropTypes.object.isRequired,
+    onAdd     : React.PropTypes.func.isRequired
   },
 
   render(): any {
@@ -26,7 +23,7 @@ var AddBlock = React.createClass({
   _onClick(e:Event): void {
     var { block, position, blockType } = this.props
 
-    this.context.actions.blocks.create({
+    this.props.onAdd({
       parent : block,
       type   : blockType.id,
       position

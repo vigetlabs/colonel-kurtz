@@ -4,9 +4,8 @@ var React    = require('react')
 var BlockMenu = React.createClass({
 
   contextTypes: {
-    actions : React.PropTypes.object.isRequired,
     allowed : React.PropTypes.array.isRequired,
-    stores  : React.PropTypes.object.isRequired
+    flux    : React.PropTypes.object.isRequired
   },
 
   propTypes: {
@@ -23,10 +22,9 @@ var BlockMenu = React.createClass({
     var { block, position } = this.props
 
     return React.createElement(AddBlock, {
-      key: blockType.id,
-      block,
-      blockType,
-      position
+      key   : blockType.id,
+      onAdd : this.context.flux.actions.blocks.create,
+      block, blockType, position
     })
   },
 
@@ -39,10 +37,11 @@ var BlockMenu = React.createClass({
   },
 
   render() {
-    let { allowed, stores } = this.context
+    let { allowed, flux } = this.context
+    let { blockTypes } = flux.stores
     let { block } = this.props
 
-    let whitelist = block.parent ? stores.blockTypes.subset(block.type) : stores.blockTypes.within(allowed)
+    let whitelist = block.parent ? blockTypes.subset(block.type) : blockTypes.within(allowed)
 
     return whitelist.length? this.getNavigation(whitelist) : null
   },

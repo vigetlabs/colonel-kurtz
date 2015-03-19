@@ -9,9 +9,8 @@ import Toolbar    from 'components/toolbar'
 let EditorBlock = React.createClass({
 
   contextTypes: {
-    actions : React.PropTypes.object.isRequired,
     allowed : React.PropTypes.array.isRequired,
-    stores  : React.PropTypes.object.isRequired
+    flux    : React.PropTypes.object.isRequired
   },
 
   propTypes: {
@@ -19,16 +18,12 @@ let EditorBlock = React.createClass({
   },
 
   getBlock(block): any {
-    return React.createElement(EditorBlock, {
-      ...this.props,
-      key   : block.id,
-      block : block
-    })
+    return (<EditorBlock key={ block.id } block={ block } />)
   },
 
   getBlockList() {
     let { block } = this.props
-    let { blocks } = this.context.stores
+    let { blocks } = this.context.flux.stores
 
     return (
       <Animation component="div" className="col-content" transitionName="col-appear">
@@ -38,12 +33,12 @@ let EditorBlock = React.createClass({
   },
 
   render(): any {
-    let { actions, stores } = this.context
-    let { block   } = this.props
+    let { actions, stores } = this.context.flux
+    let { block } = this.props
 
     return block.parent ? (
       <div>
-        <Orderable block={ block }>
+        <Orderable block={ block } onMove={ actions.blocks.move }>
           <BlockMenu block={ block } position={ block.parent } />
 
           <Block block={ block }

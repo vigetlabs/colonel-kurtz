@@ -37,7 +37,7 @@ describe('Colonel', function() {
     col.el.innerHTML.should.not.equal('')
   })
 
-  describe("Deprecated API", function() {
+  describe("Deprecated APIs", function() {
 
     it ('supports addCallback', function(done) {
       let col = new ColonelKurtz({

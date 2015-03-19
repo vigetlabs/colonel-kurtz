@@ -30,9 +30,9 @@ class ColonelKurtz extends Microcosm {
   }
 
   render() {
-    let { actions, el, stores, types } = this
+    let { el, types } = this
 
-    let component = React.createElement(App, { actions, stores, allowed: types })
+    let component = React.createElement(App, { flux: this, allowed: types })
 
     React.render(component, el)
 
@@ -62,7 +62,7 @@ class ColonelKurtz extends Microcosm {
 
 ColonelKurtz.createBlock  = require('./utils/createBlock')
 ColonelKurtz.addBlockType = ColonelKurtz.addBlockTypes = function() {
-  warning('ColonelKurtz.addBlockType has been removed. Pass `blockTypes` as a key for seed data')
+  throw new Error('ColonelKurtz.addBlockType has been removed. Pass `blockTypes` as a key for seed data')
 }
 
 export default ColonelKurtz

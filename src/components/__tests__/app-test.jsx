@@ -33,7 +33,9 @@ describe('Components - App', function() {
     TestUtils.renderIntoDocument(<App block={ root } />)
   })
 
-  it ('can go fullscreen', function() {
+  // TODO: This has been removed temporarily while we figure
+  // out the best way to manage menus and action bar items
+  it.skip ('can go fullscreen', function() {
     let mock = sinon.mock()
     let app  = TestUtils.renderIntoDocument(<App block={ BlockStore._create({}) } onFullscreen={ mock } />)
 

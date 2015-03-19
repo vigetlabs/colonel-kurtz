@@ -1,14 +1,10 @@
-import Dispatcher   from 'dispatcher'
-import BlockStore   from 'stores/block_store'
-import BlockCreate  from 'actions/block/create'
-import BlockDestroy from 'actions/block/destroy'
-import BlockUpdate  from 'actions/block/update'
-import BlockMove    from 'actions/block/move'
+import BlockStore from 'stores/block_store'
 
 describe('Stores - Block', function() {
+  let store = null
 
   beforeEach(function() {
-    BlockStore._reset()
+    store = new Store()
   })
 
   it ('can retrieve all records associated with it', function() {
