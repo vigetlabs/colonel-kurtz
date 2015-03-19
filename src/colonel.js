@@ -28,16 +28,14 @@ class ColonelKurtz extends Microcosm {
     this.listen(this.render.bind(this))
   }
 
+  create() {
+    let { stores, types } = this
+
+    return (<App allowed={ types } flux={ this } root={ stores.blocks.root() } />)
+  }
+
   render() {
-    let { el, stores, types } = this
-
-    let component = React.createElement(App, {
-      allowed : types,
-      flux    : this,
-      root    : stores.blocks.root()
-    })
-
-    React.render(component, el)
+    React.render(this.create(), this.el)
 
     this.rendered = true
 
@@ -45,17 +43,17 @@ class ColonelKurtz extends Microcosm {
   }
 
   addCallback(fn) {
-    warning('ColonelKurtz::addCallback will be deprecated in v3.0.0. Instead use listen.')
+    warning('ColonelKurtz::addCallback will be removed in v3.0.0. Instead use listen.')
     return this.listen(fn)
   }
 
   removeCallback(fn) {
-    warning('ColonelKurtz::removeCallback will be deprecated in v3.0.0. Instead use ignore.')
+    warning('ColonelKurtz::removeCallback will be removed in v3.0.0. Instead use ignore.')
     return this.ignore(fn)
   }
 
   simulateChange() {
-    warning('ColonelKurtz::simulateChange will be deprecated in v3.0.0. Instead use pump.')
+    warning('ColonelKurtz::simulateChange will be removed in v3.0.0. Instead use pump.')
     this.pump(this.toJSON())
   }
 

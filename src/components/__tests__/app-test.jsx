@@ -1,7 +1,4 @@
-import App            from '../app'
-import BlockStore     from 'stores/block_store'
-import BlockTypeStore from 'stores/block_type_store'
-import Colonel        from 'colonel'
+import Colonel from 'colonel'
 
 let TestUtils = React.addons.TestUtils
 
@@ -21,10 +18,6 @@ describe('Components - App', function() {
     })
   })
 
-  it ('can render when given a block', function() {
-    TestUtils.renderIntoDocument(<App flux={ app } />)
-  })
-
   it ('can render all children of a block', function() {
     let root = app.stores.blocks._create({ type: 'app-test' })
 
@@ -33,7 +26,7 @@ describe('Components - App', function() {
     let c = app.stores.blocks._create({ parent: b, type: 'app-test' })
     let d = app.stores.blocks._create({ parent: c, type: 'app-test' })
 
-    TestUtils.renderIntoDocument(<App flux={ app } />)
+    TestUtils.renderIntoDocument(app.create())
   })
 
 })
