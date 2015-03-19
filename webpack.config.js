@@ -56,7 +56,7 @@ module.exports = {
       {
         test    : /\.jsx*$/,
         exclude : /node_modules/,
-        loader  : 'source-map!babel-loader?experimental&loose'
+        loader  : 'source-map!babel-loader?experimental'
       },
       {
         test    : /\.json$/,

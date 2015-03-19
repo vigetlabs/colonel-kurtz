@@ -64,6 +64,14 @@ describe('Colonel', function() {
       mock.should.not.have.been.called
     })
 
+    it ('throws an error if you try to addBlockTypes the old way', function(done) {
+      try {
+        ColonelKurtz.addBlockType()
+      } catch(x) {
+        done()
+      }
+    })
+
   })
 
 })

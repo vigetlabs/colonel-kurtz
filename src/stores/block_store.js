@@ -72,10 +72,6 @@ class BlockStore extends Store {
     block.content = { ...block.content, ...params.content }
   }
 
-  _reset() {
-    this.state = []
-  }
-
   _indexOf(ref) {
     return this.state.indexOf(this.find(ref.valueOf()))
   }

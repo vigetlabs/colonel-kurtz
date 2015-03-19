@@ -16,20 +16,6 @@ class BlockTypeStore extends Store {
     return addBlockType(seed)
   }
 
-  register({ blockTypes }) {
-    return {
-      [blockTypes.create] : this._create
-    }
-  }
-
-  map(fn, scope = this) {
-    return this.state.map(fn, scope)
-  }
-
-  all() {
-    return this.state
-  }
-
   within(types=[]) {
     return this.state.filter(i => types.indexOf(i.id) > -1)
   }
@@ -50,10 +36,6 @@ class BlockTypeStore extends Store {
     invariant(params.id, `BlockTypes must have an identifier`)
 
     this.state = this.state.concat({ ..._defaults, ...params })
-  }
-
-  _remove(id) {
-    this.state = this.state.filter(i => i.id !== id)
   }
 
 }

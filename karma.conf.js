@@ -11,11 +11,13 @@ module.exports = function(config) {
     frameworks: [ 'mocha', 'sinon-chai' ],
 
     files: [
-      'src/**/__tests__/*.js*'
+      'src/**/__tests__/*.js*',
+      'lib/**/__tests__/*.js*',
     ],
 
     preprocessors: {
-      'src/**/__tests__/*.js*': [ 'webpack' ]
+      'src/**/__tests__/*.js*': [ 'webpack' ],
+      'lib/**/__tests__/*.js*': [ 'webpack' ]
     },
 
     reporters: [ 'nyan', 'coverage' ],

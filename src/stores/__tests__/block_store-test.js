@@ -1,17 +1,15 @@
-import BlockStore from 'stores/block_store'
+import Colonel from 'colonel'
 
 describe('Stores - Block', function() {
+  let app   = null
   let store = null
 
   beforeEach(function() {
-    store = new BlockStore({
-      blocks: {
-        create  : 'CREATE',
-        destroy : 'DESTROY',
-        update  : 'UPDATE',
-        move    : 'MOVE'
-      }
-    }, [])
+    app = new Colonel({
+      el: document.createElement('div')
+    })
+
+    store = app.stores.blocks
   })
 
   it ('can get all children for a specific block', function() {
@@ -21,62 +19,91 @@ describe('Stores - Block', function() {
     store.childrenFor(parent).should.eql([ child ])
   })
 
-  describe('CRUD', function() {
-
-    it ('can create a record', function() {
-      store._create({})
+  it ('can create a record', function(done) {
+    app.actions.blocks.create({}).then(function() {
       store.all().length.should.equal(1)
+      done()
     })
+  })
 
-    it ('can accept another block for the position field', function() {
-      let first  = store._create({})
-      let second = store._create({})
-      let third  = store._create({ position: first })
+  it ('can update a record', function(done) {
+    let block = store._create({})
 
-      store._indexOf(third).should.equal(store._indexOf(first) + 1)
+    app.actions.blocks.update(block.id, { fiz: true }).then(function() {
+      block.content.fiz.should.equal(true)
+      done()
     })
+  })
 
-    it ('can find a record by id', function() {
-      let block = store._create({})
+  it ('can accept another block for the position field', function() {
+    let first  = store._create({})
+    let second = store._create({})
+    let third  = store._create({ position: first })
 
-      store.find(block.id).should.equal(block)
+    store._indexOf(third).should.equal(store._indexOf(first) + 1)
+  })
+
+  it ('can remove a record', function(done) {
+    let block = store._create({})
+
+    app.actions.blocks.destroy(block.id).then(function() {
+      store.state.length.should.equal(0)
+      done()
     })
+  })
 
-    it ('can remove a record', function() {
-      var start   = store.all().length
-      var created = store._create({})
+  it ('can move a record', function(done) {
+    let a = store._create({})
+    let b = store._create({})
 
-      store._destroy(created.id)
-
-      store.all().length.should.equal(start)
+    app.actions.blocks.move(a.id, b.id).then(function() {
+      store._indexOf(a).should.equal(1)
+      done()
     })
+  })
 
-    it ('removes children of a removed parent', function() {
-      let parent = store._create({})
-      let child  = store._create({ parent })
-      let other  = store._create({})
+  it ('removes children of a removed parent', function() {
+    let parent = store._create({})
+    let child  = store._create({ parent })
+    let other  = store._create({})
 
-      store._destroy(parent)
-      store.all().length.should.equal(1)
-    })
+    store._destroy(parent)
+    store.all().length.should.equal(1)
+  })
 
-    it ('can update a record', function() {
-      let block = store._create({})
+  it ('merges the content property', function() {
+    let block = store._create({ content: { first: 'one' }})
 
-      store._update({ id: block.id, content: { text: 'foo' } })
+    store._update({ id: block.id, content: { second: 'two' } })
 
-      store.find(block.id).content.text.should.equal('foo')
-    })
+    store.find(block.id).content.should.have.property('first', 'one')
+    store.find(block.id).content.should.have.property('second', 'two')
+  })
 
-    it ('merges the content property', function() {
-      let block = store._create({ content: { first: 'one' }})
+  it('can serialize to JSON', function() {
+    let parent = store._create({ content: 'parent' })
+    let child  = store._create({ parent, content: 'child' })
+    let json   = store.serialize()
 
-      store._update({ id: block.id, content: { second: 'two' } })
+    json.length.should.equal(1)
 
-      store.find(block.id).content.should.have.property('first', 'one')
-      store.find(block.id).content.should.have.property('second', 'two')
-    })
+    json[0].content.should.equal('parent')
 
+    json[0].blocks.length.should.equal(1)
+    json[0].blocks[0].content.should.equal('child')
+  })
+
+  it ('can deserialize JSON', function() {
+    let json = store.deserialize([{
+      type    : 'parent',
+      content : 'parent',
+      blocks: [{
+        type    : 'child',
+        content : 'child'
+      }]
+    }])
+
+    store.state.length.should.equal(2)
   })
 
 })

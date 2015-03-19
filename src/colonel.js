@@ -14,8 +14,7 @@ class ColonelKurtz extends Microcosm {
     super(seed)
 
     this.addActions({
-      blocks     : require('actions/blocks'),
-      blockTypes : require('actions/blockTypes')
+      blocks : require('actions/blocks')
     })
 
     this.addStores({
@@ -39,6 +38,8 @@ class ColonelKurtz extends Microcosm {
     })
 
     React.render(component, el)
+
+    this.rendered = true
 
     return this
   }
