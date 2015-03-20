@@ -1,7 +1,7 @@
 import Button    from './ui/button'
 import Strings   from 'constants/strings'
 import React     from 'react'
-import closeIcon from 'icons/close'
+import closeIcon from 'icons/more'
 
 let RemoveBlock = React.createClass({
 

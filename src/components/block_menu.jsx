@@ -29,7 +29,7 @@ var BlockMenu = React.createClass({
   getBlockTypes() {
     let { allowed, block, blockTypes } = this.props
 
-    return block.parent ? blockTypes.subset(block.type) : blockTypes.within(allowed)
+    return blockTypes.subset(block.type)
   },
 
   render() {

@@ -1,24 +1,27 @@
-import Pure  from 'pure'
-import React from 'react'
+import Pure    from 'pure'
+import React   from 'react'
+import Toolbar from 'components/toolbar'
 
 let Block = React.createClass({
 
   propTypes: {
     block     : React.PropTypes.object.isRequired,
     blockType : React.PropTypes.object.isRequired,
+    onDestroy : React.PropTypes.func.isRequired,
     onUpdate  : React.PropTypes.func.isRequired
   },
 
   mixins: [ Pure ],
 
   render() {
-    let { block, blockType }    = this.props
+    let { block, blockType, children, onDestroy } = this.props
     let { component:Component } = blockType
 
     return (
-      <div className="col-block-child">
-        <Component ref="block" initialContent={ block.content } updateContent={ this._onUpdateContent } />
-      </div>
+      <Component ref="block" content={ block.content } onChange={ this._onUpdateContent }>
+        <Toolbar block={ block } onDestroy={ onDestroy } />
+        <div className="col-children">{ children }</div>
+      </Component>
     )
   },
 

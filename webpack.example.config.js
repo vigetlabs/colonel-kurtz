@@ -1,7 +1,7 @@
 var Webpack = require('webpack')
 var config  = Object.create(require('./webpack.config'))
 
-config.devtool = 'inline-source-map'
+config.devtool = '#eval-source-map'
 
 config.entry = [
   "webpack-dev-server/client?http://localhost:8080",

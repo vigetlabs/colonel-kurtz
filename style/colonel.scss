@@ -1,16 +1,16 @@
 @import 'values/colors';
 
 @import 'generators/functions';
+@import 'generators/extensions';
 
 @import 'components/colonel';
 
 .colonel {
   @import 'reset';
   @import 'components/button';
-  @import 'components/block';
   @import 'components/toolbar';
   @import 'components/menu';
-  @import 'components/draggable';
   @import 'components/fullscreen';
+  @import 'components/fab';
   @import 'animations/appear';
 }

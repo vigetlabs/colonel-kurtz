@@ -55,7 +55,7 @@
     "karma-mocha": "^0.1.10",
     "karma-nyan-reporter": "0.0.60",
     "karma-sinon-chai": "^0.3.0",
-    "karma-sourcemap-loader": "^0.3.2",
+    "karma-sourcemap-loader": "^0.3.4",
     "karma-webpack": "^1.5.0",
     "microcosm": "^0.2.0",
     "mocha": "^2.1.0",

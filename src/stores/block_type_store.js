@@ -1,27 +1,27 @@
-/* @flow */
-
-var invariant    = require('react/lib/invariant')
-var addBlockType = require('utils/addBlockType')
+import invariant    from 'react/lib/invariant'
+import addBlockType from 'utils/addBlockType'
+import manifest     from 'manifest'
 
 import { Store } from 'microcosm'
 
-var _defaults = {
-  icon  : null,
-  types : null
-}
-
 class BlockTypeStore extends Store {
 
-  getInitialState(seed) {
-    return addBlockType(seed)
+  getInitialState(seed=[]) {
+    return addBlockType(seed.concat(manifest.blockTypes))
   }
 
   within(types=[]) {
     return this.state.filter(i => types.indexOf(i.id) > -1)
   }
 
+  without(types=[]) {
+    return this.state.filter(i => types.indexOf(i.id) === -1)
+  }
+
   subset(type) {
-    return this.within(this.find(type).types)
+    let types = this.find(type).types
+
+    return types === '*' ? this.without(type) : this.within(types)
   }
 
   find(id) {
@@ -34,8 +34,7 @@ class BlockTypeStore extends Store {
 
   _create(params) {
     invariant(params.id, `BlockTypes must have an identifier`)
-
-    this.state = this.state.concat({ ..._defaults, ...params })
+    this.state = this.state.concat(params)
   }
 
 }

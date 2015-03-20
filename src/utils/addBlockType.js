@@ -3,15 +3,14 @@
  * valid React element, it produces one using ./createBlock
  */
 
-var React       = require('react')
-var createBlock = require('./createBlock')
+import React from 'react'
 
-module.exports = function (config=[]) {
+export default function (config=[]) {
   return config.map(options => {
-    var component = options.component
+    let component = options.component
 
     if (typeof component === 'object') {
-      component = createBlock(component)
+      component = React.createClass(component)
     }
 
     return { ...options, component }

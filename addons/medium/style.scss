@@ -6,14 +6,29 @@ $col-medium-focus-color: rgba(#000, 0.875);
 
 @import './vendor/style';
 
+.col-block-medium {
+  position: relative;
+}
+
 .col-medium {
+  background: #fff;
+  border-top: 1px solid rgba(#000, 0.07);
   line-height: 1.75;
   font-size: 16px;
+  padding: 16px 48px 16px 16px;
+  transition: 0.2s all;
   min-height: 28px;
 
+  .col-block-medium:first-child & {
+    border-top: 0;
+  }
+
   &:focus {
+    border: 0;
     color: $col-medium-focus-color;
     outline: 0;
+    margin: 8px 0;
+    //transform: perspective(500) translate3d(0, 0, 5px);
   }
 
   h1,
@@ -39,13 +54,4 @@ $col-medium-focus-color: rgba(#000, 0.875);
     margin: 16px;
     font: italic 18px/1 Georgia, serif;
   }
-}
-
-.col-medium-preview {
-  @extend .col-medium;
-  color: $col-medium-focus-color;
-}
-
-.col-block-medium {
-  padding: 16px;
 }

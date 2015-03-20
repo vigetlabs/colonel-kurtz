@@ -1,0 +1,21 @@
+.col-btn-fab {
+  background: $colonel-primary;
+  border: 1px solid rgba(#000, 0.05);
+  box-shadow: 0 1px 4px 0 rgba(#000, 0.37), inset 0 1px 0 rgba(#fff, 0.2), inset 0 -1px 0 rgba(#fff, 0.1);
+  border-radius: 50%;
+  display: block;
+  color: white;
+  line-height: 0;
+  font-size: 24px;
+  font-weight: 500;
+  height: 56px;
+  top: 132px;
+  right: 56px;
+  position: absolute;
+  width: 56px;
+  text-shadow: 0 1px 1px rgba(#000, 0.2);
+
+  &:focus {
+    outline: none;
+  }
+}

@@ -7,9 +7,9 @@ module.exports = {
 
   entry: {
     'colonel-kurtz'  : './src/index.js',
-    'addons/medium'  : './addons/medium/index.js',
-    'addons/image'   : './addons/image/index.js',
-    'addons/youtube' : './addons/youtube/index.js'
+    'addons/medium'  : './addons/medium/index.jsx',
+    'addons/image'   : './addons/image/index.jsx',
+    'addons/youtube' : './addons/youtube/index.jsx'
   },
 
   output: {
@@ -31,6 +31,11 @@ module.exports = {
   },
 
   plugins: [
+    new Webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      }
+    }),
     new ExtractTextPlugin("colonel-kurtz.css", {
       disable: process.env.NODE_ENV !== 'production'
     })
@@ -45,27 +50,21 @@ module.exports = {
   module: {
     loaders: [
       {
+        test    : /\.json$/,
+        loader  : 'json'
+      },
+      {
+        test    : /\.jsx*$/,
+        exclude : /node_modules/,
+        loader  : 'babel?experimental'
+      },
+      {
         test: /\.(svg)$/,
         loader: 'raw'
       },
       {
         test    : /\.s*(c|a)ss$/,
         loader  : ExtractTextPlugin.extract('style', 'css!postcss!sass')
-      },
-      {
-        test    : /\.jsx*$/,
-        exclude : /node_modules/,
-        loader  : 'source-map!babel-loader?experimental'
-      },
-      {
-        test    : /\.json$/,
-        loader  : 'json'
-      }
-    ],
-    postLoaders: [
-      {
-        test    : /\.jsx*$/,
-        loader  : 'envify-loader'
       }
     ]
   }

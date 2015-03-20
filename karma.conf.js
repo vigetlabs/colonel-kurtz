@@ -16,8 +16,8 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
-      'src/**/__tests__/*.js*': [ 'webpack' ],
-      'lib/**/__tests__/*.js*': [ 'webpack' ]
+      'src/**/__tests__/*.js*': [ 'webpack', 'sourcemap' ],
+      'lib/**/__tests__/*.js*': [ 'webpack', 'sourcemap' ]
     },
 
     reporters: [ 'nyan', 'coverage' ],
@@ -30,6 +30,8 @@ module.exports = function(config) {
     },
 
     webpack: {
+      devtool: 'inline-source-map',
+
       plugins: webpack_config.plugins.concat([
         new Webpack.ProvidePlugin({
           'React': 'react/addons'
@@ -39,25 +41,7 @@ module.exports = function(config) {
       resolve: webpack_config.resolve,
 
       module: {
-        loaders: [
-          {
-            test: /\.(svg)$/,
-            loader: 'raw'
-          },
-          {
-            test    : /\.s*(c|a)ss$/,
-            loader  : 'style!css!postcss!sass'
-          },
-          {
-            test    : /\.jsx*$/,
-            exclude : /node_modules/,
-            loader  : 'source-map!babel-loader?experimental&loose&optional=runtime'
-          },
-          {
-            test    : /\.json$/,
-            loader  : 'json'
-          }
-        ],
+        loaders: webpack_config.module.loaders,
         postLoaders: [
           {
             test: /\.jsx*$/,

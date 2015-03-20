@@ -2,6 +2,10 @@
  * YouTube Block Type
  */
 
+.col-youtube {
+  position: relative;
+}
+
 .col-youtube-player {
   display: block;
   padding-bottom: percentage(3/4);

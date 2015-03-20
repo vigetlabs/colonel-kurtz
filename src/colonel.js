@@ -29,9 +29,7 @@ class ColonelKurtz extends Microcosm {
   }
 
   create() {
-    let { stores, types } = this
-
-    return (<App allowed={ types } flux={ this } root={ stores.blocks.root() } />)
+    return (<App allowed={ this.types } flux={ this } />)
   }
 
   render() {
@@ -42,30 +40,10 @@ class ColonelKurtz extends Microcosm {
     return this
   }
 
-  addCallback(fn) {
-    warning('ColonelKurtz::addCallback will be removed in v3.0.0. Instead use listen.')
-    return this.listen(fn)
-  }
-
-  removeCallback(fn) {
-    warning('ColonelKurtz::removeCallback will be removed in v3.0.0. Instead use ignore.')
-    return this.ignore(fn)
-  }
-
-  simulateChange() {
-    warning('ColonelKurtz::simulateChange will be removed in v3.0.0. Instead use pump.')
-    this.pump(this.toJSON())
-  }
-
   toJSON() {
     return this.serialize().blocks
   }
 
-}
-
-ColonelKurtz.createBlock  = require('./utils/createBlock')
-ColonelKurtz.addBlockType = ColonelKurtz.addBlockTypes = function() {
-  throw new Error('ColonelKurtz.addBlockType has been removed. Pass `blockTypes` as a key for seed data')
 }
 
 export default ColonelKurtz

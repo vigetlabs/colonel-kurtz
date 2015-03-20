@@ -8,7 +8,7 @@ class BlockStore extends Store {
   getInitialState(seed) {
     this.state = []
 
-    this.deserialize(seed)
+    this.deserialize(seed || [])
 
     return this.state
   }
@@ -42,7 +42,7 @@ class BlockStore extends Store {
     return block
   }
 
-  _create({ content = null, parent, position = this.state.length, type }) {
+  _create({ content, parent, position = this.state.length, type }) {
     var block = new Block({ content, parent, type })
 
     if (position instanceof Block) {
@@ -85,7 +85,7 @@ class BlockStore extends Store {
 
   deserialize(items=[], parent): void {
     for (var i = 0, len = items.length; i < len; i++) {
-      let { blocks, content, type } = items[i]
+      let { blocks, content, type='section' } = items[i]
       this.deserialize(blocks, this._create({ content, parent, type }))
     }
 

@@ -9,7 +9,7 @@ class Block {
 
   constructor(params: { content: ?Object; parent: Block; type: string }){
     this.id      = uid()
-    this.content = params.content || null
+    this.content = params.content
     this.parent  = params.parent
     this.type    = params.type
   }

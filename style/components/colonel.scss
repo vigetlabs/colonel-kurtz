@@ -1,8 +1,9 @@
 .colonel {
-  background: #fafafa;
+  background: #eee;
   font-family: $colonel-font-family;
   font-size: 16px;
   height: 100%;
+  padding: 1px 0;
   position: relative;
 
   &:-webkit-full-screen {
@@ -11,10 +12,41 @@
     overflow-y: scroll;
     width: 100%;
   }
+
+  &:before {
+    border-top: 1px solid rgba(#000, 0.12);
+    border-bottom: 1px solid rgba(#fff, 0.32);
+    content: "";
+    height: 0;
+    position: absolute;
+    top: 160px;
+    width: 100%;
+  }
 }
 
-.col-content {
-  overflow: hidden;
+.colonel-wrapper {
   margin: 0 auto;
+  max-width: 1024px;
+  padding: 0 16px;
+  position: relative;
+}
+
+.colonel .col-section {
   max-width: 768px;
+  padding: 56px 16px 56px 56px;
+  position: relative;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  > .col-toolbar {
+    bottom: auto;
+    top: 48px;
+    right: -26px;
+  }
+}
+
+.col-children {
+  filter: drop-shadow(0 1px 1.5px rgba(#000, 0.37));
 }

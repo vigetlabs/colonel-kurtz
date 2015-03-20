@@ -1,25 +1,23 @@
 .col-toolbar {
-  align-items: center;
-  bottom: 0;
+  align-items: flex-start;
   box-shadow: inset 0 1px 0 rgba(#fff, 0.1);
   display: flex;
   position: absolute;
   right: 0;
   text-align: right;
-  top: 0;
+  top: 6px;
 }
 
 .col-btn-remove {
   border-radius: 50%;
   box-shadow: none;
   cursor: pointer;
-  color: $colonel-muted-dark;
-  height: unit(5);
+  color: #000;
+  height: unit(6);
   line-height: 0;
-  opacity: 1;
   padding: 0;
   position: relative;
-  width: unit(5);
+  width: unit(6);
 
   &:hover,
   &:focus {

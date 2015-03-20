@@ -3,15 +3,15 @@
  * toggling between viewing modes and viewing managed content
  */
 
-import React   from 'react'
-import Section from 'components/section'
+import EditorBlock from 'components/editor_block'
+import React       from 'react'
+import Button      from 'components/ui/button'
 
 let App = React.createClass({
 
   propTypes: {
     allowed : React.PropTypes.array,
-    flux    : React.PropTypes.object.isRequired,
-    root    : React.PropTypes.array.isRequired
+    flux    : React.PropTypes.object.isRequired
   },
 
   getDefaultProps() {
@@ -22,14 +22,29 @@ let App = React.createClass({
 
   getElement(block) {
     let { allowed, flux } = this.props
+    let { blockTypes } = flux.stores
 
-    return (<Section key={ block.id } allowed={ allowed } block={ block } flux={ flux } />)
+    return React.createElement(EditorBlock, { key: block.id, allowed, flux, block, blockTypes })
   },
 
   render() {
-    return (<div>{ this.props.root.map(this.getElement) }</div>)
-  }
+    return (
+      <div className="colonel">
+        <div className="colonel-wrapper">
+          <Button className="col-btn-fab" onClick={ this._onSectionAppend }>+</Button>
+          { this.props.flux.stores.blocks.root().map(this.getElement) }
+        </div>
+      </div>
+    )
+  },
 
+  _onSectionAppend(e) {
+    e.preventDefault();
+
+    this.props.flux.actions.blocks.create({
+      type: 'section'
+    })
+  }
 })
 
-module.exports = App
+export default App

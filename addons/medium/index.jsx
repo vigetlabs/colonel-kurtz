@@ -1,16 +1,25 @@
-var MediumEditor = require('./vendor/medium-editor')
-var React        = require('react')
-var Types        = React.PropTypes
+/**
+ * This component adds a medium.com-like rich text editor block type.
+ *
+ * Source for this component can be found here:
+ * https://github.com/daviferreira/medium-editor
+ */
 
-var Editor = React.createClass({
+import MediumEditor from './vendor/medium-editor'
+import React        from 'react'
+
+require('./style')
+
+var Medium = React.createClass({
 
   propTypes: {
-    html   : Types.string.isRequired,
-    onBlur : Types.func.isRequired
+    content  : React.PropTypes.object.isRequired,
+    onChange : React.PropTypes.func.isRequired
   },
 
   getDefaultProps() {
     return {
+      content: { html: '', text: ''},
       options: {
         buttons: [ 'header1', 'header2', 'bold', 'italic', 'underline', 'anchor', 'quote',  'unorderedlist', 'orderedlist' ],
         firstHeader: 'h1',
@@ -39,7 +48,8 @@ var Editor = React.createClass({
   render() {
     return (
       <div className="col-block-medium">
-        <div className="col-medium" onBlur={ this._onBlur } role="textarea" aria-multiline="true" ref="editor" dangerouslySetInnerHTML={{ __html: this.props.html }} />
+        <div className="col-medium" onBlur={ this._onBlur } role="textarea" aria-multiline="true" ref="editor" dangerouslySetInnerHTML={{ __html: this.props.content.html }} />
+        { this.props.children }
       </div>
     )
   },
@@ -47,7 +57,7 @@ var Editor = React.createClass({
   _onBlur() {
     var editor = this.refs.editor.getDOMNode()
 
-    this.props.onBlur({
+    this.props.onChange({
       text: editor.textContent,
       html: editor.innerHTML
     })
@@ -55,4 +65,4 @@ var Editor = React.createClass({
 
 })
 
-module.exports = Editor
+module.exports = Medium
