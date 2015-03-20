@@ -26,14 +26,14 @@
 
 .colonel-wrapper {
   margin: 0 auto;
-  max-width: 1024px;
+  max-width: 880px;
   padding: 0 16px;
   position: relative;
 }
 
 .colonel .col-section {
   max-width: 768px;
-  padding: 56px 16px 56px 56px;
+  padding: 56px 80px 56px 0;
   position: relative;
 
   &:first-child {
@@ -43,7 +43,7 @@
   > .col-toolbar {
     bottom: auto;
     top: 48px;
-    right: -26px;
+    right: 36px;
   }
 }
 

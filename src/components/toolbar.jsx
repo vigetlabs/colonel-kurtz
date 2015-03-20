@@ -1,7 +1,7 @@
 import React       from 'react'
 import RemoveBlock from 'components/remove_block'
 
-var Toolbar = React.createClass({
+let Toolbar = React.createClass({
 
   propTypes: {
     block     : React.PropTypes.object.isRequired,

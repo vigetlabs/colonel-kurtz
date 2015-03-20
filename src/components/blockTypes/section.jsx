@@ -4,7 +4,7 @@ let Section = React.createClass({
 
   getDefaultProps() {
     return {
-      content   : {}
+      content : {}
     }
   },
 

@@ -1,5 +1,5 @@
-let React = require('react')
-let Ink   = require('react-ink')
+import React from 'react'
+import Ink   from 'react-ink'
 
 let Button = React.createClass({
 
@@ -22,4 +22,4 @@ let Button = React.createClass({
   }
 })
 
-module.exports = Button
+export default Button

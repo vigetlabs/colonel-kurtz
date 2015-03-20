@@ -1,7 +1,7 @@
-var AddBlock = require('./add_block')
-var React    = require('react')
+import AddBlock from './add_block'
+import React    from 'react'
 
-var BlockMenu = React.createClass({
+let BlockMenu = React.createClass({
 
   propTypes: {
     allowed    : React.PropTypes.array.isRequired,
@@ -42,4 +42,4 @@ var BlockMenu = React.createClass({
 
 })
 
-module.exports = BlockMenu
+export default BlockMenu
