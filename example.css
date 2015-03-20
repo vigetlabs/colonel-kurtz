@@ -27,13 +27,14 @@ body {
 
 #app {
   height: 100%;
-  width: 62.5%;
+  width: 85%;
 }
 
 #show {
   background: #fafafa;
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.15) inset;
-  width: 37.5%;
+  min-width: 250px;
+  width: 15%;
 }
 
 #output {
