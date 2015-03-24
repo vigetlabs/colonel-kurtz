@@ -14,3 +14,17 @@
     outline: none;
   }
 }
+
+.col-btn-icon {
+  height: 48px;
+  opacity: 0.7;
+  position: relative;
+  transition: 0.3s all;
+  width: 48px;
+
+  &:hover,
+  &:focus {
+    opacity: 1;
+    outline: none;
+  }
+}

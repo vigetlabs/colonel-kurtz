@@ -1,7 +1,10 @@
 @import 'values/colors';
+@import 'values/sizes';
 
 @import 'generators/functions';
 @import 'generators/extensions';
+
+@import 'animations/fade';
 
 @import 'components/colonel';
 
@@ -12,5 +15,6 @@
   @import 'components/menu';
   @import 'components/fullscreen';
   @import 'components/fab';
-  @import 'animations/appear';
+  @import 'components/dialog';
+  @import 'components/type';
 }

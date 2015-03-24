@@ -3,39 +3,27 @@
  * A custom block editor
  */
 
-import App       from 'components/app'
-import React     from 'react'
-import Microcosm from 'microcosm'
-import warning   from 'warning'
+import App        from 'components/app'
+import BlockTypes from 'stores/block_type_store'
+import Blocks     from 'stores/block_store'
+import Microcosm  from 'microcosm'
+import React      from 'react'
 
 class ColonelKurtz extends Microcosm {
 
   constructor({ el, seed, types }) {
-    super(seed)
+    super()
 
-    this.addActions({
-      blocks : require('actions/blocks')
-    })
+    this.addStore(Blocks)
+    this.addStore(BlockTypes)
 
-    this.addStores({
-      blocks     : require('stores/block_store'),
-      blockTypes : require('stores/block_type_store')
-    })
+    this.seed(seed)
 
-    this.el    = el
-    this.types = types
-
-    this.listen(this.render.bind(this))
-  }
-
-  create() {
-    return (<App allowed={ this.types } flux={ this } />)
+    this.el = el
   }
 
   render() {
-    React.render(this.create(), this.el)
-
-    this.rendered = true
+    React.render(<App flux={ this } />, this.el)
 
     return this
   }

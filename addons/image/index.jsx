@@ -33,6 +33,8 @@ var Image = React.createClass({
         <fieldset className="col-img-fieldset">
           <Field label="Image Source" type="url" value={ src } name="image_src" onChange={ this._onSrcChange }/>
         </fieldset>
+
+        { this.props.children }
       </div>
     )
   },

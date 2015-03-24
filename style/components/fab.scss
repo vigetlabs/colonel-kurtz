@@ -9,13 +9,20 @@
   font-size: 24px;
   font-weight: 500;
   height: 64px;
-  top: 128px;
+  top: calc(100% - 80px);
   right: 16px;
-  position: absolute;
+  position: fixed;
   width: 64px;
   text-shadow: 0 1px 1px rgba(#000, 0.2);
+  transition: 0.4s all;
+  z-index: 1;
 
   &:focus {
     outline: none;
+  }
+
+  @media screen and (min-width: $colonel-medium) {
+    right: calc(50% - 420px);
+    top: 128px;
   }
 }

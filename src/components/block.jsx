@@ -18,14 +18,14 @@ let Block = React.createClass({
     let { component:Component } = blockType
 
     return (
-      <Component ref="block" content={ block.content } onChange={ this._onUpdateContent }>
+      <Component ref="block" content={ block.content } onChange={ this._onUpdate }>
         <Toolbar block={ block } onDestroy={ onDestroy } />
         <div className="col-children">{ children }</div>
       </Component>
     )
   },
 
-  _onUpdateContent(content) {
+  _onUpdate(content) {
     this.props.onUpdate(this.props.block.id, content)
   }
 

@@ -1,4 +1,10 @@
 .col-menu {
+  background: #fff;
+  border-top: 1px solid rgba(#000, 0.07);
   display: block;
   text-align: center;
+
+  &:first-child {
+    border-top: 0;
+  }
 }

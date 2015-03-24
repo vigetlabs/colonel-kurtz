@@ -3,7 +3,6 @@
   font-family: $colonel-font-family;
   font-size: 16px;
   height: 100%;
-  padding: 1px 0;
   position: relative;
 
   &:-webkit-full-screen {
@@ -18,7 +17,7 @@
     border-bottom: 1px solid rgba(#fff, 0.32);
     content: "";
     height: 0;
-    position: absolute;
+    position: fixed;
     top: 160px;
     width: 100%;
   }
@@ -27,13 +26,13 @@
 .colonel-wrapper {
   margin: 0 auto;
   max-width: 880px;
-  padding: 0 16px;
+  padding: 56px 16px;
   position: relative;
 }
 
 .colonel .col-section {
   max-width: 768px;
-  padding: 56px 80px 56px 0;
+  padding: 16px 0;
   position: relative;
 
   &:first-child {
@@ -42,8 +41,12 @@
 
   > .col-toolbar {
     bottom: auto;
-    top: 48px;
+    top: 16px;
     right: 36px;
+  }
+
+  @media screen and (min-width: $colonel-medium) {
+    padding: 16px 80px 16px 0;
   }
 }
 

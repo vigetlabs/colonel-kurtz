@@ -1,41 +1,26 @@
-import AddBlock from './add_block'
-import React    from 'react'
+import AddBlock   from './add_block'
+import BlockTypes from 'stores/block_type_store'
+import React      from 'react'
 
 let BlockMenu = React.createClass({
 
   propTypes: {
-    allowed    : React.PropTypes.array.isRequired,
     block      : React.PropTypes.object.isRequired,
-    blockTypes : React.PropTypes.object.isRequired,
+    blockTypes : React.PropTypes.array.isRequired,
     onAdd      : React.PropTypes.func.isRequired
   },
 
-  getDefaultProps() {
-    return {
-      position : 0
-    }
-  },
-
   getButton(blockType) {
-    let { block, onAdd, position } = this.props
-
     return (<AddBlock key={ blockType.id }
-                      block={ block }
-                      blockType={ blockType }
-                      onAdd={ onAdd }
-                      position={ position } />)
-  },
-
-  getBlockTypes() {
-    let { allowed, block, blockTypes } = this.props
-
-    return blockTypes.subset(block.type)
+                      block={ this.props.block }
+                      onAdd={ this.props.onAdd }
+                      { ...blockType }/>)
   },
 
   render() {
     return (
       <nav className="col-menu" role="navigation">
-        { this.getBlockTypes().map(this.getButton) }
+        { this.props.blockTypes.map(this.getButton) }
       </nav>
     )
   },

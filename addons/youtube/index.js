@@ -36,6 +36,8 @@ let YouTube = React.createClass({
         <fieldset className="col-youtube-fieldset">
           <Field label="YouTube Video ID" value={ video_id } name="youtube_video_id" onChange={ this._onChange }/>
         </fieldset>
+
+        { this.props.children }
       </div>
     )
   },

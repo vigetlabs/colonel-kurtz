@@ -4,7 +4,13 @@
 
 .col-img {
   background: #fff;
-  padding-bottom: 4px;
+  border-top: 1px solid rgba(#000, 0.07);
+  padding-bottom: 10px;
+  position: relative;
+
+  &:first-child {
+    border-top: 0;
+  }
 }
 
 .col-img-figure {

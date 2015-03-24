@@ -4,12 +4,14 @@ import React  from 'react'
 var AddBlock = React.createClass({
 
   propTypes: {
-    blockType : React.PropTypes.object.isRequired,
-    onAdd     : React.PropTypes.func.isRequired
+    icon  : React.PropTypes.string.isRequired,
+    id    : React.PropTypes.string.isRequired,
+    label : React.PropTypes.string.isRequired,
+    onAdd : React.PropTypes.func.isRequired
   },
 
   render() {
-    var { icon, id, label } = this.props.blockType
+    var { icon, id, label } = this.props
 
     return (
       <Button aria-label={ label } className="col-btn-icon" onClick={ this._onClick }>
@@ -19,15 +21,8 @@ var AddBlock = React.createClass({
   },
 
   _onClick(e) {
-    var { block, position, blockType } = this.props
-
-    this.props.onAdd({
-      parent : block,
-      type   : blockType.id,
-      position
-    })
-
     e.preventDefault()
+    this.props.onAdd(this.props.id, this.props.block)
   }
 
 })

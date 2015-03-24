@@ -1,7 +1,9 @@
-export default {
+import { tag } from 'microcosm'
 
-  create(params) {
-    return params
+export default tag({
+
+  create(type, parent) {
+    return { type, parent }
   },
 
   destroy(id) {
@@ -10,10 +12,6 @@ export default {
 
   update(id, content) {
     return { id, content }
-  },
-
-  move(fromId, toId) {
-    return { fromId, toId }
   }
 
-}
+})
