@@ -1,20 +1,21 @@
-import Actions from 'actions/blocks'
-import Block   from 'models/block'
-
-let find = function(blocks, id) {
-  let records = blocks.filter(i => i.id == id)
-
-  if (records.length) {
-    return records[0]
-  }
-
-  throw new Error(`Unable to find block with id of ${ id }`)
-}
+import Actions      from 'actions/blocks'
+import Block        from 'models/block'
+import blocksToJson from 'utils/blocksToJson'
+import findBy       from 'utils/findBy'
+import jsonToBlocks from 'utils/jsonToBlocks'
 
 let BlockStore = {
 
-  getInitialState(seed=[]) {
-    return BlockStore.deserialize(seed)
+  getInitialState(blocks=[]) {
+    return jsonToBlocks(blocks)
+  },
+
+  serialize(state) {
+    return blocksToJson(state)
+  },
+
+  toString() {
+    return 'blocks'
   },
 
   [Actions.create](state, { content, parent, type }) {
@@ -31,33 +32,9 @@ let BlockStore = {
   },
 
   [Actions.update](state, params) {
-    var block = find(state, params.id)
+    var block = findBy(state, params.id, 'id')
     block.content = { ...block.content, ...params.content }
     return state
-  },
-
-  deserialize(state) {
-    return state.reduce(function(memo, { blocks, content, type='section' }) {
-      return memo.concat(new Block({ content, parent, type }))
-    }, [])
-  },
-
-  serialize(state) {
-    let root = state.filter(i => !i.parent)
-
-    return root.map(function jsonify (block) {
-      let children = state.filter(i => i.parent === block)
-
-        return {
-          content : block.content,
-          type    : block.type,
-          blocks  : children.map(jsonify)
-        }
-    })
-  },
-
-  toString() {
-    return 'blocks'
   }
 
 }
