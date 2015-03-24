@@ -40,8 +40,9 @@ var editor = new ColonelKurtz({
 })
 
 editor.listen(function() {
-  let json = editor.toJSON()
-  localStorage.setItem('seed', JSON.stringify(json))
+  let blocks = editor.toJSON()
+
+  localStorage.setItem('seed', JSON.stringify(blocks))
 })
 
 editor.pump()
