@@ -27,20 +27,5 @@ body {
 
 #app {
   height: 100%;
-  width: 85%;
-}
-
-#show {
-  background: #fafafa;
-  box-shadow: 0 0 2px rgba(0, 0, 0, 0.15) inset;
-  min-width: 250px;
-  width: 15%;
-}
-
-#output {
-  background: transparent;
-  border: 0;
-  height: 100%;
-  padding: 16px;
   width: 100%;
 }
