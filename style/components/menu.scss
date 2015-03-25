@@ -7,13 +7,14 @@
   margin: 16px auto;
   position: relative;
   text-align: center;
-  transition: 0.4s border-radius, 0.3s width 0.1s;
   white-space: nowrap;
   width: 24px;
 
   &.col-menu-open {
+    animation: 0.4s col-menu cubic-bezier(.89,.03,.42,1.23);
     border-radius: 2px;
     height: auto;
+    margin: 6px auto;
     width: auto;
   }
 }
@@ -24,6 +25,7 @@
   font-weight: 600;
   line-height: 22px;
   padding: 0;
+  text-align: center;
   text-shadow: 0 1px 1px #fff;
   transition: 0.7s all;
   width: 100%;

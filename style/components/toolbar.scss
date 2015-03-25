@@ -13,11 +13,12 @@
 
   svg {
     fill: #fff;
+    opacity: 0.875;
   }
 }
 
 .col-toolbar-menu {
-  animation: 0.3s col-toolbar;
+  animation: 0.5s col-toolbar;
   background: #fff;
   border-radius: 2px;
   box-shadow: 0 1px 4px rgba(#000, 0.25), 0 -1px 1px rgba(#000, 0.12);
@@ -29,6 +30,27 @@
   top: 8px;
   transform-origin: 100% 0;
   z-index: 2;
+}
+
+.col-toolbar-menu-item {
+  border-radius: 0;
+  border-top: 1px solid rgba(#000, 0.2);
+  display: block;
+  padding: 12px 16px;
+  position: relative;
+  width: 100%;
+  transition: 0.5s all;
+  text-align: left;
+
+  &:first-child {
+    border-top: 0;
+  }
+
+  &:hover,
+  &:focus {
+    background: rgba(#000, 0.15);
+    transition: 0.2s all;
+  }
 }
 
 .col-toolbar:focus .col-toolbar-menu,

@@ -1,5 +1,5 @@
 /**
- * Image Colonel Kurtz Addon
+ * Youtube Colonel Kurtz Addon
  * This component adds a basic image block type, including a
  * src, caption, and credit
  */

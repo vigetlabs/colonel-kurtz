@@ -1,5 +1,6 @@
-import React   from 'react'
-import Toolbar from 'components/toolbar'
+import React      from 'react'
+import Toolbar    from 'components/toolbar'
+import classNames from 'classnames'
 
 let Block = React.createClass({
 
@@ -15,7 +16,7 @@ let Block = React.createClass({
     let { component:Component } = blockType
 
     return (
-      <div className={`col-block col-block-${ block.type }`}>
+      <div className={ classNames('col-block', `col-block-${ block.type }`) }>
         <Component ref="block" content={ block.content } onChange={ this._onUpdate }>
           { children }
         </Component>
