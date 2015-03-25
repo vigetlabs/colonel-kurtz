@@ -5,8 +5,9 @@ let Button = React.createClass({
 
   getDefaultProps() {
     return {
-      tagName : 'button',
-      type    : 'button'
+      className : 'col-btn',
+      tagName   : 'button',
+      type      : 'button'
     }
   },
 

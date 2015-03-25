@@ -1,33 +1,37 @@
 .col-toolbar {
-  align-items: flex-start;
-  box-shadow: inset 0 1px 0 rgba(#fff, 0.1);
-  display: flex;
+  top: 0;
   position: absolute;
   right: 0;
   text-align: right;
-  top: 0;
 }
 
-.col-btn-remove {
-  border-radius: 50%;
-  box-shadow: none;
-  cursor: pointer;
-  color: #000;
-  height: unit(6);
-  line-height: 0;
-  padding: 0;
-  position: relative;
-  width: unit(6);
-
-  &:hover,
-  &:focus {
-    color: $colonel-danger;
-    font-weight: 700;
-    outline: none;
-  }
+.col-toolbar-handle {
+  background: rgba(#000, 0.65);
+  border-top-right-radius: 3px;
+  display: block;
+  padding: 8px 16px;
 
   svg {
-    fill: currentColor;
-    transition: 0.4s all;
+    fill: #fff;
   }
+}
+
+.col-toolbar-menu {
+  animation: 0.3s col-toolbar;
+  background: #fff;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px rgba(#000, 0.25), 0 -1px 1px rgba(#000, 0.12);
+  display: none;
+  min-width: 140px;
+  position: absolute;
+  right: 8px;
+  text-align: left;
+  top: 8px;
+  transform-origin: 100% 0;
+  z-index: 2;
+}
+
+.col-toolbar:focus .col-toolbar-menu,
+.col-toolbar:hover .col-toolbar-menu {
+  display: block;
 }

@@ -6,13 +6,7 @@ $col-medium-focus-color: rgba(#000, 0.875);
 
 @import './vendor/style';
 
-.col-block-medium {
-  position: relative;
-}
-
 .col-medium {
-  background: #fff;
-  border-top: 1px solid rgba(#000, 0.07);
   line-height: 1.75;
   font-size: 16px;
   padding: 16px 48px 16px 16px;

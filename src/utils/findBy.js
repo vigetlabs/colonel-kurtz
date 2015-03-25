@@ -1,9 +1,9 @@
-export default function(records, val, param='id') {
-  let records = records.filter(i => i[param] == val)
+export default function(items, val, param='id') {
+  let matches = items.filter(i => i[param] == val)
 
-  if (records.length) {
-    return records[0]
+  if (matches.length) {
+    return matches[0]
   }
 
-  throw new Error(`Unable to find record with ${ param } of ${ id }`)
+  throw new Error(`Unable to find record with ${ param } of ${ val }`)
 }

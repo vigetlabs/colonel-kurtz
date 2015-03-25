@@ -4,6 +4,7 @@ import BlockMenu    from 'components/block_menu'
 import BlockTypes   from 'stores/block_type_store'
 import Blocks       from 'stores/block_store'
 import React        from 'react'
+import findBy       from 'utils/findBy'
 
 let EditorBlock = React.createClass({
 
@@ -12,34 +13,32 @@ let EditorBlock = React.createClass({
     flux  : React.PropTypes.object.isRequired
   },
 
-  getBlock(block): any {
-    return (<EditorBlock key={ block.id } block={ block } flux={ this.props.flux } />)
+  getBlockMenu() {
+    let { block, flux } = this.props
+
+    return (<BlockMenu key="block_menu" parent={ block.parent } position={ block } flux={ flux } />)
   },
 
-  getBlockMenu(block) {
-    let blockTypes = this.props.flux.get(BlockTypes).filter(i => !i.private)
-
-    return !block.parent ? (
-      <BlockMenu key="block_menu"
-                 block={ block }
-                 flux={ this.props.flux }
-                 blockTypes={ blockTypes}
-                 onAdd={ this.props.flux.send(Actions.create) } />
-    ) : null
-  },
-
-  render(): any {
+  render() {
     let { block, flux } = this.props
 
     let children  = flux.get(Blocks).filter(i => i.parent === block)
-    let blockType = flux.get(BlockTypes).filter(i => i.id === block.type)[0]
+    let blockType = findBy(flux.get(BlockTypes), block.type)
 
     return (
-      <Block block={ block } blockType={ blockType } onUpdate={ flux.send(Actions.update) } onDestroy={ flux.send(Actions.destroy) }>
-        { children.map(this.getBlock) }
+      <div>
+        <Block block={ block } blockType={ blockType } onUpdate={ this._onUpdate } onDestroy={ this._onDestroy } />
         { this.getBlockMenu(block) }
-      </Block>
+      </div>
     )
+  },
+
+  _onUpdate(id, content) {
+    this.props.flux.send(Actions.update, id, content)
+  },
+
+  _onDestroy(id) {
+    this.props.flux.send(Actions.destroy, id)
   }
 
 })

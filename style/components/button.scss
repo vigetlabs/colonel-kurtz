@@ -1,17 +1,14 @@
 .col-btn {
-  color: $colonel-primary;
-  font: 500 14px/16px $colonel-font-family;
-  margin: 0 4px;
-  min-width: grid(8);
-  padding: 10px grid(1);
+  border-radius: 0;
+  padding: 16px;
   position: relative;
-  text-transform: uppercase;
-  transition: 0.2s all;
-  letter-spacing: tracking(10);
+  text-align: inherit;
+  transition: 0.3s all;
+  width: 100%;
 
+  &:hover,
   &:focus {
-    box-shadow: 0 0 1px rgba(#000, 0.15), 0 1px 3px rgba(#000, 0.2);
-    outline: none;
+    background: rgba(#000, 0.2);
   }
 }
 

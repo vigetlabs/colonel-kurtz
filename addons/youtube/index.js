@@ -30,13 +30,15 @@ let YouTube = React.createClass({
     var { video_id } = this.props.content
 
     return (
-      <div className="col-youtube">
-        <Player video_id={ video_id } />
+      <div>
+        <div className="col-youtube">
+          <Player video_id={ video_id } />
 
-        <fieldset className="col-youtube-fieldset">
-          <Field label="YouTube Video ID" value={ video_id } name="youtube_video_id" onChange={ this._onChange }/>
-        </fieldset>
+          <fieldset className="col-youtube-fieldset">
+            <Field label="YouTube Video ID" value={ video_id } name="youtube_video_id" onChange={ this._onChange }/>
+          </fieldset>
 
+        </div>
         { this.props.children }
       </div>
     )

@@ -2,16 +2,6 @@
  * YouTube Block Type
  */
 
-.col-youtube {
-  background: #fff;
-  border-top: 1px solid rgba(#000, 0.07);
-  position: relative;
-
-  &:first-child {
-    border-top: 0;
-  }
-}
-
 .col-youtube-player {
   display: block;
   padding-bottom: percentage(3/4);

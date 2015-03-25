@@ -42,7 +42,6 @@
     "csswring": "^3.0.1",
     "envify-loader": "^0.1.0",
     "extract-text-webpack-plugin": "^0.3.5",
-    "flux": "^2.0.1",
     "istanbul": "^0.3.5",
     "istanbul-instrumenter-loader": "^0.1.2",
     "json-loader": "^0.5.1",
@@ -56,7 +55,7 @@
     "karma-sinon-chai": "^0.3.0",
     "karma-sourcemap-loader": "^0.3.4",
     "karma-webpack": "^1.5.0",
-    "microcosm": "^1.2.1",
+    "microcosm": "^1.4.0",
     "mocha": "^2.1.0",
     "postcss-loader": "^0.3.0",
     "raw-loader": "^0.5.1",
@@ -72,10 +71,10 @@
     "webpack-dev-server": "^1.7.0"
   },
   "peerDependencies": {
-    "flux": "*",
     "react": ">= 0.12.1"
   },
   "dependencies": {
+    "classnames": "^1.2.0",
     "react-focus-trap": "0.0.1"
   }
 }

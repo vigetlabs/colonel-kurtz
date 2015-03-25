@@ -2,8 +2,12 @@ import { tag } from 'microcosm'
 
 export default tag({
 
-  create(type, parent) {
+  append(type, parent) {
     return { type, parent }
+  },
+
+  create(type, position, parent) {
+    return { type, position, parent }
   },
 
   destroy(id) {

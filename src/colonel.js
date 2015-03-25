@@ -11,7 +11,7 @@ import React      from 'react'
 
 class ColonelKurtz extends Microcosm {
 
-  constructor({ el, seed, types }) {
+  constructor({ el, seed }) {
     super()
 
     this.addStore(Blocks)

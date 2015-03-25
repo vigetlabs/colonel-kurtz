@@ -27,13 +27,15 @@ var Image = React.createClass({
     var { src } = this.props.content
 
     return (
-      <div className="col-img">
-        <Graphic { ...this.props.content } />
+      <div>
+        <div className="col-img">
+          <Graphic { ...this.props.content } />
 
-        <fieldset className="col-img-fieldset">
-          <Field label="Image Source" type="url" value={ src } name="image_src" onChange={ this._onSrcChange }/>
-        </fieldset>
+          <fieldset className="col-img-fieldset">
+            <Field label="Image Source" type="url" value={ src } name="image_src" onChange={ this._onSrcChange }/>
+          </fieldset>
 
+        </div>
         { this.props.children }
       </div>
     )

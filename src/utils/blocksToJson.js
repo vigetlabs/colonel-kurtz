@@ -1,7 +1,7 @@
 export default function(items=[]) {
   let root = items.filter(i => !i.parent)
 
-  return root.map(function jsonify (block) {
+  let jsonify = block => {
     let children = items.filter(i => i.parent === block)
 
     return {
@@ -9,5 +9,7 @@ export default function(items=[]) {
       type    : block.type,
       blocks  : children.map(jsonify)
     }
-  })
+  }
+
+  return root.map(jsonify)
 }

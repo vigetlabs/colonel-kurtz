@@ -1,10 +1,49 @@
 .col-menu {
-  background: #fff;
-  border-top: 1px solid rgba(#000, 0.07);
-  display: block;
+  background: #f9f9f9;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(#000, 0.4), inset 0 1px 0 #fff;
+  display: inline-block;
+  height: 24px;
+  margin: 16px auto;
+  position: relative;
   text-align: center;
+  transition: 0.4s border-radius, 0.3s width 0.1s;
+  white-space: nowrap;
+  width: 24px;
+
+  &.col-menu-open {
+    border-radius: 2px;
+    height: auto;
+    width: auto;
+  }
+}
+
+.col-menu-toggle {
+  color: rgba(#000, 0.3);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  padding: 0;
+  text-shadow: 0 1px 1px #fff;
+  transition: 0.7s all;
+  width: 100%;
+
+  &:hover,
+  &:focus {
+    color: rgba(#000, 0.54);
+    transition: 0.3s all;
+  }
+}
+
+.col-menu-btn {
+  border-radius: 0;
+  display: inline-block;
+  padding: 16px 8px;
+  position: relative;
+  min-width: 88px;
+  border-left: 1px solid rgba(#000, 0.15);
 
   &:first-child {
-    border-top: 0;
+    border-left: 0;
   }
 }

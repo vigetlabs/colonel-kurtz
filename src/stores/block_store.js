@@ -2,24 +2,33 @@ import Actions      from 'actions/blocks'
 import Block        from 'models/block'
 import blocksToJson from 'utils/blocksToJson'
 import findBy       from 'utils/findBy'
+import insertAt     from 'utils/insertAt'
 import jsonToBlocks from 'utils/jsonToBlocks'
 
 let BlockStore = {
+  serialize   : blocksToJson,
+  deserialize : jsonToBlocks,
 
-  getInitialState(blocks=[]) {
-    return jsonToBlocks(blocks)
-  },
-
-  serialize(state) {
-    return blocksToJson(state)
+  getInitialState() {
+    return []
   },
 
   toString() {
     return 'blocks'
   },
 
-  [Actions.create](state, { content, parent, type }) {
-    return state.concat(new Block({ content, parent, type }))
+  [Actions.append](state, params) {
+    return state.concat(new Block(params))
+  },
+
+  [Actions.create](state, { type, parent, position=0 }) {
+    let record = new Block({ parent, type })
+
+    if (position instanceof Block) {
+      position = state.indexOf(position) + 1
+    }
+
+    return insertAt(state, record, position)
   },
 
   [Actions.destroy](state, id) {

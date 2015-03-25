@@ -3,16 +3,12 @@ import manifest     from 'manifest'
 
 let BlockTypeStore = {
 
-  getInitialState(seed=[]) {
+  getInitialState() {
+    return manifest.blockTypes
+  },
+
+  deserialize(seed) {
     return addBlockType(seed.concat(manifest.blockTypes))
-  },
-
-  find(state, id) {
-    return state.filter(b => b.id === id)[0]
-  },
-
-  serialize() {
-    return undefined
   },
 
   toString() {

@@ -7,7 +7,7 @@ import BlockActions from 'actions/blocks'
 import BlockTypes   from 'stores/block_type_store'
 import Blocks       from 'stores/block_store'
 import Button       from 'components/ui/button'
-import EditorBlock  from 'components/editor_block'
+import Section      from 'components/section'
 import React        from 'react'
 
 let App = React.createClass({
@@ -31,26 +31,30 @@ let App = React.createClass({
     this.props.flux.listen(() => this.setState(this.getState()))
   },
 
-  getElement(block) {
-    return (<EditorBlock key={ block.id } block={ block } flux={ this.props.flux } />)
-  },
+  getSection(block) {
+    let { blocks, blockTypes } = this.state
+    let { flux } = this.props
 
-  render() {
-    let blocks = this.state.blocks.filter(i => !i.parent)
+    let onAdd = () => flux.send(BlockActions.create, block.type, block, null)
 
     return (
-      <div className="colonel">
-        <Button className="col-btn-fab" onClick={ this._onAddSection }>+</Button>
-        <div className="colonel-wrapper">
-          { blocks.map(this.getElement) }
-        </div>
+      <div key={ block.id }>
+        <Section block={ block } blocks={ blocks } blockTypes={ blockTypes } flux={ flux } />
+        <Button className="col-btn-fab" onClick={ onAdd }>+</Button>
       </div>
     )
   },
 
-  _onAddSection(e) {
-    e.preventDefault();
-    this.props.flux.send(BlockActions.create, 'section', null)
+  render() {
+    let blocks = this.state.blocks.filter(i => !i.parent)
+    let onAdd = () => this.props.flux.send(BlockActions.create, 'section', 0, null)
+
+    return (
+      <div className="colonel">
+        <Button className="col-btn-fab" onClick={ onAdd }>+</Button>
+        { blocks.map(this.getSection) }
+      </div>
+    )
   }
 
 })

@@ -4,25 +4,22 @@
 
 require('./example.css')
 
-var ColonelKurtz = require('../src')
+import ColonelKurtz from '../src'
 
 let blockTypes = [
   {
     id        : 'medium',
-    icon      : 'icons/text.svg',
-    label     : 'Create a new text block',
+    label     : 'Text',
     component : require('../addons/medium')
   },
   {
     id        : 'image',
-    icon      : 'icons/image.svg',
-    label     : 'Create a new image block',
+    label     : 'Image',
     component : require('../addons/image')
   },
   {
     id        : 'youtube',
-    icon      : 'icons/youtube.svg',
-    label     : 'Create a new YouTube block',
+    label     : 'YouTube',
     component : require('../addons/youtube')
   }
 ]
@@ -30,21 +27,16 @@ let blockTypes = [
 var blocks = []
 
 try {
-  blocks = JSON.parse(localStorage.getItem('seed'))
+  blocks = JSON.parse(localStorage.getItem('seed')) || []
 } catch(x) {}
 
-var editor = new ColonelKurtz({
-  el    : document.getElementById('app'),
-  seed  : { blocks, blockTypes },
-  types : [ 'medium', 'image', 'youtube' ]
+let editor = new ColonelKurtz({
+  el   : document.getElementById('app'),
+  seed : { blocks, blockTypes }
 })
 
 editor.listen(function() {
-  let blocks = editor.toJSON()
-
-  localStorage.setItem('seed', JSON.stringify(blocks))
+  localStorage.setItem('seed', JSON.stringify(editor.toJSON()))
 })
-
-editor.pump()
 
 editor.render()

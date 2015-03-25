@@ -1,5 +1,6 @@
-import React       from 'react'
-import RemoveBlock from 'components/remove_block'
+import Button   from './ui/button'
+import React    from 'react'
+import menuIcon from 'icons/menu'
 
 let Toolbar = React.createClass({
 
@@ -11,9 +12,20 @@ let Toolbar = React.createClass({
   render() {
     return (
       <div className="col-toolbar">
-        <RemoveBlock block={ this.props.block } onDestroy={ this.props.onDestroy }/>
+        <span className="col-toolbar-handle" dangerouslySetInnerHTML={{ __html: menuIcon }} />
+
+        <nav role="navigation" className="col-toolbar-menu">
+          <Button onClick={ this._onDestroy }>Remove</Button>
+          <Button onClick={ this._onDestroy }>Move Up</Button>
+          <Button onClick={ this._onDestroy }>Move Down</Button>
+        </nav>
       </div>
     )
+  },
+
+  _onDestroy(e) {
+    e.preventDefault()
+    this.props.onDestroy(this.props.block.id)
   }
 
 })
