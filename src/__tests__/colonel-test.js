@@ -9,7 +9,10 @@ describe('ColonelKurtz', function() {
   beforeEach(function() {
     app = new Colonel({
       el   : document.createElement('div'),
-      seed : { blocks: [ new Block({ type: 'section' }) ] }
+      seed : {
+        version: process.env.VERSION,
+        blocks: [ new Block({ type: 'section' }) ]
+      }
     })
   })
 
@@ -20,7 +23,12 @@ describe('ColonelKurtz', function() {
 
   it ('returns blocks when converting to JSON', function() {
     let json = app.toJSON()
-    json.length.should.equal(1)
+    json.blocks.length.should.equal(1)
+  })
+
+  it ('returns a version when converting to JSON', function() {
+    let json = app.toJSON()
+    json.should.have.property('version')
   })
 
   describe('when an append action is sent to the app', function() {

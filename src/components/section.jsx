@@ -23,34 +23,26 @@ let Section = React.createClass({
     }
   },
 
-  getBlock(block) {
-    let { flux } = this.props
-
-    return (<EditorBlock key={ block.id } block={ block } flux={ flux } />)
+  getEditor(block) {
+    return (<EditorBlock key={ block.id } block={ block } flux={ this.props.flux } />)
   },
 
   render() {
-    let { block,  flux, last } = this.props
+    let { block, flux, last } = this.props
 
-    let children  = flux.get(BlockStore).filter(i => i.parent === block)
     let blockType = findBy(flux.get(BlockTypes), block.type)
-    let canAppend = children.length || !last
+    let children  = flux.get(BlockStore).filter(i => i.parent === block)
+    let onAdd     = flux.prepare(Actions.create, block.type, block, null)
 
     return (
       <div>
         <Block block={ block } blockType={ blockType } onDestroy={ flux.prepare(Actions.destroy) }>
-          <BlockMenu parent={ block } position={ 0 } flux={ flux } forceOpen={ !children.length } />
-          <div>{ children.map(this.getBlock) }</div>
+          <BlockMenu key="menu" parent={ block } flux={ flux } forceOpen={ !children.length } />
+          { children.map(this.getEditor) }
         </Block>
-        { canAppend && <Button ref="append" className="col-btn-fab" onClick={ this._onAdd }>+</Button> }
+        <Button ref="append" className="col-btn-fab" onClick={ onAdd } hide={ last && !children.length }>+</Button>
       </div>
     )
-  },
-
-  _onAdd() {
-    let { block, flux } = this.props
-
-    flux.send(Actions.create, block.type, block)
   }
 
 })

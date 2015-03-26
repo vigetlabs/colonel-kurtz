@@ -32,8 +32,9 @@ module.exports = {
 
   plugins: [
     new Webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+      'process.env' : {
+        'VERSION'  : JSON.stringify(require('./package').version),
+        'NODE_ENV' : JSON.stringify(process.env.NODE_ENV)
       }
     }),
     new ExtractTextPlugin("colonel-kurtz.css", {

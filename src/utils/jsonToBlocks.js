@@ -1,6 +1,9 @@
 import Block from 'models/block'
 
-export default function jsonToBlocks (blocks=[], parent) {
+export default function jsonToBlocks (blocks, parent) {
+  // If blocks are null or undefined, assume an empty list
+  blocks = blocks || []
+
   return blocks.reduce(function (memo, params) {
     let block    = new Block({ ...params, parent })
     let children = jsonToBlocks(params.blocks, block)

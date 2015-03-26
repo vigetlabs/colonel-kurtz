@@ -1,4 +1,7 @@
-export default function(items=[]) {
+export default function blocksToJson (items) {
+  // If items are null or undefined, assume an empty list
+  items = items || []
+
   let root = items.filter(i => !i.parent)
 
   let jsonify = block => {

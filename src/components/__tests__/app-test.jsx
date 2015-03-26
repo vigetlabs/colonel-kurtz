@@ -7,7 +7,9 @@ describe('Components - App', function() {
   var flux
 
   beforeEach(function() {
-    flux = new Colonel({ el: document.createElement('div') })
+    flux = new Colonel({
+      el: document.createElement('div')
+    })
   })
 
   it ('begins listening to its application when it mounts', function() {
