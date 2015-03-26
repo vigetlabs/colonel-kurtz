@@ -24,15 +24,15 @@ let blockTypes = [
   }
 ]
 
-var blocks = []
+var seed= {}
 
 try {
-  blocks = JSON.parse(localStorage.getItem('seed')) || []
+  seed = JSON.parse(localStorage.getItem('seed')) || {}
 } catch(x) {}
 
 let editor = new ColonelKurtz({
   el   : document.getElementById('app'),
-  seed : { blocks, blockTypes }
+  seed : { ...seed, blockTypes }
 })
 
 editor.listen(function() {
