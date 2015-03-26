@@ -3,12 +3,12 @@
  * toggling between viewing modes and viewing managed content
  */
 
-import BlockActions from 'actions/blocks'
-import BlockTypes   from 'stores/block_type_store'
-import Blocks       from 'stores/block_store'
-import Button       from 'components/ui/button'
-import Section      from 'components/section'
-import React        from 'react'
+import Actions    from 'actions/blocks'
+import BlockTypes from 'stores/block_type_store'
+import Blocks     from 'stores/block_store'
+import Button     from 'components/ui/button'
+import Section    from 'components/section'
+import React      from 'react'
 
 let App = React.createClass({
 
@@ -22,8 +22,7 @@ let App = React.createClass({
 
   getState() {
     return {
-      blocks     : this.props.flux.get(Blocks),
-      blockTypes : this.props.flux.get(BlockTypes)
+      blocks : this.props.flux.get(Blocks)
     }
   },
 
@@ -32,20 +31,14 @@ let App = React.createClass({
   },
 
   getSection(block, i, parents) {
-    let { blocks, blockTypes } = this.state
-    let { flux } = this.props
+    let isLast = i === (parents.length - 1)
 
-    return (<Section key={ block.id }
-                     block={ block }
-                     blocks={ blocks }
-                     blockTypes={ blockTypes }
-                     last={ i === parents.length - 1}
-                     flux={ flux } />)
+    return (<Section key={ block.id } block={ block } last={ isLast } flux={ this.props.flux } />)
   },
 
   render() {
     let blocks = this.state.blocks.filter(i => !i.parent)
-    let onAdd  = this.props.flux.prepare(BlockActions.create, 'section', 0)
+    let onAdd  = this.props.flux.prepare(Actions.create, 'section', 0, null)
 
     return (
       <div className="colonel">
