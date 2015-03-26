@@ -7,8 +7,8 @@ let BlockTypeStore = {
     return manifest.blockTypes
   },
 
-  deserialize(seed) {
-    return addBlockType(seed.concat(manifest.blockTypes))
+  deserialize(seed=[]) {
+    return addBlockType(seed.concat(this.getInitialState()))
   },
 
   toString() {

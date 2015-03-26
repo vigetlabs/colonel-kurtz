@@ -13,13 +13,20 @@ let Section = React.createClass({
     block      : React.PropTypes.object.isRequired,
     blocks     : React.PropTypes.array.isRequired,
     blockTypes : React.PropTypes.array.isRequired,
-    flux       : React.PropTypes.object.isRequired
+    flux       : React.PropTypes.object.isRequired,
+    last       : React.PropTypes.bool
+  },
+
+  getDefaultProps() {
+    return {
+      last: false
+    }
   },
 
   getBlock(block) {
-    let { flux, blocks, blockTypes } = this.props
+    let { flux } = this.props
 
-    return (<EditorBlock key={ block.id } block={ block } blocks={ blocks } blockTypes={ blockTypes } flux={ flux } />)
+    return (<EditorBlock key={ block.id } block={ block } flux={ flux } />)
   },
 
   render() {
@@ -31,11 +38,11 @@ let Section = React.createClass({
 
     return (
       <div>
-        <Block block={ block } blockType={ blockType } onDestroy={ flux.send(Actions.destroy) }>
+        <Block block={ block } blockType={ blockType } onDestroy={ flux.prepare(Actions.destroy) }>
           <BlockMenu parent={ block } position={ 0 } flux={ flux } forceOpen={ !children.length } />
           <div>{ children.map(this.getBlock) }</div>
         </Block>
-        { canAppend && <Button className="col-btn-fab" onClick={ this._onAdd }>+</Button> }
+        { canAppend && <Button ref="append" className="col-btn-fab" onClick={ this._onAdd }>+</Button> }
       </div>
     )
   },
@@ -43,7 +50,7 @@ let Section = React.createClass({
   _onAdd() {
     let { block, flux } = this.props
 
-    flux.send(Actions.create, block.type, block, null)
+    flux.send(Actions.create, block.type, block)
   }
 
 })

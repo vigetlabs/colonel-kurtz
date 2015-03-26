@@ -14,4 +14,8 @@ describe('Utils - addBlockType', function() {
     spy.restore()
   })
 
+  it ('just returns an empty object if no value is given', function() {
+    addBlockType().length.should.equal(0)
+  })
+
 })

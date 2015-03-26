@@ -17,6 +17,8 @@ module.exports = function(config) {
       'lib/**/__tests__/*.js*',
     ],
 
+    logLevel: config.LOG_ERROR,
+
     preprocessors: {
       'src/**/__tests__/*.js*': [ 'webpack', 'sourcemap' ],
       'lib/**/__tests__/*.js*': [ 'webpack', 'sourcemap' ]
@@ -43,7 +45,25 @@ module.exports = function(config) {
       resolve: webpack_config.resolve,
 
       module: {
-        loaders: webpack_config.module.loaders,
+        loaders: [
+          {
+            test    : /\.json$/,
+            loader  : 'json'
+          },
+          {
+            test    : /\.jsx*$/,
+            exclude : /node_modules/,
+            loader  : 'babel?experimental&loose&optional=runtime'
+          },
+          {
+            test: /\.(svg)$/,
+            loader: 'raw'
+          },
+          {
+            test    : /\.s*(c|a)ss$/,
+            loader  : 'style!css!postcss!sass'
+          }
+        ],
         postLoaders: [
           {
             test: /\.jsx*$/,

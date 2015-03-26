@@ -45,7 +45,7 @@ let App = React.createClass({
 
   render() {
     let blocks = this.state.blocks.filter(i => !i.parent)
-    let onAdd = () => this.props.flux.send(BlockActions.create, 'section', 0, null)
+    let onAdd  = this.props.flux.prepare(BlockActions.create, 'section', 0)
 
     return (
       <div className="colonel">

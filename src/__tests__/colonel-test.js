@@ -1,77 +1,73 @@
-import ColonelKurtz from 'colonel'
+import Actions    from 'actions/blocks'
+import Block      from 'models/block'
+import BlockStore from 'stores/block_store'
+import Colonel    from '../colonel'
 
-describe('Colonel', function() {
+describe('ColonelKurtz', function() {
+  var app;
 
-  it('can be subscribed to', function(done) {
-    let col = new ColonelKurtz({
-      el: document.createElement('div')
+  beforeEach(function() {
+    app = new Colonel({
+      el   : document.createElement('div'),
+      seed : { blocks: [ new Block({ type: 'section' }) ] }
     })
-
-    col.listen(() => done())
-
-    col.pump()
-  })
-
-  it ('can be unsubscribed to', function() {
-    let col = new ColonelKurtz({
-      el: document.createElement('div')
-    })
-
-    let mock = sinon.spy()
-
-    col.listen(mock)
-    col.ignore(mock)
-
-    col.pump()
-
-    mock.should.not.have.been.called
   })
 
   it ('can render', function() {
-    let col = new ColonelKurtz({
-      el: document.createElement('div')
-    })
-
-    col.render()
-
-    col.el.innerHTML.should.not.equal('')
+    app.render()
+    app.el.innerHTML.should.not.equal('')
   })
 
-  describe("Deprecated APIs", function() {
+  it ('returns blocks when converting to JSON', function() {
+    let json = app.toJSON()
+    json.length.should.equal(1)
+  })
 
-    it ('supports addCallback', function(done) {
-      let col = new ColonelKurtz({
-        el: document.createElement('div')
-      })
+  describe('when an append action is sent to the app', function() {
 
-      col.addCallback(() => done())
-
-      col.simulateChange()
+    beforeEach(function() {
+      app.send(Actions.append, 'append')
     })
 
-    it ('supports removeCallback', function() {
-      let col = new ColonelKurtz({
-        el: document.createElement('div')
-      })
-
-      let mock = sinon.spy()
-
-      col.addCallback(mock)
-      col.removeCallback(mock)
-
-      col.simulateChange()
-
-      mock.should.not.have.been.called
-    })
-
-    it ('throws an error if you try to addBlockTypes the old way', function(done) {
-      try {
-        ColonelKurtz.addBlockType()
-      } catch(x) {
-        done()
-      }
+    it ('should append a new block', function() {
+      app.get(BlockStore)[1].type.should.equal('append')
     })
 
   })
 
+  describe('when a create action is sent to the app', function() {
+
+    beforeEach(function() {
+      app.send(Actions.create, 'prepend')
+    })
+
+    it ('should prepend a new block', function() {
+      app.get(BlockStore)[0].type.should.equal('prepend')
+    })
+
+  })
+
+  describe('when a destroy action is sent to the app', function() {
+
+    beforeEach(function() {
+      app.send(Actions.destroy, app.get(BlockStore)[0])
+    })
+
+    it ('should prepend a new block', function() {
+      app.get(BlockStore).length.should.equal(0)
+    })
+
+  })
+
+  describe('when an update action is sent to the app', function() {
+
+    beforeEach(function() {
+      app.send(Actions.update, app.get(BlockStore)[0], { foo: 'bar' })
+    })
+
+    it ('should prepend a new block', function() {
+      app.get(BlockStore)[0].content.should.have.property('foo', 'bar')
+    })
+
+  })
 })

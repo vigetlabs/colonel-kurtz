@@ -1,31 +1,26 @@
-import Block          from 'components/block'
-import BlockModel     from 'models/block'
-
-let TestUtils = React.addons.TestUtils
+import BlockModel from 'models/block'
+import Block      from '../block'
+import Colonel    from '../../colonel'
 
 describe('Components - Block', function() {
-  let component = React.createClass({
-    render() {
-      return (<p>Test</p>)
-    }
+  let TestUtils = React.addons.TestUtils
+  var flux
+
+  beforeEach(function() {
+    flux = new Colonel({ el: document.createElement('div') })
   })
 
-  let block = new Block()
+  it ('triggers update when its child component changes', function() {
+    let model = new Block({ type: 'section' })
+    let type  = flux.get('blockTypes')[0]
 
-  let blockType = { id: 'c0', icon: 'fiz', label: 'fiz', component }
+    let block = TestUtils.renderIntoDocument(<Block block={ model }
+                                                    blockType={ type }
+                                                    onDestroy={ sinon.mock() }
+                                                    onUpdate={ sinon.mock() } />)
 
-  it ('can renders the component of its block type', function() {
-    let component = TestUtils.renderIntoDocument(<Block block={ block } blockType={ blockType } onUpdate={ sinon.mock() }/>)
-
-    component.getDOMNode().textContent.should.equal('Test')
+    block.refs.block.props.onChange('foo')
+    block.props.onUpdate.should.have.been.calledWith(model.id, 'foo')
   })
 
-  it ('passes an updateContent callback method to the block', function() {
-    let mock = sinon.mock()
-    let component = TestUtils.renderIntoDocument(<Block block={ block } blockType={ blockType } onUpdate={ mock }/>)
-
-    component.refs.block.props.updateContent({ foo: 'bar' })
-
-    mock.should.have.been.called
-  })
 })

@@ -27,7 +27,7 @@ let EditorBlock = React.createClass({
 
     return (
       <div>
-        <Block block={ block } blockType={ blockType } onUpdate={ this._onUpdate } onDestroy={ this._onDestroy } />
+        <Block ref="block" block={ block } blockType={ blockType } onUpdate={ this._onUpdate } onDestroy={ this._onDestroy } />
         { this.getBlockMenu(block) }
       </div>
     )

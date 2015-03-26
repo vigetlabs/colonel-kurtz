@@ -6,6 +6,12 @@ import classNames    from 'classnames'
 
 let BlockMenu = React.createClass({
 
+  propTypes: {
+    flux     : React.PropTypes.object.isRequired,
+    parent   : React.PropTypes.any,
+    position : React.PropTypes.any
+  },
+
   getInitialState() {
     return { open: false }
   },
@@ -15,7 +21,7 @@ let BlockMenu = React.createClass({
   },
 
   getToggle() {
-    return (<Button className="col-menu-toggle" onClick={ this._onToggle }>+</Button>)
+    return (<Button ref="toggle" className="col-menu-toggle" onClick={ this._onToggle }>+</Button>)
   },
 
   getButton({ id, label }) {

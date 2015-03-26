@@ -1,32 +1,21 @@
-import Colonel from 'colonel'
-
-let TestUtils = React.addons.TestUtils
+import App     from '../App'
+import Actions from 'actions/blocks'
+import Block   from 'models/block'
+import Colonel from '../../colonel'
 
 describe('Components - App', function() {
-  var app;
+  var flux
 
   beforeEach(function() {
-    app = new Colonel({
-      seed: {
-        blockTypes: [{
-          id: 'app-test',
-          component: React.createClass({
-            render() { return (<p/>)}
-          })
-        }]
-      }
-    })
+    flux = new Colonel({ el: document.createElement('div') })
   })
 
-  it ('can render all children of a block', function() {
-    let root = app.stores.blocks._create({ type: 'app-test' })
+  it ('begins listening to its application when it mounts', function() {
+    let app = React.addons.TestUtils.renderIntoDocument(<App flux={ flux } />)
 
-    let a = app.stores.blocks._create({ parent: root, type: 'app-test' })
-    let b = app.stores.blocks._create({ parent: a, type: 'app-test' })
-    let c = app.stores.blocks._create({ parent: b, type: 'app-test' })
-    let d = app.stores.blocks._create({ parent: c, type: 'app-test' })
+    flux.send(Actions.create, 'section')
 
-    TestUtils.renderIntoDocument(app.create())
+    app.state.blocks.length.should.equal(1)
   })
 
 })
