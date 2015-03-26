@@ -31,18 +31,16 @@ let App = React.createClass({
     this.props.flux.listen(() => this.setState(this.getState()))
   },
 
-  getSection(block) {
+  getSection(block, i, parents) {
     let { blocks, blockTypes } = this.state
     let { flux } = this.props
 
-    let onAdd = () => flux.send(BlockActions.create, block.type, block, null)
-
-    return (
-      <div key={ block.id }>
-        <Section block={ block } blocks={ blocks } blockTypes={ blockTypes } flux={ flux } />
-        <Button className="col-btn-fab" onClick={ onAdd }>+</Button>
-      </div>
-    )
+    return (<Section key={ block.id }
+                     block={ block }
+                     blocks={ blocks }
+                     blockTypes={ blockTypes }
+                     last={ i === parents.length - 1}
+                     flux={ flux } />)
   },
 
   render() {

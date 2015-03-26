@@ -2,7 +2,7 @@ import Actions       from 'actions/blocks'
 import BlockTypes    from 'stores/block_type_store'
 import Button        from './ui/button'
 import React         from 'react'
-import classNames    from 'classNames'
+import classNames    from 'classnames'
 
 let BlockMenu = React.createClass({
 
@@ -31,8 +31,7 @@ let BlockMenu = React.createClass({
   },
 
   render() {
-    let { open }   = this.state
-
+    let open       = this.props.forceOpen || this.state.open
     let blockTypes = this.props.flux.get(BlockTypes).filter(i => !i.private)
     let className  = classNames('col-menu', { 'col-menu-open': open })
 

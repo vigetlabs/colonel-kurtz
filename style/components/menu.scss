@@ -14,7 +14,7 @@
     animation: 0.4s col-menu cubic-bezier(.89,.03,.42,1.23);
     border-radius: 2px;
     height: auto;
-    margin: 6px auto;
+    margin: 10px auto;
     width: auto;
   }
 }
@@ -40,7 +40,8 @@
 .col-menu-btn {
   border-radius: 0;
   display: inline-block;
-  padding: 16px 8px;
+  line-height: 16px;
+  padding: 10px 8px;
   position: relative;
   min-width: 88px;
   border-left: 1px solid rgba(#000, 0.15);

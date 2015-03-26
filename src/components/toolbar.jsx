@@ -16,8 +16,6 @@ let Toolbar = React.createClass({
 
         <nav role="navigation" className="col-toolbar-menu">
           <Button className="col-toolbar-menu-item" onClick={ this._onDestroy }>Remove</Button>
-          <Button className="col-toolbar-menu-item" onClick={ this._onDestroy }>Move Up</Button>
-          <Button className="col-toolbar-menu-item" onClick={ this._onDestroy }>Move Down</Button>
         </nav>
       </div>
     )
