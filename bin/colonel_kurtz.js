@@ -6,6 +6,7 @@ var migrate = require('../lib/migrate')
 var json;
 
 if (!raw.trim()) {
+  console.error('ERROR: Expected a JSON sample as first argument.')
   process.exit(1);
 }
 
