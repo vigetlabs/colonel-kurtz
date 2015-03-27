@@ -1,3 +1,4 @@
 #!/usr/bin/env node
 
-console.log("TODO")
+var migrate = require('../lib/migrate')
+console.log('hey')
