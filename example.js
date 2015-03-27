@@ -24,19 +24,24 @@ let blockTypes = [
   }
 ]
 
-var seed= {}
+var seed = {}
 
 try {
   seed = JSON.parse(localStorage.getItem('seed')) || {}
-} catch(x) {}
+  console.log('seed', seed)
+} catch(x) {
+  console.error(x)
+}
 
 let editor = new ColonelKurtz({
-  el   : document.getElementById('app'),
-  seed : { ...seed, blockTypes }
+  el         : document.getElementById('app'),
+  blockTypes : blockTypes,
+  seed       : seed
 })
 
 editor.listen(function() {
-  localStorage.setItem('seed', JSON.stringify(editor.toJSON()))
+  let data = editor.toJSON()
+  localStorage.setItem('seed', JSON.stringify(data))
 })
 
 editor.render()
