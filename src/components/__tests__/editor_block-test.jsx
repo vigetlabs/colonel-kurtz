@@ -10,7 +10,8 @@ describe('Components - EditorBlock', function() {
     flux = new Colonel({
       el   : document.createElement('div'),
       seed : {
-        blocks: [ { content: {}, type: 'section' } ]
+        system: { version: process.env.VERSION },
+        blocks: [{ content: {}, type: 'section' }]
       }
     })
   })

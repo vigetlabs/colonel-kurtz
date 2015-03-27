@@ -11,6 +11,11 @@ let BlockTypeStore = {
     return addBlockType(seed.concat(this.getInitialState()))
   },
 
+  serialize() {
+    // Do not serialize block types
+    return undefined
+  },
+
   toString() {
     return 'blockTypes'
   }

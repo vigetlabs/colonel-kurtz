@@ -2,16 +2,14 @@ import BlockMenu  from '../block_menu'
 import Colonel    from '../../colonel'
 import Fixture    from './fixtures/testBlockType'
 
-describe('Components - Block', function() {
+describe('Components - Block Menu', function() {
   let TestUtils = React.addons.TestUtils
   var flux
 
   beforeEach(function() {
     flux = new Colonel({
-      el   : document.createElement('div'),
-      seed : {
-        blockTypes: [ Fixture ]
-      }
+      el         : document.createElement('div'),
+      blockTypes : [ Fixture ]
     })
   })
 

@@ -10,7 +10,7 @@ describe('ColonelKurtz', function() {
     app = new Colonel({
       el   : document.createElement('div'),
       seed : {
-        version: process.env.VERSION,
+        system: { version: process.env.VERSION },
         blocks: [ new Block({ type: 'section' }) ]
       }
     })
@@ -28,7 +28,7 @@ describe('ColonelKurtz', function() {
 
   it ('returns a version when converting to JSON', function() {
     let json = app.toJSON()
-    json.should.have.property('version')
+    json.should.have.property('system')
   })
 
   describe('when an append action is sent to the app', function() {

@@ -37,6 +37,8 @@ module.exports = function(config) {
       devtool: 'inline-source-map',
 
       plugins: webpack_config.plugins.concat([
+        new Webpack.IgnorePlugin(/\.s*(c|a)ss$/),
+        new Webpack.IgnorePlugin(/\.svg$/),
         new Webpack.ProvidePlugin({
           'React': 'react/addons'
         })
