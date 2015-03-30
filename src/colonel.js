@@ -11,38 +11,58 @@ import React      from 'react'
 import System     from 'stores/system_store'
 import bootstrap  from 'plugins/bootstrap'
 
-class ColonelKurtz extends Microcosm {
+/**
+ * Colonel Kurtz is a layer on top of the Microcosm framework
+ * Microcosm is a simple Flux implementation designed to solve issues
+ * with state specifically for Colonel Kurtz
+ *
+ * See:
+ * https://github.com/vigetlabs/microcosm
+ */
+export default class ColonelKurtz extends Microcosm {
 
-  constructor({ el, blockTypes, seed }) {
-    super({ el, blockTypes, seed })
+  constructor(options) {
+    super(options)
 
-    this.el = el
-
-    // The system store keeps track of information
-    // for the colonel kurtz instance itself
+    /**
+     * The system store keeps track of information
+     * for the colonel kurtz instance itself
+     */
     this.addStore(System)
 
-    // A block is an individual chunk of content. It can have child
-    // blocks
+    /**
+     * A block is an individual chunk of content. It can have child
+     */
     this.addStore(Blocks)
 
-    // A block type defines the editing experience for a specific type
-    // content
+    /**
+     * A block type defines the editing experience for a specific type
+     * content
+     */
     this.addStore(BlockTypes)
 
-    // The bootstrap plugin takes seed data and prepares the
-    // application's state beyond initializing
+    /**
+     * The bootstrap plugin takes seed data and prepares the
+     * application's state beyond initializing
+     */
     this.addPlugin(bootstrap)
   }
 
-  render() {
+  /**
+   * Render is sugar around Microcosm's start function.
+   * In Microcosm, `start()` is responsible for booting
+   * the application.
+   *
+   * For Colonel Kurtz's purposes, `render()` starts the
+   * application and then renders its interface to a provided
+   * element.
+   */
+  render(done) {
     this.start(() => {
-      React.render(<App app={ this } />, this.el)
+      done(React.render(<App app={ this } />, this._options.el))
     })
 
     return this
   }
 
 }
-
-export default ColonelKurtz

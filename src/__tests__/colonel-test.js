@@ -4,11 +4,14 @@ import BlockStore from 'stores/block_store'
 import Colonel    from '../colonel'
 
 describe('ColonelKurtz', function() {
-  var app;
+  let app;
+  let el;
 
   beforeEach(function(done) {
+    el = document.createElement('div')
+
     app = new Colonel({
-      el   : document.createElement('div'),
+      el   : el,
       seed : {
         system: { version: process.env.VERSION },
         blocks: [ new Block({ type: 'section' }) ]
@@ -18,9 +21,11 @@ describe('ColonelKurtz', function() {
     app.start(done)
   })
 
-  it ('can render', function() {
-    app.render()
-    app.el.innerHTML.should.not.equal('')
+  it ('can render', function(done) {
+    app.render(function() {
+      el.innerHTML.should.not.equal('')
+      done()
+    })
   })
 
   it ('returns blocks when converting to JSON', function() {
