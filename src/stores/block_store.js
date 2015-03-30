@@ -9,10 +9,8 @@
 
 import Actions      from 'actions/blocks'
 import Block        from 'models/block'
-import blocksToJson from 'utils/blocksToJson'
 import findBy       from 'utils/findBy'
 import insertAt     from 'utils/insertAt'
-import jsonToBlocks from 'utils/jsonToBlocks'
 
 export default {
 
@@ -39,14 +37,14 @@ export default {
    * takes a list of blocks and transforms them into the nested structure
    * shown in the front end
    */
-  serialize   : blocksToJson,
+  serialize: require('utils/blocksToJson'),
 
   /**
    * As mentioned previously, blocks are serialized to a nested
    * structure. jsonToBlocks takes this nested structure and flattens
    * into a list for this store.
    */
-  deserialize : jsonToBlocks,
+  deserialize: require('utils/jsonToBlocks'),
 
   /**
    * Actions.append
