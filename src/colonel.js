@@ -59,7 +59,11 @@ export default class ColonelKurtz extends Microcosm {
    */
   render(done) {
     this.start(() => {
-      done(React.render(<App app={ this } />, this._options.el))
+      let component = React.render(<App app={ this } />, this._options.el)
+
+      if (done) {
+        done(component)
+      }
     })
 
     return this
