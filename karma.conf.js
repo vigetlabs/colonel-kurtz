@@ -59,10 +59,12 @@ module.exports = function(config) {
           },
           {
             test: /\.(svg)$/,
+            exclude : /node_modules/,
             loader: 'raw'
           },
           {
             test    : /\.s*(c|a)ss$/,
+            exclude : /node_modules/,
             loader  : 'style!css!postcss!sass'
           }
         ],

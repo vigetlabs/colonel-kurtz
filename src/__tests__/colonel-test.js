@@ -6,7 +6,7 @@ import Colonel    from '../colonel'
 describe('ColonelKurtz', function() {
   var app;
 
-  beforeEach(function() {
+  beforeEach(function(done) {
     app = new Colonel({
       el   : document.createElement('div'),
       seed : {
@@ -14,6 +14,8 @@ describe('ColonelKurtz', function() {
         blocks: [ new Block({ type: 'section' }) ]
       }
     })
+
+    app.start(done)
   })
 
   it ('can render', function() {

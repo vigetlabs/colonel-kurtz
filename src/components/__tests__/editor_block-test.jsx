@@ -4,32 +4,34 @@ import EditorBlock from '../editor_block'
 
 describe('Components - EditorBlock', function() {
   let TestUtils = React.addons.TestUtils
-  var flux
+  var app
 
-  beforeEach(function() {
-    flux = new Colonel({
+  beforeEach(function(done) {
+    app = new Colonel({
       el   : document.createElement('div'),
       seed : {
         system: { version: process.env.VERSION },
         blocks: [{ content: {}, type: 'section' }]
       }
     })
+
+    app.start(done)
   })
 
   it ('can update', function() {
-    let block     = flux.get('blocks')[0]
-    let component = TestUtils.renderIntoDocument(<EditorBlock block={ block } flux={ flux } />)
+    let block     = app.get('blocks')[0]
+    let component = TestUtils.renderIntoDocument(<EditorBlock block={ block } app={ app } />)
 
     component.refs.block.props.onUpdate(block.id, { test: 'foo' })
     block.content.should.have.property('test', 'foo')
   })
 
   it ('can destroy', function() {
-    let block     = flux.get('blocks')[0]
-    let component = TestUtils.renderIntoDocument(<EditorBlock block={ block } flux={ flux } />)
+    let block     = app.get('blocks')[0]
+    let component = TestUtils.renderIntoDocument(<EditorBlock block={ block } app={ app } />)
 
     component.refs.block.props.onDestroy(block.id)
-    flux.get('blocks').length.should.equal(0)
+    app.get('blocks').length.should.equal(0)
   })
 
 })

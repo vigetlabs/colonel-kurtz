@@ -12,8 +12,8 @@ import findBy       from 'utils/findBy'
 let Section = React.createClass({
 
   propTypes: {
+    app   : React.PropTypes.object.isRequired,
     block : React.PropTypes.object.isRequired,
-    flux  : React.PropTypes.object.isRequired,
     last  : React.PropTypes.bool
   },
 
@@ -24,20 +24,20 @@ let Section = React.createClass({
   },
 
   getEditor(block) {
-    return (<EditorBlock key={ block.id } block={ block } flux={ this.props.flux } />)
+    return (<EditorBlock key={ block.id } block={ block } app={ this.props.app } />)
   },
 
   render() {
-    let { block, flux, last } = this.props
+    let { block, app, last } = this.props
 
-    let blockType = findBy(flux.get(BlockTypes), block.type)
-    let children  = flux.get(BlockStore).filter(i => i.parent === block)
-    let onAdd     = flux.prepare(Actions.create, block.type, block, null)
+    let blockType = findBy(app.get(BlockTypes), block.type)
+    let children  = app.get(BlockStore).filter(i => i.parent === block)
+    let onAdd     = app.prepare(Actions.create, block.type, block, null)
 
     return (
       <div>
-        <Block block={ block } blockType={ blockType } onDestroy={ flux.prepare(Actions.destroy) }>
-          <BlockMenu key="menu" parent={ block } flux={ flux } forceOpen={ !children.length } />
+        <Block block={ block } blockType={ blockType } onDestroy={ app.prepare(Actions.destroy) }>
+          <BlockMenu key="menu" parent={ block } app={ app } forceOpen={ !children.length } />
           { children.map(this.getEditor) }
         </Block>
         <Button ref="append" className="col-btn-fab" onClick={ onAdd } hide={ last && !children.length }>+</Button>

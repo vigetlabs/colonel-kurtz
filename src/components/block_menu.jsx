@@ -7,7 +7,7 @@ import classNames    from 'classnames'
 let BlockMenu = React.createClass({
 
   propTypes: {
-    flux     : React.PropTypes.object.isRequired,
+    app      : React.PropTypes.object.isRequired,
     parent   : React.PropTypes.any,
     position : React.PropTypes.any
   },
@@ -25,9 +25,9 @@ let BlockMenu = React.createClass({
   },
 
   getButton({ id, label }) {
-    let { parent, position, flux } = this.props
+    let { parent, position, app } = this.props
 
-    let onAdd = () => flux.send(Actions.create, id, position, parent)
+    let onAdd = () => app.send(Actions.create, id, position, parent)
 
     return (
       <Button key={ id } className="col-menu-btn" onClick={ onAdd }>
@@ -38,7 +38,7 @@ let BlockMenu = React.createClass({
 
   render() {
     let open       = this.props.forceOpen || this.state.open
-    let blockTypes = this.props.flux.get(BlockTypes).filter(i => !i.private)
+    let blockTypes = this.props.app.get(BlockTypes).filter(i => !i.private)
     let className  = classNames('col-menu', { 'col-menu-open': open })
 
     return (

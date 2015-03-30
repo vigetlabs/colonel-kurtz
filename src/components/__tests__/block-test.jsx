@@ -4,15 +4,16 @@ import Colonel    from '../../colonel'
 
 describe('Components - Block', function() {
   let TestUtils = React.addons.TestUtils
-  var flux
+  var app
 
-  beforeEach(function() {
-    flux = new Colonel({ el: document.createElement('div') })
+  beforeEach(function(done) {
+    app = new Colonel({ el: document.createElement('div') })
+    app.start(done)
   })
 
   it ('triggers update when its child component changes', function() {
     let model = new Block({ type: 'section' })
-    let type  = flux.get('blockTypes')[0]
+    let type  = app.get('blockTypes')[0]
 
     let block = TestUtils.renderIntoDocument(<Block block={ model }
                                                     blockType={ type }

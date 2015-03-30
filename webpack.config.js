@@ -60,11 +60,13 @@ module.exports = {
         loader  : 'babel?experimental'
       },
       {
-        test: /\.(svg)$/,
-        loader: 'raw'
+        test    : /\.(svg)$/,
+        exclude : /node_modules/,
+        loader  : 'raw'
       },
       {
         test    : /\.s*(c|a)ss$/,
+        exclude : /node_modules/,
         loader  : ExtractTextPlugin.extract('style', 'css!postcss!sass')
       }
     ]

@@ -4,20 +4,22 @@ import Block   from 'models/block'
 import Colonel from '../../colonel'
 
 describe('Components - App', function() {
-  var flux
+  var app
 
-  beforeEach(function() {
-    flux = new Colonel({
+  beforeEach(function(done) {
+    app = new Colonel({
       el: document.createElement('div')
     })
+
+    app.start(done)
   })
 
   it ('begins listening to its application when it mounts', function() {
-    let app = React.addons.TestUtils.renderIntoDocument(<App flux={ flux } />)
+    let component = React.addons.TestUtils.renderIntoDocument(<App app={ app } />)
 
-    flux.send(Actions.create, 'section')
+    app.send(Actions.create, 'section')
 
-    app.state.blocks.length.should.equal(1)
+    component.state.blocks.length.should.equal(1)
   })
 
 })

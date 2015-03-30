@@ -13,7 +13,7 @@ import React      from 'react'
 let App = React.createClass({
 
   propTypes: {
-    flux : React.PropTypes.object.isRequired
+    app : React.PropTypes.object.isRequired
   },
 
   getInitialState() {
@@ -22,23 +22,23 @@ let App = React.createClass({
 
   getState() {
     return {
-      blocks : this.props.flux.get(Blocks)
+      blocks : this.props.app.get(Blocks)
     }
   },
 
   componentDidMount() {
-    this.props.flux.listen(() => this.setState(this.getState()))
+    this.props.app.listen(() => this.setState(this.getState()))
   },
 
   getSection(block, i, parents) {
     let isLast = i === (parents.length - 1)
 
-    return (<Section key={ block.id } block={ block } last={ isLast } flux={ this.props.flux } />)
+    return (<Section key={ block.id } block={ block } last={ isLast } app={ this.props.app } />)
   },
 
   render() {
     let blocks = this.state.blocks.filter(i => !i.parent)
-    let onAdd  = this.props.flux.prepare(Actions.create, 'section', 0, null)
+    let onAdd  = this.props.app.prepare(Actions.create, 'section', 0, null)
 
     return (
       <div className="colonel">
