@@ -34,7 +34,7 @@ module.exports = function(config) {
     },
 
     webpack: {
-      devtool: 'inline-source-map',
+      devtool : '#eval-source-map',
 
       plugins: webpack_config.plugins.concat([
         new Webpack.IgnorePlugin(/\.s*(c|a)ss$/),
