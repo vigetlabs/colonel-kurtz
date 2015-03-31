@@ -10,11 +10,6 @@
 Colonel Kurtz 2.0.0 marked the first change to the structure of its
 output. To handle old data, a migration tool has been added.
 
-```
-Upgrading Colonel Kurtz from version 0.0.0 to 2.0.0
-✓ 2.0.0
-```
-
 For future releases, all data is tagged with the version of the editor
 with which it was saved. You can view this in the output under the
 `system` key:
@@ -35,8 +30,18 @@ changes the data structure will occur in a major release**.
 
 ## Data migration in the browser
 
-**Data will automatically migrate to the latest version on
-startup**.
+Data will automatically migrate to the latest version on startup. When
+Colonel Kurtz starts, it will pass its seed data through the migration
+plugin.
+
+```javascript
+let instance = new ColonelKurtz({
+  el   : document.querySelector('#app'),
+  seed : document.querySelector('#truth').value
+})
+
+instance.start() // runs through all plugins, including migration
+```
 
 ## Data migration on the server
 
@@ -47,6 +52,9 @@ This binary requires [node.js](nodejs.org).
 
 ```shell
 $(npm bin)/colonel_kurtz oldData
+
+Upgrading Colonel Kurtz from version 0.0.0 to 2.0.0
+✓ 2.0.0
 ```
 
 `$(npm bin)` returns the project localized bin directory for node
