@@ -1,12 +1,16 @@
+/**
+ * Bootstrap
+ * This plugin is responsible for injecting data into the system on
+ * start up, migrating old versions to new.
+ */
 import migrate from 'lib/migrate'
 
 export default {
 
-  register(app, options, next) {
-    let migration  = migrate(options.seed)
-    let blockTypes = options.blockTypes
+  register(app, { seed, blockTypes }, next) {
+    let migration  = migrate(seed)
 
-    app.seed({ ...migration, blockTypes })
+    app.push({ ...migration, blockTypes })
 
     next()
   }

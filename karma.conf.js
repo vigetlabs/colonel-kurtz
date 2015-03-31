@@ -4,6 +4,19 @@ var webpack_config = require('./webpack.config')
 var isIntegration = process.env.CONTINUOUS_INTEGRATION === 'true'
 
 module.exports = function(config) {
+
+  var reporters   = [ 'nyan' ]
+  var postLoaders = []
+
+  if (isIntegration) {
+    reporters.push('coverage')
+    postLoaders.push({
+      test: /\.jsx*$/,
+      exclude: /(__tests__|node_modules|vendor)\//,
+      loader: 'istanbul-instrumenter'
+    })
+  }
+
   config.set({
 
     browsers: [ isIntegration ? 'Firefox' : 'Chrome' ],
@@ -24,7 +37,7 @@ module.exports = function(config) {
       'lib/**/__tests__/*.js*': [ 'webpack', 'sourcemap' ]
     },
 
-    reporters: [ 'nyan', 'coverage' ],
+    reporters: [ 'nyan' ],
 
     coverageReporter: {
       reporters: [
@@ -68,13 +81,7 @@ module.exports = function(config) {
             loader  : 'style!css!postcss!sass'
           }
         ],
-        postLoaders: [
-          {
-            test: /\.jsx*$/,
-            exclude: /(__tests__|node_modules|vendor)\//,
-            loader: 'istanbul-instrumenter'
-          }
-        ]
+        postLoaders: postLoaders
       }
     },
 

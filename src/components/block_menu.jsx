@@ -1,15 +1,12 @@
-import Actions       from 'actions/blocks'
-import BlockTypes    from 'stores/block_type_store'
-import Button        from './ui/button'
-import React         from 'react'
-import classNames    from 'classnames'
+import Actions    from 'actions/blocks'
+import Btn        from './ui/button'
+import React      from 'react'
+import classNames from 'classnames'
 
-let BlockMenu = React.createClass({
+export default React.createClass({
 
   propTypes: {
-    app      : React.PropTypes.object.isRequired,
-    parent   : React.PropTypes.any,
-    position : React.PropTypes.any
+    blockTypes : React.PropTypes.array.isRequired
   },
 
   getInitialState() {
@@ -21,38 +18,35 @@ let BlockMenu = React.createClass({
   },
 
   getToggle() {
-    return (<Button ref="toggle" className="col-menu-toggle" onClick={ this._onToggle }>+</Button>)
+    return (<Btn ref="toggle" className="col-menu-toggle" onClick={ this._onToggle }>+</Btn>)
   },
 
   getButton({ id, label }) {
-    let { parent, position, app } = this.props
-
-    let onAdd = () => app.send(Actions.create, id, position, parent)
-
-    return (
-      <Button key={ id } className="col-menu-btn" onClick={ onAdd }>
-        { label }
-      </Button>
-    )
+    let onAdd = () => this.props.onAdd(id, this.props.position)
+    return (<Btn key={ id } className="col-menu-btn" onClick={ onAdd }>{ label }</Btn>)
   },
 
   render() {
-    let open       = this.props.forceOpen || this.state.open
-    let blockTypes = this.props.app.get(BlockTypes).filter(i => !i.private)
-    let className  = classNames('col-menu', { 'col-menu-open': open })
+    let { blockTypes, forceOpen } = this.props
+
+    let open      = forceOpen || this.state.open
+    let allowed   = blockTypes.filter(i => !i.private)
+    let className = classNames('col-menu', { 'col-menu-open': open })
 
     return (
       <nav className={ className } role="navigation">
         { open ? null : this.getToggle() }
-        { open ? blockTypes.map(this.getButton) : null }
+        { open ? allowed.map(this.getButton) : null }
       </nav>
     )
   },
 
   _onToggle() {
     this.setState({ open: true })
+  },
+
+  _onAdd() {
+    this.props.onAdd(this)
   }
 
 })
-
-export default BlockMenu

@@ -1,6 +1,6 @@
 # Colonel Kurtz
 
-A block editor. Still a work in progress; updates will be rather unstable.
+A block based content editor (more after the hop). Still a work in progress; updates will be rather unstable.
 
 ---
 
@@ -9,7 +9,24 @@ A block editor. Still a work in progress; updates will be rather unstable.
 
 ---
 
-## Use
+## Overview
+
+Colonel Kurtz is a hierarchal content editor. It breaks up
+pages into sections of blocks. Each block has a given type, which
+defines the presentation of its content. A page may look like this:
+
+```
+section
+ |-> text
+ |-> image
+ |-> text
+section
+ |-> video
+ |-> text
+```
+
+Colonel Kurtz saves this information in the JSON format, with which
+you can do whatever you want.
 
 ```javascript
 var ColonelKurtz = require('colonel-kurtz');

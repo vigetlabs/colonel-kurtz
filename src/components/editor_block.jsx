@@ -1,36 +1,32 @@
-import Actions      from 'actions/blocks'
-import Block        from 'components/block'
-import BlockMenu    from 'components/block_menu'
-import BlockTypes   from 'stores/block_type_store'
-import Blocks       from 'stores/block_store'
-import React        from 'react'
-import findBy       from 'utils/findBy'
+import Actions   from 'actions/blocks'
+import Block     from 'components/block'
+import BlockMenu from 'components/block_menu'
+import React     from 'react'
+import findBy    from 'utils/findBy'
 
-let EditorBlock = React.createClass({
+export default React.createClass({
 
   propTypes: {
-    block : React.PropTypes.object.isRequired,
-    app   : React.PropTypes.object.isRequired
-  },
-
-  getBlockMenu() {
-    let { block, app } = this.props
-
-    return (<BlockMenu key="block_menu" parent={ block.parent } position={ block } app={ app } />)
+    app        : React.PropTypes.object.isRequired,
+    block      : React.PropTypes.object.isRequired,
+    blockTypes : React.PropTypes.array.isRequired
   },
 
   render() {
-    let { block, app } = this.props
-
-    let children  = app.get(Blocks).filter(i => i.parent === block)
-    let blockType = findBy(app.get(BlockTypes), block.type)
+    let { app, block, blockTypes } = this.props
 
     return (
       <div>
-        <Block ref="block" block={ block } blockType={ blockType } onUpdate={ this._onUpdate } onDestroy={ this._onDestroy } />
-        { this.getBlockMenu(block) }
+        <Block ref="block" block={ block } blockType={ findBy(blockTypes, block.type) } onUpdate={ this._onUpdate } onDestroy={ this._onDestroy } />
+        <BlockMenu blockTypes={ blockTypes } onAdd={ this._onCreate } position={ block } />
       </div>
     )
+  },
+
+  _onCreate(type, position) {
+    let { app, block } = this.props
+
+    app.send(Actions.create, type, position, block.parent)
   },
 
   _onUpdate(id, content) {
@@ -42,5 +38,3 @@ let EditorBlock = React.createClass({
   }
 
 })
-
-export default EditorBlock

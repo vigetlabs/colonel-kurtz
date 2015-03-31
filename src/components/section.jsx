@@ -1,50 +1,53 @@
 import Actions      from 'actions/blocks'
 import Block        from 'components/block'
 import BlockMenu    from 'components/block_menu'
-import BlockStore   from 'stores/block_store'
-import BlockTypes   from 'stores/block_type_store'
-import Blocks       from 'stores/block_store'
-import Button       from 'components/ui/button'
+import Btn          from 'components/ui/button'
 import EditorBlock  from 'components/editor_block'
 import React        from 'react'
 import findBy       from 'utils/findBy'
 
-let Section = React.createClass({
+export default React.createClass({
 
   propTypes: {
-    app   : React.PropTypes.object.isRequired,
-    block : React.PropTypes.object.isRequired,
-    last  : React.PropTypes.bool
-  },
-
-  getDefaultProps() {
-    return {
-      last: false
-    }
+    app        : React.PropTypes.object.isRequired,
+    block      : React.PropTypes.object.isRequired,
+    blocks     : React.PropTypes.array.isRequired,
+    blockTypes : React.PropTypes.array.isRequired,
+    last       : React.PropTypes.bool
   },
 
   getEditor(block) {
-    return (<EditorBlock key={ block.id } block={ block } app={ this.props.app } />)
+    return (<EditorBlock key={ block.id } { ...this.props } block={ block } />)
   },
 
   render() {
-    let { block, app, last } = this.props
+    let { block, blocks, blockTypes, last } = this.props
 
-    let blockType = findBy(app.get(BlockTypes), block.type)
-    let children  = app.get(BlockStore).filter(i => i.parent === block)
-    let onAdd     = app.prepare(Actions.create, block.type, block, null)
+    let children = blocks.filter(i => i.parent === block)
 
     return (
       <div>
-        <Block block={ block } blockType={ blockType } onDestroy={ app.prepare(Actions.destroy) }>
-          <BlockMenu key="menu" parent={ block } app={ app } forceOpen={ !children.length } />
-          { children.map(this.getEditor) }
+        <Block block={ block } blockType={ findBy(blockTypes, block.type) } onDestroy={ this._onDestroy }>
+          <BlockMenu blockTypes={ blockTypes } forceOpen={ !children.length } onAdd={ this._onCreate } />
+          <div>{ children.map(this.getEditor) }</div>
         </Block>
-        <Button ref="append" className="col-btn-fab" onClick={ onAdd } hide={ last && !children.length }>+</Button>
+        <Btn ref="append" className="col-btn-fab" hide={ last && !children.length } onClick={ this._onAppend }>+</Btn>
       </div>
     )
+  },
+
+  _onAppend() {
+    let { app, block } = this.props
+    app.send(Actions.create, block.type, block, null)
+  },
+
+  _onCreate(type, position) {
+    let { app, block } = this.props
+    app.send(Actions.create, type, position, block)
+  },
+
+  _onDestroy(id) {
+    this.props.app.send(Actions.destroy, id)
   }
 
 })
-
-export default Section
