@@ -58,6 +58,6 @@ Upgrading Colonel Kurtz from version 0.0.0 to 2.0.0
 ```
 
 `$(npm bin)` returns the project localized bin directory for node
-packages. By default, this is under `./node_modules/.bin`. The binary
+packages. By default, this is under `{project}/node_modules/.bin`. The binary
 will update the JSON and provide STDOUT with the modernized
 structure.
