@@ -1,24 +1,10 @@
-var Webpack = require('webpack')
+var Webpack        = require('webpack')
 var webpack_config = require('./webpack.config')
-
-var isIntegration = process.env.CONTINUOUS_INTEGRATION === 'true'
+var isIntegration  = process.env.CONTINUOUS_INTEGRATION === 'true'
 
 module.exports = function(config) {
 
-  var reporters   = [ 'nyan' ]
-  var postLoaders = []
-
-  if (isIntegration) {
-    reporters.push('coverage')
-    postLoaders.push({
-      test: /\.jsx*$/,
-      exclude: /(__tests__|node_modules|vendor)\//,
-      loader: 'istanbul-instrumenter'
-    })
-  }
-
   config.set({
-
     browsers: [ isIntegration ? 'Firefox' : 'Chrome' ],
 
     singleRun: isIntegration,
@@ -37,7 +23,7 @@ module.exports = function(config) {
       'lib/**/__tests__/*.js*': [ 'webpack', 'sourcemap' ]
     },
 
-    reporters: [ 'nyan' ],
+    reporters: [ 'nyan', 'coverage' ],
 
     coverageReporter: {
       reporters: [
@@ -47,7 +33,7 @@ module.exports = function(config) {
     },
 
     webpack: {
-      devtool : '#eval-source-map',
+      devtool : 'inline-source-map',
 
       plugins: webpack_config.plugins.concat([
         new Webpack.IgnorePlugin(/\.s*(c|a)ss$/),
@@ -81,7 +67,11 @@ module.exports = function(config) {
             loader  : 'style!css!postcss!sass'
           }
         ],
-        postLoaders: postLoaders
+        postLoaders: [{
+          test: /\.jsx*$/,
+          exclude: /(__tests__|node_modules|vendor)\//,
+          loader: 'istanbul-instrumenter'
+        }]
       }
     },
 

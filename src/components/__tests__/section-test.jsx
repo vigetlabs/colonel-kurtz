@@ -27,32 +27,31 @@ describe('Components - Section', function() {
   })
 
   it ('gets an editor for every child', function() {
-    let block = app.get('blocks')[0]
-
+    let block     = app.pull('blocks')[0]
     let component = TestUtils.renderIntoDocument(
-      <Section block={ block } app={ app } />
+      <Section app={ app } block={ block } { ...app.toObject() } />
     )
 
     component.getDOMNode().querySelectorAll('.col-block').length.should.equal(3)
   })
 
   it ('does not show an append button if it is marked as last and has no children', function() {
-    let block = app.get('blocks')[1]
+    let block = app.pull('blocks')[1]
 
     let component = TestUtils.renderIntoDocument(
-      <Section block={ new Block({ type: 'section' }) } app={ app } last />
+      <Section app={ app } block={ new Block({ type: 'section' }) } { ...app.toObject() } last />
     )
 
     component.refs.append.props.hide.should.equal(true)
   })
 
   it ('triggers an add action when append is clicked', function() {
-    let block = app.get('blocks')[0]
+    let block = app.pull('blocks')[0]
 
     sinon.spy(app, 'send')
 
     let component = TestUtils.renderIntoDocument(
-      <Section block={ block } blocks={ app.get('blocks') } blockTypes={ app.get('blockTypes') } app={ app } />
+      <Section app={ app } block={ block } { ...app.toObject() } />
     )
 
     TestUtils.Simulate.click(component.refs.append.getDOMNode())

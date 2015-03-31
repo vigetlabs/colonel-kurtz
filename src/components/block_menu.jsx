@@ -6,7 +6,8 @@ import classNames from 'classnames'
 export default React.createClass({
 
   propTypes: {
-    blockTypes : React.PropTypes.array.isRequired
+    blockTypes : React.PropTypes.array.isRequired,
+    onAdd      : React.PropTypes.func.isRequired
   },
 
   getInitialState() {

@@ -13,7 +13,7 @@ describe('Components - Block', function() {
 
   it ('triggers update when its child component changes', function() {
     let model = new Block({ type: 'section' })
-    let type  = app.get('blockTypes')[0]
+    let type  = app.pull('blockTypes')[0]
 
     let block = TestUtils.renderIntoDocument(<Block block={ model }
                                                     blockType={ type }

@@ -21,11 +21,8 @@ describe('ColonelKurtz', function() {
     app.start(done)
   })
 
-  it ('can render', function(done) {
-    app.render(function() {
-      el.innerHTML.should.not.equal('')
-      done()
-    })
+  it ('renders to the provided element', function() {
+    el.innerHTML.should.not.equal('')
   })
 
   it ('returns blocks when converting to JSON', function() {
@@ -41,11 +38,11 @@ describe('ColonelKurtz', function() {
   describe('when an append action is sent to the app', function() {
 
     beforeEach(function() {
-      app.send(Actions.append, 'append')
+      app.send(Actions.append, 'section')
     })
 
     it ('should append a new block', function() {
-      app.get(BlockStore)[1].type.should.equal('append')
+      app.pull(BlockStore)[1].type.should.equal('section')
     })
 
   })
@@ -53,11 +50,11 @@ describe('ColonelKurtz', function() {
   describe('when a create action is sent to the app', function() {
 
     beforeEach(function() {
-      app.send(Actions.create, 'prepend')
+      app.send(Actions.create, 'section')
     })
 
     it ('should prepend a new block', function() {
-      app.get(BlockStore)[0].type.should.equal('prepend')
+      app.pull(BlockStore)[0].type.should.equal('section')
     })
 
   })
@@ -65,11 +62,11 @@ describe('ColonelKurtz', function() {
   describe('when a destroy action is sent to the app', function() {
 
     beforeEach(function() {
-      app.send(Actions.destroy, app.get(BlockStore)[0])
+      app.send(Actions.destroy, app.pull(BlockStore)[0])
     })
 
     it ('should prepend a new block', function() {
-      app.get(BlockStore).length.should.equal(0)
+      app.pull(BlockStore).length.should.equal(0)
     })
 
   })
@@ -77,11 +74,11 @@ describe('ColonelKurtz', function() {
   describe('when an update action is sent to the app', function() {
 
     beforeEach(function() {
-      app.send(Actions.update, app.get(BlockStore)[0], { foo: 'bar' })
+      app.send(Actions.update, app.pull(BlockStore)[0], { foo: 'bar' })
     })
 
     it ('should prepend a new block', function() {
-      app.get(BlockStore)[0].content.should.have.property('foo', 'bar')
+      app.pull(BlockStore)[0].content.should.have.property('foo', 'bar')
     })
 
   })

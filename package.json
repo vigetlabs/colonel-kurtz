@@ -10,6 +10,7 @@
     "start": "NODE_ENV=development webpack-dev-server --content-base ./example --config webpack.example.config.js",
     "prepublish": "NODE_ENV=production webpack -p --optimize-occurence-order --optimize-dedupe",
     "test": "karma start",
+    "test:coverage": "CONTINUOUS_INTEGRATION=true npm test",
     "coveralls": "CONTINUOUS_INTEGRATION=true npm test && coveralls < coverage/report-lcov/lcov.info"
   },
   "repository": {
@@ -44,7 +45,7 @@
     "css-mqpacker": "^3.0.1",
     "csswring": "^3.0.1",
     "extract-text-webpack-plugin": "^0.5.0",
-    "istanbul": "^0.3.11",
+    "istanbul": "^0.3.13",
     "istanbul-instrumenter-loader": "^0.1.2",
     "json-loader": "^0.5.1",
     "karma": "^0.12.31",
