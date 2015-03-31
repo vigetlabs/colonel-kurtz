@@ -10,6 +10,11 @@
 Colonel Kurtz 2.0.0 marked the first change to the structure of its
 output. To handle old data, a migration tool has been added.
 
+```
+Upgrading Colonel Kurtz from version 0.0.0 to 2.0.0
+✓ 2.0.0
+```
+
 For future releases, all data is tagged with the version of the editor
 with which it was saved. You can view this in the output under the
 `system` key:
