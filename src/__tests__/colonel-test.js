@@ -9,7 +9,6 @@ describe('ColonelKurtz', function() {
 
   beforeEach(function(done) {
     el = document.createElement('div')
-
     app = new Colonel({
       el   : el,
       seed : {
@@ -77,8 +76,23 @@ describe('ColonelKurtz', function() {
       app.send(Actions.update, app.pull(BlockStore)[0], { foo: 'bar' })
     })
 
-    it ('should prepend a new block', function() {
+    it ('should update the content of that block', function() {
       app.pull(BlockStore)[0].content.should.have.property('foo', 'bar')
+    })
+
+  })
+
+  describe('when a shift action is sent to the app', function() {
+    let block;
+
+    beforeEach(function() {
+      app.send(Actions.append, 'section')
+      block = app.pull(BlockStore)[0]
+      app.send(Actions.shift, block.id, 1)
+    })
+
+    it ('should prepend a new block', function() {
+      app.pull(BlockStore)[1].should.equal(block)
     })
 
   })

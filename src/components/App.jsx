@@ -27,7 +27,7 @@ export default React.createClass({
   render() {
     return (
       <div className="colonel">
-        <Button className="col-btn-fab" onClick={ this._onAdd }>+</Button>
+        <Button ref="append" className="col-btn-fab" onClick={ this._onAdd }>+</Button>
         { this.props.blocks.filter(i => !i.parent).map(this.getSection) }
       </div>
     )

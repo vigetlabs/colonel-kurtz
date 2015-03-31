@@ -1,3 +1,4 @@
+import Actions     from 'actions/blocks'
 import Block       from 'models/block'
 import Colonel     from '../../colonel'
 import EditorBlock from '../editor_block'
@@ -18,20 +19,42 @@ describe('Components - EditorBlock', function() {
     app.start(done)
   })
 
+  it ('can create', function() {
+    let component = TestUtils.renderIntoDocument(<EditorBlock app={ app } block={ app.pull('blocks')[[0]] } {...app.toObject() } />)
+    let spy       = sinon.spy(Actions, 'create')
+
+    component._onCreate('section')
+
+    spy.should.have.been.called
+  })
+
   it ('can update', function() {
     let block     = app.pull('blocks')[0]
     let component = TestUtils.renderIntoDocument(<EditorBlock app={ app } block={ block } {...app.toObject() } />)
+    let spy       = sinon.spy(Actions, 'update')
+    let content   = { test: 'foo' }
 
-    component.refs.block.props.onUpdate(block.id, { test: 'foo' })
-    block.content.should.have.property('test', 'foo')
+    component._onUpdate(block.id, content)
+
+    spy.should.have.been.calledWith(block.id, content)
   })
 
   it ('can destroy', function() {
     let block     = app.pull('blocks')[0]
     let component = TestUtils.renderIntoDocument(<EditorBlock app={ app } block={ block } {...app.toObject() } />)
+    let spy       = sinon.spy(Actions, 'destroy')
 
-    component.refs.block.props.onDestroy(block.id)
-    app.pull('blocks').length.should.equal(0)
+    component._onDestroy(block.id)
+
+    spy.should.have.been.calledWith(block.id)
   })
 
+  it ('can move blocks', function() {
+    let component = TestUtils.renderIntoDocument(<EditorBlock app={ app } block={ app.pull('blocks')[[0]] } {...app.toObject() } />)
+    let spy       = sinon.spy(Actions, 'shift')
+
+    component._onMove(1)
+
+    spy.should.have.been.calledWith(component.props.block.id, 1)
+  })
 })

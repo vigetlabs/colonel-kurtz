@@ -17,6 +17,7 @@ describe('Components - Block', function() {
 
     let block = TestUtils.renderIntoDocument(<Block block={ model }
                                                     blockType={ type }
+                                                    onMove={ sinon.mock() }
                                                     onDestroy={ sinon.mock() }
                                                     onUpdate={ sinon.mock() } />)
 

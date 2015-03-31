@@ -44,10 +44,6 @@ export default React.createClass({
 
   _onToggle() {
     this.setState({ open: true })
-  },
-
-  _onAdd() {
-    this.props.onAdd(this)
   }
 
 })

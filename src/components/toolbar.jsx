@@ -16,8 +16,8 @@ let Toolbar = React.createClass({
         <span className="col-toolbar-handle" dangerouslySetInnerHTML={{ __html: menuIcon }} />
 
         <nav role="navigation" className="col-toolbar-menu">
-          <Button className="col-toolbar-menu-item" onClick={ this._onMoveUp }>Move Up</Button>
-          <Button className="col-toolbar-menu-item" onClick={ this._onMoveDown }>Move Down</Button>
+          <Button ref="moveUp" className="col-toolbar-menu-item" onClick={ this._onMoveUp }>Move Up</Button>
+          <Button ref="moveDown" className="col-toolbar-menu-item" onClick={ this._onMoveDown }>Move Down</Button>
           <Button ref="destroy" className="col-toolbar-menu-item" onClick={ this._onDestroy }>Remove</Button>
         </nav>
       </div>

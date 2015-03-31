@@ -59,4 +59,33 @@ describe('Components - Section', function() {
     app.send.should.have.been.calledWith(Actions.create, block.type, block, null)
   })
 
+
+  it ('can create', function() {
+    let component = TestUtils.renderIntoDocument(<Section app={ app } block={ app.pull('blocks')[[0]] } {...app.toObject() } />)
+    let spy       = sinon.spy(Actions, 'create')
+
+    component._onCreate('section')
+
+    spy.should.have.been.called
+  })
+
+  it ('can destroy', function() {
+    let block     = app.pull('blocks')[0]
+    let component = TestUtils.renderIntoDocument(<Section app={ app } block={ block } {...app.toObject() } />)
+    let spy       = sinon.spy(Actions, 'destroy')
+
+    component._onDestroy(block.id)
+
+    spy.should.have.been.calledWith(block.id)
+  })
+
+  it ('can move blocks', function() {
+    let component = TestUtils.renderIntoDocument(<Section app={ app } block={ app.pull('blocks')[[0]] } {...app.toObject() } />)
+    let spy       = sinon.spy(Actions, 'shift')
+
+    component._onMove(1)
+
+    spy.should.have.been.calledWith(component.props.block.id, 1)
+  })
+
 })

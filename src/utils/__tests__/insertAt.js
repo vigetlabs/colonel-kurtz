@@ -14,4 +14,17 @@ describe('Utils - insertAt', function() {
     result[result.length - 1].should.equal('injection')
   })
 
+  it ('will not insert a position less than 0', function() {
+    let result = insertAt(list, 'injection', -10)
+    result[0].should.equal('injection')
+  })
+
+  it ('will not insert a position greater than the list length', function() {
+    let result = insertAt(list, 'injection', 40)
+
+    result[result.length - 1].should.equal('injection')
+
+    result.length.should.equal(list.length + 1)
+  })
+
 })

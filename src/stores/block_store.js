@@ -7,10 +7,11 @@
  * how that action manipulates block data.
  */
 
-import Actions      from 'actions/blocks'
-import Block        from 'models/block'
-import findBy       from 'utils/findBy'
-import insertAt     from 'utils/insertAt'
+import Actions  from 'actions/blocks'
+import Block    from 'models/block'
+import findBy   from 'utils/findBy'
+import insertAt from 'utils/insertAt'
+import shift    from 'utils/shift'
 
 export default {
 
@@ -104,11 +105,7 @@ export default {
    * Adjust the position of a given block
    */
   [Actions.shift](state, { id, delta }) {
-    var block   = findBy(state, id)
-    let index   = Math.max(0, state.indexOf(block) + delta)
-    var without = state.filter(i => i !== block)
-
-    return insertAt(without, block, index)
+    return shift(state, findBy(state, id), delta)
   }
 
 }
