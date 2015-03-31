@@ -56,10 +56,3 @@ $(npm bin)/colonel_kurtz oldJson
 npm install -d
 npm start
 ```
-
-### Type Checking (Optional)
-
-```bash
-flow start
-flow
-```
