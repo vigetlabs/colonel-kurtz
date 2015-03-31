@@ -17,7 +17,7 @@ export default React.createClass({
 
     return (
       <div>
-        <Block ref="block" block={ block } blockType={ findBy(blockTypes, block.type) } onUpdate={ this._onUpdate } onDestroy={ this._onDestroy } />
+        <Block ref="block" block={ block } blockType={ findBy(blockTypes, block.type) } onUpdate={ this._onUpdate } onDestroy={ this._onDestroy } onMove={ this._onMove } />
         <BlockMenu blockTypes={ blockTypes } onAdd={ this._onCreate } position={ block } />
       </div>
     )
@@ -35,6 +35,11 @@ export default React.createClass({
 
   _onDestroy(id) {
     this.props.app.send(Actions.destroy, id)
+  },
+
+  _onMove(delta) {
+    let { app, block } = this.props
+    app.send(Actions.shift, block.id, delta)
   }
 
 })

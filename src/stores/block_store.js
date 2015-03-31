@@ -63,9 +63,9 @@ export default {
   [Actions.create](state, { type, parent, position=0 }) {
     let record = new Block({ parent, type })
 
-      if (position instanceof Block) {
-        position = state.indexOf(position) + 1
-      }
+    if (position instanceof Block) {
+      position = state.indexOf(position) + 1
+    }
 
     return insertAt(state, record, position)
   },
@@ -92,11 +92,23 @@ export default {
    * attributes will not be changed.
    */
   [Actions.update](state, params) {
-    var block = findBy(state, params.id, 'id')
+    var block = findBy(state, params.id)
 
     block.content = { ...block.content, ...params.content }
 
     return state
+  },
+
+  /**
+   * Actions.shift
+   * Adjust the position of a given block
+   */
+  [Actions.shift](state, { id, delta }) {
+    var block   = findBy(state, id)
+    let index   = Math.max(0, state.indexOf(block) + delta)
+    var without = state.filter(i => i !== block)
+
+    return insertAt(without, block, index)
   }
 
 }

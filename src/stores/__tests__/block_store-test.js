@@ -50,4 +50,21 @@ describe('Stores - Block', function() {
     target.content.should.have.property('foo', 'bar')
   })
 
+  it ('can move a block', function() {
+    let target  = new Block({})
+    let initial = [ new Block({}), target, new Block({}) ]
+    let state   = BlockStore[Actions.shift](initial, { id: target.id, delta: 1 })
+
+    state[2].should.equal(target)
+  })
+
+  it ('does not move a block lower than 0', function() {
+    let target  = new Block({})
+    let initial = [ target, new Block({}) ]
+    let state   = BlockStore[Actions.shift](initial, { id: target.id, delta: -1 })
+
+    state[0].should.equal(target)
+    state[1].should.not.equal(target)
+  })
+
 })

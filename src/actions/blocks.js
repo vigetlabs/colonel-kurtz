@@ -16,6 +16,9 @@ export default tag({
 
   update(id, content) {
     return { id, content }
-  }
+  },
 
+  shift(id, delta) {
+    return { id, delta }
+  }
 })

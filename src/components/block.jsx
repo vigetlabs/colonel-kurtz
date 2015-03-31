@@ -8,11 +8,12 @@ let Block = React.createClass({
     block     : React.PropTypes.object.isRequired,
     blockType : React.PropTypes.object.isRequired,
     onDestroy : React.PropTypes.func,
-    onUpdate  : React.PropTypes.func
+    onUpdate  : React.PropTypes.func,
+    onMove    : React.PropTypes.func
   },
 
   render() {
-    let { block, blockType, children, onDestroy } = this.props
+    let { block, blockType, children, onDestroy, onMove } = this.props
     let { component:Component } = blockType
 
     return (
@@ -20,7 +21,7 @@ let Block = React.createClass({
         <Component ref="block" content={ block.content } onChange={ this._onUpdate }>
           { children }
         </Component>
-        <Toolbar block={ block } onDestroy={ onDestroy } />
+        <Toolbar block={ block } onDestroy={ onDestroy } onMove={ onMove }/>
       </div>
     )
   },

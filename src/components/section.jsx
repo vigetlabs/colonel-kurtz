@@ -27,7 +27,7 @@ export default React.createClass({
 
     return (
       <div>
-        <Block block={ block } blockType={ findBy(blockTypes, block.type) } onDestroy={ this._onDestroy }>
+        <Block block={ block } blockType={ findBy(blockTypes, block.type) } onDestroy={ this._onDestroy } onMove={ this._onMove }>
           <BlockMenu blockTypes={ blockTypes } forceOpen={ !children.length } onAdd={ this._onCreate } />
           <div>{ children.map(this.getEditor) }</div>
         </Block>
@@ -48,6 +48,12 @@ export default React.createClass({
 
   _onDestroy(id) {
     this.props.app.send(Actions.destroy, id)
+  },
+
+  _onMove(delta) {
+    let { app, block } = this.props
+
+    app.send(Actions.shift, block.id, delta)
   }
 
 })
