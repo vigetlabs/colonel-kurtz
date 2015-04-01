@@ -59,7 +59,6 @@ NO_COVERAGE=true npm test
 Colonel Kurtz uses ES6 Javascript (compiled using
 [Babel](babeljs.io)). As for style, shoot for:
 
-
 ### Style
 
 - No semicolons
