@@ -47,12 +47,3 @@ services:
 ```bash
 $(npm bin)/colonel_kurtz oldJson
 ```
-
-## Contributing
-
-### Setup
-
-```bash
-npm install -d
-npm start
-```
