@@ -6,11 +6,8 @@ import EditorBlock  from 'components/editor_block'
 import React        from 'react'
 import childrenOf   from 'utils/childrenOf'
 import findBy       from 'utils/findBy'
-import {Downstream} from 'microcosm'
 
 export default React.createClass({
-  mixins: [ Downstream ],
-
   propTypes: {
     app        : React.PropTypes.object.isRequired,
     block      : React.PropTypes.object.isRequired,
@@ -20,10 +17,10 @@ export default React.createClass({
   },
 
   getEditor(block) {
-    let { blockTypes } = this.props
+    let { app, blockTypes } = this.props
 
     return (
-      <EditorBlock key={ block.id } block={ block } blockTypes={ blockTypes }/>
+      <EditorBlock key={ block.id } app={ app } block={ block } blockTypes={ blockTypes }/>
     )
   },
 
@@ -46,7 +43,7 @@ export default React.createClass({
   },
 
   _onAppend() {
-    this.props.app(Actions.append, 'section')
+    this.props.app.send(Actions.append, 'section')
   }
 
 })

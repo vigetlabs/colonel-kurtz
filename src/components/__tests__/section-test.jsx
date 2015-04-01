@@ -1,8 +1,7 @@
-import Actions    from 'actions/blocks'
-import Block      from 'models/block'
-import Colonel    from '../../colonel'
-import Section    from '../section'
-import contextify from 'test/contextify'
+import Actions from 'actions/blocks'
+import Block   from 'models/block'
+import Colonel from '../../colonel'
+import Section from '../section'
 
 describe('Components - Section', function() {
   let TestUtils = React.addons.TestUtils
@@ -29,21 +28,21 @@ describe('Components - Section', function() {
 
   it ('gets an editor for every child', function() {
     let block = app.pull('blocks')[0]
-    let test  = contextify(Section, app, { block, ...app.toObject() })
+    let test  = TestUtils.renderIntoDocument(<Section app={ app } block={ block } { ...app.toObject() } />)
 
     test.getDOMNode().querySelectorAll('.col-block').length.should.equal(3)
   })
 
   it ('does not show an append button if it is marked as last and has no children', function() {
     let block = app.pull('blocks')[1]
-    let test  = contextify(Section, app, { block, ...app.toObject(), last: true })
+    let test  = TestUtils.renderIntoDocument(<Section app={ app } block={ block } { ...app.toObject() } last />)
 
     test.refs.append.props.hide.should.equal(true)
   })
 
   it ('triggers an add action when append is clicked', function() {
     let block = app.pull('blocks')[0]
-    let test  = contextify(Section, app, { block, ...app.toObject() })
+    let test  = TestUtils.renderIntoDocument(<Section app={ app } block={ block } { ...app.toObject() } />)
 
     sinon.spy(app, 'send')
 

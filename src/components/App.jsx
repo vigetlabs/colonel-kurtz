@@ -7,11 +7,8 @@ import Actions    from 'actions/blocks'
 import Button     from 'components/ui/button'
 import Section    from 'components/section'
 import React      from 'react'
-import {Upstream} from 'microcosm'
 
 export default React.createClass({
-  mixins: [ Upstream ],
-
   propTypes: {
     app        : React.PropTypes.object.isRequired,
     blocks     : React.PropTypes.array.isRequired,

@@ -2,12 +2,10 @@ import Actions      from 'actions/blocks'
 import Btn          from './ui/button'
 import React        from 'react'
 import classNames   from 'classnames'
-import {Downstream} from 'microcosm'
 
 export default React.createClass({
-  mixins: [ Downstream ],
-
   propTypes: {
+    app        : React.PropTypes.object.isRequired,
     blockTypes : React.PropTypes.array.isRequired
   },
 
@@ -48,8 +46,8 @@ export default React.createClass({
   },
 
   _onAdd(id) {
-    let { position, parent } = this.props
-    this.send(Actions.create, id, position, this.props.parent)
+    let { app, position, parent } = this.props
+    app.send(Actions.create, id, position, this.props.parent)
   }
 
 })

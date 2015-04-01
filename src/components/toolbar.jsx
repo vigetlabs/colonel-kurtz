@@ -1,8 +1,8 @@
-import Actions      from 'actions/blocks'
 import Handle       from './toolbarHandle'
 import Item         from './toolbarItem'
 import React        from 'react'
-import {Downstream} from 'microcosm'
+
+import { destroy, shift } from 'actions/blocks'
 
 export default React.createClass({
   propTypes: {
@@ -11,28 +11,17 @@ export default React.createClass({
   },
 
   render() {
+    let { app, block: { id } } = this.props
+
     return (
       <div className="col-toolbar">
         <Handle />
         <nav role="navigation" className="col-toolbar-menu">
-          <Item ref="moveUp" label="Move Up" onClick={ this._onMoveUp } />
-          <Item ref="moveDown" label="Move Down" onClick={ this._onMoveDown } />
-          <Item ref="destroy" label="Remove" onClick={ this._onDestroy } />
+          <Item ref="moveUp" label="Move Up" onClick={ app.prepare(shift, id, -1) } />
+          <Item ref="moveDown" label="Move Down" onClick={ app.prepare(shift, id, 1) } />
+          <Item ref="destroy" label="Remove" onClick={ app.prepare(destroy, id) } />
         </nav>
       </div>
     )
-  },
-
-  _onDestroy(e) {
-    let { app, blocks } = this.props
-    app(Actions.destroy, block.id)
-  },
-
-  _onMoveUp(e) {
-    this.send(Actions.shift, this.props.block.id, -1)
-  },
-
-  _onMoveDown(e) {
-    this.send(Actions.shift, this.props.block.id, 1)
   }
 })

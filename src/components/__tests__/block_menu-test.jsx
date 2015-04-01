@@ -2,7 +2,6 @@ import Actions    from 'actions/blocks'
 import BlockMenu  from '../block_menu'
 import Colonel    from '../../colonel'
 import Fixture    from './fixtures/testBlockType'
-import contextify from 'test/contextify'
 
 describe('Components - Block Menu', function() {
   let TestUtils = React.addons.TestUtils
@@ -22,13 +21,13 @@ describe('Components - Block Menu', function() {
   })
 
   it ('closes when it gets new properties', function() {
-    let base = contextify(BlockMenu, app, { blockTypes, open: true })
+    let base = TestUtils.renderIntoDocument(<BlockMenu app={ app } blockTypes={ blockTypes } open />)
     base.forceUpdate()
     base.state.open.should.equal(false)
   })
 
   it ('opens on toggle', function() {
-    let base = contextify(BlockMenu, app, { blockTypes })
+    let base = TestUtils.renderIntoDocument(<BlockMenu app={ app } blockTypes={ blockTypes } />)
 
     TestUtils.Simulate.click(base.refs.toggle.getDOMNode())
 
@@ -36,7 +35,7 @@ describe('Components - Block Menu', function() {
   })
 
   it ('adds a block type on click', function() {
-    let base = contextify(BlockMenu, app, { blockTypes, forceOpen: true  })
+    let base = TestUtils.renderIntoDocument(<BlockMenu app={ app } blockTypes={ blockTypes } forceOpen />)
     let spy  = sinon.spy(app, 'send')
 
     TestUtils.Simulate.click(base.getDOMNode().querySelector('.col-menu-btn'))
