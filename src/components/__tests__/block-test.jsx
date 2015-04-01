@@ -1,28 +1,28 @@
-import BlockModel from 'models/block'
+import Actions    from 'actions/blocks'
 import Block      from '../block'
+import BlockModel from 'models/block'
 import Colonel    from '../../colonel'
+import contextify from 'test/contextify'
 
 describe('Components - Block', function() {
   let TestUtils = React.addons.TestUtils
-  var app
+  let app
 
   beforeEach(function(done) {
-    app = new Colonel({ el: document.createElement('div') })
+    app = new Colonel({ el : document.createElement('div') })
     app.start(done)
   })
 
   it ('triggers update when its child component changes', function() {
-    let model = new Block({ type: 'section' })
-    let type  = app.pull('blockTypes')[0]
+    app.send(Actions.create, 'section')
 
-    let block = TestUtils.renderIntoDocument(<Block block={ model }
-                                                    blockType={ type }
-                                                    onMove={ sinon.mock() }
-                                                    onDestroy={ sinon.mock() }
-                                                    onUpdate={ sinon.mock() } />)
+    let block     = app.pull('blocks')[0]
+    let blockType = app.pull('blockTypes')[0]
+    let subject   = contextify(Block, app, { block, blockType })
 
-    block.refs.block.props.onChange('foo')
-    block.props.onUpdate.should.have.been.calledWith(model.id, 'foo')
+    subject.refs.block.props.onChange({ fiz: 'buzz' })
+
+    block.content.should.have.property('fiz', 'buzz')
   })
 
 })

@@ -1,43 +1,46 @@
-import Actions  from 'actions/blocks'
-import Toolbar  from '../toolbar'
+import Actions    from 'actions/blocks'
+import Colonel    from '../../colonel'
+import Toolbar    from '../toolbar'
+import contextify from 'test/contextify'
 
 describe('Components - Toolbar', function() {
   let TestUtils = React.addons.TestUtils
+  let app, block
+
+  beforeEach(function(done) {
+    app = new Colonel({ el : document.createElement('div') })
+
+    app.start(function() {
+      app.send(Actions.create, 'section')
+      block = app.pull('blocks')[0]
+    }, done)
+  })
 
   it ('calls onDestroy when the destroy button is clicked', function() {
-    let destroy   = sinon.mock()
-    let move      = sinon.mock()
-    let component = TestUtils.renderIntoDocument(
-      <Toolbar block={{ id: 'test' }} onDestroy={ destroy } onMove={ move }/>
-    )
+    let test = contextify(Toolbar, app, { block })
+    let spy  = sinon.spy(app, 'send')
 
-    TestUtils.Simulate.click(component.refs.destroy.getDOMNode())
+    TestUtils.Simulate.click(test.refs.destroy.getDOMNode())
 
-    destroy.should.have.been.calledWith('test')
+    app.send.should.have.been.calledWith(Actions.destroy, block.id)
   })
 
-  it ('calls onMove when the move up button is clicked', function() {
-    let destroy   = sinon.mock()
-    let move      = sinon.mock()
-    let component = TestUtils.renderIntoDocument(
-      <Toolbar block={{ id: 'test' }} onDestroy={ destroy } onMove={ move }/>
-    )
+  it ('calls onDestroy when the destroy button is clicked', function() {
+    let test = contextify(Toolbar, app, { block })
+    let spy  = sinon.spy(app, 'send')
 
-    TestUtils.Simulate.click(component.refs.moveUp.getDOMNode())
+    TestUtils.Simulate.click(test.refs.moveUp.getDOMNode())
 
-    move.should.have.been.calledWith(-1)
+    app.send.should.have.been.calledWith(Actions.shift, block.id, -1)
   })
 
-  it ('calls onMove when the move down button is clicked', function() {
-    let destroy   = sinon.mock()
-    let move      = sinon.mock()
-    let component = TestUtils.renderIntoDocument(
-      <Toolbar block={{ id: 'test' }} onDestroy={ destroy } onMove={ move }/>
-    )
+  it ('calls onDestroy when the destroy button is clicked', function() {
+    let test = contextify(Toolbar, app, { block })
+    let spy  = sinon.spy(app, 'send')
 
-    TestUtils.Simulate.click(component.refs.moveDown.getDOMNode())
+    TestUtils.Simulate.click(test.refs.moveDown.getDOMNode())
 
-    move.should.have.been.calledWith(1)
+    app.send.should.have.been.calledWith(Actions.shift, block.id, 1)
   })
 
 })

@@ -1,44 +1,38 @@
-import Button   from './ui/button'
-import React    from 'react'
-import menuIcon from 'icons/menu'
+import Actions      from 'actions/blocks'
+import Handle       from './toolbarHandle'
+import Item         from './toolbarItem'
+import React        from 'react'
+import {Downstream} from 'microcosm'
 
-let Toolbar = React.createClass({
+export default React.createClass({
+  mixins: [ Downstream ],
 
   propTypes: {
-    block     : React.PropTypes.object.isRequired,
-    onDestroy : React.PropTypes.func.isRequired,
-    onMove    : React.PropTypes.func.isRequired
+    block : React.PropTypes.object.isRequired
   },
 
   render() {
     return (
       <div className="col-toolbar">
-        <span className="col-toolbar-handle" dangerouslySetInnerHTML={{ __html: menuIcon }} />
-
+        <Handle />
         <nav role="navigation" className="col-toolbar-menu">
-          <Button ref="moveUp" className="col-toolbar-menu-item" onClick={ this._onMoveUp }>Move Up</Button>
-          <Button ref="moveDown" className="col-toolbar-menu-item" onClick={ this._onMoveDown }>Move Down</Button>
-          <Button ref="destroy" className="col-toolbar-menu-item" onClick={ this._onDestroy }>Remove</Button>
+          <Item ref="moveUp" label="Move Up" onClick={ this._onMoveUp } />
+          <Item ref="moveDown" label="Move Down" onClick={ this._onMoveDown } />
+          <Item ref="destroy" label="Remove" onClick={ this._onDestroy } />
         </nav>
       </div>
     )
   },
 
   _onDestroy(e) {
-    e.preventDefault()
-    this.props.onDestroy(this.props.block.id)
+    this.send(Actions.destroy, this.props.block.id)
   },
 
   _onMoveUp(e) {
-    e.preventDefault()
-    this.props.onMove(-1)
+    this.send(Actions.shift, this.props.block.id, -1)
   },
 
   _onMoveDown(e) {
-    e.preventDefault()
-    this.props.onMove(1)
+    this.send(Actions.shift, this.props.block.id, 1)
   }
-
 })
-
-export default Toolbar

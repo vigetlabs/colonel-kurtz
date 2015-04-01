@@ -1,35 +1,33 @@
-import React      from 'react'
-import Toolbar    from 'components/toolbar'
-import classNames from 'classnames'
+import Actions      from 'actions/blocks'
+import React        from 'react'
+import Toolbar      from 'components/toolbar'
+import classNames   from 'classnames'
+import {Downstream} from 'microcosm'
 
-let Block = React.createClass({
+export default React.createClass({
+  mixins: [ Downstream ],
 
   propTypes: {
     block     : React.PropTypes.object.isRequired,
     blockType : React.PropTypes.object.isRequired,
-    onDestroy : React.PropTypes.func,
-    onUpdate  : React.PropTypes.func,
-    onMove    : React.PropTypes.func
   },
 
   render() {
-    let { block, blockType, children, onDestroy, onMove } = this.props
+    let { block, blockType, children } = this.props
     let { component:Component } = blockType
 
     return (
       <div className={ classNames('col-block', `col-block-${ block.type }`) }>
-        <Component ref="block" content={ block.content } onChange={ this._onUpdate }>
+        <Component ref="block" content={ block.content } onChange={ this._onChange }>
           { children }
         </Component>
-        <Toolbar block={ block } onDestroy={ onDestroy } onMove={ onMove }/>
+        <Toolbar block={ block } />
       </div>
     )
   },
 
-  _onUpdate(content) {
-    this.props.onUpdate(this.props.block.id, content)
+  _onChange(content) {
+    this.send(Actions.update, this.props.block, content)
   }
 
 })
-
-export default Block

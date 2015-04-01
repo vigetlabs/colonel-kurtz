@@ -1,8 +1,17 @@
 var Webpack        = require('webpack')
 var webpack_config = require('./webpack.config')
 var isIntegration  = process.env.CONTINUOUS_INTEGRATION === 'true'
+var noCoverage     = process.env.NO_COVERAGE === 'true'
 
 module.exports = function(config) {
+
+  if (isIntegration) {
+    console.log('Running in integration')
+  }
+
+  if (noCoverage) {
+    console.log('Test coverage has been disabled')
+  }
 
   config.set({
     browsers: [ isIntegration ? 'Firefox' : 'Chrome' ],
@@ -11,19 +20,15 @@ module.exports = function(config) {
 
     frameworks: [ 'mocha', 'sinon-chai' ],
 
-    files: [
-      'src/**/__tests__/*.js*',
-      'lib/**/__tests__/*.js*',
-    ],
+    files: ['test.webpack.js'],
 
     logLevel: config.LOG_ERROR,
 
     preprocessors: {
-      'src/**/__tests__/*.js*': [ 'webpack', 'sourcemap' ],
-      'lib/**/__tests__/*.js*': [ 'webpack', 'sourcemap' ]
+      'test.webpack.js': [ 'webpack', 'sourcemap' ]
     },
 
-    reporters: [ 'nyan', 'coverage' ],
+    reporters: noCoverage ? [ 'nyan' ] : [ 'nyan', 'coverage' ],
 
     coverageReporter: {
       reporters: [
@@ -67,7 +72,7 @@ module.exports = function(config) {
             loader  : 'style!css!postcss!sass'
           }
         ],
-        postLoaders: [{
+        postLoaders: noCoverage ? [] : [{
           test: /\.jsx*$/,
           exclude: /(__tests__|node_modules|vendor)\//,
           loader: 'istanbul-instrumenter'

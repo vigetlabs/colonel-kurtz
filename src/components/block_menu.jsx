@@ -1,13 +1,14 @@
-import Actions    from 'actions/blocks'
-import Btn        from './ui/button'
-import React      from 'react'
-import classNames from 'classnames'
+import Actions      from 'actions/blocks'
+import Btn          from './ui/button'
+import React        from 'react'
+import classNames   from 'classnames'
+import {Downstream} from 'microcosm'
 
 export default React.createClass({
+  mixins: [ Downstream ],
 
   propTypes: {
-    blockTypes : React.PropTypes.array.isRequired,
-    onAdd      : React.PropTypes.func.isRequired
+    blockTypes : React.PropTypes.array.isRequired
   },
 
   getInitialState() {
@@ -23,7 +24,7 @@ export default React.createClass({
   },
 
   getButton({ id, label }) {
-    let onAdd = () => this.props.onAdd(id, this.props.position)
+    let onAdd = () => this._onAdd(id)
     return (<Btn key={ id } className="col-menu-btn" onClick={ onAdd }>{ label }</Btn>)
   },
 
@@ -44,6 +45,11 @@ export default React.createClass({
 
   _onToggle() {
     this.setState({ open: true })
+  },
+
+  _onAdd(id) {
+    let { position, parent } = this.props
+    this.send(Actions.create, id, position, this.props.parent)
   }
 
 })

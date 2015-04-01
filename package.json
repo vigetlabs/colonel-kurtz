@@ -58,7 +58,7 @@
     "karma-sinon-chai": "^0.3.0",
     "karma-sourcemap-loader": "^0.3.4",
     "karma-webpack": "^1.5.0",
-    "microcosm": "^5.0.0",
+    "microcosm": "^5.1.1",
     "mocha": "^2.1.0",
     "postcss-loader": "^0.3.0",
     "raw-loader": "^0.5.1",
