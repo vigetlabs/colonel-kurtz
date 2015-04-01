@@ -71,10 +71,10 @@ Colonel Kurtz uses ES6 Javascript (compiled using
 ### Testing
 
 Additionally, we aspire for 100% code coverage. However 100% code
-coverage is not an indicator of good testing. Tests that cover as much
-surface area as possible (for the sake of coverage) should be
-avoided. This is a much softer measure than a style guide, and will
-fall to code review for enforcement
+coverage is not a foolproof indicator of good testing. Tests that
+cover as much surface area as possible (for the sake of coverage)
+should be avoided. This is a much softer measure than a style guide,
+and will fall to code review for enforcement.
 
 ### Reviews
 
