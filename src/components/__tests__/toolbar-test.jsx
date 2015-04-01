@@ -1,22 +1,21 @@
 import Actions from 'actions/blocks'
-import Colonel from '../../colonel'
 import Toolbar from '../toolbar'
 
 describe('Components - Toolbar', function() {
   let TestUtils = React.addons.TestUtils
   let app, block
 
-  beforeEach(function(done) {
-    app = new Colonel({ el : document.createElement('div') })
-
-    app.start(function() {
-      app.send(Actions.create, 'section')
-      block = app.pull('blocks', i => i[0])
-    }, done)
+  beforeEach(function() {
+    app = {
+      send: sinon.mock(),
+      prepare(...args) {
+        return this.send.bind(this, ...args)
+      }
+    }
+    block = { id: 'test', type: 'section' }
   })
 
   it ('calls onDestroy when the destroy button is clicked', function() {
-    let spy  = sinon.spy(app, 'send')
     let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
 
     TestUtils.Simulate.click(test.refs.destroy.getDOMNode())
@@ -25,7 +24,6 @@ describe('Components - Toolbar', function() {
   })
 
   it ('calls onMove when the move up button is clicked', function() {
-    let spy  = sinon.spy(app, 'send')
     let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
 
     TestUtils.Simulate.click(test.refs.moveUp.getDOMNode())
@@ -34,7 +32,6 @@ describe('Components - Toolbar', function() {
   })
 
   it ('calls onMove when the move down button is clicked', function() {
-    let spy  = sinon.spy(app, 'send')
     let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
 
     TestUtils.Simulate.click(test.refs.moveDown.getDOMNode())
