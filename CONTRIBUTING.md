@@ -56,6 +56,8 @@ NO_COVERAGE=true npm test
 
 ## Conventions
 
+**Master is not safe**, use NPM for the latest stable version.
+
 Colonel Kurtz uses ES6 Javascript (compiled using
 [Babel](babeljs.io)). As for style, shoot for:
 
