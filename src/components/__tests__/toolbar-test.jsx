@@ -1,5 +1,5 @@
 import Actions from 'actions/blocks'
-import Toolbar from '../toolbar'
+import Toolbar from '../Toolbar'
 
 describe('Components - Toolbar', function() {
   let TestUtils = React.addons.TestUtils

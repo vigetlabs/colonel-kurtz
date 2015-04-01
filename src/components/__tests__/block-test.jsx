@@ -1,5 +1,5 @@
 import Actions from 'actions/blocks'
-import Block   from '../block'
+import Block   from '../Block'
 import Colonel from '../../colonel'
 
 let first = list => list[0]

@@ -3,10 +3,10 @@
  * toggling between viewing modes and viewing managed content
  */
 
-import Actions    from 'actions/blocks'
-import Button     from 'components/ui/button'
-import Section    from 'components/section'
-import React      from 'react'
+import Actions from 'actions/blocks'
+import Button  from 'components/ui/Button'
+import Section from 'components/Section'
+import React   from 'react'
 
 export default React.createClass({
   propTypes: {

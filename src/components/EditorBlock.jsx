@@ -1,5 +1,5 @@
-import Block     from 'components/block'
-import BlockMenu from 'components/block_menu'
+import Block     from 'components/Block'
+import BlockMenu from 'components/BlockMenu'
 import React     from 'react'
 import findBy    from 'utils/findBy'
 

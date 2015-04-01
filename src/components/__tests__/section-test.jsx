@@ -1,7 +1,7 @@
 import Actions from 'actions/blocks'
 import Block   from 'models/block'
 import Colonel from '../../colonel'
-import Section from '../section'
+import Section from '../Section'
 
 describe('Components - Section', function() {
   let TestUtils = React.addons.TestUtils

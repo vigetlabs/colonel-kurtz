@@ -1,5 +1,5 @@
 import Actions      from 'actions/blocks'
-import Btn          from './ui/button'
+import Btn          from './ui/Button'
 import React        from 'react'
 import classNames   from 'classnames'
 

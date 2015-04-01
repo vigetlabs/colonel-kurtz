@@ -1,5 +1,5 @@
 import Actions    from 'actions/blocks'
-import BlockMenu  from '../block_menu'
+import BlockMenu  from '../BlockMenu'
 import Colonel    from '../../colonel'
 import Fixture    from './fixtures/testBlockType'
 

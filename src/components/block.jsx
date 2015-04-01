@@ -1,9 +1,10 @@
 import Actions    from 'actions/blocks'
 import React      from 'react'
-import Toolbar    from 'components/toolbar'
+import Toolbar    from 'components/Toolbar'
 import classNames from 'classnames'
 
 export default React.createClass({
+
   propTypes: {
     app       : React.PropTypes.object.isRequired,
     block     : React.PropTypes.object.isRequired,
@@ -33,4 +34,5 @@ export default React.createClass({
 
     app.send(Actions.update, block, content)
   }
+
 })

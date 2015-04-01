@@ -1,10 +1,11 @@
-import Handle       from './toolbarHandle'
-import Item         from './toolbarItem'
-import React        from 'react'
+import Handle from './ToolbarHandle'
+import Item   from './ToolbarItem'
+import React  from 'react'
 
 import { destroy, shift } from 'actions/blocks'
 
 export default React.createClass({
+
   propTypes: {
     app   : React.PropTypes.object.isRequired,
     block : React.PropTypes.object.isRequired
@@ -24,4 +25,5 @@ export default React.createClass({
       </div>
     )
   }
+
 })

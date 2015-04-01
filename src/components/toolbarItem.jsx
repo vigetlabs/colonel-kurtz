@@ -1,7 +1,8 @@
-import Button from './ui/button'
+import Button from './ui/Button'
 import React  from 'react'
 
 export default React.createClass({
+
   propTypes: {
     label   : React.PropTypes.string.isRequired,
     onClick : React.PropTypes.func.isRequired
