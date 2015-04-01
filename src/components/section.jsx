@@ -12,6 +12,7 @@ export default React.createClass({
   mixins: [ Downstream ],
 
   propTypes: {
+    app        : React.PropTypes.object.isRequired,
     block      : React.PropTypes.object.isRequired,
     blocks     : React.PropTypes.array.isRequired,
     blockTypes : React.PropTypes.array.isRequired,
@@ -27,7 +28,7 @@ export default React.createClass({
   },
 
   render() {
-    let { block, blocks, blockTypes, last } = this.props
+    let { app, block, blocks, blockTypes, last } = this.props
 
     let children   = childrenOf(block, blocks)
     let noChildren = !children.length
@@ -35,8 +36,8 @@ export default React.createClass({
 
     return (
       <div>
-        <Block block={ block } blockType={ findBy(blockTypes, block.type) }>
-          <BlockMenu key="menu" parent={ block } blockTypes={ blockTypes } forceOpen={ noChildren } />
+        <Block app={ app } block={ block } blockType={ findBy(blockTypes, block.type) }>
+          <BlockMenu key="menu" app={ app } parent={ block } blockTypes={ blockTypes } forceOpen={ noChildren } />
           { children.map(this.getEditor) }
         </Block>
         <Btn ref="append" className="col-btn-fab" hide={ shouldHide } onClick={ this._onAppend }>+</Btn>
@@ -45,7 +46,7 @@ export default React.createClass({
   },
 
   _onAppend() {
-    this.send(Actions.append, 'section')
+    this.props.app(Actions.append, 'section')
   }
 
 })

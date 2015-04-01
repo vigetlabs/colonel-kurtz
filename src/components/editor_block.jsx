@@ -5,17 +5,18 @@ import findBy    from 'utils/findBy'
 
 export default React.createClass({
   propTypes: {
+    app        : React.PropTypes.object.isRequired,
     block      : React.PropTypes.object.isRequired,
     blockTypes : React.PropTypes.array.isRequired
   },
 
   render() {
-    let { block, blockTypes } = this.props
+    let { app, block, blockTypes } = this.props
 
     return (
       <div>
-        <Block block={ block } blockType={ findBy(blockTypes, block.type) } />
-        <BlockMenu blockTypes={ blockTypes } position={ block } parent={ block.parent } />
+        <Block app={ app } block={ block } blockType={ findBy(blockTypes, block.type) } />
+        <BlockMenu app={ app } blockTypes={ blockTypes } position={ block } parent={ block.parent } />
       </div>
     )
   }

@@ -19,11 +19,9 @@ export default React.createClass({
   },
 
   getSection(block, i, parents) {
-    let isLast = i === (parents.length - 1)
+    let last = i === (parents.length - 1)
 
-    return (
-      <Section key={ block.id } block={ block } last={ isLast } { ...this.props } />
-    )
+    return React.createElement(Section, { key: block.id, block, last, ...this.props })
   },
 
   render() {

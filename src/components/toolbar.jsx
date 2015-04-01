@@ -5,9 +5,8 @@ import React        from 'react'
 import {Downstream} from 'microcosm'
 
 export default React.createClass({
-  mixins: [ Downstream ],
-
   propTypes: {
+    app   : React.PropTypes.object.isRequired,
     block : React.PropTypes.object.isRequired
   },
 
@@ -25,7 +24,8 @@ export default React.createClass({
   },
 
   _onDestroy(e) {
-    this.send(Actions.destroy, this.props.block.id)
+    let { app, blocks } = this.props
+    app(Actions.destroy, block.id)
   },
 
   _onMoveUp(e) {

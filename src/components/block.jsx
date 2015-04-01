@@ -1,33 +1,36 @@
-import Actions      from 'actions/blocks'
-import React        from 'react'
-import Toolbar      from 'components/toolbar'
-import classNames   from 'classnames'
-import {Downstream} from 'microcosm'
+import Actions    from 'actions/blocks'
+import React      from 'react'
+import Toolbar    from 'components/toolbar'
+import classNames from 'classnames'
 
 export default React.createClass({
-  mixins: [ Downstream ],
-
   propTypes: {
+    app       : React.PropTypes.object.isRequired,
     block     : React.PropTypes.object.isRequired,
     blockType : React.PropTypes.object.isRequired,
   },
 
+  getClassName({ id }) {
+    return classNames('col-block', `col-block-${ id }`)
+  },
+
   render() {
-    let { block, blockType, children } = this.props
-    let { component:Component } = blockType
+    let { app, block, blockType, children } = this.props
+    let { id, component:Component } = blockType
 
     return (
-      <div className={ classNames('col-block', `col-block-${ block.type }`) }>
+      <div className={ this.getClassName(blockType) }>
         <Component ref="block" content={ block.content } onChange={ this._onChange }>
           { children }
         </Component>
-        <Toolbar block={ block } />
+        <Toolbar app={ app } block={ block } />
       </div>
     )
   },
 
   _onChange(content) {
-    this.send(Actions.update, this.props.block, content)
-  }
+    let { app, block } = this.props
 
+    app.send(Actions.update, block, content)
+  }
 })
