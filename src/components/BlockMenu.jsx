@@ -4,6 +4,7 @@ import React        from 'react'
 import classNames   from 'classnames'
 
 export default React.createClass({
+
   propTypes: {
     app        : React.PropTypes.object.isRequired,
     blockTypes : React.PropTypes.array.isRequired

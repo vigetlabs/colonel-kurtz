@@ -1,5 +1,5 @@
-import Actions from 'actions/blocks'
 import Toolbar from '../Toolbar'
+import { shift, destroy } from 'actions/blocks'
 
 describe('Components - Toolbar', function() {
   let TestUtils = React.addons.TestUtils
@@ -20,7 +20,7 @@ describe('Components - Toolbar', function() {
 
     TestUtils.Simulate.click(test.refs.destroy.getDOMNode())
 
-    app.send.should.have.been.called;
+    app.send.should.have.been.calledWith(destroy, block.id)
   })
 
   it ('calls onMove when the move up button is clicked', function() {
@@ -28,7 +28,7 @@ describe('Components - Toolbar', function() {
 
     TestUtils.Simulate.click(test.refs.moveUp.getDOMNode())
 
-    app.send.should.have.been.calledWith(Actions.shift, block.id, -1)
+    app.send.should.have.been.calledWith(shift, block.id, -1)
   })
 
   it ('calls onMove when the move down button is clicked', function() {
@@ -36,7 +36,7 @@ describe('Components - Toolbar', function() {
 
     TestUtils.Simulate.click(test.refs.moveDown.getDOMNode())
 
-    app.send.should.have.been.calledWith(Actions.shift, block.id, 1)
+    app.send.should.have.been.calledWith(shift, block.id, 1)
   })
 
 })
