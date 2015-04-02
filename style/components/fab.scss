@@ -31,8 +31,4 @@ $col-fab-transition : 0.4s all !default;
   transition: $col-fab-transition;
   width: $col-fab-size;
   z-index: 1;
-
-  &:focus {
-    outline: none;
-  }
 }

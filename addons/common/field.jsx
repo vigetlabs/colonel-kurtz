@@ -1,6 +1,12 @@
-var React = require('react')
+/**
+ * Field
+ * A reuseable field element
+ */
 
-var Field = React.createClass({
+import React from 'react'
+import './style'
+
+export default React.createClass({
 
   getDefaultProps() {
     return {
@@ -12,15 +18,11 @@ var Field = React.createClass({
     var { label, name, type, ...props } = this.props
 
     return (
-      <div className="col-img-field">
-        <label className="col-img-label" htmlFor={ name || this.props.id }>
-          { label }
-        </label>
-        <input className="col-img-input" type={ type } { ...props } name={ name || this.props.id } />
+      <div className="col-field">
+        <label className="col-field-label" htmlFor={ name || this.props.id }>{ label }</label>
+        <input className="col-field-input" type={ type } { ...props } name={ name || this.props.id } />
       </div>
     )
   }
 
 })
-
-module.exports = Field

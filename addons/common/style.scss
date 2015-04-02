@@ -1,0 +1,29 @@
+/**
+ * Field
+ * A common input field component
+ */
+
+$col-field-padding: 8px 8px 4px !default;
+
+.col-field {
+  padding: $col-field-padding
+}
+
+.col-field-label {
+  color: #777;
+  display: block;
+  float: none;
+  font-size: 13px;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.col-field-input {
+  border: 1px solid #d9d9d9;
+  border-width: 0 0 1px;
+  color: #222;
+  display: block;
+  font-size: 14px;
+  padding-bottom: 4px;
+  width: 100%;
+}
