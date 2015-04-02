@@ -10,7 +10,7 @@ export default React.createClass({
 
   getDefaultProps() {
     return {
-      className : 'col-toolbar-menu-item',
+      className : 'col-menu-item',
       hide      : false,
       type      : 'button'
     }

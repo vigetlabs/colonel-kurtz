@@ -1,9 +1,20 @@
+/**
+ * Block
+ * A block is a single unit of content. It can have many forms,
+* `.block` defines the base rules.
+*/
+
+$col-block-background : #fff !default;
+$col-block-radius     : $col-radius-standard !default;
+$col-block-shadow     : 0 1px 3px rgba(#000, 0.4) !default;
+$col-block-width      : $col-medium !default;
+
 .col-block {
-  border-radius: 3px;
-  position: relative;
-  background: #fff;
-  box-shadow: 0 1px 3px rgba(#000, 0.4);
+  background: $col-block-background;
+  border-radius: $col-block-radius;
+  box-shadow: $col-block-shadow;
   margin: 0 auto;
-  max-width: 768px;
+  max-width: $col-block-width;
+  position: relative;
   text-align: left;
 }

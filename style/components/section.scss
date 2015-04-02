@@ -1,19 +1,30 @@
+/**
+ * Section
+ * A special type of block that can contain children.
+ */
+
+$col-section-background   : #bbb !default;
+$col-section-border       : 1px solid rgba(#000, 0.15) !default;
+$col-section-shadow       : 0 -1px 0 rgba(#fff, 0.2) !default;
+$col-section-padding      : unit(3) unit(2) !default;
+$col-section-handle-color : #000 !default;
+
 .col-block.col-block-section {
-  background: #aaa;
-  border-top: 1px solid rgba(#000, 0.15);
-  box-shadow: 0 -1px 0 rgba(#fff, 0.2);
+  background: $col-section-background;
+  border-top: $col-section-border;
+  box-shadow: $col-section-shadow;
   border-radius: 0;
   max-width: 100%;
-  padding: 24px 16px;
+  padding: $col-section-padding;
   text-align: center;
 
   > .col-toolbar .col-toolbar-handle {
     background: none;
     display: block;
-    padding: 16px;
+    padding: unit(2);
 
     svg {
-      fill: #000;
+      fill: $col-section-handle-color;
     }
   }
 }

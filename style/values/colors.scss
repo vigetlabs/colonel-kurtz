@@ -1,8 +1,15 @@
-$colonel-accent      : #cddc39 !default;
-$colonel-primary     : #009688 !default;
-$colonel-danger      : #f44336 !default;
-$colonel-font-family : Roboto, sans-serif;
-$colonel-muted-dark  : rgba(#000, 0.5) !default;
-$colonel-muted-light : rgba(#fff, 0.4) !default;
-$colonel-text-dark   : rgba(#000, 0.875) !default;
-$colonel-text-light  : rgba(#fff, 0.875) !default;
+/**
+ * Color Values
+ *
+ * These mostly come from the Material Design Standard
+ * http://www.google.com/design/spec/style/color.html
+ */
+
+$col-accent      : #cddc39 !default;
+$col-primary     : #009688 !default;
+$col-danger      : #f44336 !default;
+$col-font-family : Roboto, sans-serif;
+$col-muted-dark  : rgba(#000, 0.5) !default;
+$col-muted-light : rgba(#fff, 0.4) !default;
+$col-text-dark   : rgba(#000, 0.875) !default;
+$col-text-light  : rgba(#fff, 0.875) !default;

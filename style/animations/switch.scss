@@ -1,0 +1,11 @@
+@keyframes col-switch {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}

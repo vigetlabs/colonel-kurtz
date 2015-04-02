@@ -1,62 +1,37 @@
+@import 'values/type';
 @import 'values/colors';
+@import 'values/radii';
 @import 'values/sizes';
 
 @import 'generators/functions';
 @import 'generators/extensions';
 
 @import 'animations/fade';
-@import 'animations/toolbar';
-
-@keyframes col-menu {
-  0% {
-    opacity: 0;
-    transform: scale(0);
-  }
-
-  100% {
-    opacity: 1;
-    transform: none;
-  }
-}
+@import 'animations/menu';
+@import 'animations/switch';
 
 .colonel {
-  @import 'reset';
-  @import 'components/button';
-  @import 'components/toolbar';
-  @import 'components/menu';
-  @import 'components/section';
-  @import 'components/block';
-}
-
-.colonel {
-  font-family: $colonel-font-family;
-  font-size: 16px;
+  font-family: $col-font-family;
+  font-size: $col-type-size-body;
   height: 100%;
-  margin: 36px auto;
-  padding: 1px 0;
+  margin: unit(4) auto;
   position: relative;
   text-align: center;
 
-  .col-btn-fab {
-    background: $colonel-primary;
-    border-radius: 50%;
-    border: 1px solid rgba(#000, 0.1);
-    box-shadow: 0 1px 3px 0 rgba(#000, 0.37), inset 0 1px 0 rgba(#fff, 0.2), inset 0 -1px 0 rgba(#fff, 0.1);
-    color: white;
-    display: block;
-    font-size: 18px;
-    font-weight: 500;
-    height: 36px;
-    line-height: 0;
-    margin: -18px auto;
-    position: relative;
-    text-shadow: 0 1px 1px rgba(#000, 0.2);
-    transition: 0.4s all;
-    width: 36px;
-    z-index: 1;
+  @import 'reset';
+  @import 'components/toolbar';
+  @import 'components/switch';
+  @import 'components/menu';
+  @import 'components/section';
+  @import 'components/block';
+  @import 'components/fab';
+}
 
-    &:focus {
-      outline: none;
-    }
-  }
+.col-hidden {
+  display: block;
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  width: 0;
+  height: 0;
+  margin: -1;
 }

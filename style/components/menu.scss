@@ -1,52 +1,48 @@
+/**
+ * Menu
+ * Dropdown menus throughout Colonel Kurtz
+ */
+
+$col-menu-animation    : 0.5s col-menu;
+$col-menu-background   : #fff !default;
+$col-menu-radius       : $col-radius-small !default;
+$col-menu-right        : unit(1) !default;
+$col-menu-top          : unit(1) !default;
+$col-menu-width        : unit(18) !default;
+$col-menu-origin       : 100% 0 !default;
+$col-menu-item-padding : unit(1.5) unit(2) !default;
+
 .col-menu {
-  background: #f9f9f9;
-  border-radius: 50%;
-  box-shadow: 0 1px 3px rgba(#000, 0.4), inset 0 1px 0 #fff;
-  display: inline-block;
-  height: 24px;
-  margin: 16px auto;
-  position: relative;
-  text-align: center;
-  white-space: nowrap;
-  width: 24px;
+  animation: $col-menu-animation;
+  background: $col-menu-background;
+  border-radius: $col-menu-radius;
+  box-shadow: 0 1px 4px rgba(#000, 0.25), 0 -1px 1px rgba(#000, 0.12);
+  display: none;
+  min-width: $col-menu-width;
+  position: absolute;
+  right: $col-menu-right;
+  text-align: left;
+  top: $col-menu-top;
+  transform-origin: $col-menu-origin;
+  z-index: 2;
 
   &.col-menu-open {
-    animation: 0.4s col-menu cubic-bezier(.89,.03,.42,1.23);
-    border-radius: 2px;
-    height: auto;
-    margin: 10px auto;
-    width: auto;
+    display: block;
   }
 }
 
-.col-menu-toggle {
-  color: rgba(#000, 0.3);
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 22px;
-  padding: 0;
-  text-align: center;
-  text-shadow: 0 1px 1px #fff;
-  transition: 0.7s all;
+.col-menu-item {
+  border-radius: 0;
+  display: block;
+  padding: $col-menu-item-padding;
+  position: relative;
   width: 100%;
+  transition: 0.5s all;
+  text-align: left;
 
   &:hover,
   &:focus {
-    color: rgba(#000, 0.54);
-    transition: 0.3s all;
-  }
-}
-
-.col-menu-btn {
-  border-radius: 0;
-  display: inline-block;
-  line-height: 16px;
-  padding: 10px 8px;
-  position: relative;
-  min-width: 88px;
-  border-left: 1px solid rgba(#000, 0.15);
-
-  &:first-child {
-    border-left: 0;
+    background: rgba(#000, 0.1);
+    transition: 0.2s all;
   }
 }

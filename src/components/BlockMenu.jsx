@@ -19,12 +19,12 @@ export default React.createClass({
   },
 
   getToggle() {
-    return (<Btn ref="toggle" className="col-menu-toggle" onClick={ this._onToggle }>+</Btn>)
+    return (<Btn ref="toggle" className="col-switch-toggle" onClick={ this._onToggle }>+</Btn>)
   },
 
   getButton({ id, label }) {
     let onAdd = () => this._onAdd(id)
-    return (<Btn key={ id } className="col-menu-btn" onClick={ onAdd }>{ label }</Btn>)
+    return (<Btn key={ id } className="col-switch-btn" onClick={ onAdd }>{ label }</Btn>)
   },
 
   render() {
@@ -32,7 +32,7 @@ export default React.createClass({
 
     let blockTypes = app.pull('blockTypes', notPrivate)
     let open       = forceOpen || this.state.open
-    let className  = classNames('col-menu', { 'col-menu-open': open })
+    let className  = classNames('col-switch', { 'col-switch-open': open })
 
     return (
       <nav className={ className } role="navigation">

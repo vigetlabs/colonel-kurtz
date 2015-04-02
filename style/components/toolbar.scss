@@ -1,59 +1,29 @@
+/**
+ * Toolbar
+ * The toolbar presents itself for all blocks, allowing the user to
+ * perform specific actions
+ */
+
+$col-toolbar-handle-background : rgba(#000, 0.65) !default;
+$col-toolbar-handle-radius     : $col-radius-standard !default;
+$col-toolbar-handle-padding    : unit(1) unit(2) !default;
+$col-toolbar-handle-color      : rgba(#fff, 0.875) !default;
+
 .col-toolbar {
-  top: 0;
   position: absolute;
   right: 0;
   text-align: right;
+  top: 0;
 }
 
 .col-toolbar-handle {
-  background: rgba(#000, 0.65);
-  border-top-right-radius: 3px;
+  background: $col-toolbar-handle-background;
+  border-top-right-radius: $col-toolbar-handle-radius;
   display: block;
-  padding: 8px 16px;
+  margin: 0;
+  padding: $col-toolbar-handle-padding;
 
   svg {
-    fill: #fff;
-    opacity: 0.875;
+    fill: $col-toolbar-handle-color;
   }
-}
-
-.col-toolbar-menu {
-  animation: 0.5s col-toolbar;
-  background: #fff;
-  border-radius: 2px;
-  box-shadow: 0 1px 4px rgba(#000, 0.25), 0 -1px 1px rgba(#000, 0.12);
-  display: none;
-  min-width: 140px;
-  position: absolute;
-  right: 8px;
-  text-align: left;
-  top: 8px;
-  transform-origin: 100% 0;
-  z-index: 2;
-}
-
-.col-toolbar-menu-item {
-  border-radius: 0;
-  border-top: 1px solid rgba(#000, 0.2);
-  display: block;
-  padding: 12px 16px;
-  position: relative;
-  width: 100%;
-  transition: 0.5s all;
-  text-align: left;
-
-  &:first-child {
-    border-top: 0;
-  }
-
-  &:hover,
-  &:focus {
-    background: rgba(#000, 0.15);
-    transition: 0.2s all;
-  }
-}
-
-.col-toolbar:focus .col-toolbar-menu,
-.col-toolbar:hover .col-toolbar-menu {
-  display: block;
 }
