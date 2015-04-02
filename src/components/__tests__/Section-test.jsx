@@ -9,8 +9,8 @@ describe('Components - Section', function() {
 
   beforeEach(function(done) {
     app = new Colonel({
-      el   : document.createElement('div'),
-      seed : {
+      el    : document.createElement('div'),
+      value : {
         system: { version: process.env.VERSION },
         blocks: [{
           content: {},

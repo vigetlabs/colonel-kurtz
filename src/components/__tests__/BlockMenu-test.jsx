@@ -5,7 +5,7 @@ import Fixture    from './fixtures/testBlockType'
 
 describe('Components - Block Menu', function() {
   let TestUtils = React.addons.TestUtils
-  let app, blockTypes;
+  let app;
 
   beforeEach(function(done) {
     app = new Colonel({
@@ -13,21 +13,17 @@ describe('Components - Block Menu', function() {
       blockTypes: [ Fixture ]
     })
 
-    app.start(function() {
-      blockTypes = app.pull('blockTypes')
-    }, done)
-
-    onAdd = sinon.mock()
+    app.start(done)
   })
 
   it ('closes when it gets new properties', function() {
-    let base = TestUtils.renderIntoDocument(<BlockMenu app={ app } blockTypes={ blockTypes } open />)
+    let base = TestUtils.renderIntoDocument(<BlockMenu app={ app } open />)
     base.forceUpdate()
     base.state.open.should.equal(false)
   })
 
   it ('opens on toggle', function() {
-    let base = TestUtils.renderIntoDocument(<BlockMenu app={ app } blockTypes={ blockTypes } />)
+    let base = TestUtils.renderIntoDocument(<BlockMenu app={ app } />)
 
     TestUtils.Simulate.click(base.refs.toggle.getDOMNode())
 
@@ -35,10 +31,10 @@ describe('Components - Block Menu', function() {
   })
 
   it ('adds a block type on click', function() {
-    let base = TestUtils.renderIntoDocument(<BlockMenu app={ app } blockTypes={ blockTypes } forceOpen />)
+    let base = TestUtils.renderIntoDocument(<BlockMenu app={ app } forceOpen />)
     let spy  = sinon.spy(app, 'push')
 
-    TestUtils.Simulate.click(base.getDOMNode().querySelector('.col-menu-btn'))
+    TestUtils.Simulate.click(base.getDOMNode().querySelector('.col-switch-btn'))
 
     spy.should.have.been.calledWith(Actions.create, 'test')
   })

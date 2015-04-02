@@ -10,8 +10,8 @@ describe('ColonelKurtz', function() {
   beforeEach(function(done) {
     el = document.createElement('div')
     app = new Colonel({
-      el   : el,
-      seed : {
+      el    : el,
+      value : {
         system: { version: process.env.VERSION },
         blocks: [ new Block({ type: 'section' }) ]
       }
