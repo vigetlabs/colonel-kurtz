@@ -62,7 +62,7 @@ module.exports = function(config) {
             loader  : 'babel',
             query   : {
               auxiliaryComment: "istanbul ignore next",
-              experimental: true,
+              stage: 0,
               loose: true,
               optional: ['runtime']
             }

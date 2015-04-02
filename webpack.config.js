@@ -59,8 +59,7 @@ module.exports = {
         exclude : /node_modules/,
         loader  : 'babel',
         query   : {
-          experimental: true,
-          optional: ['utility.deadCodeElimination']
+          stage : 0
         }
       },
       {
