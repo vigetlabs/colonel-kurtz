@@ -36,7 +36,7 @@ describe('Components - Block Menu', function() {
 
   it ('adds a block type on click', function() {
     let base = TestUtils.renderIntoDocument(<BlockMenu app={ app } blockTypes={ blockTypes } forceOpen />)
-    let spy  = sinon.spy(app, 'send')
+    let spy  = sinon.spy(app, 'push')
 
     TestUtils.Simulate.click(base.getDOMNode().querySelector('.col-menu-btn'))
 

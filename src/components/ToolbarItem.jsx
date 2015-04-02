@@ -11,14 +11,15 @@ export default React.createClass({
   getDefaultProps() {
     return {
       className : 'col-toolbar-menu-item',
+      hide      : false,
       type      : 'button'
     }
   },
 
   render() {
-    let { label, ...safe } = this.props
+    let { hide, label, ...safe } = this.props
 
-    return (<Button { ...safe }>{ label }</Button>)
+    return hide ? null : (<Button { ...safe }>{ label }</Button>)
   }
 
 })

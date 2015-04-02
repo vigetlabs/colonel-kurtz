@@ -7,6 +7,7 @@ import React        from 'react'
 import childrenOf   from 'utils/childrenOf'
 
 export default React.createClass({
+
   propTypes: {
     app   : React.PropTypes.object.isRequired,
     block : React.PropTypes.object.isRequired,
@@ -14,9 +15,7 @@ export default React.createClass({
   },
 
   getEditor(block) {
-    return (
-      <EditorBlock key={ block.id } app={ this.props.app } block={ block } />
-    )
+    return (<EditorBlock key={ block.id } app={ this.props.app } block={ block } />)
   },
 
   render() {

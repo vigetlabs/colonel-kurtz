@@ -16,7 +16,7 @@ export default React.createClass({
   },
 
   render() {
-    let { app, block, children } = this.props
+    let { app, block, children, first, last } = this.props
     let { id, component:Component } = app.pull('blockTypes', findBy, block.type)
 
     return (
@@ -24,7 +24,7 @@ export default React.createClass({
         <Component ref="block" content={ block.content } onChange={ this._onChange }>
           { children }
         </Component>
-        <Toolbar app={ app } block={ block } />
+        <Toolbar app={ app } block={ block } first={ first } last={ last } />
       </div>
     )
   },

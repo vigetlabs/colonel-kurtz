@@ -1,42 +1,61 @@
+import Colonel from '../../colonel'
 import Toolbar from '../Toolbar'
-import { shift, destroy } from 'actions/blocks'
+
+import { create, shift, destroy } from 'actions/blocks'
 
 describe('Components - Toolbar', function() {
   let TestUtils = React.addons.TestUtils
-  let app, block
+  let app;
 
-  beforeEach(function() {
-    app = {
-      push: sinon.mock(),
-      prepare(...args) {
-        return this.push.bind(this, ...args)
-      }
-    }
-    block = { id: 'test', type: 'section' }
+  beforeEach(function(done) {
+    app = new Colonel({ el: document.createElement('div') })
+
+    app.start(function() {
+      app.push(create, 'section')
+      app.push(create, 'section')
+      app.push(create, 'section')
+      app.push = sinon.mock()
+    }, done)
   })
 
-  it ('calls onDestroy when the destroy button is clicked', function() {
-    let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
-
-    TestUtils.Simulate.click(test.refs.destroy.getDOMNode())
-
-    app.push.should.have.been.calledWith(destroy, block.id)
+  describe('When the "Remove" button is clicked', function() {
+    it ('calls the destroy action', function() {
+      let block = app.pull('blocks')[1]
+      let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
+      TestUtils.Simulate.click(test.refs.destroy.getDOMNode())
+      app.push.should.have.been.calledWith(destroy, block.id)
+    })
   })
 
-  it ('calls onMove when the move up button is clicked', function() {
-    let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
+  describe('When the "Move Up" button is clicked', function() {
+    it ('calls the shift action', function() {
+      let block = app.pull('blocks')[1]
+      let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
+      TestUtils.Simulate.click(test.refs.moveUp.getDOMNode())
+      app.push.should.have.been.calledWith(shift, block.id, -1)
+    })
 
-    TestUtils.Simulate.click(test.refs.moveUp.getDOMNode())
+    it ('does not display if the block is the first child', function() {
+      let block = app.pull('blocks')[0]
+      let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
 
-    app.push.should.have.been.calledWith(shift, block.id, -1)
+      expect(test.refs.moveUp.getDOMNode()).to.equal(null)
+    })
   })
 
-  it ('calls onMove when the move down button is clicked', function() {
-    let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
+  describe('When the "Move Down" button is clicked', function() {
+    it ('calls the shift action', function() {
+      let block = app.pull('blocks')[1]
+      let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
+      TestUtils.Simulate.click(test.refs.moveDown.getDOMNode())
+      app.push.should.have.been.calledWith(shift, block.id, 1)
+    })
 
-    TestUtils.Simulate.click(test.refs.moveDown.getDOMNode())
+    it ('does not show the moveUp button for the last block', function() {
+      let block = app.pull('blocks')[2]
+      let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
 
-    app.push.should.have.been.calledWith(shift, block.id, 1)
+      expect(test.refs.moveDown.getDOMNode()).to.equal(null)
+    })
   })
-
 })

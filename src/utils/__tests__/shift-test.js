@@ -1,6 +1,6 @@
 import shift from 'utils/shift'
 
-describe('Utils - insertAt', function() {
+describe('Utils - shift', function() {
   let list = ['a', 'b', 'c']
 
   it ('can shift an item given a delta', function() {
