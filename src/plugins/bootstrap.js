@@ -10,7 +10,7 @@ export default {
   register(app, { seed, blockTypes }, next) {
     let migration  = migrate(seed)
 
-    app.push({ ...migration, blockTypes })
+    app.replace({ ...migration, blockTypes })
 
     next()
   }

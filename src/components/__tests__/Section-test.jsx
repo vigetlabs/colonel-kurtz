@@ -44,12 +44,12 @@ describe('Components - Section', function() {
     let block = app.pull('blocks')[0]
     let test  = TestUtils.renderIntoDocument(<Section app={ app } block={ block } { ...app.toObject() } />)
 
-    sinon.spy(app, 'send')
+    sinon.spy(app, 'push')
 
 
     TestUtils.Simulate.click(test.refs.append.getDOMNode())
 
-    app.send.should.have.been.called
+    app.push.should.have.been.called
   })
 
 })

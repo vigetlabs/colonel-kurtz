@@ -37,7 +37,7 @@ describe('ColonelKurtz', function() {
   describe('when an append action is sent to the app', function() {
 
     beforeEach(function() {
-      app.send(Actions.append, 'section')
+      app.push(Actions.append, 'section')
     })
 
     it ('should append a new block', function() {
@@ -49,7 +49,7 @@ describe('ColonelKurtz', function() {
   describe('when a create action is sent to the app', function() {
 
     beforeEach(function() {
-      app.send(Actions.create, 'section')
+      app.push(Actions.create, 'section')
     })
 
     it ('should prepend a new block', function() {
@@ -61,7 +61,7 @@ describe('ColonelKurtz', function() {
   describe('when a destroy action is sent to the app', function() {
 
     beforeEach(function() {
-      app.send(Actions.destroy, app.pull(BlockStore)[0])
+      app.push(Actions.destroy, app.pull(BlockStore)[0])
     })
 
     it ('should prepend a new block', function() {
@@ -73,7 +73,7 @@ describe('ColonelKurtz', function() {
   describe('when an update action is sent to the app', function() {
 
     beforeEach(function() {
-      app.send(Actions.update, app.pull(BlockStore)[0], { foo: 'bar' })
+      app.push(Actions.update, app.pull(BlockStore)[0], { foo: 'bar' })
     })
 
     it ('should update the content of that block', function() {
@@ -86,9 +86,9 @@ describe('ColonelKurtz', function() {
     let block;
 
     beforeEach(function() {
-      app.send(Actions.append, 'section')
+      app.push(Actions.append, 'section')
       block = app.pull(BlockStore)[0]
-      app.send(Actions.shift, block.id, 1)
+      app.push(Actions.shift, block.id, 1)
     })
 
     it ('should prepend a new block', function() {

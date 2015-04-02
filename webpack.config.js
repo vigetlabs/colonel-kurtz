@@ -57,7 +57,11 @@ module.exports = {
       {
         test    : /\.jsx*$/,
         exclude : /node_modules/,
-        loader  : 'babel?experimental'
+        loader  : 'babel',
+        query   : {
+          experimental: true,
+          optional: ['utility.deadCodeElimination']
+        }
       },
       {
         test    : /\.(svg)$/,

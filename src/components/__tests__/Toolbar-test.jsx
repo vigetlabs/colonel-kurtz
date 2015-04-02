@@ -7,9 +7,9 @@ describe('Components - Toolbar', function() {
 
   beforeEach(function() {
     app = {
-      send: sinon.mock(),
+      push: sinon.mock(),
       prepare(...args) {
-        return this.send.bind(this, ...args)
+        return this.push.bind(this, ...args)
       }
     }
     block = { id: 'test', type: 'section' }
@@ -20,7 +20,7 @@ describe('Components - Toolbar', function() {
 
     TestUtils.Simulate.click(test.refs.destroy.getDOMNode())
 
-    app.send.should.have.been.calledWith(destroy, block.id)
+    app.push.should.have.been.calledWith(destroy, block.id)
   })
 
   it ('calls onMove when the move up button is clicked', function() {
@@ -28,7 +28,7 @@ describe('Components - Toolbar', function() {
 
     TestUtils.Simulate.click(test.refs.moveUp.getDOMNode())
 
-    app.send.should.have.been.calledWith(shift, block.id, -1)
+    app.push.should.have.been.calledWith(shift, block.id, -1)
   })
 
   it ('calls onMove when the move down button is clicked', function() {
@@ -36,7 +36,7 @@ describe('Components - Toolbar', function() {
 
     TestUtils.Simulate.click(test.refs.moveDown.getDOMNode())
 
-    app.send.should.have.been.calledWith(shift, block.id, 1)
+    app.push.should.have.been.calledWith(shift, block.id, 1)
   })
 
 })

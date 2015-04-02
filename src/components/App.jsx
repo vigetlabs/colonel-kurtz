@@ -31,7 +31,7 @@ export default React.createClass({
   },
 
   _onAdd() {
-    this.props.app.send(Actions.create, 'section', 0, null)
+    this.props.app.push(Actions.create, 'section', 0, null)
   }
 
 })

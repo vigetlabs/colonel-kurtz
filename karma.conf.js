@@ -59,12 +59,18 @@ module.exports = function(config) {
           {
             test    : /\.jsx*$/,
             exclude : /node_modules/,
-            loader  : 'babel?experimental&loose&optional=runtime'
+            loader  : 'babel',
+            query   : {
+              auxiliaryComment: "istanbul ignore next",
+              experimental: true,
+              loose: true,
+              optional: ['runtime']
+            }
           },
           {
-            test: /\.(svg)$/,
+            test    : /\.(svg)$/,
             exclude : /node_modules/,
-            loader: 'raw'
+            loader  : 'raw'
           },
           {
             test    : /\.s*(c|a)ss$/,

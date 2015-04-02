@@ -2,12 +2,12 @@ import Actions      from 'actions/blocks'
 import Btn          from './ui/Button'
 import React        from 'react'
 import classNames   from 'classnames'
+import notPrivate   from 'utils/notPrivate'
 
 export default React.createClass({
 
   propTypes: {
-    app        : React.PropTypes.object.isRequired,
-    blockTypes : React.PropTypes.array.isRequired
+    app : React.PropTypes.object.isRequired
   },
 
   getInitialState() {
@@ -28,16 +28,16 @@ export default React.createClass({
   },
 
   render() {
-    let { blockTypes, forceOpen } = this.props
+    let { app, forceOpen } = this.props
 
-    let open      = forceOpen || this.state.open
-    let allowed   = blockTypes.filter(i => !i.private)
-    let className = classNames('col-menu', { 'col-menu-open': open })
+    let blockTypes = app.pull('blockTypes', notPrivate)
+    let open       = forceOpen || this.state.open
+    let className  = classNames('col-menu', { 'col-menu-open': open })
 
     return (
       <nav className={ className } role="navigation">
         { open ? null : this.getToggle() }
-        { open ? allowed.map(this.getButton) : null }
+        { open ? blockTypes.map(this.getButton) : null }
       </nav>
     )
   },
@@ -48,7 +48,7 @@ export default React.createClass({
 
   _onAdd(id) {
     let { app, position, parent } = this.props
-    app.send(Actions.create, id, position, this.props.parent)
+    app.push(Actions.create, id, position, this.props.parent)
   }
 
 })

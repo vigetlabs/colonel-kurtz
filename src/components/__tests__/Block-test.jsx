@@ -15,30 +15,28 @@ describe('Components - Block', function() {
   })
 
   it ('adds a class name according to the block id', function() {
-    let block     = app.pull('blocks', first)
-    let blockType = app.pull('blockTypes', first)
+    let block = app.pull('blocks', first)
 
     let subject = TestUtils.renderIntoDocument(
-      <Block app={ app } block={ block } blockType={ blockType } />
+      <Block app={ app } block={ block } />
     )
 
-    subject.getDOMNode().className.should.include(blockType.id)
+    subject.getDOMNode().className.should.include(block.type)
   })
 
   it ('triggers update when its child component changes', function() {
-    app.send(Actions.create, 'section')
+    app.push(Actions.create, 'section')
 
-    let block     = app.pull('blocks', first)
-    let blockType = app.pull('blockTypes', first)
-    let subject   = TestUtils.renderIntoDocument(
-      <Block app={ app } block={ block } blockType={ blockType } />
+    let block   = app.pull('blocks', first)
+    let subject = TestUtils.renderIntoDocument(
+      <Block app={ app } block={ block } />
     )
 
-    sinon.spy(app, 'send')
+    sinon.spy(app, 'push')
 
     subject.refs.block.props.onChange({ fiz: 'buzz' })
 
-    app.send.should.have.been.called
+    app.push.should.have.been.called
   })
 
 })
