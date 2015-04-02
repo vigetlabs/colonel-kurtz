@@ -7,8 +7,8 @@ import migrate from 'lib/migrate'
 
 export default {
 
-  register(app, { seed, blockTypes }, next) {
-    let migration  = migrate(seed)
+  register(app, { value, blockTypes }, next) {
+    let migration  = migrate(value)
 
     app.replace({ ...migration, blockTypes })
 

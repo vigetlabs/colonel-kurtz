@@ -32,8 +32,8 @@ you can do whatever you want.
 var ColonelKurtz = require('colonel-kurtz');
 
 var editor = new ColonelKurtz({
-  el   : input,
-  seed : JSON.parse(input.value)
+  el    : input,
+  value : JSON.parse(input.value)
 });
 ```
 
