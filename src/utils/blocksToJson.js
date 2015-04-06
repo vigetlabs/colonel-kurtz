@@ -4,7 +4,7 @@ export default function blocksToJson (items) {
 
   let root = items.filter(i => !i.parent)
 
-  let jsonify = block => {
+  function jsonify (block) {
     let children = items.filter(i => i.parent === block)
 
     return {

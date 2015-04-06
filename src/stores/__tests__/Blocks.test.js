@@ -67,4 +67,15 @@ describe('Stores - Block', function() {
     state[1].should.not.equal(target)
   })
 
+  it ('creates a block after a given other block', function() {
+    let target  = new Block({})
+    let initial = [ target, new Block({}) ]
+    let state   = Blocks[Actions.create](initial, {
+      type     : 'expected',
+      position : target
+    })
+
+    state[1].type.should.equal('expected')
+  })
+
 })
