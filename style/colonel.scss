@@ -11,10 +11,10 @@
 @import 'animations/switch';
 
 .colonel {
+  background: #eee;
   font-family: $col-font-family;
   font-size: $col-type-size-body;
   height: 100%;
-  margin: unit(4) auto;
   position: relative;
   text-align: center;
 
@@ -24,7 +24,7 @@
   @import 'components/menu';
   @import 'components/section';
   @import 'components/block';
-  @import 'components/fab';
+  @import 'components/fab'
 }
 
 .col-hidden {

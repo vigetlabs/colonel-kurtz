@@ -1,11 +1,17 @@
-import Block     from 'components/Block'
-import BlockMenu from 'components/BlockMenu'
-import React     from 'react'
+import Block      from 'components/Block'
+import Switch     from 'components/Switch'
+import React      from 'react'
+import childrenOf from '../utils/childrenOf'
 
-export default React.createClass({
+let EditorBlock = React.createClass({
+
   propTypes: {
     app   : React.PropTypes.object.isRequired,
     block : React.PropTypes.object.isRequired
+  },
+
+  getBlock(block, i) {
+    return (<EditorBlock key={ block.id } app={ this.props.app } block={ block } />)
   },
 
   render() {
@@ -13,9 +19,15 @@ export default React.createClass({
 
     return (
       <div>
-        <Block app={ app } block={ block } />
-        <BlockMenu app={ app } position={ block } parent={ block.parent } />
+        <Block app={ app } block={ block }>
+          <Switch app={ app } parent={ block } />
+          { app.pull('blocks', childrenOf, block).map(this.getBlock) }
+        </Block>
+        <Switch app={ app } position={ block } parent={ block.parent } />
       </div>
     )
   }
+
 })
+
+export default EditorBlock

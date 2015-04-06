@@ -3,11 +3,10 @@
  * A custom block editor
  */
 
-import BlockTypes from 'stores/block_type_store'
-import Blocks     from 'stores/block_store'
+import BlockTypes from 'stores/BlockTypes'
+import Blocks     from 'stores/Blocks'
 import Microcosm  from 'microcosm'
 import React      from 'react'
-import System     from 'stores/system_store'
 
 import bootstrap  from 'plugins/bootstrap'
 import render     from 'plugins/render'
@@ -26,13 +25,7 @@ export default class ColonelKurtz extends Microcosm {
     super()
 
     /**
-     * The system store keeps track of information
-     * for the colonel kurtz instance itself
-     */
-    this.addStore(System)
-
-    /**
-     * A block is an individual chunk of content. It can have child
+     * A block is an individual chunk of content. It can have children
      */
     this.addStore(Blocks)
 
@@ -47,6 +40,7 @@ export default class ColonelKurtz extends Microcosm {
      * application's state beyond initializing
      */
     this.addPlugin(bootstrap, { value, blockTypes })
+
     /**
      * The render plugin handles updating the browser ui
      */

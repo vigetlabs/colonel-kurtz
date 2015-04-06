@@ -24,7 +24,7 @@ export default {
   register(app, options, next) {
     app.listen(() => this.save(app))
 
-    app.push({
+    app.replace({
       ...this.fetch(),
       blockTypes: app.pull('blockTypes')
     })

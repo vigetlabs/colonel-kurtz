@@ -4,15 +4,15 @@
  */
 
 $col-section-background   : #bbb !default;
-$col-section-border       : 1px solid rgba(#000, 0.15) !default;
-$col-section-shadow       : 0 -1px 0 rgba(#fff, 0.2) !default;
-$col-section-padding      : unit(3) unit(2) !default;
+$col-section-border       : 1px solid rgba(#000, 0.12) !default;
+$col-section-padding      : unit(3) unit(2) unit(4) !default;
 $col-section-handle-color : #000 !default;
 
 .col-block.col-block-section {
   background: $col-section-background;
   border-top: $col-section-border;
-  box-shadow: $col-section-shadow;
+  border-bottom: $col-section-border;
+  box-shadow: none;
   border-radius: 0;
   max-width: 100%;
   padding: $col-section-padding;

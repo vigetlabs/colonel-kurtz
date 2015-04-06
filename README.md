@@ -36,14 +36,3 @@ var editor = new ColonelKurtz({
   value : JSON.parse(input.value)
 });
 ```
-
-## Migrating Data
-
-Colonel Kurtz will run migrations on data automatically. However
-client data is only one piece of this. Colonel Kurtz provides a binary
-for migrating data from one form to the next to help with backend
-services:
-
-```bash
-$(npm bin)/colonel_kurtz oldJson
-```

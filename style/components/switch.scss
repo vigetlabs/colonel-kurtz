@@ -6,7 +6,7 @@
 $col-switch-animation   : 0.4s col-switch cubic-bezier(.89,.03,.42,1.23) !default;
 $col-switch-background  : #fff !default;
 $col-switch-shrunk-size : unit(3) !default;
-$col-switch-margin      : unit(2) auto !default;
+$col-switch-padding     : unit(2) auto !default;
 $col-switch-shadow      : 0 1px 3px rgba(#000, 0.4), inset 0 1px 0 #fff !default;
 $col-switch-btn-size    : unit(4) !default;
 $col-switch-btn-padding : 0 unit(1) !default;
@@ -14,41 +14,17 @@ $col-switch-btn-width   : unit(11) !default;
 $col-switch-btn-border  : 1px solid rgba(#000, 0.15) !default;
 
 .col-switch {
-  background: $col-switch-background;
-  border-radius: 50%;
-  box-shadow: $col-switch-shadow;
   display: inline-block;
-  height: $col-switch-shrunk-size;
-  margin: $col-switch-margin;
-  position: relative;
+  margin: $col-switch-padding;
   text-align: center;
   white-space: nowrap;
-  width: $col-switch-shrunk-size;
+  width: auto;
 
   &.col-switch-open {
     animation: $col-switch-animation;
+    background: $col-switch-background;
     border-radius: $col-radius-standard;
-    height: auto;
-    margin: 10px auto;
-    width: auto;
-  }
-}
-
-.col-switch-toggle {
-  color: rgba(#000, 0.3);
-  font-size: 16px;
-  font-weight: 600;
-  line-height: 22px;
-  padding: 0;
-  text-align: center;
-  text-shadow: 0 1px 1px #fff;
-  transition: 0.7s all;
-  width: 100%;
-
-  &:hover,
-  &:focus {
-    color: rgba(#000, 0.54);
-    transition: 0.3s all;
+    box-shadow: $col-switch-shadow;
   }
 }
 

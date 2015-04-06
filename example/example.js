@@ -8,6 +8,12 @@ import ColonelKurtz from '../src'
 
 let blockTypes = [
   {
+    id        : 'section',
+    label     : 'Section',
+    component : require('./blockTypes/Section'),
+    types     : [ 'medium', 'image', 'youtube' ]
+  },
+  {
     id        : 'medium',
     label     : 'Text',
     component : require('../addons/medium')
@@ -29,6 +35,6 @@ let editor = new ColonelKurtz({
   blockTypes : blockTypes
 })
 
-//editor.addPlugin(require('./plugins/storage'))
+editor.addPlugin(require('./plugins/storage'))
 
 editor.start()

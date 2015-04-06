@@ -25,10 +25,32 @@ $col-fab-transition : 0.4s all !default;
   font-weight: 500;
   height: $col-fab-size;
   line-height: 0;
-  margin: ($col-fab-size * -0.5) auto;
+  margin: 0 auto;
   position: relative;
   text-shadow: 0 1px 1px rgba(#000, 0.2);
   transition: $col-fab-transition;
   width: $col-fab-size;
   z-index: 1;
+}
+
+.col-btn-fab-secondary {
+  background: $col-secondary;
+  border: none;
+  color: $col-muted-dark;
+  font-size: 14px;
+  font-weight: 600;
+  height: unit(3);
+  line-height: unit(3);
+  padding: 0;
+  padding: 0;
+  text-align: center;
+  text-shadow: 0 1px 1px #fff;
+  transition: 0.7s all;
+  width: unit(3);
+
+  &:hover,
+  &:focus {
+    color: rgba(#000, 0.54);
+    transition: 0.3s all;
+  }
 }

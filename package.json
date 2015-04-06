@@ -3,9 +3,6 @@
   "version": "2.0.0",
   "description": "A block editor",
   "main": "build/colonel_kurtz.js",
-  "bin": {
-    "colonel_kurtz": "./bin/colonel_kurtz.js"
-  },
   "scripts": {
     "start": "NODE_ENV=development webpack-dev-server --content-base ./example --config webpack.example.config.js",
     "prepublish": "NODE_ENV=production webpack -p --optimize-occurence-order --optimize-dedupe",
