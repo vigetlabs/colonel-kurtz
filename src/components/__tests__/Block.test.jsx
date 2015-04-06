@@ -1,6 +1,6 @@
 import Actions from 'actions/blocks'
 import Block   from '../Block'
-import Colonel from '../../colonel'
+import Colonel from '../../Colonel'
 
 let first = list => list[0]
 
@@ -9,7 +9,14 @@ describe('Components - Block', function() {
   let app
 
   beforeEach(function(done) {
-    app = new Colonel({ el : document.createElement('div') })
+    app = new Colonel({
+      el : document.createElement('div'),
+      blockTypes: [{
+        id: 'section',
+        label: 'Section',
+        component: { render() { return (<p/>) } }
+      }]
+    })
 
     app.start(app.prepare(Actions.create, 'section'), done)
   })

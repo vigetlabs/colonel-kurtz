@@ -6,7 +6,7 @@
 export default {
 
   register(app, { value, blockTypes }, next) {
-    app.replace({ ...value, blockTypes })
+    app.replace({ blocks: value, blockTypes })
     next()
   }
 

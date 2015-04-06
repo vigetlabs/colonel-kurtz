@@ -5,6 +5,6 @@
 
 import 'style/colonel'
 
-import Colonel from 'colonel'
+import Colonel from 'Colonel'
 
 export default Colonel

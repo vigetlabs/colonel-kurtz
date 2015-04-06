@@ -1,19 +1,19 @@
-import Actions    from '../../actions/blocks'
-import Block      from '../../models/block'
-import BlockStore from '../block_store'
+import Actions from '../../actions/blocks'
+import Block   from '../../models/Block'
+import Blocks  from '../Blocks'
 
 describe('Stores - Block', function() {
 
   it ('returns an empty list for its initial state', function() {
-    BlockStore.getInitialState().should.eql([])
+    Blocks.getInitialState().should.eql([])
   })
 
   it ('stringifies to "blocks"', function() {
-    `${ BlockStore }`.should.equal('blocks')
+    `${ Blocks }`.should.equal('blocks')
   })
 
   it ('can append new blocks to a given state', function() {
-    let state = BlockStore[Actions.append]([], { })
+    let state = Blocks[Actions.append]([], { })
 
     state[0].should.be.instanceOf(Block)
   })
@@ -21,7 +21,7 @@ describe('Stores - Block', function() {
   it ('can create new blocks at a specific position', function() {
     let target  = new Block({})
     let initial = [new Block({}), target, new Block({})]
-    let state   = BlockStore[Actions.create](initial, { type: 'test', position: target })
+    let state   = Blocks[Actions.create](initial, { type: 'test', position: target })
 
     state[state.indexOf(target) + 1].should.have.property('type', 'test')
   })
@@ -29,7 +29,7 @@ describe('Stores - Block', function() {
   it ('creates blocks at position of 0 if not specified', function() {
     let target  = new Block({})
     let initial = [new Block({}), target, new Block({})]
-    let state   = BlockStore[Actions.create](initial, { type: 'test' })
+    let state   = Blocks[Actions.create](initial, { type: 'test' })
 
     state[0].should.have.property('type', 'test')
   })
@@ -37,7 +37,7 @@ describe('Stores - Block', function() {
   it ('can remove blocks with an id', function() {
     let target  = new Block({})
     let initial = [ new Block({}), target, new Block({}) ]
-    let state   = BlockStore[Actions.destroy](initial, target.id)
+    let state   = Blocks[Actions.destroy](initial, target.id)
 
     state.indexOf(target).should.equal(-1)
   })
@@ -45,7 +45,7 @@ describe('Stores - Block', function() {
   it ('can update the content for a block', function() {
     let target  = new Block({})
     let initial = [ new Block({}), target, new Block({}) ]
-    let state   = BlockStore[Actions.update](initial, { id: target.id, content: { foo: 'bar' } })
+    let state   = Blocks[Actions.update](initial, { id: target.id, content: { foo: 'bar' } })
 
     target.content.should.have.property('foo', 'bar')
   })
@@ -53,7 +53,7 @@ describe('Stores - Block', function() {
   it ('can move a block', function() {
     let target  = new Block({})
     let initial = [ new Block({}), target, new Block({}) ]
-    let state   = BlockStore[Actions.shift](initial, { id: target.id, delta: 1 })
+    let state   = Blocks[Actions.shift](initial, { id: target.id, delta: 1 })
 
     state[2].should.equal(target)
   })
@@ -61,7 +61,7 @@ describe('Stores - Block', function() {
   it ('does not move a block lower than 0', function() {
     let target  = new Block({})
     let initial = [ target, new Block({}) ]
-    let state   = BlockStore[Actions.shift](initial, { id: target.id, delta: -1 })
+    let state   = Blocks[Actions.shift](initial, { id: target.id, delta: -1 })
 
     state[0].should.equal(target)
     state[1].should.not.equal(target)

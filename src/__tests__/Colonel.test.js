@@ -1,7 +1,7 @@
-import Actions    from 'actions/blocks'
-import Block      from 'models/block'
-import BlockStore from 'stores/block_store'
-import Colonel    from '../colonel'
+import Actions from 'actions/blocks'
+import Block   from 'models/Block'
+import Blocks  from 'stores/Blocks'
+import Colonel from '../Colonel'
 
 describe('ColonelKurtz', function() {
   let app;
@@ -11,10 +11,12 @@ describe('ColonelKurtz', function() {
     el = document.createElement('div')
     app = new Colonel({
       el    : el,
-      value : {
-        system: { version: process.env.VERSION },
-        blocks: [ new Block({ type: 'section' }) ]
-      }
+      value : [ new Block({ type: 'section' }) ],
+      blockTypes : [{
+        id: 'section',
+        label: 'Section',
+        component: { render() { return (<p/>) } }
+      }]
     })
 
     app.start(done)
@@ -29,11 +31,6 @@ describe('ColonelKurtz', function() {
     json.blocks.length.should.equal(1)
   })
 
-  it ('returns a version when converting to JSON', function() {
-    let json = app.toJSON()
-    json.should.have.property('system')
-  })
-
   describe('when an append action is sent to the app', function() {
 
     beforeEach(function() {
@@ -41,7 +38,7 @@ describe('ColonelKurtz', function() {
     })
 
     it ('should append a new block', function() {
-      app.pull(BlockStore)[1].type.should.equal('section')
+      app.pull(Blocks)[1].type.should.equal('section')
     })
 
   })
@@ -53,7 +50,7 @@ describe('ColonelKurtz', function() {
     })
 
     it ('should prepend a new block', function() {
-      app.pull(BlockStore)[0].type.should.equal('section')
+      app.pull(Blocks)[0].type.should.equal('section')
     })
 
   })
@@ -61,11 +58,11 @@ describe('ColonelKurtz', function() {
   describe('when a destroy action is sent to the app', function() {
 
     beforeEach(function() {
-      app.push(Actions.destroy, app.pull(BlockStore)[0])
+      app.push(Actions.destroy, app.pull(Blocks)[0])
     })
 
     it ('should prepend a new block', function() {
-      app.pull(BlockStore).length.should.equal(0)
+      app.pull(Blocks).length.should.equal(0)
     })
 
   })
@@ -73,11 +70,11 @@ describe('ColonelKurtz', function() {
   describe('when an update action is sent to the app', function() {
 
     beforeEach(function() {
-      app.push(Actions.update, app.pull(BlockStore)[0], { foo: 'bar' })
+      app.push(Actions.update, app.pull(Blocks)[0], { foo: 'bar' })
     })
 
     it ('should update the content of that block', function() {
-      app.pull(BlockStore)[0].content.should.have.property('foo', 'bar')
+      app.pull(Blocks)[0].content.should.have.property('foo', 'bar')
     })
 
   })
@@ -87,12 +84,12 @@ describe('ColonelKurtz', function() {
 
     beforeEach(function() {
       app.push(Actions.append, 'section')
-      block = app.pull(BlockStore)[0]
+      block = app.pull(Blocks)[0]
       app.push(Actions.shift, block.id, 1)
     })
 
     it ('should prepend a new block', function() {
-      app.pull(BlockStore)[1].should.equal(block)
+      app.pull(Blocks)[1].should.equal(block)
     })
 
   })

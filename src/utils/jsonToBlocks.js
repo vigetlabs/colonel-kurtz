@@ -1,4 +1,4 @@
-import Block from 'models/block'
+import Block from 'models/Block'
 
 export default function jsonToBlocks (blocks, parent) {
   // If blocks are null or undefined, assume an empty list

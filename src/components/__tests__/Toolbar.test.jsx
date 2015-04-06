@@ -1,5 +1,6 @@
-import Colonel from '../../colonel'
+import Colonel from '../../Colonel'
 import Toolbar from '../Toolbar'
+import Fixture from './fixtures/testBlockType'
 
 import { create, shift, destroy } from 'actions/blocks'
 
@@ -8,12 +9,15 @@ describe('Components - Toolbar', function() {
   let app;
 
   beforeEach(function(done) {
-    app = new Colonel({ el: document.createElement('div') })
+    app = new Colonel({
+      el         : document.createElement('div'),
+      blockTypes : [ Fixture ]
+    })
 
     app.start(function() {
-      app.push(create, 'section')
-      app.push(create, 'section')
-      app.push(create, 'section')
+      app.push(create, Fixture.id)
+      app.push(create, Fixture.id)
+      app.push(create, Fixture.id)
       app.push = sinon.mock()
     }, done)
   })

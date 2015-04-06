@@ -8,7 +8,7 @@
  */
 
 import Actions  from 'actions/blocks'
-import Block    from 'models/block'
+import Block    from 'models/Block'
 import findBy   from 'utils/findBy'
 import insertAt from 'utils/insertAt'
 import shift    from 'utils/shift'

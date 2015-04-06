@@ -1,4 +1,4 @@
-import Block        from 'models/block'
+import Block        from 'models/Block'
 import blocksToJson from 'utils/blocksToJson'
 
 describe('Utils - blocksToJson', function() {
