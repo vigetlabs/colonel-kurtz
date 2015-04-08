@@ -43,7 +43,7 @@ export default React.createClass({
 
   _onHandleClick(e) {
     e.preventDefault()
-    this.setState({ open : true })
+    this.setState({ open : !this.state.open })
   }
 
 })
