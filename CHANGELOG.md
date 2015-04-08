@@ -3,12 +3,9 @@
 ## 2.0.0
 
 - Each Colonel Kurtz is now an isolated instance with its own state
-- Refactored internals to achieve 100% test coverage
+- Refactored internals to achieve higher test coverage
 - Compliance with React 0.13.0
-- Added the concept of sections. A section is a special block type
-  intended to be the parent of other blocks.
-- Updated UI to support sections.
-- Added data migration strategy
+- Updated UI to better support nested blocks
 - Added block menus (instead of just a remove button)
 - Colonel Kurtz is now a layer on top of
   [Microcosm](https://github.com/vigetlabs/microcosm/). It now
