@@ -18,7 +18,7 @@ let EditorBlock = React.createClass({
     let { app, block } = this.props
 
     return (
-      <div>
+      <div className="col-editor-block">
         <Block app={ app } block={ block }>
           <Switch app={ app } parent={ block } />
           { app.pull('blocks', childrenOf, block).map(this.getBlock) }
