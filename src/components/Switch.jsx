@@ -46,12 +46,11 @@ export default React.createClass({
   },
 
   _onToggle() {
-    let { app, position, parent } = this.props
+    let types = this.getTypes()
 
-    let blockTypes = app.pull('blockTypes')
-
-    if (blockTypes.length === 1) {
-      app.push(Actions.create, blockTypes[0].id, position, parent)
+    if (types.length === 1) {
+      let { app, position, parent } = this.props
+      app.push(Actions.create, types[0].id, position, parent)
     }
 
     this.setState({ open: true })
