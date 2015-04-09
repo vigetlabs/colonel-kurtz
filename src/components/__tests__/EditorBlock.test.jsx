@@ -13,7 +13,7 @@ describe('Components - EditorBlock', function() {
       app = new Colonel({
         el : el,
         blockTypes : [ TypeFixture ],
-        value : [{
+        blocks : [{
           type: TypeFixture.id,
           content: {},
           blocks: [{

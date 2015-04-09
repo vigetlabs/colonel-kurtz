@@ -16,13 +16,14 @@ pages into sections of blocks. Each block has a given type, which
 defines the presentation of its content. A page may look like this:
 
 ```
-section
- |-> text
- |-> image
- |-> text
-section
- |-> video
- |-> text
+|-> image
+|-> section
+    |-> text
+    |-> image
+    |-> text
+|-> section
+    |-> video
+    |-> text
 ```
 
 Colonel Kurtz saves this information in the JSON format, with which
@@ -32,7 +33,7 @@ you can do whatever you want.
 var ColonelKurtz = require('colonel-kurtz');
 
 var editor = new ColonelKurtz({
-  el    : input,
-  value : JSON.parse(input.value)
+  el     : input,
+  blocks : JSON.parse(input.value)
 });
 ```

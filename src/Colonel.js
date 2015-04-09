@@ -21,7 +21,7 @@ import render     from 'plugins/render'
  */
 export default class ColonelKurtz extends Microcosm {
 
-  constructor({ el, value, blockTypes }) {
+  constructor({ el, blocks, blockTypes }) {
     super()
 
     /**
@@ -39,12 +39,16 @@ export default class ColonelKurtz extends Microcosm {
      * The bootstrap plugin takes seed data and prepares the
      * application's state beyond initializing
      */
-    this.addPlugin(bootstrap, { value, blockTypes })
+    this.addPlugin(bootstrap, { blocks, blockTypes })
 
     /**
      * The render plugin handles updating the browser ui
      */
     this.addPlugin(render, { el })
+  }
+
+  toJSON() {
+    return this.serialize().blocks
   }
 
 }

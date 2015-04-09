@@ -10,8 +10,8 @@ describe('ColonelKurtz', function() {
   beforeEach(function(done) {
     el = document.createElement('div')
     app = new Colonel({
-      el    : el,
-      value : [ new Block({ type: 'section' }) ],
+      el : el,
+      blocks : [ new Block({ type: 'section' }) ],
       blockTypes : [{
         id: 'section',
         label: 'Section',
@@ -28,7 +28,7 @@ describe('ColonelKurtz', function() {
 
   it ('returns blocks when converting to JSON', function() {
     let json = app.toJSON()
-    json.blocks.length.should.equal(1)
+    json.length.should.equal(1)
   })
 
   describe('when an append action is sent to the app', function() {

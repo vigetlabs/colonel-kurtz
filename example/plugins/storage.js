@@ -15,9 +15,9 @@ export default {
     let raw = localStorage.getItem(KEY)
 
     try {
-      return JSON.parse(raw) || {}
+      return JSON.parse(raw) || []
     } catch(x) {
-      return {}
+      return []
     }
   },
 
@@ -25,8 +25,8 @@ export default {
     app.listen(() => this.save(app))
 
     app.replace({
-      ...this.fetch(),
-      blockTypes: app.pull('blockTypes')
+      blocks     : this.fetch(),
+      blockTypes : app.pull('blockTypes')
     })
 
     next()

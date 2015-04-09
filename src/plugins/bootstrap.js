@@ -5,8 +5,8 @@
 
 export default {
 
-  register(app, { value, blockTypes }, next) {
-    app.replace({ blocks: value, blockTypes })
+  register(app, { blocks, blockTypes }, next) {
+    app.replace({ blocks, blockTypes })
     next()
   }
 

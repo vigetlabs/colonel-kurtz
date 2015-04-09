@@ -89,8 +89,8 @@ describe('Components - Switch', function() {
     beforeEach(function(done) {
       app = new Colonel({
         el : document.createElement('div'),
-        blockTypes: [ Fixture ],
-        value: [{ type: Fixture.id, content: {}, blocks: [] }]
+        blocks : [{ type: Fixture.id, content: {}, blocks: [] }],
+        blockTypes : [ Fixture ]
       })
 
       app.start(done)

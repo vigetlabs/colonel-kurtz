@@ -43,8 +43,8 @@ let input = document.getElementById('#textarea)
 let box   = document.getElementById('#box')
 
 var myEditor = new ColonelKurtz({
-  el    : box,
-  value : input.value
+  el     : box,
+  blocks : input.value
 })
 ```
 
@@ -57,7 +57,7 @@ adventurous, you could consider rendering it to a new element
 using `document.createElement('div')` and then appending it whereever
 you want.
 
-`value` sets the initial state of the editor. This should be a value
+`blocks` sets the initial state of the editor. This should be a value
 previously created by Colonel Kurtz.
 
 ## Exporting data
