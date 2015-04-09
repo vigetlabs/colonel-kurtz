@@ -3,6 +3,7 @@
  * toggling between viewing modes and viewing managed content
  */
 
+import Animation   from 'react/lib/ReactCSSTransitionGroup'
 import EditorBlock from 'components/EditorBlock'
 import React       from 'react'
 import Switch      from 'components/Switch'
@@ -24,7 +25,9 @@ export default React.createClass({
     return (
       <div className="colonel">
         <Switch app={ app } />
-        { app.pull('blocks', isRoot).map(this.getBlock) }
+        <Animation transitionName="col-editor-block">
+          { app.pull('blocks', isRoot).map(this.getBlock) }
+        </Animation>
       </div>
     )
   }

@@ -6,25 +6,14 @@
 $col-section-background   : #bbb !default;
 $col-section-border       : 1px solid rgba(#000, 0.12) !default;
 $col-section-padding      : unit(3) unit(2) unit(4) !default;
-$col-section-handle-color : #000 !default;
 
 .col-block.col-block-section {
   background: $col-section-background;
-  border-top: $col-section-border;
   border-bottom: $col-section-border;
-  box-shadow: none;
   border-radius: 0;
+  border-top: $col-section-border;
+  box-shadow: none;
   max-width: 100%;
   padding: $col-section-padding;
   text-align: center;
-
-  > .col-toolbar .col-toolbar-handle {
-    background: none;
-    display: block;
-    padding: unit(2);
-
-    svg {
-      fill: $col-section-handle-color;
-    }
-  }
 }

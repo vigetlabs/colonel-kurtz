@@ -4,10 +4,8 @@
  * perform specific actions
  */
 
-$col-toolbar-handle-background : rgba(#000, 0.65) !default;
-$col-toolbar-handle-radius     : $col-radius-standard !default;
-$col-toolbar-handle-padding    : unit(0.5) unit(1) !default;
-$col-toolbar-handle-color      : rgba(#fff, 0.875) !default;
+$col-toolbar-handle-padding : unit(1) !default;
+$col-toolbar-handle-color   : rgba(#000, 0.6) !default;
 
 .col-toolbar {
   position: absolute;
@@ -17,10 +15,7 @@ $col-toolbar-handle-color      : rgba(#fff, 0.875) !default;
 }
 
 .col-toolbar-handle {
-  background: $col-toolbar-handle-background;
-  border-top-right-radius: $col-toolbar-handle-radius;
   display: block;
-  margin: 0;
   padding: $col-toolbar-handle-padding;
 
   svg {

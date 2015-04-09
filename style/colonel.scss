@@ -35,3 +35,28 @@
   height: 0;
   margin: -1;
 }
+
+$col-appear-scale     : 0.97 !default;
+$col-appear-time      : 0.28s !default;
+$col-appear-translate : -5px !default;
+
+.col-editor-block-enter {
+  opacity: 0;
+  transform: scale($col-appear-scale) translateY($col-appear-translate);
+  transition: $col-appear-time all;
+}
+
+.col-editor-block-enter.col-editor-block-enter-active {
+  opacity: 1;
+  transform: none;
+}
+
+.col-editor-block-leave {
+  opacity: 1;
+  transition: $col-appear-time all;
+}
+
+.col-editor-block-leave.col-editor-block-leave-active {
+  opacity: 0;
+  transform: translateY($col-appear-translate);
+}
