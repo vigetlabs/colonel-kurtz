@@ -59,6 +59,7 @@ module.exports = {
         exclude : /node_modules/,
         loader  : 'babel',
         query   : {
+          loose : true,
           stage : 1
         }
       },

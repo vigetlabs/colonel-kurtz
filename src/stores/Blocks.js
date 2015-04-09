@@ -7,11 +7,13 @@
  * how that action manipulates block data.
  */
 
-import Actions  from 'actions/blocks'
-import Block    from 'models/Block'
-import findBy   from 'utils/findBy'
-import insertAt from 'utils/insertAt'
-import shift    from 'utils/shift'
+import Actions    from 'actions/blocks'
+import Block      from 'models/Block'
+import assign     from 'utils/assign'
+import deepRemove from 'utils/deepRemove'
+import findBy     from 'utils/findBy'
+import insertAt   from 'utils/insertAt'
+import siblingsOf from 'utils/siblingsOf'
 
 export default {
 
@@ -78,12 +80,7 @@ export default {
    * type blocks also eliminates children
    */
   [Actions.destroy](state, id) {
-    return state.filter(function(node) {
-      for (var n = node; n; n = n.parent) {
-        if (n.id == id) return false
-      }
-      return true
-    })
+    return deepRemove(state, id)
   },
 
   /**
@@ -95,17 +92,33 @@ export default {
   [Actions.update](state, params) {
     var block = findBy(state, params.id)
 
-    block.content = { ...block.content, ...params.content }
+    block.content = assign(block.content, params.content)
 
     return state
   },
 
   /**
    * Actions.shift
-   * Adjust the position of a given block
+   * Adjust the position of a given block.
    */
   [Actions.shift](state, { id, delta }) {
-    return shift(state, findBy(state, id), delta)
+    // Get the current item
+    let item = findBy(state, id)
+
+    // Find all siblings of that item
+    let siblings = siblingsOf(state, item)
+
+    // Determine the new index by shifting along sibligns
+    let index = siblings.indexOf(item) + delta
+
+    // Next translate that to be within context to the greater list
+    let goal = state.indexOf(siblings[index])
+
+    // Next produce a list without the current item
+    let without = state.filter(i => i !== item)
+
+    // Finally, return a new list with the item injected at the desired location
+    return insertAt(without, item, goal)
   }
 
 }

@@ -78,4 +78,12 @@ describe('Stores - Block', function() {
     state[1].type.should.equal('expected')
   })
 
+  it ('skips past children when shifting', function() {
+    let target  = new Block({})
+    let initial = [ target, new Block({ parent: target }), new Block({}) ]
+    let state   = Blocks[Actions.shift](initial, { id: target.id, delta: 1 })
+
+    state[2].should.equal(target)
+  })
+
 })

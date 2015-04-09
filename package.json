@@ -73,6 +73,6 @@
   },
   "dependencies": {
     "classnames": "^1.2.0",
-    "microcosm": "^6.x.x"
+    "microcosm": "^6.2.x"
   }
 }

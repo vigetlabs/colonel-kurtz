@@ -20,13 +20,17 @@ module.exports = function(config) {
 
     frameworks: [ 'mocha', 'sinon-chai' ],
 
-    files: ['test.webpack.js'],
-
-    logLevel: config.LOG_ERROR,
+    files: [
+      'src/**/__tests__/*.js*',
+      'lib/**/__tests__/*.js*'
+    ],
 
     preprocessors: {
-      'test.webpack.js': [ 'webpack', 'sourcemap' ]
+      'src/**/__tests__/*.js*' : [ 'webpack', 'sourcemap' ],
+      'lib/**/__tests__/*.js*' : [ 'webpack', 'sourcemap' ]
     },
+
+    logLevel: config.LOG_ERROR,
 
     reporters: noCoverage ? [ 'nyan' ] : [ 'nyan', 'coverage' ],
 
