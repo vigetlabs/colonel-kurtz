@@ -62,4 +62,15 @@ describe('Components - Toolbar', function() {
       expect(test.refs.moveDown.getDOMNode()).to.equal(null)
     })
   })
+
+  describe('When the "Menu" button is clicked', function() {
+    it ('sets the state to open', function() {
+      let block = app.pull('blocks')[1]
+      let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
+
+      TestUtils.Simulate.click(test.refs.handle.getDOMNode())
+
+      test.state.should.have.property('open', true)
+    })
+  })
 })

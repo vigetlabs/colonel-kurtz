@@ -31,7 +31,7 @@ export default React.createClass({
 
     return (
       <div className="col-toolbar">
-        <Handle onClick={ this._onHandleClick }/>
+        <Handle ref="handle" onClick={ this._onHandleClick }/>
         <Menu open={ this.state.open }>
           <Item ref="moveUp"   label="Move Up"   onClick={ app.prepare(shift, block.id, -1) } hide={ isFirst } />
           <Item ref="moveDown" label="Move Down" onClick={ app.prepare(shift, block.id, 1) }  hide={ isLast } />
