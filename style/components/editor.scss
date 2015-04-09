@@ -1,0 +1,24 @@
+$col-editor-scale     : 0.97 !default;
+$col-editor-time      : 0.28s !default;
+$col-editor-translate : -5px !default;
+
+.col-editor-block-enter {
+  opacity: 0;
+  transform: scale($col-editor-scale) translateY($col-editor-translate);
+  transition: $col-editor-time all;
+}
+
+.col-editor-block-enter.col-editor-block-enter-active {
+  opacity: 1;
+  transform: none;
+}
+
+.col-editor-block-leave {
+  opacity: 1;
+  transition: $col-editor-time all;
+}
+
+.col-editor-block-leave.col-editor-block-leave-active {
+  opacity: 0;
+  transform: translateY($col-editor-translate);
+}
