@@ -1,4 +1,6 @@
 ./addons
+assets
+coverage
 example
 lib
 src
