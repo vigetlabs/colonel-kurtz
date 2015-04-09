@@ -21,13 +21,13 @@ module.exports = function(config) {
     frameworks: [ 'mocha', 'sinon-chai' ],
 
     files: [
-      'src/**/__tests__/*.js*',
-      'lib/**/__tests__/*.js*'
+      './src/**/__tests__/*.test.js*',
+      './lib/**/__tests__/*.test.js*'
     ],
 
     preprocessors: {
-      'src/**/__tests__/*.js*' : [ 'webpack', 'sourcemap' ],
-      'lib/**/__tests__/*.js*' : [ 'webpack', 'sourcemap' ]
+      './src/**/__tests__/*.test.js*' : [ 'webpack', 'sourcemap' ],
+      './lib/**/__tests__/*.test.js*' : [ 'webpack', 'sourcemap' ]
     },
 
     logLevel: config.LOG_ERROR,
@@ -84,7 +84,7 @@ module.exports = function(config) {
         ],
         postLoaders: noCoverage ? [] : [{
           test: /\.jsx*$/,
-          exclude: /(__tests__|node_modules|vendor)\//,
+          exclude: /(__tests__|node_modules)/,
           loader: 'istanbul-instrumenter'
         }]
       }
