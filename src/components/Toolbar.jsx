@@ -18,10 +18,6 @@ export default React.createClass({
     return { open : false }
   },
 
-  componentWillReceiveProps() {
-    this.setState({ open: false })
-  },
-
   getMenu() {
     let { app, block } = this.props
 

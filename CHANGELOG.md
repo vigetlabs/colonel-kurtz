@@ -1,5 +1,14 @@
 # Changelog
 
+## 2.1.0
+
+- Menus will no longer automatically close, this is to improve the
+  experience of keyboard navigation
+
+## 2.0.1
+
+- Fixed main entry point
+
 ## 2.0.0
 
 - Each Colonel Kurtz is now an isolated instance with its own state
