@@ -1,6 +1,6 @@
 {
   "name": "colonel-kurtz",
-  "version": "2.0.0-rc2",
+  "version": "2.0.0",
   "description": "A block editor",
   "main": "build/colonel_kurtz.js",
   "scripts": {
@@ -73,6 +73,7 @@
   },
   "dependencies": {
     "classnames": "^1.2.0",
-    "microcosm": "^6.2.x"
+    "microcosm": "^6.2.x",
+    "react-focus-trap": "0.1.x"
   }
 }

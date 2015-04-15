@@ -17,7 +17,6 @@ $col-menu-item-padding : unit(1.5) unit(2) !default;
   background: $col-menu-background;
   border-radius: $col-menu-radius;
   box-shadow: 0 1px 4px rgba(#000, 0.25), 0 -1px 1px rgba(#000, 0.12);
-  display: none;
   min-width: $col-menu-width;
   position: absolute;
   right: $col-menu-right;
@@ -25,10 +24,6 @@ $col-menu-item-padding : unit(1.5) unit(2) !default;
   top: $col-menu-top;
   transform-origin: $col-menu-origin;
   z-index: 2;
-
-  &.col-menu-open {
-    display: block;
-  }
 }
 
 .col-menu-item {
