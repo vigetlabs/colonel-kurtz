@@ -26,6 +26,9 @@ describe('Components - Toolbar', function() {
     it ('calls the destroy action', function() {
       let block = app.pull('blocks')[1]
       let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
+
+      test.setState({ open: true })
+
       TestUtils.Simulate.click(test.refs.destroy.getDOMNode())
       app.push.should.have.been.calledWith(destroy, block.id)
     })
@@ -35,6 +38,9 @@ describe('Components - Toolbar', function() {
     it ('calls the shift action', function() {
       let block = app.pull('blocks')[1]
       let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
+
+      test.setState({ open: true })
+
       TestUtils.Simulate.click(test.refs.moveUp.getDOMNode())
       app.push.should.have.been.calledWith(shift, block.id, -1)
     })
@@ -43,7 +49,7 @@ describe('Components - Toolbar', function() {
       let block = app.pull('blocks')[0]
       let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
 
-      expect(test.refs.moveUp.getDOMNode()).to.equal(null)
+      test.refs.should.not.have.property('moveUp')
     })
   })
 
@@ -51,6 +57,9 @@ describe('Components - Toolbar', function() {
     it ('calls the shift action', function() {
       let block = app.pull('blocks')[1]
       let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
+
+      test.setState({ open: true })
+
       TestUtils.Simulate.click(test.refs.moveDown.getDOMNode())
       app.push.should.have.been.calledWith(shift, block.id, 1)
     })
@@ -59,7 +68,7 @@ describe('Components - Toolbar', function() {
       let block = app.pull('blocks')[2]
       let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
 
-      expect(test.refs.moveDown.getDOMNode()).to.equal(null)
+      test.refs.should.not.have.property('moveDown')
     })
   })
 

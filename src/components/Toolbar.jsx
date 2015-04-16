@@ -1,6 +1,6 @@
 import Handle     from './ToolbarHandle'
 import Item       from './MenuItem'
-import Menu       from './Menu'
+import FocusTrap  from 'react-focus-trap'
 import React      from 'react'
 import classNames from 'classnames'
 import siblingsOf from 'utils/siblingsOf'
@@ -26,11 +26,11 @@ export default React.createClass({
     let isLast   = siblings[siblings.length - 1] === block
 
     return this.state.open ? (
-      <Menu onExit={ this._onExit }>
+      <FocusTrap element="nav" role="navigation" className="col-menu" onExit={ this._onExit }>
         <Item ref="moveUp"   label="Move Up"   onClick={ app.prepare(shift, block.id, -1) } hide={ isFirst } />
         <Item ref="moveDown" label="Move Down" onClick={ app.prepare(shift, block.id, 1) }  hide={ isLast } />
         <Item ref="destroy"  label="Remove"    onClick={ app.prepare(destroy, block.id) } />
-      </Menu>
+      </FocusTrap>
     ) : null;
   },
 
