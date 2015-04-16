@@ -22,6 +22,16 @@ describe('Components - Toolbar', function() {
     }, done)
   })
 
+  it ('can exit', function() {
+    let block = app.pull('blocks')[1]
+    let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
+
+    test.setState({ open: true })
+
+    test._onExit()
+    test.state.open.should.equal(false)
+  })
+
   describe('When the "Remove" button is clicked', function() {
     it ('calls the destroy action', function() {
       let block = app.pull('blocks')[1]
@@ -82,4 +92,5 @@ describe('Components - Toolbar', function() {
       test.state.should.have.property('open', true)
     })
   })
+
 })
