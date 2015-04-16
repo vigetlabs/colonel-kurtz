@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.1
+
+- Internal updates. We make better use of `react-focus-trap` and
+  resolve some testing issues
+
 ## 2.1.0
 
 - Menus will no longer automatically close, this is to improve the
