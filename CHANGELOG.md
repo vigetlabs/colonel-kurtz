@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.3.0
+
+- Refined YouTube UI
+
 ## 2.2.0
 
 - Added a section addon
