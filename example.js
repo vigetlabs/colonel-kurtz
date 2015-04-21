@@ -10,7 +10,7 @@ let blockTypes = [
   {
     id        : 'section',
     label     : 'Section',
-    component : require('./blockTypes/Section'),
+    component : require('../addons/section'),
     types     : [ 'medium', 'image', 'youtube' ]
   },
   {
