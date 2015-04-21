@@ -39,14 +39,6 @@ var Image = React.createClass({
 
   _onSrcChange(e) {
     this.props.onChange({ src: e.currentTarget.value })
-  },
-
-  _onCaptionChange(e) {
-    this.props.onChange({ caption: e.currentTarget.value })
-  },
-
-  _onAttributionChange(e) {
-    this.props.onChange({ attribution: e.currentTarget.value })
   }
 
 })
