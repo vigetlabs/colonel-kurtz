@@ -11,11 +11,6 @@ import React   from 'react'
 
 var Image = React.createClass({
 
-  propTypes: {
-    content  : React.PropTypes.object.isRequired,
-    onChange : React.PropTypes.func.isRequired
-  },
-
   getDefaultProps() {
     return {
       content: { src: '' }

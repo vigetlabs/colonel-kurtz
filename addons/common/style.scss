@@ -51,11 +51,13 @@ $col-field-focus-color : #009688 !default;
 .col-frame {
   display: block;
   margin: 0;
+  opacity: 0;
   position: relative;
   text-align: center;
-  transition: 0.5s padding 0.2s cubic-bezier(.49,.04,.36,1.17);
+  transition: 0.5s all 0.2s cubic-bezier(.49,.04,.36,1.17);
 }
 
 .col-frame-open {
+  opacity: 1;
   padding-bottom: percentage(9/16);
 }

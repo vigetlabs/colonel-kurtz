@@ -7,16 +7,9 @@
 import Field   from '../common/field'
 import Frame   from '../common/frame'
 import Graphic from '../common/graphic'
-import Player  from './player'
 import React   from 'react'
 
 let YouTube = React.createClass({
-
-  propTypes: {
-    content  : React.PropTypes.object.isRequired,
-    onChange : React.PropTypes.func.isRequired,
-    src      : React.PropTypes.string
-  },
 
   getDefaultProps() {
     return {
