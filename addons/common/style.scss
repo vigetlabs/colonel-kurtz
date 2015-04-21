@@ -3,7 +3,8 @@
  * A common input field component
  */
 
-$col-field-padding: 8px 8px 4px !default;
+$col-field-padding     : 8px 8px 4px !default;
+$col-field-focus-color : #009688 !default;
 
 .col-field {
   padding: $col-field-padding
@@ -19,11 +20,17 @@ $col-field-padding: 8px 8px 4px !default;
 }
 
 .col-field-input {
-  border: 1px solid #d9d9d9;
-  border-width: 0 0 1px;
+  border: 0;
+  box-shadow: 0 1px 0 0 #d9d9d9;
   color: #222;
   display: block;
   font-size: 14px;
   padding-bottom: 4px;
   width: 100%;
+  transition: 0.2s all;
+
+  &:focus {
+    box-shadow: 0 1px 0 $col-field-focus-color;
+    outline: none;
+  }
 }

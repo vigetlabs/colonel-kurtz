@@ -1,17 +1,30 @@
 var React = require('react')
-
-var _baseUrl = "https://www.youtube.com/embed/"
+var cx    = require('classnames')
 
 var Player = React.createClass({
 
-  render() {
-    var { video_id } = this.props
+  getDefaultProps() {
+    return {
+      baseUrl: "https://www.youtube.com/embed/"
+    }
+  },
 
-    return video_id ? (
-      <div className="col-youtube-player">
-        <iframe className="col-youtube-frame" src={ _baseUrl + video_id } frameBorder="0" allowFullScreen></iframe>
+  getSrc() {
+    var { baseUrl, video_id } = this.props
+
+    return video_id ? baseUrl + video_id : null
+  },
+
+  render() {
+    let className = cx('col-youtube-player', {
+      'col-youtube-player-open': this.props.video_id
+    })
+
+    return (
+      <div className={ className }>
+        <iframe className="col-youtube-frame" src={ this.getSrc() } frameBorder="0" allowFullScreen></iframe>
       </div>
-    ) : null
+    )
   },
 
 })

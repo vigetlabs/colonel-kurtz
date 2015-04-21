@@ -4,12 +4,17 @@
 
 .col-youtube-player {
   display: block;
-  padding-bottom: percentage(9/16);
   position: relative;
   text-align: center;
+  transition: 0.5s padding 0.2s cubic-bezier(.49,.04,.36,1.17);
+}
+
+.col-youtube-player-open {
+  padding-bottom: percentage(9/16);
 }
 
 .col-youtube-frame {
+  background: #000;
   border: 0;
   height: 100%;
   left: 0;
@@ -22,13 +27,4 @@
   border: 0;
   margin: 0;
   padding: 4px 4px 8px;
-}
-
-.col-youtube-label {
-  color: #777;
-  display: block;
-  float: none;
-  font-size: 13px;
-  margin-bottom: 8px;
-  width: 100%;
 }
