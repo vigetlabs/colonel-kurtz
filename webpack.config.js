@@ -22,7 +22,8 @@ module.exports = {
   externals: {
     'react' : 'react',
     'react/addons' : 'react/addons',
-    'react/lib/ReactCSSTransitionGroup' : 'react/lib/ReactCSSTransitionGroup'
+    'react/lib/ReactCSSTransitionGroup' : 'react/lib/ReactCSSTransitionGroup',
+    'classnames': 'classnames'
   },
 
   resolve: {
