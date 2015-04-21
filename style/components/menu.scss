@@ -3,21 +3,25 @@
  * Dropdown menus throughout Colonel Kurtz
  */
 
-$col-menu-animation    : 0.5s col-menu;
-$col-menu-background   : #fff !default;
-$col-menu-radius       : $col-radius-small !default;
-$col-menu-right        : unit(1) !default;
-$col-menu-top          : unit(1) !default;
-$col-menu-width        : unit(18) !default;
-$col-menu-origin       : 100% 0 !default;
-$col-menu-item-padding : unit(1.5) unit(2) !default;
+$col-menu-animation     : 0.5s col-menu;
+$col-menu-background    : #fff !default;
+$col-menu-radius        : $col-radius-small !default;
+$col-menu-right         : unit(1) !default;
+$col-menu-top           : unit(1) !default;
+$col-menu-width         : unit(18) !default;
+$col-menu-origin        : 100% 0 !default;
+$col-menu-padding       : unit(1) 0 !default;
+$col-menu-item-fontsize : 16px !default;
+$col-menu-item-padding  : unit(2) !default;
 
 .col-menu {
   animation: $col-menu-animation;
   background: $col-menu-background;
   border-radius: $col-menu-radius;
-  box-shadow: 0 1px 4px rgba(#000, 0.25), 0 -1px 1px rgba(#000, 0.12);
+  box-shadow: 0 1px 3px rgba(#000, 0.35), 0 -1px 1px rgba(#000, 0.12);
   min-width: $col-menu-width;
+  overflow: hidden;
+  padding: $col-menu-padding;
   position: absolute;
   right: $col-menu-right;
   text-align: left;
@@ -28,16 +32,20 @@ $col-menu-item-padding : unit(1.5) unit(2) !default;
 
 .col-menu-item {
   border-radius: 0;
+  color: rgba(#000, 0.7);
   display: block;
+  font-size: $col-menu-item-fontsize;
+  line-height: 16px;
   padding: $col-menu-item-padding;
   position: relative;
   width: 100%;
-  transition: 0.5s all;
+  transition: 0.3s all;
   text-align: left;
 
   &:hover,
   &:focus {
-    background: rgba(#000, 0.1);
-    transition: 0.2s all;
+    background: #e0e0e0;
+    transition: 0.1s all;
+    outline: none;
   }
 }
