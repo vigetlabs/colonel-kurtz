@@ -2,7 +2,6 @@ var Webpack           = require('webpack')
 var ExtractTextPlugin = require("extract-text-webpack-plugin")
 
 module.exports = {
-  debug: true,
   devtool: 'source-map',
 
   entry: {
@@ -19,6 +18,11 @@ module.exports = {
     devtoolModuleFilenameTemplate: '[resource-path]'
   },
 
+  /**
+   * Externals allow us to not include particular modules in the
+   * compiled code. This way we respect whatever version is required
+   * by the parent code including Colonel Kurtz
+   */
   externals: {
     'react' : 'react',
     'react/addons' : 'react/addons',
@@ -32,17 +36,29 @@ module.exports = {
   },
 
   plugins: [
+    /**
+     * Here we define environment variables. they will be available in
+     * the app under `process.env['key']`. This lets us perform tasks
+     * for specific environment as well as pass information to the app.
+     */
     new Webpack.DefinePlugin({
       'process.env' : {
-        'VERSION'  : JSON.stringify(require('./package').version),
         'NODE_ENV' : JSON.stringify(process.env.NODE_ENV)
       }
     }),
+    /**
+     * When in production, extract all Sass modules out of the app and
+     * into `colonel-kurtz.css`
+     */
     new ExtractTextPlugin("colonel-kurtz.css", {
       disable: process.env.NODE_ENV !== 'production'
     })
   ],
 
+  /**
+   * PostCSS is a CSS postprocessor. We use it to optimize the build
+   * and automatically add vendor prefixing.
+   */
   postcss: [
     require('autoprefixer-core'),
     require('css-mqpacker'),
@@ -51,10 +67,18 @@ module.exports = {
 
   module: {
     loaders: [
+      /**
+       * Webpack doesn't parse JSON files by default, so we must teach it how:
+       */
       {
         test    : /\.json$/,
         loader  : 'json'
       },
+      /**
+       * Babel is an ES6 Javascript compiler. We use it to compile
+       * modern javascript and React JSX.
+       * http://babeljs.io
+       */
       {
         test    : /\.jsx*$/,
         exclude : /node_modules/,
@@ -64,11 +88,21 @@ module.exports = {
           stage : 1
         }
       },
+      /**
+       * Each block has a menu icon. We use the raw loader to
+       * inline the SVG content for that icon within the associated
+       * React component.
+       */
       {
         test    : /\.(svg)$/,
         exclude : /node_modules/,
         loader  : 'raw'
       },
+      /**
+       * Sass processing. We import style dependencies within the app,
+       * the ExtractTextPlugin pulls it all out into a common build in
+       * production.
+       */
       {
         test    : /\.s*(c|a)ss$/,
         exclude : /node_modules/,
