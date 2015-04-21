@@ -32,7 +32,7 @@ $col-fab-transition : 0.4s all !default;
   width: $col-fab-size;
   z-index: 1;
 
-  &:after {
+  &:before {
     border-radius: inherit;
     border: 2px solid transparent;
     bottom: -8px;
@@ -48,12 +48,12 @@ $col-fab-transition : 0.4s all !default;
   &:focus {
     outline: none;
 
-    &:after {
+    &:before {
       border-color: rgba(#000, 0.2);
       transform: scale(1);
     }
 
-    &:active:after {
+    &:active:before {
       box-shadow: inset 0 0 3px rgba(#000, 0.4);
       transform: scale(0.9);
     }
