@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.4.0
+
+- Set up more sharing between Youtube and Image addons
+- Improve animations of Image and Youtube UI
+
 ## 2.3.0
 
 - Refined YouTube UI
