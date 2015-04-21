@@ -5,10 +5,9 @@
  */
 
 import Field   from '../common/field'
-import Graphic from './graphic'
+import Graphic from '../common/graphic'
+import Frame   from '../common/frame'
 import React   from 'react'
-
-require('./style')
 
 var Image = React.createClass({
 
@@ -28,11 +27,10 @@ var Image = React.createClass({
 
     return (
       <div className="col-img">
-        <Graphic { ...this.props.content } />
-
-        <fieldset className="col-img-fieldset">
-          <Field label="Image Source" type="url" value={ src } name="image_src" onChange={ this._onSrcChange }/>
-        </fieldset>
+        <Field label="Image Source" type="url" value={ src } name="image_src" onChange={ this._onSrcChange }/>
+        <Frame open={ src }>
+          <Graphic src={ src } alt="" />
+        </Frame>
       </div>
     )
   },

@@ -5,10 +5,10 @@
  */
 
 import Field   from '../common/field'
+import Frame   from '../common/frame'
+import Graphic from '../common/graphic'
 import Player  from './player'
 import React   from 'react'
-
-require('./style')
 
 let YouTube = React.createClass({
 
@@ -20,10 +20,16 @@ let YouTube = React.createClass({
 
   getDefaultProps() {
     return {
+      baseUrl: "https://www.youtube.com/embed/",
       content: {
         video_id: ''
       }
     }
+  },
+
+  getSrc(id) {
+    var { baseUrl } = this.props
+    return id ? baseUrl + id : null
   },
 
   render() {
@@ -31,10 +37,10 @@ let YouTube = React.createClass({
 
     return (
       <div className="col-youtube">
-        <fieldset className="col-youtube-fieldset">
-          <Field label="YouTube Video ID" value={ video_id } name="youtube_video_id" onChange={ this._onChange } autofocus/>
-        </fieldset>
-        <Player video_id={ video_id } />
+        <Field label="YouTube Video ID" value={ video_id } name="youtube_video_id" onChange={ this._onChange } autofocus/>
+        <Frame open={ video_id }>
+          <Graphic element="iframe" src={ this.getSrc(video_id) } />
+        </Frame>
       </div>
     )
   },
