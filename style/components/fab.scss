@@ -31,6 +31,33 @@ $col-fab-transition : 0.4s all !default;
   transition: $col-fab-transition;
   width: $col-fab-size;
   z-index: 1;
+
+  &:after {
+    border-radius: inherit;
+    border: 1px solid transparent;
+    bottom: -8px;
+    content: "";
+    left: -8px;
+    position: absolute;
+    right: -8px;
+    top: -8px;
+    transform: scale(0.7);
+    transition: 0.3s all;
+  }
+
+  &:focus {
+    outline: none;
+
+    &:after {
+      border-color: rgba(#000, 0.2);
+      box-shadow: inset 0 0 3px rgba(#000, 0.4);
+      transform: scale(1);
+    }
+
+    &:active:after {
+      transform: scale(0.9);
+    }
+  }
 }
 
 .col-btn-fab-secondary {

@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.2.0
+
+- Added a section addon
+- Improved focus state of buttons
+
 ## 2.1.1
 
 - Internal updates. We make better use of `react-focus-trap` and

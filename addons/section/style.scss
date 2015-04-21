@@ -3,9 +3,9 @@
  * A special type of block that can contain children.
  */
 
-$col-section-background   : #bbb !default;
-$col-section-border       : 1px solid rgba(#000, 0.12) !default;
-$col-section-padding      : unit(3) unit(2) unit(4) !default;
+$col-section-background : #bbb !default;
+$col-section-border     : 1px solid rgba(#000, 0.12) !default;
+$col-section-padding    : 24px 16px !default;
 
 .col-block.col-block-section {
   background: $col-section-background;
