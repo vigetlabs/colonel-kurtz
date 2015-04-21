@@ -32,20 +32,10 @@ module.exports = {
 
   resolve: {
     extensions: ['', '.js', '.jsx', '.json', '.scss', '.css', '.svg'],
-    modulesDirectories: [ 'web_modules', 'node_modules', 'src', 'lib', 'addons', 'assets', 'vendor', '.' ]
+    modulesDirectories: [ '.', 'web_modules', 'node_modules', 'src', 'addons', 'assets' ]
   },
 
   plugins: [
-    /**
-     * Here we define environment variables. they will be available in
-     * the app under `process.env['key']`. This lets us perform tasks
-     * for specific environment as well as pass information to the app.
-     */
-    new Webpack.DefinePlugin({
-      'process.env' : {
-        'NODE_ENV' : JSON.stringify(process.env.NODE_ENV)
-      }
-    }),
     /**
      * When in production, extract all Sass modules out of the app and
      * into `colonel-kurtz.css`
