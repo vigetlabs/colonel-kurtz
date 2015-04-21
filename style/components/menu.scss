@@ -11,22 +11,20 @@ $col-menu-top           : unit(1) !default;
 $col-menu-width         : unit(18) !default;
 $col-menu-origin        : 100% 0 !default;
 $col-menu-padding       : unit(1) 0 !default;
-$col-menu-item-fontsize : 16px !default;
-$col-menu-item-padding  : unit(2) !default;
+$col-menu-item-fontsize : 14px !default;
+$col-menu-item-padding  : unit(1.5) unit(2) !default;
 
 .col-menu {
   animation: $col-menu-animation;
   background: $col-menu-background;
   border-radius: $col-menu-radius;
-  box-shadow: 0 1px 3px rgba(#000, 0.35), 0 -1px 1px rgba(#000, 0.12);
+  box-shadow: 0 2px 3px rgba(#000, 0.4), 0 -1px 1px rgba(#000, 0.15);
   min-width: $col-menu-width;
   overflow: hidden;
   padding: $col-menu-padding;
   position: absolute;
   right: $col-menu-right;
-  text-align: left;
   top: $col-menu-top;
-  transform-origin: $col-menu-origin;
   z-index: 2;
 }
 

@@ -9,12 +9,8 @@ $col-medium-focus-color: rgba(#000, 0.875);
 .col-medium {
   line-height: 1.75;
   font-size: 16px;
-  padding: 8px 48px 8px 16px;
+  padding: 10px 48px 10px 16px;
   transition: 0.2s all;
-
-  .col-block-medium:first-child & {
-    border-top: 0;
-  }
 
   &:focus {
     color: $col-medium-focus-color;

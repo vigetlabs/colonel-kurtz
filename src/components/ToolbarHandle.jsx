@@ -15,6 +15,7 @@ export default React.createClass({
 
     return (
       <button { ...safe} className="col-toolbar-handle">
+        <span className="col-hidden">{ label }</span>
         <span aria-hidden="true"
               dangerouslySetInnerHTML={{ __html: menuIcon }} />
       </button>
