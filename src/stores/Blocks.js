@@ -50,14 +50,6 @@ export default {
   deserialize: require('utils/jsonToBlocks'),
 
   /**
-   * Actions.append
-   * Simply add a new block at the end of the list
-   */
-  [Actions.append](state, params) {
-    return state.concat(new Block(params))
-  },
-
-  /**
    * Actions.create
    * Produces a new block based upon given parameters.
    * If the provided position is a Block, place the new block right

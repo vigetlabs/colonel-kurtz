@@ -12,12 +12,6 @@ describe('Stores - Block', function() {
     `${ Blocks }`.should.equal('blocks')
   })
 
-  it ('can append new blocks to a given state', function() {
-    let state = Blocks[Actions.append]([], { })
-
-    state[0].should.be.instanceOf(Block)
-  })
-
   it ('can create new blocks at a specific position', function() {
     let target  = new Block({})
     let initial = [new Block({}), target, new Block({})]

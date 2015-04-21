@@ -31,18 +31,6 @@ describe('ColonelKurtz', function() {
     json.length.should.equal(1)
   })
 
-  describe('when an append action is sent to the app', function() {
-
-    beforeEach(function() {
-      app.push(Actions.append, 'section')
-    })
-
-    it ('should append a new block', function() {
-      app.pull(Blocks)[1].type.should.equal('section')
-    })
-
-  })
-
   describe('when a create action is sent to the app', function() {
 
     beforeEach(function() {
@@ -83,7 +71,7 @@ describe('ColonelKurtz', function() {
     let block;
 
     beforeEach(function() {
-      app.push(Actions.append, 'section')
+      app.push(Actions.create, 'section')
       block = app.pull(Blocks)[0]
       app.push(Actions.shift, block.id, 1)
     })
