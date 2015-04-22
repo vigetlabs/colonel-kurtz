@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.5.0 (Not released)
+## 2.5.0
 
 - Upgraded Microcosm to 7.0.0.
 - Renamed Toolbar to Menu, be sure to upgrade CSS with this change.
