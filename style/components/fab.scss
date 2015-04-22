@@ -7,15 +7,18 @@
  * http://www.google.com/design/spec/components/buttons.html#buttons-floating-action-button
  */
 
-$col-fab-border     : 1px solid rgba(#000, 0.1) !default;
-$col-fab-color      : $col-text-light !default;
-$col-fab-radius     : 50% !default;
-$col-fab-size       : 36px !default;
-$col-fab-shadow     : 0 1px 3px 0 rgba(#000, 0.37), inset 0 1px 0 rgba(#fff, 0.2), inset 0 -1px 0 rgba(#fff, 0.1) !default;
-$col-fab-transition : 0.4s all !default;
+$col-fab-border         : 1px solid rgba(#000, 0.1) !default;
+$col-fab-color          : $col-text-light !default;
+$col-fab-radius         : 50% !default;
+$col-fab-size           : 36px !default;
+$col-fab-secondary-size : 24px !default;
+$col-fab-shadow         : 0 1px 3px 0 rgba(#000, 0.37), inset 0 1px 0 rgba(#fff, 0.2), inset 0 -1px 0 rgba(#fff, 0.1) !default;
+$col-fab-transition     : 0.4s all !default;
+$col-fab-spacing        : 40px !default;
+$col-fab-background     : $col-primary !default;
 
 .col-btn-fab {
-  background: $col-primary;
+  background: $col-fab-background;
   border-radius: $col-fab-radius;
   border: $col-fab-border;
   box-shadow: $col-fab-shadow;
@@ -25,7 +28,7 @@ $col-fab-transition : 0.4s all !default;
   font-weight: 500;
   height: $col-fab-size;
   line-height: 0;
-  margin: 2px auto;
+  margin: (($col-fab-spacing - $col-fab-size) * 0.5) auto;
   position: relative;
   text-shadow: 0 1px 1px rgba(#000, 0.2);
   transition: $col-fab-transition;
@@ -66,14 +69,14 @@ $col-fab-transition : 0.4s all !default;
   color: $col-muted-dark;
   font-size: 14px;
   font-weight: 600;
-  height: unit(3);
-  line-height: unit(3);
-  margin: 8px auto;
+  height: $col-fab-secondary-size;
+  line-height: $col-fab-secondary-size;
+  margin: (($col-fab-spacing - $col-fab-secondary-size) * 0.5) auto;
   padding: 0;
   text-align: center;
   text-shadow: 0 1px 1px #fff;
   transition: 0.7s all;
-  width: unit(3);
+  width: $col-fab-secondary-size;
 
   &:hover,
   &:focus {
