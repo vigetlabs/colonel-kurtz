@@ -58,6 +58,10 @@ $col-menu-width          : unit(18) !default;
       border-color: rgba($col-primary, 0.7);
       transform: scale(0.9);
     }
+
+    &:active:hover:before {
+      border-color: transparent;
+    }
   }
 }
 
