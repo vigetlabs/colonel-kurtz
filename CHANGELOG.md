@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.5.2
+
+- Externalize react-focus-trap so it gets patches
+
 ## 2.5.1
 
 - Upgrade react focus trap for better focus management of menus
