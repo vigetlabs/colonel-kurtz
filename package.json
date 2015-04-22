@@ -73,6 +73,6 @@
   "dependencies": {
     "classnames": "^1.2.0",
     "microcosm": "^7.0.0",
-    "react-focus-trap": "0.3.x"
+    "react-focus-trap": "^0.5.0"
   }
 }
