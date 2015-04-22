@@ -15,12 +15,14 @@ $col-menu-radius         : $col-radius-small !default;
 $col-menu-right          : unit(1) !default;
 $col-menu-top            : unit(1) !default;
 $col-menu-width          : unit(18) !default;
+$col-menu-z-index        : 1 !default;
 
 .col-menu-wrapper {
   position: absolute;
   right: 0;
   text-align: right;
   top: 0;
+  z-index: $col-menu-z-index;
 }
 
 .col-menu-handle {
