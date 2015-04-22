@@ -5,8 +5,9 @@ export default React.createClass({
 
   getDefaultProps() {
     return {
-      label : 'Open the menu for this block',
-      type  : 'button'
+      className : 'col-menu-handle',
+      label     : 'Open the menu for this block',
+      type      : 'button'
     }
   },
 
@@ -14,7 +15,7 @@ export default React.createClass({
     let { label, ...safe } = this.props
 
     return (
-      <button { ...safe} className="col-toolbar-handle">
+      <button { ...safe }>
         <span className="col-hidden">{ label }</span>
         <span aria-hidden="true"
               dangerouslySetInnerHTML={{ __html: menuIcon }} />

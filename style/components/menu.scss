@@ -3,16 +3,33 @@
  * Dropdown menus throughout Colonel Kurtz
  */
 
-$col-menu-animation     : 0.5s col-menu;
-$col-menu-background    : #fff !default;
-$col-menu-radius        : $col-radius-small !default;
-$col-menu-right         : unit(1) !default;
-$col-menu-top           : unit(1) !default;
-$col-menu-width         : unit(18) !default;
-$col-menu-origin        : 100% 0 !default;
-$col-menu-padding       : unit(1) 0 !default;
-$col-menu-item-fontsize : 14px !default;
-$col-menu-item-padding  : unit(1.5) unit(2) !default;
+$col-menu-animation      : 0.5s col-menu;
+$col-menu-background     : #fff !default;
+$col-menu-handle-color   : rgba(#000, 0.6) !default;
+$col-menu-handle-padding : unit(1.5) !default;
+$col-menu-item-fontsize  : 14px !default;
+$col-menu-item-padding   : unit(1.5) unit(2) !default;
+$col-menu-origin         : 100% 0 !default;
+$col-menu-padding        : unit(1) 0 !default;
+$col-menu-radius         : $col-radius-small !default;
+$col-menu-right          : unit(1) !default;
+$col-menu-top            : unit(1) !default;
+$col-menu-width          : unit(18) !default;
+
+.col-menu-wrapper {
+  position: absolute;
+  right: 0;
+  text-align: right;
+  top: 0;
+}
+
+.col-menu-handle {
+  padding: $col-menu-handle-padding;
+
+  svg {
+    fill: $col-menu-handle-color;
+  }
+}
 
 .col-menu {
   animation: $col-menu-animation;

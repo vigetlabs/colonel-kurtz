@@ -19,20 +19,11 @@
   text-align: center;
 
   @import 'reset';
-  @import 'components/toolbar';
   @import 'components/switch';
   @import 'components/menu';
   @import 'components/block';
   @import 'components/fab';
   @import 'components/editor';
   @import 'components/focustrap';
-}
-
-.col-hidden {
-  display: block;
-  position: absolute;
-  clip: rect(0, 0, 0, 0);
-  width: 0;
-  height: 0;
-  margin: -1;
+  @import 'utilities';
 }

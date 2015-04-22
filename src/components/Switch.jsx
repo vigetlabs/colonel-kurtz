@@ -5,7 +5,6 @@ import SwitchNav    from './SwitchNav'
 import classNames   from 'classnames'
 
 export default React.createClass({
-
   propTypes: {
     app : React.PropTypes.object.isRequired
   },
@@ -48,6 +47,8 @@ export default React.createClass({
   _onToggle() {
     let types = this.getTypes()
 
+    // If only one type exists, instead of opening the nav, just
+    // create that element
     if (types.length === 1) {
       let { app, position, parent } = this.props
       app.push(Actions.create, types[0].id, position, parent)
@@ -55,5 +56,4 @@ export default React.createClass({
 
     this.setState({ open: true })
   }
-
 })

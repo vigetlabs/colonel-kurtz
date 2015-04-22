@@ -9,7 +9,6 @@ import React       from 'react'
 import Switch      from 'components/Switch'
 
 export default React.createClass({
-
   propTypes: {
     app : React.PropTypes.object.isRequired
   },
@@ -33,5 +32,4 @@ export default React.createClass({
       </div>
     )
   }
-
 })

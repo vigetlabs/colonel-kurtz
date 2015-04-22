@@ -1,5 +1,5 @@
 import FocusTrap  from 'react-focus-trap'
-import Handle     from './ToolbarHandle'
+import Handle     from './MenuHandle'
 import Item       from './MenuItem'
 import React      from 'react'
 import isFirst    from 'utils/isFirst'
@@ -24,7 +24,7 @@ export default React.createClass({
     let blocks = app.get('blocks')
 
     return (
-      <div className="col-toolbar">
+      <div className="col-menu-wrapper">
         <Handle ref="handle" onClick={ this._onHandleClick }/>
         <FocusTrap element="nav" role="navigation" className="col-menu" onExit={ this._onExit } active={ this.state.open }>
           <Item ref="moveUp"   label="Move Up"   onClick={ app.prepare(shift, block.id, -1) } hide={ isFirst(blocks, block) } />

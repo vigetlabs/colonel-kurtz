@@ -2,7 +2,6 @@ import Button from './Button'
 import React  from 'react'
 
 export default React.createClass({
-
   propTypes: {
     label   : React.PropTypes.string.isRequired,
     onClick : React.PropTypes.func.isRequired
@@ -18,8 +17,6 @@ export default React.createClass({
 
   render() {
     let { hide, label, ...safe } = this.props
-
-    return hide ? null : (<Button { ...safe }>{ label }</Button>)
+    return hide ? null : React.createElement(Button, safe, label)
   }
-
 })
