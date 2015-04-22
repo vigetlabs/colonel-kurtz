@@ -26,7 +26,7 @@ export default {
 
     app.replace({
       blocks     : this.fetch(),
-      blockTypes : app.pull('blockTypes')
+      blockTypes : app.get('blockTypes')
     })
 
     next()
