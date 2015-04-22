@@ -1,7 +1,7 @@
-import Animation from 'react/lib/ReactCSSTransitionGroup'
-import Block     from 'components/Block'
-import Switch    from 'components/Switch'
-import React     from 'react'
+import Animator from 'components/Animator'
+import Block    from 'components/Block'
+import Switch   from 'components/Switch'
+import React    from 'react'
 
 let EditorBlock = React.createClass({
 
@@ -26,9 +26,7 @@ let EditorBlock = React.createClass({
       <div className="col-editor-block">
         <Block app={ app } block={ block }>
           <Switch app={ app } parent={ block } />
-          <Animation transitionName="col-editor-block">
-            { children.map(this.getBlock) }
-          </Animation>
+          <Animator>{ children.map(this.getBlock) }</Animator>
         </Block>
         <Switch app={ app } position={ block } parent={ block.parent } />
       </div>
