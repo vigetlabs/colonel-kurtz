@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.5.0
+
+- Upgraded Microcosm to 7.0.0.
+- Renamed Toolbar to Menu, be sure to upgrade CSS with this change.
+- Refactored some internals, though nothing should surface itself
+
 ## 2.4.0
 
 - Set up more sharing between Youtube and Image addons
