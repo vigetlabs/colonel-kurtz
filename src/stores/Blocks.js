@@ -43,12 +43,12 @@ export default {
   /**
    * Actions.create
    * Produces a new block based upon given parameters.
-   * If the provided position is a Block, place the new block right
-   * after it.
    */
   [Actions.create](state, { type, parent, position=0 }) {
     let record = new Block({ parent, type })
 
+    // If the provided position is a Block, place the new block right
+    // after it.
     if (position instanceof Block) {
       position = state.indexOf(position) + 1
     }
@@ -59,8 +59,7 @@ export default {
   /**
    * Actions.destroy
    * Given an id, remove that block and eliminate all other blocks
-   * nested inside of it. This is important so removing that `section`
-   * type blocks also eliminates children
+   * nested inside of it.
    */
   [Actions.destroy](state, id) {
     return deepRemove(state, id)
