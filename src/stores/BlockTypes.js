@@ -6,14 +6,10 @@
  * Colonel Kurtz how that action manipulates block type data.
  */
 
-import React from 'react'
+import BlockType from 'models/BlockType'
 
 export default {
 
-  /**
-   * getInitialState
-   * Block types are stored in an array
-   */
   getInitialState() {
     return []
   },
@@ -24,15 +20,7 @@ export default {
    * they follow some guidelines.
    */
   deserialize(config=[]) {
-    return config.map(options => {
-      let component = options.component
-
-      if (typeof component === 'object') {
-        component = React.createClass(component)
-      }
-
-      return { types: [], ...options, component }
-    })
+    return config.map(options => new BlockType(options))
   },
 
   /**
