@@ -1,6 +1,6 @@
 {
   "name": "colonel-kurtz",
-  "version": "2.5.1",
+  "version": "2.5.2",
   "description": "A block editor",
   "main": "build/colonel-kurtz.js",
   "scripts": {
