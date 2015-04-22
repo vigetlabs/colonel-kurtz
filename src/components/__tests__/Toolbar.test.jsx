@@ -23,7 +23,7 @@ describe('Components - Toolbar', function() {
   })
 
   it ('can exit', function() {
-    let block = app.pull('blocks')[1]
+    let block = app.refine('blocks').first()
     let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
 
     test.setState({ open: true })
@@ -34,7 +34,7 @@ describe('Components - Toolbar', function() {
 
   describe('When the "Remove" button is clicked', function() {
     it ('calls the destroy action', function() {
-      let block = app.pull('blocks')[1]
+      let block = app.refine('blocks').first()
       let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
 
       test.setState({ open: true })
@@ -46,7 +46,7 @@ describe('Components - Toolbar', function() {
 
   describe('When the "Move Up" button is clicked', function() {
     it ('calls the shift action', function() {
-      let block = app.pull('blocks')[1]
+      let block = app.refine('blocks').last()
       let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
 
       test.setState({ open: true })
@@ -56,7 +56,7 @@ describe('Components - Toolbar', function() {
     })
 
     it ('does not display if the block is the first child', function() {
-      let block = app.pull('blocks')[0]
+      let block = app.refine('blocks').first()
       let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
 
       test.refs.should.not.have.property('moveUp')
@@ -65,9 +65,8 @@ describe('Components - Toolbar', function() {
 
   describe('When the "Move Down" button is clicked', function() {
     it ('calls the shift action', function() {
-      let block = app.pull('blocks')[1]
+      let block = app.refine('blocks').first()
       let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
-
       test.setState({ open: true })
 
       TestUtils.Simulate.click(test.refs.moveDown.getDOMNode())
@@ -75,7 +74,7 @@ describe('Components - Toolbar', function() {
     })
 
     it ('does not show the moveUp button for the last block', function() {
-      let block = app.pull('blocks')[2]
+      let block = app.refine('blocks').last()
       let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
 
       test.refs.should.not.have.property('moveDown')
@@ -84,7 +83,7 @@ describe('Components - Toolbar', function() {
 
   describe('When the "Menu" button is clicked', function() {
     it ('sets the state to open', function() {
-      let block = app.pull('blocks')[1]
+      let block = app.refine('blocks').first()
       let test = TestUtils.renderIntoDocument(<Toolbar app={ app } block={ block } />)
 
       TestUtils.Simulate.click(test.refs.handle.getDOMNode())

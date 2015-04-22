@@ -1,6 +1,5 @@
 import Actions from 'actions/blocks'
 import Block   from 'models/Block'
-import Blocks  from 'stores/Blocks'
 import Colonel from '../Colonel'
 
 describe('ColonelKurtz', function() {
@@ -38,7 +37,7 @@ describe('ColonelKurtz', function() {
     })
 
     it ('should prepend a new block', function() {
-      app.pull(Blocks)[0].type.should.equal('section')
+      app.get('blocks')[0].type.should.equal('section')
     })
 
   })
@@ -46,11 +45,11 @@ describe('ColonelKurtz', function() {
   describe('when a destroy action is sent to the app', function() {
 
     beforeEach(function() {
-      app.push(Actions.destroy, app.pull(Blocks)[0])
+      app.push(Actions.destroy, app.get('blocks')[0])
     })
 
     it ('should prepend a new block', function() {
-      app.pull(Blocks).length.should.equal(0)
+      app.get('blocks').length.should.equal(0)
     })
 
   })
@@ -58,11 +57,11 @@ describe('ColonelKurtz', function() {
   describe('when an update action is sent to the app', function() {
 
     beforeEach(function() {
-      app.push(Actions.update, app.pull(Blocks)[0], { foo: 'bar' })
+      app.push(Actions.update, app.get('blocks')[0], { foo: 'bar' })
     })
 
     it ('should update the content of that block', function() {
-      app.pull(Blocks)[0].content.should.have.property('foo', 'bar')
+      app.get('blocks')[0].content.should.have.property('foo', 'bar')
     })
 
   })
@@ -72,12 +71,12 @@ describe('ColonelKurtz', function() {
 
     beforeEach(function() {
       app.push(Actions.create, 'section')
-      block = app.pull(Blocks)[0]
+      block = app.get('blocks')[0]
       app.push(Actions.shift, block.id, 1)
     })
 
     it ('should prepend a new block', function() {
-      app.pull(Blocks)[1].should.equal(block)
+      app.get('blocks')[1].should.equal(block)
     })
 
   })

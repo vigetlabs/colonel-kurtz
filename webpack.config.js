@@ -90,7 +90,7 @@ module.exports = {
       },
       /**
        * Sass processing. We import style dependencies within the app,
-       * the ExtractTextPlugin pulls it all out into a common build in
+       * the ExtractTextPlugin pullss it all out into a common build in
        * production.
        */
       {

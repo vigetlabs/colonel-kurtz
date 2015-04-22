@@ -27,13 +27,13 @@ export default class ColonelKurtz extends Microcosm {
     /**
      * A block is an individual chunk of content. It can have children
      */
-    this.addStore(Blocks)
+    this.addStore('blocks', Blocks)
 
     /**
      * A block type defines the editing experience for a specific type
      * content
      */
-    this.addStore(BlockTypes)
+    this.addStore('blockTypes', BlockTypes)
 
     /**
      * The bootstrap plugin takes seed data and prepares the

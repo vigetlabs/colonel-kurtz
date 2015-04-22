@@ -8,10 +8,6 @@ describe('Stores - Block', function() {
     Blocks.getInitialState().should.eql([])
   })
 
-  it ('stringifies to "blocks"', function() {
-    `${ Blocks }`.should.equal('blocks')
-  })
-
   it ('can create new blocks at a specific position', function() {
     let target  = new Block({})
     let initial = [new Block({}), target, new Block({})]

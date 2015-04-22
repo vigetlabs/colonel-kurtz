@@ -2,7 +2,6 @@ import Actions    from 'actions/blocks'
 import React      from 'react'
 import Toolbar    from 'components/Toolbar'
 import classNames from 'classnames'
-import findBy     from 'utils/findBy'
 
 export default React.createClass({
 
@@ -17,7 +16,7 @@ export default React.createClass({
 
   render() {
     let { app, block, children, first, last } = this.props
-    let { id, component:Component } = app.pull('blockTypes', findBy, block.type)
+    let { id, component:Component } = app.refine('blockTypes').find(i => i.id === block.type)
 
     return (
       <div className={ this.getClassName(block.type) }>

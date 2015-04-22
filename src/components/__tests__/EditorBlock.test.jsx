@@ -26,7 +26,7 @@ describe('Components - EditorBlock', function() {
     })
 
     it ('renders child blocks', function() {
-      let parent    = app.pull('blocks')[0]
+      let parent    = app.get('blocks')[0]
       let component = TestUtils.renderIntoDocument(<div><EditorBlock app={ app } block={ parent } /></div>)
 
       component.getDOMNode().querySelectorAll('.col-editor-block').length.should.equal(2)

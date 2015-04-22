@@ -21,7 +21,7 @@ export default React.createClass({
   getTypes() {
     let { app, parent } = this.props
 
-    let blockTypes = app.pull('blockTypes')
+    let blockTypes = app.get('blockTypes')
 
     if (parent) {
       let types = blockTypes.filter(i => i.id === parent.type)[0].types

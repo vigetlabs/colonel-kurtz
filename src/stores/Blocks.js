@@ -27,15 +27,6 @@ export default {
   },
 
   /**
-   * toString
-   * Tells Colonel Kurtz that this store manages the `blocks` key. Any
-   * modifications related to blocks can be found there
-   */
-  toString() {
-    return 'blocks'
-  },
-
-  /**
    * For simplicity, blocks are stored in an array, `blocksToJson`
    * takes a list of blocks and transforms them into the nested structure
    * shown in the front end

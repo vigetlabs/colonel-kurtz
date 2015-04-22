@@ -7,7 +7,6 @@ import Animation   from 'react/lib/ReactCSSTransitionGroup'
 import EditorBlock from 'components/EditorBlock'
 import React       from 'react'
 import Switch      from 'components/Switch'
-import isRoot      from '../utils/isRoot'
 
 export default React.createClass({
 
@@ -22,11 +21,14 @@ export default React.createClass({
   render() {
     let { app } = this.props
 
+    let top = app.refine('blocks')
+                 .filter(i => !i.parent)
+
     return (
       <div className="colonel">
         <Switch app={ app } />
         <Animation transitionName="col-editor-block">
-          { app.pull('blocks', isRoot).map(this.getBlock) }
+          { top.map(this.getBlock) }
         </Animation>
       </div>
     )

@@ -4,6 +4,8 @@ import FocusTrap  from 'react-focus-trap'
 import React      from 'react'
 import classNames from 'classnames'
 import siblingsOf from 'utils/siblingsOf'
+import isFirst    from 'utils/isFirst'
+import isLast     from 'utils/isLast'
 
 import { destroy, shift } from 'actions/blocks'
 
@@ -21,17 +23,15 @@ export default React.createClass({
   getMenu() {
     let { app, block } = this.props
 
-    let siblings = app.pull('blocks', siblingsOf, block)
-    let isFirst  = siblings[0] === block
-    let isLast   = siblings[siblings.length - 1] === block
+    let blocks = app.get('blocks')
 
-    return this.state.open ? (
-      <FocusTrap element="nav" role="navigation" className="col-menu" onExit={ this._onExit }>
-        <Item ref="moveUp"   label="Move Up"   onClick={ app.prepare(shift, block.id, -1) } hide={ isFirst } />
-        <Item ref="moveDown" label="Move Down" onClick={ app.prepare(shift, block.id, 1) }  hide={ isLast } />
+    return (
+      <FocusTrap element="nav" role="navigation" className="col-menu" onExit={ this._onExit } active={ this.state.open }>
+        <Item ref="moveUp"   label="Move Up"   onClick={ app.prepare(shift, block.id, -1) } hide={ isFirst(blocks, block) } />
+        <Item ref="moveDown" label="Move Down" onClick={ app.prepare(shift, block.id, 1) }  hide={ isLast(blocks, block) } />
         <Item ref="destroy"  label="Remove"    onClick={ app.prepare(destroy, block.id) } />
       </FocusTrap>
-    ) : null;
+    )
   },
 
   render() {

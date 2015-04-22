@@ -79,7 +79,7 @@ describe('Components - Switch', function() {
     })
 
     it ('getTypes should return the types supported by the parent', function() {
-      let component = TestUtils.renderIntoDocument(<Switch app={ app } parent={ app.pull('blocks')[0] }/>)
+      let component = TestUtils.renderIntoDocument(<Switch app={ app } parent={ app.get('blocks')[0] }/>)
 
       component.getTypes()[0].id.should.eql(Fixture.id)
     })
@@ -97,7 +97,7 @@ describe('Components - Switch', function() {
     })
 
     it ('renders nothing', function() {
-      let component = TestUtils.renderIntoDocument(<Switch app={ app } parent={ app.pull('blocks')[0] }/>)
+      let component = TestUtils.renderIntoDocument(<Switch app={ app } parent={ app.get('blocks')[0] }/>)
       expect(component.getDOMNode()).to.equal(null)
     })
   })

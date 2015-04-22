@@ -8,10 +8,6 @@ describe('Stores - BlockType', function() {
     component : { render() { return (<p/>) }}
   }
 
-  it ('stringifies to a key', function() {
-    `${ BlockTypes }`.should.equal('blockTypes')
-  })
-
   it ('ensures a deserialized block type has a react component', function() {
     let blockTypes = BlockTypes.deserialize([fixture])
     blockTypes[0].component.should.be.instanceOf(Function)

@@ -2,8 +2,6 @@ import Actions from 'actions/blocks'
 import Block   from '../Block'
 import Colonel from '../../Colonel'
 
-let first = list => list[0]
-
 describe('Components - Block', function() {
   let TestUtils = React.addons.TestUtils
   let app
@@ -22,7 +20,7 @@ describe('Components - Block', function() {
   })
 
   it ('adds a class name according to the block id', function() {
-    let block = app.pull('blocks', first)
+    let block = app.refine('blocks').first()
 
     let subject = TestUtils.renderIntoDocument(
       <Block app={ app } block={ block } />
@@ -34,7 +32,7 @@ describe('Components - Block', function() {
   it ('triggers update when its child component changes', function() {
     app.push(Actions.create, 'section')
 
-    let block   = app.pull('blocks', first)
+    let block   = app.refine('blocks').last()
     let subject = TestUtils.renderIntoDocument(
       <Block app={ app } block={ block } />
     )

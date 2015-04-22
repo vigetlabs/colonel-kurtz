@@ -1,8 +1,7 @@
-import Animation  from 'react/lib/ReactCSSTransitionGroup'
-import Block      from 'components/Block'
-import Switch     from 'components/Switch'
-import React      from 'react'
-import childrenOf from '../utils/childrenOf'
+import Animation from 'react/lib/ReactCSSTransitionGroup'
+import Block     from 'components/Block'
+import Switch    from 'components/Switch'
+import React     from 'react'
 
 let EditorBlock = React.createClass({
 
@@ -12,18 +11,23 @@ let EditorBlock = React.createClass({
   },
 
   getBlock(block, i) {
-    return (<EditorBlock key={ block.id } app={ this.props.app } block={ block } />)
+    return (<EditorBlock key={ block.id }
+                         app={ this.props.app }
+                         block={ block } />)
   },
 
   render() {
     let { app, block } = this.props
+
+    let children = app.refine('blocks')
+                      .filter(i => i.parent === block)
 
     return (
       <div className="col-editor-block">
         <Block app={ app } block={ block }>
           <Switch app={ app } parent={ block } />
           <Animation transitionName="col-editor-block">
-            { app.pull('blocks', childrenOf, block).map(this.getBlock) }
+            { children.map(this.getBlock) }
           </Animation>
         </Block>
         <Switch app={ app } position={ block } parent={ block.parent } />

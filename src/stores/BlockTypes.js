@@ -41,15 +41,6 @@ export default {
    */
   serialize() {
     return undefined
-  },
-
-  /**
-   * toString
-   * Tells Colonel Kurtz that block type information can be found at
-   * the `blockTypes` key
-   */
-  toString() {
-    return 'blockTypes'
   }
 
 }

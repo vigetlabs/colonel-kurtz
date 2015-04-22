@@ -32,7 +32,7 @@ module.exports = function(config) {
 
     logLevel: config.LOG_ERROR,
 
-    reporters: noCoverage ? [ 'nyan' ] : [ 'nyan', 'coverage' ],
+    reporters: noCoverage ? [ 'spec' ] : [ 'spec', 'coverage' ],
 
     coverageReporter: {
       reporters: [
