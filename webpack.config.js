@@ -27,7 +27,8 @@ module.exports = {
     'react' : 'react',
     'react/addons' : 'react/addons',
     'react/lib/ReactCSSTransitionGroup' : 'react/lib/ReactCSSTransitionGroup',
-    'classnames': 'classnames'
+    'classnames': 'classnames',
+    'react-focus-trap': 'react-focus-trap'
   },
 
   resolve: {
