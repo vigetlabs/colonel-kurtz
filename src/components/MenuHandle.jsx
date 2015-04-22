@@ -1,5 +1,6 @@
 import React    from 'react'
 import menuIcon from 'icons/menu'
+import Btn      from './Button'
 
 export default React.createClass({
 
@@ -15,11 +16,11 @@ export default React.createClass({
     let { label, ...safe } = this.props
 
     return (
-      <button { ...safe }>
+      <Btn { ...safe }>
         <span className="col-hidden">{ label }</span>
         <span aria-hidden="true"
               dangerouslySetInnerHTML={{ __html: menuIcon }} />
-      </button>
+      </Btn>
     )
   }
 
