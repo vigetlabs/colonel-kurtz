@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.5.1
+
+- Upgrade react focus trap for better focus management of menus
+
 ## 2.5.0
 
 - Upgraded Microcosm to 7.0.0.
