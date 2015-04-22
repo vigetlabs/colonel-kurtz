@@ -1,9 +1,3 @@
-/* @flow */
+let uidCounter = 0;
 
-var uidCounter = 0;
-
-var uid = function(): number {
-  return `c${ uidCounter += 1 }`
-}
-
-module.exports = uid
+export default () => `c${ uidCounter += 1 }`
