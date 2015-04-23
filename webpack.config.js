@@ -2,7 +2,7 @@ module.exports = {
   devtool: 'source-map',
 
   entry: {
-    'colonel-kurtz'  : './src/Colonel.js',
+    'colonel-kurtz'  : './src/Colonel.jsx',
     'addons/medium'  : './addons/medium/index.jsx',
     'addons/image'   : './addons/image/index.jsx',
     'addons/youtube' : './addons/youtube/index.jsx'

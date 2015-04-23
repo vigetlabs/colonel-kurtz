@@ -44,13 +44,12 @@ module.exports = function(config) {
     webpack: {
       devtool : 'inline-source-map',
 
-      plugins: webpack_config.plugins.concat([
-        new Webpack.IgnorePlugin(/\.s*(c|a)ss$/),
+      plugins: [
         new Webpack.IgnorePlugin(/\.svg$/),
         new Webpack.ProvidePlugin({
           'React': 'react/addons'
         })
-      ]),
+      ],
 
       resolve: webpack_config.resolve,
 
@@ -75,11 +74,6 @@ module.exports = function(config) {
             test    : /\.(svg)$/,
             exclude : /node_modules/,
             loader  : 'raw'
-          },
-          {
-            test    : /\.s*(c|a)ss$/,
-            exclude : /node_modules/,
-            loader  : 'style!css!postcss!sass'
           }
         ],
         postLoaders: noCoverage ? [] : [{

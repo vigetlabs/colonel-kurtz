@@ -36,7 +36,6 @@
   "bugs": "https://github.com/vigetlabs/colonel-kurtz/issues",
   "homepage": "https://github.com/vigetlabs/colonel-kurtz",
   "devDependencies": {
-    "autoprefixer": "^5.1.1",
     "babel-loader": "^5.x.x",
     "babel-runtime": "^5.x.x",
     "coveralls": "^2.11.2",
