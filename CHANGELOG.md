@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.6.0 (Not released)
+
+- Reworked build process to speedup setup time
+
 ## 2.5.2
 
 - Externalize react-focus-trap so it gets patches

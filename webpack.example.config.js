@@ -1,4 +1,4 @@
-var config  = Object.create(require('./webpack.config'))
+var config = require('./webpack.config')
 
 config.devtool = '#eval-source-map'
 config.entry   = './example/example.js'
