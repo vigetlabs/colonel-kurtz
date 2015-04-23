@@ -8,8 +8,6 @@
 import MediumEditor from './vendor/medium-editor'
 import React        from 'react'
 
-require('./style')
-
 var Medium = React.createClass({
 
   propTypes: {

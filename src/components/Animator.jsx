@@ -19,4 +19,5 @@ export default React.createClass({
   render() {
     return React.createElement(Animation, this.props, this.props.children)
   }
+
 })

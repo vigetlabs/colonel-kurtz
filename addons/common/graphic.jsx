@@ -1,7 +1,6 @@
 import React from 'react'
-import cx    from 'classnames'
 
-let Graphic = React.createClass({
+export default React.createClass({
 
   getDefaultProps() {
     return {
@@ -17,5 +16,3 @@ let Graphic = React.createClass({
   }
 
 })
-
-export default Graphic

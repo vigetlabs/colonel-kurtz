@@ -2,9 +2,7 @@
  * ColonelKurtz Example
  */
 
-require('./example.css')
-
-import ColonelKurtz from '../src'
+import ColonelKurtz from '../src/Colonel'
 
 let blockTypes = [
   {

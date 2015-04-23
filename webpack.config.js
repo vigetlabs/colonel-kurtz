@@ -1,11 +1,8 @@
-var Webpack           = require('webpack')
-var ExtractTextPlugin = require("extract-text-webpack-plugin")
-
 module.exports = {
   devtool: 'source-map',
 
   entry: {
-    'colonel-kurtz'  : './src/index.js',
+    'colonel-kurtz'  : './src/Colonel.js',
     'addons/medium'  : './addons/medium/index.jsx',
     'addons/image'   : './addons/image/index.jsx',
     'addons/youtube' : './addons/youtube/index.jsx'
@@ -32,29 +29,9 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json', '.scss', '.css', '.svg'],
+    extensions: ['', '.js', '.jsx', '.json', '.svg'],
     modulesDirectories: [ '.', 'web_modules', 'node_modules', 'src', 'addons', 'assets' ]
   },
-
-  plugins: [
-    /**
-     * When in production, extract all Sass modules out of the app and
-     * into `colonel-kurtz.css`
-     */
-    new ExtractTextPlugin("colonel-kurtz.css", {
-      disable: process.env.NODE_ENV !== 'production'
-    })
-  ],
-
-  /**
-   * PostCSS is a CSS postprocessor. We use it to optimize the build
-   * and automatically add vendor prefixing.
-   */
-  postcss: [
-    require('autoprefixer-core'),
-    require('css-mqpacker'),
-    require('csswring')
-  ],
 
   module: {
     loaders: [
@@ -88,16 +65,6 @@ module.exports = {
         test    : /\.(svg)$/,
         exclude : /node_modules/,
         loader  : 'raw'
-      },
-      /**
-       * Sass processing. We import style dependencies within the app,
-       * the ExtractTextPlugin pullss it all out into a common build in
-       * production.
-       */
-      {
-        test    : /\.s*(c|a)ss$/,
-        exclude : /node_modules/,
-        loader  : ExtractTextPlugin.extract('style', 'css!postcss!sass')
       }
     ]
   }

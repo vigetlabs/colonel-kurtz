@@ -9,7 +9,7 @@ import Frame   from '../common/frame'
 import Graphic from '../common/graphic'
 import React   from 'react'
 
-let YouTube = React.createClass({
+export default React.createClass({
 
   getDefaultProps() {
     return {
@@ -43,5 +43,3 @@ let YouTube = React.createClass({
   }
 
 })
-
-export default YouTube

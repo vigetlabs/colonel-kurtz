@@ -39,6 +39,18 @@ npm start
 
 This will host the demo at `http://localhost:8080`.
 
+### Compiling Sass
+
+```bash
+npm run sass
+```
+
+When working on the project, you can compile and watch the example sass with:
+
+```bash
+npm run sass:example
+```
+
 ## Testing
 
 Colonel Kurtz uses [Karma](karma-runner.github.io). You can run tests

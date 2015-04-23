@@ -1,7 +1,7 @@
 import React from 'react'
 import cx    from 'classnames'
 
-let Frame = React.createClass({
+export default React.createClass({
 
   getDefaultProps() {
     return {
@@ -20,5 +20,3 @@ let Frame = React.createClass({
   }
 
 })
-
-export default Frame

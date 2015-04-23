@@ -4,7 +4,6 @@
  */
 
 import React from 'react'
-import './style'
 
 export default React.createClass({
 
