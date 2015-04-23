@@ -16,7 +16,7 @@ export default React.createClass({
 
   render() {
     let { app, block, children, first, last } = this.props
-    let { id, component:Component } = app.refine('blockTypes').find(i => i.id === block.type)
+    let { component:Component } = app.refine('blockTypes').find(i => i.id === block.type)
 
     return (
       <div className={ this.getClassName(block.type) }>

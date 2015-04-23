@@ -14,9 +14,7 @@ export default React.createClass({
   },
 
   getBlock(block, i) {
-    return (<EditorBlock key={ block.id }
-                         app={ this.props.app }
-                         block={ block } />)
+    return (<EditorBlock key={ block } app={ this.props.app } block={ block } />)
   },
 
   render() {

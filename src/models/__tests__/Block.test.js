@@ -14,4 +14,11 @@ describe('Models - Block', function() {
     block.valueOf().should.equal(block.id)
   })
 
+  it ('stringifies to its id', function() {
+    let block  = new Block({})
+    let answer = `${ block }`
+
+    answer.should.equal(block.id)
+  })
+
 })
