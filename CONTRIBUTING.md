@@ -48,7 +48,7 @@ npm run sass
 When working on the project, you can compile and watch the example sass with:
 
 ```bash
-npm run sass:example
+npm run sass:example:watch
 ```
 
 ## Testing
