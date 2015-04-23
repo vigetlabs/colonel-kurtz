@@ -1,6 +1,6 @@
 import Actions    from 'actions/blocks'
-import React      from 'react'
 import Menu       from 'components/Menu'
+import React      from 'react'
 import classNames from 'classnames'
 
 export default React.createClass({
