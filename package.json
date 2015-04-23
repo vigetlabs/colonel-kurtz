@@ -7,7 +7,7 @@
     "start": "NODE_ENV=development webpack-dev-server --content-base ./example --config webpack.example.config.js",
     "prepublish": "NODE_ENV=production webpack -p --optimize-occurence-order --optimize-dedupe",
     "test": "karma start",
-    "test:once": "CONTINUOUS_INTEGRATION=true npm test"
+    "test:once": "CONTINUOUS_INTEGRATION=true npm test",
     "coveralls": "npm run test:once && coveralls < coverage/report-lcov/lcov.info"
   },
   "repository": {
