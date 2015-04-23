@@ -1,6 +1,10 @@
 # Changelog
 
-## 2.6.0 (Not released)
+## 2.7.0
+
+- Add experimental "Section" block type addon
+
+## 2.6.0
 
 - Reworked build process to speedup setup time
 
