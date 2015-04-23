@@ -28,8 +28,8 @@ $col-menu-z-index        : 1 !default;
 .col-menu-handle {
   border-radius: 50%;
   color: $col-primary;
+  height: unit(6);
   padding: $col-menu-handle-padding;
-  height: 48px;
 
   svg {
     fill: $col-menu-handle-color;
@@ -69,6 +69,7 @@ $col-menu-z-index        : 1 !default;
 
 .col-menu {
   animation: $col-menu-animation;
+  -webkit-animation: $col-menu-animation;
   background: $col-menu-background;
   border-radius: $col-menu-radius;
   box-shadow: 0 2px 3px rgba(#000, 0.4), 0 -1px 1px rgba(#000, 0.15);

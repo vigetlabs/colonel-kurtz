@@ -1,7 +1,7 @@
 import Actions      from 'actions/blocks'
 import React        from 'react'
-import SwitchToggle from './SwitchToggle'
 import SwitchNav    from './SwitchNav'
+import SwitchToggle from './SwitchToggle'
 import classNames   from 'classnames'
 
 export default React.createClass({

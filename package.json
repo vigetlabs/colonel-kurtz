@@ -5,12 +5,14 @@
   "main": "build/colonel-kurtz.js",
   "scripts": {
     "start": "NODE_ENV=development webpack-dev-server --content-base ./example --config webpack.example.config.js ---inline",
-    "sass:example": "node-sass ./example/example.scss -o ./example -w",
     "prepublish": "NODE_ENV=production webpack -p --optimize-occurence-order --optimize-dedupe",
     "test": "karma start",
     "test:once": "CONTINUOUS_INTEGRATION=true npm test",
     "coveralls": "npm run test:once && coveralls < coverage/report-lcov/lcov.info",
-    "sass": "node-sass ./style/colonel.scss -o ./build"
+    "sass": "node-sass ./style/colonel.scss -o ./build && autoprefixer build/colonel.css -o build/colonel.css",
+    "sass:watch": "watch 'npm run sass' style",
+    "sass:example": "node-sass ./example/example.scss -o ./example && autoprefixer example/example.css -o example/example.css",
+    "sass:example:watch": "watch 'npm run sass:example' style"
   },
   "repository": {
     "type": "git",
@@ -36,6 +38,7 @@
   "bugs": "https://github.com/vigetlabs/colonel-kurtz/issues",
   "homepage": "https://github.com/vigetlabs/colonel-kurtz",
   "devDependencies": {
+    "autoprefixer": "^5.1.1",
     "babel-loader": "^5.x.x",
     "babel-runtime": "^5.x.x",
     "coveralls": "^2.11.2",
@@ -60,6 +63,7 @@
     "react-ink": "^4.0.0-rc5",
     "react-tools": "^0.13.1",
     "source-map-loader": "^0.1.3",
+    "watch": "^0.16.0",
     "webpack": "^1.7.2",
     "webpack-dev-server": "^1.7.0"
   },
