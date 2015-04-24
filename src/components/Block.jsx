@@ -1,7 +1,6 @@
-import Actions    from 'actions/blocks'
-import Menu       from 'components/Menu'
-import React      from 'react'
-import classNames from 'classnames'
+import Actions from 'actions/blocks'
+import Menu    from 'components/Menu'
+import React   from 'react'
 
 export default React.createClass({
 
@@ -10,20 +9,16 @@ export default React.createClass({
     block : React.PropTypes.object.isRequired
   },
 
-  getClassName(type) {
-    return classNames('col-block', `col-block-${ type }`)
-  },
-
   render() {
-    let { app, block, children, first, last } = this.props
+    let { app, block, children } = this.props
     let { component:Component } = app.refine('blockTypes').find(i => i.id === block.type)
 
     return (
-      <div className={ this.getClassName(block.type) }>
+      <div className={ `col-block col-block-${ block.type }`}>
         <Component ref="block" content={ block.content } onChange={ this._onChange }>
           { children }
         </Component>
-        <Menu app={ app } block={ block } first={ first } last={ last } />
+        <Menu app={ app } block={ block } />
       </div>
     )
   },
