@@ -10,13 +10,12 @@ export default React.createClass({
   getDefaultProps() {
     return {
       className : 'col-menu-item',
-      hide      : false,
       type      : 'button'
     }
   },
 
   render() {
-    let { hide, label, ...safe } = this.props
-    return hide ? null : React.createElement(Button, safe, label)
+    let { label, ...safe } = this.props
+    return React.createElement(Button, safe, label)
   }
 })

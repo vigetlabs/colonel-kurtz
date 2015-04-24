@@ -13,7 +13,7 @@ export default tag({
     return { id, content }
   },
 
-  shift(id, delta) {
-    return { id, delta }
+  move(from, to) {
+    return { from, to }
   }
 })

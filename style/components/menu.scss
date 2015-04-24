@@ -22,7 +22,6 @@ $col-menu-z-index        : 1 !default;
   right: 0;
   text-align: right;
   top: 0;
-  z-index: $col-menu-z-index;
 }
 
 .col-menu-handle {
@@ -30,6 +29,8 @@ $col-menu-z-index        : 1 !default;
   color: $col-primary;
   height: unit(6);
   padding: $col-menu-handle-padding;
+  position: relative;
+  z-index: $col-menu-z-index;
 
   svg {
     fill: $col-menu-handle-color;
@@ -99,5 +100,10 @@ $col-menu-z-index        : 1 !default;
     background: #e0e0e0;
     transition: 0.1s all;
     outline: none;
+  }
+
+  &[disabled] {
+    opacity: 0.25;
+    pointer-events: none;
   }
 }

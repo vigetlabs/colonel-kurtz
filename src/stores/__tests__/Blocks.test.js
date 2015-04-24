@@ -42,19 +42,11 @@ describe('Stores - Block', function() {
 
   it ('can move a block', function() {
     let target  = new Block({})
-    let initial = [ new Block({}), target, new Block({}) ]
-    let state   = Blocks[Actions.shift](initial, { id: target.id, delta: 1 })
+    let next    = new Block({})
+    let initial = [ new Block({}), target, next ]
+    let state   = Blocks[Actions.move](initial, { from: target, to: next })
 
     state[2].should.equal(target)
-  })
-
-  it ('does not move a block lower than 0', function() {
-    let target  = new Block({})
-    let initial = [ target, new Block({}) ]
-    let state   = Blocks[Actions.shift](initial, { id: target.id, delta: -1 })
-
-    state[0].should.equal(target)
-    state[1].should.not.equal(target)
   })
 
   it ('creates a block after a given other block', function() {
@@ -66,14 +58,6 @@ describe('Stores - Block', function() {
     })
 
     state[1].type.should.equal('expected')
-  })
-
-  it ('skips past children when shifting', function() {
-    let target  = new Block({})
-    let initial = [ target, new Block({ parent: target }), new Block({}) ]
-    let state   = Blocks[Actions.shift](initial, { id: target.id, delta: 1 })
-
-    state[2].should.equal(target)
   })
 
 })

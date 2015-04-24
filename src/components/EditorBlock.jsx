@@ -17,8 +17,7 @@ let EditorBlock = React.createClass({
   render() {
     let { app, block } = this.props
 
-    let children = app.refine('blocks')
-                      .filter(i => i.parent === block)
+    let children = app.refine('blocks').filter(i => i.parent === block)
 
     return (
       <div className="col-editor-block">

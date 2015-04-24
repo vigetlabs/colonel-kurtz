@@ -80,27 +80,12 @@ export default {
   },
 
   /**
-   * Actions.shift
+   * Actions.move
    * Adjust the position of a given block.
    */
-  [Actions.shift](state, { id, delta }) {
-    // Get the current item
-    let item = findBy(state, id)
-
-    // Find all siblings of that item
-    let siblings = siblingsOf(state, item)
-
-    // Determine the new index by shifting along sibligns
-    let index = siblings.indexOf(item) + delta
-
-    // Next translate that to be within context to the greater list
-    let goal = state.indexOf(siblings[index])
-
-    // Next produce a list without the current item
-    let without = state.filter(i => i !== item)
-
-    // Finally, return a new list with the item injected at the desired location
-    return insertAt(without, item, goal)
+  [Actions.move](state, { from, to }) {
+    let without = state.filter(i => i !== from)
+    return insertAt(without, from, state.indexOf(to))
   }
 
 }

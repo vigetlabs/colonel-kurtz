@@ -20,8 +20,7 @@ export default React.createClass({
   render() {
     let { app } = this.props
 
-    let top = app.refine('blocks')
-                 .filter(i => !i.parent)
+    let top = app.refine('blocks').filter(i => !i.parent)
 
     return (
       <div className="colonel">

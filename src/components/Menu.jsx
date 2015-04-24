@@ -1,11 +1,10 @@
-import FocusTrap  from 'react-focus-trap'
-import Handle     from './MenuHandle'
-import Item       from './MenuItem'
-import React      from 'react'
-import isFirst    from 'utils/isFirst'
-import isLast     from 'utils/isLast'
+import FocusTrap from 'react-focus-trap'
+import Handle    from './MenuHandle'
+import Item      from './MenuItem'
+import React     from 'react'
+import siblingAt from 'utils/siblingAt'
 
-import { destroy, shift } from 'actions/blocks'
+import { destroy, move } from 'actions/blocks'
 
 export default React.createClass({
 
@@ -20,16 +19,19 @@ export default React.createClass({
 
   render() {
     let { app, block } = this.props
-
-    let blocks = app.get('blocks')
+    let blocks         = app.get('blocks')
+    let before         = siblingAt(blocks, block, -1)
+    let after          = siblingAt(blocks, block, 1)
+    let moveBlock      = app.prepare(move, block)
+    let destroyBlock   = app.prepare(destroy, block.id)
 
     return (
       <div className="col-menu-wrapper">
         <Handle ref="handle" onClick={ this._onHandleClick }/>
         <FocusTrap element="nav" role="navigation" className="col-menu" onExit={ this._onExit } active={ this.state.open }>
-          <Item ref="moveUp"   label="Move Up"   onClick={ app.prepare(shift, block.id, -1) } hide={ isFirst(blocks, block) } />
-          <Item ref="moveDown" label="Move Down" onClick={ app.prepare(shift, block.id, 1) }  hide={ isLast(blocks, block) } />
-          <Item ref="destroy"  label="Remove"    onClick={ app.prepare(destroy, block.id) } />
+          <Item ref="moveUp" label="Move Up" onClick={ () => moveBlock(before)} disabled={ !before } />
+          <Item ref="moveDown" label="Move Down" onClick={ () => moveBlock(after) } disabled={ !after } />
+          <Item ref="destroy" label="Remove" onClick={ destroyBlock} />
         </FocusTrap>
       </div>
     )

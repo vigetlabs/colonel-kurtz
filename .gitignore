@@ -4,3 +4,5 @@ npm-debug.log
 coverage
 build
 example/example.css
+example/example.build.js
+example/example.build.js.map

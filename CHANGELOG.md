@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.8.0
+
+As of this release, we will break out changes into those noticeable to
+users and those internal to Colonel itself.
+
+### Noticeable changes
+
+- Menu items will always display for moving blocks. If a block can not
+  be moved further, the item will be disabled.
+
+### Internal changes
+
+- Change internal moving method to eliminate edge cases and fragility
+- Increase test coverage
+
 ## 2.7.0
 
 - Add experimental "Section" block type addon

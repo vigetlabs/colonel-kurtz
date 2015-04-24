@@ -5,8 +5,9 @@
 
 import siblingsOf from 'utils/siblingsOf'
 
-export default function(list, block) {
+export default function(list, block, delta) {
   let siblings = siblingsOf(list, block)
+  let index    = siblings.indexOf(block)
 
-  return siblings[0] === block
+  return index !== -1 ? siblings[index + delta] : null
 }

@@ -67,16 +67,16 @@ describe('ColonelKurtz', function() {
   })
 
   describe('when a shift action is sent to the app', function() {
-    let block;
-
-    beforeEach(function() {
-      app.push(Actions.create, 'section')
-      block = app.get('blocks')[0]
-      app.push(Actions.shift, block.id, 1)
-    })
 
     it ('should prepend a new block', function() {
-      app.get('blocks')[1].should.equal(block)
+      app.push(Actions.create, 'section')
+
+      let block = app.refine('blocks').first()
+      let next  = app.refine('blocks').last()
+
+      app.push(Actions.move, block, next)
+
+      app.refine('blocks').last().should.equal(block)
     })
 
   })

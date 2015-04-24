@@ -21,13 +21,15 @@ module.exports = {
    * compiled code. This way we respect whatever version is required
    * by the parent code including Colonel Kurtz
    */
-  externals: {
-    'react' : 'react',
-    'react/addons' : 'react/addons',
-    'react/lib/ReactCSSTransitionGroup' : 'react/lib/ReactCSSTransitionGroup',
-    'classnames': 'classnames',
-    'react-focus-trap': 'react-focus-trap'
-  },
+  externals: [
+    'classnames',
+    'foliage',
+    'microcosm',
+    'react',
+    'react-focus-trap',
+    'react/addons',
+    'react/lib/ReactCSSTransitionGroup'
+  ],
 
   resolve: {
     extensions: ['', '.js', '.jsx', '.json', '.svg'],

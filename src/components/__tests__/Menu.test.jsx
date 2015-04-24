@@ -2,7 +2,7 @@ import Colonel from '../../Colonel'
 import Menu from '../Menu'
 import Fixture from './fixtures/testBlockType'
 
-import { create, shift, destroy } from 'actions/blocks'
+import { create, move, destroy } from 'actions/blocks'
 
 describe('Components - Menu', function() {
   let TestUtils = React.addons.TestUtils
@@ -15,7 +15,6 @@ describe('Components - Menu', function() {
     })
 
     app.start(function() {
-      app.push(create, Fixture.id)
       app.push(create, Fixture.id)
       app.push(create, Fixture.id)
       app.push = sinon.mock()
@@ -40,44 +39,51 @@ describe('Components - Menu', function() {
       test.setState({ open: true })
 
       TestUtils.Simulate.click(test.refs.destroy.getDOMNode())
+
       app.push.should.have.been.calledWith(destroy, block.id)
     })
   })
 
   describe('When the "Move Up" button is clicked', function() {
-    it ('calls the shift action', function() {
+    it ('calls the move action', function() {
       let block = app.refine('blocks').last()
       let test = TestUtils.renderIntoDocument(<Menu app={ app } block={ block } />)
 
       test.setState({ open: true })
 
       TestUtils.Simulate.click(test.refs.moveUp.getDOMNode())
-      app.push.should.have.been.calledWith(shift, block.id, -1)
+
+      app.push.should.have.been.calledWith(move, block, app.refine('blocks').first())
     })
 
-    it ('does not display if the block is the first child', function() {
+     it ('is disabled if it is the first block', function() {
       let block = app.refine('blocks').first()
       let test = TestUtils.renderIntoDocument(<Menu app={ app } block={ block } />)
 
-      test.refs.should.not.have.property('moveUp')
+      test.setState({ open: true })
+
+      test.refs.moveUp.props.disabled.should.eql(true)
     })
   })
 
   describe('When the "Move Down" button is clicked', function() {
-    it ('calls the shift action', function() {
+    it ('calls the move action', function() {
       let block = app.refine('blocks').first()
       let test = TestUtils.renderIntoDocument(<Menu app={ app } block={ block } />)
       test.setState({ open: true })
 
       TestUtils.Simulate.click(test.refs.moveDown.getDOMNode())
-      app.push.should.have.been.calledWith(shift, block.id, 1)
+
+      app.push.should.have.been.calledWith(move, block, app.refine('blocks').last())
     })
 
-    it ('does not show the moveUp button for the last block', function() {
+    it ('is disabled if it is the last block', function() {
       let block = app.refine('blocks').last()
       let test = TestUtils.renderIntoDocument(<Menu app={ app } block={ block } />)
 
-      test.refs.should.not.have.property('moveDown')
+      test.setState({ open: true })
+
+      test.refs.moveDown.props.disabled.should.eql(true)
     })
   })
 
