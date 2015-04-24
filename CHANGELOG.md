@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.9.0
+
+### Noticeable Changes
+
+- Colonel's `blocks` option can accept an input or textarea
+
 ## 2.8.0
 
 As of this release, we will break out changes into those noticeable to
