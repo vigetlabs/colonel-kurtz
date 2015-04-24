@@ -2,6 +2,7 @@ import Button from './Button'
 import React  from 'react'
 
 export default React.createClass({
+
   propTypes: {
     label   : React.PropTypes.string.isRequired,
     onClick : React.PropTypes.func.isRequired
@@ -18,4 +19,5 @@ export default React.createClass({
     let { label, ...safe } = this.props
     return React.createElement(Button, safe, label)
   }
+
 })

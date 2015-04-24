@@ -1,7 +1,7 @@
 import React from 'react'
 import Ink   from 'react-ink'
 
-let Button = React.createClass({
+export default React.createClass({
 
   getDefaultProps() {
     return {
@@ -22,6 +22,5 @@ let Button = React.createClass({
       ])
     )
   }
-})
 
-export default Button
+})

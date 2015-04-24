@@ -1,6 +1,6 @@
-import React    from 'react'
-import menuIcon from 'icons/menu'
-import Btn      from './Button'
+import Btn   from './Button'
+import React from 'react'
+import icon  from 'icons/menu'
 
 export default React.createClass({
 
@@ -18,8 +18,7 @@ export default React.createClass({
     return (
       <Btn { ...safe }>
         <span className="col-hidden">{ label }</span>
-        <span aria-hidden="true"
-              dangerouslySetInnerHTML={{ __html: menuIcon }} />
+        <span aria-hidden="true" dangerouslySetInnerHTML={{ __html: icon }} />
       </Btn>
     )
   }

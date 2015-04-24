@@ -31,4 +31,5 @@ export default React.createClass({
     let { app, position, parent } = this.props
     app.push(Actions.create, id, position, parent)
   }
+
 })
