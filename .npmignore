@@ -6,3 +6,4 @@ lib
 src
 webpack.config.js
 webpack.example.config.js
+karma.conf.js
