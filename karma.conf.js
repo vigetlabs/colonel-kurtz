@@ -14,9 +14,7 @@ module.exports = function(config) {
   }
 
   config.set({
-    // Chrome tends to give better debug information, however TravisCI only
-    // includes the Firefox WebDriver
-    browsers: [ isIntegration ? 'Firefox' : 'Chrome' ],
+    browsers: [ 'Firefox' ],
 
     singleRun: isIntegration,
 
