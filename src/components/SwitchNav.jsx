@@ -18,7 +18,7 @@ export default React.createClass({
   },
 
   render() {
-    let { app, blockTypes, hide } = this.props
+    let { blockTypes, hide } = this.props
 
     return hide ? null : (
       <nav className="col-switch-nav" role="navigation">
