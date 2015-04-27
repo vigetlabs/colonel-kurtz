@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.11.0
+
+### Noticeable Changes
+
+- Youtube and Image components can accept children. This is intended
+  to better support additional fields.
+
 ## 2.10.0
 
 ### Noticeable Changes
