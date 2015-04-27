@@ -13,7 +13,6 @@
 $theme-primary: #009688 !default;
 $theme-secondary: #eeeeee !default;
 $theme-accent: #cddc39 !default;
-$font-sans: 'Roboto', sans-serif !default;
 
 /**
  * Colonel Kurtz specific values
@@ -21,4 +20,4 @@ $font-sans: 'Roboto', sans-serif !default;
 $col-accent: $theme-accent !default;
 $col-secondary: $theme-secondary !default;
 $col-primary: $theme-primary !default;
-$col-font-family: $font-sans;
+$col-backdrop: #eee !default;

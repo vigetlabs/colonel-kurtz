@@ -11,8 +11,8 @@
 @import 'animations/switch';
 
 .colonel {
-  background: #eee;
-  font-family: Roboto, sans-serif;
+  background: $col-backdrop;
+  font-family: $col-font-family;
   font-size: $col-type-size-body;
   height: 100%;
   position: relative;

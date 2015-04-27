@@ -1,8 +1,9 @@
 /**
  * Type Values
- *
- * These come from the Material Design Standard
- * http://www.google.com/design/spec/style/typography.html
  */
 
-$col-type-size-body : 14px !default;
+// This value comes from active_material
+$font-family: Roboto, sans-serif !default;
+
+$col-type-size-body: 14px !default;
+$col-font-family: $font-family !default;
