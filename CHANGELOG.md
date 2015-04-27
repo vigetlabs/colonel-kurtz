@@ -1,5 +1,17 @@
 # Changelog
 
+## 2.10.0
+
+### Noticeable Changes
+
+- Colonel Kurtz will now inherit theme colors from upcoming
+  active_material gem. Beyond exposing variables, no visual
+  differences should be observed.
+
+### Bug fixes
+
+- Fixed some style inconsistencies in Firefox
+
 ## 2.9.0
 
 ### Noticeable Changes

@@ -8,7 +8,7 @@
  */
 
 $col-fab-border         : 1px solid rgba(#000, 0.1) !default;
-$col-fab-color          : $col-text-light !default;
+$col-fab-color          : #fff !default;
 $col-fab-radius         : 50% !default;
 $col-fab-size           : 36px !default;
 $col-fab-secondary-size : 24px !default;
@@ -26,8 +26,9 @@ $col-fab-background     : $col-primary !default;
   display: block;
   font-size: $col-fab-size * 0.5;
   font-weight: 500;
+  line-height: 16px;
   height: $col-fab-size;
-  line-height: 0;
+  padding: (($col-fab-size - 16px) * 0.5) 0;
   margin: (($col-fab-spacing - $col-fab-size) * 0.5) auto;
   position: relative;
   text-shadow: 0 1px 1px rgba(#000, 0.2);
@@ -66,7 +67,7 @@ $col-fab-background     : $col-primary !default;
 .col-btn-fab-secondary {
   background: $col-secondary;
   border: none;
-  color: $col-muted-dark;
+  color: rgba(#000, 0.54);
   font-size: 14px;
   font-weight: 600;
   height: $col-fab-secondary-size;

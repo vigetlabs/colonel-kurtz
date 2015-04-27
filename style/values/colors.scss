@@ -5,12 +5,20 @@
  * http://www.google.com/design/spec/style/color.html
  */
 
-$col-accent      : #cddc39 !default;
-$col-primary     : #009688 !default;
-$col-secondary   : #eeeeee !default;
-$col-danger      : #f44336 !default;
-$col-font-family : Roboto, sans-serif;
-$col-muted-dark  : rgba(#000, 0.5) !default;
-$col-muted-light : rgba(#fff, 0.4) !default;
-$col-text-dark   : rgba(#000, 0.875) !default;
-$col-text-light  : rgba(#fff, 0.875) !default;
+/**
+ * When using Colonel Kurtz with the active_material gem, this will
+ * allow the editor to inherit the custom color scheme configured for
+ * those styles.
+ */
+$theme-primary: #009688 !default;
+$theme-secondary: #eeeeee !default;
+$theme-accent: #cddc39 !default;
+$font-sans: 'Roboto', sans-serif !default;
+
+/**
+ * Colonel Kurtz specific values
+ */
+$col-accent: $theme-accent !default;
+$col-secondary: $theme-secondary !default;
+$col-primary: $theme-primary !default;
+$col-font-family: $font-sans;
