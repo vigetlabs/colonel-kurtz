@@ -33,7 +33,12 @@ you can do whatever you want.
 var ColonelKurtz = require('colonel-kurtz');
 
 var editor = new ColonelKurtz({
-  el     : input,
-  blocks : JSON.parse(input.value)
+  el         : input,
+  blocks     : JSON.parse(input.value),
+  blockTypes : [{
+    id: 'a-block',
+    label: 'This is a block',
+    component: require('./path/to/component')
+  }]
 });
 ```
