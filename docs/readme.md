@@ -39,8 +39,8 @@ Colonel Kurtz is a standard JavaScript constructor, which means you
 can create _new_ editors:
 
 ```javascript
-let input = document.getElementById('#textarea')
 let box   = document.getElementById('#box')
+let input = document.getElementById('#textarea')
 
 var myEditor = new ColonelKurtz({
   el     : box,
