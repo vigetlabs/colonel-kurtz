@@ -30,18 +30,12 @@ describe('Components - Block', function() {
   })
 
   it ('triggers update when its child component changes', function() {
-    app.push(Actions.create, 'section')
-
-    let block   = app.refine('blocks').last()
-    let subject = TestUtils.renderIntoDocument(
-      <Block app={ app } block={ block } />
-    )
-
-    sinon.spy(app, 'push')
+    let block   = app.refine('blocks').first()
+    let subject = TestUtils.renderIntoDocument(<Block app={ app } block={ block } />)
 
     subject.refs.block.props.onChange({ fiz: 'buzz' })
 
-    app.push.should.have.been.called
+    block.content.should.have.property('fiz', 'buzz')
   })
 
 })

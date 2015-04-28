@@ -1,6 +1,6 @@
-import Actions from 'actions/blocks'
-import Menu    from 'components/Menu'
-import React   from 'react'
+import Menu from 'components/Menu'
+import React from 'react'
+import { update } from 'actions/blocks'
 
 export default React.createClass({
 
@@ -15,18 +15,12 @@ export default React.createClass({
 
     return (
       <div className={ `col-block col-block-${ block.type }`}>
-        <Component ref="block" content={ block.content } onChange={ this._onChange }>
+        <Component ref="block" onChange={ app.prepare(update, block) } { ...block }>
           { children }
         </Component>
         <Menu app={ app } block={ block } />
       </div>
     )
-  },
-
-  _onChange(content) {
-    let { app, block } = this.props
-
-    app.push(Actions.update, block, content)
   }
 
 })
