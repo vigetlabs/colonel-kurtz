@@ -6,7 +6,7 @@
   "scripts": {
     "start": "webpack -wd --config webpack.example.config.js",
     "prepublish": "NODE_ENV=production webpack -p",
-    "test": "karma start",
+    "test": "NODE_ENV=test karma start",
     "test:once": "CONTINUOUS_INTEGRATION=true npm test",
     "coveralls": "npm run test:once && coveralls < coverage/report-lcov/lcov.info",
     "sass": "node-sass ./example/example.scss --stdout | autoprefixer > ./example/example.css",

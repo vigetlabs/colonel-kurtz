@@ -66,15 +66,14 @@ describe('ColonelKurtz', function() {
 
   })
 
-  describe('when a shift action is sent to the app', function() {
+  describe('when a move action is sent to the app', function() {
 
     it ('should prepend a new block', function() {
       app.push(Actions.create, 'section')
 
       let block = app.refine('blocks').first()
-      let next  = app.refine('blocks').last()
 
-      app.push(Actions.move, block, next)
+      app.push(Actions.move, block, 1)
 
       app.refine('blocks').last().should.equal(block)
     })
