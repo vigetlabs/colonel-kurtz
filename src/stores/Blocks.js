@@ -13,7 +13,7 @@ import assign     from 'utils/assign'
 import deepRemove from 'utils/deepRemove'
 import findBy     from 'utils/findBy'
 import insertAt   from 'utils/insertAt'
-import siblingsOf from 'utils/siblingsOf'
+import siblingAt  from 'utils/siblingAt'
 
 export default {
 
@@ -83,9 +83,11 @@ export default {
    * Actions.move
    * Adjust the position of a given block.
    */
-  [Actions.move](state, { from, to }) {
-    let without = state.filter(i => i !== from)
-    return insertAt(without, from, state.indexOf(to))
+  [Actions.move](state, { block, distance }) {
+    let without = state.filter(i => i !== block)
+    let before  = siblingAt(state, block, distance)
+
+    return insertAt(without, block, state.indexOf(before))
   }
 
 }

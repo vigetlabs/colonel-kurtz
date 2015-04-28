@@ -44,7 +44,7 @@ describe('Stores - Block', function() {
     let target  = new Block({})
     let next    = new Block({})
     let initial = [ new Block({}), target, next ]
-    let state   = Blocks[Actions.move](initial, { from: target, to: next })
+    let state   = Blocks[Actions.move](initial, { block: target, distance: 1 })
 
     state[2].should.equal(target)
   })

@@ -10,7 +10,7 @@ let EditorBlock = React.createClass({
     block : React.PropTypes.object.isRequired
   },
 
-  getBlock(block, i) {
+  getBlock(block, i, list) {
     return (<EditorBlock key={ block } app={ this.props.app } block={ block } />)
   },
 
