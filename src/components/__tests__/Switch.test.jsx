@@ -78,10 +78,11 @@ describe('Components - Switch', function() {
       app.start(done)
     })
 
-    it ('getTypes should return the types supported by the parent', function() {
+    it ('getTypes should display multiple blocks', function() {
       let component = TestUtils.renderIntoDocument(<Switch app={ app } parent={ app.get('blocks')[0] }/>)
 
-      component.getTypes()[0].id.should.eql(Fixture.id)
+      component.setState({ open : true })
+      component.getDOMNode().querySelectorAll('button').length.should.be.gt(1)
     })
   })
 

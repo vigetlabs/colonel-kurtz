@@ -1,8 +1,9 @@
-import Actions      from 'actions/blocks'
-import React        from 'react'
-import SwitchNav    from './SwitchNav'
-import SwitchToggle from './SwitchToggle'
-import classNames   from 'classnames'
+import Actions       from 'actions/blocks'
+import React         from 'react'
+import SwitchNav     from './SwitchNav'
+import SwitchToggle  from './SwitchToggle'
+import classNames    from 'classnames'
+import typesForBlock from 'utils/typesForBlock'
 
 export default React.createClass({
   propTypes: {
@@ -17,27 +18,20 @@ export default React.createClass({
     this.setState({ open: false })
   },
 
-  getTypes() {
-    let { app, parent } = this.props
-
-    let blockTypes = app.get('blockTypes')
-
-    if (parent) {
-      let types = blockTypes.filter(i => i.id === parent.type)[0].types
-      return blockTypes.filter(i => types.indexOf(i.id) > -1)
-    } else {
-      return blockTypes
-    }
+  getClassName() {
+    return classNames('col-switch', {
+      'col-switch-open' : this.state.open || this.props.forceOpen
+    })
   },
 
   render() {
     let { app, forceOpen, parent, position } = this.props
 
-    let types = this.getTypes()
     let open  = forceOpen || this.state.open
+    let types = typesForBlock(app.get('blockTypes'), parent)
 
     return types.length ? (
-      <div className={ classNames('col-switch', { 'col-switch-open' : open }) }>
+      <div className={ this.getClassName() }>
         <SwitchToggle onClick={ this._onToggle } secondary={ parent } hide={ open } />
         <SwitchNav app={ app } blockTypes={ types } parent={ parent } hide={ !open } position={ position }/>
       </div>
@@ -45,12 +39,13 @@ export default React.createClass({
   },
 
   _onToggle() {
-    let types = this.getTypes()
+    let { app, position, parent } = this.props
+
+    let types = typesForBlock(app.get('blockTypes'), parent)
 
     // If only one type exists, instead of opening the nav, just
     // create that element
     if (types.length === 1) {
-      let { app, position, parent } = this.props
       app.push(Actions.create, types[0].id, position, parent)
     }
 
