@@ -5,6 +5,7 @@ export default [
   {
     id : 'moveUp',
     label : 'Move Up',
+    order: -1,
     onClick(app, block) {
       app.push(move, block, -1)
     },
@@ -15,6 +16,7 @@ export default [
   {
     id : 'moveDown',
     label : 'Move Down',
+    order: -1,
     onClick(app, block) {
       app.push(move, block, 1)
     },
@@ -25,6 +27,7 @@ export default [
   {
     id : 'destroy',
     label : 'Remove',
+    order: Infinity,
     onClick(app, block) {
       app.push(destroy, block.id)
     }

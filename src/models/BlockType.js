@@ -2,7 +2,7 @@ import React from 'react'
 
 export default class BlockType {
 
-  constructor({ component, label, types, id }) {
+  constructor({ component, menuItems, label, types, id }) {
     if (typeof component === 'object') {
       component = React.createClass(component)
     }
@@ -11,6 +11,7 @@ export default class BlockType {
     this.label     = label
     this.types     = types || []
     this.component = component
+    this.menuItems = menuItems || []
   }
 
   valueOf() {

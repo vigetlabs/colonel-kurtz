@@ -9,7 +9,11 @@ let blockTypes = [
     id        : 'section',
     label     : 'Section',
     component : require('../addons/section'),
-    types     : [ 'medium', 'image', 'youtube' ]
+    types     : [ 'medium', 'image', 'youtube' ],
+    menuItems : [{
+      id    : 'settings',
+      label : 'Settings'
+    }]
   },
   {
     id        : 'medium',
