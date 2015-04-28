@@ -70,13 +70,13 @@ describe('Components - Block', function() {
       app.push.should.have.been.calledWith(Actions.move, block, -1)
     })
 
-     it ('is disabled if it is the first block', function() {
+    it ('is disabled if it is the first block', function() {
       let block = app.refine('blocks').first()
-      let test = TestUtils.renderIntoDocument(<Block app={ app } block={ block } first />)
+      let test = TestUtils.renderIntoDocument(<Block app={ app } block={ block } />)
 
       test.refs.menu.setState({ open: true })
 
-      test.refs.moveUp.props.disabled.should.eql(true)
+      test.refs.moveUp.isDisabled().should.equal(true)
     })
   })
 
@@ -94,11 +94,11 @@ describe('Components - Block', function() {
 
     it ('is disabled if it is the last block', function() {
       let block = app.refine('blocks').last()
-      let test = TestUtils.renderIntoDocument(<Block app={ app } block={ block } last />)
+      let test = TestUtils.renderIntoDocument(<Block app={ app } block={ block } />)
 
       test.refs.menu.setState({ open: true })
 
-      test.refs.moveDown.props.disabled.should.eql(true)
+      test.refs.moveDown.isDisabled().should.equal(true)
     })
   })
 

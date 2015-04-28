@@ -1,6 +1,7 @@
 import Menu from 'components/Menu'
 import React from 'react'
-import { destroy, move, update } from 'actions/blocks'
+import menuItems from 'config/menu'
+import { update } from 'actions/blocks'
 
 export default React.createClass({
 
@@ -9,33 +10,9 @@ export default React.createClass({
     block : React.PropTypes.object.isRequired
   },
 
-  getActions() {
-    let { app, block, first, last } = this.props
-
-    let actions = [
-      {
-        id       : 'moveUp',
-        label    : 'Move Up',
-        onClick  : app.prepare(move, block, -1),
-        disabled : first
-      },
-      {
-        id       : 'moveDown',
-        label    : 'Move Down',
-        onClick  : app.prepare(move, block, 1),
-        disabled : last
-      },
-      {
-        id      : 'destroy',
-        label   : 'Remove',
-        onClick : app.prepare(destroy, block.id)
-      }
-    ]
-
-    return actions.map(function(action) {
-      let { id } = action
-      return <Menu.Item { ...action } key={ id} ref={ id } />
-    })
+  getMenuItem(item) {
+    let { id } = item
+    return React.createElement(Menu.Item, { ...item, ...this.props, key: id, ref: id })
   },
 
   render() {
@@ -48,8 +25,8 @@ export default React.createClass({
           { children }
         </Component>
 
-        <Menu ref="menu" app={ app } block={ block }>
-          { this.getActions() }
+        <Menu ref="menu">
+          { menuItems.map(this.getMenuItem) }
         </Menu>
       </div>
     )
