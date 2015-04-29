@@ -69,12 +69,19 @@ var editor = new ColonelKurtz({
   el: container,
   blocks: input
 })
+
+editor.start()
 ```
 
 That's it, for now at any rate. Since `#input` is a DOM element, the
 `blocks` key will safely pull JSON out of the input and parse it for
 you. It also accepts a JavaScript array, if you would like to do this
 process manually.
+
+`editor.start()` tells the editor to boot up and render. This is an
+important step! It tells Colonel Kurtz to run through all of its
+available plugins (plugins are not discussed in this tutorial) and
+then renders the editor to the screen.
 
 ### Making it look decent
 
@@ -113,6 +120,8 @@ var editor = new ColonelKurtz({
     component: require('colonel-kurtz/build/addons/youtube')
   }]
 })
+
+editor.start()
 ```
 
 In the code above, we've added a `blockTypes` field that includes the
