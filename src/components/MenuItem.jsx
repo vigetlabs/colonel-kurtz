@@ -6,7 +6,8 @@ export default React.createClass({
   propTypes: {
     app   : React.PropTypes.object.isRequired,
     block : React.PropTypes.object.isRequired,
-    label : React.PropTypes.string.isRequired
+    label : React.PropTypes.string.isRequired,
+    id    : React.PropTypes.string.isRequired
   },
 
   getDefaultProps() {
@@ -14,6 +15,7 @@ export default React.createClass({
       className : 'col-menu-item',
       type      : 'button',
       onClick() {},
+      onBeforeClick() {},
       isDisabled() {}
     }
   },
@@ -34,8 +36,13 @@ export default React.createClass({
   },
 
   _onClick() {
-    let { app, block, onClick } = this.props
-    onClick(app, block)
+    let { app, block, id, onClick, onBeforeClick } = this.props
+
+    // Give the developer a chance to "catch" menu items
+    // before they are processed
+    if (onBeforeClick(id) !== false) {
+      onClick(app, block)
+    }
   }
 
 })

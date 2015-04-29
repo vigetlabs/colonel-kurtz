@@ -12,7 +12,12 @@ describe('Components - Block', function() {
       blockTypes: [{
         id: 'section',
         label: 'Section',
-        component: { render() { return (<p/>) } }
+        component: {
+          statics: {
+            menu: [{ id: 'test', label: 'Test' }]
+          },
+          render() { return (<p/>) }
+        }
       }]
     })
 
@@ -20,7 +25,7 @@ describe('Components - Block', function() {
       app.push(Actions.create, 'section')
       app.push(Actions.create, 'section')
     }, function() {
-      app.push = sinon.mock()
+      sinon.spy(app, 'push')
     }, done)
   })
 
@@ -44,62 +49,45 @@ describe('Components - Block', function() {
     app.push.should.have.been.calledWith(Actions.update, block, params)
   })
 
-  describe('When the "Remove" button is clicked', function() {
+  it ('passes menu items from the block type component to the menu', function() {
+    let item    = app.refine('blocks').first()
+    let subject = TestUtils.renderIntoDocument(<Block app={ app } block={ item } />)
+    let { menu } = subject.refs
 
-    it ('calls the destroy action', function() {
-      let block = app.refine('blocks').first()
-      let test  = TestUtils.renderIntoDocument(<Block app={ app } block={ block } />)
-
-      test.refs.menu.setState({ open: true })
-
-      TestUtils.Simulate.click(test.refs.destroy.getDOMNode())
-
-      app.push.should.have.been.calledWith(Actions.destroy, block.id)
-    })
+    menu.setState({ open: true })
+    menu.refs.should.have.property('test')
   })
 
-  describe('When the "Move Up" button is clicked', function() {
-    it ('calls the move action', function() {
-      let block = app.refine('blocks').last()
-      let test  = TestUtils.renderIntoDocument(<Block app={ app } block={ block } />)
+  describe('When a menu item is selected', function() {
 
-      test.refs.menu.setState({ open: true })
+    it ('calls `menuWillSelect` upon the sibling block component', function() {
+      let item    = app.refine('blocks').first()
+      let subject = TestUtils.renderIntoDocument(<Block app={ app } block={ item } />)
 
-      TestUtils.Simulate.click(test.refs.moveUp.getDOMNode())
+      let { menu, block } = subject.refs
 
-      app.push.should.have.been.calledWith(Actions.move, block, -1)
+      block.menuWillSelect = sinon.mock()
+
+      menu.setState({ open: true })
+
+      TestUtils.Simulate.click(menu.refs.destroy.getDOMNode())
+
+      block.menuWillSelect.should.have.been.called
     })
 
-    it ('is disabled if it is the first block', function() {
-      let block = app.refine('blocks').first()
-      let test = TestUtils.renderIntoDocument(<Block app={ app } block={ block } />)
+    it ('does nothing if `menuWillSelect` has not been defined', function() {
+      let item    = app.refine('blocks').first()
+      let subject = TestUtils.renderIntoDocument(<Block app={ app } block={ item } />)
 
-      test.refs.menu.setState({ open: true })
+      let { menu, block } = subject.refs
 
-      test.refs.moveUp.isDisabled().should.equal(true)
-    })
-  })
+      menu.setState({ open: true })
 
-  describe('When the "Move Down" button is clicked', function() {
-    it ('calls the move action', function() {
-      let block = app.refine('blocks').first()
-      let test = TestUtils.renderIntoDocument(<Block app={ app } block={ block } />)
+      TestUtils.Simulate.click(menu.refs.destroy.getDOMNode())
 
-      test.refs.menu.setState({ open: true })
-
-      TestUtils.Simulate.click(test.refs.moveDown.getDOMNode())
-
-      app.push.should.have.been.calledWith(Actions.move, block, 1)
+      app.refine('blocks').first().should.not.equal(item)
     })
 
-    it ('is disabled if it is the last block', function() {
-      let block = app.refine('blocks').last()
-      let test = TestUtils.renderIntoDocument(<Block app={ app } block={ block } />)
-
-      test.refs.menu.setState({ open: true })
-
-      test.refs.moveDown.isDisabled().should.equal(true)
-    })
   })
 
 })

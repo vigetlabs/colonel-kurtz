@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.12.0 (Not published)
+
+### Noticeable Changes
+
+- The API for adding items to menus is now exposed.
+
+TODO: Document menu api
+
 ## 2.11.0
 
 ### Noticeable Changes
