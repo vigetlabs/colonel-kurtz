@@ -87,9 +87,6 @@ could be display settings, rich text, etc.
 
 ## Configuring
 
-Colonel Kurtz must be invoked, and can support multiple editors on the
-same page:
-
 ```javascript
 var ColonelKurtz = require('colonel-kurtz');
 
