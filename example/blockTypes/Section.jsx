@@ -21,7 +21,7 @@ export default React.createClass({
 
   getInitialState() {
     return {
-      openSettings: true
+      openSettings: false
     }
   },
 
