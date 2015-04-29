@@ -16,20 +16,21 @@ describe('Components - EditorBlock', function() {
         blocks : [{
           type: TypeFixture.id,
           content: {},
-          blocks: [{
-            type: TypeFixture.id,
-            content: {}
-          }]
+          blocks: [
+            { type: TypeFixture.id, content: {} },
+            { type: TypeFixture.id, content: {} }
+          ]
         }]
       })
       app.start(done)
     })
 
     it ('renders child blocks', function() {
-      let parent    = app.get('blocks')[0]
-      let component = TestUtils.renderIntoDocument(<div><EditorBlock app={ app } block={ parent } /></div>)
+      let component = TestUtils.renderIntoDocument(
+        <EditorBlock app={ app } block={ app.refine('blocks').first() } />
+      )
 
-      component.getDOMNode().querySelectorAll('.col-editor-block').length.should.equal(2)
+      component.refs.children.props.children.length.should.equal(2)
     })
   })
 })

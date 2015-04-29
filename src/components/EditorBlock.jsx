@@ -20,10 +20,12 @@ let EditorBlock = React.createClass({
     let children = app.refine('blocks').filter(i => i.parent === block)
 
     return (
-      <div className="col-editor-block">
+      <div>
         <Block app={ app } block={ block }>
           <Switch app={ app } parent={ block } />
-          <Animator>{ children.map(this.getBlock) }</Animator>
+          <Animator ref="children">
+            { children.map(this.getBlock) }
+          </Animator>
         </Block>
         <Switch app={ app } position={ block } parent={ block.parent } />
       </div>
