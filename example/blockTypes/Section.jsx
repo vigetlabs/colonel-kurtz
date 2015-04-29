@@ -11,6 +11,14 @@ export default React.createClass({
     }]
   },
 
+  getDefaultProps() {
+    return {
+      content: {
+        color: "#eeeeee"
+      }
+    }
+  },
+
   getInitialState() {
     return {
       openSettings: true
@@ -29,13 +37,21 @@ export default React.createClass({
     let { openSettings } = this.state
 
     return (
-      <div>
+      <div style={{ background: this.props.content.color }}>
         <Section { ...this.props } />
         <Dialog active={ openSettings } onExit={ this._onSettingsExit }>
-          <h3 className="col-dialog-title">Hey!</h3>
+          <h3 className="col-dialog-title">Settings!</h3>
+          <label>
+            Color:
+            <input type="color" onChange={ this._onColorChange } value={ this.state.color } />
+          </label>
         </Dialog>
       </div>
     )
+  },
+
+  _onColorChange(e) {
+    this.props.onChange({ color: e.target.value })
   },
 
   _onSettingsExit() {
