@@ -7,7 +7,7 @@ module.exports = {
     'addons/image'   : './addons/image/index.jsx',
     'addons/youtube' : './addons/youtube/index.jsx',
     'addons/section' : './addons/section/index.jsx',
-    'addons/dialog'  : './addons/section/dialog.jsx'
+    'addons/dialog'  : './addons/dialog/index.jsx'
   },
 
   output: {
