@@ -9,18 +9,14 @@ export default React.createClass({
   statics: { Item },
 
   propTypes: {
-    app   : React.PropTypes.object.isRequired,
-    block : React.PropTypes.object.isRequired
+    app    : React.PropTypes.object.isRequired,
+    block  : React.PropTypes.object.isRequired
   },
 
   getDefaultProps() {
     return {
-      items: []
+      items : [],
     }
-  },
-
-  getInitialState() {
-    return { open : false }
   },
 
   getMenuItem(item) {
@@ -37,24 +33,23 @@ export default React.createClass({
     return this.props.items.concat(menuItems).map(this.getMenuItem)
   },
 
+  getMenu() {
+    return React.createElement(FocusTrap, {
+      active    : this.props.active,
+      className : 'col-menu',
+      element   : 'nav',
+      onExit    : this.props.onExit,
+      role      : 'navigation'
+    }, this.getMenuItems())
+  },
+
   render() {
     return (
       <div className="col-menu-wrapper">
-        <Handle ref="handle" onClick={ this._onHandleClick }/>
-        <FocusTrap element="nav" role="navigation" className="col-menu" onExit={ this._onExit } active={ this.state.open }>
-          { this.getMenuItems() }
-        </FocusTrap>
+        <Handle ref="handle" onClick={ this.props.onOpen }/>
+        { this.getMenu() }
       </div>
     )
-  },
-
-  _onExit() {
-    this.setState({ open: false })
-  },
-
-  _onHandleClick(e) {
-    e.preventDefault()
-    this.setState({ open : !this.state.open })
   }
 
 })

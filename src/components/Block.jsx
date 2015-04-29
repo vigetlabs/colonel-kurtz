@@ -9,6 +9,12 @@ export default React.createClass({
     block : React.PropTypes.object.isRequired
   },
 
+  getInitialState() {
+    return {
+      menuOpen: false
+    }
+  },
+
   getBlockType() {
     let { app, block } = this.props
     return app.refine('blockTypes').find(i => i.id === block.type)
@@ -24,9 +30,23 @@ export default React.createClass({
           { children }
         </Component>
 
-        <Menu ref="menu" { ...this.props } items={ Component.menu } onSelect={ this._onSelect } />
+        <Menu ref="menu"
+              { ...this.props }
+              items={ Component.menu }
+              onSelect={ this._onSelect }
+              active={ this.state.menuOpen }
+              onOpen={ this._onMenuOpen }
+              onExit={ this._onMenuExit } />
       </div>
     )
+  },
+
+  _onMenuOpen() {
+    this.setState({ menuOpen: true })
+  },
+
+  _onMenuExit() {
+    this.setState({ menuOpen: false })
   },
 
   _onChange(content) {
@@ -36,6 +56,8 @@ export default React.createClass({
 
   _onSelect(id) {
     let { block } = this.refs
+
+    this._onMenuExit()
 
     if ('menuWillSelect' in block) {
       block.menuWillSelect(id)

@@ -19,11 +19,11 @@
   text-align: center;
 
   @import 'reset';
-  @import 'components/switch';
-  @import 'components/menu';
   @import 'components/block';
-  @import 'components/fab';
+  @import 'components/dialog';
   @import 'components/editor';
-  @import 'components/focustrap';
+  @import 'components/fab';
+  @import 'components/menu';
+  @import 'components/switch';
   @import 'utilities';
 }

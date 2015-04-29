@@ -20,8 +20,16 @@ $col-menu-z-index        : 1 !default;
 .col-menu-wrapper {
   position: absolute;
   right: 0;
-  text-align: right;
   top: 0;
+}
+
+.col-menu-backdrop {
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
 }
 
 .col-menu-handle {

@@ -6,7 +6,8 @@ module.exports = {
     'addons/medium'  : './addons/medium/index.jsx',
     'addons/image'   : './addons/image/index.jsx',
     'addons/youtube' : './addons/youtube/index.jsx',
-    'addons/section' : './addons/section/index.jsx'
+    'addons/section' : './addons/section/index.jsx',
+    'addons/dialog'  : './addons/section/dialog.jsx'
   },
 
   output: {
