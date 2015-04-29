@@ -22,6 +22,8 @@ broken up into individual types, such as a photo or chunk of text, and
 provides a user interface for managing those "blocks" of content,
 reordering them, and even nesting them inside other content.
 
+![screen shot 2015-04-29 at 10 14 25](https://cloud.githubusercontent.com/assets/590904/7392875/a6dcd7d6-ee58-11e4-83a1-a0fa8206cb74.png)
+
 Comprehensive documentation can be found under the `./docs` directory
 of this repo. However the content that follows should provide a high
 level overview:
