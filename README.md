@@ -87,6 +87,10 @@ could be display settings, rich text, etc.
 
 ## Configuring
 
+More thorough documentation can be found at
+[`./docs/colonel.md`](https://github.com/vigetlabs/colonel-kurtz/blob/master/docs/colonel.md)
+however at a high level, Colonel Kurtz is installed with code loosely following:
+
 ```javascript
 var ColonelKurtz = require('colonel-kurtz');
 
