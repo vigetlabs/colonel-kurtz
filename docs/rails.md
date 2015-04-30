@@ -108,15 +108,11 @@ entry:
 
 ```json
 {
-//... config
-{
   "browserify": {
     "transform": [
       ["babelify", { "extensions": [".js", ".jsx"] }]
     ]
   }
-}
-//... config
 }
 ```
 
