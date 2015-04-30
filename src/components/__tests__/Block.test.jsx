@@ -22,13 +22,13 @@ describe('Components - Block', function() {
     component.getDOMNode().className.should.include(block.type)
   })
 
-  it ('sends an onMenuOpen callback to the menu it owns', function() {
+  it ('sends an onOpen callback to the menu it owns', function() {
     component.refs.menu.props.onOpen()
     component.state.should.have.property('menuOpen', true)
   })
 
-  it ('updates a block when its child component changes', function() {
-    component.refs.block.props.onChange({ fiz: 'buzz' })
+  it ('updates a block when it changes', function() {
+    component._onChange({ fiz: 'buzz' })
     component.props.block.content.should.have.property('fiz', 'buzz')
   })
 
@@ -38,31 +38,11 @@ describe('Components - Block', function() {
     menu.refs.should.have.property('test')
   })
 
-  describe('When a menu item is selected', function() {
-
-    it ('calls `menuWillSelect` upon the sibling block component', function() {
-      let { menu, block } = component.refs
-
-      block.menuWillSelect = sinon.mock()
-
-      component.setState({ menuOpen: true })
-
-      TestUtils.Simulate.click(menu.refs.destroy.getDOMNode())
-
-      block.menuWillSelect.should.have.been.called
-    })
-
-    it ('does nothing if `menuWillSelect` has not been defined', function() {
-      let item = app.get(['blocks', 0])
-      let { menu } = component.refs
-
-      component.setState({ menuOpen: true })
-
-      TestUtils.Simulate.click(menu.refs.destroy.getDOMNode())
-
-      app.get(['blocks', 0]).should.not.equal(item)
-    })
-
+  it ('can close a menu', function() {
+    let { menu } = component.refs
+    component.setState({ menuOpen: true })
+    menu.props.onExit()
+    component.state.menuOpen.should.equal(false)
   })
 
 })

@@ -35,12 +35,6 @@ describe('Components - Menu', function() {
     test.refs.should.have.property('test')
   })
 
-  it ('does not activate the action if the onSelect handler returns false', function() {
-    let test = render(React.cloneElement(menu, { onSelect: (e => false) }))
-    TestUtils.Simulate.click(test.refs.destroy.getDOMNode())
-    app.push.should.not.have.been.called
-  })
-
   it ('calls the destroy action', function() {
     let test  = render(menu)
     let block = test.props.block

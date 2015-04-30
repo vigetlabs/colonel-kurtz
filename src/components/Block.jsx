@@ -27,11 +27,6 @@ module.exports = React.createClass({
     }
   },
 
-  setComponentRef(component) {
-    this.setMenuItems(component)
-    return 'block'
-  },
-
   render() {
     let { app, block, children } = this.props
     let { extraMenuItems } = this.state
@@ -39,7 +34,7 @@ module.exports = React.createClass({
 
     return (
       <div className={ `col-block col-block-${ block.type }`}>
-        <Component ref={ this.setComponentRef } { ...block } onChange={ this._onChange } >
+        <Component ref={ this.setMenuItems } { ...block } onChange={ this._onChange } >
           { children }
         </Component>
 
