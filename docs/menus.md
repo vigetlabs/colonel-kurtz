@@ -2,7 +2,7 @@
 
 1. [Options](#options)
 2. [Walk-through](#walk-through)
-3. [onClick and isDisabled](#onclick-and-isDisabled)
+3. [onClick and isDisabled](#onclick-and-isdisabled)
 
 ## Options
 
