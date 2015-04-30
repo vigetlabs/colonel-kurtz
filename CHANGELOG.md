@@ -1,5 +1,19 @@
 # Changelog
 
+# 2.13.0
+
+### Breaking changes
+
+- Custom menu items are no longer defined in `statics`. Instead, they
+  are returned from a `getMenuItems` method on the component itself.
+- The component lifecycle method `menuWillSelect` has been
+  removed. For the purposes it was required for, `getMenuItems` is sufficient
+
+### Upgrading
+
+- For those using custom menu items, see the updated `menu.md` doc for
+  the updated API.
+
 ## 2.12.2
 
 - `react-ink` was missing in the build. Originally it was compiled
