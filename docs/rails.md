@@ -21,10 +21,17 @@ Most of the tools described in this document rely on
 server. The community has built a number of fantastic tools using Node
 that we will take advantage of.
 
+### Managing Node with NVM
+
 Our recommended way to install Node is to do it through
 [Node Version Manager](https://github.com/creationix/nvm#usage). Additionally,
 you can create a `.nvmrc` file to lock down what version of Node is
 used for a project (also described in the readme of NVM).
+
+### Add node_modules to .gitignore
+
+`npm` will download project dependencies to this folder. You may also
+want to add `node_modules` to your `.gitignore`.
 
 ## Setting up Browserify
 
