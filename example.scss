@@ -24,6 +24,6 @@ body {
 }
 
 @import "../style/colonel";
-@import "../addons/common/style.scss";
-@import "../addons/medium/style.scss";
-@import "../addons/section/style.scss";
+@import "../style/addons/common";
+@import "../style/addons/medium";
+@import "../style/addons/section";

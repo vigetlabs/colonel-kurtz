@@ -5,7 +5,7 @@
 
 let KEY = 'seed'
 
-export default {
+module.exports = {
 
   save(app) {
     localStorage.setItem(KEY, JSON.stringify(app))

@@ -1,8 +1,8 @@
-import Dialog  from '../../addons/dialog'
-import React   from 'react'
-import Section from '../../addons/section'
+let Dialog  = require('../../addons/dialog')
+let React   = require('react')
+let Section = require('../../addons/section')
 
-export default React.createClass({
+module.exports = React.createClass({
 
   statics: {
     menu: [{
