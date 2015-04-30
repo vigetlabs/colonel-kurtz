@@ -69,12 +69,19 @@ As a last step, if you have not installed `browserify` or
 
 ```shell
 npm install --save browserify
-npm install --save browserify-incremental`
+npm install --save browserify-incremental
 ```
 
-This will pull down each module from `npm` and save a record of the
-dependency in `package.json`. For the future, when a developer
-executes `npm install`, it will pull down these same, versioned, dependencies.
+We have not mentioned `browserify-incremental` up to this point. This
+package is used by `browserify-rails` for incremental
+builds. Because of some characteristics of the Rails Asset
+Pipeline, compiling JavaScript will otherwise be slower than it should
+be.
+
+Returning to the commands above. `npm install` pull down each module from
+`npm`. `--save` tells npm to store a record of the dependency in
+`package.json`. For the future, when a developer executes `npm
+install`, it will pull down these same, versioned, dependencies.
 
 ## Parsing JSX
 
