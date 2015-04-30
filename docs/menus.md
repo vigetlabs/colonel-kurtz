@@ -2,7 +2,7 @@
 
 1. [Options](#options)
 2. [Walk-through](#walk-through)
-3. [Behaviors](#behaviors)
+3. [onClick and isDisabled](#onclick-and-isDisabled)
 
 ## Options
 
@@ -10,7 +10,7 @@ Name       | Description
 ---------- | -----------
 id         | A unique identifier, used to indicate selection
 label      | A user friendly label to show in the menu UI
-onClick    | Optionally, an onClick handler
+onClick    | Optionally, executed when an item is clicked
 isDisabled | A predicate to determine if a menu item should be disabled
 
 ## Walk-through
@@ -58,7 +58,7 @@ There are several things going on here:
 3. `menuWillSelect` is passed the `id` key of the specific menu item
    that is about to be selected.
 
-## Behaviors
+## onClick and isDisabled
 
 Menu items can also define an `onClick` and `isDisabled` field. Both
 of these should be functions and are passed the specific editor and
