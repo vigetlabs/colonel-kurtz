@@ -11,7 +11,8 @@ module.exports = React.createClass({
 
   getInitialState() {
     return {
-      menuOpen: false
+      extraMenuItems : [],
+      menuOpen       : false
     }
   },
 
@@ -20,20 +21,31 @@ module.exports = React.createClass({
     return app.refine('blockTypes').find(i => i.id === block.type)
   },
 
+  setMenuItems(component) {
+    if ('getMenuItems' in component) {
+      this.setState({ extraMenuItems: component.getMenuItems() })
+    }
+  },
+
+  setComponentRef(component) {
+    this.setMenuItems(component)
+    return 'block'
+  },
+
   render() {
     let { app, block, children } = this.props
+    let { extraMenuItems } = this.state
     let { component:Component } = this.getBlockType()
 
     return (
       <div className={ `col-block col-block-${ block.type }`}>
-        <Component ref="block" { ...block } onChange={ this._onChange } >
+        <Component ref={ this.setComponentRef } { ...block } onChange={ this._onChange } >
           { children }
         </Component>
 
         <Menu ref="menu"
               { ...this.props }
-              items={ Component.menu }
-              onSelect={ this._onSelect }
+              items={ extraMenuItems }
               active={ this.state.menuOpen }
               onOpen={ this._onMenuOpen }
               onExit={ this._onMenuExit } />
@@ -52,16 +64,6 @@ module.exports = React.createClass({
   _onChange(content) {
     let { app, block } = this.props
     app.push(Actions.update, block, content)
-  },
-
-  _onSelect(id) {
-    let { block } = this.refs
-
-    this._onMenuExit()
-
-    if ('menuWillSelect' in block) {
-      block.menuWillSelect(id)
-    }
   }
 
 })

@@ -15,18 +15,13 @@ module.exports = React.createClass({
 
   getDefaultProps() {
     return {
-      items : [],
+      items : []
     }
   },
 
   getMenuItem(item) {
     let { id } = item
-
-    return (<Item key={ id }
-                  ref={ id }
-                  { ...item}
-                  { ...this.props}
-                  onBeforeClick={ this.props.onSelect } />)
+    return (<Item key={ id } ref={ id } { ...item} { ...this.props} />)
   },
 
   getMenuItems() {

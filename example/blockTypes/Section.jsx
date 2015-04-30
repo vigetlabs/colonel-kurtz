@@ -4,13 +4,6 @@ let Section = require('../../addons/section')
 
 module.exports = React.createClass({
 
-  statics: {
-    menu: [{
-      id    : 'settings',
-      label : 'Settings'
-    }]
-  },
-
   getDefaultProps() {
     return {
       content: {
@@ -25,12 +18,12 @@ module.exports = React.createClass({
     }
   },
 
-  menuWillSelect(item) {
-    switch (item) {
-      case 'settings':
-        this.setState({ openSettings: true })
-        break
-    }
+  getMenuItems() {
+    return [{
+      id      : 'settings',
+      label   : 'Settings',
+      onClick : this._onSettingsOpen
+    }]
   },
 
   render() {
@@ -52,6 +45,10 @@ module.exports = React.createClass({
 
   _onColorChange(e) {
     this.props.onChange({ color: e.target.value })
+  },
+
+  _onSettingsOpen() {
+    this.setState({ openSettings: true })
   },
 
   _onSettingsExit() {

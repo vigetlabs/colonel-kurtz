@@ -15,7 +15,6 @@ module.exports = React.createClass({
       className : 'col-menu-item',
       type      : 'button',
       onClick() {},
-      onBeforeClick() {},
       isDisabled() {}
     }
   },
@@ -36,13 +35,8 @@ module.exports = React.createClass({
   },
 
   _onClick() {
-    let { app, block, id, onClick, onBeforeClick } = this.props
-
-    // Give the developer a chance to "catch" menu items
-    // before they are processed
-    if (onBeforeClick(id) !== false) {
-      onClick(app, block)
-    }
+    let { app, block, onClick } = this.props
+    onClick(app, block)
   }
 
 })
