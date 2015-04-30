@@ -2,14 +2,17 @@
 
 ## 2.12.0 (Not released)
 
+### Breaking changes
+
+- Addons are now available directly under
+  `colonel-kurtz/addons`, their `colonel-kurtz/build` counterparts
+  have been removed. This is due to a change in the build process to
+  help expose components for use when building new UI.
+
 ### Noticeable Changes
 
 - New menu items may now be added on an individual block type
   level. For more information, see `./docs/menus.md`
-- **Breaking change:** Addons are now available directly under
-  `colonel-kurtz/addons`, their `colonel-kurtz/build` counterparts
-  have been removed. This is due to a change in the build process to
-  help expose components for use when building new UI.
 - Style for addons has been moved to `./style/addons` so that it is
   easier to pull down all styles at once or reference the directory in
   `node_modules`.
