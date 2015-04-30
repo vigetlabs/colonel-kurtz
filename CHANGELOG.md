@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.12.2
+
+- `react-ink` was missing in the build. Originally it was compiled
+  into the main payload, this changed when we updated the build
+  process. `react-ink` is now a standard dependency.
+
+## 2.12.1
+
+- Publishing to NPM occurs by pushing the `dist` folder. Instead, the root folder was published
+
 ## 2.12.0
 
 ### Breaking changes
