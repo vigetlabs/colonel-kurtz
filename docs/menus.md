@@ -3,7 +3,6 @@
 1. [Options](#options)
 2. [Walk-through](#walk-through)
 3. [Behaviors](#behaviors)
-3. [Behaviors](#behaviors)
 
 ## Options
 
