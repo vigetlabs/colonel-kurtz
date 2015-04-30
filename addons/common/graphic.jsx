@@ -1,6 +1,6 @@
-import React from 'react'
+let React = require('react')
 
-export default React.createClass({
+module.exports = React.createClass({
 
   getDefaultProps() {
     return {

@@ -1,4 +1,4 @@
-import insertAt from 'utils/insertAt'
+let insertAt = require('../insertAt')
 
 describe('Utils - insertAt', function() {
   let list = [1, 2, 3, 4, 5]

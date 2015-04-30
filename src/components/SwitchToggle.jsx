@@ -1,8 +1,8 @@
-import Btn        from './Button'
-import React      from 'react'
-import classNames from 'classnames'
+let Btn        = require('./Button')
+let React      = require('react')
+let classNames = require('classnames')
 
-export default React.createClass({
+module.exports = React.createClass({
 
   propTypes: {
     onClick : React.PropTypes.func.isRequired

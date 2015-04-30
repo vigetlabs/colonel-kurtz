@@ -1,8 +1,7 @@
-import Btn   from './Button'
-import React from 'react'
-import icon  from 'icons/menu'
+let Btn   = require('./Button')
+let React = require('react')
 
-export default React.createClass({
+module.exports = React.createClass({
 
   getDefaultProps() {
     return {
@@ -18,7 +17,9 @@ export default React.createClass({
     return (
       <Btn { ...safe }>
         <span className="col-hidden">{ label }</span>
-        <span aria-hidden="true" dangerouslySetInnerHTML={{ __html: icon }} />
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+        </svg>
       </Btn>
     )
   }

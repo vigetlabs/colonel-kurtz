@@ -1,5 +1,5 @@
-import React from 'react'
-import BlockTypes from '../BlockTypes'
+let React = require('react')
+let BlockTypes = require('../BlockTypes')
 
 describe('Stores - BlockType', function() {
   let fixture = {

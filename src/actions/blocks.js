@@ -1,6 +1,6 @@
-import { tag } from 'microcosm'
+let { tag } = require('microcosm')
 
-export default tag({
+module.exports = tag({
   create(type, position, parent) {
     return { type, position, parent }
   },

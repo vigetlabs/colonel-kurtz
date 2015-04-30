@@ -2,7 +2,7 @@
 node_modules
 npm-debug.log
 coverage
-build
+dist
 example/example.css
 example/example.build.js
 example/example.build.js.map

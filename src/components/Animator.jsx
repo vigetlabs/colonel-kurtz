@@ -4,10 +4,10 @@
  * component maintains all of this logic.
  */
 
-import Animation from 'react/lib/ReactCSSTransitionGroup'
-import React     from 'react'
+let Animation = require('react/lib/ReactCSSTransitionGroup')
+let React     = require('react')
 
-export default React.createClass({
+module.exports = React.createClass({
 
   getDefaultProps() {
     return {

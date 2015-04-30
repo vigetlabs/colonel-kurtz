@@ -43,7 +43,6 @@ module.exports = function(config) {
       devtool : 'inline-source-map',
 
       plugins: [
-        new Webpack.IgnorePlugin(/\.svg$/),
         new Webpack.ProvidePlugin({
           'React': 'react/addons'
         })
@@ -63,11 +62,6 @@ module.exports = function(config) {
               loose: true,
               optional: [ 'runtime' ]
             }
-          },
-          {
-            test    : /\.(svg)$/,
-            exclude : /node_modules/,
-            loader  : 'raw'
           }
         ],
         postLoaders: noCoverage ? [] : [{

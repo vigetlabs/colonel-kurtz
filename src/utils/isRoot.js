@@ -4,6 +4,6 @@
  * parents.
  */
 
-export default function (lists) {
+module.exorts = function (lists) {
   return lists.filter(i => !i.parent)
 }

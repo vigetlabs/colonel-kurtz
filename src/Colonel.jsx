@@ -3,13 +3,12 @@
  * A custom block editor
  */
 
-import BlockTypes from 'stores/BlockTypes'
-import Blocks     from 'stores/Blocks'
-import Microcosm  from 'microcosm'
-import React      from 'react'
-
-import bootstrap  from 'plugins/bootstrap'
-import render     from 'plugins/render'
+let BlockTypes = require('./stores/BlockTypes')
+let Blocks     = require('./stores/Blocks')
+let Microcosm  = require('microcosm')
+let React      = require('react')
+let bootstrap  = require('./plugins/bootstrap')
+let render     = require('./plugins/render')
 
 /**
  * Colonel Kurtz is a layer on top of the Microcosm framework
@@ -19,7 +18,7 @@ import render     from 'plugins/render'
  * See:
  * https://github.com/vigetlabs/microcosm
  */
-export default class ColonelKurtz extends Microcosm {
+class ColonelKurtz extends Microcosm {
 
   constructor(options) {
     super()
@@ -52,3 +51,5 @@ export default class ColonelKurtz extends Microcosm {
   }
 
 }
+
+module.exports = ColonelKurtz

@@ -1,36 +1,21 @@
-import Colonel     from '../../Colonel'
-import EditorBlock from '../EditorBlock'
-import TypeFixture from './fixtures/testBlockType'
+let Colonel     = require('../../Colonel')
+let EditorBlock = require('../EditorBlock')
+let TestUtils   = React.addons.TestUtils
+let config      = require('./fixtures/colonelConfig')
+let render      = TestUtils.renderIntoDocument
 
 describe('Components - EditorBlock', function() {
-  let TestUtils = React.addons.TestUtils
-  let el        = document.createElement('div')
+  let app;
 
-  describe('when given a block with children', function() {
-    let app;
+  beforeEach(function(done) {
+    app = new Colonel(config)
+    app.start(done)
+  })
 
-    beforeEach(function(done) {
-      app = new Colonel({
-        el : el,
-        blockTypes : [ TypeFixture ],
-        blocks : [{
-          type: TypeFixture.id,
-          content: {},
-          blocks: [
-            { type: TypeFixture.id, content: {} },
-            { type: TypeFixture.id, content: {} }
-          ]
-        }]
-      })
-      app.start(done)
-    })
+  it ('renders child blocks', function() {
+    let block = app.get('blocks')[0]
+    let component = render(<EditorBlock app={ app } block={ block } />)
 
-    it ('renders child blocks', function() {
-      let component = TestUtils.renderIntoDocument(
-        <EditorBlock app={ app } block={ app.refine('blocks').first() } />
-      )
-
-      component.refs.children.props.children.length.should.equal(2)
-    })
+    component.refs.children.props.children.length.should.equal(2)
   })
 })

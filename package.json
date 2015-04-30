@@ -1,11 +1,12 @@
 {
   "name": "colonel-kurtz",
-  "version": "2.11.0",
+  "version": "2.12.0-rc1",
   "description": "A block editor",
-  "main": "build/colonel-kurtz.js",
+  "main": "src/Colonel.js",
   "scripts": {
-    "start": "webpack -wd --config webpack.example.config.js",
-    "prepublish": "NODE_ENV=production webpack -p",
+    "start": "webpack -wd",
+    "prepublish": "./scripts/prepublish",
+    "release": "./scripts/release",
     "test": "NODE_ENV=test karma start",
     "test:once": "CONTINUOUS_INTEGRATION=true npm test",
     "coveralls": "npm run test:once && coveralls < coverage/report-lcov/lcov.info",
@@ -37,12 +38,12 @@
   "homepage": "https://github.com/vigetlabs/colonel-kurtz",
   "devDependencies": {
     "autoprefixer": "^5.x.x",
+    "babel": "^5.1.13",
     "babel-loader": "^5.x.x",
     "babel-runtime": "^5.x.x",
     "coveralls": "^2.11.2",
     "istanbul": "^0.3.13",
     "istanbul-instrumenter-loader": "^0.1.2",
-    "json-loader": "^0.5.1",
     "karma": "0.12.x",
     "karma-cli": "0.0.4",
     "karma-coverage": "^0.3.1",
@@ -54,7 +55,6 @@
     "karma-webpack": "^1.5.0",
     "mocha": "^2.1.0",
     "node-sass": "^2.1.1",
-    "raw-loader": "^0.5.1",
     "react": "^0.13.1",
     "react-ink": "^4.0.0-rc5",
     "watch": "^0.16.0",
@@ -65,7 +65,7 @@
   },
   "dependencies": {
     "classnames": "^1.x.x",
-    "microcosm": "^7.0.x",
+    "microcosm": "^7.1.0",
     "react-focus-trap": "^0.6.x"
   }
 }

@@ -1,4 +1,4 @@
-import Block from 'models/Block'
+let Block = require('../Block')
 
 describe('Models - Block', function() {
 

@@ -1,6 +1,7 @@
-import uid from '../utils/uid'
+let uid = require('../utils/uid')
 
-export default class Block {
+class Block {
+
   constructor(params) {
     this.id      = uid()
     this.content = params.content
@@ -11,4 +12,7 @@ export default class Block {
   valueOf() {
     return this.id
   }
+
 }
+
+module.exports = Block

@@ -1,7 +1,7 @@
-import Actions from 'actions/blocks'
-import Switch  from '../Switch'
-import Colonel from '../../Colonel'
-import Fixture from './fixtures/testBlockType'
+let Actions = require('../../actions/blocks')
+let Colonel = require('../../Colonel')
+let Fixture = require('./fixtures/testBlockType')
+let Switch  = require('../Switch')
 
 describe('Components - Switch', function() {
   let TestUtils = React.addons.TestUtils

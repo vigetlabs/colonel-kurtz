@@ -1,0 +1,63 @@
+/**
+ * Field
+ * A common input field component
+ */
+
+$col-field-padding     : 12px !default;
+$col-field-focus-color : #009688 !default;
+
+.col-field {
+  border: 0;
+  margin: 0;
+  padding: $col-field-padding
+}
+
+.col-field-label {
+  color: #777;
+  display: block;
+  float: none;
+  font-size: 13px;
+  margin-bottom: 8px;
+  width: 100%;
+}
+
+.col-field-input {
+  border: 0;
+  box-shadow: 0 1px 0 0 #d9d9d9;
+  color: #222;
+  display: block;
+  font-size: 14px;
+  padding-bottom: 4px;
+  width: 100%;
+  transition: 0.2s all;
+
+  &:focus {
+    box-shadow: 0 1px 0 $col-field-focus-color;
+    outline: none;
+  }
+}
+
+.col-graphic {
+  background: #000;
+  border: 0;
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.col-frame {
+  display: block;
+  margin: 0;
+  opacity: 0;
+  position: relative;
+  text-align: center;
+  transition: 0.5s all 0.2s cubic-bezier(.49,.04,.36,1.17);
+}
+
+.col-frame-open {
+  opacity: 1;
+  padding-bottom: percentage(9/16);
+}

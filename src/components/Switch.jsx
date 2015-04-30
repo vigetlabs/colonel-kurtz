@@ -1,11 +1,12 @@
-import Actions       from 'actions/blocks'
-import React         from 'react'
-import SwitchNav     from './SwitchNav'
-import SwitchToggle  from './SwitchToggle'
-import classNames    from 'classnames'
-import typesForBlock from 'utils/typesForBlock'
+let Actions       = require('../actions/blocks')
+let React         = require('react')
+let SwitchNav     = require('./SwitchNav')
+let SwitchToggle  = require('./SwitchToggle')
+let classNames    = require('classnames')
+let typesForBlock = require('../utils/typesForBlock')
 
-export default React.createClass({
+module.exports = React.createClass({
+
   propTypes: {
     app : React.PropTypes.object.isRequired
   },
@@ -51,4 +52,5 @@ export default React.createClass({
 
     this.setState({ open: true })
   }
+
 })

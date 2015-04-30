@@ -6,9 +6,9 @@
  * Colonel Kurtz how that action manipulates block type data.
  */
 
-import BlockType from 'models/BlockType'
+let BlockType = require('../models/BlockType')
 
-export default {
+module.exports = {
 
   getInitialState() {
     return []

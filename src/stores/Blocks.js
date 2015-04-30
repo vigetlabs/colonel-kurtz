@@ -7,15 +7,15 @@
  * how that action manipulates block data.
  */
 
-import Actions    from 'actions/blocks'
-import Block      from 'models/Block'
-import assign     from 'utils/assign'
-import deepRemove from 'utils/deepRemove'
-import findBy     from 'utils/findBy'
-import insertAt   from 'utils/insertAt'
-import siblingAt  from 'utils/siblingAt'
+let Actions    = require('../actions/blocks')
+let Block      = require('../models/Block')
+let assign     = require('../utils/assign')
+let deepRemove = require('../utils/deepRemove')
+let findBy     = require('../utils/findBy')
+let insertAt   = require('../utils/insertAt')
+let siblingAt  = require('../utils/siblingAt')
 
-export default {
+module.exports = {
 
   /**
    * getInitialState
@@ -31,14 +31,14 @@ export default {
    * takes a list of blocks and transforms them into the nested structure
    * shown in the front end
    */
-  serialize: require('utils/blocksToJson'),
+  serialize: require('../utils/blocksToJson'),
 
   /**
    * As mentioned previously, blocks are serialized to a nested
    * structure. jsonToBlocks takes this nested structure and flattens
    * into a list for this store.
    */
-  deserialize: require('utils/jsonToBlocks'),
+  deserialize: require('../utils/jsonToBlocks'),
 
   /**
    * Actions.create

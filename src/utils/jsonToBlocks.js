@@ -1,6 +1,6 @@
-import Block from 'models/Block'
+let Block = require('../models/Block')
 
-export default function jsonToBlocks (blocks, parent) {
+module.exports = function jsonToBlocks (blocks, parent) {
   // If blocks are null or undefined, assume an empty list
   blocks = blocks || []
 

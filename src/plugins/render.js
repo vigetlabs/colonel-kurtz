@@ -3,10 +3,10 @@
  * Handles updating the browser UI
  */
 
-import App   from 'components/App'
-import React from 'react'
+let App   = require('../components/App')
+let React = require('react')
 
-export default {
+module.exports = {
 
   render(app, el) {
     React.render(<App app={ app } />, el)

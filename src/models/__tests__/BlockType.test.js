@@ -1,4 +1,4 @@
-import BlockType from 'models/BlockType'
+let BlockType = require('../BlockType')
 
 describe('Models - BlockType', function() {
 

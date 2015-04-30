@@ -5,8 +5,8 @@
  * https://github.com/daviferreira/medium-editor
  */
 
-import MediumEditor from './vendor/medium-editor'
-import React        from 'react'
+let MediumEditor = require('./vendor/medium-editor')
+let React        = require('react')
 
 var Medium = React.createClass({
 

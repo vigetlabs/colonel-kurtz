@@ -1,7 +1,7 @@
-import FocusTrap from 'react-focus-trap'
-import React     from 'react'
+let FocusTrap = require('react-focus-trap')
+let React     = require('react')
 
-export default React.createClass({
+module.exports = React.createClass({
 
   getDefaultProps() {
     return {

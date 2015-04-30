@@ -1,6 +1,7 @@
-import Actions from 'actions/blocks'
-import Block   from 'models/Block'
-import Colonel from '../Colonel'
+let Actions = require('../actions/blocks')
+let Block   = require('../models/Block')
+let Colonel = require('../Colonel')
+let Section = require('./fixtures/SectionBlockType')
 
 describe('ColonelKurtz', function() {
   let app;
@@ -11,11 +12,7 @@ describe('ColonelKurtz', function() {
     app = new Colonel({
       el : el,
       blocks : [ new Block({ type: 'section' }) ],
-      blockTypes : [{
-        id: 'section',
-        label: 'Section',
-        component: { render() { return (<p/>) } }
-      }]
+      blockTypes : [Section]
     })
 
     app.start(done)
@@ -37,7 +34,7 @@ describe('ColonelKurtz', function() {
     })
 
     it ('should prepend a new block', function() {
-      app.get('blocks')[0].type.should.equal('section')
+      app.refine('blocks').first().type.should.equal('section')
     })
 
   })

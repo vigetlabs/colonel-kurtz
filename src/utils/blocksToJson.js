@@ -1,4 +1,4 @@
-export default function blocksToJson (items) {
+module.exports = function blocksToJson (items) {
   // If items are null or undefined, assume an empty list
   items = items || []
 

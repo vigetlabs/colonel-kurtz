@@ -1,4 +1,4 @@
-import findBy from 'utils/findBy'
+let findBy = require('../findBy')
 
 describe('Utils - findBy', function() {
 

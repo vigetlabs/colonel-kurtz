@@ -1,7 +1,7 @@
-import siblingsOf from 'utils/siblingsOf'
-import { destroy, move } from 'actions/blocks'
+let siblingsOf = require('../utils/siblingsOf')
+let { destroy, move } = require('../actions/blocks')
 
-export default [
+module.exports = [
   {
     id : 'moveUp',
     label : 'Move Up',

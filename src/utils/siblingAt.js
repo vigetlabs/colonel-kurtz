@@ -3,9 +3,9 @@
  * is the first child of its parent
  */
 
-import siblingsOf from 'utils/siblingsOf'
+let siblingsOf = require('./siblingsOf')
 
-export default function(list, block, delta) {
+module.exports = function(list, block, delta) {
   let siblings = siblingsOf(list, block)
   let index    = siblings.indexOf(block)
 

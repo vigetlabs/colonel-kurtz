@@ -1,8 +1,8 @@
-import Actions   from 'actions/blocks'
-import Menu      from 'components/Menu'
-import React     from 'react'
+let Actions = require('../actions/blocks')
+let Menu    = require('./Menu')
+let React   = require('react')
 
-export default React.createClass({
+module.exports = React.createClass({
 
   propTypes: {
     app   : React.PropTypes.object.isRequired,

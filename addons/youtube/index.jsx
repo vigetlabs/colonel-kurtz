@@ -4,12 +4,12 @@
  * src, caption, and credit
  */
 
-import Field   from '../common/field'
-import Frame   from '../common/frame'
-import Graphic from '../common/graphic'
-import React   from 'react'
+let Field   = require('../common/field')
+let Frame   = require('../common/frame')
+let Graphic = require('../common/graphic')
+let React   = require('react')
 
-export default React.createClass({
+module.exports = React.createClass({
 
   getDefaultProps() {
     return {

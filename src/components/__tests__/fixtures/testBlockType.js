@@ -1,11 +1,12 @@
-import React from 'react'
-
-export default {
+module.exports = {
   id: 'test',
   label: 'Test',
-  component: React.createClass({
+  component: {
+    statics: {
+      menu: [{ id: 'test', label: 'Test' }]
+    },
     render() {
       return <div>{ this.props.children }</div>
     }
-  })
+  }
 }

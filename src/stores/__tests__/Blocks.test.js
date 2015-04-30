@@ -1,6 +1,6 @@
-import Actions from '../../actions/blocks'
-import Block   from '../../models/Block'
-import Blocks  from '../Blocks'
+let Actions = require('../../actions/blocks')
+let Block   = require('../../models/Block')
+let Blocks  = require('../Blocks')
 
 describe('Stores - Block', function() {
 

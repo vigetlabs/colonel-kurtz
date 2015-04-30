@@ -1,10 +1,10 @@
-import FocusTrap from 'react-focus-trap'
-import Handle    from './MenuHandle'
-import Item      from './MenuItem'
-import React     from 'react'
-import menuItems from '../config/menu'
+let FocusTrap = require('react-focus-trap')
+let Handle    = require('./MenuHandle')
+let Item      = require('./MenuItem')
+let React     = require('react')
+let menuItems = require('../config/menu')
 
-export default React.createClass({
+module.exports = React.createClass({
 
   statics: { Item },
 

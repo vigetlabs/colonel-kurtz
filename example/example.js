@@ -2,7 +2,7 @@
  * ColonelKurtz Example
  */
 
-import ColonelKurtz from '../src/Colonel'
+let ColonelKurtz = require('../src/Colonel')
 
 let blockTypes = [
   {

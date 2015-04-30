@@ -1,6 +1,6 @@
-import React from 'react'
+let React = require('react')
 
-export default class BlockType {
+class BlockType {
 
   constructor({ component, menuItems, label, types, id }) {
     if (typeof component === 'object') {
@@ -19,3 +19,5 @@ export default class BlockType {
   }
 
 }
+
+module.exports = BlockType

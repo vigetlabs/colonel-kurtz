@@ -1,12 +1,34 @@
 # Changelog
 
-## 2.12.0 (Not published)
+## 2.12.0 (Not released)
 
 ### Noticeable Changes
 
-- The API for adding items to menus is now exposed.
+- New menu items may now be added on an individual block type
+  level. For more information, see `./docs/menus.md`
+- **Breaking change:** Addons are now available directly under
+  `colonel-kurtz/addons`, their `colonel-kurtz/build` counterparts
+  have been removed. This is due to a change in the build process to
+  help expose components for use when building new UI.
+- Style for addons has been moved to `./style/addons` so that it is
+  easier to pull down all styles at once or reference the directory in
+  `node_modules`.
 
-TODO: Document menu api
+### Upgrading
+
+This release has a breaking change to improve the ease of including
+React components defined by Colonel Kurtz when building new block
+types. If you are including addons, the following change is necessary:
+
+In the case of the YouTube component addon, in the previous release it
+can be included using:
+
+`let YouTube = require('colonel-kurtz/build/addons/youtube')`
+
+This has now become:
+
+`let YouTube = require('colonel-kurtz/addons/youtube')`
+
 
 ## 2.11.0
 

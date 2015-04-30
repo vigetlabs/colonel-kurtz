@@ -3,6 +3,6 @@
  * Safely extend an object
  */
 
-export default function (a, b) {
+module.exports = function (a, b) {
   return { ...a, ...b }
 }

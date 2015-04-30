@@ -1,7 +1,7 @@
-import React from 'react'
-import Ink   from 'react-ink'
+let React = require('react')
+let Ink   = require('react-ink')
 
-export default React.createClass({
+module.exports = React.createClass({
 
   getDefaultProps() {
     return {

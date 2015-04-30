@@ -13,7 +13,7 @@ let parseElement = function (element) {
   return data
 }
 
-export default {
+module.exports = {
 
   register(app, { blocks, blockTypes }, next) {
     if (blocks instanceof HTMLElement) {

@@ -1,74 +1,51 @@
-import Actions from 'actions/blocks'
-import Block   from '../Block'
-import Colonel from '../../Colonel'
+let Actions   = require('../../actions/blocks')
+let Block     = require('../Block')
+let Colonel   = require('../../Colonel')
+let TestUtils = React.addons.TestUtils
+let config    = require('./fixtures/colonelConfig')
+let render    = TestUtils.renderIntoDocument
 
 describe('Components - Block', function() {
-  let TestUtils = React.addons.TestUtils
-  let app
+  let app, component;
 
   beforeEach(function(done) {
-    app = new Colonel({
-      el : document.createElement('div'),
-      blockTypes: [{
-        id: 'section',
-        label: 'Section',
-        component: {
-          statics: {
-            menu: [{ id: 'test', label: 'Test' }]
-          },
-          render() { return (<p/>) }
-        }
-      }]
-    })
+    app = new Colonel(config)
 
     app.start(function() {
-      app.push(Actions.create, 'section')
-      app.push(Actions.create, 'section')
-    }, function() {
       sinon.spy(app, 'push')
+      component = render(<Block app={ app } block={ app.get('blocks')[0] } />)
     }, done)
   })
 
   it ('adds a class name according to the block id', function() {
-    let block = app.refine('blocks').first()
-
-    let subject = TestUtils.renderIntoDocument(
-      <Block app={ app } block={ block } />
-    )
-
-    subject.getDOMNode().className.should.include(block.type)
+    let block = component.props.block
+    component.getDOMNode().className.should.include(block.type)
   })
 
-  it ('triggers update when its child component changes', function() {
-    let block   = app.refine('blocks').first()
-    let subject = TestUtils.renderIntoDocument(<Block app={ app } block={ block } />)
-    let params  = { fiz: 'buzz' }
+  it ('sends an onMenuOpen callback to the menu it owns', function() {
+    component.refs.menu.props.onOpen()
+    component.state.should.have.property('menuOpen', true)
+  })
 
-    subject.refs.block.props.onChange(params)
-
-    app.push.should.have.been.calledWith(Actions.update, block, params)
+  it ('updates a block when its child component changes', function() {
+    component.refs.block.props.onChange({ fiz: 'buzz' })
+    component.props.block.content.should.have.property('fiz', 'buzz')
   })
 
   it ('passes menu items from the block type component to the menu', function() {
-    let item    = app.refine('blocks').first()
-    let subject = TestUtils.renderIntoDocument(<Block app={ app } block={ item } />)
-    let { menu } = subject.refs
-
-    menu.setState({ open: true })
+    let { menu } = component.refs
+    component.setState({ menuOpen: true })
     menu.refs.should.have.property('test')
   })
 
   describe('When a menu item is selected', function() {
 
     it ('calls `menuWillSelect` upon the sibling block component', function() {
-      let item    = app.refine('blocks').first()
-      let subject = TestUtils.renderIntoDocument(<Block app={ app } block={ item } />)
-
-      let { menu, block } = subject.refs
+      let { menu, block } = component.refs
 
       block.menuWillSelect = sinon.mock()
 
-      menu.setState({ open: true })
+      component.setState({ menuOpen: true })
 
       TestUtils.Simulate.click(menu.refs.destroy.getDOMNode())
 
@@ -76,16 +53,14 @@ describe('Components - Block', function() {
     })
 
     it ('does nothing if `menuWillSelect` has not been defined', function() {
-      let item    = app.refine('blocks').first()
-      let subject = TestUtils.renderIntoDocument(<Block app={ app } block={ item } />)
+      let item = app.get(['blocks', 0])
+      let { menu } = component.refs
 
-      let { menu, block } = subject.refs
-
-      menu.setState({ open: true })
+      component.setState({ menuOpen: true })
 
       TestUtils.Simulate.click(menu.refs.destroy.getDOMNode())
 
-      app.refine('blocks').first().should.not.equal(item)
+      app.get(['blocks', 0]).should.not.equal(item)
     })
 
   })

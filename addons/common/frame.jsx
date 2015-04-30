@@ -1,7 +1,7 @@
-import React from 'react'
-import cx    from 'classnames'
+let React = require('react')
+let cx    = require('classnames')
 
-export default React.createClass({
+module.exports = React.createClass({
 
   getDefaultProps() {
     return {

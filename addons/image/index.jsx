@@ -4,10 +4,10 @@
  * src, caption, and credit
  */
 
-import Field   from '../common/field'
-import Graphic from '../common/graphic'
-import Frame   from '../common/frame'
-import React   from 'react'
+let Field   = require('../common/field')
+let Graphic = require('../common/graphic')
+let Frame   = require('../common/frame')
+let React   = require('react')
 
 var Image = React.createClass({
 
@@ -37,4 +37,4 @@ var Image = React.createClass({
 
 })
 
-export default Image
+module.exports = Image

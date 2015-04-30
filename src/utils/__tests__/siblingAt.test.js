@@ -1,5 +1,5 @@
-import Block     from 'models/Block'
-import siblingAt from '../siblingAt'
+let Block     = require('../../models/Block')
+let siblingAt = require('../siblingAt')
 
 describe('Utils - siblingAt', function() {
 

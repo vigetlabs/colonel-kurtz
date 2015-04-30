@@ -1,7 +1,7 @@
-import Animator from 'components/Animator'
-import Block    from 'components/Block'
-import Switch   from 'components/Switch'
-import React    from 'react'
+let Animator = require('./Animator')
+let Block    = require('./Block')
+let Switch   = require('./Switch')
+let React    = require('react')
 
 let EditorBlock = React.createClass({
 
@@ -34,4 +34,4 @@ let EditorBlock = React.createClass({
 
 })
 
-export default EditorBlock
+module.exports = EditorBlock

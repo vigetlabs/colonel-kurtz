@@ -1,7 +1,7 @@
-import Button from './Button'
-import React  from 'react'
+let Button = require('./Button')
+let React  = require('react')
 
-export default React.createClass({
+module.exports = React.createClass({
 
   propTypes: {
     app   : React.PropTypes.object.isRequired,

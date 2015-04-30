@@ -1,5 +1,5 @@
-import Block from 'models/Block'
-import siblingsOf from '../siblingsOf'
+let Block = require('../../models/Block')
+let siblingsOf = require('../siblingsOf')
 
 describe('Utils - siblingsOf', function() {
 

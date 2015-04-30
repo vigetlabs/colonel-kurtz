@@ -1,5 +1,5 @@
-import Block        from 'models/Block'
-import blocksToJson from 'utils/blocksToJson'
+let Block        = require('../../models/Block')
+let blocksToJson = require('../blocksToJson')
 
 describe('Utils - blocksToJson', function() {
 

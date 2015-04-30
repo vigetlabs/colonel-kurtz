@@ -1,128 +1,82 @@
-import Actions from 'actions/blocks'
-import Colonel from '../../Colonel'
-import Menu from '../Menu'
-import Fixture from './fixtures/testBlockType'
-
-import { create, move, destroy } from 'actions/blocks'
+let Actions   = require('../../actions/blocks')
+let Colonel   = require('../../Colonel')
+let Menu      = require('../Menu')
+let TestUtils = React.addons.TestUtils
+let config    = require('./fixtures/colonelConfig')
+let render    = TestUtils.renderIntoDocument
 
 describe('Components - Menu', function() {
-  let TestUtils = React.addons.TestUtils
-  let app;
+  let app, menu;
 
   beforeEach(function(done) {
-    app = new Colonel({
-      el         : document.createElement('div'),
-      blockTypes : [ Fixture ]
-    })
+    app = new Colonel(config)
+
+    app.push = sinon.mock()
 
     app.start(function() {
-      app.push(create, Fixture.id)
-      app.push(create, Fixture.id)
-      app.push = sinon.mock()
+      menu = React.createElement(Menu, {
+        app: app,
+        block: app.refine('blocks').first(),
+        onOpen: sinon.mock(),
+        onExit: sinon.mock(),
+        active: true
+      })
     }, done)
   })
 
-  it ('can exit', function() {
-    let block = app.refine('blocks').first()
-    let test = TestUtils.renderIntoDocument(<Menu app={ app } block={ block } />)
-
-    test.setState({ open: true })
-
-    test._onExit()
-    test.state.open.should.equal(false)
-  })
-
-  it ('sets the state to open when the menu button is clicked', function() {
-    let block = app.refine('blocks').first()
-    let test = TestUtils.renderIntoDocument(<Menu app={ app } block={ block } />)
-
+  it ('calls the onOpen property when the handle is clicked', function() {
+    let test = render(menu)
     TestUtils.Simulate.click(test.refs.handle.getDOMNode())
-
-    test.state.should.have.property('open', true)
+    menu.props.onOpen.should.have.been.called
   })
 
-  it ('can add new items', function() {
-    let block = app.refine('blocks').first()
-    let items = [{ id: 'test', label: 'Test'}]
-    let test  = TestUtils.renderIntoDocument(<Menu app={ app } block={ block } items={ items } />)
-
-    test.setState({ open: true })
-
+  it ('can add new menu items', function() {
+    let test = render(React.cloneElement(menu, { items: [{ id: 'test', label: 'Test'}] }))
     test.refs.should.have.property('test')
   })
 
-  describe('When an item is pressed', function() {
-
-    it ('does not activate the action if the onSelect handler returns false', function() {
-      let block = app.refine('blocks').first()
-      let test  = TestUtils.renderIntoDocument(
-        <Menu app={ app } block={ block } onSelect={ (e => false)}/>
-      )
-
-      test.setState({ open: true })
-
-      TestUtils.Simulate.click(test.refs.destroy.getDOMNode())
-
-      app.push.should.not.have.been.called
-    })
+  it ('does not activate the action if the onSelect handler returns false', function() {
+    let test = render(React.cloneElement(menu, { onSelect: (e => false) }))
+    TestUtils.Simulate.click(test.refs.destroy.getDOMNode())
+    app.push.should.not.have.been.called
   })
 
-  describe('When the "Remove" button is clicked', function() {
+  it ('calls the destroy action', function() {
+    let test  = render(menu)
+    let block = test.props.block
 
-    it ('calls the destroy action', function() {
-      let block = app.refine('blocks').first()
-      let test  = TestUtils.renderIntoDocument(<Menu app={ app } block={ block } />)
+    TestUtils.Simulate.click(test.refs.destroy.getDOMNode())
 
-      test.setState({ open: true })
-
-      TestUtils.Simulate.click(test.refs.destroy.getDOMNode())
-
-      app.push.should.have.been.calledWith(Actions.destroy, block.id)
-    })
+    app.push.should.have.been.calledWith(Actions.destroy, block.id)
   })
 
-  describe('When the "Move Up" button is clicked', function() {
-    it ('calls the move action', function() {
-      let block = app.refine('blocks').last()
-      let test  = TestUtils.renderIntoDocument(<Menu app={ app } block={ block } />)
+  it ('moves a block up when Move Up is clicked', function() {
+    let block = app.refine('blocks').last()
+    let test  = render(React.cloneElement(menu, { block }))
 
-      test.setState({ open: true })
+    TestUtils.Simulate.click(test.refs.moveUp.getDOMNode())
 
-      TestUtils.Simulate.click(test.refs.moveUp.getDOMNode())
-
-      app.push.should.have.been.calledWith(Actions.move, block, -1)
-    })
-
-    it ('is disabled if it is the first block', function() {
-      let block = app.refine('blocks').first()
-      let test = TestUtils.renderIntoDocument(<Menu app={ app } block={ block } />)
-
-      test.setState({ open: true })
-
-      test.refs.moveUp.isDisabled().should.equal(true)
-    })
+    app.push.should.have.been.calledWith(Actions.move, block, -1)
   })
 
-  describe('When the "Move Down" button is clicked', function() {
-    it ('calls the move action', function() {
-      let block = app.refine('blocks').first()
-      let test = TestUtils.renderIntoDocument(<Menu app={ app } block={ block } />)
-
-      test.setState({ open: true })
-
-      TestUtils.Simulate.click(test.refs.moveDown.getDOMNode())
-
-      app.push.should.have.been.calledWith(Actions.move, block, 1)
-    })
-
-    it ('is disabled if it is the last block', function() {
-      let block = app.refine('blocks').last()
-      let test = TestUtils.renderIntoDocument(<Menu app={ app } block={ block } />)
-
-      test.setState({ open: true })
-
-      test.refs.moveDown.isDisabled().should.equal(true)
-    })
+  it ('disables Move Up if the block is the first child', function() {
+    let test = render(menu)
+    test.refs.moveUp.isDisabled().should.equal(true)
   })
 
+  it ('moves a block down when Move Down is clicked', function() {
+    let block = app.refine('blocks').first()
+    let test  = render(React.cloneElement(menu, { block }))
+
+    TestUtils.Simulate.click(test.refs.moveDown.getDOMNode())
+
+    app.push.should.have.been.calledWith(Actions.move, block, 1)
+  })
+
+  it ('disables Move Down if the block is the first child', function() {
+    let block = app.refine('blocks').last()
+    let test  = render(React.cloneElement(menu, { block }))
+
+    test.refs.moveDown.isDisabled().should.equal(true)
+  })
 })

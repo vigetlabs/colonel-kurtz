@@ -3,12 +3,12 @@
  * toggling between viewing modes and viewing managed content
  */
 
-import Animator    from 'components/Animator'
-import EditorBlock from 'components/EditorBlock'
-import React       from 'react'
-import Switch      from 'components/Switch'
+let Animator    = require('./Animator')
+let EditorBlock = require('./EditorBlock')
+let React       = require('react')
+let Switch      = require('./Switch')
 
-export default React.createClass({
+module.exports = React.createClass({
 
   propTypes: {
     app : React.PropTypes.object.isRequired

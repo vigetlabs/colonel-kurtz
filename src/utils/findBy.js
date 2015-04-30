@@ -1,4 +1,4 @@
-export default function(items, val, param='id') {
+module.exports = function(items, val, param='id') {
   let matches = items.filter(i => i[param] == val)
 
   if (matches.length) {
