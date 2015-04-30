@@ -56,7 +56,6 @@
     "mocha": "^2.1.0",
     "node-sass": "^2.1.1",
     "react": "^0.13.1",
-    "react-ink": "^4.0.0-rc5",
     "watch": "^0.16.0",
     "webpack": "^1.x.x"
   },
@@ -66,6 +65,7 @@
   "dependencies": {
     "classnames": "^1.x.x",
     "microcosm": "^7.1.0",
-    "react-focus-trap": "^0.6.x"
+    "react-focus-trap": "^0.6.x",
+    "react-ink": "^4.0.0-rc5"
   }
 }
