@@ -3,8 +3,9 @@
 1. [Overview](#overview)
 2. [Installing Node](#installing-node)
 3. [Setting up Browserify](#setting-up-browserify)
-4. [Adding Colonel Kurtz as a dependency](#adding-colonel-kurtz-as-a-dependency)
-5. [Including Colonel Kurtz styles](#including-colonel-kurtz-styles)
+4. [Parsing JSX](#parsing-jsx)
+5. [Adding Colonel Kurtz as a dependency](#adding-colonel-kurtz-as-a-dependency)
+6. [Including Colonel Kurtz styles](#including-colonel-kurtz-styles)
 
 ## Overview
 
@@ -74,6 +75,45 @@ npm install --save browserify-incremental`
 This will pull down each module from `npm` and save a record of the
 dependency in `package.json`. For the future, when a developer
 executes `npm install`, it will pull down these same, versioned, dependencies.
+
+## Parsing JSX
+
+Colonel Kurtz is powered by
+[React](http://facebook.github.io/react/). This means that extending
+Colonel Kurtz often requires the processing of
+[JSX](https://facebook.github.io/jsx/). Fortunately, there is a wide
+array of options for doing this. Our favorite method is to use the
+[BabelJS](https://babeljs.io/) JavaScript transformer. Not only does
+it parse JSX, but it also provides access to the latest features of
+the language.
+
+Babel can be integrated with Browserify using their
+[babelify](https://github.com/babel/babelify) transform for
+Browserify. First, let's pull down the dependency:
+
+```shell
+npm install --save babelify
+```
+
+Browserify can be configured by adding a `"browserify"` entry in
+package.json. To tell Browserify to use Babel, add the following
+entry:
+
+```json
+{
+//... config
+{
+  "browserify": {
+    "transform": [
+      ["babelify", { "extensions": [".js", ".jsx"] }]
+    ]
+  }
+}
+//... config
+}
+```
+
+More information on configuring babelify can be found at [its repo](https://github.com/babel/babelify).
 
 ## Adding Colonel Kurtz as a dependency
 
