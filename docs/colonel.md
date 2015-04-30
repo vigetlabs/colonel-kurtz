@@ -83,7 +83,7 @@ important step! It tells Colonel Kurtz to run through all of its
 available plugins (plugins are not discussed in this tutorial) and
 then renders the editor to the screen.
 
-### Making it look decent
+### Basic Styling
 
 Colonel Kurtz comes with a
 [Material Design](http://www.google.com/design/spec/material-design/introduction.html)
