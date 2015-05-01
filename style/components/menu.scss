@@ -90,8 +90,8 @@ $col-menu-z-index        : 1 !default;
 .col-menu-enter,
 .col-menu-leave.col-menu-leave-active {
   opacity: 0;
-  transform: translateZ(0) scale(0.2);
-  transition: 0.2s all;
+  transform: scale(0.2);
+  transition: 0.3s all;
   z-index: 100;
 
   .col-menu-item {
@@ -103,7 +103,7 @@ $col-menu-z-index        : 1 !default;
 .col-menu-enter.col-menu-enter-active,
 .col-menu-leave {
   opacity: 1;
-  transform: translateZ(0);
+  transform: none;
   transition: 0.2s all;
 
   .col-menu-item {
