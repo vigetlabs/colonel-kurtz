@@ -1,7 +1,7 @@
+let ActionButton  = require('./ActionButton')
 let Actions       = require('../actions/blocks')
 let React         = require('react')
 let SwitchNav     = require('./SwitchNav')
-let SwitchToggle  = require('./SwitchToggle')
 let classNames    = require('classnames')
 let typesForBlock = require('../utils/typesForBlock')
 
@@ -28,7 +28,9 @@ module.exports = React.createClass({
   getToggle(open) {
     if (open) return null
 
-    return (<SwitchToggle ref="toggle" onClick={ this._onToggle } />)
+    return (<ActionButton ref="toggle"
+                          label="Open the block menu and create a block"
+                          onClick={ this._onToggle } />)
   },
 
   getNav(open, blockTypes) {

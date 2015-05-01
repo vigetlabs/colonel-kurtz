@@ -1,18 +1,16 @@
-let Btn        = require('./Button')
-let React      = require('react')
-let classNames = require('classnames')
+let Btn   = require('./Button')
+let React = require('react')
 
 module.exports = React.createClass({
 
   propTypes: {
+    label   : React.PropTypes.string.isRequired,
     onClick : React.PropTypes.func.isRequired
   },
 
   getDefaultProps() {
     return {
       className : 'col-btn-fab',
-      label     : 'Open block creation menu',
-      secondary : false,
       symbol    : '+'
     }
   },
