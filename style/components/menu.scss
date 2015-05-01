@@ -33,6 +33,7 @@ $col-menu-z-index        : 1 !default;
 }
 
 .col-menu-handle {
+  @extend %col-focusable;
   border-radius: 50%;
   color: $col-primary;
   height: unit(6);
@@ -42,37 +43,6 @@ $col-menu-z-index        : 1 !default;
 
   svg {
     fill: $col-menu-handle-color;
-  }
-
-  &:before {
-    border-radius: inherit;
-    border: 2px solid transparent;
-    bottom: 0;
-    content: "";
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transform: scale(0.7);
-    transition: 0.3s all;
-  }
-
-  &:focus {
-    outline: none;
-
-    &:before {
-      border-color: rgba($col-primary, 0.5);
-      transform: scale(1);
-    }
-
-    &:active:before {
-      border-color: rgba($col-primary, 0.7);
-      transform: scale(0.9);
-    }
-
-    &:active:hover:before {
-      border-color: transparent;
-    }
   }
 }
 

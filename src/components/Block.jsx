@@ -22,7 +22,7 @@ module.exports = React.createClass({
   },
 
   setMenuItems(component) {
-    if ('getMenuItems' in component) {
+    if (component && 'getMenuItems' in component) {
       this.setState({ extraMenuItems: component.getMenuItems() })
     }
   },

@@ -9,6 +9,7 @@
 @import 'animations/fade';
 @import 'animations/menu';
 @import 'animations/switch';
+@import 'animations/float-up';
 
 .colonel {
   background: $col-backdrop;
@@ -25,5 +26,6 @@
   @import 'components/fab';
   @import 'components/menu';
   @import 'components/switch';
+  @import 'components/button';
   @import 'utilities';
 }

@@ -13,6 +13,8 @@
 $theme-primary: #009688 !default;
 $theme-secondary: #eeeeee !default;
 $theme-accent: #cddc39 !default;
+$theme-text: rgba(#000, 0.875) !default;
+$theme-secondary-text: rgba(#000, 0.54) !default;
 
 /**
  * Colonel Kurtz specific values
@@ -21,3 +23,5 @@ $col-accent: $theme-accent !default;
 $col-secondary: $theme-secondary !default;
 $col-primary: $theme-primary !default;
 $col-backdrop: #eee !default;
+$col-text: $theme-text !default;
+$col-secondary-text: $theme-secondary-text !default;

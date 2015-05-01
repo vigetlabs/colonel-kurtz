@@ -17,3 +17,38 @@
 %shadow-5 {
   box-shadow: 0 17px 17px 0 rgba(0, 0, 0, 0.15), 0 27px 55px 0 rgba(0, 0, 0, 0.3);
 }
+
+%col-focusable {
+  position: relative;
+
+  &:before {
+    border-radius: inherit;
+    border: 2px solid transparent;
+    bottom: 0;
+    content: "";
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: scale(0.7);
+    transition: 0.3s all;
+  }
+
+  &:focus {
+    outline: none;
+
+    &:before {
+      border-color: rgba($col-primary, 0.5);
+      transform: scale(1);
+    }
+
+    &:active:before {
+      border-color: rgba($col-primary, 0.7);
+      transform: scale(0.9);
+    }
+
+    &:active:hover:before {
+      border-color: transparent;
+    }
+  }
+}
