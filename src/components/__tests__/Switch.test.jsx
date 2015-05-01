@@ -26,8 +26,10 @@ describe('Components - Switch', function() {
   })
 
   it ('adds a block type on click', function() {
-    let base = render(<Switch app={ app } forceOpen />)
+    let base = render(<Switch app={ app } />)
     let spy  = sinon.spy(app, 'push')
+
+    base.setState({ open : true })
 
     TestUtils.Simulate.click(base.getDOMNode().querySelector('.col-switch-btn'))
 

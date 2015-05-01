@@ -7,8 +7,13 @@
 - The menu to add new blocks will now collapse when the escape key is
   pressed.
 - Refactored switch navigation to be smarter about secondary
-  buttons. This will require an update to the stylesheet if you are
-  not including it from `node_modules`.
+  buttons.
+- Improved animation for switches. Refactored Switch css
+
+### Upgrading
+
+This releases an update to the stylesheet. If you are not including it
+from `node_modules`, be sure to pull down the latest files from `./style`
 
 # 2.14.0
 
@@ -24,7 +29,7 @@ refactored some internal components related to block type navigation.
 
 ### Upgrading
 
-The stylesheetfor this release was updated, for a stylesheet specific
+The stylesheet for this release was updated, for a stylesheet specific
 to this version, reference the `style` directory that is pulled down
 with the `npm` module.
 

@@ -3,35 +3,29 @@
  * Switch allows users to create new blocks
  */
 
-$col-switch-animation   : 0.4s col-switch cubic-bezier(.89,.03,.42,1.23) !default;
+$col-switch-animation   : 0.3s col-switch cubic-bezier(.89,.03,.42,1.23) !default;
 $col-switch-background  : #fff !default;
 $col-switch-shrunk-size : unit(3) !default;
-$col-switch-margin      : unit(2) auto !default;
-$col-switch-shadow      : 0 1px 3px rgba(#000, 0.4), inset 0 1px 0 #fff !default;
+$col-switch-padding     : unit(2) 0 !default;
+$col-switch-shadow      : 0 1px 3px rgba(#000, 0.4), inset 0 1px 0 rgba(#fff, 0.7) !default;
 $col-switch-btn-size    : unit(4) !default;
-$col-switch-btn-padding : unit(0.5) unit(1) !default;
+$col-switch-btn-padding : 10px unit(1) !default;
 $col-switch-btn-width   : unit(11) !default;
 $col-switch-btn-border  : rgba(#000, 0.15) !default;
+$col-switch-nav-radius  : 3px !default;
 
 .col-switch {
-  display: inline-block;
-  margin: $col-switch-margin;
+  padding: $col-switch-padding;
   text-align: center;
   white-space: nowrap;
   width: auto;
-
-  &.col-switch-open {
-    animation: $col-switch-animation;
-    background: $col-switch-background;
-    border-radius: $col-radius-standard;
-    box-shadow: $col-switch-shadow;
-  }
 }
 
 .col-switch-btn {
+  background: #fff;
   border-radius: 0;
   display: inline-block;
-  line-height: $col-switch-btn-size;
+  line-height: unit(2);
   padding: $col-switch-btn-padding;
   position: relative;
   min-width: $col-switch-btn-width;
@@ -39,8 +33,8 @@ $col-switch-btn-border  : rgba(#000, 0.15) !default;
 
   &:first-child {
     border-left: 0;
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
+    border-top-left-radius: $col-switch-nav-radius;
+    border-bottom-left-radius: $col-switch-nav-radius;
   }
 
   &:last-child {
@@ -50,11 +44,22 @@ $col-switch-btn-border  : rgba(#000, 0.15) !default;
 
   &:focus,
   &:hover {
-    background: #e0e0e0;
+    background: rgba(#000, 0.01);
     border-left-color: darken($col-switch-btn-border, 10%);
     box-shadow: 1px 0 0 rgba(#000, 0.1);
     transition: 0.1s all;
     outline: none;
   }
 
+}
+
+.col-switch-nav {
+  animation: $col-switch-animation;
+  border-radius: $col-switch-nav-radius;
+  box-shadow: $col-switch-shadow;
+  display: inline-block;
+}
+
+.col-switch .col-btn-fab {
+  animation: $col-switch-animation;
 }

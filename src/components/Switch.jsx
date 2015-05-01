@@ -19,22 +19,22 @@ module.exports = React.createClass({
     this.setState({ open: false })
   },
 
-  getClassName() {
-    return classNames('col-switch', {
-      'col-switch-open' : this.state.open || this.props.forceOpen
+  close() {
+    this.setState({ open: false }, () => {
+      this.refs.toggle.focus()
     })
   },
 
-  getToggle(open) {
-    if (open) return null
+  getToggle() {
+    if (this.state.open) return null
 
     return (<ActionButton ref="toggle"
                           label="Open the block menu and create a block"
                           onClick={ this._onToggle } />)
   },
 
-  getNav(open, blockTypes) {
-    if (!open) return null
+  getNav(blockTypes) {
+    if (!this.state.open) return null
 
     return (<SwitchNav ref="nav"
                        blockTypes={ blockTypes }
@@ -42,22 +42,15 @@ module.exports = React.createClass({
                        onExit={ this.close } />)
   },
 
-  close() {
-    this.setState({ open: false }, () => {
-      this.refs.toggle.focus()
-    })
-  },
-
   render() {
-    let { app, forceOpen, parent, position } = this.props
+    let { app, parent, position } = this.props
 
-    let open  = forceOpen || this.state.open
     let types = typesForBlock(app.get('blockTypes'), parent)
 
     return types.length ? (
-      <div className={ this.getClassName() }>
-        { this.getToggle(open, types) }
-        { this.getNav(open, types) }
+      <div className="col-switch">
+        { this.getToggle() }
+        { this.getNav(types) }
       </div>
     ) : null
   },
