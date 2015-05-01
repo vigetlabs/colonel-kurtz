@@ -1,5 +1,12 @@
 # Changelog
 
+# 2.15.0 (Not released)
+
+### Noticeable Changes
+
+- The menu to add new blocks will now collapse when the escape key is
+  pressed.
+
 # 2.14.0
 
 New style updates warranted a minor release, however we also
