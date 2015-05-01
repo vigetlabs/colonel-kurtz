@@ -5,10 +5,8 @@
 
 $col-switch-animation   : 0.3s col-switch cubic-bezier(.89,.03,.42,1.23) !default;
 $col-switch-background  : #fff !default;
-$col-switch-shrunk-size : unit(3) !default;
 $col-switch-padding     : unit(2) 0 !default;
 $col-switch-shadow      : 0 1px 3px rgba(#000, 0.4), inset 0 1px 0 rgba(#fff, 0.7) !default;
-$col-switch-btn-size    : unit(4) !default;
 $col-switch-btn-padding : 10px unit(1) !default;
 $col-switch-btn-width   : unit(11) !default;
 $col-switch-btn-border  : rgba(#000, 0.15) !default;
@@ -22,7 +20,6 @@ $col-switch-nav-radius  : 3px !default;
 }
 
 .col-switch-btn {
-  background: #fff;
   border-radius: 0;
   display: inline-block;
   line-height: unit(2);
@@ -55,6 +52,7 @@ $col-switch-nav-radius  : 3px !default;
 
 .col-switch-nav {
   animation: $col-switch-animation;
+  background: $col-switch-background;
   border-radius: $col-switch-nav-radius;
   box-shadow: $col-switch-shadow;
   display: inline-block;
