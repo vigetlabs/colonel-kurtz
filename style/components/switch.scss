@@ -6,7 +6,7 @@
 $col-switch-animation   : 0.3s col-switch cubic-bezier(.89,.03,.42,1.23) !default;
 $col-switch-background  : #fff !default;
 $col-switch-padding     : unit(2) 0 !default;
-$col-switch-shadow      : 0 1px 3px rgba(#000, 0.4), inset 0 1px 0 rgba(#fff, 0.7) !default;
+$col-switch-shadow      : 0 1px 3px rgba(#000, 0.4) !default;
 $col-switch-btn-padding : 10px unit(2) !default;
 $col-switch-btn-width   : unit(11) !default;
 $col-switch-btn-border  : rgba(#000, 0.15) !default;
@@ -41,9 +41,9 @@ $col-switch-nav-radius  : 3px !default;
 
   &:focus,
   &:hover {
-    background: rgba(#000, 0.01);
+    background: rgba(#000, 0.1);
     border-left-color: darken($col-switch-btn-border, 10%);
-    box-shadow: 1px 0 0 rgba(#000, 0.1);
+    box-shadow: 1px 0 0 rgba(#000, 0.1), inset 0 1px rgba(#fff, 0.4);
     transition: 0.1s all;
     outline: none;
   }
