@@ -3,7 +3,8 @@
 1. [Setup](#setup)
 2. [Running](#running)
 3. [Testing](#testing)
-4. [Conventions](#conventions)
+4. [Publishing to NPM](#publishing-to-npm)
+5. [Conventions](#conventions)
 
 ## Setup
 
@@ -69,6 +70,18 @@ For faster builds, consider removing code coverage:
 ```bash
 NO_COVERAGE=true npm test
 ```
+
+## Publishing to NPM
+
+This project publishes to npm using:
+
+```shell
+npm run release
+```
+
+This will run a shell script found at `./scripts/release`. It is
+critically important not to simply run `npm publish`. The release
+script sets up an expected structure for hosting on `npm`.
 
 ## Conventions
 
