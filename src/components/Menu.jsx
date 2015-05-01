@@ -1,3 +1,4 @@
+let Animator  = require('./Animator')
 let FocusTrap = require('react-focus-trap')
 let Handle    = require('./MenuHandle')
 let Item      = require('./MenuItem')
@@ -29,8 +30,11 @@ module.exports = React.createClass({
   },
 
   getMenu() {
+    if (!this.props.active) return null;
+
     return React.createElement(FocusTrap, {
-      active    : this.props.active,
+      active    : true,
+      key       : 'menu',
       className : 'col-menu',
       element   : 'nav',
       onExit    : this.props.onExit,
@@ -40,10 +44,10 @@ module.exports = React.createClass({
 
   render() {
     return (
-      <div className="col-menu-wrapper">
-        <Handle ref="handle" onClick={ this.props.onOpen }/>
+      <Animator className="col-menu-wrapper" transitionName="col-menu">
+        <Handle key="handle" ref="handle" onClick={ this.props.onOpen }/>
         { this.getMenu() }
-      </div>
+      </Animator>
     )
   }
 

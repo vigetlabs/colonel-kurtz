@@ -3,13 +3,11 @@
  * Dropdown menus throughout Colonel Kurtz
  */
 
-$col-menu-animation      : 0.5s col-menu;
 $col-menu-background     : #fff !default;
 $col-menu-handle-color   : rgba(#000, 0.6) !default;
 $col-menu-handle-padding : unit(1.5) !default;
 $col-menu-item-fontsize  : 14px !default;
 $col-menu-item-padding   : unit(1.5) unit(2) !default;
-$col-menu-origin         : 100% 0 !default;
 $col-menu-padding        : unit(1) 0 !default;
 $col-menu-radius         : $col-radius-small !default;
 $col-menu-right          : unit(1) !default;
@@ -47,8 +45,6 @@ $col-menu-z-index        : 1 !default;
 }
 
 .col-menu {
-  animation: $col-menu-animation;
-  -webkit-animation: $col-menu-animation;
   background: $col-menu-background;
   border-radius: $col-menu-radius;
   box-shadow: 0 2px 3px rgba(#000, 0.4), 0 -1px 1px rgba(#000, 0.15);
@@ -57,8 +53,13 @@ $col-menu-z-index        : 1 !default;
   padding: $col-menu-padding;
   position: absolute;
   right: $col-menu-right;
+  transform-origin: 100% 0;
   top: $col-menu-top;
   z-index: 2;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .col-menu-item {
@@ -81,7 +82,32 @@ $col-menu-z-index        : 1 !default;
   }
 
   &[disabled] {
-    opacity: 0.25;
+    color: rgba(#000, 0.2);
     pointer-events: none;
+  }
+}
+
+.col-menu-enter,
+.col-menu-leave.col-menu-leave-active {
+  opacity: 0;
+  transform: scale(0.2);
+  transition: 0.3s all;
+  z-index: 100;
+
+  .col-menu-item {
+    opacity: 0;
+    transition: 0.3s all;
+  }
+}
+
+.col-menu-enter.col-menu-enter-active,
+.col-menu-leave {
+  opacity: 1;
+  transform: none;
+  transition: 0.2s all;
+
+  .col-menu-item {
+    opacity: 1;
+    transition: 0.3s all 0.2s;
   }
 }
