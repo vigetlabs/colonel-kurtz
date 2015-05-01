@@ -1,6 +1,6 @@
 # Changelog
 
-# 2.14.0 (Not released)
+# 2.14.0
 
 New style updates warranted a minor release, however we also
 refactored some internal components related to block type navigation.
