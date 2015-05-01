@@ -10,6 +10,7 @@ module.exports = React.createClass({
 
   getDefaultProps() {
     return {
+      className : 'col-btn-fab',
       label     : 'Open block creation menu',
       secondary : false,
       symbol    : '+'
@@ -21,14 +22,10 @@ module.exports = React.createClass({
   },
 
   render() {
-    let { label, onClick, secondary, symbol } = this.props
-
-    let className = classNames('col-btn-fab', {
-      'col-btn-fab-secondary' : secondary
-    })
+    let { className, label, onClick, secondary, symbol } = this.props
 
     return (
-      <Btn ref="toggle" className={ className } onClick={ onClick }>
+      <Btn className={ className } onClick={ onClick }>
         <span className="col-hidden">{ label }</span>
         <span aria-hidden="true">{ symbol }</span>
       </Btn>

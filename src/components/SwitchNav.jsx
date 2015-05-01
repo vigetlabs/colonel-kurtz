@@ -1,22 +1,23 @@
-let Actions = require('../actions/blocks')
-let Btn     = require('./Button')
-let React   = require('react')
+let Btn   = require('./Button')
+let React = require('react')
 
 module.exports = React.createClass({
 
   propTypes: {
-    app        : React.PropTypes.object.isRequired,
     blockTypes : React.PropTypes.array.isRequired,
-    onExit     : React.PropTypes.func.isRequired
+    onExit     : React.PropTypes.func.isRequired,
+    onAdd      : React.PropTypes.func.isRequired
   },
 
   componentDidMount() {
     this.getDOMNode().querySelector('button').focus()
   },
 
-  getButton({ id, label }, i) {
+  getButton({ id, label }) {
+    let { onAdd } = this.props
+
     return (
-      <Btn key={ id } className="col-switch-btn" onClick={ () => this._onAdd(id) }>
+      <Btn key={ id } className="col-switch-btn" onClick={ () => onAdd(id) }>
         { label }
       </Btn>
     )
@@ -28,11 +29,6 @@ module.exports = React.createClass({
         { this.props.blockTypes.map(this.getButton)}
       </nav>
     )
-  },
-
-  _onAdd(id) {
-    let { app, position, parent } = this.props
-    app.push(Actions.create, id, position, parent)
   },
 
   _onKeyUp(e) {

@@ -28,22 +28,22 @@ module.exports = React.createClass({
   getToggle(open) {
     if (open) return null
 
-    return (<SwitchToggle ref="toggle"
-                          onClick={ this._onToggle }
-                          secondary={ this.props.parent } />)
+    return (<SwitchToggle ref="toggle" onClick={ this._onToggle } />)
   },
 
   getNav(open, blockTypes) {
     if (!open) return null
 
-    let { app, parent, position } = this.props
-
     return (<SwitchNav ref="nav"
-                       app={ app }
                        blockTypes={ blockTypes }
-                       onExit={ this._onNavExit }
-                       parent={ parent }
-                       position={ position } />)
+                       onAdd={ this._onAdd }
+                       onExit={ this.close } />)
+  },
+
+  close() {
+    this.setState({ open: false }, () => {
+      this.refs.toggle.focus()
+    })
   },
 
   render() {
@@ -60,10 +60,9 @@ module.exports = React.createClass({
     ) : null
   },
 
-  _onNavExit() {
-    this.setState({ open: false }, () => {
-      this.refs.toggle.focus()
-    })
+  _onAdd(id) {
+    let { app, position, parent } = this.props
+    app.push(Actions.create, id, position, parent)
   },
 
   _onToggle() {

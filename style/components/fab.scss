@@ -64,7 +64,8 @@ $col-fab-background     : $col-primary !default;
   }
 }
 
-.col-btn-fab-secondary {
+// Fabs within blocks should appear smaller
+.col-block .col-btn-fab {
   background: $col-secondary;
   border: none;
   color: rgba(#000, 0.54);
