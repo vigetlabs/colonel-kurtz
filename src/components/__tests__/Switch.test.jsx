@@ -5,6 +5,7 @@ let Switch  = require('../Switch')
 
 describe('Components - Switch', function() {
   let TestUtils = React.addons.TestUtils
+  let render    = TestUtils.renderIntoDocument
   let app;
 
   beforeEach(function(done) {
@@ -17,13 +18,15 @@ describe('Components - Switch', function() {
   })
 
   it ('closes when it gets new properties', function() {
-    let base = TestUtils.renderIntoDocument(<Switch app={ app } open />)
-    base.forceUpdate()
+    let base = render(<Switch app={ app } />)
+
+    base.setState({ open: true })
+    base.componentWillReceiveProps()
     base.state.open.should.equal(false)
   })
 
   it ('adds a block type on click', function() {
-    let base = TestUtils.renderIntoDocument(<Switch app={ app } forceOpen />)
+    let base = render(<Switch app={ app } forceOpen />)
     let spy  = sinon.spy(app, 'push')
 
     TestUtils.Simulate.click(base.getDOMNode().querySelector('.col-switch-btn'))
@@ -34,7 +37,7 @@ describe('Components - Switch', function() {
   describe('When only one block type given', function() {
     it ('_onToggle creates that block type', function() {
       let spy       = sinon.spy(app, 'push')
-      let component = TestUtils.renderIntoDocument(<Switch app={ app } />)
+      let component = render(<Switch app={ app } />)
 
       component._onToggle()
 
@@ -56,7 +59,7 @@ describe('Components - Switch', function() {
     })
 
     it ('_onToggle sets the state to open', function() {
-      let component = TestUtils.renderIntoDocument(<Switch app={ app } />)
+      let component = render(<Switch app={ app } />)
       component._onToggle()
       component.state.open.should.equal(true)
     })
@@ -79,7 +82,7 @@ describe('Components - Switch', function() {
     })
 
     it ('getTypes should display multiple blocks', function() {
-      let component = TestUtils.renderIntoDocument(<Switch app={ app } parent={ app.get('blocks')[0] }/>)
+      let component = render(<Switch app={ app } parent={ app.get('blocks')[0] }/>)
 
       component.setState({ open : true })
       component.getDOMNode().querySelectorAll('button').length.should.be.gt(1)
@@ -98,8 +101,26 @@ describe('Components - Switch', function() {
     })
 
     it ('renders nothing', function() {
-      let component = TestUtils.renderIntoDocument(<Switch app={ app } parent={ app.get('blocks')[0] }/>)
+      let component = render(<Switch app={ app } parent={ app.get('blocks')[0] }/>)
       expect(component.getDOMNode()).to.equal(null)
+    })
+  })
+
+  describe('Key presses', function() {
+    it ('closes when the escape key is presed', function() {
+      let base = render(<Switch app={ app } />)
+
+      base.setState({ open: true })
+      TestUtils.Simulate.keyUp(base.refs.nav.getDOMNode(), { key: 'Escape' })
+      base.state.open.should.equal(false)
+    })
+
+    it ('does not close when another key is presed', function() {
+      let base = render(<Switch app={ app } />)
+
+      base.setState({ open: true })
+      TestUtils.Simulate.keyUp(base.refs.nav.getDOMNode(), { key: 'q' })
+      base.state.open.should.equal(true)
     })
   })
 

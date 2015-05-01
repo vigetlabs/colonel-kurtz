@@ -11,21 +11,24 @@ module.exports = React.createClass({
   getDefaultProps() {
     return {
       label     : 'Open block creation menu',
-      hide      : false,
       secondary : false,
       symbol    : '+'
     }
   },
 
+  focus() {
+    this.getDOMNode().focus()
+  },
+
   render() {
-    let { label, hide, onClick, secondary, symbol } = this.props
+    let { label, onClick, secondary, symbol } = this.props
 
     let className = classNames('col-btn-fab', {
       'col-btn-fab-secondary' : secondary
     })
 
     return (
-      <Btn ref="toggle" className={ className } onClick={ onClick } hide={ hide }>
+      <Btn ref="toggle" className={ className } onClick={ onClick }>
         <span className="col-hidden">{ label }</span>
         <span aria-hidden="true">{ symbol }</span>
       </Btn>
