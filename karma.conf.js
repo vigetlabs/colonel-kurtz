@@ -16,6 +16,8 @@ module.exports = function(config) {
   config.set({
     browsers: [ 'Firefox' ],
 
+    browserNoActivityTimeout: 30000,
+
     singleRun: isIntegration,
 
     frameworks: [ 'mocha', 'sinon-chai' ],
