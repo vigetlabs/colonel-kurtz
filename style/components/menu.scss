@@ -82,7 +82,7 @@ $col-menu-z-index        : 1 !default;
   }
 
   &[disabled] {
-    opacity: 0.25;
+    color: rgba(#000, 0.2);
     pointer-events: none;
   }
 }
