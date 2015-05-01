@@ -6,6 +6,7 @@
 
 - Slightly increased padding of switch navigation buttons. This is
   present when block type labels exceed the min-width of those buttons
+- Tweaked vertical alignment of secondary add block buttons
 
 ### Upgrading
 
