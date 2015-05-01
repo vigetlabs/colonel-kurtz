@@ -1,5 +1,18 @@
 # Changelog
 
+# 2.16.0
+
+### Noticeable Changes
+
+- Slightly increased padding of switch navigation buttons. This is
+  present when block type labels exceed the min-width of those buttons
+- Tweaked vertical alignment of secondary add block buttons
+
+### Upgrading
+
+This releases an update to the stylesheet. If you are not including it
+from `node_modules`, be sure to pull down the latest files from `./style`
+
 # 2.15.0
 
 ### Noticeable Changes
