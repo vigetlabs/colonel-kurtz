@@ -1,5 +1,23 @@
 # Changelog
 
+# 2.14.0 (Not released)
+
+New style updates warranted a minor release, however we also
+refactored some internal components related to block type navigation.
+
+### Noticeable Changes
+
+- Improved the appearance and opening animation of the dialog addon
+- Improved focus for switch navigation
+- Fixed a case where an error would be thrown related to menus of torn
+  down blocks.
+
+### Upgrading
+
+The stylesheetfor this release was updated, for a stylesheet specific
+to this version, reference the `style` directory that is pulled down
+with the `npm` module.
+
 # 2.13.0
 
 ### Breaking changes
