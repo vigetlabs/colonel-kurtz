@@ -9,7 +9,11 @@ module.exports = React.createClass({
     blockTypes : React.PropTypes.array.isRequired
   },
 
-  getButton({ id, label }) {
+  componentDidMount() {
+    this.getDOMNode().querySelector('button').focus()
+  },
+
+  getButton({ id, label }, i) {
     return (
       <Btn key={ id } className="col-switch-btn" onClick={ () => this._onAdd(id) }>
         { label }
@@ -18,11 +22,9 @@ module.exports = React.createClass({
   },
 
   render() {
-    let { blockTypes, hide } = this.props
-
-    return hide ? null : (
+    return (
       <nav className="col-switch-nav" role="navigation">
-        { blockTypes.map(this.getButton)}
+        { this.props.blockTypes.map(this.getButton)}
       </nav>
     )
   },

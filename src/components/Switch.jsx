@@ -25,6 +25,20 @@ module.exports = React.createClass({
     })
   },
 
+  getToggle(open) {
+    let { parent } = this.props
+
+    return !open ? (
+      <SwitchToggle onClick={ this._onToggle } secondary={ parent } />
+    ) : null
+  },
+
+  getNav(open, blockTypes) {
+    let { app, parent, position } = this.props
+
+    return open ? React.createElement(SwitchNav, { app, blockTypes, parent, position }) : null
+  },
+
   render() {
     let { app, forceOpen, parent, position } = this.props
 
@@ -33,8 +47,8 @@ module.exports = React.createClass({
 
     return types.length ? (
       <div className={ this.getClassName() }>
-        <SwitchToggle onClick={ this._onToggle } secondary={ parent } hide={ open } />
-        <SwitchNav app={ app } blockTypes={ types } parent={ parent } hide={ !open } position={ position }/>
+        { this.getToggle(open, types) }
+        { this.getNav(open, types) }
       </div>
     ) : null
   },
