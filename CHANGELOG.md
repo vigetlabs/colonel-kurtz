@@ -6,6 +6,9 @@
 
 - The menu to add new blocks will now collapse when the escape key is
   pressed.
+- Refactored switch navigation to be smarter about secondary
+  buttons. This will require an update to the stylesheet if you are
+  not including it from `node_modules`.
 
 # 2.14.0
 
