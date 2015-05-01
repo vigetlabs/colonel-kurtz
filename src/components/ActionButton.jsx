@@ -20,7 +20,7 @@ module.exports = React.createClass({
   },
 
   render() {
-    let { className, label, onClick, secondary, symbol } = this.props
+    let { className, label, onClick, symbol } = this.props
 
     return (
       <Btn className={ className } onClick={ onClick }>
