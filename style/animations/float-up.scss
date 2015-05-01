@@ -1,0 +1,12 @@
+@keyframes colonel-float-up {
+  0% {
+    box-shadow: none;
+    opacity: 0;
+    transform: translateY(4px) scale(0.99);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}

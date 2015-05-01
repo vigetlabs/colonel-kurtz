@@ -1,0 +1,20 @@
+/**
+ * Buttons
+ * http://www.google.com/design/spec/components/buttons.html#buttons-usage
+ */
+
+.col-button {
+  color: $col-text;
+  font-weight: 500;
+  min-width: unit(8);
+  padding: unit(1);
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.3s all;
+
+  &:hover,
+  &:focus {
+    color: $col-primary;
+    transition: 0.1s all;
+  }
+}
