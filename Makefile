@@ -1,9 +1,10 @@
-BABEL     = $$(npm bin)/babel
-COVERALLS = $$(npm bin)/coveralls
-KARMA     = $$(npm bin)/karma
-SASS      = $$(npm bin)/node-sass
-WATCH     = $$(npm bin)/watch
-WEBPACK   = $$(npm bin)/webpack
+NPM_BIN   = $$(npm bin)
+BABEL     = $(NPM_BIN)/babel
+COVERALLS = $(NPM_BIN)/coveralls
+KARMA     = $(NPM_BIN)/karma
+SASS      = $(NPM_BIN)/node-sass
+WATCH     = $(NPM_BIN)/watch
+WEBPACK   = $(NPM_BIN)/webpack
 
 .PHONY: clean test test-coverage build package.json javascript docs release example
 
