@@ -1,4 +1,5 @@
 BABEL   = $$(npm bin)/babel
+KARMA   = $$(npm bin)/karma
 SASS    = $$(npm bin)/node-sass
 WATCH   = $$(npm bin)/watch
 WEBPACK = $$(npm bin)/webpack
@@ -12,7 +13,7 @@ build:
 	make package.json
 	make documentation
 
-javascript: $(shell find src -name '*.js*' ! -name '*.test.js*') $(shell find addons -name '*.js*' ! -name '*.test.js*')
+javascript: $(shell find {src,addons} -name '*.js*' ! -name '*.test.js*')
 	mkdir -p dist
 	$(BABEL) -d dist $^
 
@@ -33,7 +34,6 @@ documentation: README.md LICENSE.md docs
 
 release:
 	make build
-	make test-once
 	npm publish dist
 
 example:
@@ -44,12 +44,10 @@ clean:
 	rm -rf dist
 
 test:
-	export NODE_ENV=test
-	$$(npm bin)/karma start
+	NODE_ENV=test $(KARMA) start
 
 test-once:
-	export CONTINUOUS_INTEGRATION=true
-	make test
+	NODE_ENV=test $(KARMA) start --single-run
 
 test-coverage:
 	make test-once
