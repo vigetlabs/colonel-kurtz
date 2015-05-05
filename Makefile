@@ -10,7 +10,7 @@ build:
 	make javascript
 	make sass
 	make package.json
-	make docs
+	make documentation
 
 javascript: $(shell find src -name '*.js*' ! -name '*.test.js*') $(shell find addons -name '*.js*' ! -name '*.test.js*')
 	mkdir -p dist
@@ -27,10 +27,9 @@ sass-watch:
 package.json:
 	node -p 'p=require("./package");p.scripts=p.devDependencies=undefined;JSON.stringify(p,null,2)' > dist/package.json
 
-docs:
-	cp README.md dist/README.md
-	cp LICENSE.md dist/LICENSE.md
-	cp -r docs dist/docs
+documentation: README.md LICENSE.md docs
+	mkdir -p dist
+	cp -r $^ dist
 
 release:
 	make build
