@@ -1,8 +1,9 @@
-BABEL   = $$(npm bin)/babel
-KARMA   = $$(npm bin)/karma
-SASS    = $$(npm bin)/node-sass
-WATCH   = $$(npm bin)/watch
-WEBPACK = $$(npm bin)/webpack
+BABEL     = $$(npm bin)/babel
+COVERALLS = $$(npm bin)/coveralls
+KARMA     = $$(npm bin)/karma
+SASS      = $$(npm bin)/node-sass
+WATCH     = $$(npm bin)/watch
+WEBPACK   = $$(npm bin)/webpack
 
 .PHONY: clean test test-coverage build package.json javascript docs release example
 
@@ -51,4 +52,4 @@ test-once:
 
 test-coverage:
 	make test-once
-	coveralls < coverage/report-lcov/lcov.info
+	$(COVERALLS) < coverage/report-lcov/lcov.info
