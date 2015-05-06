@@ -15,7 +15,7 @@ build:
 	make package.json
 	make documentation
 
-javascript: $(shell find {src,addons} -name '*.js*' ! -name '*.test.js*')
+javascript: $(shell find src -name '*.js*' ! -name '*.test.js*') $(shell find addons -name '*.js*' ! -name '*.test.js*')
 	mkdir -p dist
 	$(BABEL) -d dist $^
 
