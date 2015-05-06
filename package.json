@@ -8,6 +8,7 @@
     "prepublish": "make build",
     "release": "make release",
     "test": "make test",
+    "test:watch": "make test-watch",
     "coveralls": "make test-coverage",
     "sass": "make sass",
     "sass:watch": "make sass-watch"

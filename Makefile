@@ -46,11 +46,11 @@ clean:
 	rm -rf dist
 
 test:
-	NODE_ENV=test $(KARMA) start
-
-test-once:
 	NODE_ENV=test $(KARMA) start --single-run
 
+test-watch:
+	NODE_ENV=test $(KARMA) start
+
 test-coverage:
-	make test-once
+	make test
 	$(COVERALLS) < coverage/report-lcov/lcov.info
