@@ -38,6 +38,7 @@
   "devDependencies": {
     "autoprefixer": "^5.x.x",
     "babel": "^5.1.13",
+    "babel-core": "^5.2.15",
     "babel-loader": "^5.x.x",
     "babel-runtime": "^5.x.x",
     "coveralls": "^2.11.2",
