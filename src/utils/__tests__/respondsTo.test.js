@@ -6,7 +6,7 @@ describe('Utils - respondsTo', function() {
     respondsTo({ test(){} }, 'test').should.equal(true)
   })
 
-  it ('returns true when a key is not a function', function() {
+  it ('returns false when a key is not a function', function() {
     respondsTo({ test(){} }, 'nope').should.equal(false)
   })
 
