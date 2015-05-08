@@ -44,33 +44,33 @@ describe('Components - Menu', function() {
     app.push.should.have.been.calledWith(Actions.destroy, block.id)
   })
 
-  it ('moves a block up when Move Up is clicked', function() {
+  it ('moves a block up when Move Before is clicked', function() {
     let block = app.refine('blocks').last()
     let test  = render(React.cloneElement(menu, { block }))
 
-    TestUtils.Simulate.click(test.refs.moveUp.getDOMNode())
+    TestUtils.Simulate.click(test.refs.moveBefore.getDOMNode())
 
     app.push.should.have.been.calledWith(Actions.move, block, -1)
   })
 
-  it ('disables Move Up if the block is the first child', function() {
+  it ('disables Move Before if the block is the first child', function() {
     let test = render(menu)
-    test.refs.moveUp.isDisabled().should.equal(true)
+    test.refs.moveBefore.isDisabled().should.equal(true)
   })
 
-  it ('moves a block down when Move Down is clicked', function() {
+  it ('moves a block down when Move After is clicked', function() {
     let block = app.refine('blocks').first()
     let test  = render(React.cloneElement(menu, { block }))
 
-    TestUtils.Simulate.click(test.refs.moveDown.getDOMNode())
+    TestUtils.Simulate.click(test.refs.moveAfter.getDOMNode())
 
     app.push.should.have.been.calledWith(Actions.move, block, 1)
   })
 
-  it ('disables Move Down if the block is the first child', function() {
+  it ('disables Move After if the block is the first child', function() {
     let block = app.refine('blocks').last()
     let test  = render(React.cloneElement(menu, { block }))
 
-    test.refs.moveDown.isDisabled().should.equal(true)
+    test.refs.moveAfter.isDisabled().should.equal(true)
   })
 })

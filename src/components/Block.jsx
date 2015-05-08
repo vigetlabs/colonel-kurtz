@@ -1,6 +1,7 @@
-let Actions = require('../actions/blocks')
-let Menu    = require('./Menu')
-let React   = require('react')
+let Actions    = require('../actions/blocks')
+let Menu       = require('./Menu')
+let React      = require('react')
+let respondsTo = require('../utils/respondsTo')
 
 module.exports = React.createClass({
 
@@ -22,7 +23,7 @@ module.exports = React.createClass({
   },
 
   setMenuItems(component) {
-    if (component && 'getMenuItems' in component) {
+    if (respondsTo(component, 'getMenuItems')) {
       this.setState({ extraMenuItems: component.getMenuItems() })
     }
   },
