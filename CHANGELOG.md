@@ -1,5 +1,13 @@
 # Changelog
 
+# 2.17.0 (Not released)
+
+### Noticeable Changes
+
+- "Move Up" and "Move Down" have been renamed to "Move Before" and
+  "Move After". This is in anticipation for block types that display
+  children horizontally.
+
 # 2.16.0
 
 ### Noticeable Changes
