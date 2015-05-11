@@ -1,6 +1,7 @@
 {
   "name": "colonel-kurtz",
   "version": "2.16.0-alpha",
+  "private": true,
   "description": "A block editor",
   "main": "src/Colonel.js",
   "scripts": {
@@ -10,8 +11,8 @@
     "test": "make test",
     "test:watch": "make test-watch",
     "coveralls": "make test-coverage",
-    "sass": "make sass",
-    "sass:watch": "make sass-watch"
+    "sass": "make sass-example",
+    "sass:watch": "make sass-example-watch"
   },
   "repository": {
     "type": "git",

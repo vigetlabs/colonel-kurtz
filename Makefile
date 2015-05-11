@@ -27,8 +27,14 @@ sass:
 sass-watch:
 	$(WATCH) 'make sass' style
 
+sass-example:
+	$(SASS) ./example/example.scss --stdout > example/example.css
+
+sass-example-watch:
+	$(WATCH) 'make sass-example' style
+
 package.json:
-	node -p 'p=require("./package");p.scripts=p.devDependencies=undefined;JSON.stringify(p,null,2)' > dist/package.json
+	node -p 'p=require("./package");p.private=undefined;p.scripts=p.devDependencies=undefined;JSON.stringify(p,null,2)' > dist/package.json
 
 documentation: README.md LICENSE.md docs
 	mkdir -p dist
