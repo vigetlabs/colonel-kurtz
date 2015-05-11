@@ -19,7 +19,6 @@ module.exports = React.createClass({
         <Close onClick={ onExit } />
       </FocusTrap>
     )
-    return React.createElement(FocusTrap, { active, className, onExit }, children)
   }
 
 })
