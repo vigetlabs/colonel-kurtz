@@ -6,18 +6,17 @@ module.exports = React.createClass({
 
   getDefaultProps() {
     return {
-      className: 'col-dialog'
+      className        : 'col-dialog',
+      headingComponent : 'h3'
     }
   },
 
   getTitle() {
-    let { title } = this.props
-    if (this.props.title) {
-      return (
-        <h3 className="col-dialog-title">
-          { this.props.title }
-        </h3>
-      )
+    let { headingComponent, title } = this.props
+    if (title) {
+      return React.createElement(headingComponent, {
+        className: "col-dialog-title"
+      }, title)
     }
   },
 

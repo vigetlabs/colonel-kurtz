@@ -33,7 +33,7 @@ module.exports = React.createClass({
     return (
       <div style={{ background: this.props.content.color }}>
         <Section { ...this.props } />
-        <Dialog title="Settings" active={ openSettings } onExit={ this._onSettingsExit }>
+        <Dialog title="Settings" headingComponent="h1" active={ openSettings } onExit={ this._onSettingsExit }>
           <p>
             You can use dialogs such as these to hide more settings
             and information.
