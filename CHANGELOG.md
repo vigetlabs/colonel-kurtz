@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.16.2
+
+- Bump react-ink to 0.4
+
 ## 2.16.1
 
 - Lock down a few dependencies to prevent installation of React 0.14
