@@ -2,7 +2,7 @@
 
 ## 2.17
 
-- The content object of a block is always defined.
+- The content object of a block is always defined as an object.
 
 ## 2.16.2
 
