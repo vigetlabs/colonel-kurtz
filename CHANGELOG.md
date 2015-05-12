@@ -1,6 +1,10 @@
 # Changelog
 
-# 2.16.0
+## 2.16.1
+
+- Lock down a few dependencies to prevent installation of React 0.14
+
+## 2.16.0
 
 ### Noticeable Changes
 
@@ -36,7 +40,7 @@ from `node_modules`, be sure to pull down the latest files from `./style`
 This releases an update to the stylesheet. If you are not including it
 from `node_modules`, be sure to pull down the latest files from `./style`
 
-# 2.14.0
+## 2.14.0
 
 New style updates warranted a minor release, however we also
 refactored some internal components related to block type navigation.
@@ -54,7 +58,7 @@ The stylesheet for this release was updated, for a stylesheet specific
 to this version, reference the `style` directory that is pulled down
 with the `npm` module.
 
-# 2.13.0
+## 2.13.0
 
 ### Breaking changes
 
