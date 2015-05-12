@@ -12,6 +12,9 @@
 - "Move Up" and "Move Down" have been renamed to "Move Before" and
   "Move After". This is in anticipation for block types that display
   children horizontally.
+- `Dialog` addon accepts `title` and `headingComponent` props for
+  customizable headings.
+- `Dialog` y-axis overflow scrolls when necessary.
 
 ### Upgrading
 
