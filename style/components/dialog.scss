@@ -42,6 +42,8 @@ $col-dialog-font-size  : 16px !default;
   margin: 0 auto;
   max-height: 90%;
   max-width: $col-dialog-width;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  overflow-y: scroll;
   padding: $col-dialog-padding;
   position: relative;
   text-align: left;
