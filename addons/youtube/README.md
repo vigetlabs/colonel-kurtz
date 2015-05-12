@@ -30,4 +30,4 @@ the `blockType` field:
       "video_id": string
     }
 
-*video_id*: All YouTube videos have a unique identifier. This value is specified here.
+**video_id**: All YouTube videos have a unique identifier. This value is specified here.
