@@ -60,4 +60,11 @@ describe('Stores - Block', function() {
     state[1].type.should.equal('expected')
   })
 
+  it ('maintains an empty content object when deserialized', function() {
+    let blocks = [ new Block({}) ]
+    let state   = Blocks.deserialize(blocks)
+
+    state[0].content.should.eql({})
+  })
+
 })
