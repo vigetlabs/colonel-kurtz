@@ -21,4 +21,22 @@ describe('Models - Block', function() {
     answer.should.equal(block.id)
   })
 
+  describe('when created without a content attribute', function() {
+
+    it ('ensures the attribute is an empty object', function() {
+      let block  = new Block({})
+      block.content.should.eql({})
+    })
+
+  })
+
+  describe('when created with a content property that is falsy', function() {
+    [ false, null, undefined, '' ].forEach(function(type) {
+      it (`ensures the attribute is an empty object on ${ type }`, function() {
+        let block  = new Block({ content: type })
+        block.content.should.eql({})
+      })
+    })
+  })
+
 })

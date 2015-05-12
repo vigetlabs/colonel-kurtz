@@ -4,7 +4,7 @@ class Block {
 
   constructor(params) {
     this.id      = uid()
-    this.content = params.content
+    this.content = params.content || {}
     this.parent  = params.parent
     this.type    = params.type
   }
