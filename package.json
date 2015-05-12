@@ -32,6 +32,11 @@
       "name": "Nate Hunzaker",
       "email": "nate.hunzaker@viget.com",
       "url": "http://viget.com"
+    },
+    {
+      "name": "Chris Manning",
+      "email": "chris.manning@viget.com",
+      "url": "http://viget.com"
     }
   ],
   "license": "MIT",
