@@ -73,6 +73,6 @@
     "classnames": "~2",
     "microcosm": "~7.1",
     "react-focus-trap": "~0.8",
-    "react-ink": "4.0.0-rc5"
+    "react-ink": "~4.0"
   }
 }
