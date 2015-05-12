@@ -1,14 +1,6 @@
 # Changelog
 
-# 2.17.0 (Not released)
-
-### Noticeable Changes
-
-- "Move Up" and "Move Down" have been renamed to "Move Before" and
-  "Move After". This is in anticipation for block types that display
-  children horizontally.
-
-# 2.16.0
+# 2.16.0 (Not released)
 
 ### Noticeable Changes
 
@@ -17,6 +9,9 @@
 - Tweaked vertical alignment of secondary add block buttons
 - Increased contrast of button focus background for block menu
 - Improve animation for menus, add closing animation.
+- "Move Up" and "Move Down" have been renamed to "Move Before" and
+  "Move After". This is in anticipation for block types that display
+  children horizontally.
 
 ### Upgrading
 
