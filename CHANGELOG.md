@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.17
+
+- The content object of a block is always defined.
+
 ## 2.16.2
 
 - Bump react-ink to 0.4
