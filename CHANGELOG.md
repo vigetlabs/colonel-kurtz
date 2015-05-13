@@ -1,14 +1,28 @@
 # Changelog
 
+## 2.18 (Not released)
+
+### Noticeable Changes
+
+- Focus places upon the navigation element instead of the first button
+  of a block creator menu when opened.
+- Improved focus state of block creator menu buttons.
+
 ## 2.17
+
+### Noticeable Changes
 
 - The content object of a block is always defined as an object.
 
 ## 2.16.2
 
+### Internal Changes
+
 - Bump react-ink to 0.4
 
 ## 2.16.1
+
+### Internal Changes
 
 - Lock down a few dependencies to prevent installation of React 0.14
 

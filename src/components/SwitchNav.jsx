@@ -10,7 +10,7 @@ module.exports = React.createClass({
   },
 
   componentDidMount() {
-    this.getDOMNode().querySelector('button').focus()
+    this.getDOMNode().focus()
   },
 
   getButton({ id, label }) {

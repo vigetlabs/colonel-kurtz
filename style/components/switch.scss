@@ -39,13 +39,11 @@ $col-switch-nav-radius  : 3px !default;
     border-bottom-right-radius: 3px;
   }
 
-  &:focus,
   &:hover {
     background: rgba(#000, 0.1);
     border-left-color: darken($col-switch-btn-border, 10%);
     box-shadow: 1px 0 0 rgba(#000, 0.1), inset 0 1px rgba(#fff, 0.4);
     transition: 0.1s all;
-    outline: none;
   }
 
 }
