@@ -46,17 +46,6 @@ module.exports = React.createClass({
     this.setMenuItems(this.refs.block)
   },
 
-  getMenu() {
-    let { app, block } = this.props
-
-    return (<Menu app={ app }
-                  block={ block }
-                  items={ this.getMenuItems() }
-                  active={ this.state.menuOpen }
-                  onOpen={ this.openMenu }
-                  onExit={ this.closeMenu } />)
-  },
-
   render() {
     let { app, block, children } = this.props
     let { component:Component } = this.getBlockType()
