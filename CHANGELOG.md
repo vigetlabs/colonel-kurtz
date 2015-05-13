@@ -7,6 +7,7 @@
 - Focus places upon the navigation element instead of the first button
   of a block creator menu when opened.
 - Improved focus state of block creator menu buttons.
+- Added `col-block-editor` and `col-block-children` css hooks
 
 ## 2.17
 

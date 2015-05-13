@@ -26,7 +26,9 @@ module.exports = React.createClass({
     return (
       <div className="colonel">
         <Switch app={ app } />
-        <Animator>{ top.map(this.getBlock) }</Animator>
+        <Animator className="col-block-children">
+          { top.map(this.getBlock) }
+        </Animator>
       </div>
     )
   }
