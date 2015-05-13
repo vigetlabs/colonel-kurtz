@@ -1,6 +1,8 @@
 let Actions    = require('../actions/blocks')
+let Animator   = require('./Animator')
 let Menu       = require('./Menu')
 let React      = require('react')
+let Switch     = require('./Switch')
 let respondsTo = require('../utils/respondsTo')
 
 module.exports = React.createClass({
@@ -22,44 +24,57 @@ module.exports = React.createClass({
     return app.refine('blockTypes').find(i => i.id === block.type)
   },
 
+  getMenuItems() {
+    return this.state.extraMenuItems
+  },
+
   setMenuItems(component) {
     if (respondsTo(component, 'getMenuItems')) {
       this.setState({ extraMenuItems: component.getMenuItems() })
     }
   },
 
-  render() {
-    let { app, block, children } = this.props
-    let { extraMenuItems } = this.state
-    let { component:Component } = this.getBlockType()
-
-    return (
-      <div className={ `col-block col-block-${ block.type }`}>
-        <Component ref={ this.setMenuItems } { ...block } onChange={ this._onChange } >
-          { children }
-        </Component>
-
-        <Menu ref="menu"
-              { ...this.props }
-              items={ extraMenuItems }
-              active={ this.state.menuOpen }
-              onOpen={ this._onMenuOpen }
-              onExit={ this._onMenuExit } />
-      </div>
-    )
-  },
-
-  _onMenuOpen() {
+  openMenu() {
     this.setState({ menuOpen: true })
   },
 
-  _onMenuExit() {
+  closeMenu() {
     this.setState({ menuOpen: false })
   },
 
-  _onChange(content) {
-    let { app, block } = this.props
-    app.push(Actions.update, block, content)
-  }
+  componentDidMount() {
+    this.setMenuItems(this.refs.block)
+  },
 
+  getMenu() {
+    let { app, block } = this.props
+
+    return (<Menu app={ app }
+                  block={ block }
+                  items={ this.getMenuItems() }
+                  active={ this.state.menuOpen }
+                  onOpen={ this.openMenu }
+                  onExit={ this.closeMenu } />)
+  },
+
+  render() {
+    let { app, block, children } = this.props
+    let { component:Component } = this.getBlockType()
+    let { menuOpen, extraMenuItems } = this.state
+
+    return (
+      <div>
+        <div className={ `col-block col-block-${ block.type }`}>
+          <Component ref="block" { ...block } onChange={ app.prepare(Actions.update, block) } >
+            <Switch app={ app } parent={ block } />
+            <Animator>{ children }</Animator>
+          </Component>
+
+          <Menu app={ app } block={ block } items={ extraMenuItems } active={ menuOpen } onOpen={ this.openMenu } onExit={ this.closeMenu } />
+        </div>
+
+        <Switch app={ app } position={ block } parent={ block.parent } />
+      </div>
+    )
+  }
 })

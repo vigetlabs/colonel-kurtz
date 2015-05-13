@@ -26,6 +26,14 @@ module.exports = {
     return []
   },
 
+  getChildren(state, block) {
+    return state.filter(b => b.parent === block)
+  },
+
+  removeChildren(state) {
+    return state.filter(i => !i.parent)
+  },
+
   /**
    * For simplicity, blocks are stored in an array, `blocksToJson`
    * takes a list of blocks and transforms them into the nested structure
