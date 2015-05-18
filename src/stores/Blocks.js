@@ -30,7 +30,7 @@ module.exports = {
     return state.filter(b => b.parent === block)
   },
 
-  removeChildren(state) {
+  withoutChildren(state) {
     return state.filter(i => !i.parent)
   },
 
