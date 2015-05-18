@@ -18,8 +18,11 @@ describe('Components - Block', function() {
   })
 
   it ('adds a class name according to the block id', function() {
-    let block = component.props.block
-    component.getDOMNode().className.should.include(block.type)
+    let block   = component.props.block
+    let element = React.findDOMNode(component)
+    let child   = element.querySelector('.col-block')
+
+    child.className.should.include(block.type)
   })
 
   it ('sends an onOpen callback to the menu it owns', function() {

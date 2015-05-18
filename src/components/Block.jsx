@@ -53,17 +53,22 @@ module.exports = React.createClass({
 
     return (
       <div className="col-editor-block">
-        <div className={ `col-block col-block-${ block.type }`}>
-          <Component ref="block" { ...block } onChange={ app.prepare(Actions.update, block) } >
+        <div className={ `col-block col-block-${ block.type }` }>
+          <Component ref="block" { ...block } onChange={ this._onChange } >
             <Switch app={ app } parent={ block } />
             <Animator>{ children }</Animator>
           </Component>
 
-          <Menu app={ app } block={ block } items={ extraMenuItems } active={ menuOpen } onOpen={ this.openMenu } onExit={ this.closeMenu } />
+          <Menu ref="menu" app={ app } block={ block } items={ extraMenuItems } active={ menuOpen } onOpen={ this.openMenu } onExit={ this.closeMenu } />
         </div>
 
         <Switch app={ app } position={ block } parent={ block.parent } />
       </div>
     )
+  },
+
+  _onChange(content) {
+    let { app, block } = this.props
+    app.push(Actions.update, block, content)
   }
 })
