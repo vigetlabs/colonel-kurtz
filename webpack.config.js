@@ -31,11 +31,7 @@ module.exports = {
       {
         test    : /\.jsx*$/,
         exclude : /node_modules/,
-        loader  : 'babel',
-        query   : {
-          loose : true,
-          stage : 1
-        }
+        loader  : 'babel'
       }
     ]
   }

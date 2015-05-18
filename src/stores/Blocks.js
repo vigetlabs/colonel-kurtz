@@ -10,49 +10,48 @@
 let Actions    = require('../actions/blocks')
 let Block      = require('../models/Block')
 let assign     = require('../utils/assign')
-let deepRemove = require('../utils/deepRemove')
-let findBy     = require('../utils/findBy')
 let insertAt   = require('../utils/insertAt')
 let siblingAt  = require('../utils/siblingAt')
 
-module.exports = {
+let Blocks = {
+  register() {
+    return {
+      [Actions.create]  : this.create,
+      [Actions.destroy] : this.destroy,
+      [Actions.update]  : this.update,
+      [Actions.move]    : this.move
+    }
+  },
 
-  /**
-   * getInitialState
-   * Runs whenever the application starts. Provides the expected array
-   * relied upon by other operations
-   */
   getInitialState() {
     return []
   },
 
-  getChildren(state, block) {
-    return state.filter(b => b.parent === block)
+  find(state, id) {
+    return state.filter(block => block.valueOf() === id)[0]
   },
 
-  withoutChildren(state) {
+  getChildren(state, parent) {
+    return state.filter(i => i.parent === parent)
+  },
+
+  filterChildren(state) {
     return state.filter(i => !i.parent)
   },
 
   /**
-   * For simplicity, blocks are stored in an array, `blocksToJson`
-   * takes a list of blocks and transforms them into the nested structure
-   * shown in the front end
+   * `blocksToJson` takes a list of blocks and transforms them into
+   * the nested structure shown in the front end
    */
   serialize: require('../utils/blocksToJson'),
 
   /**
-   * As mentioned previously, blocks are serialized to a nested
-   * structure. jsonToBlocks takes this nested structure and flattens
+   * jsonToBlocks takes this nested structure and flattens
    * into a list for this store.
    */
   deserialize: require('../utils/jsonToBlocks'),
 
-  /**
-   * Actions.create
-   * Produces a new block based upon given parameters.
-   */
-  [Actions.create](state, { type, parent, position=0 }) {
+  create(state, { type, parent, position }) {
     let record = new Block({ parent, type })
 
     // If the provided position is a Block, place the new block right
@@ -61,41 +60,32 @@ module.exports = {
       position = state.indexOf(position) + 1
     }
 
-    return insertAt(state, record, position)
+    return insertAt(state, record, position || 0)
   },
 
-  /**
-   * Actions.destroy
-   * Given an id, remove that block and eliminate all other blocks
-   * nested inside of it.
-   */
-  [Actions.destroy](state, id) {
-    return deepRemove(state, id)
-  },
+  update(state, { id, content }) {
+    var block = Blocks.find(state, id)
 
-  /**
-   * Actions.update
-   * Given a parameters, find the block associated with those
-   * parameters (by id) and update the content inside. All other
-   * attributes will not be changed.
-   */
-  [Actions.update](state, params) {
-    var block = findBy(state, params.id)
-
-    block.content = assign(block.content, params.content)
+    block.content = assign(block.content, content)
 
     return state
   },
 
-  /**
-   * Actions.move
-   * Adjust the position of a given block.
-   */
-  [Actions.move](state, { block, distance }) {
+  destroy(state, id) {
+    return state.filter(function(block) {
+      for (let b = block; b; b = b.parent) {
+        if (b.id == id) return false
+      }
+      return true
+    })
+  },
+
+  move(state, { block, distance }) {
     let without = state.filter(i => i !== block)
     let before  = siblingAt(state, block, distance)
 
     return insertAt(without, block, state.indexOf(before))
   }
-
 }
+
+module.exports = Blocks

@@ -58,7 +58,7 @@
     "karma-mocha": "~0.1",
     "karma-sinon-chai": "~0.3",
     "karma-sourcemap-loader": "~0.3",
-    "karma-spec-reporter": "0.0.19",
+    "karma-nyan-reporter": "~0.0",
     "karma-webpack": "~1",
     "mocha": "~2",
     "node-sass": "~3",
@@ -71,7 +71,7 @@
   },
   "dependencies": {
     "classnames": "~2",
-    "microcosm": "~7.1",
+    "microcosm": "~8.0",
     "react-focus-trap": "~0.8",
     "react-ink": "~4.0"
   }
