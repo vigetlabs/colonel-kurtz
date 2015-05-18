@@ -52,7 +52,7 @@ module.exports = React.createClass({
     let { menuOpen, extraMenuItems } = this.state
 
     return (
-      <div>
+      <div className="col-editor-block">
         <div className={ `col-block col-block-${ block.type }`}>
           <Component ref="block" { ...block } onChange={ app.prepare(Actions.update, block) } >
             <Switch app={ app } parent={ block } />
