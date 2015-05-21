@@ -5,7 +5,6 @@ module.exports = React.createClass({
 
   propTypes: {
     blockTypes : React.PropTypes.array.isRequired,
-    onExit     : React.PropTypes.func.isRequired,
     onAdd      : React.PropTypes.func.isRequired
   },
 
@@ -25,16 +24,9 @@ module.exports = React.createClass({
 
   render() {
     return (
-      <nav className="col-switch-nav" role="navigation" onKeyUp={ this._onKeyUp }>
+      <nav className="col-switch-nav" role="navigation">
         { this.props.blockTypes.map(this.getButton)}
       </nav>
     )
-  },
-
-  _onKeyUp(e) {
-    if (e.key === 'Escape') {
-      this.props.onExit()
-    }
   }
-
 })

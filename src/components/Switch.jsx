@@ -19,6 +19,10 @@ module.exports = React.createClass({
     this.setState({ open: false })
   },
 
+  open() {
+    this.setState({ open: true })
+  },
+
   close() {
     this.setState({ open: false }, () => {
       this.refs.toggle.focus()
@@ -48,7 +52,7 @@ module.exports = React.createClass({
     let types = typesForBlock(app.get('blockTypes'), parent)
 
     return types.length ? (
-      <div className="col-switch">
+      <div className="col-switch" onKeyUp={ this._onKeyUp }>
         { this.getToggle() }
         { this.getNav(types) }
       </div>
@@ -71,7 +75,13 @@ module.exports = React.createClass({
       app.push(Actions.create, types[0].id, position, parent)
     }
 
-    this.setState({ open: true })
+    this.open()
+  },
+
+  _onKeyUp(e) {
+    if (e.key === 'Escape') {
+      this.close()
+    }
   }
 
 })
