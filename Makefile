@@ -3,7 +3,6 @@ BABEL     = $(NPM_BIN)/babel
 COVERALLS = $(NPM_BIN)/coveralls
 KARMA     = $(NPM_BIN)/karma
 SASS      = $(NPM_BIN)/node-sass
-WEBPACK   = $(NPM_BIN)/webpack
 
 .PHONY: clean test test-coverage build package.json javascript docs release example
 
@@ -35,8 +34,7 @@ release:
 	npm publish dist
 
 example:
-	open example/index.html
-	$(WEBPACK) -wd
+	node example/server
 
 clean:
 	rm -rf dist

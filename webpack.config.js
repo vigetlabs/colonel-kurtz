@@ -6,18 +6,6 @@
  */
 
 module.exports = {
-  cache: true,
-  devtool: '#eval-source-map',
-
-  entry: {
-    'example.build': './example/example.js'
-  },
-
-  output: {
-    filename : '[name].js',
-    path     : './example'
-  },
-
   resolve: {
     extensions: ['', '.js', '.jsx', '.scss', '.css']
   },

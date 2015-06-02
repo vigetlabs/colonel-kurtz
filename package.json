@@ -47,11 +47,14 @@
   "homepage": "https://github.com/vigetlabs/colonel-kurtz",
   "devDependencies": {
     "autoprefixer": "~5",
+    "autoprefixer-core": "~5.2",
+    "autoprefixer-loader": "~2",
     "babel": "~5",
     "babel-core": "~5",
     "babel-loader": "~5",
     "babel-runtime": "~5",
     "coveralls": "~2",
+    "css-loader": "~0.14",
     "istanbul": "~0.3",
     "istanbul-instrumenter-loader": "~0.1",
     "karma": "~0.12",
@@ -59,20 +62,18 @@
     "karma-coverage": "~0.3",
     "karma-firefox-launcher": "~0.1",
     "karma-mocha": "~0.1",
+    "karma-nyan-reporter": "~0.0",
     "karma-sinon-chai": "~0.3",
     "karma-sourcemap-loader": "~0.3",
-    "karma-nyan-reporter": "~0.0",
     "karma-webpack": "~1",
     "mocha": "~2",
     "node-sass": "~3",
-    "sass-loader": "~1.0",
-    "style-loader": "~0.12",
-    "css-loader": "~0.14",
     "postcss": "~4.1",
     "react": "~0.13",
+    "sass-loader": "~1.0",
+    "style-loader": "~0.12",
     "webpack": "~1",
-    "autoprefixer-core": "~5.2",
-    "autoprefixer-loader": "~2"
+    "webpack-dev-server": "^1.9.0"
   },
   "peerDependencies": {
     "react": ">= 0.12.1 < 0.14"
@@ -81,6 +82,7 @@
     "classnames": "~2",
     "microcosm": "~8.0",
     "react-focus-trap": "~0.8",
+    "react-hot-loader": "^1.2.7",
     "react-ink": "~4.0"
   }
 }
