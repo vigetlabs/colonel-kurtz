@@ -59,9 +59,9 @@ module.exports = React.createClass({
     ) : null
   },
 
-  _onAdd(id) {
+  _onAdd(type) {
     let { app, position, parent } = this.props
-    app.push(Actions.create, id, position, parent)
+    app.push(Actions.create, type.id, position, parent)
   },
 
   _onToggle() {

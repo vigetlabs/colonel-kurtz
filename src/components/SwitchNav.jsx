@@ -12,11 +12,12 @@ module.exports = React.createClass({
     this.getDOMNode().focus()
   },
 
-  getButton({ id, label }) {
+  getButton(type) {
+    let { id, label } = type
     let { onAdd } = this.props
 
     return (
-      <Btn key={ id } className="col-switch-btn" onClick={ () => onAdd(id) }>
+      <Btn key={ id } className="col-switch-btn" onClick={ () => onAdd(type) }>
         { label }
       </Btn>
     )
