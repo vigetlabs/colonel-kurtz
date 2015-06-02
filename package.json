@@ -35,6 +35,11 @@
       "name": "Chris Manning",
       "email": "chris.manning@viget.com",
       "url": "http://viget.com"
+    },
+    {
+      "name": "David Eisinger",
+      "email": "david.eisinger@viget.com",
+      "url": "http://viget.com"
     }
   ],
   "license": "MIT",
