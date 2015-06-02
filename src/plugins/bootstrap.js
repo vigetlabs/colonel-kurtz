@@ -15,12 +15,18 @@ let parseElement = function (element) {
 
 module.exports = {
 
-  register(app, { blocks, blockTypes }, next) {
+  filter(blockTypes, acceptable) {
+    if (!acceptable) return blockTypes
+
+    return blockTypes.filter(type => acceptable.indexOf(type.id) > -1)
+  },
+
+  register(app, { allow, blocks, blockTypes }, next) {
     if (blocks instanceof HTMLElement) {
       blocks = parseElement(blocks)
     }
 
-    app.replace({ blocks, blockTypes })
+    app.replace({ blocks, blockTypes: this.filter(blockTypes, allow) })
 
     next()
   }
