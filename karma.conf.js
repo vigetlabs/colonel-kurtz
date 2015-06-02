@@ -24,11 +24,13 @@ module.exports = function(config) {
     frameworks: [ 'mocha', 'sinon-chai' ],
 
     files: [
-      './src/**/__tests__/*.test.js*'
+      './src/**/__tests__/*.test.js*',
+      './addons/**/__tests__/*.test.js*'
     ],
 
     preprocessors: {
-      './src/**/__tests__/*.test.js*' : [ 'webpack', 'sourcemap' ]
+      './src/**/__tests__/*.test.js*'    : [ 'webpack', 'sourcemap' ],
+      './addons/**/__tests__/*.test.js*' : [ 'webpack', 'sourcemap' ]
     },
 
     logLevel: config.LOG_ERROR,
