@@ -38,23 +38,9 @@ to reference the example app:
 npm start
 ```
 
-This will host the demo at `http://localhost:8080`.
-
-### Compiling Sass
-
-When working on the project, you'll want to update the compiled Sass
-for reference within the example app. You can do this with:
-
-```bash
-npm run sass
-```
-
-However more often you'll probably want to keep this running. For
-that, run:
-
-```bash
-npm run sass:watch
-```
+This will host the demo at `http://localhost:8080`. Running this
+command takes care of recompiling JavaScript and Sass dependencies for
+the example.
 
 ## Testing
 
