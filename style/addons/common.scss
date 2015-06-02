@@ -29,7 +29,8 @@ $col-field-focus-color : #009688 !default;
   font-size: 14px;
   padding-bottom: 4px;
   width: 100%;
-  transition: 0.2s all;
+  transition: 0.2s box-shadow;
+  -webkit-appearance: none;
 
   &:focus {
     box-shadow: 0 1px 0 $col-field-focus-color;

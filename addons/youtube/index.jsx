@@ -30,7 +30,7 @@ module.exports = React.createClass({
 
     return (
       <div className="col-youtube">
-        <Field label="YouTube Video ID" value={ video_id } name="youtube_video_id" onChange={ this._onChange } autofocus/>
+        <Field element="textarea" label="YouTube Video ID" value={ video_id } name="youtube_video_id" onChange={ this._onChange } autofocus/>
         { this.props.children }
         <Frame open={ video_id }>
           <Graphic element="iframe" src={ this.getSrc(video_id) } />
