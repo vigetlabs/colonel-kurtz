@@ -2,6 +2,8 @@
  * ColonelKurtz Example
  */
 
+require('./example.scss')
+
 let ColonelKurtz = require('../src/Colonel')
 
 let blockTypes = [

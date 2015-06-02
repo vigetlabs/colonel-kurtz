@@ -3,7 +3,6 @@ BABEL     = $(NPM_BIN)/babel
 COVERALLS = $(NPM_BIN)/coveralls
 KARMA     = $(NPM_BIN)/karma
 SASS      = $(NPM_BIN)/node-sass
-WATCH     = $(NPM_BIN)/watch
 WEBPACK   = $(NPM_BIN)/webpack
 
 .PHONY: clean test test-coverage build package.json javascript docs release example
@@ -23,15 +22,6 @@ sass:
 	mkdir -p dist
 	cp -r style dist/style
 	$(SASS) ./dist/style/colonel.scss --stdout > dist/colonel-kurtz.css
-
-sass-watch:
-	$(WATCH) 'make sass' style
-
-sass-example:
-	$(SASS) ./example/example.scss --stdout > example/example.css
-
-sass-example-watch:
-	$(WATCH) 'make sass-example' style
 
 package.json:
 	node -p 'p=require("./package");p.private=undefined;p.scripts=p.devDependencies=undefined;JSON.stringify(p,null,2)' > dist/package.json

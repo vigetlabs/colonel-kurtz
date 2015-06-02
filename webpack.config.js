@@ -6,6 +6,7 @@
  */
 
 module.exports = {
+  cache: true,
   devtool: '#eval-source-map',
 
   entry: {
@@ -18,7 +19,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx', '.scss', '.css']
   },
 
   module: {
@@ -32,7 +33,15 @@ module.exports = {
         test    : /\.jsx*$/,
         exclude : /node_modules/,
         loader  : 'babel'
-      }
+      },
+      /**
+       * Compile sass, for examples
+       */
+      {
+        test    : /\.scss$/,
+        exclude : /node_modules/,
+        loader  : 'style!css!autoprefixer!sass'
+      },
     ]
   }
 }
