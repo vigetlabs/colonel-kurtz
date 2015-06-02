@@ -8,6 +8,7 @@
   of a block creator menu when opened.
 - Improved focus state of block creator menu buttons.
 - Added `col-block-editor` and `col-block-children` css hooks
+- `Field` component can take an `element` option (for text areas, defaults to `input`)
 
 ## 2.17
 
