@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.18 (Not released)
+## 2.18.0 (Not released)
 
 ### Noticeable Changes
 
@@ -10,8 +10,10 @@
 - Added `col-block-editor` and `col-block-children` css hooks
 - `Field` component can take an `element` option (for text areas, defaults to `input`)
 - Added `allow` property to configuration options to only allow specific blocks
+- The Youtube and Image addons strip white space when checking to open
+- Upgraded Microcosm to 8.1.0
 
-## 2.17
+## 2.17.0
 
 ### Noticeable Changes
 
