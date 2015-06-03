@@ -24,7 +24,7 @@ var Image = React.createClass({
       <div className="col-img">
         <Field label="Image Source" type="url" value={ src } name="image_src" onChange={ this._onSrcChange }/>
         { this.props.children }
-        <Frame open={ src }>
+        <Frame open={ `${ src }`.trim() }>
           <Graphic src={ src } alt="" />
         </Frame>
       </div>
@@ -32,7 +32,9 @@ var Image = React.createClass({
   },
 
   _onSrcChange(e) {
-    this.props.onChange({ src: e.currentTarget.value })
+    this.props.onChange({
+      src: e.currentTarget.value
+    })
   }
 
 })

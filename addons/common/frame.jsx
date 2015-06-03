@@ -13,7 +13,7 @@ module.exports = React.createClass({
     var { element, children, open, ...other } = this.props
 
     let className = cx('col-frame', {
-      'col-frame-open': open
+      'col-frame-open': !!open
     })
 
     return React.createElement(element, { className, ...other }, children)

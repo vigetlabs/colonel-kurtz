@@ -80,7 +80,7 @@
   },
   "dependencies": {
     "classnames": "~2",
-    "microcosm": "~8.0",
+    "microcosm": "~8.1",
     "react-focus-trap": "~0.8",
     "react-hot-loader": "^1.2.7",
     "react-ink": "~4.0"
