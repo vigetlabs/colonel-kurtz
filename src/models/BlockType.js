@@ -2,7 +2,7 @@ let React = require('react')
 
 class BlockType {
 
-  constructor({ component, menuItems, label, types, id, private }) {
+  constructor({ component, menuItems, label, types, id, childOnly }) {
     if (typeof component === 'object') {
       component = React.createClass(component)
     }
@@ -12,7 +12,7 @@ class BlockType {
     this.types     = types || []
     this.component = component
     this.menuItems = menuItems
-    this.private   = private
+    this.childOnly = childOnly
   }
 
   valueOf() {
