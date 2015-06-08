@@ -11,12 +11,18 @@ let blockTypes = [
     id        : 'section',
     label     : 'Section',
     component : require('./blockTypes/Section'),
-    types     : [ 'medium', 'image', 'youtube' ]
+    types     : [ 'child-text', 'image', 'youtube' ]
   },
   {
     id        : 'medium',
     label     : 'Text',
     component : require('../addons/medium')
+  },
+  {
+    id        : 'child-text',
+    label     : 'Child Text',
+    component : require('../addons/medium'),
+    private   : true
   },
   {
     id        : 'image',
