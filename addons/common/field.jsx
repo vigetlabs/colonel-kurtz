@@ -3,9 +3,14 @@
  * A reuseable field element
  */
 
-let React = require('react')
+let React   = require('react')
+let slugify = require('./slugify')
 
 module.exports = React.createClass({
+
+  propTypes: {
+    label: React.PropTypes.string.isRequired
+  },
 
   getDefaultProps() {
     return {
@@ -14,13 +19,21 @@ module.exports = React.createClass({
     }
   },
 
+  getID() {
+    return this.props.id || this.props.name || slugify(this.props.label)
+  },
+
+  getName() {
+    return this.name || this.getID()
+  },
+
   render() {
-    var { label, name, type, element:Element, ...props } = this.props
+    let { label, name, type, element:Element, id, ...props } = this.props
 
     return (
       <div className="col-field">
-        <label className="col-field-label" htmlFor={ name || this.props.id }>{ label }</label>
-        <Element className="col-field-input" type={ type } { ...props } name={ name || this.props.id } />
+        <label className="col-field-label" htmlFor={ this.getID() }>{ label }</label>
+        <Element className="col-field-input" type={ type } { ...props } name={ this.getName() } id={ this.getID() } />
       </div>
     )
   }
