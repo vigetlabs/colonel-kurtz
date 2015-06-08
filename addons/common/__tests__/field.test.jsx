@@ -30,4 +30,11 @@ describe('Addons - Common - Field', function () {
 
     label.htmlFor.should.equal(input.id)
   })
+
+  it ('properly handles spaces in labels when assigning ids', function() {
+    let component = render(<Field label="Test Field" />)
+    let input = component.getDOMNode().querySelector(".col-field-input")
+
+    input.id.should.equal('test-field')
+  })
 })
