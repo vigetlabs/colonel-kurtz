@@ -8,6 +8,6 @@ module.exports = function (blockTypes, block) {
     let types = blockTypes.filter(i => i.id === block.type)[0].types
     return blockTypes.filter(i => types.indexOf(i.id) > -1)
   } else {
-    return blockTypes.filter(type => !type.private)
+    return blockTypes.filter(type => !type.childOnly)
   }
 }
