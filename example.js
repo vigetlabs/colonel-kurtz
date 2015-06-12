@@ -22,7 +22,7 @@ let blockTypes = [
     id        : 'child-text',
     label     : 'Child Text',
     component : require('../addons/medium'),
-    childOnly : true
+    root : true
   },
   {
     id        : 'image',
