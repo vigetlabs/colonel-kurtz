@@ -56,7 +56,9 @@ module.exports = React.createClass({
         <div className={ `col-block col-block-${ block.type }` }>
           <Component ref="block" { ...block } onChange={ this._onChange } >
             <Switch app={ app } parent={ block } />
-            <Animator>{ children }</Animator>
+            <Animator className="col-block-children">
+              { children }
+            </Animator>
           </Component>
 
           <Menu ref="menu" app={ app } block={ block } items={ extraMenuItems } active={ menuOpen } onOpen={ this.openMenu } onExit={ this.closeMenu } />
