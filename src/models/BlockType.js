@@ -1,8 +1,12 @@
 let React = require('react')
 
+let defaults = { root: true }
+
 class BlockType {
 
-  constructor({ component, menuItems, label, types, id, root = true }) {
+  constructor(config) {
+    let { component, menuItems, label, types, id, root } = { ...defaults, ...config }
+
     if (typeof component === 'object') {
       component = React.createClass(component)
     }
