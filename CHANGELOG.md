@@ -12,7 +12,7 @@
 - Added `allow` property to configuration options to only allow specific blocks
 - The Youtube and Image addons strip white space when checking to open
 - Upgraded Microcosm to 8.1.0
-- Added `root` property to blockTypes that prevents them from displaying in the default block menu
+- Added `root` property to blockTypes. When set to false, it will prevent it from displaying in the default block menu
 
 ## 2.17.0
 
