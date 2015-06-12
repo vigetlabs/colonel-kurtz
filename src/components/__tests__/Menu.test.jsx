@@ -11,14 +11,14 @@ describe('Components - Menu', function() {
   beforeEach(function(done) {
     app = new Colonel(config)
 
-    app.push = sinon.mock()
+    app.push = sinon.stub()
 
     app.start(function() {
       menu = React.createElement(Menu, {
         app: app,
         block: app.refine('blocks').first(),
-        onOpen: sinon.mock(),
-        onExit: sinon.mock(),
+        onOpen: sinon.stub(),
+        onExit: sinon.stub(),
         active: true
       })
     }, done)

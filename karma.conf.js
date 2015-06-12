@@ -35,7 +35,11 @@ module.exports = function(config) {
 
     logLevel: config.LOG_ERROR,
 
-    reporters: noCoverage ? [ 'nyan' ] : [ 'nyan', 'coverage' ],
+    reporters: noCoverage ? [ 'mocha' ] : [ 'mocha', 'coverage' ],
+
+    mochaReporter: {
+      output: 'minimal'
+    },
 
     coverageReporter: {
       reporters: [
