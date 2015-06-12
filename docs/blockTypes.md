@@ -18,6 +18,8 @@ Property  | Description
 id        | A unique identifier. Assigned to a block when it is created
 label     | A display name given to the block type in the interface
 component | A React component used to edit a block of a given type
+types     | An array of other BlockType ids that may be created as children
+root      | Configures the BlockType to display in the menu unless specifically asked for using `types`. Defaults to true.
 
 ## Creating Block Types
 
