@@ -36,6 +36,7 @@ let MyBlockTypeComponent = React.createClass({
     )
   }
 })
+```
 
 ## Properties
 
