@@ -17,8 +17,8 @@ the `blockType` field:
       ...
       blockTypes : [
         {
-          id        : image',
-          label     : image',
+          id        : 'image',
+          label     : 'Image',
           component : require('colonel-kurtz/addons/image')
         }
       ]
