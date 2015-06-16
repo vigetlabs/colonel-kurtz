@@ -5,12 +5,13 @@
 
 ## Options
 
-Name       | Description
----------- | -----------
-el         | A DOM element used to render the editor
-blocks     | The initial starting "seed" blocks for the instance
-blockTypes | Block Types to use for this editor, see `blockTypes.md`
-
+Name        | Description
+----------- | -----------
+el          | A DOM element used to render the editor
+blocks      | The initial starting "seed" blocks for the instance
+blockTypes  | Block Types to use for this editor, see `blockTypes.md`
+maxChildren | The maximum number of root level blocks
+allow       | A whitelist of block type ids.
 
 ## Walk-through
 
