@@ -4,7 +4,7 @@ let { destroy, move } = require('../actions/blocks')
 module.exports = [
   {
     id : 'moveBefore',
-    label : 'Move Before',
+    label : 'Move Up',
     onClick(app, block) {
       app.push(move, block, -1)
     },
@@ -14,7 +14,7 @@ module.exports = [
   },
   {
     id : 'moveAfter',
-    label : 'Move After',
+    label : 'Move Down',
     onClick(app, block) {
       app.push(move, block, 1)
     },
