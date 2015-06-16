@@ -1,22 +1,19 @@
 let React = require('react')
 
-let defaults = { root: true }
+let defaults = {
+  maxChildren : Infinity,
+  root        : true,
+  types       : []
+}
 
 class BlockType {
 
   constructor(config) {
-    let { component, menuItems, label, types, id, root } = { ...defaults, ...config }
+    let { component } = Object.assign(this, defaults, config)
 
     if (typeof component === 'object') {
-      component = React.createClass(component)
+      this.component = React.createClass(component)
     }
-
-    this.id        = id
-    this.label     = label
-    this.types     = types || []
-    this.component = component
-    this.menuItems = menuItems
-    this.root      = root
   }
 
   valueOf() {

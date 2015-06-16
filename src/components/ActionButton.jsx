@@ -20,10 +20,10 @@ module.exports = React.createClass({
   },
 
   render() {
-    let { className, label, onClick, symbol } = this.props
+    let { className, disabled, label, onClick, symbol } = this.props
 
     return (
-      <Btn className={ className } onClick={ onClick }>
+      <Btn className={ className } onClick={ onClick } disabled={ disabled }>
         <span className="col-hidden">{ label }</span>
         <span aria-hidden="true">{ symbol }</span>
       </Btn>

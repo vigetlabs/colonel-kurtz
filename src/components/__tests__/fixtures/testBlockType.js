@@ -1,6 +1,6 @@
 module.exports = {
-  id: 'test',
-  label: 'Test',
+  id    : 'test',
+  label : 'Test',
   component: {
     getMenuItems() {
       return [{ id: 'test', label: 'Test' }]

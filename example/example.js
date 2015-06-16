@@ -8,10 +8,11 @@ let ColonelKurtz = require('../src/Colonel')
 
 let blockTypes = [
   {
-    id        : 'section',
-    label     : 'Section',
-    component : require('./blockTypes/Section'),
-    types     : [ 'child-text', 'image', 'youtube' ]
+    id          : 'section',
+    label       : 'Section',
+    component   : require('./blockTypes/Section'),
+    types       : [ 'child-text', 'image', 'youtube' ],
+    maxChildren : 3
   },
   {
     id        : 'medium',
@@ -37,8 +38,9 @@ let blockTypes = [
 ]
 
 let editor = new ColonelKurtz({
-  el         : document.getElementById('app'),
-  blockTypes : blockTypes
+  el          : document.getElementById('app'),
+  blockTypes  : blockTypes,
+  maxChildren : 5
 })
 
 editor.addPlugin(require('./plugins/storage'))

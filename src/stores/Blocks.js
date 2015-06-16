@@ -9,7 +9,6 @@
 
 let Actions    = require('../actions/blocks')
 let Block      = require('../models/Block')
-let assign     = require('../utils/assign')
 let insertAt   = require('../utils/insertAt')
 let siblingAt  = require('../utils/siblingAt')
 
@@ -66,7 +65,7 @@ let Blocks = {
   update(state, { id, content }) {
     var block = Blocks.find(state, id)
 
-    block.content = assign(block.content, content)
+    block.content = Object.assign(block.content, content)
 
     return state
   },

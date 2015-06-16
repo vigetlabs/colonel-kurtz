@@ -21,12 +21,14 @@ module.exports = {
     return blockTypes.filter(type => acceptable.indexOf(type.id) > -1)
   },
 
-  register(app, { allow, blocks, blockTypes }, next) {
+  register(app, { allow, maxChildren, blocks, blockTypes }, next) {
     if (blocks instanceof HTMLElement) {
       blocks = parseElement(blocks)
     }
 
     app.replace({ blocks, blockTypes: this.filter(blockTypes, allow) })
+
+    app.set('maxChildren', maxChildren)
 
     next()
   }

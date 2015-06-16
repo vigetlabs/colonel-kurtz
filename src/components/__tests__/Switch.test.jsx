@@ -126,4 +126,55 @@ describe('Components - Switch', function() {
     })
   })
 
+  describe('Creating block children', function() {
+    let LimitedFixture = Object.assign({}, Fixture, {
+      id: 'limited',
+      maxChildren: 3,
+      types: [ 'limited' ]
+    })
+
+    beforeEach(function(done) {
+      let type    = LimitedFixture.id
+      let content = {}
+      let block   = { type, content, blocks: [] }
+
+      app = new Colonel({
+        el : document.createElement('div'),
+        blocks : [{
+          type,
+          content,
+          blocks: [ block, block, block ]
+        }],
+        blockTypes : [ LimitedFixture ]
+      })
+
+      app.start(done)
+    })
+
+    it ('does not enable toggles when its provided block has too many children', function() {
+      let el = render(<Switch app={ app } parent={ app.get('blocks')[0] } />)
+      el.getDOMNode().querySelector('button').disabled.should.equal(true)
+    })
+  })
+
+  describe('Creating editor children', function() {
+    beforeEach(function(done) {
+      let block   = { type: Fixture.id, content: {}, blocks: [] }
+
+      app = new Colonel({
+        el : document.createElement('div'),
+        maxChildren : 3,
+        blocks : [ block, block, block ],
+        blockTypes : [ Fixture ]
+      })
+
+      app.start(done)
+    })
+
+    it ('does not enable toggles when the apps maxChildren setting is exceeded', function() {
+      let el = render(<Switch app={ app } />)
+      el.getDOMNode().querySelector('button').disabled.should.equal(true)
+    })
+  })
+
 })

@@ -7,4 +7,9 @@ describe('Models - BlockType', function() {
     type.valueOf().should.equal(type.id)
   })
 
+  it ('has an infinite maxChildren attribute by default', function() {
+    let type = new BlockType()
+    type.maxChildren.should.equal(Infinity)
+  })
+
 })

@@ -1,5 +1,6 @@
 let ActionButton  = require('./ActionButton')
 let Actions       = require('../actions/blocks')
+let Blocks        = require('../stores/Blocks')
 let React         = require('react')
 let SwitchNav     = require('./SwitchNav')
 let classNames    = require('classnames')
@@ -33,6 +34,7 @@ module.exports = React.createClass({
     if (this.state.open) return null
 
     return (<ActionButton ref="toggle"
+                          disabled={ this.hasMaxChildren() }
                           label="Open the block menu and create a block"
                           onClick={ this._onToggle } />)
   },
@@ -46,13 +48,29 @@ module.exports = React.createClass({
                        onExit={ this.close } />)
   },
 
+  hasMaxChildren() {
+    let { app, parent } = this.props
+
+    if (!parent) {
+      return Blocks.filterChildren(app.get('blocks')).length >= app.get('maxChildren', Infinity)
+    }
+
+    let children = Blocks.getChildren(app.get('blocks'), parent)
+    let type     = app.refine('blockTypes').find(t => t.id === parent.type)
+
+    return children.length >= type.maxChildren
+  },
+
   render() {
     let { app, parent, position } = this.props
-
     let types = typesForBlock(app.get('blockTypes'), parent)
 
+    let className = classNames('col-switch', {
+      'col-switch-disabled': this.hasMaxChildren()
+    })
+
     return types.length ? (
-      <div className="col-switch" onKeyUp={ this._onKeyUp }>
+      <div className={ className } onKeyUp={ this._onKeyUp }>
         { this.getToggle() }
         { this.getNav(types) }
       </div>
@@ -68,7 +86,6 @@ module.exports = React.createClass({
     let { app, position, parent } = this.props
 
     let types = typesForBlock(app.get('blockTypes'), parent)
-
     // If only one type exists, instead of opening the nav, just
     // create that element
     if (types.length === 1) {
