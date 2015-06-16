@@ -14,7 +14,7 @@ module.exports = function(config) {
   }
 
   config.set({
-    browsers: [ 'Firefox' ],
+    browsers: [ 'Chrome' ],
 
     autoWatchBatchDelay: 400,
     browserNoActivityTimeout: 30000,
@@ -66,9 +66,8 @@ module.exports = function(config) {
             exclude : /node_modules/,
             loader  : 'babel',
             query   : {
-              auxiliaryComment: "istanbul ignore next",
+              auxiliaryCommentBefore: "istanbul ignore next",
               stage: 1,
-              loose: true,
               optional: [ 'runtime' ]
             }
           }

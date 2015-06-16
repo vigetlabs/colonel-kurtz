@@ -24,7 +24,7 @@ var Image = React.createClass({
       <div className="col-img">
         <Field label="Image Source" type="url" value={ src } name="image_src" onChange={ this._onSrcChange }/>
         { this.props.children }
-        <Frame open={ `${ src }`.trim() }>
+        <Frame open={ `${ src || '' }`.trim() }>
           <Graphic src={ src } alt="" />
         </Frame>
       </div>

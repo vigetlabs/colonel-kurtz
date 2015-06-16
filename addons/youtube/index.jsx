@@ -32,7 +32,7 @@ module.exports = React.createClass({
       <div className="col-youtube">
         <Field label="YouTube Video ID" value={ video_id } name="youtube_video_id" onChange={ this._onChange } autofocus/>
         { this.props.children }
-        <Frame open={ `${ video_id }`.trim() }>
+        <Frame open={ `${ video_id || '' }`.trim() }>
           <Graphic element="iframe" src={ this.getSrc(video_id) } />
         </Frame>
       </div>
