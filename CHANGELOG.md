@@ -14,7 +14,7 @@
 - Upgraded Microcosm to 8.1.0
 - Added `root` property to blockTypes. When set to false, it will prevent it from displaying in the default block menu
 - Added `maxChildren` property to Colonel instances and BlockTypes to limit the number of children
-- Returned "Move up" and "Move down" phrasing in menu itmes.
+- Returned "Move up" and "Move down" phrasing in menu items.
 
 ## 2.17.0
 
