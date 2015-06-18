@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.18.0 (Not released)
+## 2.18.0
 
 ### Noticeable Changes
 
