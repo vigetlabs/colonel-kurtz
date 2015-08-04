@@ -52,17 +52,17 @@
     "babel": "~5",
     "babel-core": "~5",
     "babel-loader": "~5",
-    "babel-plugin-object-assign": "~1.1",
+    "babel-plugin-object-assign": "~1.2",
     "babel-runtime": "~5",
     "coveralls": "~2",
-    "css-loader": "~0.14",
+    "css-loader": "~0.15",
     "istanbul": "~0.3",
     "istanbul-instrumenter-loader": "~0.1",
-    "karma": "~0.12",
-    "karma-cli": "~0.0",
+    "karma": "~>0.13.4",
+    "karma-cli": "~0.1",
     "karma-coverage": "~0.4",
-    "karma-chrome-launcher": "~0.1",
-    "karma-mocha": "~0.1",
+    "karma-chrome-launcher": "~0.2",
+    "karma-mocha": "~0.2",
     "karma-mocha-reporter": "~1.0",
     "karma-sinon-chai": "~1.0",
     "karma-sourcemap-loader": "~0.3",
@@ -75,7 +75,7 @@
     "sass-loader": "~1.0",
     "style-loader": "~0.12",
     "webpack": "~1",
-    "webpack-dev-server": "~1.9"
+    "webpack-dev-server": "~1.10"
   },
   "peerDependencies": {
     "react": ">= 0.12.1 < 0.14"
@@ -85,5 +85,11 @@
     "microcosm": "~8.1",
     "react-focus-trap": "~0.8",
     "react-ink": "~4.1"
+  },
+  "babel": {
+    "stage": 1,
+    "sourceMaps": "inline",
+    "blacklist" : [ "strict" ],
+    "plugins": [ "object-assign" ]
   }
 }

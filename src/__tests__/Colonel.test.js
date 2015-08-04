@@ -1,7 +1,6 @@
 let Actions = require('../actions/blocks')
 let Block   = require('../models/Block')
 let Colonel = require('../Colonel')
-let Section = require('./fixtures/SectionBlockType')
 
 describe('ColonelKurtz', function() {
   let app;
@@ -12,7 +11,7 @@ describe('ColonelKurtz', function() {
     app = new Colonel({
       el : el,
       blocks : [ new Block({ type: 'section' }) ],
-      blockTypes : [Section]
+      blockTypes : [{ id: 'section' }]
     })
 
     app.start(done)

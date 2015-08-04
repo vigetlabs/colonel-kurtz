@@ -33,8 +33,6 @@ module.exports = function(config) {
       './addons/**/__tests__/*.test.js*' : [ 'webpack', 'sourcemap' ]
     },
 
-    logLevel: config.LOG_ERROR,
-
     reporters: noCoverage ? [ 'mocha' ] : [ 'mocha', 'coverage' ],
 
     mochaReporter: {
@@ -67,7 +65,6 @@ module.exports = function(config) {
             loader  : 'babel',
             query   : {
               auxiliaryCommentBefore: "istanbul ignore next",
-              stage: 1,
               optional: [ 'runtime' ]
             }
           }

@@ -1,6 +1,8 @@
 let React = require('react')
+let DefaultBlockType = require('../components/DefaultBlockType')
 
 let defaults = {
+  component   : DefaultBlockType,
   maxChildren : Infinity,
   root        : true,
   types       : []

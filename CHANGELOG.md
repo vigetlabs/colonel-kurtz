@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.19.0
+
+- BlockTypes are provided a default component definition that only renders children. This is to provide a standard default for block types that are containers for other blocks.
+- This project no longer compiles in Babel loose mode.
+
 ## 2.18.0
 
 ### Noticeable Changes
