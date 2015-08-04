@@ -1,6 +1,6 @@
 {
   "name": "colonel-kurtz",
-  "version": "2.18.0",
+  "version": "2.19.0",
   "private": true,
   "description": "A block editor",
   "main": "src/Colonel.js",
@@ -89,7 +89,11 @@
   "babel": {
     "stage": 1,
     "sourceMaps": "inline",
-    "blacklist" : [ "strict" ],
-    "plugins": [ "object-assign" ]
+    "blacklist": [
+      "strict"
+    ],
+    "plugins": [
+      "object-assign"
+    ]
   }
 }
