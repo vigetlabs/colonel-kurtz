@@ -16,7 +16,6 @@ module.exports = function(config) {
   config.set({
     browsers: [ 'Chrome' ],
 
-    autoWatchBatchDelay: 400,
     browserNoActivityTimeout: 30000,
 
     singleRun: isIntegration,

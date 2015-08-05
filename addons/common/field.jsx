@@ -14,13 +14,17 @@ module.exports = React.createClass({
     }
   },
 
+  getName() {
+    return this.props.name || this.props.id
+  },
+
   render() {
-    var { label, name, type, element:Element, ...props } = this.props
+    var { label, element:Element, ...props } = this.props
 
     return (
       <div className="col-field">
-        <label className="col-field-label" htmlFor={ name || this.props.id }>{ label }</label>
-        <Element className="col-field-input" type={ type } { ...props } name={ name || this.props.id } />
+        <label className="col-field-label" htmlFor={ this.getName() }>{ label }</label>
+        <Element ref="input" className="col-field-input" { ...props } name={ this.getName() } />
       </div>
     )
   }

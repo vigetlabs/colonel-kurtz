@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.20.0
+
+- Added Embedded common component addon. The YouTube addon now uses it.
+
 ## 2.19.0
 
 - BlockTypes are provided a default component definition that only renders children. This is to provide a standard default for block types that are containers for other blocks.

@@ -4,12 +4,10 @@
  * src, caption, and credit
  */
 
-let Field   = require('../common/field')
-let Frame   = require('../common/frame')
-let Graphic = require('../common/graphic')
-let React   = require('react')
+const Embedded = require('../common/embedded')
+const React = require('react')
 
-module.exports = React.createClass({
+const YouTube = React.createClass({
 
   getDefaultProps() {
     return {
@@ -20,29 +18,17 @@ module.exports = React.createClass({
     }
   },
 
-  getSrc(id) {
-    var { baseUrl } = this.props
-    return id ? baseUrl + id : null
-  },
-
   render() {
-    var { video_id } = this.props.content
+    const { baseUrl, content, onChange } = this.props
 
-    return (
-      <div className="col-youtube">
-        <Field label="YouTube Video ID" value={ video_id } name="youtube_video_id" onChange={ this._onChange } autofocus/>
-        { this.props.children }
-        <Frame open={ `${ video_id || '' }`.trim() }>
-          <Graphic element="iframe" src={ this.getSrc(video_id) } />
-        </Frame>
-      </div>
-    )
-  },
-
-  _onChange(e) {
-    this.props.onChange({
-      video_id: e.currentTarget.value
-    })
+    return (<Embedded className="col-youtube"
+                      title="YouTube Video ID"
+                      baseUrl={ baseUrl }
+                      name="video_id"
+                      slug={ content.video_id }
+                      onChange={ onChange } />)
   }
 
 })
+
+module.exports = YouTube
