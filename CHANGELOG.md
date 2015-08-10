@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.21.0
+
+- The `<Field />` component is no longer a [controlled input](https://facebook.github.io/react/docs/forms.html#controlled-components)
+
+
 ## 2.20.0
 
 - Added Embedded common component addon. The YouTube addon now uses it.
