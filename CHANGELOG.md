@@ -3,7 +3,7 @@
 ## 2.21.0
 
 - The `<Field />` component is no longer a [controlled input](https://facebook.github.io/react/docs/forms.html#controlled-components)
-
+- The `<Field />` component label now wraps its input
 
 ## 2.20.0
 
