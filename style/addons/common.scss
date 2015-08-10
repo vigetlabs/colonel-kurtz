@@ -17,7 +17,6 @@ $col-field-focus-color : #009688 !default;
   display: block;
   float: none;
   font-size: 13px;
-  margin-bottom: 8px;
   width: 100%;
 }
 
@@ -27,6 +26,7 @@ $col-field-focus-color : #009688 !default;
   color: #222;
   display: block;
   font-size: 14px;
+  margin-top: 8px;
   padding-bottom: 4px;
   width: 100%;
   transition: 0.2s box-shadow;
