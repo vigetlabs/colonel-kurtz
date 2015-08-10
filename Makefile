@@ -1,8 +1,5 @@
-NPM_BIN   = $$(npm bin)
-BABEL     = $(NPM_BIN)/babel
-COVERALLS = $(NPM_BIN)/coveralls
-KARMA     = $(NPM_BIN)/karma
-SASS      = $(NPM_BIN)/node-sass
+SHELL  := /bin/bash
+PATH   := node_modules/.bin:$(PATH)
 
 .PHONY: clean test test-coverage build package.json javascript docs release example
 
@@ -15,12 +12,12 @@ build:
 
 javascript: $(shell find src -name '*.js*' ! -name '*.test.js*') $(shell find addons -name '*.js*' ! -name '*.test.js*')
 	mkdir -p dist
-	$(BABEL) -d dist $^
+	babel -d dist $^
 
 sass:
 	mkdir -p dist
 	cp -r style dist/style
-	$(SASS) ./dist/style/colonel.scss --stdout > dist/colonel-kurtz.css
+	node-sass ./dist/style/colonel.scss --stdout > dist/colonel-kurtz.css
 
 package.json:
 	node -p 'p=require("./package");p.private=undefined;p.scripts=p.devDependencies=undefined;JSON.stringify(p,null,2)' > dist/package.json
@@ -40,11 +37,11 @@ clean:
 	rm -rf dist
 
 test:
-	NODE_ENV=test $(KARMA) start --single-run
+	NODE_ENV=test karma start --single-run
 
 test-watch:
-	NODE_ENV=test $(KARMA) start
+	NODE_ENV=test karma start
 
 test-coverage:
 	make test
-	$(COVERALLS) < coverage/report-lcov/lcov.info
+	coveralls < coverage/report-lcov/lcov.info
