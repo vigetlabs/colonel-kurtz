@@ -16,30 +16,6 @@ describe('Addons - YouTube', function() {
     component._onChange({ video_id: slug })
   })
 
-  it ('extracts codes from YouTube query strings', function(done) {
-    const url  = 'https://www.youtube.com/watch?v=0bRLtJHo0pI'
-    const test = function({ video_id }) {
-      video_id.should.equal('0bRLtJHo0pI')
-      done()
-    }
-
-    const component = render(<YouTube onChange={ test } />)
-
-    component._onChange({ video_id: url })
-  })
-
-  it ('extracts codes from YouTube short urls', function(done) {
-    const url  = 'https://youtu.be/EULc7RgnM4c'
-    const test = function({ video_id }) {
-      video_id.should.equal('EULc7RgnM4c')
-      done()
-    }
-
-    const component = render(<YouTube onChange={ test } />)
-
-    component._onChange({ video_id: url })
-  })
-
   it ('can process undefined values', function(done) {
     const test = function({ video_id }) {
       video_id.should.equal('')
@@ -49,6 +25,35 @@ describe('Addons - YouTube', function() {
     const component = render(<YouTube onChange={ test } />)
 
     component._onChange({ video_id: undefined })
+  })
+
+  describe('Extracting URLs', function() {
+    const patterns = {
+      shortcode: "http://youtu.be/dQw4w9WgXcQ",
+      embed: "http://www.youtube.com/embed/dQw4w9WgXcQ",
+      watch_query_string: "http://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      query_string: "http://www.youtube.com/?v=dQw4w9WgXcQ",
+      v_url_parameter: "http://www.youtube.com/v/dQw4w9WgXcQ",
+      embed_url_parameter: "http://www.youtube.com/e/dQw4w9WgXcQ",
+      user_hash: "http://www.youtube.com/user/username#p/u/11/dQw4w9WgXcQ",
+      org_hash: "http://www.youtube.com/sandalsResorts#p/c/54B8C800269D7C1B/0/dQw4w9WgXcQ",
+      watch_extra_query_parameters: "http://www.youtube.com/watch?feature=player_embedded&v=dQw4w9WgXcQ",
+      extra_query_parameters: "http://www.youtube.com/?feature=player_embedded&v=dQw4w9WgXcQ"
+    }
+
+    for (let pattern in patterns) {
+      it (`extracts the video id from a YouTube ${ pattern.split("_").join(" ") }`, function(done) {
+        const url  = patterns[pattern]
+        const test = function({ video_id }) {
+          video_id.should.equal('dQw4w9WgXcQ')
+          done()
+        }
+
+        const component = render(<YouTube onChange={ test } />)
+
+        component._onChange({ video_id: url })
+      })
+    }
   })
 
 })

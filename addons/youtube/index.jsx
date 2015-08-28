@@ -6,10 +6,11 @@
 
 const Embedded = require('../common/embedded')
 const React = require('react')
+const getYouTubeID = new RegExp('(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})', 'i')
 
 function parseYouTube(value='') {
-  let matches = value.match(/(youtu\.be\/|v=)(.+)(&|$)/)
-  return matches ? matches[2] : value
+  let matches = value.match(getYouTubeID)
+  return matches ? matches[1] : value
 }
 
 const YouTube = React.createClass({
