@@ -4,7 +4,7 @@
  */
 
 let React = require('react')
-let uid   = 0
+let uid   = require('uid')
 
 let Field = React.createClass({
 
@@ -18,7 +18,7 @@ let Field = React.createClass({
 
   getInitialState() {
     return {
-      hintId: `hint-col-field-${uid++}`
+      hintId: `hint-col-field-${uid()}`
     }
   },
 

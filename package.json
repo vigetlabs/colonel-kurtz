@@ -55,15 +55,15 @@
     "babel-plugin-object-assign": "~1.2",
     "babel-runtime": "~5",
     "coveralls": "~2",
-    "css-loader": "~0.15",
+    "css-loader": "~0.16",
     "istanbul": "~0.3",
-    "istanbul-instrumenter-loader": "~0.1",
+    "istangbul-instrumenter-loader": "~0.1",
     "karma": "~>0.13.4",
     "karma-cli": "~0.1",
-    "karma-coverage": "~0.4",
+    "karma-coverage": "~0.5",
     "karma-chrome-launcher": "~0.2",
     "karma-mocha": "~0.2",
-    "karma-mocha-reporter": "~1.0",
+    "karma-mocha-reporter": "~1.1",
     "karma-sinon-chai": "~1.0",
     "karma-sourcemap-loader": "~0.3",
     "karma-webpack": "~1",
@@ -72,7 +72,7 @@
     "postcss": "~4.1",
     "react": "~0.13",
     "react-hot-loader": "~1.2",
-    "sass-loader": "~1.0",
+    "sass-loader": "~2.0",
     "style-loader": "~0.12",
     "webpack": "~1",
     "webpack-dev-server": "~1.10"
@@ -84,14 +84,12 @@
     "classnames": "~2",
     "microcosm": "~8.1",
     "react-focus-trap": "~0.8",
-    "react-ink": "~4.1"
+    "react-ink": "~4.1",
+    "uid": "0.0.2"
   },
   "babel": {
-    "stage": 1,
+    "stage": 2,
     "sourceMaps": "inline",
-    "blacklist": [
-      "strict"
-    ],
     "plugins": [
       "object-assign"
     ]

@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.22.0 (Not released)
+
+- Added a `hint` property the `<Field />`
+- Added `uid` dependency to generate unique ids for `<Field />` hints
+- Updated some development dependencies
+
+### Upgrading
+
+There is a small style update to `<Field />` those not pulling in the
+style sheet from node_modules should update theirs accordingly.
+
 ## 2.21.0
 
 - The `<Field />` component is no longer a [controlled input](https://facebook.github.io/react/docs/forms.html#controlled-components)
