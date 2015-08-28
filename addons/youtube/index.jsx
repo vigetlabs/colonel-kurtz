@@ -7,6 +7,12 @@
 const Embedded = require('../common/embedded')
 const React = require('react')
 
+function parseYouTube(value='') {
+  let matches = value.match(/v=(.+?)&*/)
+
+  return matches ? matches[1] : value
+}
+
 const YouTube = React.createClass({
 
   getDefaultProps() {
@@ -19,16 +25,19 @@ const YouTube = React.createClass({
   },
 
   render() {
-    const { baseUrl, content, onChange } = this.props
+    const { baseUrl, content } = this.props
 
     return (<Embedded className="col-youtube"
                       title="YouTube Video ID"
                       baseUrl={ baseUrl }
                       name="video_id"
                       slug={ content.video_id }
-                      onChange={ onChange } />)
-  }
+                      onChange={ this._onChange } />)
+  },
 
+  _onChange({ video_id }) {
+    this.props.onChange({ video_id: parseYouTube(video_id) })
+  }
 })
 
 module.exports = YouTube
