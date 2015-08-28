@@ -40,11 +40,11 @@ const Embedded = React.createClass({
   },
 
   render() {
-    const { className, name, slug, title } = this.props
+    const { className, hint, name, slug, title } = this.props
 
     return (
       <div className={ className }>
-        <Field ref="field" label={ title } value={ slug } name={ name } onChange={ this._onChange } />
+        <Field ref="field" hint={ hint } label={ title } value={ slug } name={ name } onChange={ this._onChange } />
         { this.props.children }
         <Frame ref="frame" open={ this.hasSlug() }>
           <Graphic key={ slug } element="iframe" src={ this.getSrc(slug) } />

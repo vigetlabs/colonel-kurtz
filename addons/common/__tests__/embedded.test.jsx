@@ -2,7 +2,7 @@ const Embedded = require('../embedded')
 const Simulate = React.addons.TestUtils.Simulate
 const render = React.addons.TestUtils.renderIntoDocument
 
-describe('Embedded', function() {
+describe('Addons - Common - Embedded', function() {
 
   it ('resolves urls to a baseUrl and slug', function() {
     const component = render(<Embedded name="test" baseUrl="test/" slug="1" onChange={ sinon.stub() } />)
