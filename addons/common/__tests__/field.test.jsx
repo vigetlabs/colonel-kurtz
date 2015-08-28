@@ -26,6 +26,6 @@ describe('Addons - Common - Field', function () {
     let hint = el.querySelector('.col-field-hint')
     let input = el.querySelector('.col-field-input')
 
-    hint.id.should.equal(input.getAttribute('aria-describeby'))
+    hint.id.should.equal(input.getAttribute('aria-describedby'))
   })
 })
