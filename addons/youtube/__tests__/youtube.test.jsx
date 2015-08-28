@@ -42,7 +42,7 @@ describe('Addons - YouTube', function() {
     }
 
     for (let pattern in patterns) {
-      it (`extracts the video id from a YouTube ${ pattern.split("_").join(" ") }`, function(done) {
+      it (`extracts the video id from a YouTube ${ pattern.replace("_", " ") }`, function(done) {
         const url  = patterns[pattern]
         const test = function({ video_id }) {
           video_id.should.equal('dQw4w9WgXcQ')
