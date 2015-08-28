@@ -8,8 +8,8 @@ const Embedded = require('../common/embedded')
 const React = require('react')
 
 function parseYouTube(value='') {
-  let matches = value.match(/v=(.+)(&|$)/)
-  return matches ? matches[1] : value
+  let matches = value.match(/(youtu\.be\/|v=)(.+)(&|$)/)
+  return matches ? matches[2] : value
 }
 
 const YouTube = React.createClass({
