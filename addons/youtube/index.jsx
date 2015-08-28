@@ -28,7 +28,8 @@ const YouTube = React.createClass({
     const { baseUrl, content } = this.props
 
     return (<Embedded className="col-youtube"
-                      title="YouTube Video ID"
+                      title="YouTube Video"
+                      hint="This can either be a video ID or URL. The video's unique ID will be saved."
                       baseUrl={ baseUrl }
                       name="video_id"
                       slug={ content.video_id }
