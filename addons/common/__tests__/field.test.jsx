@@ -19,4 +19,13 @@ describe('Addons - Common - Field', function () {
 
     component.refs.input.props.autofocus.should.equal(true)
   })
+
+  it ('sets up aria-describeby for hints', function() {
+    let component = render(<Field hint="Yes" autofocus />)
+    let el = React.findDOMNode(component)
+    let hint = el.querySelector('.col-field-hint')
+    let input = el.querySelector('.col-field-input')
+
+    hint.id.should.equal(input.getAttribute('aria-describeby'))
+  })
 })

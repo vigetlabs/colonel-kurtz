@@ -4,27 +4,42 @@
  */
 
 let React = require('react')
+let uid   = 0
 
-module.exports = React.createClass({
+let Field = React.createClass({
 
   getDefaultProps() {
     return {
+      hint    : null,
       element : 'input',
       type    : 'text'
     }
   },
 
+  getInitialState() {
+    return {
+      hintId: `hint-col-field-${uid++}`
+    }
+  },
+
+  getHint(hint) {
+    return hint ? (<span id={ this.state.hintId } className="col-field-hint">{ hint }</span>) : null
+  },
+
   render() {
-    var { label, element:Element, value, ...props } = this.props
+    let { hint, element:Element, label, value, ...props } = this.props
+    let { hintId } = this.state
 
     return (
-      <div className="col-field">
-        <label className="col-field-label">
-          { label }
-          <Element ref="input" className="col-field-input" defaultValue={ value } { ...props } />
-        </label>
-      </div>
+      <label className="col-field">
+        <span className="col-field-label">{ label }</span>
+
+        <Element ref="input" className="col-field-input" aria-describedby={ hint ? hintId : null } defaultValue={ value } { ...props } />
+        { this.getHint(hint) }
+      </label>
     )
   }
 
 })
+
+module.exports = Field

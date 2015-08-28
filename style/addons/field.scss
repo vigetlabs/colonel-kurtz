@@ -1,0 +1,48 @@
+$col-field-focus-color: #009688 !default;
+
+.col-field {
+  color: black;
+  display: block;
+  float: none;
+  line-height: 1;
+  padding: 16px 12px 8px;
+  width: 100%;
+}
+
+.col-field-label {
+  display: block;
+  font-size: 12px;
+  line-height: 16px;
+  opacity: 0.54;
+}
+
+.col-field-input,
+.col-field-hint {
+  font-family: $col-font-family;
+}
+
+.col-field-input {
+  border: 0;
+  box-shadow: 0 1px 0 0 #d9d9d9;
+  color: #222;
+  display: block;
+  font-size: 16px;
+  line-height: 20px;
+  padding: 8px 0 4px;
+  margin: 0 0 4px;
+  transition: 0.2s box-shadow;
+  width: 100%;
+  -webkit-appearance: none;
+
+  &:focus {
+    box-shadow: 0 2px 0 $col-field-focus-color;
+    outline: none;
+  }
+}
+
+.col-field-hint {
+  color: rgba(black, 0.38);
+  display: block;
+  font-size: 12px;
+  padding: 4px 0;
+}

@@ -3,40 +3,7 @@
  * A common input field component
  */
 
-$col-field-padding     : 12px !default;
-$col-field-focus-color : #009688 !default;
-
-.col-field {
-  border: 0;
-  margin: 0;
-  padding: $col-field-padding
-}
-
-.col-field-label {
-  color: #777;
-  display: block;
-  float: none;
-  font-size: 13px;
-  width: 100%;
-}
-
-.col-field-input {
-  border: 0;
-  box-shadow: 0 1px 0 0 #d9d9d9;
-  color: #222;
-  display: block;
-  font-size: 14px;
-  margin-top: 8px;
-  padding-bottom: 4px;
-  width: 100%;
-  transition: 0.2s box-shadow;
-  -webkit-appearance: none;
-
-  &:focus {
-    box-shadow: 0 1px 0 $col-field-focus-color;
-    outline: none;
-  }
-}
+@import "./field";
 
 .col-graphic {
   background: #000;
