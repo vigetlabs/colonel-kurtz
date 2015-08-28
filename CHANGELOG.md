@@ -5,6 +5,10 @@
 - Added a `hint` property the `<Field />`
 - Added `uid` dependency to generate unique ids for `<Field />` hints
 - Updated some development dependencies
+- The YouTube addon will now accept a URL in addition to ID. The ID of
+the YouTube video will be extracted and saved (no breaking change)
+- Added hint property to `<Embeddable />` to allow hint text on its
+`<Field />` component
 
 ### Upgrading
 
