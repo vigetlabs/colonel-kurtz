@@ -2,17 +2,23 @@
 
 ## 2.22.0 (Not released)
 
+### Noticeable Changes
+
 - Added a `hint` property the `<Field />`
 - Added `uid` dependency to generate unique ids for `<Field />` hints
 - Updated some development dependencies
 - The YouTube addon will now accept a URL in addition to ID. The ID of
 the YouTube video will be extracted and saved (no breaking change)
+- Updated the labels and hints for the YouTube addon to make it clear
+  that a URL may also be pasted into the field.
 - Added hint property to `<Embeddable />` to allow hint text on its
 `<Field />` component
+- Added padding to right of `<Field />` label to handle very long
+  labels colliding with menu button.
 
 ### Upgrading
 
-There is a small style update to `<Field />` those not pulling in the
+There are small style updates to `<Field />` those not pulling in the
 style sheet from node_modules should update theirs accordingly.
 
 ## 2.21.0
