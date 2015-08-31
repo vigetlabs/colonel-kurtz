@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.22.0 (Not released)
+## 2.22.0
 
 ### Noticeable Changes
 
