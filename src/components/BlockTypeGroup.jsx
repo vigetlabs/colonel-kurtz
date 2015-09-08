@@ -55,7 +55,7 @@ module.exports = React.createClass({
 
   _onKeyUp(e) {
     // Do not allow escape presses to bubble up to parent switch
-    if (e.key === 'Escape') {
+    if (e.key === 'Escape' && this.state.open) {
       e.stopPropagation()
     }
   }

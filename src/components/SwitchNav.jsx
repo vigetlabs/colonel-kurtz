@@ -41,6 +41,7 @@ module.exports = React.createClass({
   render() {
     let ungrouped = this.props.blockTypes.filter(b => !b.group).map(this.getButton)
     let grouped   = this.getGroups(this.props.blockTypes)
+      console.log(ungrouped, grouped)
     let sorted    = grouped.concat(ungrouped).sort(function(a, b) {
       return a.name > b.name ? 1 : -1
     })
