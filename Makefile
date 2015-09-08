@@ -1,5 +1,6 @@
 SHELL  := /bin/bash
 PATH   := node_modules/.bin:$(PATH)
+DIST   := dist
 
 .PHONY: clean test test-coverage build package.json javascript docs release example
 
@@ -11,24 +12,24 @@ build:
 	make documentation
 
 javascript: $(shell find src -name '*.js*' ! -name '*.test.js*') $(shell find addons -name '*.js*' ! -name '*.test.js*')
-	mkdir -p dist
-	babel -d dist $^
+	mkdir -p $(DIST)
+	babel -d $(DIST) $^
 
 sass:
-	mkdir -p dist
-	cp -r style dist/style
-	node-sass ./dist/style/colonel.scss --stdout > dist/colonel-kurtz.css
+	mkdir -p $(DIST)
+	cp -r style $(DIST)/style
+	node-sass ./$(DIST)/style/colonel.scss --stdout > $(DIST)/colonel-kurtz.css
 
 package.json:
-	node -p 'p=require("./package");p.private=undefined;p.scripts=p.devDependencies=undefined;JSON.stringify(p,null,2)' > dist/package.json
+	node -p 'p=require("./package");p.private=undefined;p.scripts=p.devDependencies=undefined;JSON.stringify(p,null,2)' > $(DIST)/package.json
 
 documentation: README.md LICENSE.md docs
-	mkdir -p dist
-	cp -r $^ dist
+	mkdir -p $(DIST)
+	cp -r $^ $(DIST)
 
 release:
 	make build
-	npm publish dist
+	npm publish $(DIST)
 
 prerelease: clean build
 	npm publish $(DIST) --tag beta
@@ -37,7 +38,7 @@ example:
 	node example/server
 
 clean:
-	rm -rf dist
+	rm -rf $(DIST)
 
 test:
 	NODE_ENV=test karma start --single-run
