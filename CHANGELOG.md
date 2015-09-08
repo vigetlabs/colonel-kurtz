@@ -15,6 +15,29 @@ Kurtz stylesheet via `node_modules`, you will need to update your
 stylesheet in order to benefit from the new focus state on the
 BlockType creator menu
 
+BlockTypes can be grouped! To do this, add a `group` property to your
+block type like so:
+
+```javascript
+let blockTypes = [
+  {
+    id    : 'youtube',
+    group : 'Embedded',
+    // other props
+  },
+  {
+    id    : 'twitter',
+    group : 'Embedded',
+    // other props
+  },
+  {
+    id    : 'facebook',
+    group : 'Embedded',
+    // other props
+  }
+]
+```
+
 ## 2.22.0
 
 ### Noticeable Changes
