@@ -1,11 +1,11 @@
 let Actions   = require('../../actions/blocks')
 let Colonel   = require('../../Colonel')
-let Menu      = require('../Menu')
+let BlockMenu = require('../BlockMenu')
 let TestUtils = React.addons.TestUtils
 let config    = require('./fixtures/colonelConfig')
 let render    = TestUtils.renderIntoDocument
 
-describe('Components - Menu', function() {
+describe('Components - BlockMenu', function() {
   let app, menu;
 
   beforeEach(function(done) {
@@ -14,7 +14,7 @@ describe('Components - Menu', function() {
     app.push = sinon.stub()
 
     app.start(function() {
-      menu = React.createElement(Menu, {
+      menu = React.createElement(BlockMenu, {
         app: app,
         block: app.refine('blocks').first(),
         onOpen: sinon.stub(),

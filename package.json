@@ -82,6 +82,7 @@
   },
   "dependencies": {
     "classnames": "~2",
+    "group-by": "0.0.1",
     "microcosm": "~8.1",
     "react-focus-trap": "~0.8",
     "react-ink": "~4.1",

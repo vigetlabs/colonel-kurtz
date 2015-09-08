@@ -14,12 +14,6 @@ module.exports = React.createClass({
     block  : React.PropTypes.object.isRequired
   },
 
-  getDefaultProps() {
-    return {
-      items : []
-    }
-  },
-
   getMenuItem(item) {
     let { id } = item
     return (<Item key={ id } ref={ id } { ...item} { ...this.props} />)

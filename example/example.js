@@ -16,8 +16,9 @@ let blockTypes = [
   },
   {
     id        : 'medium',
-    label     : 'Text',
-    component : require('../addons/medium')
+    label     : 'Medium Editor',
+    component : require('../addons/medium'),
+    group     : 'Rich Text'
   },
   {
     id        : 'child-text',
@@ -28,11 +29,13 @@ let blockTypes = [
   {
     id        : 'image',
     label     : 'Image',
+    group     : 'Media',
     component : require('../addons/image')
   },
   {
     id        : 'youtube',
     label     : 'YouTube',
+    group     : 'Media',
     component : require('../addons/youtube')
   }
 ]

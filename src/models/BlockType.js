@@ -3,6 +3,7 @@ let DefaultBlockType = require('../components/DefaultBlockType')
 
 let defaults = {
   component   : DefaultBlockType,
+  group       : null,
   maxChildren : Infinity,
   root        : true,
   types       : []

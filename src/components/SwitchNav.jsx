@@ -1,5 +1,7 @@
-let Btn   = require('./Button')
-let React = require('react')
+let BlockTypeGroup = require('./BlockTypeGroup')
+let Btn            = require('./Button')
+let React          = require('react')
+let groupBy        = require('group-by')
 
 module.exports = React.createClass({
 
@@ -16,17 +18,36 @@ module.exports = React.createClass({
     let { id, label } = type
     let { onAdd } = this.props
 
-    return (
-      <Btn key={ id } className="col-switch-btn" onClick={ () => onAdd(type) }>
-        { label }
-      </Btn>
-    )
+    return {
+      name: label,
+      component: (<Btn key={ id } className="col-switch-btn" onClick={ () => onAdd(type) }>{ label }</Btn>)
+    }
+  },
+
+  getGroups(blocks) {
+    let groups = groupBy(blocks.filter(b => b.group), type => type.group)
+    let items = []
+
+    for (var name in groups) {
+      items.push({
+        name,
+        component: (<BlockTypeGroup key={ name } items={ groups[name] } label={ name } onAdd={ this.props.onAdd } />)
+      })
+    }
+
+    return items
   },
 
   render() {
+    let ungrouped = this.props.blockTypes.filter(b => !b.group).map(this.getButton)
+    let grouped   = this.getGroups(this.props.blockTypes)
+    let sorted    = grouped.concat(ungrouped).sort(function(a, b) {
+      return a.name > b.name ? 1 : -1
+    })
+
     return (
       <nav className="col-switch-nav" role="navigation">
-        { this.props.blockTypes.map(this.getButton)}
+        { sorted.map(s => s.component) }
       </nav>
     )
   }

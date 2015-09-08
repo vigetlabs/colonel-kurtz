@@ -1,6 +1,6 @@
 let Actions    = require('../actions/blocks')
 let Animator   = require('./Animator')
-let Menu       = require('./Menu')
+let BlockMenu  = require('./BlockMenu')
 let React      = require('react')
 let Switch     = require('./Switch')
 let respondsTo = require('../utils/respondsTo')
@@ -61,7 +61,7 @@ module.exports = React.createClass({
             </Animator>
           </Component>
 
-          <Menu ref="menu" app={ app } block={ block } items={ extraMenuItems } active={ menuOpen } onOpen={ this.openMenu } onExit={ this.closeMenu } />
+          <BlockMenu ref="menu" app={ app } block={ block } items={ extraMenuItems } active={ menuOpen } onOpen={ this.openMenu } onExit={ this.closeMenu } />
         </div>
 
         <Switch app={ app } position={ block } parent={ block.parent } />
