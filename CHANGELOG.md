@@ -1,5 +1,20 @@
 # Changelog
 
+## 2.23.0 (Not released)
+
+### Noticeable Changes
+
+- The BlockType creator menu now properly displays focus state
+- BlockTypes given a `group` property will display as a dropdown in
+  the BlockType creator menu.
+
+### Upgrading
+
+All changes are non-breaking. For those not including the Colonel
+Kurtz stylesheet via `node_modules`, you will need to update your
+stylesheet in order to benefit from the new focus state on the
+BlockType creator menu
+
 ## 2.22.0
 
 ### Noticeable Changes

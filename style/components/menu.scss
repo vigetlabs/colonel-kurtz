@@ -62,6 +62,17 @@ $col-menu-z-index        : 1 !default;
   }
 }
 
+.col-menu-label:after {
+    border: 4px solid;
+    border-color: rgba(#000, 0.2) transparent transparent;
+    content: "";
+    display: inline-block;
+    margin-left: 8px;
+    margin-right: -4px;
+    position: relative;
+    top: 2px;
+}
+
 .col-menu-item {
   border-radius: 0;
   color: rgba(#000, 0.7);
