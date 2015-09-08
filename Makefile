@@ -30,6 +30,9 @@ release:
 	make build
 	npm publish dist
 
+prerelease: clean build
+	npm publish $(DIST) --tag beta
+
 example:
 	node example/server
 
