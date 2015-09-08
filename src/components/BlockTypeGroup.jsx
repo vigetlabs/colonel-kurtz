@@ -46,8 +46,8 @@ module.exports = React.createClass({
 
   render() {
     return (
-      <Animator component={ Btn } transitionName="col-menu" className="col-switch-btn" onClick={ this.open } onKeyUp={ this._onKeyUp }>
-        <span key="label" className="col-menu-label">{ this.props.label }</span>
+      <Animator aria-role="button" transitionName="col-menu" className="col-switch-dropdown" onKeyUp={ this._onKeyUp }>
+        <Btn key="label" className="col-switch-btn col-menu-label" onClick={ this.open }>{ this.props.label }</Btn>
         { this.getMenu() }
       </Animator>
     )

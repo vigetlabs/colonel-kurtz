@@ -27,8 +27,7 @@ documentation: README.md LICENSE.md docs
 	mkdir -p $(DIST)
 	cp -r $^ $(DIST)
 
-release:
-	make build
+release: clean build
 	npm publish $(DIST)
 
 prerelease: clean build

@@ -25,7 +25,8 @@ $col-switch-nav-radius  : 3px !default;
   opacity: 0.3;
 }
 
-.col-switch-btn {
+.col-switch-btn,
+.col-switch-dropdown {
   border-radius: 0;
   display: inline-block;
   line-height: unit(2);
@@ -34,17 +35,23 @@ $col-switch-nav-radius  : 3px !default;
   min-width: $col-switch-btn-width;
   border-left: 1px solid $col-switch-btn-border;
 
-  &:first-child {
+  &:first-child:not(:only-child) {
     border-left: 0;
     border-top-left-radius: $col-switch-nav-radius;
     border-bottom-left-radius: $col-switch-nav-radius;
   }
 
-  &:last-child {
+  &:last-child:not(:only-child) {
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
   }
 
+  &:only-child {
+    border: 0;
+  }
+}
+
+.col-switch-btn {
   &:hover,
   &:focus {
     background: rgba(#000, 0.1);
@@ -52,7 +59,10 @@ $col-switch-nav-radius  : 3px !default;
     box-shadow: 1px 0 0 rgba(#000, 0.1), inset 0 1px rgba(#fff, 0.4);
     transition: 0.1s all;
   }
+}
 
+.col-switch-dropdown {
+  padding: 0;
 }
 
 .col-switch-nav {
