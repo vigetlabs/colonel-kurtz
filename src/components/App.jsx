@@ -3,13 +3,16 @@
  * toggling between viewing modes and viewing managed content
  */
 
-let Animator    = require('./Animator')
-let Blocks      = require('../stores/Blocks')
-let EditorBlock = require('./EditorBlock')
-let React       = require('react')
-let Switch      = require('./Switch')
+let Animator        = require('./Animator')
+let Blocks          = require('../stores/Blocks')
+let EditorBlock     = require('./EditorBlock')
+let React           = require('react')
+let Switch          = require('./Switch')
+let InsertionPoint  = require('./InsertionPoint')
+let DragDropContext = require('react-dnd').DragDropContext
+let HTML5Backend    = require('react-dnd/modules/backends/HTML5')
 
-module.exports = React.createClass({
+var App = React.createClass({
 
   propTypes: {
     app : React.PropTypes.object.isRequired
@@ -26,7 +29,7 @@ module.exports = React.createClass({
 
     return (
       <div className="colonel">
-        <Switch app={ app } />
+        <InsertionPoint app={ app } />
         <Animator className="col-block-children">
           { parents.map(this.getBlock) }
         </Animator>
@@ -35,3 +38,5 @@ module.exports = React.createClass({
   }
 
 })
+
+module.exports = DragDropContext(HTML5Backend)(App)

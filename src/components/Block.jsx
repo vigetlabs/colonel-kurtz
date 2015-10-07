@@ -1,15 +1,19 @@
-let Actions    = require('../actions/blocks')
-let Animator   = require('./Animator')
-let BlockMenu  = require('./BlockMenu')
-let React      = require('react')
-let Switch     = require('./Switch')
-let respondsTo = require('../utils/respondsTo')
+let React            = require('react')
+let Actions          = require('../actions/blocks')
+let Animator         = require('./Animator')
+let BlockMenu        = require('./BlockMenu')
+let InsertionPoint   = require('./InsertionPoint')
+let respondsTo       = require('../utils/respondsTo')
+let dragAndDropUtils = require('../utils/dragAndDrop')
+let DragSource       = require('react-dnd').DragSource
 
-module.exports = React.createClass({
+var Block = React.createClass({
 
   propTypes: {
     app   : React.PropTypes.object.isRequired,
-    block : React.PropTypes.object.isRequired
+    block : React.PropTypes.object.isRequired,
+    isDragging: React.PropTypes.bool.isRequired,
+    connectDragSource: React.PropTypes.func.isRequired
   },
 
   getInitialState() {
@@ -51,20 +55,21 @@ module.exports = React.createClass({
     let { component:Component } = this.getBlockType()
     let { menuOpen, extraMenuItems } = this.state
 
-    return (
-      <div className="col-editor-block">
+    const { isDragging, connectDragSource, text } = this.props
+
+    return connectDragSource(
+      <div className="col-editor-block" style={{ opacity: isDragging ? 0.5 : 1 }}>
         <div className={ `col-block col-block-${ block.type }` }>
           <Component ref="block" { ...block } onChange={ this._onChange } >
-            <Switch app={ app } parent={ block } />
+            <InsertionPoint app={ app } parent={ block } preceedingBlock={ null } containingBlock={ block } />
             <Animator className="col-block-children">
               { children }
             </Animator>
           </Component>
-
           <BlockMenu ref="menu" app={ app } block={ block } items={ extraMenuItems } active={ menuOpen } onOpen={ this.openMenu } onExit={ this.closeMenu } />
         </div>
 
-        <Switch app={ app } position={ block } parent={ block.parent } />
+        <InsertionPoint app={ app } preceedingBlock={ block } containingBlock={ block.parent } />
       </div>
     )
   },
@@ -74,3 +79,5 @@ module.exports = React.createClass({
     app.push(Actions.update, block, content)
   }
 })
+
+module.exports = DragSource('block', dragAndDropUtils.dragHandlers, dragAndDropUtils.dragCollect)(Block)

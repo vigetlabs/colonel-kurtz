@@ -15,5 +15,9 @@ module.exports = {
 
   move(block, distance) {
     return { block, distance }
+  },
+
+  insertAt(block, containingBlock, preceedingBlock) {
+    return { block, containingBlock, preceedingBlock }
   }
 }
