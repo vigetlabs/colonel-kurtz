@@ -1,6 +1,6 @@
-let Block  = require('./Block')
-let React  = require('react')
-let Blocks = require('../stores/Blocks')
+let BlockSection  = require('./BlockSection')
+let React         = require('react')
+let Blocks        = require('../stores/Blocks')
 
 let EditorBlock = React.createClass({
 
@@ -17,9 +17,9 @@ let EditorBlock = React.createClass({
     let { app, block } = this.props
 
     return (
-      <Block app={ app } block={ block }>
+      <BlockSection app={ app } block={ block }>
         { Blocks.getChildren(app.get('blocks'), block).map(this.getBlock) }
-      </Block>
+      </BlockSection>
     )
   }
 

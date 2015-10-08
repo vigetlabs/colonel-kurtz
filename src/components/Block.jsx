@@ -58,18 +58,14 @@ var Block = React.createClass({
     const { isDragging, connectDragSource, text } = this.props
 
     return connectDragSource(
-      <div className="col-editor-block" style={{ opacity: isDragging ? 0.5 : 1 }}>
-        <div className={ `col-block col-block-${ block.type }` }>
-          <Component ref="block" { ...block } onChange={ this._onChange } >
-            <InsertionPoint app={ app } parent={ block } preceedingBlock={ null } containingBlock={ block } />
-            <Animator className="col-block-children">
-              { children }
-            </Animator>
-          </Component>
-          <BlockMenu ref="menu" app={ app } block={ block } items={ extraMenuItems } active={ menuOpen } onOpen={ this.openMenu } onExit={ this.closeMenu } />
-        </div>
-
-        <InsertionPoint app={ app } preceedingBlock={ block } containingBlock={ block.parent } />
+      <div className={ `col-block col-block-${ block.type }` }>
+        <Component ref="block" { ...block } onChange={ this._onChange } >
+          <InsertionPoint app={ app } parent={ block } preceedingBlock={ null } containingBlock={ block } />
+          <Animator className="col-block-children">
+            { children }
+          </Animator>
+        </Component>
+        <BlockMenu ref="menu" app={ app } block={ block } items={ extraMenuItems } active={ menuOpen } onOpen={ this.openMenu } onExit={ this.closeMenu } />
       </div>
     )
   },
