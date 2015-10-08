@@ -23,7 +23,7 @@ module.exports = class InsertionController {
       message = "Can't drop here. The containing block is full."
     } else {
       allowed = true
-      message = "Drop away!"
+      message = null
     }
 
     return [allowed, message]
