@@ -22,7 +22,7 @@ broken up into individual types, such as a photo or chunk of text, and
 provides a user interface for managing those "blocks" of content,
 reordering them, and even nesting them inside other content.
 
-![colonel](https://cloud.githubusercontent.com/assets/590904/7432031/4feeadb4-eff2-11e4-8017-150f1910354a.gif)
+![colonel](./docs/assets/colonel-kurzt.gif)
 
 Comprehensive documentation can be found under the `./docs` directory
 of this repo. However the content that follows should provide a high
