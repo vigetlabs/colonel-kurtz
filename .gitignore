@@ -3,6 +3,3 @@ node_modules
 npm-debug.log
 coverage
 dist
-example/example.css
-example/example.build.js
-example/example.build.js.map
