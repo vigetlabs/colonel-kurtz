@@ -67,7 +67,7 @@ describe('Components - Switch', function() {
     })
   })
 
-  describe('When given a block with a parent', function() {
+  describe('When given a block with a containing block', function() {
     beforeEach(function(done) {
       let SecondType = Object.create(Fixture)
 
@@ -84,14 +84,14 @@ describe('Components - Switch', function() {
     })
 
     it ('getTypes should display multiple blocks', function() {
-      let component = render(<Switch app={ app } parent={ app.get('blocks')[0] }/>)
+      let component = render(<Switch app={ app } containingBlock={ app.get('blocks')[0] }/>)
 
       component.setState({ open : true })
       component.getDOMNode().querySelectorAll('button').length.should.be.gt(1)
     })
   })
 
-  describe('When given a block with a parent that has no types', function() {
+  describe('When given a block with a containing block that has no types', function() {
     beforeEach(function(done) {
       app = new Colonel({
         el : document.createElement('div'),
@@ -103,7 +103,7 @@ describe('Components - Switch', function() {
     })
 
     it ('renders nothing', function() {
-      let component = render(<Switch app={ app } parent={ app.get('blocks')[0] }/>)
+      let component = render(<Switch app={ app } containingBlock={ app.get('blocks')[0] } insertAllowed={ false } />)
       expect(component.getDOMNode()).to.equal(null)
     })
   })
@@ -152,7 +152,7 @@ describe('Components - Switch', function() {
     })
 
     it ('does not enable toggles when its provided block has too many children', function() {
-      let el = render(<Switch app={ app } parent={ app.get('blocks')[0] } />)
+      let el = render(<Switch app={ app } containingBlock={ app.get('blocks')[0] } />)
       el.getDOMNode().querySelector('button').disabled.should.equal(true)
     })
   })

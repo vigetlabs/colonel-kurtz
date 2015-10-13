@@ -9,7 +9,8 @@ let typesForBlock = require('../utils/typesForBlock')
 module.exports = React.createClass({
 
   propTypes: {
-    app : React.PropTypes.object.isRequired
+    app : React.PropTypes.object.isRequired,
+    insertAllowed : React.PropTypes.bool.isRequired
   },
 
   getInitialState() {
@@ -34,7 +35,7 @@ module.exports = React.createClass({
     if (this.state.open) return null
 
     return (<ActionButton ref="toggle"
-                          disabled={ this.hasMaxChildren() }
+                          disabled={ !this.props.insertAllowed }
                           label="Open the block menu and create a block"
                           onClick={ this._onToggle } />)
   },
@@ -48,25 +49,12 @@ module.exports = React.createClass({
                        onExit={ this.close } />)
   },
 
-  hasMaxChildren() {
-    let { app, parent } = this.props
-
-    if (!parent) {
-      return Blocks.filterChildren(app.get('blocks')).length >= app.get('maxChildren', Infinity)
-    }
-
-    let children = Blocks.getChildren(app.get('blocks'), parent)
-    let type     = app.refine('blockTypes').find(t => t.id === parent.type)
-
-    return children.length >= type.maxChildren
-  },
-
   render() {
-    let { app, parent, position } = this.props
-    let types = typesForBlock(app.get('blockTypes'), parent)
+    let { app, containingBlock, preceedingBlock } = this.props
+    let types = typesForBlock(app.get('blockTypes'), containingBlock)
 
     let className = classNames('col-switch', {
-      'col-switch-disabled': this.hasMaxChildren()
+      'col-switch-disabled': !this.props.insertAllowed
     })
 
     return types.length ? (
@@ -78,18 +66,18 @@ module.exports = React.createClass({
   },
 
   _onAdd(type) {
-    let { app, position, parent } = this.props
-    app.push(Actions.create, type.id, position, parent)
+    let { app, preceedingBlock, containingBlock } = this.props
+    app.push(Actions.create, type.id, preceedingBlock, containingBlock)
   },
 
   _onToggle() {
-    let { app, position, parent } = this.props
+    let { app, preceedingBlock, containingBlock } = this.props
 
-    let types = typesForBlock(app.get('blockTypes'), parent)
+    let types = typesForBlock(app.get('blockTypes'), containingBlock)
     // If only one type exists, instead of opening the nav, just
     // create that element
     if (types.length === 1) {
-      app.push(Actions.create, types[0].id, position, parent)
+      app.push(Actions.create, types[0].id, preceedingBlock, containingBlock)
     }
 
     this.open()

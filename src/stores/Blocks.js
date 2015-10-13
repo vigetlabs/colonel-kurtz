@@ -15,10 +15,11 @@ let siblingAt  = require('../utils/siblingAt')
 let Blocks = {
   register() {
     return {
-      [Actions.create]  : this.create,
-      [Actions.destroy] : this.destroy,
-      [Actions.update]  : this.update,
-      [Actions.move]    : this.move
+      [Actions.create]   : this.create,
+      [Actions.destroy]  : this.destroy,
+      [Actions.update]   : this.update,
+      [Actions.move]     : this.move,
+      [Actions.insertAt] : this.insertAt
     }
   },
 
@@ -84,6 +85,16 @@ let Blocks = {
     let before  = siblingAt(state, block, distance)
 
     return insertAt(without, block, state.indexOf(before))
+  },
+
+  insertAt(state, { block, containingBlock, preceedingBlock }) {
+    block.parent = containingBlock
+    if (!preceedingBlock) preceedingBlock = containingBlock
+    let currentPosition = state.indexOf(block)
+    let newPosition = (state.indexOf(preceedingBlock) + 1)
+    if (currentPosition < newPosition) newPosition -= 1
+    let otherBlocks = state.filter(i => i !== block)
+    return insertAt(otherBlocks, block, newPosition)
   }
 }
 

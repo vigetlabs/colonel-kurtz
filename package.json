@@ -86,7 +86,8 @@
     "microcosm": "~8.1",
     "react-focus-trap": "~0.8",
     "react-ink": "~4.1",
-    "uid": "0.0.2"
+    "uid": "0.0.2",
+    "react-dnd": "~1.1.8"
   },
   "babel": {
     "stage": 2,

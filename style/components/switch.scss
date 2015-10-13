@@ -12,6 +12,12 @@ $col-switch-btn-width   : unit(11) !default;
 $col-switch-btn-border  : rgba(#000, 0.15) !default;
 $col-switch-nav-radius  : 3px !default;
 
+.col-insertion-point-hover {
+  .col-switch {
+    display: none;
+  }
+}
+
 .col-switch {
   padding: $col-switch-padding;
   text-align: center;
