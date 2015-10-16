@@ -13,7 +13,7 @@ describe('Components - Block', function() {
 
     app.start(function() {
       sinon.spy(app, 'push')
-      component = render(<Block app={ app } block={ app.get('blocks')[0] } />)
+      component = render(<Block app={ app } block={ app.state.blocks[0] } />)
     }, done)
   })
 

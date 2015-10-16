@@ -6,6 +6,7 @@
 let BlockTypes = require('./stores/BlockTypes')
 let Blocks     = require('./stores/Blocks')
 let Microcosm  = require('microcosm')
+let Options    = require('./stores/Options')
 let React      = require('react')
 let bootstrap  = require('./plugins/bootstrap')
 let render     = require('./plugins/render')
@@ -22,6 +23,11 @@ class ColonelKurtz extends Microcosm {
 
   constructor(options) {
     super()
+
+    /**
+     * Keep track of all options
+     */
+    this.addStore('options', Options)
 
     /**
      * A block is an individual chunk of content. It can have children

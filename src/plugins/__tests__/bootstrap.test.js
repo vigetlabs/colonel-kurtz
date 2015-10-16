@@ -14,7 +14,7 @@ describe('bootstrap plugin', function() {
     }])
 
     bootstrap.register(app, { blocks: input, blockTypes: [] }, function() {
-      app.refine('blocks').first().should.have.property('type', 'section')
+      app.state.blocks[0].should.have.property('type', 'section')
       done()
     })
   })
@@ -26,10 +26,10 @@ describe('bootstrap plugin', function() {
       allow: [ 'list' ],
       blockTypes : [{ id: 'list' }, { id: 'text' }]
     }, function() {
-      let types = app.refine('blockTypes')
+      let types = app.state.blockTypes
 
-      types.size().should.equal(1)
-      types.first().id.should.equal('list')
+      types.length.should.equal(1)
+      types[0].id.should.equal('list')
 
       done()
     })
@@ -41,7 +41,7 @@ describe('bootstrap plugin', function() {
     bootstrap.register(app, {
       blockTypes : [{ id: 'list' }, { id: 'text' }]
     }, function() {
-      app.refine('blockTypes').size().should.equal(2)
+      app.state.blockTypes.length.should.equal(2)
       done()
     })
   })

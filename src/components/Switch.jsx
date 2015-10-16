@@ -52,18 +52,18 @@ module.exports = React.createClass({
     let { app, parent } = this.props
 
     if (!parent) {
-      return Blocks.filterChildren(app.get('blocks')).length >= app.get('maxChildren', Infinity)
+      return Blocks.filterChildren(app.state.blocks).length >= app.state.options.maxChildren
     }
 
-    let children = Blocks.getChildren(app.get('blocks'), parent)
-    let type     = app.refine('blockTypes').find(t => t.id === parent.type)
+    let children = Blocks.getChildren(app.state.blocks, parent)
+    let type     = app.state.blockTypes.filter(t => t.id === parent.type)[0]
 
     return children.length >= type.maxChildren
   },
 
   render() {
     let { app, parent, position } = this.props
-    let types = typesForBlock(app.get('blockTypes'), parent)
+    let types = typesForBlock(app.state.blockTypes, parent)
 
     let className = classNames('col-switch', {
       'col-switch-disabled': this.hasMaxChildren()
@@ -79,17 +79,17 @@ module.exports = React.createClass({
 
   _onAdd(type) {
     let { app, position, parent } = this.props
-    app.push(Actions.create, type.id, position, parent)
+    app.push(Actions.create, [ type.id, position, parent ])
   },
 
   _onToggle() {
     let { app, position, parent } = this.props
 
-    let types = typesForBlock(app.get('blockTypes'), parent)
+    let types = typesForBlock(app.state.blockTypes, parent)
     // If only one type exists, instead of opening the nav, just
     // create that element
     if (types.length === 1) {
-      app.push(Actions.create, types[0].id, position, parent)
+      app.push(Actions.create, [ types[0].id, position, parent ])
     }
 
     this.open()

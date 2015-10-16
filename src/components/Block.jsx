@@ -21,7 +21,7 @@ module.exports = React.createClass({
 
   getBlockType() {
     let { app, block } = this.props
-    return app.refine('blockTypes').find(i => i.id === block.type)
+    return app.state.blockTypes.filter(i => i.id === block.type)[0]
   },
 
   getMenuItems() {
@@ -71,6 +71,6 @@ module.exports = React.createClass({
 
   _onChange(content) {
     let { app, block } = this.props
-    app.push(Actions.update, block, content)
+    app.push(Actions.update, [ block, content ])
   }
 })

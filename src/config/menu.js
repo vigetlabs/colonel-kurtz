@@ -6,20 +6,20 @@ module.exports = [
     id : 'moveBefore',
     label : 'Move Up',
     onClick(app, block) {
-      app.push(move, block, -1)
+      app.push(move, [ block, -1 ])
     },
     isDisabled(app, block) {
-      return siblingsOf(app.get('blocks'), block)[0] === block
+      return siblingsOf(app.state.blocks, block)[0] === block
     }
   },
   {
     id : 'moveAfter',
     label : 'Move Down',
     onClick(app, block) {
-      app.push(move, block, 1)
+      app.push(move, [ block, 1 ])
     },
     isDisabled(app, block) {
-      return siblingsOf(app.get('blocks'), block).pop() === block
+      return siblingsOf(app.state.blocks, block).pop() === block
     }
   },
   {

@@ -26,7 +26,7 @@ module.exports = {
 
     app.replace({
       blocks     : this.fetch(),
-      blockTypes : app.get('blockTypes')
+      blockTypes : app.state.blockTypes
     })
 
     next()

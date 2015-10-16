@@ -33,7 +33,7 @@ describe('Components - Switch', function() {
 
     TestUtils.Simulate.click(base.getDOMNode().querySelector('.col-switch-btn'))
 
-    spy.should.have.been.calledWith(Actions.create, 'test')
+    spy.should.have.been.calledWith(Actions.create, [ 'test', undefined, undefined ])
   })
 
   describe('When only one block type given', function() {
@@ -43,7 +43,7 @@ describe('Components - Switch', function() {
 
       component._onToggle()
 
-      spy.should.have.been.calledWith(Actions.create, 'test')
+      spy.should.have.been.calledWith(Actions.create, [ 'test', undefined, undefined ])
     })
   })
 
@@ -84,7 +84,7 @@ describe('Components - Switch', function() {
     })
 
     it ('getTypes should display multiple blocks', function() {
-      let component = render(<Switch app={ app } parent={ app.get('blocks')[0] }/>)
+      let component = render(<Switch app={ app } parent={ app.state.blocks[0] }/>)
 
       component.setState({ open : true })
       component.getDOMNode().querySelectorAll('button').length.should.be.gt(1)
@@ -103,7 +103,7 @@ describe('Components - Switch', function() {
     })
 
     it ('renders nothing', function() {
-      let component = render(<Switch app={ app } parent={ app.get('blocks')[0] }/>)
+      let component = render(<Switch app={ app } parent={ app.state.blocks[0] }/>)
       expect(component.getDOMNode()).to.equal(null)
     })
   })
@@ -152,7 +152,7 @@ describe('Components - Switch', function() {
     })
 
     it ('does not enable toggles when its provided block has too many children', function() {
-      let el = render(<Switch app={ app } parent={ app.get('blocks')[0] } />)
+      let el = render(<Switch app={ app } parent={ app.state.blocks[0] } />)
       el.getDOMNode().querySelector('button').disabled.should.equal(true)
     })
   })

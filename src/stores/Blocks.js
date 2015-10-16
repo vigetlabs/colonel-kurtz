@@ -7,10 +7,12 @@
  * how that action manipulates block data.
  */
 
-let Actions    = require('../actions/blocks')
-let Block      = require('../models/Block')
-let insertAt   = require('../utils/insertAt')
-let siblingAt  = require('../utils/siblingAt')
+let Actions      = require('../actions/blocks')
+let Block        = require('../models/Block')
+let insertAt     = require('../utils/insertAt')
+let siblingAt    = require('../utils/siblingAt')
+let blocksToJson = require('../utils/blocksToJson')
+let jsonToBlocks = require('../utils/jsonToBlocks')
 
 let Blocks = {
   register() {
@@ -42,13 +44,17 @@ let Blocks = {
    * `blocksToJson` takes a list of blocks and transforms them into
    * the nested structure shown in the front end
    */
-  serialize: require('../utils/blocksToJson'),
+  serialize(state) {
+    return blocksToJson(state)
+  },
 
   /**
    * jsonToBlocks takes this nested structure and flattens
    * into a list for this store.
    */
-  deserialize: require('../utils/jsonToBlocks'),
+  deserialize(state) {
+    return jsonToBlocks(state)
+  },
 
   create(state, { type, parent, position }) {
     let record = new Block({ parent, type })

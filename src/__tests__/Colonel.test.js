@@ -8,6 +8,7 @@ describe('ColonelKurtz', function() {
 
   beforeEach(function(done) {
     el = document.createElement('div')
+
     app = new Colonel({
       el : el,
       blocks : [ new Block({ type: 'section' }) ],
@@ -23,41 +24,42 @@ describe('ColonelKurtz', function() {
 
   it ('returns blocks when converting to JSON', function() {
     let json = app.toJSON()
+
     json.length.should.equal(1)
   })
 
   describe('when a create action is sent to the app', function() {
 
-    beforeEach(function() {
-      app.push(Actions.create, 'section')
+    beforeEach(function(done) {
+      app.push(Actions.create, 'section', done)
     })
 
     it ('should prepend a new block', function() {
-      app.refine('blocks').first().type.should.equal('section')
+      app.state.blocks[0].type.should.equal('section')
     })
 
   })
 
   describe('when a destroy action is sent to the app', function() {
 
-    beforeEach(function() {
-      app.push(Actions.destroy, app.get('blocks')[0])
+    beforeEach(function(done) {
+      app.push(Actions.destroy, app.state.blocks[0], done)
     })
 
     it ('should prepend a new block', function() {
-      app.get('blocks').length.should.equal(0)
+      app.state.blocks.length.should.equal(0)
     })
 
   })
 
   describe('when an update action is sent to the app', function() {
 
-    beforeEach(function() {
-      app.push(Actions.update, app.get('blocks')[0], { foo: 'bar' })
+    beforeEach(function(done) {
+      app.push(Actions.update, [ app.state.blocks[0], { foo: 'bar' } ], done)
     })
 
     it ('should update the content of that block', function() {
-      app.get('blocks')[0].content.should.have.property('foo', 'bar')
+      app.state.blocks[0].content.should.have.property('foo', 'bar')
     })
 
   })
@@ -67,11 +69,11 @@ describe('ColonelKurtz', function() {
     it ('should prepend a new block', function() {
       app.push(Actions.create, 'section')
 
-      let block = app.refine('blocks').first()
+      let block = app.state.blocks[0]
 
-      app.push(Actions.move, block, 1)
+      app.push(Actions.move, [ block, 1 ])
 
-      app.refine('blocks').last().should.equal(block)
+      app.state.blocks[app.state.blocks.length - 1].should.equal(block)
     })
 
   })
