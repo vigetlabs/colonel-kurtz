@@ -48,4 +48,10 @@ describe('Components - Block', function() {
     component.state.menuOpen.should.equal(false)
   })
 
+  it ('respects default the content prop', function() {
+    let block = component.refs.block
+
+    expect(block.props.content.text).to.equal('Test')
+  })
+
 })

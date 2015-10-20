@@ -46,15 +46,25 @@ module.exports = React.createClass({
     this.setMenuItems(this.refs.block)
   },
 
+  getContent(block, component) {
+    let defaults = typeof component.getDefaultProps === 'function' ? component.getDefaultProps() : {}
+
+    return { ...defaults.content, ...block.content }
+  },
+
   render() {
     let { app, block, children } = this.props
     let { component:Component } = this.getBlockType()
     let { menuOpen, extraMenuItems } = this.state
 
+    // Determine content by taking the default content and extend it with
+    // the current block content
+    let content = this.getContent(block, Component)
+
     return (
       <div className="col-editor-block">
         <div className={ `col-block col-block-${ block.type }` }>
-          <Component ref="block" { ...block } onChange={ this._onChange } >
+          <Component ref="block" { ...block } content={ content } onChange={ this._onChange } >
             <Switch app={ app } parent={ block } />
             <Animator className="col-block-children">
               { children }

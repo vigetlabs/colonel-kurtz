@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.23.1
+
+- Address bug where default content block information was not
+  respected.
+
 ## 2.23.0
 
 ### Noticeable Changes

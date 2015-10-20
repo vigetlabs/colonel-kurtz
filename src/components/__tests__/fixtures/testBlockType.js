@@ -2,6 +2,13 @@ module.exports = {
   id    : 'test',
   label : 'Test',
   component: {
+    getDefaultProps() {
+      return {
+        content: {
+          text: 'Test'
+        }
+      }
+    },
     getMenuItems() {
       return [{ id: 'test', label: 'Test' }]
     },
