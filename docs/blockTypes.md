@@ -13,14 +13,15 @@ it will be assigned a `type` equal to the id of a Block Type.
 
 ## Properties
 
-Property  | Description
---------- | -----------
-id        | A unique identifier. Assigned to a block when it is created.
-label     | A display name given to the block type in the interface.
-component | A React component used to edit a block of a given type.
-types     | An array of other BlockType ids that may be created as children.
-root      | Configures the BlockType to display in the menu unless specifically asked for using `types`. Defaults to true.
-group     | When set, groups BlockTypes of the provided string name within the block menu selector.
+Property    | Description
+----------- | -----------
+id          | A unique identifier. Assigned to a block when it is created.
+label       | A display name given to the block type in the interface.
+component   | A React component used to edit a block of a given type.
+types       | An array of other BlockType ids that may be created as children.
+maxChildren | An integer specifying the maximum allowed children that may be created.
+root        | Configures the BlockType to display in the menu unless specifically asked for using `types`. Defaults to true.
+group       | When set, groups BlockTypes of the provided string name within the block menu selector.
 
 ## Creating Block Types
 
