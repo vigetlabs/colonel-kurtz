@@ -1,6 +1,6 @@
 {
   "name": "colonel-kurtz",
-  "version": "2.23.1-rc1",
+  "version": "2.23.1-rc5",
   "private": true,
   "description": "A block editor",
   "main": "src/Colonel.js",
@@ -70,7 +70,7 @@
     "mocha": "~2",
     "node-sass": "~3",
     "postcss": "~4.1",
-    "react": "~0.13",
+    "react": ">= 0.12 < 0.15",
     "react-hot-loader": "~1.2",
     "sass-loader": "~2.0",
     "style-loader": "~0.12",
@@ -78,14 +78,14 @@
     "webpack-dev-server": "1.11.0"
   },
   "peerDependencies": {
-    "react": ">= 0.12.1 < 0.14"
+    "react": ">= 0.12.1 < 0.15"
   },
   "dependencies": {
     "classnames": "~2",
     "group-by": "0.0.1",
     "microcosm": "~8.1",
     "react-focus-trap": "~0.8",
-    "react-ink": "~4.1",
+    "react-ink": "~5.0",
     "uid": "0.0.2"
   },
   "babel": {
