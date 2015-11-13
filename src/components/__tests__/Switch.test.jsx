@@ -1,11 +1,11 @@
 let Actions = require('../../actions/blocks')
 let Colonel = require('../../Colonel')
+let DOM     = require('react-dom')
 let Fixture = require('./fixtures/testBlockType')
 let Switch  = require('../Switch')
 
 describe('Components - Switch', function() {
-  let TestUtils = React.addons.TestUtils
-  let render    = TestUtils.renderIntoDocument
+  let render = TestUtils.renderIntoDocument
   let app;
 
   beforeEach(function(done) {
@@ -31,7 +31,7 @@ describe('Components - Switch', function() {
 
     base.setState({ open : true })
 
-    TestUtils.Simulate.click(base.getDOMNode().querySelector('.col-switch-btn'))
+    TestUtils.Simulate.click(DOM.findDOMNode(base).querySelector('.col-switch-btn'))
 
     spy.should.have.been.calledWith(Actions.create, 'test')
   })
@@ -87,7 +87,7 @@ describe('Components - Switch', function() {
       let component = render(<Switch app={ app } parent={ app.get('blocks')[0] }/>)
 
       component.setState({ open : true })
-      component.getDOMNode().querySelectorAll('button').length.should.be.gt(1)
+      DOM.findDOMNode(component).querySelectorAll('button').length.should.be.gt(1)
     })
   })
 
@@ -104,7 +104,7 @@ describe('Components - Switch', function() {
 
     it ('renders nothing', function() {
       let component = render(<Switch app={ app } parent={ app.get('blocks')[0] }/>)
-      expect(component.getDOMNode()).to.equal(null)
+      expect(DOM.findDOMNode(component)).to.equal(null)
     })
   })
 
@@ -113,7 +113,7 @@ describe('Components - Switch', function() {
       let base = render(<Switch app={ app } />)
 
       base.setState({ open: true })
-      TestUtils.Simulate.keyUp(base.refs.nav.getDOMNode(), { key: 'Escape' })
+      TestUtils.Simulate.keyUp(DOM.findDOMNode(base.refs.nav), { key: 'Escape' })
       base.state.open.should.equal(false)
     })
 
@@ -121,7 +121,7 @@ describe('Components - Switch', function() {
       let base = render(<Switch app={ app } />)
 
       base.setState({ open: true })
-      TestUtils.Simulate.keyUp(base.refs.nav.getDOMNode(), { key: 'q' })
+      TestUtils.Simulate.keyUp(DOM.findDOMNode(base.refs.nav), { key: 'q' })
       base.state.open.should.equal(true)
     })
   })
@@ -153,7 +153,7 @@ describe('Components - Switch', function() {
 
     it ('does not enable toggles when its provided block has too many children', function() {
       let el = render(<Switch app={ app } parent={ app.get('blocks')[0] } />)
-      el.getDOMNode().querySelector('button').disabled.should.equal(true)
+      DOM.findDOMNode(el).querySelector('button').disabled.should.equal(true)
     })
   })
 
@@ -173,7 +173,7 @@ describe('Components - Switch', function() {
 
     it ('does not enable toggles when the apps maxChildren setting is exceeded', function() {
       let el = render(<Switch app={ app } />)
-      el.getDOMNode().querySelector('button').disabled.should.equal(true)
+      DOM.findDOMNode(el).querySelector('button').disabled.should.equal(true)
     })
   })
 

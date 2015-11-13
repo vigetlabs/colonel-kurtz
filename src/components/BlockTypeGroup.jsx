@@ -46,7 +46,7 @@ module.exports = React.createClass({
 
   render() {
     return (
-      <Animator aria-role="button" transitionName="col-menu" className="col-switch-dropdown" onKeyUp={ this._onKeyUp }>
+      <Animator aria-role="button" transitionName="col-menu" className="col-switch-dropdown" transitionEnterTimeout={ 300 } transitionLeaveTimeout={ 200 } onKeyUp={ this._onKeyUp }>
         <Btn key="label" className="col-switch-btn col-menu-label" onClick={ this.open }>{ this.props.label }</Btn>
         { this.getMenu() }
       </Animator>

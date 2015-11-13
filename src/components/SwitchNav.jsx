@@ -1,6 +1,7 @@
 let BlockTypeGroup = require('./BlockTypeGroup')
 let Btn            = require('./Button')
 let React          = require('react')
+let DOM            = require('react-dom')
 let groupBy        = require('group-by')
 
 module.exports = React.createClass({
@@ -11,7 +12,7 @@ module.exports = React.createClass({
   },
 
   componentDidMount() {
-    this.getDOMNode().focus()
+    DOM.findDOMNode(this).focus()
   },
 
   getButton(type) {

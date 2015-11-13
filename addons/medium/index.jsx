@@ -7,6 +7,7 @@
 
 let MediumEditor = require('./vendor/medium-editor')
 let React        = require('react')
+let DOM          = require('react-dom')
 
 var Medium = React.createClass({
 
@@ -35,7 +36,7 @@ var Medium = React.createClass({
 
   componentDidMount() {
     this.setState({
-      editor: new MediumEditor(this.refs.editor.getDOMNode(), this.props.options)
+      editor: new MediumEditor(DOM.findDOMNode(this.refs.editor), this.props.options)
     })
   },
 
@@ -53,7 +54,7 @@ var Medium = React.createClass({
   },
 
   _onBlur() {
-    var editor = this.refs.editor.getDOMNode()
+    var editor = DOM.findDOMNode(this.refs.editor)
 
     this.props.onChange({
       text: editor.textContent,

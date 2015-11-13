@@ -1,6 +1,7 @@
+const DOM      = require('react-dom')
 const Embedded = require('../embedded')
-const Simulate = React.addons.TestUtils.Simulate
-const render = React.addons.TestUtils.renderIntoDocument
+const Simulate = TestUtils.Simulate
+const render   = TestUtils.renderIntoDocument
 
 describe('Addons - Common - Embedded', function() {
 
@@ -46,7 +47,7 @@ describe('Addons - Common - Embedded', function() {
 
     const component = render(<Embedded name="test" onChange={ test } slug="1" />)
 
-    Simulate.change(component.refs.field.refs.input.getDOMNode())
+    Simulate.change(DOM.findDOMNode(component.refs.field.refs.input))
   })
 
 })

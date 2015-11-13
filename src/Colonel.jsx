@@ -6,7 +6,6 @@
 let BlockTypes = require('./stores/BlockTypes')
 let Blocks     = require('./stores/Blocks')
 let Microcosm  = require('microcosm')
-let React      = require('react')
 let bootstrap  = require('./plugins/bootstrap')
 let render     = require('./plugins/render')
 

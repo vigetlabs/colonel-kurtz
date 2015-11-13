@@ -1,7 +1,7 @@
 let Actions   = require('../../actions/blocks')
 let Colonel   = require('../../Colonel')
+let DOM       = require('react-dom')
 let BlockMenu = require('../BlockMenu')
-let TestUtils = React.addons.TestUtils
 let config    = require('./fixtures/colonelConfig')
 let render    = TestUtils.renderIntoDocument
 
@@ -26,7 +26,7 @@ describe('Components - BlockMenu', function() {
 
   it ('calls the onOpen property when the handle is clicked', function() {
     let test = render(menu)
-    TestUtils.Simulate.click(test.refs.handle.getDOMNode())
+    TestUtils.Simulate.click(DOM.findDOMNode(test.refs.handle))
     menu.props.onOpen.should.have.been.called
   })
 
@@ -39,7 +39,7 @@ describe('Components - BlockMenu', function() {
     let test  = render(menu)
     let block = test.props.block
 
-    TestUtils.Simulate.click(test.refs.destroy.getDOMNode())
+    TestUtils.Simulate.click(DOM.findDOMNode(test.refs.destroy))
 
     app.push.should.have.been.calledWith(Actions.destroy, block.id)
   })
@@ -48,7 +48,7 @@ describe('Components - BlockMenu', function() {
     let block = app.refine('blocks').last()
     let test  = render(React.cloneElement(menu, { block }))
 
-    TestUtils.Simulate.click(test.refs.moveBefore.getDOMNode())
+    TestUtils.Simulate.click(DOM.findDOMNode(test.refs.moveBefore))
 
     app.push.should.have.been.calledWith(Actions.move, block, -1)
   })
@@ -62,7 +62,7 @@ describe('Components - BlockMenu', function() {
     let block = app.refine('blocks').first()
     let test  = render(React.cloneElement(menu, { block }))
 
-    TestUtils.Simulate.click(test.refs.moveAfter.getDOMNode())
+    TestUtils.Simulate.click(DOM.findDOMNode(test.refs.moveAfter))
 
     app.push.should.have.been.calledWith(Actions.move, block, 1)
   })

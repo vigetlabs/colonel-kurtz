@@ -50,7 +50,8 @@ module.exports = function(config) {
 
       plugins: [
         new Webpack.ProvidePlugin({
-          'React': 'react/addons'
+          React     : 'react',
+          TestUtils : 'react-addons-test-utils'
         })
       ],
 

@@ -1,6 +1,6 @@
-const YouTube = require('../index')
-const Simulate = React.addons.TestUtils.Simulate
-const render = React.addons.TestUtils.renderIntoDocument
+const YouTube  = require('../index')
+const Simulate = TestUtils.Simulate
+const render   = TestUtils.renderIntoDocument
 
 describe('Addons - YouTube', function() {
 

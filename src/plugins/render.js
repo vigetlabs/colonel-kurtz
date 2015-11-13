@@ -4,12 +4,13 @@
  */
 
 let App   = require('../components/App')
+let DOM   = require('react-dom')
 let React = require('react')
 
 module.exports = {
 
   render(app, el) {
-    React.render(<App app={ app } />, el)
+    DOM.render(<App app={ app } />, el)
   },
 
   register(app, { el }, next) {

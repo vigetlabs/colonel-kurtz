@@ -59,9 +59,9 @@
     "istanbul": "~0.3",
     "istanbul-instrumenter-loader": "~0.1",
     "karma": "0.13.9",
+    "karma-chrome-launcher": "~0.2",
     "karma-cli": "~0.1",
     "karma-coverage": "~0.5",
-    "karma-chrome-launcher": "~0.2",
     "karma-mocha": "~0.2",
     "karma-mocha-reporter": "~1.1",
     "karma-sinon-chai": "~1.0",
@@ -70,7 +70,9 @@
     "mocha": "~2",
     "node-sass": "~3",
     "postcss": "~4.1",
-    "react": ">= 0.12 < 0.15",
+    "react": "~0.14",
+    "react-addons-test-utils": "~0.14",
+    "react-dom": "~0.14",
     "react-hot-loader": "~1.2",
     "sass-loader": "~2.0",
     "style-loader": "~0.12",
@@ -78,13 +80,14 @@
     "webpack-dev-server": "1.11.0"
   },
   "peerDependencies": {
-    "react": ">= 0.12.1 < 0.15"
+    "react": "~0.14"
   },
   "dependencies": {
     "classnames": "~2",
     "group-by": "0.0.1",
     "microcosm": "~8.1",
-    "react-focus-trap": "~0.8",
+    "react-addons-css-transition-group": "~0.14",
+    "react-focus-trap": "~2.0",
     "react-ink": "~5.0",
     "uid": "0.0.2"
   },

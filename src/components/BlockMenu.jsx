@@ -44,7 +44,7 @@ module.exports = React.createClass({
 
   render() {
     return (
-      <Animator className="col-menu-wrapper" transitionName="col-menu">
+      <Animator className="col-menu-wrapper" transitionName="col-menu" transitionEnterTimeout={ 300 } transitionLeaveTimeout={ 200 }>
         <Handle key="handle" ref="handle" onClick={ this.props.onOpen }/>
         { this.getMenu() }
       </Animator>

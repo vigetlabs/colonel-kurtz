@@ -1,5 +1,6 @@
 let Btn   = require('./Button')
 let React = require('react')
+let DOM   = require('react-dom')
 
 module.exports = React.createClass({
 
@@ -16,7 +17,7 @@ module.exports = React.createClass({
   },
 
   focus() {
-    this.getDOMNode().focus()
+    DOM.findDOMNode(this).focus()
   },
 
   render() {

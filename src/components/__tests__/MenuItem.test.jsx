@@ -1,8 +1,7 @@
-let Colonel   = require('../../Colonel')
-let Item      = require('../MenuItem')
-let TestUtils = React.addons.TestUtils
-let config    = require('./fixtures/colonelConfig')
-let render    = TestUtils.renderIntoDocument
+let Colonel = require('../../Colonel')
+let Item    = require('../MenuItem')
+let config  = require('./fixtures/colonelConfig')
+let render  = TestUtils.renderIntoDocument
 
 describe('Components - Menu Item', function() {
   let app;
