@@ -1,5 +1,12 @@
 # Changelog
 
+## 3.0.0
+
+- **Important Update**: This update makes breaking changes to support
+  React 0.14. colonel-kurtz now takes advantage of
+  `react-addons-css-transition-group` and utilizes `react-dom` for
+  rendering.
+
 ## 2.23.1
 
 - Address bug where default content block information was not
