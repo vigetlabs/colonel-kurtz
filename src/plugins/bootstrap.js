@@ -22,9 +22,18 @@ module.exports = {
   },
 
   filterBlocks(blocks, blockTypes) {
-    var types = blockTypes.map(blockType => blockType.id)
+    var _this = this
+    var typeWhitelist = blockTypes.map(blockType => blockType.id)
+    var validBlocks   = []
 
-    return blocks.filter(block => types.indexOf(block.type) > -1)
+    blocks.forEach(function(block) {
+      if (typeWhitelist.indexOf(block.type) > -1) {
+        block.blocks = _this.filterBlocks(block.blocks, blockTypes)
+        validBlocks  = validBlocks.concat(block)
+      }
+    })
+
+    return validBlocks
   },
 
   register(app, { allow, maxChildren, blocks, blockTypes }, next) {
@@ -32,7 +41,7 @@ module.exports = {
 
     if (blocks instanceof HTMLElement) {
       blocks = parseElement(blocks)
-      blocks = filterBlocks(blocks, blockTypes)
+      blocks = this.filterBlocks(blocks, blockTypes)
     }
 
     app.replace({ blocks, blockTypes })
