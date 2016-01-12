@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.1.0
+
+- Added a `clientOnly` property to blocks. This is a boolean property
+  indicating if the block was created by the user during the current
+  editing session (as opposed to being present when the editor starts).
+
 ## 3.0.0
 
 - **Important Update**: This update makes breaking changes to support
