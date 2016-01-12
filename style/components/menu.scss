@@ -81,7 +81,7 @@ $col-menu-z-index        : 1 !default;
   line-height: 16px;
   padding: $col-menu-item-padding;
   position: relative;
-  width: 100%;
+  min-width: 100%;
   transition: 0.3s all;
   text-align: left;
 

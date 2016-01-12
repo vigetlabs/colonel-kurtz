@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.1.1
+
+- Fixed style issue in Firefox where menu items were truncated
+
 ## 3.1.0
 
 - Added a `clientOnly` property to blocks. This is a boolean property
