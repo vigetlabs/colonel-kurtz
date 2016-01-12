@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.23.2
+
+- Fixed style issue in Firefox where menu items were truncated.
+
 ## 2.23.1
 
 - Address bug where default content block information was not
