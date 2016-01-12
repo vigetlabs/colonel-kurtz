@@ -51,7 +51,7 @@ let Blocks = {
   deserialize: require('../utils/jsonToBlocks'),
 
   create(state, { type, parent, position }) {
-    let record = new Block({ parent, type })
+    let record = new Block({ clientOnly: true, parent, type })
 
     // If the provided position is a Block, place the new block right
     // after it.

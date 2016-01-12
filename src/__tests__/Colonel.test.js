@@ -36,6 +36,10 @@ describe('ColonelKurtz', function() {
       app.refine('blocks').first().type.should.equal('section')
     })
 
+    it ('should flag the block as client-only', function() {
+      app.refine('blocks').first().clientOnly.should.equal(true)
+    })
+
   })
 
   describe('when a destroy action is sent to the app', function() {
