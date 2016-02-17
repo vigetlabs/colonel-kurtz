@@ -1,6 +1,6 @@
 # Changelog
 
-## 3.2.0 (release candidate)
+## 3.2.0
 
 - The menu item component is now available as the third argument of
   onClick handlers for custom menu items.

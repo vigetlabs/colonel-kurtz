@@ -1,6 +1,6 @@
 {
   "name": "colonel-kurtz",
-  "version": "3.2.0-rc",
+  "version": "3.2.0",
   "private": true,
   "description": "A block editor",
   "main": "src/Colonel.js",
