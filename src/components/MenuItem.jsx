@@ -36,7 +36,7 @@ module.exports = React.createClass({
 
   _onClick() {
     let { app, block, onClick } = this.props
-    onClick(app, block)
+    onClick(app, block, this)
   }
 
 })
