@@ -32,7 +32,7 @@ module.exports = React.createClass({
     return [{
       id      : 'hello-world',
       label   : 'Hello World',
-      onClick : (editor, block) => alert("Hello, world!")
+      onClick : (editor, block, menuItem) => alert("Hello, world!")
     }]
   },
 
@@ -58,8 +58,8 @@ getMenuItems() {
   return [{
     id         : 'hello-world',
     label      : 'Hello World',
-    onClick    : (editor, block) => alert(`My block is ${ block.id }`),
-    isDisabled : (editor, block) => false
+    onClick    : (editor, block, menuItem) => alert(`My block is ${ block.id }`),
+    isDisabled : (editor, block, menuItem) => false
   }]
 }
 ```

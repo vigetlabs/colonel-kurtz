@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.2.0 (release candidate)
+
+- The menu item component is now available as the third argument of
+  onClick handlers for custom menu items.
+
 ## 3.1.1
 
 - Fixed style issue in Firefox where menu items were truncated
