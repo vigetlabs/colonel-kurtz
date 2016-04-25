@@ -1,0 +1,30 @@
+/**
+ * HTML Embed Block Type
+ */
+
+.col-block-html {
+  padding-top: 8px;
+
+  .col-block-html {
+    background: #223;
+    border-radius: 3px;
+    border: 1px solid #222;
+    box-shadow: inset 0 1px 5px rgba(black, 0.4);
+    color: #eef;
+    font-family: monospace;
+    font-size: 14px;
+    height: 72px;
+    line-height: 1.7;
+    margin: 8px 0 4px;
+    padding: 4px 12px;
+    width: 100%;
+    word-break: break-all;
+  }
+
+  .col-block-frame {
+    border: 0;
+    min-height: 350px;
+    width: 100%;
+  }
+
+}
