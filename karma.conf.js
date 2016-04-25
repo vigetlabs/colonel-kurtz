@@ -1,4 +1,5 @@
 var Webpack        = require('webpack')
+var HappyPack      = require('happypack')
 var webpack_config = require('./webpack.config')
 var isIntegration  = process.env.CONTINUOUS_INTEGRATION === 'true'
 var noCoverage     = process.env.NO_COVERAGE === 'true'
@@ -52,7 +53,9 @@ module.exports = function(config) {
         new Webpack.ProvidePlugin({
           React     : 'react',
           TestUtils : 'react-addons-test-utils'
-        })
+        }),
+
+        new HappyPack({ id: 'js' })
       ],
 
       resolve: webpack_config.resolve,
@@ -62,23 +65,21 @@ module.exports = function(config) {
           {
             test    : /\.jsx*$/,
             exclude : /node_modules/,
-            loader  : 'babel',
-            query   : {
-              auxiliaryCommentBefore: "istanbul ignore next",
-              optional: [ 'runtime' ]
-            }
+            loader  : 'babel?optional=runtime',
+            happy   : { id: 'js' }
           }
         ],
         postLoaders: noCoverage ? [] : [{
-          test: /\.jsx*$/,
-          exclude: /(__tests__|node_modules)/,
-          loader: 'istanbul-instrumenter'
+          test    : /\.jsx*$/,
+          happy   : { id: 'js' },
+          exclude : /(__tests__|node_modules)/,
+          loader  : 'istanbul-instrumenter'
         }]
-      }
-    },
+      },
 
-    webpackServer: {
-      noInfo: true
+      webpackServer: {
+        noInfo: true
+      }
     }
   });
 };
