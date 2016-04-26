@@ -27,23 +27,21 @@ describe('Components - Switch', function() {
 
   it ('adds a block type on click', function() {
     let base = render(<Switch app={ app } />)
-    let spy  = sinon.spy(app, 'push')
 
     base.setState({ open : true })
 
     TestUtils.Simulate.click(DOM.findDOMNode(base).querySelector('.col-switch-btn'))
 
-    spy.should.have.been.calledWith(Actions.create, 'test')
+    app.state.blocks[0].should.have.property('type', 'test')
   })
 
   describe('When only one block type given', function() {
     it ('_onToggle creates that block type', function() {
-      let spy       = sinon.spy(app, 'push')
       let component = render(<Switch app={ app } />)
 
       component._onToggle()
 
-      spy.should.have.been.calledWith(Actions.create, 'test')
+      app.state.blocks[0].should.have.property('type', 'test')
     })
   })
 
@@ -84,7 +82,7 @@ describe('Components - Switch', function() {
     })
 
     it ('getTypes should display multiple blocks', function() {
-      let component = render(<Switch app={ app } parent={ app.get('blocks')[0] }/>)
+      let component = render(<Switch app={ app } parent={ app.state.blocks[0] }/>)
 
       component.setState({ open : true })
       DOM.findDOMNode(component).querySelectorAll('button').length.should.be.gt(1)
@@ -103,7 +101,7 @@ describe('Components - Switch', function() {
     })
 
     it ('renders nothing', function() {
-      let component = render(<Switch app={ app } parent={ app.get('blocks')[0] }/>)
+      let component = render(<Switch app={ app } parent={ app.state.blocks[0] }/>)
       expect(DOM.findDOMNode(component)).to.equal(null)
     })
   })
@@ -152,7 +150,7 @@ describe('Components - Switch', function() {
     })
 
     it ('does not enable toggles when its provided block has too many children', function() {
-      let el = render(<Switch app={ app } parent={ app.get('blocks')[0] } />)
+      let el = render(<Switch app={ app } parent={ app.state.blocks[0] } />)
       DOM.findDOMNode(el).querySelector('button').disabled.should.equal(true)
     })
   })

@@ -75,11 +75,11 @@ module.exports = function(config) {
           exclude : /(__tests__|node_modules)/,
           loader  : 'istanbul-instrumenter'
         }]
-      },
-
-      webpackServer: {
-        noInfo: true
       }
+    },
+
+    webpackServer: {
+      noInfo: true
     }
   });
 };

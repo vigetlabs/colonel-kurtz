@@ -13,8 +13,9 @@ describe('Components - Block', function() {
 
     app.start(function() {
       sinon.spy(app, 'push')
-      component = render(<Block app={ app } block={ app.get('blocks')[0] } />)
-    }, done)
+      component = render(<Block app={ app } block={ app.state.blocks[0] } />)
+      done()
+    })
   })
 
   it ('adds a class name according to the block id', function() {

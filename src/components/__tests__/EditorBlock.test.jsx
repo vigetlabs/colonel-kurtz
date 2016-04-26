@@ -13,7 +13,7 @@ describe('Components - EditorBlock', function() {
   })
 
   it ('renders child blocks', function() {
-    let block = app.get('blocks')[0]
+    let block = app.state.blocks[0]
     let component = render(<EditorBlock app={ app } block={ block } />)
     let element = DOM.findDOMNode(component)
 

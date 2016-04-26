@@ -22,7 +22,7 @@ module.exports = React.createClass({
   render() {
     let { app } = this.props
 
-    let parents = Blocks.filterChildren(app.get('blocks'))
+    let parents = Blocks.filterChildren(app.state.blocks)
 
     return (
       <div className="colonel">

@@ -21,15 +21,13 @@ module.exports = {
     }
   },
 
-  register(app, options, next) {
+  register(app, options) {
     app.listen(() => this.save(app))
 
     app.replace({
       blocks     : this.fetch(),
-      blockTypes : app.get('blockTypes')
+      blockTypes : app.state.blockTypes
     })
-
-    next()
   }
 
 }

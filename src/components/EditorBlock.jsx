@@ -18,7 +18,7 @@ let EditorBlock = React.createClass({
 
     return (
       <Block app={ app } block={ block }>
-        { Blocks.getChildren(app.get('blocks'), block).map(this.getBlock) }
+        { Blocks.getChildren(app.state.blocks, block).map(this.getBlock) }
       </Block>
     )
   }

@@ -13,12 +13,10 @@ module.exports = {
     DOM.render(<App app={ app } />, el)
   },
 
-  register(app, { el }, next) {
+  register(app, { el }) {
     this.render(app, el)
 
     app.listen(i => this.render(app,el))
-
-    next()
   }
 
 }
