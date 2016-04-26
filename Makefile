@@ -4,12 +4,7 @@ DIST   := dist
 
 .PHONY: clean test test-coverage build package.json javascript docs release example
 
-build:
-	make clean
-	make javascript
-	make sass
-	make package.json
-	make documentation
+build: clean javascript sass package.json documentation
 
 javascript: $(shell find src -name '*.js*' ! -name '*.test.js*') $(shell find addons -name '*.js*' ! -name '*.test.js*')
 	mkdir -p $(DIST)
