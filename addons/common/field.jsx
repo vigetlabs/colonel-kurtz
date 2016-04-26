@@ -27,14 +27,14 @@ let Field = React.createClass({
   },
 
   render() {
-    let { hint, element:Element, label, value, ...props } = this.props
+    let { hint, element:Element, label, ...props } = this.props
     let { hintId } = this.state
 
     return (
       <label className="col-field">
         <span className="col-field-label">{ label }</span>
 
-        <Element ref="input" className="col-field-input" aria-describedby={ hint ? hintId : null } defaultValue={ value } { ...props } />
+        <Element ref="input" className="col-field-input" aria-describedby={ hint ? hintId : null } { ...props } />
         { this.getHint(hint) }
       </label>
     )
