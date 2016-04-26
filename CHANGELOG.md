@@ -1,5 +1,32 @@
 # Changelog
 
+## 3.4.0 (release candidate)
+
+- Upgrade Microcosm to 9.21.x
+- The `<Field />` component is once again controlled. Upgrading
+  Microcosm addressed issues with using a controlled input inside
+  of this add-on.
+
+### Upgrading
+
+If you are using the `<Field />` component, verify that it continues to
+work as expected. We moved away from controlled inputs in a prior
+release when we were unable to determine why cursor position would
+erratically move to the end of an input when it changed. This was due
+to a way older versions of Microcosm batched state changes
+together. This is no longer an issue, so we moved back to the original
+controlled strategy.
+
+If you would like to keep the old behavior, instead of passing a
+`value` property into the `<Field />` component, send in
+`defaultValue`. This is the method exposed by React for uncontrolled
+inputs.
+
+For more information on controlled inputs, see the React
+documentation:
+
+https://facebook.github.io/react/docs/forms.html#controlled-components
+
 ## 3.3.0
 
 - Added `html-embed` add-on. This component may be used to include
