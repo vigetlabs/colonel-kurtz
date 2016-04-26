@@ -1,5 +1,10 @@
 # Changelog
 
+## 3.3.0
+
+- Added `html-embed` add-on. This component may be used to include
+  HTML and accompanying scripts within Colonel Kurtz.
+
 ## 3.2.0
 
 - The menu item component is now available as the third argument of
