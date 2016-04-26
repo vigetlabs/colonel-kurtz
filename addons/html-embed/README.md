@@ -33,4 +33,4 @@ the `blockTypes` field:
 
 ## Considerations
 
-`<script>` and `<style>` tags will be automatically stripped out of HTML input.
+`<script>` and `<style>` tags will be automatically stripped out of HTML input.  The server should do the same as the JSON coming out of the HTML Embed block could be modified.
