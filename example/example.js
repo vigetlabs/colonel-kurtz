@@ -21,6 +21,11 @@ let blockTypes = [
     group     : 'Rich Text'
   },
   {
+    id        : 'embed',
+    label     : 'Embed',
+    component : require('../addons/html-embed')
+  },
+  {
     id        : 'child-text',
     label     : 'Child Text',
     component : require('../addons/medium'),

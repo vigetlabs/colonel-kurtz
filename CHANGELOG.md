@@ -1,11 +1,12 @@
 # Changelog
 
-## 3.4.0 (release candidate)
+## 3.4.0
 
 - Upgrade Microcosm to 9.21.x
 - The `<Field />` component is once again controlled. Upgrading
   Microcosm addressed issues with using a controlled input inside
   of this add-on.
+- Fix html embed styles
 
 ### Upgrading
 
