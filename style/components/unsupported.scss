@@ -1,0 +1,36 @@
+.col-unsupported-header {
+  padding: 20px 24px 16px;
+}
+
+.col-unsupported-title {
+  color: $theme-text;
+  font-size: 24px;
+  font-weight: 400;
+  margin: 8px 0 0;
+}
+
+.col-unsupported-subtitle {
+  font-size: 13px;
+  margin: 0;
+  color: $theme-secondary-text;
+}
+
+.col-unsupported-content {
+  color: $theme-secondary-text;
+  font-size: 15px;
+  line-height: 1.5;
+  padding: 0 24px 12px;
+}
+
+.col-unsupported-data {
+  background: #223;
+  border-bottom-left-radius: $col-radius-small;
+  border-bottom-right-radius: $col-radius-small;
+  color: white;
+  font-size: 12px;
+  line-height: 1.5;
+  max-height: 300px;
+  overflow: auto;
+  padding: 48px;
+  width: 100%;
+}

@@ -1,9 +1,10 @@
-let Actions    = require('../actions/blocks')
-let Animator   = require('./Animator')
-let BlockMenu  = require('./BlockMenu')
-let React      = require('react')
-let Switch     = require('./Switch')
-let respondsTo = require('../utils/respondsTo')
+let React             = require('react')
+let Actions           = require('../actions/blocks')
+let Animator          = require('./Animator')
+let BlockMenu         = require('./BlockMenu')
+let FallbackBlockType = require('../models/FallbackBlockType')
+let Switch            = require('./Switch')
+let respondsTo        = require('../utils/respondsTo')
 
 module.exports = React.createClass({
 
@@ -21,7 +22,10 @@ module.exports = React.createClass({
 
   getBlockType() {
     let { app, block } = this.props
-    return app.state.blockTypes.filter(i => i.id === block.type)[0]
+
+    let blockType = app.state.blockTypes.filter(i => i.id === block.type)[0]
+
+    return blockType ? blockType : new FallbackBlockType({ block })
   },
 
   getMenuItems() {
