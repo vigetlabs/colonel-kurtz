@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.5.0
+
+- Added a fallback state for when a block type is not recognized.
+
 ## 3.4.0
 
 - Upgrade Microcosm to 9.21.x
