@@ -38,8 +38,9 @@ module.exports = React.createClass({
     let { html = '', script = '' } = this.props.content
 
     let encoding   = "data:text/html;charset=utf-8,"
+    let style      = "<style>body { margin: 0 }</style>"
     let javascript = `<script src="${ script }" async></script>`
-    let embeddable = encoding + escape(html + javascript)
+    let embeddable = encoding + escape(style + html + javascript)
 
     return <iframe className="col-block-html-frame" src={ embeddable } />
   },
