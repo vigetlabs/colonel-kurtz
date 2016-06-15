@@ -1,5 +1,9 @@
 # Changelog
 
+## 3.5.1
+
+- Added a style tag to the HTML embed addon to cut default body margins
+
 ## 3.5.0
 
 - Added a fallback state for when a block type is not recognized.
