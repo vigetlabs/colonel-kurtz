@@ -21,8 +21,8 @@ describe('Addons - Common - Embedded', function() {
     component.hasSlug().should.equal(false)
   })
 
-  it ('properly handles cases where the slug is null', function() {
-    const component = render(<Embedded name="test" slug={ null } onChange={ sinon.stub() } />)
+  it ('properly handles cases where the slug is empty', function() {
+    const component = render(<Embedded name="test" slug={ '' } onChange={ sinon.stub() } />)
     component.hasSlug().should.equal(false)
   })
 

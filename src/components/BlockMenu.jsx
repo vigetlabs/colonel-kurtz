@@ -22,7 +22,7 @@ module.exports = React.createClass({
 
   getMenuItem(item) {
     let { id } = item
-    return (<Item key={ id } ref={ id } { ...item} { ...this.props} />)
+    return (<Item key={ id } ref={ id } { ...item } { ...this.props } />)
   },
 
   getMenuItems() {

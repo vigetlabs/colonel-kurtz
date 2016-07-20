@@ -25,7 +25,7 @@ module.exports = React.createClass({
   },
 
   render() {
-    let { label, ...safe } = this.props
+    let { label, app, block, onOpen, onExit, active, isDisabled, items, ...safe } = this.props
 
     return (
       <Button { ...safe } onClick={ this._onClick } disabled={ this.isDisabled() }>

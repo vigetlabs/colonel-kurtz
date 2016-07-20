@@ -6,7 +6,6 @@
   "main": "src/Colonel.js",
   "scripts": {
     "start": "make example",
-    "prepublish": "make build",
     "release": "make release",
     "test": "make test",
     "test:watch": "make test-watch",
@@ -73,10 +72,9 @@
     "mocha": "~2",
     "node-sass": "~3",
     "postcss": "~4.1",
-    "react": "~0.14",
-    "react-addons-test-utils": "~0.14",
-    "react-dom": "~0.14",
-    "react-hot-loader": "~1.2",
+    "react": "~15.2.0",
+    "react-addons-test-utils": "~15.2.0",
+    "react-dom": "~15.2.0",
     "sass-loader": "~2.0",
     "sinon": "1.17.3",
     "sinon-chai": "2.8.0",
@@ -84,15 +82,12 @@
     "webpack": "1.13.0",
     "webpack-dev-server": "1.14.0"
   },
-  "peerDependencies": {
-    "react": "~0.14"
-  },
   "dependencies": {
     "classnames": "~2",
     "group-by": "0.0.1",
     "microcosm": "~9.21",
-    "react-addons-css-transition-group": "~0.14",
-    "react-focus-trap": "~2.1",
+    "react-addons-css-transition-group": ">= 0.14",
+    "react-focus-trap": "~2.3",
     "react-ink": "~5.1",
     "uid": "0.0.2"
   },

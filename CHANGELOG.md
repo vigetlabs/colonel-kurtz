@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.0.0
+
+- Upgraded dependencies
+- Removed deprecation warnings for React 15.x
+- Added support for React 15.x
+
 ## 3.5.1
 
 - Added a style tag to the HTML embed addon to cut default body margins

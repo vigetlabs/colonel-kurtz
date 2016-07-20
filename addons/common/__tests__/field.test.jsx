@@ -23,7 +23,7 @@ describe('Addons - Common - Field', function () {
   })
 
   it ('sets up aria-describeby for hints', function() {
-    let component = render(<Field hint="Yes" autofocus />)
+    let component = render(<Field hint="Yes" autoFocus />)
     let el = DOM.findDOMNode(component)
     let hint = el.querySelector('.col-field-hint')
     let input = el.querySelector('.col-field-input')
