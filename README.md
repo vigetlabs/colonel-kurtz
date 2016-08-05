@@ -24,7 +24,7 @@ reordering them, and even nesting them inside other content.
 
 ![colonel](./docs/assets/colonel-kurzt.gif)
 
-Comprehensive documentation can be found under the `./docs` directory
+Comprehensive documentation can be found under the [`./docs`](https://github.com/vigetlabs/colonel-kurtz/tree/master/docs) directory
 of this repo. However the content that follows should provide a high
 level overview:
 

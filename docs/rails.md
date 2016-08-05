@@ -6,6 +6,7 @@
 4. [Parsing JSX](#parsing-jsx)
 5. [Adding Colonel Kurtz as a dependency](#adding-colonel-kurtz-as-a-dependency)
 6. [Including Colonel Kurtz styles](#including-colonel-kurtz-styles)
+7. [Integrating with Active Admin](#integrating-with-active-admin)
 
 ## Overview
 
@@ -100,6 +101,7 @@ Browserify. First, let's pull down the dependency:
 
 ```shell
 npm install --save babelify
+npm install --save envify babel-preset-es2015 babel-preset-react babel-preset-stage-1
 ```
 
 Browserify can be configured by adding a `"browserify"` entry in
@@ -109,8 +111,22 @@ entry:
 ```json
 {
   "browserify": {
+    "extensions": [
+      ".js",
+      ".jsx"
+    ],
     "transform": [
-      ["babelify", { "extensions": [".js", ".jsx"] }]
+      "envify",
+      [
+        "babelify",
+        {
+          "presets": [
+            "es2015",
+            "react",
+            "stage-1"
+          ]
+        }
+      ]
     ]
   }
 }
@@ -123,11 +139,12 @@ More information on configuring babelify can be found at [its repo](https://gith
 Similarly to `browserify` in the previous step:
 
 ```shell
+npm install --save react react-dom
 npm install --save colonel-kurtz
 ```
 
 Thats it! Additional information about configuring Colonel Kurtz is
-documented in `./colonel.md`.
+documented in [`./colonel.md`](https://github.com/vigetlabs/colonel-kurtz/blob/ef/update-docs/docs/colonel.md).
 
 ## Including Colonel Kurtz styles
 
@@ -146,4 +163,25 @@ Finally, in your stylesheet:
 
 ```
 @import "colonel-kurtz/style/colonel";
+@import "colonel-kurtz/style/addons/common";
+```
+
+## Integrating with Active Admin
+
+If your project is using ActiveAdmin, you'll need to do a couple more things to finish the integration.
+
+1. You'll need to set up a new Formtastic input type. You can add the contents of [this gist](https://gist.github.com/efatsi/aad9e67df4da20ded20dcf22e4a5279f) to a new file called `app/admin/inputs/colonel_kurtz_input.rb`.
+
+2. You'll then need to configure ColonelKurtz and have it load on the inputs that it's set to. We suggest adding the contents of [this gist](https://gist.github.com/efatsi/b878f9a1fc5799c1aa313fe181d58dc9) to a new file called `app/assets/javascripts/admin/editor.js`, and add the appropriate require line in active_admin.js:
+```js
+//= require admin/editor`
+```
+
+3. You'll notice that there are a few files required in editor.js. `blockTypes` contains a definable list of available ColonelKurtz blocks, and `persist` is necessary for exporting the output of the ColonelKurtz editor into a form field for submission. You should create the following files to fill these roles:
+  * `app/assets/javascripts/admin/colonel/blockTypes/index.js`: [this gist](https://gist.github.com/efatsi/18e60b2e22ceca1f10a8d59ee978049b)
+  * `app/assets/javascripts/admin/colonel/plugins/persist.js`: [this gist](https://gist.github.com/efatsi/c01c3e730d829250f13cb0380795cb6b)
+
+4. With your new input defined and the proper javascript in place, you can set any text field to be a Colonel Kurtz editable field by specifying it as such:
+```ruby
+f.input :content, as: :colonel_kurtz
 ```
