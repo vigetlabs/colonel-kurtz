@@ -18,6 +18,12 @@ describe('Components - Block', function() {
     })
   })
 
+  it ('assigns default content to the block', function() {
+    let block = component.props.block
+
+    block.content.text.should.equal('Test')
+  })
+
   it ('adds a class name according to the block id', function() {
     let block   = component.props.block
     let element = DOM.findDOMNode(component)

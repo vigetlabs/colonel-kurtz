@@ -48,9 +48,14 @@ module.exports = React.createClass({
 
   componentDidMount() {
     this.setMenuItems(this.refs.block)
+
+    // Trigger an initial change to ensure default content
+    // is assigned immediately
+    this._onChange(this.getContent(this.props.block))
   },
 
-  getContent(block, component) {
+  getContent(block) {
+    let { component } = this.getBlockType()
     let defaults = typeof component.getDefaultProps === 'function' ? component.getDefaultProps() : {}
 
     return { ...defaults.content, ...block.content }
@@ -63,7 +68,7 @@ module.exports = React.createClass({
 
     // Determine content by taking the default content and extend it with
     // the current block content
-    let content = this.getContent(block, Component)
+    let content = this.getContent(block)
 
     return (
       <div className="col-editor-block">
