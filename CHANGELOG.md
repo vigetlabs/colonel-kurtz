@@ -1,5 +1,11 @@
 # Changelog
 
+# 4.1.0
+
+- Blocks assign default content when mounted. This is technically a
+  bug, but the fix impacts content assignment (default values will
+  start to show up), so we're releasing it under a minor revision.
+
 ## 4.0.0
 
 - Upgraded dependencies
