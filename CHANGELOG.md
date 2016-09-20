@@ -1,6 +1,6 @@
 # Changelog
 
-# 4.1.0
+## 4.1.0
 
 - Blocks assign default content when mounted. This is technically a
   bug, but the fix impacts content assignment (default values will
