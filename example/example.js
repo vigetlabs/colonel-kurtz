@@ -11,7 +11,7 @@ let blockTypes = [
     id          : 'section',
     label       : 'Section',
     component   : require('./blockTypes/Section'),
-    types       : [ 'child-text', 'image', 'youtube' ],
+    types       : [ 'child-text', 'image', 'youtube', 'section' ],
     maxChildren : 3
   },
   {
@@ -48,7 +48,8 @@ let blockTypes = [
 let editor = new ColonelKurtz({
   el          : document.getElementById('app'),
   blockTypes  : blockTypes,
-  maxChildren : 5
+  maxChildren : 5,
+  maxDepth    : 3
 })
 
 editor.start()

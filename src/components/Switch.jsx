@@ -61,12 +61,18 @@ module.exports = React.createClass({
     return children.length >= type.maxChildren
   },
 
+  hasHitMaxDepth() {
+    let { app, parent } = this.props
+
+    return Blocks.getDepth(app.state.blocks, parent) >= app.state.maxDepth
+  },
+
   render() {
     let { app, parent, position } = this.props
     let types = typesForBlock(app.state.blockTypes, parent)
 
     let className = classNames('col-switch', {
-      'col-switch-disabled': this.hasMaxChildren()
+      'col-switch-disabled': (this.hasMaxChildren() || this.hasHitMaxDepth())
     })
 
     return types.length ? (

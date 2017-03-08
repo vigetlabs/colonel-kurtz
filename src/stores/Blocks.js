@@ -36,6 +36,18 @@ let Blocks = {
     return state.filter(i => i.parent === parent)
   },
 
+  getDepth(state, block) {
+    let currentBlock = block;
+    let depth = 0
+
+    while (currentBlock) {
+      depth += 1
+      currentBlock = state.filter(i => i === currentBlock.parent)[0]
+    }
+
+    return depth;
+  },
+
   filterChildren(state) {
     return state.filter(i => !i.parent)
   },

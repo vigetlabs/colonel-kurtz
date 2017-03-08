@@ -11,6 +11,7 @@ el          | A DOM element used to render the editor
 blocks      | The initial starting "seed" blocks for the instance
 blockTypes  | Block Types to use for this editor, see `blockTypes.md`
 maxChildren | The maximum number of root level blocks
+maxDepth    | The maximum depth blocks can be nested
 allow       | A whitelist of block type ids.
 
 ## Walk-through
