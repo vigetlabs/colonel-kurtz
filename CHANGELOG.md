@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.2.0
+
+- Add `maxDepth` config option to ColonelKurtz application
+
 ## 4.1.0
 
 - Blocks assign default content when mounted. This is technically a
