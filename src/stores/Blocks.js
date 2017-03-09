@@ -37,10 +37,11 @@ let Blocks = {
   },
 
   getDepth(state, block, maxDepth) {
+
     let currentBlock = block;
     let depth = 0
 
-    while (currentBlock || (depth == (maxDepth + 1))) {
+    while (currentBlock && (depth <= (maxDepth + 1))) {
       depth += 1
       currentBlock = state.filter(i => i === currentBlock.parent)[0]
     }
