@@ -65,7 +65,7 @@ module.exports = React.createClass({
     let { app, parent } = this.props
     if (!app.state.maxDepth) return false
 
-    return Blocks.getDepth(app.state.blocks, parent) >= app.state.maxDepth
+    return Blocks.getDepth(app.state.blocks, parent, app.state.maxDepth) >= app.state.maxDepth
   },
 
   render() {
