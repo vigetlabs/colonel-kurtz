@@ -111,7 +111,7 @@ describe('Components - Switch', function() {
       let base = render(<Switch app={ app } />)
 
       base.setState({ open: true })
-      TestUtils.Simulate.keyUp(DOM.findDOMNode(base.refs.nav), { key: 'Escape' })
+      TestUtils.Simulate.keyUp(DOM.findDOMNode(base.nav), { key: 'Escape' })
       base.state.open.should.equal(false)
     })
 
@@ -119,7 +119,7 @@ describe('Components - Switch', function() {
       let base = render(<Switch app={ app } />)
 
       base.setState({ open: true })
-      TestUtils.Simulate.keyUp(DOM.findDOMNode(base.refs.nav), { key: 'q' })
+      TestUtils.Simulate.keyUp(DOM.findDOMNode(base.nav), { key: 'q' })
       base.state.open.should.equal(true)
     })
   })

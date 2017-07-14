@@ -47,7 +47,7 @@ module.exports = React.createClass({
   },
 
   componentDidMount() {
-    this.setMenuItems(this.refs.block)
+    this.setMenuItems(this.block)
 
     // Trigger an initial change to ensure default content
     // is assigned immediately
@@ -73,14 +73,14 @@ module.exports = React.createClass({
     return (
       <div className="col-editor-block">
         <div className={ `col-block col-block-${ block.type }` }>
-          <Component ref="block" { ...block } content={ content } onChange={ this._onChange } >
+          <Component ref={ (el) => this.block = el } { ...block } content={ content } onChange={ this._onChange } >
             <Switch app={ app } parent={ block } />
             <Animator className="col-block-children">
               { children }
             </Animator>
           </Component>
 
-          <BlockMenu ref="menu" app={ app } block={ block } items={ extraMenuItems } active={ menuOpen } onOpen={ this.openMenu } onExit={ this.closeMenu } />
+          <BlockMenu ref={ (el) => this.menu = el } app={ app } block={ block } items={ extraMenuItems } active={ menuOpen } onOpen={ this.openMenu } onExit={ this.closeMenu } />
         </div>
 
         <Switch app={ app } position={ block } parent={ block.parent } />

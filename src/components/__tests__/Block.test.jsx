@@ -33,7 +33,7 @@ describe('Components - Block', function() {
   })
 
   it ('sends an onOpen callback to the menu it owns', function() {
-    component.refs.menu.props.onOpen()
+    component.menu.props.onOpen()
     component.state.should.have.property('menuOpen', true)
   })
 
@@ -43,20 +43,20 @@ describe('Components - Block', function() {
   })
 
   it ('passes menu items from the block type component to the menu', function() {
-    let { menu } = component.refs
+    let { menu } = component
     component.setState({ menuOpen: true })
-    menu.refs.should.have.property('test')
+    menu.should.have.property('test')
   })
 
   it ('can close a menu', function() {
-    let { menu } = component.refs
+    let { menu } = component
     component.setState({ menuOpen: true })
     menu.props.onExit()
     component.state.menuOpen.should.equal(false)
   })
 
   it ('respects default the content prop', function() {
-    let block = component.refs.block
+    let { block } = component
 
     expect(block.props.content.text).to.equal('Test')
   })

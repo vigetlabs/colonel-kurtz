@@ -54,13 +54,13 @@ module.exports = React.createClass({
                label="HTML Embed"
                element="textarea"
                hint="Paste HTML into this field. Include related JavaScript below."
-               ref="html"
+               ref={ (el) => this.html = el }
                value={ html }
                onChange={ this.onHTMLChange } />
 
         <Field label="Embedded JavaScript URL"
                hint="Paste the JavaScript URL of the embed into this field."
-               ref="script"
+               ref={ (el) => this.script = el }
                value={ script }
                onChange={ this.onScriptChange } />
 

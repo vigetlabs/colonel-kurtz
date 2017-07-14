@@ -69,7 +69,7 @@ describe('Addons - HTML Embed', function() {
           var component = render(<HtmlEmbed onChange={ didStripStyleTags } />)
           var content   = '<style>body{}</style><p>Test</p><script src="https://such-script.com/wow"></script>'
 
-          Simulate.change(component.refs.html.refs.input, { target: { value: content } })
+          Simulate.change(component.html.input, { target: { value: content } })
         })
       })
     })

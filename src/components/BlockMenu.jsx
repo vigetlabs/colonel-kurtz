@@ -22,7 +22,7 @@ module.exports = React.createClass({
 
   getMenuItem(item) {
     let { id } = item
-    return (<Item key={ id } ref={ id } { ...item } { ...this.props } />)
+    return (<Item key={ id } ref={ (el) => this[id] = el } { ...item } { ...this.props } />)
   },
 
   getMenuItems() {
@@ -45,7 +45,7 @@ module.exports = React.createClass({
   render() {
     return (
       <Animator className="col-menu-wrapper" transitionName="col-menu" transitionEnterTimeout={ 300 } transitionLeaveTimeout={ 200 }>
-        <Handle key="handle" ref="handle" onClick={ this.props.onOpen }/>
+        <Handle key="handle" ref={ (el) => this.handle = el } onClick={ this.props.onOpen }/>
         { this.getMenu() }
       </Animator>
     )

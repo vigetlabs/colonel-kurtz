@@ -36,7 +36,7 @@ describe('Addons - Common - Embedded', function() {
   it ('closes the frame if no slug is given', function() {
     const component = render(<Embedded name="test" onChange={ sinon.stub() } />)
 
-    component.refs.frame.props.open.should.equal(false)
+    component.frame.props.open.should.equal(false)
   })
 
   it ('fires a change event with a key/value pair according to the given name', function(done) {
@@ -47,7 +47,7 @@ describe('Addons - Common - Embedded', function() {
 
     const component = render(<Embedded name="test" onChange={ test } slug="1" />)
 
-    Simulate.change(DOM.findDOMNode(component.refs.field.refs.input))
+    Simulate.change(DOM.findDOMNode(component.field.input))
   })
 
 })

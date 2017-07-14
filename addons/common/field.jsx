@@ -34,7 +34,7 @@ let Field = React.createClass({
       <label className="col-field">
         <span className="col-field-label">{ label }</span>
 
-        <Element ref="input" className="col-field-input" aria-describedby={ hint ? hintId : null } { ...props } />
+        <Element ref={ (el) => this.input = el } className="col-field-input" aria-describedby={ hint ? hintId : null } { ...props } />
         { this.getHint(hint) }
       </label>
     )

@@ -26,14 +26,14 @@ module.exports = React.createClass({
 
   close() {
     this.setState({ open: false }, () => {
-      this.refs.toggle.focus()
+      this.toggle.focus()
     })
   },
 
   getToggle() {
     if (this.state.open) return null
 
-    return (<ActionButton ref="toggle"
+    return (<ActionButton ref={ (el) => this.toggle = el }
                           disabled={ this.hasMaxChildren() }
                           label="Open the block menu and create a block"
                           onClick={ this._onToggle } />)
@@ -42,7 +42,7 @@ module.exports = React.createClass({
   getNav(blockTypes) {
     if (!this.state.open) return null
 
-    return (<SwitchNav ref="nav"
+    return (<SwitchNav ref={ (el) => this.nav = el }
                        blockTypes={ blockTypes }
                        onAdd={ this._onAdd }
                        onExit={ this.close } />)

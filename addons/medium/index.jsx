@@ -36,7 +36,7 @@ var Medium = React.createClass({
 
   componentDidMount() {
     this.setState({
-      editor: new MediumEditor(DOM.findDOMNode(this.refs.editor), this.props.options)
+      editor: new MediumEditor(DOM.findDOMNode(this.editor), this.props.options)
     })
   },
 
@@ -47,14 +47,14 @@ var Medium = React.createClass({
   render() {
     return (
       <div className="col-block-medium">
-        <div className="col-medium" onBlur={ this._onBlur } role="textarea" aria-multiline="true" ref="editor" dangerouslySetInnerHTML={{ __html: this.props.content.html }} />
+        <div className="col-medium" onBlur={ this._onBlur } role="textarea" aria-multiline="true" ref={ (el) => this.editor = el } dangerouslySetInnerHTML={{ __html: this.props.content.html }} />
         { this.props.children }
       </div>
     )
   },
 
   _onBlur() {
-    var editor = DOM.findDOMNode(this.refs.editor)
+    var editor = DOM.findDOMNode(this.editor)
 
     this.props.onChange({
       text: editor.textContent,

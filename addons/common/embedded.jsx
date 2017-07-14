@@ -44,9 +44,9 @@ const Embedded = React.createClass({
 
     return (
       <div className={ className }>
-        <Field ref="field" hint={ hint } label={ title } value={ slug } name={ name } onChange={ this._onChange } />
+        <Field ref={ (el) => this.field = el } hint={ hint } label={ title } value={ slug } name={ name } onChange={ this._onChange } />
         { this.props.children }
-        <Frame ref="frame" open={ this.hasSlug() }>
+        <Frame ref={ (el) => this.frame = el } open={ this.hasSlug() }>
           <Graphic key={ slug } element="iframe" src={ this.getSrc(slug) } />
         </Frame>
       </div>
