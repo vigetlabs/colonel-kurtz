@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.2.1
+
+- Use ref callback pattern. This change removes deprecation warnings in
+  the browser console when Colonel Kurtz is used with React 15.6.0.
+
 ## 4.2.0
 
 - Add `maxDepth` config option to ColonelKurtz application
