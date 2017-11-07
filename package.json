@@ -88,8 +88,7 @@
     "microcosm": "~9.21",
     "react-addons-css-transition-group": ">= 0.14",
     "react-focus-trap": "~2.3",
-    "react-ink": "~5.1",
-    "uid": "0.0.2"
+    "react-ink": "~5.1"
   },
   "babel": {
     "stage": 2,
