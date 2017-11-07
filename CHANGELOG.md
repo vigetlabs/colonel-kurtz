@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.3.0
+
+- Inline the uid module 
+
 ## 4.2.1
 
 - Use ref callback pattern. This change removes deprecation warnings in
