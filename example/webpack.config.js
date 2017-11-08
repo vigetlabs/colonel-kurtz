@@ -19,7 +19,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.scss', '.css']
+    extensions: ['.js', '.scss', '.css']
   },
 
   module: {
@@ -27,12 +27,17 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel'
+        loader: 'babel-loader'
       },
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        loader: 'style!css!autoprefixer!sass'
+        loaders: [
+          'style-loader',
+          'css-loader',
+          'autoprefixer-loader',
+          'sass-loader'
+        ]
       }
     ]
   },
