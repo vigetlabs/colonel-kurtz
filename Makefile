@@ -28,9 +28,6 @@ release: clean build
 prerelease: clean build
 	npm publish $(DIST) --tag beta
 
-example:
-	node example/server
-
 release-example:
 	NODE_ENV=production webpack -p --entry ./example/example.js --output-path example --output-filename example.build.js
 	git subtree push --prefix example origin gh-pages

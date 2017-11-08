@@ -1,6 +1,5 @@
 var Webpack        = require('webpack')
 var HappyPack      = require('happypack')
-var webpack_config = require('./webpack.config')
 var isIntegration  = process.env.CONTINUOUS_INTEGRATION === 'true'
 var noCoverage     = process.env.NO_COVERAGE === 'true'
 
@@ -58,19 +57,21 @@ module.exports = function(config) {
         new HappyPack({ id: 'js' })
       ],
 
-      resolve: webpack_config.resolve,
+      resolve: {
+        extensions: ['', '.js', '.scss', '.css']
+      },
 
       module: {
         loaders: [
           {
-            test    : /\.jsx*$/,
+            test    : /\.js$/,
             exclude : /node_modules/,
             loader  : 'babel?optional=runtime',
             happy   : { id: 'js' }
           }
         ],
         postLoaders: noCoverage ? [] : [{
-          test    : /\.jsx*$/,
+          test    : /\.js$/,
           happy   : { id: 'js' },
           exclude : /(__tests__|node_modules)/,
           loader  : 'istanbul-instrumenter'
