@@ -48,13 +48,14 @@
     "autoprefixer": "^7.1.6",
     "autoprefixer-core": "^6.0.1",
     "autoprefixer-loader": "^3.2.0",
-    "babel": "~5",
-    "babel-core": "~5",
-    "babel-loader": "~5",
-    "babel-plugin-object-assign": "~1.2",
-    "babel-runtime": "~5",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-runtime": "^6.26.0",
     "chai": "3.5.0",
-    "coveralls": "~2",
     "css-loader": "^0.28.7",
     "karma": "^1.7.1",
     "karma-chrome-launcher": "^2.2.0",
@@ -85,12 +86,5 @@
     "react-addons-css-transition-group": ">= 0.14",
     "react-focus-trap": "~2.3",
     "react-ink": "~5.1"
-  },
-  "babel": {
-    "stage": 2,
-    "sourceMaps": "inline",
-    "plugins": [
-      "object-assign"
-    ]
   }
 }
