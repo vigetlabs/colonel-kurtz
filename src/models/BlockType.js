@@ -1,4 +1,3 @@
-import React from 'react'
 import DefaultBlockType from '../components/DefaultBlockType'
 
 let defaults = {

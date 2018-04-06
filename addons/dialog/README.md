@@ -1,8 +1,8 @@
 # Dialog
 
-1. [Overview](#overview)
-2. [Integration](#integration)
-3. [Properties](#properties)
+1.  [Overview](#overview)
+2.  [Integration](#integration)
+3.  [Properties](#properties)
 
 ## Overview
 
@@ -27,10 +27,10 @@ let MyBlockTypeComponent = React.createClass({
   render() {
     return (
       <div>
-        <button onClick={ this.open }>Open</button>
-        <Dialog title="Settings" active={ this.state.open } onExit={ this.close }>
+        <button onClick={this.open}>Open</button>
+        <Dialog title="Settings" active={this.state.open} onExit={this.close}>
           <p>You can use dialogs such as these to hide more stuff</p>
-          <button onClick={ this.close }>Close</button>
+          <button onClick={this.close}>Close</button>
         </Dialog>
       </div>
     )

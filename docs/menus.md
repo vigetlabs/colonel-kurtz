@@ -1,17 +1,17 @@
 # Menus
 
-1. [Options](#options)
-2. [Overview](#overview)
-3. [onClick and isDisabled](#onclick-and-isdisabled)
+1.  [Options](#options)
+2.  [Overview](#overview)
+3.  [onClick and isDisabled](#onclick-and-isdisabled)
 
 ## Options
 
-Name       | Description
----------- | -----------
-id         | A unique identifier, used to indicate selection
-label      | A user friendly label to show in the menu UI
-onClick    | Optionally, executed when an item is clicked
-isDisabled | A predicate to determine if a menu item should be disabled
+| Name       | Description                                                |
+| ---------- | ---------------------------------------------------------- |
+| id         | A unique identifier, used to indicate selection            |
+| label      | A user friendly label to show in the menu UI               |
+| onClick    | Optionally, executed when an item is clicked               |
+| isDisabled | A predicate to determine if a menu item should be disabled |
 
 ## Overview
 
@@ -27,25 +27,26 @@ found at `./example/blockTypes/Section.jsx`:
 import React from 'react'
 
 module.exports = React.createClass({
-
   getMenuItems() {
-    return [{
-      id      : 'hello-world',
-      label   : 'Hello World',
-      onClick : (editor, block, menuItem) => alert("Hello, world!")
-    }]
+    return [
+      {
+        id: 'hello-world',
+        label: 'Hello World',
+        onClick: (editor, block, menuItem) => alert('Hello, world!')
+      }
+    ]
   },
 
   render() {
-    return <div>{ this.props.children }</div>
+    return <div>{this.props.children}</div>
   }
 })
 ```
 
 There are several things going on here:
 
-1. The UI for new menu items is described in the `getMenuItems` method
-2. Whenever a menu item is clicked, it will execute the `onClick` option
+1.  The UI for new menu items is described in the `getMenuItems` method
+2.  Whenever a menu item is clicked, it will execute the `onClick` option
 
 ## onClick and isDisabled
 

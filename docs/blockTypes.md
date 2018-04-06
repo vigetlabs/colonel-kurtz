@@ -1,9 +1,9 @@
 # Block Types
 
-1. [Overview](#overview)
-2. [Properties](#properties)
-3. [Creating Block Types](#creating-block-types)
-4. [Advanced Block Types](#advanced-block-types)
+1.  [Overview](#overview)
+2.  [Properties](#properties)
+3.  [Creating Block Types](#creating-block-types)
+4.  [Advanced Block Types](#advanced-block-types)
 
 ## Overview
 
@@ -13,15 +13,15 @@ it will be assigned a `type` equal to the id of a Block Type.
 
 ## Properties
 
-Property    | Description
------------ | -----------
-id          | A unique identifier. Assigned to a block when it is created.
-label       | A display name given to the block type in the interface.
-component   | A React component used to edit a block of a given type.
-types       | An array of other BlockType ids that may be created as children.
-maxChildren | An integer specifying the maximum allowed children that may be created.
-root        | Configures the BlockType to display in the menu unless specifically asked for using `types`. Defaults to true.
-group       | When set, groups BlockTypes of the provided string name within the block menu selector.
+| Property    | Description                                                                                                    |
+| ----------- | -------------------------------------------------------------------------------------------------------------- |
+| id          | A unique identifier. Assigned to a block when it is created.                                                   |
+| label       | A display name given to the block type in the interface.                                                       |
+| component   | A React component used to edit a block of a given type.                                                        |
+| types       | An array of other BlockType ids that may be created as children.                                               |
+| maxChildren | An integer specifying the maximum allowed children that may be created.                                        |
+| root        | Configures the BlockType to display in the menu unless specifically asked for using `types`. Defaults to true. |
+| group       | When set, groups BlockTypes of the provided string name within the block menu selector.                        |
 
 ## Creating Block Types
 
@@ -30,11 +30,13 @@ definition. They are added to Colonel Kurtz by passing in a
 `blockTypes` property when making an instance:
 
 ```javascript
-var blockTypes = [{
-  id        : 'image',
-  label     : 'Image',
-  component : require('../addons/image')
-}]
+var blockTypes = [
+  {
+    id: 'image',
+    label: 'Image',
+    component: require('../addons/image')
+  }
+]
 ```
 
 The `id` value must be unique (the `label` property _should_ be,
@@ -47,15 +49,14 @@ property that is sent down from the editor:
 
 ```javascript
 var Textbox = React.createClass({
-
   // PropTypes allow you to validate properties coming into the component
   propTypes: {
-    content  : React.PropTypes.object.isRequired,
-    onChange : React.PropTypes.func.isRequired
+    content: React.PropTypes.object.isRequired,
+    onChange: React.PropTypes.func.isRequired
   },
 
   render() {
-    return <textarea onBlur={ this._onBlur } />
+    return <textarea onBlur={this._onBlur} />
   },
 
   _onBlur(e) {
@@ -63,7 +64,6 @@ var Textbox = React.createClass({
       text: e.currentTarget.textContent
     })
   }
-
 })
 ```
 
@@ -71,15 +71,17 @@ Now that the `Textbox` component has been created, we can send it into
 the available block types passed into a `ColonelKurtz` instance.
 
 ```javascript
-var blockTypes = [{
-  id        : 'text',
-  label     : 'Textbox',
-  component : Textbox
-}]
+var blockTypes = [
+  {
+    id: 'text',
+    label: 'Textbox',
+    component: Textbox
+  }
+]
 
 let editor = new ColonelKurtz({
-  el         : document.getElementById('app'),
-  blockTypes : blockTypes
+  el: document.getElementById('app'),
+  blockTypes: blockTypes
 })
 ```
 
@@ -94,9 +96,11 @@ ArsArsenal can operate as a stand-alone gallery, however it exposes a
 "component" key that is useable by Colonel Kurtz:
 
 ```javascript
-var blockTypes = [{
-  id        : 'image',
-  label     : 'Image',
-  component : require('ars-arsenal').Component
-}]
+var blockTypes = [
+  {
+    id: 'image',
+    label: 'Image',
+    component: require('ars-arsenal').Component
+  }
+]
 ```

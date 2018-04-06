@@ -1,8 +1,8 @@
 # HTML Embed Addon
 
-1. [Overview](#overview)
-2. [Integration](#integration)
-3. [Data Format](#data-format)
+1.  [Overview](#overview)
+2.  [Integration](#integration)
+3.  [Data Format](#data-format)
 
 ## Overview
 
@@ -33,4 +33,4 @@ the `blockTypes` field:
 
 ## Considerations
 
-`<script>` and `<style>` tags will be automatically stripped out of HTML input.  The server should do the same as the JSON coming out of the HTML Embed block could be modified.
+`<script>` and `<style>` tags will be automatically stripped out of HTML input. The server should do the same as the JSON coming out of the HTML Embed block could be modified.

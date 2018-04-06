@@ -1,8 +1,8 @@
 # YouTube Addon
 
-1. [Overview](#overview)
-2. [Integration](#integration)
-3. [Data Format](#data-format)
+1.  [Overview](#overview)
+2.  [Integration](#integration)
+3.  [Data Format](#data-format)
 
 ## Overview
 

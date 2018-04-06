@@ -1,12 +1,12 @@
 # Rails Integration
 
-1. [Overview](#overview)
-2. [Installing Node](#installing-node)
-3. [Setting up Browserify](#setting-up-browserify)
-4. [Parsing JSX](#parsing-jsx)
-5. [Adding Colonel Kurtz as a dependency](#adding-colonel-kurtz-as-a-dependency)
-6. [Including Colonel Kurtz styles](#including-colonel-kurtz-styles)
-7. [Integrating with Active Admin](#integrating-with-active-admin)
+1.  [Overview](#overview)
+2.  [Installing Node](#installing-node)
+3.  [Setting up Browserify](#setting-up-browserify)
+4.  [Parsing JSX](#parsing-jsx)
+5.  [Adding Colonel Kurtz as a dependency](#adding-colonel-kurtz-as-a-dependency)
+6.  [Including Colonel Kurtz styles](#including-colonel-kurtz-styles)
+7.  [Integrating with Active Admin](#integrating-with-active-admin)
 
 ## Overview
 
@@ -46,8 +46,8 @@ using
 
 Browserify is going to do two things for us:
 
-1. Make it easier to include Colonel Kurtz
-2. Transform React's JSX syntax into vanilla JavaScript
+1.  Make it easier to include Colonel Kurtz
+2.  Transform React's JSX syntax into vanilla JavaScript
 
 After following the installation process described in the readme of
 [`browserify-rails`](https://github.com/browserify-rails/browserify-rails),
@@ -81,8 +81,7 @@ be.
 
 Returning to the commands above. `npm install` pull down each module from
 `npm`. `--save` tells npm to store a record of the dependency in
-`package.json`. For the future, when a developer executes `npm
-install`, it will pull down these same, versioned, dependencies.
+`package.json`. For the future, when a developer executes `npm install`, it will pull down these same, versioned, dependencies.
 
 ## Parsing JSX
 
@@ -111,20 +110,13 @@ entry:
 ```json
 {
   "browserify": {
-    "extensions": [
-      ".js",
-      ".jsx"
-    ],
+    "extensions": [".js", ".jsx"],
     "transform": [
       "envify",
       [
         "babelify",
         {
-          "presets": [
-            "es2015",
-            "react",
-            "stage-1"
-          ]
+          "presets": ["es2015", "react", "stage-1"]
         }
       ]
     ]
@@ -170,18 +162,21 @@ Finally, in your stylesheet:
 
 If your project is using ActiveAdmin, you'll need to do a couple more things to finish the integration.
 
-1. You'll need to set up a new Formtastic input type. You can add the contents of [this gist](https://gist.github.com/efatsi/aad9e67df4da20ded20dcf22e4a5279f) to a new file called `app/admin/inputs/colonel_kurtz_input.rb`.
+1.  You'll need to set up a new Formtastic input type. You can add the contents of [this gist](https://gist.github.com/efatsi/aad9e67df4da20ded20dcf22e4a5279f) to a new file called `app/admin/inputs/colonel_kurtz_input.rb`.
 
-2. You'll then need to configure ColonelKurtz and have it load on the inputs that it's set to. We suggest adding the contents of [this gist](https://gist.github.com/efatsi/b878f9a1fc5799c1aa313fe181d58dc9) to a new file called `app/assets/javascripts/admin/editor.js`, and add the appropriate require line in active_admin.js:
+2.  You'll then need to configure ColonelKurtz and have it load on the inputs that it's set to. We suggest adding the contents of [this gist](https://gist.github.com/efatsi/b878f9a1fc5799c1aa313fe181d58dc9) to a new file called `app/assets/javascripts/admin/editor.js`, and add the appropriate require line in active_admin.js:
+
 ```js
 //= require admin/editor`
 ```
 
-3. You'll notice that there are a few files required in editor.js. `blockTypes` contains a definable list of available ColonelKurtz blocks, and `persist` is necessary for exporting the output of the ColonelKurtz editor into a form field for submission. You should create the following files to fill these roles:
-  * `app/assets/javascripts/admin/colonel/blockTypes/index.js`: [this gist](https://gist.github.com/efatsi/18e60b2e22ceca1f10a8d59ee978049b)
-  * `app/assets/javascripts/admin/colonel/plugins/persist.js`: [this gist](https://gist.github.com/efatsi/c01c3e730d829250f13cb0380795cb6b)
+3.  You'll notice that there are a few files required in editor.js. `blockTypes` contains a definable list of available ColonelKurtz blocks, and `persist` is necessary for exporting the output of the ColonelKurtz editor into a form field for submission. You should create the following files to fill these roles:
 
-4. With your new input defined and the proper javascript in place, you can set any text field to be a Colonel Kurtz editable field by specifying it as such:
+* `app/assets/javascripts/admin/colonel/blockTypes/index.js`: [this gist](https://gist.github.com/efatsi/18e60b2e22ceca1f10a8d59ee978049b)
+* `app/assets/javascripts/admin/colonel/plugins/persist.js`: [this gist](https://gist.github.com/efatsi/c01c3e730d829250f13cb0380795cb6b)
+
+4.  With your new input defined and the proper javascript in place, you can set any text field to be a Colonel Kurtz editable field by specifying it as such:
+
 ```ruby
 f.input :content, as: :colonel_kurtz
 ```

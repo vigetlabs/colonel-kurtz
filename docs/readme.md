@@ -1,9 +1,9 @@
 # Colonel Kurtz
 
-1. [Terminology](#terminology)
-2. [Creating an Editor](#creating-an-editor)
-3. [Exporting Data](#exporting-data)
-4. [Adding Block Types](#adding-block-types)
+1.  [Terminology](#terminology)
+2.  [Creating an Editor](#creating-an-editor)
+3.  [Exporting Data](#exporting-data)
+4.  [Adding Block Types](#adding-block-types)
 
 ## Terminology
 
@@ -39,12 +39,12 @@ Colonel Kurtz is a standard JavaScript constructor, which means you
 can create _new_ editors:
 
 ```javascript
-let box   = document.getElementById('#box')
+let box = document.getElementById('#box')
 let input = document.getElementById('#textarea')
 
 var myEditor = new ColonelKurtz({
-  el     : box,
-  blocks : input
+  el: box,
+  blocks: input
 })
 ```
 
@@ -85,11 +85,13 @@ Colonel Kurtz:
 ```javascript
 var myEditor = new ColonelKurtz({
   //...
-  blockTypes: [{
-    id: 'video',
-    label: 'Video',
-    component: require('colonel-kurtz/addons/youtube')
-  }]
+  blockTypes: [
+    {
+      id: 'video',
+      label: 'Video',
+      component: require('colonel-kurtz/addons/youtube')
+    }
+  ]
 })
 ```
 
