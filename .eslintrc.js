@@ -1,10 +1,6 @@
 var isIntegration = !!process.env.CI
 
 module.exports = {
-  globals: {
-    sinon: true,
-    context: true
-  },
   env: {
     browser: true,
     commonjs: true,

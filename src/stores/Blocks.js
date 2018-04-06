@@ -83,7 +83,7 @@ const Blocks = {
   update(state, { id, content }) {
     var block = Blocks.find(state, id)
 
-    block.content = Object.assign(block.content, content)
+    block.content = { ...block.content, ...content }
 
     return state
   },

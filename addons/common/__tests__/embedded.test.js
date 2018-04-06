@@ -1,38 +1,39 @@
-const React = require('react')
-const DOM = require('react-dom')
-const Embedded = require('../embedded')
-const TestUtils = require('react-addons-test-utils')
+import React from 'react'
+import DOM from 'react-dom'
+import Embedded from '../embedded'
+import TestUtils from 'react-dom/test-utils'
+
 const Simulate = TestUtils.Simulate
 const render = TestUtils.renderIntoDocument
 
 describe('Addons - Common - Embedded', function() {
   it('resolves urls to a baseUrl and slug', function() {
     const component = render(
-      <Embedded name="test" baseUrl="test/" slug="1" onChange={sinon.stub()} />
+      <Embedded name="test" baseUrl="test/" slug="1" onChange={jest.fn()} />
     )
 
-    component.getSrc().should.equal('test/1')
+    expect(component.getSrc()).toEqual('test/1')
   })
 
   it('properly handles cases where the slug is zero', function() {
     const component = render(
-      <Embedded name="test" slug={0} onChange={sinon.stub()} />
+      <Embedded name="test" slug={0} onChange={jest.fn()} />
     )
-    component.hasSlug().should.equal(true)
+    expect(component.hasSlug()).toEqual(true)
   })
 
   it('properly handles cases where the slug is undefined', function() {
     const component = render(
-      <Embedded name="test" slug={undefined} onChange={sinon.stub()} />
+      <Embedded name="test" slug={undefined} onChange={jest.fn()} />
     )
-    component.hasSlug().should.equal(false)
+    expect(component.hasSlug()).toEqual(false)
   })
 
   it('properly handles cases where the slug is empty', function() {
     const component = render(
-      <Embedded name="test" slug={''} onChange={sinon.stub()} />
+      <Embedded name="test" slug={''} onChange={jest.fn()} />
     )
-    component.hasSlug().should.equal(false)
+    expect(component.hasSlug()).toEqual(false)
   })
 
   it('allows url resolution to be overridden', function() {
@@ -42,22 +43,22 @@ describe('Addons - Common - Embedded', function() {
         name="test"
         resolveUrl={resolver}
         slug="1"
-        onChange={sinon.stub()}
+        onChange={jest.fn()}
       />
     )
 
-    component.getSrc().should.equal('test')
+    expect(component.getSrc()).toEqual('test')
   })
 
   it('closes the frame if no slug is given', function() {
-    const component = render(<Embedded name="test" onChange={sinon.stub()} />)
+    const component = render(<Embedded name="test" onChange={jest.fn()} />)
 
-    component.frame.props.open.should.equal(false)
+    expect(component.frame.props.open).toEqual(false)
   })
 
   it('fires a change event with a key/value pair according to the given name', function(done) {
     const test = function(data) {
-      data.test.should.equal('1')
+      expect(data.test).toEqual('1')
       done()
     }
 

@@ -1,6 +1,6 @@
-let Actions = require('../actions/blocks')
-let Block = require('../models/Block')
-let Colonel = require('../Colonel')
+import Actions from '../actions/blocks'
+import Block from '../models/Block'
+import Colonel from '../Colonel'
 
 describe('ColonelKurtz', function() {
   let app
@@ -18,13 +18,13 @@ describe('ColonelKurtz', function() {
   })
 
   it('renders to the provided element', function() {
-    el.innerHTML.should.not.equal('')
+    expect(el.innerHTML).not.toEqual('')
   })
 
   it('returns blocks when converting to JSON', function() {
     let json = app.toJSON()
 
-    json.length.should.equal(1)
+    expect(json).toHaveLength(1)
   })
 
   describe('when a create action is sent to the app', function() {
@@ -33,11 +33,11 @@ describe('ColonelKurtz', function() {
     })
 
     it('should prepend a new block', function() {
-      app.state.blocks[0].type.should.equal('section')
+      expect(app.state.blocks[0]).toHaveProperty('type', 'section')
     })
 
     it('should flag the block as client-only', function() {
-      app.state.blocks[0].clientOnly.should.equal(true)
+      expect(app.state.blocks[0]).toHaveProperty('clientOnly', true)
     })
   })
 
@@ -47,7 +47,7 @@ describe('ColonelKurtz', function() {
     })
 
     it('should prepend a new block', function() {
-      app.state.blocks.length.should.equal(0)
+      expect(app.state.blocks).toHaveLength(0)
     })
   })
 
@@ -57,7 +57,7 @@ describe('ColonelKurtz', function() {
     })
 
     it('should update the content of that block', function() {
-      app.state.blocks[0].content.should.have.property('foo', 'bar')
+      expect(app.state.blocks[0]).toHaveProperty('content.foo', 'bar')
     })
   })
 
@@ -69,10 +69,7 @@ describe('ColonelKurtz', function() {
 
       app.push(Actions.move, [block, 1])
 
-      app.state.blocks
-        .concat()
-        .pop()
-        .should.equal(block)
+      expect(app.state.blocks).toContain(block)
     })
   })
 })

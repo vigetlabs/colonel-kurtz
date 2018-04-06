@@ -1,10 +1,11 @@
 import React from 'react'
-let Colonel = require('../../Colonel')
-let DOM = require('react-dom')
-let EditorBlock = require('../EditorBlock')
-let config = require('./fixtures/colonelConfig')
-let TestUtils = require('react-addons-test-utils')
-let render = TestUtils.renderIntoDocument
+import Colonel from '../../Colonel'
+import DOM from 'react-dom'
+import EditorBlock from '../EditorBlock'
+import config from './fixtures/colonelConfig'
+import TestUtils from 'react-dom/test-utils'
+
+const render = TestUtils.renderIntoDocument
 
 describe('Components - EditorBlock', function() {
   let app
@@ -19,6 +20,6 @@ describe('Components - EditorBlock', function() {
     let component = render(<EditorBlock app={app} block={block} />)
     let element = DOM.findDOMNode(component)
 
-    element.children.length.should.equal(2)
+    expect(element.children).toHaveLength(2)
   })
 })

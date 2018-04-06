@@ -1,5 +1,5 @@
-let Block = require('../../models/Block')
-let blocksToJson = require('../blocksToJson')
+import Block from '../../models/Block'
+import blocksToJson from '../blocksToJson'
 
 describe('Utils - blocksToJson', function() {
   it('serializes through children', function() {
@@ -7,8 +7,8 @@ describe('Utils - blocksToJson', function() {
     let blocks = [parent, new Block({ parent }), new Block({ parent })]
     let result = blocksToJson(blocks)
 
-    result.length.should.equal(1)
-    result[0].blocks.length.should.equal(2)
+    expect(result).toHaveLength(1)
+    expect(result[0].blocks).toHaveLength(2)
   })
 
   it('does not include clientOnly flags', function() {
@@ -16,10 +16,10 @@ describe('Utils - blocksToJson', function() {
     let blocks = [parent, new Block({ parent }), new Block({ parent })]
     let result = blocksToJson(blocks)
 
-    result.should.not.have.property('clientOnly')
+    expect(result).not.toHaveProperty('clientOnly')
   })
 
   it('just returns an empty object if no value is given', function() {
-    blocksToJson().length.should.equal(0)
+    expect(blocksToJson()).toHaveLength(0)
   })
 })

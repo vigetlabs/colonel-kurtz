@@ -21,7 +21,9 @@ export default class BlockMenu extends React.Component {
   }
 
   getMenuItems() {
-    return this.props.items.concat(menuItems).map(this.getMenuItem)
+    const { items } = this.props
+
+    return items.concat(menuItems).map(this.getMenuItem, this)
   }
 
   getMenu() {

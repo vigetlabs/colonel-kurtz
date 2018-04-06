@@ -1,10 +1,11 @@
-let Block = require('../Block')
+import Block from '../Block'
 import React from 'react'
-let Colonel = require('../../Colonel')
-let DOM = require('react-dom')
-let config = require('./fixtures/colonelConfig')
-let TestUtils = require('react-addons-test-utils')
-let render = TestUtils.renderIntoDocument
+import Colonel from '../../Colonel'
+import DOM from 'react-dom'
+import config from './fixtures/colonelConfig'
+import TestUtils from 'react-dom/test-utils'
+
+const render = TestUtils.renderIntoDocument
 
 describe('Components - Block', function() {
   let app, component
@@ -13,7 +14,6 @@ describe('Components - Block', function() {
     app = new Colonel(config)
 
     app.start(function() {
-      sinon.spy(app, 'push')
       component = render(<Block app={app} block={app.state.blocks[0]} />)
       done()
     })
@@ -22,7 +22,7 @@ describe('Components - Block', function() {
   it('assigns default content to the block', function() {
     let block = component.props.block
 
-    block.content.text.should.equal('Test')
+    expect(block.content).toHaveProperty('text', 'Test')
   })
 
   it('adds a class name according to the block id', function() {
@@ -30,35 +30,39 @@ describe('Components - Block', function() {
     let element = DOM.findDOMNode(component)
     let child = element.querySelector('.col-block')
 
-    child.className.should.include(block.type)
+    expect(child.className).toContain(block.type)
   })
 
   it('sends an onOpen callback to the menu it owns', function() {
     component.menu.props.onOpen()
-    component.state.should.have.property('menuOpen', true)
+    expect(component).toHaveProperty('state.menuOpen', true)
   })
 
   it('updates a block when it changes', function() {
     component._onChange({ fiz: 'buzz' })
-    component.props.block.content.should.have.property('fiz', 'buzz')
+    expect(component).toHaveProperty('props.block.content.fiz', 'buzz')
   })
 
   it('passes menu items from the block type component to the menu', function() {
     let { menu } = component
+
     component.setState({ menuOpen: true })
-    menu.should.have.property('test')
+
+    expect(menu).toHaveProperty('test')
   })
 
   it('can close a menu', function() {
     let { menu } = component
+
     component.setState({ menuOpen: true })
     menu.props.onExit()
-    component.state.menuOpen.should.equal(false)
+
+    expect(component).toHaveProperty('state.menuOpen', false)
   })
 
   it('respects default the content prop', function() {
     let { block } = component
 
-    expect(block.props.content.text).to.equal('Test')
+    expect(block).toHaveProperty('props.content.text', 'Test')
   })
 })

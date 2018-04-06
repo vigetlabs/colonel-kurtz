@@ -30,11 +30,11 @@ export default class Block extends React.Component {
     }
   }
 
-  openMenu() {
+  openMenu = () => {
     this.setState({ menuOpen: true })
   }
 
-  closeMenu() {
+  closeMenu = () => {
     this.setState({ menuOpen: false })
   }
 
@@ -48,10 +48,8 @@ export default class Block extends React.Component {
 
   getContent(block) {
     let { component } = this.getBlockType()
-    let defaults =
-      typeof component.getDefaultProps === 'function'
-        ? component.getDefaultProps()
-        : {}
+
+    let defaults = component.defaultProps || {}
 
     return { ...defaults.content, ...block.content }
   }

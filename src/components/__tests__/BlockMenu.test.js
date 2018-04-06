@@ -1,11 +1,12 @@
 import React from 'react'
-let Colonel = require('../../Colonel')
-let DOM = require('react-dom')
-let BlockMenu = require('../BlockMenu')
-let Actions = require('../../actions/blocks')
-let config = require('./fixtures/colonelConfig')
-let TestUtils = require('react-addons-test-utils')
-let render = TestUtils.renderIntoDocument
+import Colonel from '../../Colonel'
+import DOM from 'react-dom'
+import BlockMenu from '../BlockMenu'
+import Actions from '../../actions/blocks'
+import config from './fixtures/colonelConfig'
+import TestUtils from 'react-dom/test-utils'
+
+const render = TestUtils.renderIntoDocument
 
 describe('Components - BlockMenu', function() {
   let app, menu
@@ -13,14 +14,14 @@ describe('Components - BlockMenu', function() {
   beforeEach(function(done) {
     app = new Colonel(config)
 
-    sinon.spy(app, 'push')
+    jest.spyOn(app, 'push')
 
     app.start(function(error) {
       menu = React.createElement(BlockMenu, {
         app: app,
         block: app.state.blocks[0],
-        onOpen: sinon.stub(),
-        onExit: sinon.stub(),
+        onOpen: jest.fn(),
+        onExit: jest.fn(),
         active: true
       })
 
@@ -31,14 +32,14 @@ describe('Components - BlockMenu', function() {
   it('calls the onOpen property when the handle is clicked', function() {
     let test = render(menu)
     TestUtils.Simulate.click(DOM.findDOMNode(test.handle))
-    menu.props.onOpen.should.have.been.called
+    expect(menu.props.onOpen).toHaveBeenCalled()
   })
 
   it('can add new menu items', function() {
     let test = render(
       React.cloneElement(menu, { items: [{ id: 'test', label: 'Test' }] })
     )
-    test.should.have.property('test')
+    expect(test).toHaveProperty('test')
   })
 
   it('calls the destroy action', function() {
@@ -47,7 +48,7 @@ describe('Components - BlockMenu', function() {
 
     TestUtils.Simulate.click(DOM.findDOMNode(test.destroy))
 
-    app.push.should.have.been.calledWith(Actions.destroy, block.id)
+    expect(app.push).toHaveBeenCalledWith(Actions.destroy, block.id)
   })
 
   it('moves a block up when Move Before is clicked', function() {
@@ -56,12 +57,11 @@ describe('Components - BlockMenu', function() {
 
     TestUtils.Simulate.click(DOM.findDOMNode(test.moveBefore))
 
-    app.push.should.have.been.calledWith(Actions.move, [block, -1])
+    expect(app.push).toHaveBeenCalledWith(Actions.move, [block, -1])
   })
 
   it('disables Move Before if the block is the first child', function() {
-    let test = render(menu)
-    test.moveBefore.isDisabled().should.equal(true)
+    expect(render(menu).moveBefore.isDisabled()).toEqual(true)
   })
 
   it('moves a block down when Move After is clicked', function() {
@@ -70,13 +70,13 @@ describe('Components - BlockMenu', function() {
 
     TestUtils.Simulate.click(DOM.findDOMNode(test.moveAfter))
 
-    app.push.should.have.been.calledWith(Actions.move, [block, 1])
+    expect(app.push).toHaveBeenCalledWith(Actions.move, [block, 1])
   })
 
   it('disables Move After if the block is the first child', function() {
     let block = app.state.blocks.concat().pop()
     let test = render(React.cloneElement(menu, { block }))
 
-    test.moveAfter.isDisabled().should.equal(true)
+    expect(test.moveAfter.isDisabled()).toEqual(true)
   })
 })

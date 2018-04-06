@@ -11,16 +11,7 @@ let defaults = {
 
 export default class BlockType {
   constructor(config) {
-    let { component } = Object.assign(this, defaults, config)
-
-    if (typeof component === 'object') {
-      console.log("HI", component)
-      this.component = function Component() {
-        React.Component.apply(this, arguments)
-      }
-      this.component.prototype = Object.create(React.Component.prototype)
-      Object.assign(this.component.prototype, component)
-    }
+    Object.assign(this, defaults, config)
   }
 
   valueOf() {

@@ -1,9 +1,10 @@
 import React from 'react'
-let Colonel = require('../../Colonel')
-let Item = require('../MenuItem')
-let config = require('./fixtures/colonelConfig')
-let TestUtils = require('react-addons-test-utils')
-let render = TestUtils.renderIntoDocument
+import Colonel from '../../Colonel'
+import Item from '../MenuItem'
+import config from './fixtures/colonelConfig'
+import TestUtils from 'react-dom/test-utils'
+
+const render = TestUtils.renderIntoDocument
 
 describe('Components - Menu Item', function() {
   let app
@@ -24,12 +25,12 @@ describe('Components - Menu Item', function() {
     let block = app.state.blocks[0]
     let item = render(<Item app={app} block={block} id="id" label="test" />)
 
-    expect(item.props.isDisabled()).to.not.be.defined
+    expect(item.props.isDisabled()).not.toBeDefined()
   })
 
   it('sends the item component into the onClick callback', function(done) {
     function testClick(app, block, component) {
-      expect(component).to.equal(item)
+      expect(component).toEqual(item)
       done()
     }
 

@@ -1,6 +1,6 @@
 SHELL  := /bin/bash
 PATH   := node_modules/.bin:$(PATH)
-DIST   := dist
+DIST   := build
 
 .PHONY: clean test test-coverage build package.json javascript docs release example
 

@@ -1,4 +1,4 @@
-let Fixture = require('./testBlockType')
+import Fixture from './testBlockType'
 
 export default {
   el: document.createElement('div'),

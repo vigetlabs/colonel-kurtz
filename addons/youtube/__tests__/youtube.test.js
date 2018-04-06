@@ -1,6 +1,6 @@
-const React = require('react')
-const YouTube = require('../index')
-const TestUtils = require('react-addons-test-utils')
+import React from 'react'
+import YouTube from '../index'
+import TestUtils from 'react-dom/test-utils'
 
 const render = TestUtils.renderIntoDocument
 
@@ -8,7 +8,7 @@ describe('Addons - YouTube', function() {
   it('passes through slugs as a video_id content field', function(done) {
     const slug = '0bRLtJHo0pI'
     const test = function({ video_id }) {
-      video_id.should.equal(slug)
+      expect(video_id).toEqual(slug)
       done()
     }
 
@@ -19,7 +19,7 @@ describe('Addons - YouTube', function() {
 
   it('can process undefined values', function(done) {
     const test = function({ video_id }) {
-      video_id.should.equal('')
+      expect(video_id).toEqual('')
       done()
     }
 
@@ -52,7 +52,7 @@ describe('Addons - YouTube', function() {
       )}`, function(done) {
         const url = patterns[pattern]
         const test = function({ video_id }) {
-          video_id.should.equal('dQw4w9WgXcQ')
+          expect(video_id).toEqual('dQw4w9WgXcQ')
           done()
         }
 

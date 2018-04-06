@@ -1,5 +1,5 @@
-let Block = require('../../models/Block')
-let siblingsOf = require('../siblingsOf')
+import Block from '../../models/Block'
+import siblingsOf from '../siblingsOf'
 
 describe('Utils - siblingsOf', function() {
   it('returns all top level parents if no parent exists', function() {
@@ -7,7 +7,7 @@ describe('Utils - siblingsOf', function() {
     let blocks = [parent, new Block({ parent }), new Block({ parent })]
     let result = siblingsOf(blocks, parent)
 
-    result.should.eql([parent])
+    expect(result).toEqual([parent])
   })
 
   it(`returns all children of a block's parent`, function() {
@@ -18,6 +18,6 @@ describe('Utils - siblingsOf', function() {
     let blocks = [parent, child, sibling]
     let result = siblingsOf(blocks, child)
 
-    result.should.eql([child, sibling])
+    expect(result).toEqual([child, sibling])
   })
 })

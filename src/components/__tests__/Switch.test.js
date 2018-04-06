@@ -1,9 +1,9 @@
 import React from 'react'
-let Colonel = require('../../Colonel')
-let DOM = require('react-dom')
-let Fixture = require('./fixtures/testBlockType')
-let Switch = require('../Switch')
-let TestUtils = require('react-addons-test-utils')
+import Colonel from '../../Colonel'
+import DOM from 'react-dom'
+import Fixture from './fixtures/testBlockType'
+import Switch from '../Switch'
+import TestUtils from 'react-dom/test-utils'
 
 describe('Components - Switch', function() {
   let render = TestUtils.renderIntoDocument
@@ -23,7 +23,8 @@ describe('Components - Switch', function() {
 
     base.setState({ open: true })
     base.componentWillReceiveProps()
-    base.state.open.should.equal(false)
+
+    expect(base).toHaveProperty('state.open', false)
   })
 
   it('adds a block type on click', function() {
@@ -35,7 +36,7 @@ describe('Components - Switch', function() {
       DOM.findDOMNode(base).querySelector('.col-switch-btn')
     )
 
-    app.state.blocks[0].should.have.property('type', 'test')
+    expect(app.state.blocks[0]).toHaveProperty('type', 'test')
   })
 
   describe('When only one block type given', function() {
@@ -44,7 +45,7 @@ describe('Components - Switch', function() {
 
       component._onToggle()
 
-      app.state.blocks[0].should.have.property('type', 'test')
+      expect(app.state.blocks[0]).toHaveProperty('type', 'test')
     })
   })
 
@@ -58,13 +59,16 @@ describe('Components - Switch', function() {
         el: document.createElement('div'),
         blockTypes: [Fixture, SecondType]
       })
+
       app.start(done)
     })
 
     it('_onToggle sets the state to open', function() {
       let component = render(<Switch app={app} />)
+
       component._onToggle()
-      component.state.open.should.equal(true)
+
+      expect(component).toHaveProperty('state.open', true)
     })
   })
 
@@ -88,9 +92,10 @@ describe('Components - Switch', function() {
       let component = render(<Switch app={app} parent={app.state.blocks[0]} />)
 
       component.setState({ open: true })
-      DOM.findDOMNode(component)
-        .querySelectorAll('button')
-        .length.should.be.gt(1)
+
+      let buttons = DOM.findDOMNode(component).querySelectorAll('button')
+
+      expect(buttons.length).toBeGreaterThan(1)
     })
   })
 
@@ -107,7 +112,7 @@ describe('Components - Switch', function() {
 
     it('renders nothing', function() {
       let component = render(<Switch app={app} parent={app.state.blocks[0]} />)
-      expect(DOM.findDOMNode(component)).to.equal(null)
+      expect(DOM.findDOMNode(component)).toEqual(null)
     })
   })
 
@@ -116,16 +121,20 @@ describe('Components - Switch', function() {
       let base = render(<Switch app={app} />)
 
       base.setState({ open: true })
+
       TestUtils.Simulate.keyUp(DOM.findDOMNode(base.nav), { key: 'Escape' })
-      base.state.open.should.equal(false)
+
+      expect(base).toHaveProperty('state.open', false)
     })
 
     it('does not close when another key is presed', function() {
       let base = render(<Switch app={app} />)
 
       base.setState({ open: true })
+
       TestUtils.Simulate.keyUp(DOM.findDOMNode(base.nav), { key: 'q' })
-      base.state.open.should.equal(true)
+
+      expect(base).toHaveProperty('state.open', true)
     })
   })
 
@@ -158,9 +167,9 @@ describe('Components - Switch', function() {
 
     it('does not enable toggles when its provided block has too many children', function() {
       let el = render(<Switch app={app} parent={app.state.blocks[0]} />)
-      DOM.findDOMNode(el)
-        .querySelector('button')
-        .disabled.should.equal(true)
+      let button = DOM.findDOMNode(el).querySelector('button')
+
+      expect(button).toHaveProperty('disabled', true)
     })
   })
 
@@ -186,7 +195,8 @@ describe('Components - Switch', function() {
       let child = app.state.blocks[2]
       let parent = app.state.blocks[1]
       let el = render(<Switch app={app} parent={parent} position={child} />)
-      DOM.findDOMNode(el).className.should.not.include('col-switch-disabled')
+
+      expect(DOM.findDOMNode(el).className).not.toContain('col-switch-disabled')
     })
   })
 
@@ -212,7 +222,8 @@ describe('Components - Switch', function() {
       let child = app.state.blocks[2]
       let parent = app.state.blocks[1]
       let el = render(<Switch app={app} parent={parent} position={child} />)
-      DOM.findDOMNode(el).className.should.include('col-switch-disabled')
+
+      expect(DOM.findDOMNode(el).className).toContain('col-switch-disabled')
     })
   })
 
@@ -232,9 +243,9 @@ describe('Components - Switch', function() {
 
     it('does not enable toggles when the apps maxChildren setting is exceeded', function() {
       let el = render(<Switch app={app} />)
-      DOM.findDOMNode(el)
-        .querySelector('button')
-        .disabled.should.equal(true)
+      let button = DOM.findDOMNode(el).querySelector('button')
+
+      expect(button).toHaveProperty('disabled', true)
     })
   })
 })

@@ -1,4 +1,4 @@
-let Colonel = require('../../Colonel')
+import Colonel from '../../Colonel'
 
 describe('bootstrap plugin', function() {
   it('can serialize an input', function(done) {
@@ -19,7 +19,7 @@ describe('bootstrap plugin', function() {
     })
 
     app.start(function() {
-      app.state.blocks[0].should.have.property('type', 'section')
+      expect(app.state.blocks[0]).toHaveProperty('type', 'section')
       done()
     })
   })
@@ -34,8 +34,8 @@ describe('bootstrap plugin', function() {
     app.start(function() {
       let types = app.state.blockTypes
 
-      types.length.should.equal(1)
-      types[0].id.should.equal('list')
+      expect(types).toHaveLength(1)
+      expect(types[0]).toHaveProperty('id', 'list')
 
       done()
     })
@@ -48,7 +48,7 @@ describe('bootstrap plugin', function() {
     })
 
     app.start(function() {
-      app.state.blockTypes.length.should.equal(2)
+      expect(app.state.blockTypes).toHaveLength(2)
       done()
     })
   })
