@@ -3,20 +3,18 @@
  * Handles updating the browser UI
  */
 
-let App   = require('../components/App')
-let DOM   = require('react-dom')
-let React = require('react')
+import React from 'react'
+import App from '../components/App'
+import DOM from 'react-dom'
 
-module.exports = {
-
+export default {
   render(app, el) {
-    DOM.render(<App app={ app } />, el)
+    DOM.render(<App app={app} />, el)
   },
 
   register(app, { el }) {
     this.render(app, el)
 
-    app.listen(i => this.render(app,el))
+    app.listen(i => this.render(app, el))
   }
-
 }

@@ -4,6 +4,6 @@
  * parents.
  */
 
-module.exorts = function (lists) {
+export default function isRoot(lists) {
   return lists.filter(i => !i.parent)
 }

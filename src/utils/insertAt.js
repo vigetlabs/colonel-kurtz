@@ -6,7 +6,7 @@
 
 let inRange = (value, min, max) => Math.max(min, Math.min(max, value))
 
-module.exports = function (list, item, position=list.length) {
+export default function(list, item, position = list.length) {
   let corrected = inRange(position, 0, list.length)
 
   let head = list.slice(0, corrected)

@@ -24,7 +24,7 @@ demonstrates how to add menu items; an additional example can be
 found at `./example/blockTypes/Section.jsx`:
 
 ```javascript
-let React = require('react')
+import React from 'react'
 
 module.exports = React.createClass({
 

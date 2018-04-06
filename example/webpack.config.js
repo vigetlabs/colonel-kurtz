@@ -6,10 +6,8 @@
  */
 
 module.exports = {
+  devtool: 'sourcemap',
   context: __dirname,
-
-  devtool: 'inline-source-map',
-
   entry: './example.js',
 
   output: {
@@ -18,29 +16,24 @@ module.exports = {
     publicPath: '/'
   },
 
-  resolve: {
-    extensions: ['', '.js', '.scss', '.css']
-  },
-
   module: {
-    loaders: [
+    strictExportPresence: true,
+    strictThisContextOnImports: true,
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel'
+        use: 'babel-loader'
       },
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        loader: 'style!css!autoprefixer!sass'
+        use: ['style-loader', 'css-loader', 'sass-loader']
       }
     ]
   },
 
   devServer: {
-    contentBase: __dirname,
-    noInfo: true,
-    stats: { colors: true },
-    historyApiFallback: true
+    contentBase: __dirname
   }
 }

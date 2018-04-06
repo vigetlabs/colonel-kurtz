@@ -6,14 +6,14 @@
  * Colonel Kurtz how that action manipulates block type data.
  */
 
-let BlockType = require('../models/BlockType')
+import BlockType from '../models/BlockType'
 
-module.exports = {
+export default {
   getInitialState() {
     return []
   },
 
-  deserialize(blockTypes=[]) {
+  deserialize(blockTypes = []) {
     return blockTypes.map(options => new BlockType(options))
   },
 

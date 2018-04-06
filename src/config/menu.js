@@ -1,10 +1,12 @@
-let siblingsOf = require('../utils/siblingsOf')
-let { destroy, move } = require('../actions/blocks')
+import siblingsOf from '../utils/siblingsOf'
+import Actions from '../actions/blocks'
 
-module.exports = [
+const { destroy, move } = Actions
+
+export default [
   {
-    id : 'moveBefore',
-    label : 'Move Up',
+    id: 'moveBefore',
+    label: 'Move Up',
     onClick(app, block) {
       app.push(move, [block, -1])
     },
@@ -13,8 +15,8 @@ module.exports = [
     }
   },
   {
-    id : 'moveAfter',
-    label : 'Move Down',
+    id: 'moveAfter',
+    label: 'Move Down',
     onClick(app, block) {
       app.push(move, [block, 1])
     },
@@ -23,8 +25,8 @@ module.exports = [
     }
   },
   {
-    id : 'destroy',
-    label : 'Remove',
+    id: 'destroy',
+    label: 'Remove',
     onClick(app, block) {
       app.push(destroy, block.id)
     }

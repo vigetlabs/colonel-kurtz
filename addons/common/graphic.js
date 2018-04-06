@@ -1,18 +1,14 @@
-let React = require('react')
+import React from 'react'
 
-module.exports = React.createClass({
-
-  getDefaultProps() {
-    return {
-      className : 'col-graphic',
-      element   : 'img',
-      src       : null
-    }
-  },
-
-  render() {
-    var { element, ...other } = this.props
-    return React.createElement(element, other)
+export default class Graphic extends React.Component {
+  static defaultProps = {
+    className: 'col-graphic',
+    element: 'img',
+    src: null
   }
 
-})
+  render() {
+    const { element, ...other } = this.props
+    return React.createElement(element, other)
+  }
+}

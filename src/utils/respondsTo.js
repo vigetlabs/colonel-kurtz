@@ -3,6 +3,6 @@
  * Can an object respond to a method name?
  */
 
-module.exports = function(obj, key) {
+export default function responesTo(obj, key) {
   return !!(obj && typeof obj[key] === 'function')
 }

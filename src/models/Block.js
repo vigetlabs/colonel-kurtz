@@ -1,19 +1,15 @@
-let uid = require('../utils/uid')
+import uid from '../utils/uid'
 
-class Block {
-
+export default class Block {
   constructor(params) {
-    this.id         = uid()
-    this.content    = params.content || {}
-    this.parent     = params.parent
-    this.type       = params.type
+    this.id = uid()
+    this.content = params.content || {}
+    this.parent = params.parent
+    this.type = params.type
     this.clientOnly = params.clientOnly || false
   }
 
   valueOf() {
     return this.id
   }
-
 }
-
-module.exports = Block

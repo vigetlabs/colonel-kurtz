@@ -7,20 +7,20 @@
  * how that action manipulates block data.
  */
 
-let Actions      = require('../actions/blocks')
-let Block        = require('../models/Block')
-let insertAt     = require('../utils/insertAt')
-let siblingAt    = require('../utils/siblingAt')
-let blocksToJson = require('../utils/blocksToJson')
-let jsonToBlocks = require('../utils/jsonToBlocks')
+import Actions from '../actions/blocks'
+import Block from '../models/Block'
+import insertAt from '../utils/insertAt'
+import siblingAt from '../utils/siblingAt'
+import blocksToJson from '../utils/blocksToJson'
+import jsonToBlocks from '../utils/jsonToBlocks'
 
-let Blocks = {
+const Blocks = {
   register() {
     return {
-      [Actions.create]  : this.create,
-      [Actions.destroy] : this.destroy,
-      [Actions.update]  : this.update,
-      [Actions.move]    : this.move
+      [Actions.create]: this.create,
+      [Actions.destroy]: this.destroy,
+      [Actions.update]: this.update,
+      [Actions.move]: this.move
     }
   },
 
@@ -37,16 +37,15 @@ let Blocks = {
   },
 
   getDepth(state, block, maxDepth) {
-
-    let currentBlock = block;
+    let currentBlock = block
     let depth = 0
 
-    while (currentBlock && (depth <= (maxDepth + 1))) {
+    while (currentBlock && depth <= maxDepth + 1) {
       depth += 1
       currentBlock = state.filter(i => i === currentBlock.parent)[0]
     }
 
-    return depth;
+    return depth
   },
 
   filterChildren(state) {
@@ -100,10 +99,10 @@ let Blocks = {
 
   move(state, { block, distance }) {
     let without = state.filter(i => i !== block)
-    let before  = siblingAt(state, block, distance)
+    let before = siblingAt(state, block, distance)
 
     return insertAt(without, block, state.indexOf(before))
   }
 }
 
-module.exports = Blocks
+export default Blocks

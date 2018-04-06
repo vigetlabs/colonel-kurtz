@@ -1,28 +1,30 @@
-const Field  = require('../field')
+const React = require('react')
+const Field = require('../field')
+const TestUtils = require('react-addons-test-utils')
 const render = TestUtils.renderIntoDocument
-const DOM    = require('react-dom')
+const DOM = require('react-dom')
 
-describe('Addons - Common - Field', function () {
-  it ('defaults to input element', function() {
+describe('Addons - Common - Field', function() {
+  it('defaults to input element', function() {
     let component = render(<Field />)
     let tag = DOM.findDOMNode(component.input).tagName
     tag.should.equal('INPUT')
   })
 
-  it ('uses element instead of input if provided', function() {
-    let component = render(<Field element='textarea' />)
+  it('uses element instead of input if provided', function() {
+    let component = render(<Field element="textarea" />)
     let tag = DOM.findDOMNode(component.input).tagName
 
     tag.should.equal('TEXTAREA')
   })
 
-  it ('passes props through to the input ref', function() {
+  it('passes props through to the input ref', function() {
     let component = render(<Field type="number" />)
 
     component.input.type.should.equal('number')
   })
 
-  it ('sets up aria-describeby for hints', function() {
+  it('sets up aria-describeby for hints', function() {
     let component = render(<Field hint="Yes" autoFocus />)
     let el = DOM.findDOMNode(component)
     let hint = el.querySelector('.col-field-hint')

@@ -3,30 +3,42 @@
  * This plugin is responsible for injecting data into the system
  */
 
-let parseElement = function (element) {
+let parseElement = function(element) {
   let data = []
 
   try {
     data = JSON.parse(element.value)
-  } catch(x) {}
+  } catch (x) {
+    // Do nothing
+  }
 
   return data
 }
 
-module.exports = {
-
+export default {
   filter(blockTypes, acceptable) {
     if (!acceptable) return blockTypes
 
     return blockTypes.filter(type => acceptable.indexOf(type.id) > -1)
   },
 
-  register(app, { allow, maxChildren=Infinity, blocks, blockTypes, maxDepth=Infinity }, next) {
+  register(
+    app,
+    { allow, maxChildren = Infinity, blocks, blockTypes, maxDepth = Infinity },
+    next
+  ) {
     if (blocks instanceof HTMLElement) {
       blocks = parseElement(blocks)
     }
 
-    app.replace({ maxChildren, maxDepth, blocks, blockTypes: this.filter(blockTypes, allow) }, next)
+    app.replace(
+      {
+        maxChildren,
+        maxDepth,
+        blocks,
+        blockTypes: this.filter(blockTypes, allow)
+      },
+      next
+    )
   }
-
 }

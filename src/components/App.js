@@ -3,21 +3,16 @@
  * toggling between viewing modes and viewing managed content
  */
 
-let Animator    = require('./Animator')
-let Blocks      = require('../stores/Blocks')
-let EditorBlock = require('./EditorBlock')
-let React       = require('react')
-let Switch      = require('./Switch')
+import React from 'react'
+import Animator from './Animator'
+import Blocks from '../stores/Blocks'
+import EditorBlock from './EditorBlock'
+import Switch from './Switch'
 
-module.exports = React.createClass({
-
-  propTypes: {
-    app : React.PropTypes.object.isRequired
-  },
-
+export default class App extends React.Component {
   getBlock(block, i) {
-    return (<EditorBlock key={ block } app={ this.props.app } block={ block } />)
-  },
+    return <EditorBlock key={block} app={this.props.app} block={block} />
+  }
 
   render() {
     let { app } = this.props
@@ -26,12 +21,11 @@ module.exports = React.createClass({
 
     return (
       <div className="colonel">
-        <Switch app={ app } />
+        <Switch app={app} />
         <Animator className="col-block-children">
-          { parents.map(this.getBlock) }
+          {parents.map(this.getBlock, this)}
         </Animator>
       </div>
     )
   }
-
-})
+}

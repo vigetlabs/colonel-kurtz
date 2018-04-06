@@ -1,10 +1,9 @@
-var Webpack        = require('webpack')
-var HappyPack      = require('happypack')
-var isIntegration  = process.env.CONTINUOUS_INTEGRATION === 'true'
-var noCoverage     = process.env.NO_COVERAGE === 'true'
+var Webpack = require('webpack')
+var HappyPack = require('happypack')
+var isIntegration = process.env.CONTINUOUS_INTEGRATION === 'true'
+var noCoverage = process.env.NO_COVERAGE === 'true'
 
 module.exports = function(config) {
-
   if (isIntegration) {
     console.log('Running in integration')
   }
@@ -14,13 +13,13 @@ module.exports = function(config) {
   }
 
   config.set({
-    browsers: [ 'Chrome' ],
+    browsers: ['Chrome'],
 
     browserNoActivityTimeout: 30000,
 
     singleRun: isIntegration,
 
-    frameworks: [ 'mocha', 'sinon-chai' ],
+    frameworks: ['mocha', 'sinon-chai'],
 
     files: [
       './src/**/__tests__/*.test.js*',
@@ -28,11 +27,11 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
-      './src/**/__tests__/*.test.js*'    : [ 'webpack', 'sourcemap' ],
-      './addons/**/__tests__/*.test.js*' : [ 'webpack', 'sourcemap' ]
+      './src/**/__tests__/*.test.js*': ['webpack', 'sourcemap'],
+      './addons/**/__tests__/*.test.js*': ['webpack', 'sourcemap']
     },
 
-    reporters: noCoverage ? [ 'mocha' ] : [ 'mocha', 'coverage' ],
+    reporters: noCoverage ? ['mocha'] : ['mocha', 'coverage'],
 
     mochaReporter: {
       output: 'minimal'
@@ -46,12 +45,12 @@ module.exports = function(config) {
     },
 
     webpack: {
-      devtool : 'inline-source-map',
+      devtool: 'inline-source-map',
 
       plugins: [
         new Webpack.ProvidePlugin({
-          React     : 'react',
-          TestUtils : 'react-addons-test-utils'
+          React: 'react',
+          TestUtils: 'react-addons-test-utils'
         }),
 
         new HappyPack({ id: 'js' })
@@ -64,23 +63,27 @@ module.exports = function(config) {
       module: {
         loaders: [
           {
-            test    : /\.js$/,
-            exclude : /node_modules/,
-            loader  : 'babel?optional=runtime',
-            happy   : { id: 'js' }
+            test: /\.js$/,
+            exclude: /node_modules/,
+            loader: 'babel?optional=runtime',
+            happy: { id: 'js' }
           }
         ],
-        postLoaders: noCoverage ? [] : [{
-          test    : /\.js$/,
-          happy   : { id: 'js' },
-          exclude : /(__tests__|node_modules)/,
-          loader  : 'istanbul-instrumenter'
-        }]
+        postLoaders: noCoverage
+          ? []
+          : [
+              {
+                test: /\.js$/,
+                happy: { id: 'js' },
+                exclude: /(__tests__|node_modules)/,
+                loader: 'istanbul-instrumenter'
+              }
+            ]
       }
     },
 
     webpackServer: {
       noInfo: true
     }
-  });
-};
+  })
+}

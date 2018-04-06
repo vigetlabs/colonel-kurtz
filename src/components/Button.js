@@ -1,23 +1,19 @@
-let React = require('react')
-let Ink   = require('react-ink')
+import React from 'react'
+import Ink from 'react-ink'
 
-module.exports = React.createClass({
-
-  getDefaultProps() {
-    return {
-      className : 'col-btn',
-      tagName   : 'button',
-      type      : 'button'
-    }
-  },
+export default class Button extends React.Component {
+  static defaultProps = {
+    className: 'col-btn',
+    tagName: 'button',
+    type: 'button'
+  }
 
   render() {
-    let { children, tagName, ...attrs } = this.props
+    const { children, tagName, ...attrs } = this.props
 
     return React.createElement(tagName, attrs, [
-      <Ink key="__ink__"/>,
+      <Ink key="__ink__" />,
       children
     ])
   }
-
-})
+}

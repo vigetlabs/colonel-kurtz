@@ -1,22 +1,17 @@
-let React = require('react')
-let cx    = require('classnames')
+import React from 'react'
+import cx from 'classnames'
 
-module.exports = React.createClass({
-
-  getDefaultProps() {
-    return {
-      element: 'figure'
-    }
-  },
+export default class Frame extends React.Component {
+  static defaultProps = {
+    element: 'figure'
+  }
 
   render() {
-    var { element, children, open, ...other } = this.props
-
+    const { element, children, open, ...other } = this.props
     let className = cx('col-frame', {
       'col-frame-open': !!open
     })
 
     return React.createElement(element, { className, ...other }, children)
   }
-
-})
+}

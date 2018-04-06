@@ -1,6 +1,8 @@
-module.exports = {
-  id    : 'test',
-  label : 'Test',
+import React from 'react'
+
+export default {
+  id: 'test',
+  label: 'Test',
   component: {
     getDefaultProps() {
       return {
@@ -13,7 +15,7 @@ module.exports = {
       return [{ id: 'test', label: 'Test' }]
     },
     render() {
-      return <div>{ this.props.children }</div>
+      return <div>{this.props.children}</div>
     }
   }
 }

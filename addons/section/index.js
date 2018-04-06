@@ -1,9 +1,7 @@
-let React = require('react')
+import React from 'react'
 
-module.exports = React.createClass({
-
+export default class Section extends React.Component {
   render() {
-    return (<div>{ this.props.children }</div>)
+    return <div>{this.props.children}</div>
   }
-
-})
+}

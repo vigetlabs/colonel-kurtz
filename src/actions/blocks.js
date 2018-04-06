@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   create(type, position, parent) {
     return { type, position, parent }
   },

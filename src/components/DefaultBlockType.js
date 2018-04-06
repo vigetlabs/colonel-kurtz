@@ -1,11 +1,7 @@
-const React = require('react')
+import React from 'react'
 
-module.exports = React.createClass({
+export default class DefaultBlockType extends React.Component {
   render() {
-    return (
-      <div>
-        { this.props.children }
-      </div>
-    )
+    return <div>{this.props.children}</div>
   }
-})
+}

@@ -5,63 +5,64 @@
  * https://github.com/daviferreira/medium-editor
  */
 
-let MediumEditor = require('./vendor/medium-editor')
-let React        = require('react')
-let DOM          = require('react-dom')
+import React from 'react'
+import MediumEditor from './vendor/medium-editor'
 
-var Medium = React.createClass({
-
-  propTypes: {
-    content  : React.PropTypes.object.isRequired,
-    onChange : React.PropTypes.func.isRequired
-  },
-
-  getDefaultProps() {
-    return {
-      content: { html: '', text: ''},
-      options: {
-        buttons: [ 'header1', 'header2', 'bold', 'italic', 'underline', 'anchor', 'quote',  'unorderedlist', 'orderedlist' ],
-        firstHeader: 'h1',
-        secondHeader: 'h2',
-        diffLeft: 0,
-        diffTop: -10,
-        disableDoubleReturn: true
-      }
+export default class MediumBlock extends React.Component {
+  static defaultProps = {
+    content: { html: '', text: '' },
+    options: {
+      buttons: [
+        'header1',
+        'header2',
+        'bold',
+        'italic',
+        'underline',
+        'anchor',
+        'quote',
+        'unorderedlist',
+        'orderedlist'
+      ],
+      firstHeader: 'h1',
+      secondHeader: 'h2',
+      diffLeft: 0,
+      diffTop: -10,
+      disableDoubleReturn: true
     }
-  },
+  }
 
-  shouldComponentUpdate(props: Object, state: Object){
+  shouldComponentUpdate(props: Object, state: Object) {
     return false
-  },
+  }
 
   componentDidMount() {
-    this.setState({
-      editor: new MediumEditor(DOM.findDOMNode(this.editor), this.props.options)
-    })
-  },
+    this.editor = new MediumEditor(this.container, this.props.options)
+  }
 
   componentWillUnmount() {
-    this.state.editor.deactivate()
-  },
+    this.editor.deactivate()
+  }
 
   render() {
     return (
       <div className="col-block-medium">
-        <div className="col-medium" onBlur={ this._onBlur } role="textarea" aria-multiline="true" ref={ (el) => this.editor = el } dangerouslySetInnerHTML={{ __html: this.props.content.html }} />
-        { this.props.children }
+        <div
+          className="col-medium"
+          onBlur={this._onBlur.bind(this)}
+          role="textarea"
+          aria-multiline="true"
+          ref={el => (this.container = el)}
+          dangerouslySetInnerHTML={{ __html: this.props.content.html }}
+        />
+        {this.props.children}
       </div>
     )
-  },
-
-  _onBlur() {
-    var editor = DOM.findDOMNode(this.editor)
-
-    this.props.onChange({
-      text: editor.textContent,
-      html: editor.innerHTML
-    })
   }
 
-})
-
-module.exports = Medium
+  _onBlur() {
+    this.props.onChange({
+      text: this.container.textContent,
+      html: this.container.innerHTML
+    })
+  }
+}

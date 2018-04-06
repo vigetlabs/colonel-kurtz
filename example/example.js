@@ -2,54 +2,58 @@
  * ColonelKurtz Example
  */
 
-require('./example.scss')
+import './example.scss'
+import ColonelKurtz from '../src/Colonel'
+import MediumBlock from '../addons/medium'
+import HtmlEmbedBlock from '../addons/html-embed'
+import ImageBlock from '../addons/image'
+import YouTubeBlock from '../addons/youtube'
+import SectionBlock from './blockTypes/Section'
 
-let ColonelKurtz = require('../src/Colonel')
-
-let blockTypes = [
+const blockTypes = [
   {
-    id          : 'section',
-    label       : 'Section',
-    component   : require('./blockTypes/Section'),
-    types       : [ 'child-text', 'image', 'youtube', 'section' ],
-    maxChildren : 3
+    id: 'section',
+    label: 'Section',
+    component: SectionBlock,
+    types: ['child-text', 'image', 'youtube', 'section'],
+    maxChildren: 3
   },
   {
-    id        : 'medium',
-    label     : 'Medium Editor',
-    component : require('../addons/medium'),
-    group     : 'Rich Text'
+    id: 'medium',
+    label: 'Medium Editor',
+    component: MediumBlock,
+    group: 'Rich Text'
   },
   {
-    id        : 'embed',
-    label     : 'Embed',
-    component : require('../addons/html-embed')
+    id: 'embed',
+    label: 'Embed',
+    component: HtmlEmbedBlock
   },
   {
-    id        : 'child-text',
-    label     : 'Child Text',
-    component : require('../addons/medium'),
-    root      : false
+    id: 'child-text',
+    label: 'Child Text',
+    component: MediumBlock,
+    root: false
   },
   {
-    id        : 'image',
-    label     : 'Image',
-    group     : 'Media',
-    component : require('../addons/image')
+    id: 'image',
+    label: 'Image',
+    group: 'Media',
+    component: ImageBlock
   },
   {
-    id        : 'youtube',
-    label     : 'YouTube',
-    group     : 'Media',
-    component : require('../addons/youtube')
+    id: 'youtube',
+    label: 'YouTube',
+    group: 'Media',
+    component: YouTubeBlock
   }
 ]
 
 let editor = new ColonelKurtz({
-  el          : document.getElementById('app'),
-  blockTypes  : blockTypes,
-  maxChildren : 5,
-  maxDepth    : 3
+  el: document.getElementById('app'),
+  blockTypes: blockTypes,
+  maxChildren: 5,
+  maxDepth: 3
 })
 
 editor.start()

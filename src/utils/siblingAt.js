@@ -3,11 +3,11 @@
  * is the first child of its parent
  */
 
-let siblingsOf = require('./siblingsOf')
+import siblingsOf from './siblingsOf'
 
-module.exports = function(list, block, delta) {
+export default function(list, block, delta) {
   let siblings = siblingsOf(list, block)
-  let index    = siblings.indexOf(block)
+  let index = siblings.indexOf(block)
 
   return index !== -1 ? siblings[index + delta] : null
 }

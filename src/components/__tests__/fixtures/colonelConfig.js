@@ -1,23 +1,23 @@
 let Fixture = require('./testBlockType')
 
-module.exports = {
+export default {
   el: document.createElement('div'),
-  blockTypes: [ Fixture ],
+  blockTypes: [Fixture],
   blocks: [
     {
       type: Fixture.id,
       content: {},
       blocks: [
-        { type: Fixture.id, content: {}, blocks: []},
-        { type: Fixture.id, content: {}, blocks: []}
+        { type: Fixture.id, content: {}, blocks: [] },
+        { type: Fixture.id, content: {}, blocks: [] }
       ]
     },
     {
       type: Fixture.id,
       content: {},
       blocks: [
-        { type: Fixture.id, content: {}, blocks: []},
-        { type: Fixture.id, content: {}, blocks: []}
+        { type: Fixture.id, content: {}, blocks: [] },
+        { type: Fixture.id, content: {}, blocks: [] }
       ]
     }
   ]

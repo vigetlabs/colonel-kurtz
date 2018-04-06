@@ -1,16 +1,16 @@
-let Colonel   = require('../../Colonel')
-let bootstrap = require('../bootstrap')
+let Colonel = require('../../Colonel')
 
 describe('bootstrap plugin', function() {
-
-  it ('can serialize an input', function(done) {
+  it('can serialize an input', function(done) {
     let input = document.createElement('textarea')
 
-    input.value = JSON.stringify([{
-      blocks  : [],
-      content : {},
-      type    : 'section'
-    }])
+    input.value = JSON.stringify([
+      {
+        blocks: [],
+        content: {},
+        type: 'section'
+      }
+    ])
 
     let app = new Colonel({
       el: document.createElement('div'),
@@ -24,11 +24,11 @@ describe('bootstrap plugin', function() {
     })
   })
 
-  it ('filter block types given a list', function(done) {
+  it('filter block types given a list', function(done) {
     let app = new Colonel({
-      el : document.createElement('div'),
-      allow: [ 'list' ],
-      blockTypes : [{ id: 'list' }, { id: 'text' }]
+      el: document.createElement('div'),
+      allow: ['list'],
+      blockTypes: [{ id: 'list' }, { id: 'text' }]
     })
 
     app.start(function() {
@@ -41,10 +41,10 @@ describe('bootstrap plugin', function() {
     })
   })
 
-  it ('allows all block types if given no allow option', function(done) {
+  it('allows all block types if given no allow option', function(done) {
     let app = new Colonel({
-      el : document.createElement('div'),
-      blockTypes : [{ id: 'list' }, { id: 'text' }]
+      el: document.createElement('div'),
+      blockTypes: [{ id: 'list' }, { id: 'text' }]
     })
 
     app.start(function() {
