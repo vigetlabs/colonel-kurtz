@@ -1,8 +1,18 @@
 # Changelog
 
+## 5.0.0
+
+Upgrade to support React 16.0
+
+### Breaking Changes
+
+Component definitions must now be React class instances. If your
+components use the React.createClass syntax, consider moving over to
+ES6 classes, or use the `react-create-class` package.
+
 ## 4.3.0
 
-- Inline the uid module 
+- Inline the uid module
 
 ## 4.2.1
 
