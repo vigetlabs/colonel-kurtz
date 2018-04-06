@@ -1,10 +1,10 @@
 # Contributing to Colonel Kurtz
 
-1. [Setup](#setup)
-2. [Running](#running)
-3. [Testing](#testing)
-4. [Publishing to NPM](#publishing-to-npm)
-5. [Conventions](#conventions)
+1.  [Setup](#setup)
+2.  [Running](#running)
+3.  [Testing](#testing)
+4.  [Publishing to NPM](#publishing-to-npm)
+5.  [Conventions](#conventions)
 
 ## Setup
 
@@ -78,22 +78,22 @@ script sets up an expected structure for hosting on `npm`.
 Colonel Kurtz uses ES6 Javascript (compiled using
 [Babel](babeljs.io)). As for style, shoot for:
 
-- No semicolons
-- Commas last,
-- 2 spaces for indentation (no tabs)
-- Prefer ' over "
-- 80 character line length
+* No semicolons
+* Commas last,
+* 2 spaces for indentation (no tabs)
+* Prefer ' over "
+* 80 character line length
 
 ### Style (Sass)
 
 We use the `scss` syntax for Sass. We also have a couple of opinions:
 
-- Multiple selectors are placed on multiple lines
-- Alphabetize rules
-- Limit nesting
-- All variables must use the `!default` flag
-- All variables must be prefixed with `$col`
-- All selectors, as possible, must be prefixed with `.col`
+* Multiple selectors are placed on multiple lines
+* Alphabetize rules
+* Limit nesting
+* All variables must use the `!default` flag
+* All variables must be prefixed with `$col`
+* All selectors, as possible, must be prefixed with `.col`
 
 ### Testing
 

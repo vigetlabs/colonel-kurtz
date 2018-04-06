@@ -26,7 +26,7 @@ found at `./example/blockTypes/Section.jsx`:
 ```javascript
 import React from 'react'
 
-module.exports = React.createClass({
+export default class MenuExample extends React.Component {
   getMenuItems() {
     return [
       {
@@ -35,12 +35,12 @@ module.exports = React.createClass({
         onClick: (editor, block, menuItem) => alert('Hello, world!')
       }
     ]
-  },
+  }
 
   render() {
     return <div>{this.props.children}</div>
   }
-})
+}
 ```
 
 There are several things going on here:

@@ -75,15 +75,15 @@ Colonel Kurtz can be serialized down to JSON. This structure looks like:
 
 A block has three important pieces of information:
 
-1. **content**: A map of information captured about a block. This
-could be display settings, rich text, etc.
-2. **type**: Blocks are created within a given block type (more on
-   this later). This block type has an identifier which is stored at
-   this key (type). This is used to communicate how content should be
-   displayed and how the editor should expose the content for
-   modification.
-3. **blocks**: A block can have child blocks, stored as an array. The structure of child
-   blocks is exactly the same as top-level blocks.
+1.  **content**: A map of information captured about a block. This
+    could be display settings, rich text, etc.
+2.  **type**: Blocks are created within a given block type (more on
+    this later). This block type has an identifier which is stored at
+    this key (type). This is used to communicate how content should be
+    displayed and how the editor should expose the content for
+    modification.
+3.  **blocks**: A block can have child blocks, stored as an array. The structure of child
+    blocks is exactly the same as top-level blocks.
 
 ## Configuring
 
@@ -92,23 +92,26 @@ More thorough documentation can be found at
 however at a high level, Colonel Kurtz is installed with code loosely following:
 
 ```javascript
-var ColonelKurtz = require('colonel-kurtz');
+import ColonelKurtz from 'colonel-kurtz'
+import BlockType from './path/to/react/component'
 
-var container = document.querySelector("#container")
-var input     = document.querySelector("#input")
+var container = document.querySelector('#container')
+var input = document.querySelector('#input')
 
 var editor = new ColonelKurtz({
-  el         : container,
-  blocks     : JSON.parse(input.value),
-  blockTypes : [{
-    id: 'a-block',
-    label: 'This is a block',
-    component: require('./path/to/react/component')
-  }]
-});
+  el: container,
+  blocks: JSON.parse(input.value),
+  blockTypes: [
+    {
+      id: 'a-block',
+      label: 'This is a block',
+      component: BlockType
+    }
+  ]
+})
 ```
 
-***
+---
 
 <a href="http://code.viget.com">
   <img src="http://code.viget.com/github-banner.png" alt="Code At Viget">

@@ -30,7 +30,7 @@ definition. They are added to Colonel Kurtz by passing in a
 `blockTypes` property when making an instance:
 
 ```javascript
-var blockTypes = [
+let blockTypes = [
   {
     id: 'image',
     label: 'Image',
@@ -48,30 +48,24 @@ method. You can update the content for a block with the `onChange`
 property that is sent down from the editor:
 
 ```javascript
-var Textbox = React.createClass({
-  // PropTypes allow you to validate properties coming into the component
-  propTypes: {
-    content: React.PropTypes.object.isRequired,
-    onChange: React.PropTypes.func.isRequired
-  },
-
+class TextBook extends React.Component {
   render() {
-    return <textarea onBlur={this._onBlur} />
-  },
+    return <textarea onBlur={this._onBlur.bind(this)} />
+  }
 
   _onBlur(e) {
     this.props.onChange({
       text: e.currentTarget.textContent
     })
   }
-})
+}
 ```
 
 Now that the `Textbox` component has been created, we can send it into
 the available block types passed into a `ColonelKurtz` instance.
 
 ```javascript
-var blockTypes = [
+let blockTypes = [
   {
     id: 'text',
     label: 'Textbox',
@@ -96,11 +90,13 @@ ArsArsenal can operate as a stand-alone gallery, however it exposes a
 "component" key that is useable by Colonel Kurtz:
 
 ```javascript
-var blockTypes = [
+import { Component as ArsArsenal } from 'ars-arsenal'
+
+let blockTypes = [
   {
     id: 'image',
     label: 'Image',
-    component: require('ars-arsenal').Component
+    component: ArsArsenal
   }
 ]
 ```

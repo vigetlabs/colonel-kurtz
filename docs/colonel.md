@@ -62,12 +62,12 @@ After that finishes, we need to select the container for Colonel Kurtz
 and the input that we want to update.
 
 ```javascript
-var Colonel = require('colonel-kurtz')
+import Colonel from 'colonel-kurtz'
 
-var container = document.querySelector('#container')
-var input = document.querySelector('#input')
+let container = document.querySelector('#container')
+let input = document.querySelector('#input')
 
-var editor = new ColonelKurtz({
+let editor = new ColonelKurtz({
   el: container,
   blocks: input
 })
@@ -108,19 +108,20 @@ comes with a Youtube plugin out of the box. Let's include it in our
 editor:
 
 ```javascript
-var Colonel = require('colonel-kurtz')
+import Colonel from 'colonel-kurtz'
+import Youtube from 'colonel-kurtz/addons/youtube'
 
-var container = document.querySelector('#container')
-var input = document.querySelector('#input')
+let container = document.querySelector('#container')
+let input = document.querySelector('#input')
 
-var editor = new ColonelKurtz({
+let editor = new ColonelKurtz({
   el: container,
   blocks: input,
   blockTypes: [
     {
       id: 'youtube',
       label: 'Youtube',
-      component: require('colonel-kurtz/build/addons/youtube')
+      component: Youtube
     }
   ]
 })

@@ -10,7 +10,7 @@
     "test": "jest",
     "coveralls": "jest --coverage",
     "lint": "eslint . --cache --cache-location=node_modules/ --ignore-path=.gitignore",
-    "format": "prettier --write './{src,example,addons,docs}/**/*.{js,md}' ./*.js"
+    "format": "prettier --write './{src,example,addons,docs}/**/*.{js,md}' ./*.{js,md}"
   },
   "repository": {
     "type": "git",

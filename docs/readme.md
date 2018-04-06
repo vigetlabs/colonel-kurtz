@@ -42,7 +42,7 @@ can create _new_ editors:
 let box = document.getElementById('#box')
 let input = document.getElementById('#textarea')
 
-var myEditor = new ColonelKurtz({
+let myEditor = new ColonelKurtz({
   el: box,
   blocks: input
 })
