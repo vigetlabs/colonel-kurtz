@@ -6,11 +6,12 @@ module.exports = {
     commonjs: true,
     es6: true,
     node: true,
-    jasmine: true
+    jest: true
   },
   parser: 'babel-eslint',
   parserOptions: {
     ecmaVersion: 7,
+    sourceType: 'module',
     ecmaFeatures: {
       experimentalObjectRestSpread: true,
       jsx: true
