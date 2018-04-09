@@ -24,12 +24,12 @@ in each app directory that enforces the desired node version.
 ### Webpacker
 
 [Webpacker](https://github.com/rails/webpacker) is a Ruby gem supported by the Rails team for
-integrating [Webpack](https://webpack.js.org/) into Rails projects. Webpack
+integrating [Webpack](https://webpack.js.org/) into Rails projects.
 
 ### Webpacker React Integration
 
-Colonel Kurtz uses [React](http://reactjs.com/) to render the editor. \*React is not
-required to render the JSON content Colonel Kurtz generates, but is
+Colonel Kurtz uses [React](http://reactjs.com/) to render the editor. *React is not
+required to render the JSON content Colonel Kurtz generates*, but is
 necessary to content using the Colonel Kurtz editor.
 
 Assuming your Rails app is configured with Webpacker [follow the
