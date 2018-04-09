@@ -1,8 +1,6 @@
-SHELL  := /bin/bash
-PATH   := node_modules/.bin:$(PATH)
-DIST   := build
-
-.PHONY: clean test test-coverage build package.json javascript docs release example
+SHELL := /bin/bash
+PATH  := node_modules/.bin:$(PATH)
+DIST  := build
 
 build: clean javascript sass package.json documentation
 
@@ -27,13 +25,7 @@ release: clean build
 prerelease: clean build
 	npm publish $(DIST) --tag beta
 
-release-example:
-	NODE_ENV=production webpack -p --entry ./example/example.js --output-path example --output-filename example.build.js
-	git subtree push --prefix example origin gh-pages
-
-test-coverage:
-	yarn test --coverage
-	coveralls < coverage/report-lcov/lcov.info
-
 clean:
 	rm -rf $(DIST)
+
+.PHONY: build javascript sass documentation release prerelease clean
