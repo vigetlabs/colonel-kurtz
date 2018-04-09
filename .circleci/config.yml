@@ -1,0 +1,20 @@
+version: 2
+
+jobs:
+  build:
+    working_directory: /home/circleci/colonel-kurtz
+    docker:
+      - image: circleci/node:8.9
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - yarn-cache-{{ checksum "yarn.lock" }}
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: yarn-cache-{{ checksum "yarn.lock" }}
+      - run: yarn lint
+      - run: yarn test:cov --ci
+      - run: yarn codecov coverage/lcov.info

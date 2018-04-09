@@ -6,9 +6,10 @@
   "main": "src/Colonel.js",
   "scripts": {
     "start": "webpack-dev-server --config example/webpack.config.js --mode development",
+    "example": "webpack --config example/webpack.config.js --mode production",
     "release": "make release",
     "test": "jest",
-    "coveralls": "jest --coverage",
+    "test:cov": "jest --coverage",
     "lint": "eslint . --cache --cache-location=node_modules/ --ignore-path=.gitignore",
     "format": "prettier --write './{src,example,addons,docs}/**/*.{js,md}' ./*.{js,md}"
   },
@@ -52,6 +53,8 @@
     "babel-loader": "~7.1.4",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "codecov": "^3.0.0",
     "css-loader": "~0.28.11",
     "eslint": "^4.19.1",
     "eslint-plugin-jest": "^21.15.0",
