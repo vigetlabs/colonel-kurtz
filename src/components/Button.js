@@ -9,9 +9,12 @@ const defaultProps = {
 
 export default class Button extends React.Component {
   render() {
-    const { tagName, ...attrs } = this.props
+    const { tagName, children, ...attrs } = this.props
 
-    return React.createElement(tagName, attrs, [<Ink key="__ink__" />])
+    return React.createElement(tagName, attrs, [
+      <Ink key="__ink__" />,
+      ...children
+    ])
   }
 }
 
