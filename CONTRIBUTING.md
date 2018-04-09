@@ -12,9 +12,7 @@ Colonel Kurtz is built using tools written for
 [nodejs](http://nodejs.org). We recommend installing Node with
 [nvm](https://github.com/creationix/nvm).
 
-At the time of writing, Colonel Kurtz is built (and tested) with Node
-0.10.0. It will remain at that version until a higher level of build tool
-support for 0.12.0 can be obtained.
+At the time of writing, Colonel Kurtz is built (and tested) with Node 8.11.0.
 
 Dependencies are managed with an [`npm`](npmjs.org) `package.json`
 file. You can install dependencies with:
@@ -28,14 +26,14 @@ npm install
 A production build can be built by running:
 
 ```bash
-npm run prepublish
+make build
 ```
 
 However most of the time developing with Colonel Kurtz, you will want
 to reference the example app:
 
 ```bash
-npm start
+yarn start
 ```
 
 This will host the demo at `http://localhost:8080`. Running this
@@ -44,17 +42,17 @@ the example.
 
 ## Testing
 
-Colonel Kurtz uses [Karma](karma-runner.github.io). You can run tests
-with:
+In a terminal, run:
 
 ```bash
-npm test
+yarn test
 ```
 
-For faster builds, consider removing code coverage:
+For test coverage:
 
 ```bash
-NO_COVERAGE=true npm test
+yarn run test:cov
+open ./coverage/index.html
 ```
 
 ## Publishing to NPM
@@ -62,12 +60,12 @@ NO_COVERAGE=true npm test
 This project publishes to npm using:
 
 ```shell
-npm run release
+make release
 ```
 
-This will run a shell script found at `./scripts/release`. It is
-critically important not to simply run `npm publish`. The release
-script sets up an expected structure for hosting on `npm`.
+This will run a shell script found at `./bin/bundle`. It is critically
+important not to simply run `npm publish`. The release script sets up
+an expected structure for hosting on `npm`.
 
 ## Conventions
 
@@ -75,11 +73,10 @@ script sets up an expected structure for hosting on `npm`.
 
 ### Javascript
 
-Colonel Kurtz uses ES6 Javascript (compiled using
-[Babel](babeljs.io)). As for style, shoot for:
+Run `yarn lint` to check your code style against our eslint
+configuration. Anything else is fair game, but roughly:
 
 * No semicolons
-* Commas last,
 * 2 spaces for indentation (no tabs)
 * Prefer ' over "
 * 80 character line length
@@ -94,14 +91,6 @@ We use the `scss` syntax for Sass. We also have a couple of opinions:
 * All variables must use the `!default` flag
 * All variables must be prefixed with `$col`
 * All selectors, as possible, must be prefixed with `.col`
-
-### Testing
-
-Additionally, we aspire for 100% code coverage. However 100% code
-coverage is not a foolproof indicator of good testing. Tests that
-cover as much surface area as possible (for the sake of coverage)
-should be avoided. This is a much softer measure than a style guide,
-and will fall to code review for enforcement.
 
 ### Reviews
 
