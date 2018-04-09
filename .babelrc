@@ -1,7 +1,6 @@
 {
   "presets": [
     ["babel-preset-env", { "module" : false, "loose": true }],
-    "babel-preset-react",
-    "babel-preset-stage-2"
+    "babel-preset-react"
   ]
 }

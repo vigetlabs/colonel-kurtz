@@ -12,15 +12,19 @@ function uid(len) {
     .substr(2, len)
 }
 
-class Field extends React.Component {
-  static defaultProps = {
-    hint: null,
-    element: 'input',
-    type: 'text'
-  }
+const defaultProps = {
+  hint: null,
+  element: 'input',
+  type: 'text'
+}
 
-  state = {
-    hintId: `hint-col-field-${uid()}`
+export default class Field extends React.Component {
+  constructor() {
+    super(...arguments)
+
+    this.state = {
+      hintId: `hint-col-field-${uid()}`
+    }
   }
 
   getHint(hint) {
@@ -51,4 +55,4 @@ class Field extends React.Component {
   }
 }
 
-export default Field
+Field.defaultProps = defaultProps

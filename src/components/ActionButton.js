@@ -2,12 +2,13 @@ import React from 'react'
 import DOM from 'react-dom'
 import Btn from './Button'
 
-export default class ActionButton extends React.Component {
-  static defaultProps = {
-    className: 'col-btn-fab',
-    symbol: '+'
-  }
+const defaultProps = {
+  label: 'Add block',
+  className: 'col-btn-fab',
+  symbol: '+'
+}
 
+export default class ActionButton extends React.Component {
   focus() {
     DOM.findDOMNode(this).focus()
   }
@@ -23,3 +24,5 @@ export default class ActionButton extends React.Component {
     )
   }
 }
+
+ActionButton.defaultProps = defaultProps

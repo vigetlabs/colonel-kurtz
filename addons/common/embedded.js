@@ -8,14 +8,14 @@ import Field from './field'
 import Frame from './frame'
 import Graphic from './graphic'
 
-class Embedded extends React.Component {
-  static defaultProps = {
-    baseUrl: '',
-    slug: '',
-    title: 'Embedded Content',
-    resolveUrl: (base, slug) => base + slug
-  }
+const defaultProps = {
+  baseUrl: '',
+  slug: '',
+  title: 'Embedded Content',
+  resolveUrl: (base, slug) => base + slug
+}
 
+export default class Embedded extends React.Component {
   getSrc() {
     const { baseUrl, resolveUrl, slug } = this.props
 
@@ -56,4 +56,4 @@ class Embedded extends React.Component {
   }
 }
 
-export default Embedded
+Embedded.defaultProps = defaultProps

@@ -5,13 +5,11 @@ import Item from './MenuItem'
 import React from 'react'
 import menuItems from '../config/menu'
 
+const defaultProps = {
+  items: []
+}
+
 export default class BlockMenu extends React.Component {
-  static Item = Item
-
-  static defaultProps = {
-    items: []
-  }
-
   getMenuItem(item) {
     let { id } = item
 
@@ -61,3 +59,6 @@ export default class BlockMenu extends React.Component {
     )
   }
 }
+
+BlockMenu.Item = Item
+BlockMenu.defaultProps = defaultProps

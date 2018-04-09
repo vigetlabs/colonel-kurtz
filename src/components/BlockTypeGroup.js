@@ -1,22 +1,26 @@
+import React from 'react'
 import Animator from './Animator'
 import FocusTrap from 'react-focus-trap'
-import React from 'react'
 import Btn from './Button'
 
+const defaultProps = {
+  items: []
+}
+
 export default class BlockTypeGroup extends React.Component {
-  static defaultProps = {
-    items: []
+  constructor() {
+    super(...arguments)
+
+    this.state = {
+      open: false
+    }
   }
 
-  state = {
-    open: false
-  }
-
-  open = () => {
+  open() {
     this.setState({ open: true })
   }
 
-  close = () => {
+  close() {
     this.setState({ open: false })
   }
 
@@ -38,7 +42,7 @@ export default class BlockTypeGroup extends React.Component {
         className="col-menu"
         element="nav"
         active
-        onExit={this.close}
+        onExit={this.close.bind(this)}
         role="navigation"
       >
         {this.props.items.map(this.getButton, this)}
@@ -54,12 +58,12 @@ export default class BlockTypeGroup extends React.Component {
         className="col-switch-dropdown"
         transitionEnterTimeout={300}
         transitionLeaveTimeout={200}
-        onKeyUp={this._onKeyUp}
+        onKeyUp={this._onKeyUp.bind(this)}
       >
         <Btn
           key="label"
           className="col-switch-btn col-menu-label"
-          onClick={this.open}
+          onClick={this.open.bind(this)}
         >
           {this.props.label}
         </Btn>
@@ -68,10 +72,12 @@ export default class BlockTypeGroup extends React.Component {
     )
   }
 
-  _onKeyUp = e => {
+  _onKeyUp(event) {
     // Do not allow escape presses to bubble up to parent switch
-    if (e.key === 'Escape' && this.state.open) {
-      e.stopPropagation()
+    if (event.key === 'Escape' && this.state.open) {
+      event.stopPropagation()
     }
   }
 }
+
+BlockTypeGroup.defaultProps = defaultProps

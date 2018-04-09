@@ -17,14 +17,14 @@ function parseYouTube(value = '') {
   return matches ? matches[1] : value
 }
 
-export default class YouTube extends React.Component {
-  static defaultProps = {
-    baseUrl: 'https://www.youtube.com/embed/',
-    content: {
-      video_id: ''
-    }
+const defaultProps = {
+  baseUrl: 'https://www.youtube.com/embed/',
+  content: {
+    video_id: ''
   }
+}
 
+export default class YouTube extends React.Component {
   render() {
     const { baseUrl, content } = this.props
 
@@ -45,3 +45,5 @@ export default class YouTube extends React.Component {
     this.props.onChange({ video_id: parseYouTube(video_id) })
   }
 }
+
+YouTube.defaultProps = defaultProps

@@ -7,8 +7,12 @@ import classNames from 'classnames'
 import typesForBlock from '../utils/typesForBlock'
 
 export default class Switch extends React.Component {
-  state = {
-    open: false
+  constructor() {
+    super(...arguments)
+
+    this.state = {
+      open: false
+    }
   }
 
   componentWillReceiveProps() {

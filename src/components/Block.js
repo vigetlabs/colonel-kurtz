@@ -5,11 +5,16 @@ import BlockMenu from './BlockMenu'
 import FallbackBlockType from '../models/FallbackBlockType'
 import Switch from './Switch'
 import respondsTo from '../utils/respondsTo'
+import { assign } from '../utils/data'
 
-export default class Block extends React.Component {
-  state = {
-    extraMenuItems: [],
-    menuOpen: false
+export default class Block extends React.PureComponent {
+  constructor() {
+    super(...arguments)
+
+    this.state = {
+      extraMenuItems: [],
+      menuOpen: false
+    }
   }
 
   getBlockType() {
@@ -30,11 +35,11 @@ export default class Block extends React.Component {
     }
   }
 
-  openMenu = () => {
+  openMenu() {
     this.setState({ menuOpen: true })
   }
 
-  closeMenu = () => {
+  closeMenu() {
     this.setState({ menuOpen: false })
   }
 
@@ -51,7 +56,7 @@ export default class Block extends React.Component {
 
     let defaults = component.defaultProps || {}
 
-    return { ...defaults.content, ...block.content }
+    return assign({}, defaults.content, block.content)
   }
 
   render() {
@@ -82,8 +87,8 @@ export default class Block extends React.Component {
             block={block}
             items={extraMenuItems}
             active={menuOpen}
-            onOpen={this.openMenu}
-            onExit={this.closeMenu}
+            onOpen={this.openMenu.bind(this)}
+            onExit={this.closeMenu.bind(this)}
           />
         </div>
 

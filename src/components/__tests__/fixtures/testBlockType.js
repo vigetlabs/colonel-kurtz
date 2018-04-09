@@ -1,21 +1,23 @@
 import React from 'react'
 
+class TestBlockType extends React.Component {
+  getMenuItems() {
+    return [{ id: 'test', label: 'Test' }]
+  }
+
+  render() {
+    return <div>{this.props.children}</div>
+  }
+}
+
+TestBlockType.defaultProps = {
+  content: {
+    text: 'Test'
+  }
+}
+
 export default {
   id: 'test',
   label: 'Test',
-  component: class TestBlockType extends React.Component {
-    static defaultProps = {
-      content: {
-        text: 'Test'
-      }
-    }
-
-    getMenuItems() {
-      return [{ id: 'test', label: 'Test' }]
-    }
-
-    render() {
-      return <div>{this.props.children}</div>
-    }
-  }
+  component: TestBlockType
 }

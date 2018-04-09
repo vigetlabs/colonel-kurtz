@@ -1,0 +1,92 @@
+#!/usr/bin/env node
+
+'use strict'
+
+const rollup = require('rollup')
+const buble = require('rollup-plugin-buble')
+const uglify = require('rollup-plugin-uglify')
+const filesize = require('rollup-plugin-filesize')
+const path = require('path')
+
+const options = {
+  format: 'cjs',
+  out: 'build'
+}
+
+const packages = [
+  {
+    entry: 'src/Colonel.js',
+    output: 'colonel.js'
+  },
+  {
+    entry: 'addons/common/field.js',
+    output: 'addons/common/field.js'
+  },
+  {
+    entry: 'addons/common/frame.js',
+    output: 'addons/common/frame.js'
+  },
+  {
+    entry: 'addons/common/embedded.js',
+    output: 'addons/common/embedded.js'
+  },
+  {
+    entry: 'addons/common/graphic.js',
+    output: 'addons/common/graphic.js'
+  },
+  {
+    entry: 'addons/dialog/index.js',
+    output: 'addons/dialog.js'
+  },
+  {
+    entry: 'addons/html-embed/index.js',
+    output: 'addons/html-embed.js'
+  },
+  {
+    entry: 'addons/image/index.js',
+    output: 'addons/image.js'
+  },
+  {
+    entry: 'addons/medium/index.js',
+    output: 'addons/medium.js'
+  },
+  {
+    entry: 'addons/section/index.js',
+    output: 'addons/section.js'
+  },
+  {
+    entry: 'addons/youtube/index.js',
+    output: 'addons/youtube.js'
+  }
+
+]
+
+async function build(config) {
+  let bundle = await rollup.rollup({
+    input: path.resolve(config.entry),
+    plugins: [
+      buble({
+        objectAssign: true
+      }),
+      uglify({
+        compress: true,
+        mangle: {
+          toplevel: true,
+          properties: {
+            regex: /^_/
+          }
+        }
+      }),
+      filesize()
+    ],
+    external: Object.keys(require('../package').dependencies).concat('react', 'react-dom')
+  })
+
+  await bundle.write({
+    file: path.resolve(options.out, config.output),
+    format: options.format,
+    sourcemap: true
+  })
+}
+
+packages.forEach(build)

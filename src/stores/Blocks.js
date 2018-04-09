@@ -13,6 +13,7 @@ import insertAt from '../utils/insertAt'
 import siblingAt from '../utils/siblingAt'
 import blocksToJson from '../utils/blocksToJson'
 import jsonToBlocks from '../utils/jsonToBlocks'
+import { assign } from '../utils/data'
 
 const Blocks = {
   register() {
@@ -83,7 +84,7 @@ const Blocks = {
   update(state, { id, content }) {
     var block = Blocks.find(state, id)
 
-    block.content = { ...block.content, ...content }
+    block.content = assign({}, block.content, content)
 
     return state
   },

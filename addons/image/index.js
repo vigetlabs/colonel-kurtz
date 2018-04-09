@@ -9,11 +9,11 @@ import Field from '../common/field'
 import Frame from '../common/frame'
 import Graphic from '../common/graphic'
 
-class ImageBlock extends React.Component {
-  static defaultProps = {
-    content: { src: '' }
-  }
+const defaultProps = {
+  content: { src: '' }
+}
 
+export default class ImageBlock extends React.Component {
   render() {
     var { src } = this.props.content
 
@@ -41,4 +41,4 @@ class ImageBlock extends React.Component {
   }
 }
 
-export default ImageBlock
+ImageBlock.defaultProps = defaultProps

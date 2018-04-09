@@ -1,4 +1,5 @@
 import DefaultBlockType from '../components/DefaultBlockType'
+import { assign } from '../utils/data'
 
 let defaults = {
   component: DefaultBlockType,
@@ -10,7 +11,7 @@ let defaults = {
 
 export default class BlockType {
   constructor(config) {
-    Object.assign(this, defaults, config)
+    assign(this, defaults, config)
   }
 
   valueOf() {

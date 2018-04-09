@@ -2,42 +2,29 @@ import React from 'react'
 import Close from './close'
 import FocusTrap from 'react-focus-trap'
 
-function DialogTitle({ headingComponent, title }) {
-  if (title) {
-    return React.createElement(
-      headingComponent,
-      {
-        className: 'col-dialog-title'
-      },
-      title
-    )
-  }
-
-  return null
+const defaultProps = {
+  className: 'col-dialog',
+  headingComponent: 'h3'
 }
 
 export default class Dialog extends React.Component {
-  static defaultProps = {
-    className: 'col-dialog',
-    headingComponent: 'h3'
+  renderTitle() {
+    const { headingComponent: Title, title } = this.props
+
+    return title ? <Title className="col-dialog-title">{title}</Title> : null
   }
 
   render() {
-    const {
-      active,
-      headingComponent,
-      title,
-      children,
-      className,
-      onExit
-    } = this.props
+    const { active, children, className, onExit } = this.props
 
     return (
       <FocusTrap active={active} className={className} onExit={onExit}>
-        <DialogTitle headingComponent={headingComponent} title={title} />
+        {this.renderTitle()}
         {children}
         <Close onClick={onExit} />
       </FocusTrap>
     )
   }
 }
+
+Dialog.defaultProps = defaultProps

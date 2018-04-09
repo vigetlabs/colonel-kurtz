@@ -5,29 +5,16 @@
 
 import React from 'react'
 import Field from '../common/field'
+import { sanitize } from './sanitize'
 
-const toArray = list => Array.prototype.slice.call(list)
-
-function sanitize(html) {
-  let bucket = document.createElement('div')
-
-  bucket.innerHTML = html
-
-  let doNotAllow = toArray(bucket.querySelectorAll('script, style'))
-
-  doNotAllow.forEach(el => el.parentNode.removeChild(el))
-
-  return bucket.innerHTML
+const defaultProps = {
+  content: {
+    html: '',
+    script: ''
+  }
 }
 
 export default class HtmlEmbedBlock extends React.Component {
-  static defaultProps = {
-    content: {
-      html: '',
-      script: ''
-    }
-  }
-
   shouldDisplaySandbox() {
     return this.props.content.html || this.props.content.script
   }
@@ -79,3 +66,5 @@ export default class HtmlEmbedBlock extends React.Component {
     this.props.onChange({ html: sanitize(event.target.value) })
   }
 }
+
+HtmlEmbedBlock.defaultProps = defaultProps

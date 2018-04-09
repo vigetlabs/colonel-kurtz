@@ -8,30 +8,30 @@
 import React from 'react'
 import MediumEditor from './vendor/medium-editor'
 
-export default class MediumBlock extends React.Component {
-  static defaultProps = {
-    content: { html: '', text: '' },
-    options: {
-      buttons: [
-        'header1',
-        'header2',
-        'bold',
-        'italic',
-        'underline',
-        'anchor',
-        'quote',
-        'unorderedlist',
-        'orderedlist'
-      ],
-      firstHeader: 'h1',
-      secondHeader: 'h2',
-      diffLeft: 0,
-      diffTop: -10,
-      disableDoubleReturn: true
-    }
+const defaultProps = {
+  content: { html: '', text: '' },
+  options: {
+    buttons: [
+      'header1',
+      'header2',
+      'bold',
+      'italic',
+      'underline',
+      'anchor',
+      'quote',
+      'unorderedlist',
+      'orderedlist'
+    ],
+    firstHeader: 'h1',
+    secondHeader: 'h2',
+    diffLeft: 0,
+    diffTop: -10,
+    disableDoubleReturn: true
   }
+}
 
-  shouldComponentUpdate(props: Object, state: Object) {
+export default class MediumBlock extends React.Component {
+  shouldComponentUpdate(props, state) {
     return false
   }
 
@@ -66,3 +66,5 @@ export default class MediumBlock extends React.Component {
     })
   }
 }
+
+MediumBlock.defaultProps = defaultProps

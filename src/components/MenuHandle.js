@@ -1,13 +1,13 @@
 import React from 'react'
 import Btn from './Button'
 
-export default class MenuHandle extends React.Component {
-  static defaultProps = {
-    className: 'col-menu-handle',
-    label: 'Open the menu for this block',
-    type: 'button'
-  }
+const defaultProps = {
+  className: 'col-menu-handle',
+  label: 'Open the menu for this block',
+  type: 'button'
+}
 
+export default class MenuHandle extends React.Component {
   render() {
     const { label, ...safe } = this.props
 
@@ -21,3 +21,5 @@ export default class MenuHandle extends React.Component {
     )
   }
 }
+
+MenuHandle.defaultProps = defaultProps

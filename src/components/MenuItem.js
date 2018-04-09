@@ -1,14 +1,14 @@
 import Button from './Button'
 import React from 'react'
 
-export default class MenuItem extends React.Component {
-  static defaultProps = {
-    className: 'col-menu-item',
-    type: 'button',
-    onClick() {},
-    isDisabled() {}
-  }
+const defaultProps = {
+  className: 'col-menu-item',
+  type: 'button',
+  onClick() {},
+  isDisabled() {}
+}
 
+export default class MenuItem extends React.Component {
   isDisabled() {
     let { app, block, isDisabled } = this.props
     return isDisabled(app, block)
@@ -43,3 +43,5 @@ export default class MenuItem extends React.Component {
     onClick(app, block, this)
   }
 }
+
+MenuItem.defaultProps = defaultProps
