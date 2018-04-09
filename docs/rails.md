@@ -62,7 +62,7 @@ paths in order to expose these styles.
 In `config/application.rb` add the following entry in your config block:
 
 ```ruby
-  config.assets.paths << "#{ config.root }/node_modules"
+config.assets.paths << "#{ config.root }/node_modules"
 ```
 
 Finally, in your stylesheet:
