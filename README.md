@@ -9,8 +9,8 @@ JSON data structure.
 
 ---
 
-[![Build Status](https://travis-ci.org/vigetlabs/colonel-kurtz.png?branch=master)](https://travis-ci.org/vigetlabs/colonel-kurtz)
-[![Coverage Status](https://coveralls.io/repos/vigetlabs/colonel-kurtz/badge.svg)](https://coveralls.io/r/vigetlabs/colonel-kurtz)
+[![CircleCI](https://circleci.com/gh/vigetlabs/colonel-kurtz.svg?style=svg)](https://circleci.com/gh/vigetlabs/microcosm)
+[![codecov](https://codecov.io/gh/vigetlabs/colonel-kurtz/branch/master/graph/badge.svg)](https://codecov.io/gh/vigetlabs/microcosm)
 
 ---
 
