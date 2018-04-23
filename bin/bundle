@@ -4,8 +4,6 @@
 
 const rollup = require('rollup')
 const buble = require('rollup-plugin-buble')
-const uglify = require('rollup-plugin-uglify')
-const filesize = require('rollup-plugin-filesize')
 const path = require('path')
 
 const options = {
@@ -67,17 +65,7 @@ async function build(config) {
     plugins: [
       buble({
         objectAssign: true
-      }),
-      uglify({
-        compress: true,
-        mangle: {
-          toplevel: true,
-          properties: {
-            regex: /^_/
-          }
-        }
-      }),
-      filesize()
+      })
     ],
     external: Object.keys(require('../package').dependencies).concat('react', 'react-dom')
   })
