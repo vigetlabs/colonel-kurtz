@@ -2,17 +2,18 @@ SHELL := /bin/bash
 PATH  := node_modules/.bin:$(PATH)
 DIST  := build
 
-build: clean javascript sass package.json documentation
+build: clean javascript style package.json documentation
 
 javascript:
 	./bin/bundle
 
-sass:
+style:
 	mkdir -p $(DIST)
 	cp -r style $(DIST)/style
 	node-sass ./$(DIST)/style/colonel.scss --stdout > $(DIST)/colonel-kurtz.css
 
 package.json:
+	mkdir -p $(DIST)
 	node -p 'p=require("./package");p.main="colonel.js";p.private=undefined;p.scripts=p.devDependencies=undefined;JSON.stringify(p,null,2)' > $(DIST)/package.json
 
 documentation: README.md LICENSE.md docs
@@ -28,4 +29,4 @@ prerelease: clean build
 clean:
 	rm -rf $(DIST)
 
-.PHONY: build javascript sass documentation release prerelease clean
+.PHONY: build javascript style documentation release prerelease clean package.json
