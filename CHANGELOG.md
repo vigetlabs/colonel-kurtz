@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.0.1
+
+- Remove uglify step to avoid unexpected minification errors
+
 ## 5.0.0
 
 Upgrade to support React 16.0
