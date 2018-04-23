@@ -64,7 +64,7 @@ async function build(config) {
     input: path.resolve(config.entry),
     plugins: [
       buble({
-        objectAssign: true
+        objectAssign: 'Object.assign'
       })
     ],
     external: Object.keys(require('../package').dependencies).concat('react', 'react-dom')

@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.0.2
+
+- Fix build issue where Object.assign compiled to `true`
+
 ## 5.0.1
 
 - Remove uglify step to avoid unexpected minification errors
