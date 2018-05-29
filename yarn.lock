@@ -6249,9 +6249,9 @@ react-focus-trap@~2.5.0:
   dependencies:
     babel-preset-react "^6.24.1"
 
-react-ink@~6.2.0:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/react-ink/-/react-ink-6.2.0.tgz#b268107bf986c6009bd38d7d3baa9fba1016e368"
+react-ink@~6.3.0:
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/react-ink/-/react-ink-6.3.0.tgz#a94f8bd2ca3bbc20f209486ebd4580abb495fd2c"
 
 react-transition-group@1.2.0:
   version "1.2.0"
