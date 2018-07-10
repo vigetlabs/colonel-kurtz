@@ -71,9 +71,9 @@ Another example:
 ```javascript
 getMenuItems() {
   return [{
-    id         : 'hello-world',
-    label      : () => `Toggle position: ${this.positionLabel()}`
-    onClick    : () => this.togglePosition()
+    id      : 'hello-world',
+    label   : () => `Toggle position: ${this.positionLabel()}`
+    onClick : () => this.togglePosition()
   }]
 }
 ```
