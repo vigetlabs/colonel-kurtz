@@ -39,8 +39,9 @@ export default class MenuItem extends React.Component {
   }
 
   _formatLabel(label) {
+    let { app, block } = this.props
     if (typeof label === 'function') {
-      return label.call()
+      return label(app, block, this)
     } else {
       return label
     }

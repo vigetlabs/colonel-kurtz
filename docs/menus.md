@@ -48,7 +48,7 @@ There are several things going on here:
 1.  The UI for new menu items is described in the `getMenuItems` method
 2.  Whenever a menu item is clicked, it will execute the `onClick` option
 
-## onClick and isDisabled
+## onClick, label, and isDisabled
 
 Menu items can also define an `onClick` and `isDisabled` field. Both
 of these should be functions and are passed the specific editor and
@@ -59,8 +59,21 @@ getMenuItems() {
   return [{
     id         : 'hello-world',
     label      : 'Hello World',
+    label      : (editor, block, menuItem) => `My special block ${block.id}`,
     onClick    : (editor, block, menuItem) => alert(`My block is ${ block.id }`),
     isDisabled : (editor, block, menuItem) => false
+  }]
+}
+```
+
+Another example:
+
+```javascript
+getMenuItems() {
+  return [{
+    id         : 'hello-world',
+    label      : () => `Toggle position: ${this.positionLabel()}`
+    onClick    : () => this.togglePosition()
   }]
 }
 ```
