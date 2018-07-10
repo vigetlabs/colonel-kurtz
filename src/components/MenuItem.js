@@ -33,9 +33,18 @@ export default class MenuItem extends React.Component {
         onClick={this._onClick.bind(this)}
         disabled={this.isDisabled()}
       >
-        {label}
+        {this._formatLabel(label)}
       </Button>
     )
+  }
+
+  _formatLabel(label) {
+    let { app, block } = this.props
+    if (typeof label === 'function') {
+      return label(app, block, this)
+    } else {
+      return label
+    }
   }
 
   _onClick() {
