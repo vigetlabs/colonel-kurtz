@@ -31,10 +31,10 @@ describe('Components - Menu Item', function() {
 
   it('allows label to be a function', function() {
     const block = app.state.blocks[0]
-    const label = function() {
+    const labelFn = function() {
       return 'my-label'
     }
-    const item = render(<Item app={app} block={block} id="id" label={label} />)
+    const item = render(<Item app={app} block={block} id="id" label={labelFn} />)
     const result = DOM.findDOMNode(item)
 
     expect(result.textContent).toEqual('my-label')
