@@ -1,4 +1,5 @@
 import React from 'react'
+import DOM from 'react-dom'
 import Colonel from '../../Colonel'
 import Item from '../MenuItem'
 import config from './fixtures/colonelConfig'
@@ -26,6 +27,17 @@ describe('Components - Menu Item', function() {
     let item = render(<Item app={app} block={block} id="id" label="test" />)
 
     expect(item.props.isDisabled()).not.toBeDefined()
+  })
+
+  it('allows label to be a function', function() {
+    const block = app.state.blocks[0]
+    const label = function() {
+      return 'my-label'
+    }
+    const item = render(<Item app={app} block={block} id="id" label={label} />)
+    const result = DOM.findDOMNode(item)
+
+    expect(result.textContent).toEqual('my-label')
   })
 
   it('sends the item component into the onClick callback', function(done) {
