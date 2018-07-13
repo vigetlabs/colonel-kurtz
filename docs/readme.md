@@ -48,7 +48,7 @@ let myEditor = new ColonelKurtz({
 })
 ```
 
-This is the bear minimum for Colonel Kurtz (although it won't do
+This is the bare minimum for Colonel Kurtz (although it won't do
 much). The important elements are `el` and `value`.
 
 `el` defines where Colonel Kurtz will render to. It can be an empty

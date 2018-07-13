@@ -153,7 +153,7 @@ You may also notice that this block does not look fantastic. The
 Youtube addon relies on a common library of utilities for Colonel
 Kurtz addons. The stylesheet for those components can be found here:
 
-https://github.com/vigetlabs/colonel-kurtz/blob/master/addons/common/style.scss
+https://github.com/vigetlabs/colonel-kurtz/blob/master/style/addons/common.scss
 
 ### Saving data
 
@@ -176,5 +176,5 @@ That's it! Actually, not at all. There are a ton of things you can do
 with Colonel Kurtz. Many of them are documented in the `./docs`
 folder, or used in the example project found at `./example`.
 
-Our documentation still needs improving. Please help us by [filing an
+Our documentation still needs improvement. Please help us by [filing an
 issue on Github if anything is unclear](https://github.com/vigetlabs/colonel-kurtz/issues).
