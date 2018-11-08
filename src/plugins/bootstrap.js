@@ -15,6 +15,16 @@ let parseElement = function(element) {
   return data
 }
 
+let injectData = function(blockTypes, data) {
+  return blockTypes.map(config => {
+    let { id } = config
+    if (data[id]) {
+      config['data'] = data[id]
+    }
+    return config
+  })
+}
+
 export default {
   filter(blockTypes, acceptable) {
     if (!acceptable) return blockTypes
@@ -24,19 +34,28 @@ export default {
 
   register(
     app,
-    { allow, maxChildren = Infinity, blocks, blockTypes, maxDepth = Infinity },
+    {
+      allow,
+      maxChildren = Infinity,
+      blocks,
+      blockTypes,
+      blockTypesData = {},
+      maxDepth = Infinity
+    },
     next
   ) {
     if (blocks instanceof HTMLElement) {
       blocks = parseElement(blocks)
     }
 
+    blockTypes = injectData(this.filter(blockTypes, allow), blockTypesData)
+
     app.replace(
       {
         maxChildren,
         maxDepth,
         blocks,
-        blockTypes: this.filter(blockTypes, allow)
+        blockTypes
       },
       next
     )
