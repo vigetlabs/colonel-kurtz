@@ -15,11 +15,11 @@ let parseElement = function(element) {
   return data
 }
 
-let injectData = function(blockTypes, data) {
+let injectOptions = function(blockTypes, options) {
   return blockTypes.map(config => {
     let { id } = config
-    if (data[id]) {
-      config['data'] = data[id]
+    if (options[id]) {
+      config['options'] = options[id]
     }
     return config
   })
@@ -39,7 +39,7 @@ export default {
       maxChildren = Infinity,
       blocks,
       blockTypes,
-      blockTypesData = {},
+      blockOptions = {},
       maxDepth = Infinity
     },
     next
@@ -48,7 +48,7 @@ export default {
       blocks = parseElement(blocks)
     }
 
-    blockTypes = injectData(this.filter(blockTypes, allow), blockTypesData)
+    blockTypes = injectOptions(this.filter(blockTypes, allow), blockOptions)
 
     app.replace(
       {

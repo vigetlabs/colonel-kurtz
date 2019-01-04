@@ -59,15 +59,15 @@ export default class Block extends React.PureComponent {
     return assign({}, defaults.content, block.content)
   }
 
-  getBlockTypeData(block) {
-    return this.getBlockType()['data'] || {}
+  getBlockOptions(block) {
+    return this.getBlockType()['options'] || {}
   }
 
   render() {
     let { app, block, children } = this.props
     let { component: Component } = this.getBlockType()
     let { menuOpen, extraMenuItems } = this.state
-    let data = this.getBlockTypeData(block)
+    let options = this.getBlockOptions(block)
 
     // Determine content by taking the default content and extend it with
     // the current block content
@@ -79,7 +79,7 @@ export default class Block extends React.PureComponent {
           <Component
             ref={el => (this.block = el)}
             {...block}
-            {...data}
+            {...options}
             content={content}
             onChange={this._onChange.bind(this)}
           >
