@@ -15,10 +15,6 @@ export default class Switch extends React.Component {
     }
   }
 
-  componentWillReceiveProps() {
-    this.setState({ open: false })
-  }
-
   open() {
     this.setState({ open: true })
   }
@@ -101,6 +97,7 @@ export default class Switch extends React.Component {
   _onAdd(type) {
     let { app, position, parent } = this.props
     app.push(Actions.create, [type.id, position, parent])
+    this.setState({ open: false })
   }
 
   _onToggle() {
