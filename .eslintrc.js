@@ -19,6 +19,9 @@ module.exports = {
   },
   extends: ['eslint:recommended'],
   plugins: ['react', 'prettier', 'jest'],
+  settings: {
+    version: 'detect'
+  },
   rules: {
     semi: 'off',
     'no-console': 'off',

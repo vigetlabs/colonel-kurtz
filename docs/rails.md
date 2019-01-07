@@ -98,8 +98,8 @@ things to finish the integration.
     submission. You should create the following files to fill these
     roles:
 
-* `app/assets/javascripts/admin/colonel/blockTypes/index.js`: [this gist](https://gist.github.com/efatsi/18e60b2e22ceca1f10a8d59ee978049b)
-* `app/assets/javascripts/admin/colonel/plugins/persist.js`: [this gist](https://gist.github.com/efatsi/c01c3e730d829250f13cb0380795cb6b)
+- `app/assets/javascripts/admin/colonel/blockTypes/index.js`: [this gist](https://gist.github.com/efatsi/18e60b2e22ceca1f10a8d59ee978049b)
+- `app/assets/javascripts/admin/colonel/plugins/persist.js`: [this gist](https://gist.github.com/efatsi/c01c3e730d829250f13cb0380795cb6b)
 
 4.  With your new input defined and the proper javascript in place,
     you can set any text field to be a Colonel Kurtz editable field by
