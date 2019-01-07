@@ -18,11 +18,14 @@ describe('Components - Switch', function() {
     app.start(done)
   })
 
-  it('closes when it gets new properties', function() {
+  it('closes when it adds a block', function() {
     let base = render(<Switch app={app} />)
 
     base.setState({ open: true })
-    base.componentWillReceiveProps()
+
+    TestUtils.Simulate.click(
+      DOM.findDOMNode(base).querySelector('.col-switch-btn')
+    )
 
     expect(base).toHaveProperty('state.open', false)
   })
