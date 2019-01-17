@@ -9,14 +9,6 @@ import Microcosm from 'microcosm'
 import bootstrap from './plugins/bootstrap'
 import render from './plugins/render'
 
-/**
- * Colonel Kurtz is a layer on top of the Microcosm framework
- * Microcosm is a simple Flux implementation designed to solve issues
- * with state specifically for Colonel Kurtz
- *
- * See:
- * https://github.com/vigetlabs/microcosm
- */
 export default class ColonelKurtz extends Microcosm {
   constructor(options) {
     super()
