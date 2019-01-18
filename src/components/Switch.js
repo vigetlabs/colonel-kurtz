@@ -5,14 +5,13 @@ import React from 'react'
 import SwitchNav from './SwitchNav'
 import classNames from 'classnames'
 import typesForBlock from '../utils/typesForBlock'
+import BlockContext from '../contexts/blocks'
 
 export default class Switch extends React.Component {
-  constructor() {
-    super(...arguments)
+  static contextType = BlockContext
 
-    this.state = {
-      open: false
-    }
+  state = {
+    open: false
   }
 
   open() {
@@ -31,7 +30,6 @@ export default class Switch extends React.Component {
     return (
       <ActionButton
         ref={el => (this.toggle = el)}
-        disabled={this.hasMaxChildren()}
         label="Open the block menu and create a block"
         onClick={this._onToggle.bind(this)}
       />
@@ -39,12 +37,14 @@ export default class Switch extends React.Component {
   }
 
   getNav(blockTypes) {
-    if (!this.state.open) return null
+    if (!this.state.open) {
+      return null
+    }
 
     return (
       <SwitchNav
         ref={el => (this.nav = el)}
-        blockTypes={blockTypes}
+        structure={this.props.structure}
         onAdd={this._onAdd.bind(this)}
         onExit={this.close.bind(this)}
       />
@@ -79,38 +79,32 @@ export default class Switch extends React.Component {
   }
 
   render() {
-    let { app, parent } = this.props
-    let types = typesForBlock(app.state.blockTypes, parent)
+    let { structure } = this.props
 
-    let className = classNames('col-switch', {
-      'col-switch-disabled': this.hasMaxChildren() || this.hasHitMaxDepth()
-    })
-
-    return types.length ? (
-      <div className={className} onKeyUp={this._onKeyUp.bind(this)}>
+    return structure.length ? (
+      <div className="col-switch" onKeyUp={this._onKeyUp.bind(this)}>
         {this.getToggle()}
-        {this.getNav(types)}
+        {this.getNav(structure)}
       </div>
     ) : null
   }
 
   _onAdd(type) {
-    let { app, position, parent } = this.props
-    app.push(Actions.create, [type.id, position, parent])
+    this.context.add(type)
+
     this.setState({ open: false })
   }
 
   _onToggle() {
-    let { app, position, parent } = this.props
+    let { structure } = this.props
 
-    let types = typesForBlock(app.state.blockTypes, parent)
     // If only one type exists, instead of opening the nav, just
     // create that element
-    if (types.length === 1) {
-      app.push(Actions.create, [types[0].id, position, parent])
+    if (structure.length === 1) {
+      this._onAdd(structure[0], this.props.parent)
+    } else {
+      this.open()
     }
-
-    this.open()
   }
 
   _onKeyUp(e) {
