@@ -54,6 +54,8 @@ class TextBook extends React.Component {
   }
 
   _onBlur(e) {
+    // Alternatively,
+    // this.props.onChange('text', e.currentTarget.textContent)
     this.props.onChange({
       text: e.currentTarget.textContent
     })

@@ -2,7 +2,8 @@
 
 ## 5.1.0
 
-- Generate a unique ID for <Field /> and its associated label.
+- Generate a unique ID for <Field /> and its associated label
+- Content may now be updated by passing a key/value pair to `onChange`, like: `this.props.onChange('key', 'value')`
 
 ## 5.0.2
 
