@@ -42,7 +42,7 @@ export default class YouTube extends React.Component {
   }
 
   _onChange({ video_id }) {
-    this.props.onChange({ video_id: parseYouTube(video_id) })
+    this.props.onChange('video_id', parseYouTube(video_id))
   }
 }
 

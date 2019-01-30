@@ -13,7 +13,7 @@ import insertAt from '../utils/insertAt'
 import siblingAt from '../utils/siblingAt'
 import blocksToJson from '../utils/blocksToJson'
 import jsonToBlocks from '../utils/jsonToBlocks'
-import { assign } from '../utils/data'
+import { assign, set } from '../utils/data'
 
 const Blocks = {
   register() {
@@ -21,6 +21,7 @@ const Blocks = {
       [Actions.create]: this.create,
       [Actions.destroy]: this.destroy,
       [Actions.update]: this.update,
+      [Actions.set]: this.set,
       [Actions.move]: this.move
     }
   },
@@ -85,6 +86,14 @@ const Blocks = {
     var block = Blocks.find(state, id)
 
     block.content = assign({}, block.content, content)
+
+    return state
+  },
+
+  set(state, { id, path, value }) {
+    var block = Blocks.find(state, id)
+
+    block.content = set(block.content, path, value)
 
     return state
   },

@@ -42,6 +42,19 @@ describe('Stores - Block', function() {
     expect(target.content).toHaveProperty('foo', 'bar')
   })
 
+  it('can set a nested key for a block', function() {
+    let target = new Block({})
+    let initial = [new Block({}), target, new Block({})]
+
+    Blocks.set(initial, {
+      id: target.id,
+      path: 'foo.bar',
+      value: 'baz'
+    })
+
+    expect(target.content.foo.bar).toBe('baz')
+  })
+
   it('can move a block', function() {
     let target = new Block({})
     let next = new Block({})

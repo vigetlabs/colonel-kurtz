@@ -97,8 +97,16 @@ export default class Block extends React.PureComponent {
     )
   }
 
-  _onChange(content) {
+  _onChange(keypath, value) {
     let { app, block } = this.props
-    app.push(Actions.update, [block, content])
+
+    if (typeof keypath === 'object') {
+      // onChange({ field: 'value' })
+      app.push(Actions.update, [block, keypath])
+    } else {
+      // onChange('field', 'value')
+      // onChange('deep.field', 'value')
+      app.push(Actions.set, [block, keypath, value])
+    }
   }
 }
