@@ -13,6 +13,10 @@ export default {
     return { id: id.valueOf(), content }
   },
 
+  set(id, path, value) {
+    return { id: id.valueOf(), path, value }
+  },
+
   move(block, distance) {
     return { block, distance }
   }
