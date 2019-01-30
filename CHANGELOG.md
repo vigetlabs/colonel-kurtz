@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.1.0
+
+- Generate a unique ID for <Field /> and its associated label.
+
 ## 5.0.2
 
 - Fix build issue where Object.assign compiled to `true`
