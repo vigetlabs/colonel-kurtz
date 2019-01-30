@@ -33,4 +33,22 @@ describe('Addons - Common - Field', function() {
 
     expect(hint.id).toEqual(input.getAttribute('aria-describedby'))
   })
+
+  it('sets up a unique id', function() {
+    let component = render(<Field />)
+    let label = DOM.findDOMNode(component)
+    let input = label.querySelector('.col-field-input')
+
+    expect(input.hasAttribute('id')).toBe(true)
+    expect(label.getAttribute('for')).toEqual(input.id)
+  })
+
+  it('respects a given id attribute', function() {
+    let component = render(<Field id="test" />)
+    let label = DOM.findDOMNode(component)
+    let input = label.querySelector('.col-field-input')
+
+    expect(input.getAttribute('id')).toBe('test')
+    expect(label.getAttribute('for')).toEqual(input.id)
+  })
 })

@@ -19,17 +19,12 @@ const defaultProps = {
 }
 
 export default class Field extends React.Component {
-  constructor() {
-    super(...arguments)
-
-    this.state = {
-      hintId: `hint-col-field-${uid()}`
-    }
-  }
+  fieldId = `col-field-${uid()}`
+  hintId = `${this.fieldId}-hint`
 
   getHint(hint) {
     return hint ? (
-      <span id={this.state.hintId} className="col-field-hint">
+      <span id={this.hintId} className="col-field-hint">
         {hint}
       </span>
     ) : null
@@ -37,16 +32,18 @@ export default class Field extends React.Component {
 
   render() {
     let { hint, element: Element, label, ...props } = this.props
-    let { hintId } = this.state
+
+    let id = 'id' in props ? props.id : this.fieldId
 
     return (
-      <label className="col-field">
+      <label className="col-field" htmlFor={id}>
         <span className="col-field-label">{label}</span>
 
         <Element
           ref={el => (this.input = el)}
+          id={id}
           className="col-field-input"
-          aria-describedby={hint ? hintId : null}
+          aria-describedby={hint ? this.hintId : null}
           {...props}
         />
         {this.getHint(hint)}
