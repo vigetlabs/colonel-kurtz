@@ -4,6 +4,7 @@
 2.  [Properties](#properties)
 3.  [Creating Block Types](#creating-block-types)
 4.  [Advanced Block Types](#advanced-block-types)
+5.  [Updating content](#updating-content)
 
 ## Overview
 
@@ -102,3 +103,37 @@ let blockTypes = [
   }
 ]
 ```
+
+## Updating content
+
+Each block type is passed an `onChange` property. You can use this property to signal changes to the `content` field for a given block.
+
+There are two ways to update content: provide an object, or a key path and value.
+
+### Updating content with an object
+
+Passing an object into the `onChange` prop will merge the fields provided into the existing content block:
+
+```javascript
+changeText(text) {
+  this.props.onChange({ text })
+}
+```
+
+### Updating content with a key path and value
+
+By providing a key path and value, Colonel Kurtz update a specific key within the shape of your content. This is particularly useful for updating nested keys.
+
+This behaves similarly to [Lodash's set function](https://lodash.com/docs#set):
+
+```javascript
+changeText(text) {
+  this.props.onChange('text', text)
+  // { text: text }
+
+  this.props.onChange('deeply.nested.key', true)
+  // { deeply: { nested: { key: true } } }
+}
+```
+
+By providing a string of `dot` separated values, CK will drill down into content properties on your behalf. This aims to greatly improve the ergonomics of updating nested keys.
