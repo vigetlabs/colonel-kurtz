@@ -3,7 +3,36 @@
 ## 5.1.0
 
 - Generate a unique ID for <Field /> and its associated label
-- Content may now be updated by passing a key/value pair to `onChange`, like: `this.props.onChange('key', 'value')`
+- Content may now be updated by passing a key/value pair to
+  `onChange`. See the following section for more info.
+
+### Content may now be updated by passing a key/value pair
+
+We've hit many situations where we need to update a deeply nested key
+in CK. This is particularly painful when updating an index of an
+array:
+
+```javascript
+let tags = this.props.metadata.tags.concat()
+
+tags[1] = 'jellybeans'
+
+this.props.onChange({
+  metadata: { ...this.props.content.metadata, tags }
+})`
+```
+
+Instead, with this release you can provide a key path. This behaves
+similarly to [Lodash's set function](https://lodash.com/docs#set):
+
+```
+this.props.onChange('title', 'My Dessert Foods')
+this.props.onChange('metadata.tags.1', 'jellybeans')
+```
+
+By providing a string of `dot` separated values, CK will drill down
+into content properties on your behalf. This aims to greatly improve
+the ergonomics of updating nested keys.
 
 ## 5.0.2
 
