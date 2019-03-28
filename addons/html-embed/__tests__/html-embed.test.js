@@ -91,6 +91,24 @@ describe('Addons - HTML Embed', function() {
             target: { value: content }
           })
         })
+
+        it('keeps script tags when set to unsafe', function(done) {
+          function didKeepTags(content) {
+            expect(content.html).toContain('<style')
+            expect(content.html).toContain('<script')
+            done()
+          }
+
+          var component = render(
+            <HtmlEmbed safe={false} onChange={didKeepTags} />
+          )
+          var content =
+            '<style>body{}</style><p>Test</p><script>var three = 2 + 1;</script>'
+
+          Simulate.change(component.html.input, {
+            target: { value: content }
+          })
+        })
       })
     })
   })

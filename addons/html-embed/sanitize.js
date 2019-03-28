@@ -1,13 +1,6 @@
-const toArray = list => Array.prototype.slice.call(list)
+let scriptTags = /<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi
+let styleTags = /<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi
 
 export function sanitize(html) {
-  let bucket = document.createElement('div')
-
-  bucket.innerHTML = html
-
-  let doNotAllow = toArray(bucket.querySelectorAll('script, style'))
-
-  doNotAllow.forEach(el => el.parentNode.removeChild(el))
-
-  return bucket.innerHTML
+  return html.replace(scriptTags, '').replace(styleTags, '')
 }

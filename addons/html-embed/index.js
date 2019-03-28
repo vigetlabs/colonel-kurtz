@@ -11,7 +11,8 @@ const defaultProps = {
   content: {
     html: '',
     script: ''
-  }
+  },
+  safe: true
 }
 
 export default class HtmlEmbedBlock extends React.Component {
@@ -63,7 +64,13 @@ export default class HtmlEmbedBlock extends React.Component {
   }
 
   onHTMLChange(event) {
-    this.props.onChange({ html: sanitize(event.target.value) })
+    let html = event.target.value
+
+    if (this.props.safe) {
+      html = sanitize(html)
+    }
+
+    this.props.onChange({ html })
   }
 }
 
