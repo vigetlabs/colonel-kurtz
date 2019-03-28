@@ -56,25 +56,32 @@ const packages = [
     entry: 'addons/youtube/index.js',
     output: 'addons/youtube.js'
   }
-
 ]
 
 async function build(config) {
-  let bundle = await rollup.rollup({
-    input: path.resolve(config.entry),
-    plugins: [
-      buble({
-        objectAssign: 'Object.assign'
-      })
-    ],
-    external: Object.keys(require('../package').dependencies).concat('react', 'react-dom')
-  })
+  try {
+    let bundle = await rollup.rollup({
+      input: path.resolve(config.entry),
+      plugins: [
+        buble({
+          objectAssign: 'Object.assign'
+        })
+      ],
+      external: Object.keys(require('../package').dependencies).concat(
+        'react',
+        'react-dom'
+      )
+    })
 
-  await bundle.write({
-    file: path.resolve(options.out, config.output),
-    format: options.format,
-    sourcemap: true
-  })
+    await bundle.write({
+      file: path.resolve(options.out, config.output),
+      format: options.format,
+      sourcemap: true
+    })
+  } catch (error) {
+    console.error(error.toString())
+    process.exit(1)
+  }
 }
 
 packages.forEach(build)

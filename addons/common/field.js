@@ -19,8 +19,12 @@ const defaultProps = {
 }
 
 export default class Field extends React.Component {
-  fieldId = `col-field-${uid()}`
-  hintId = `${this.fieldId}-hint`
+  constructor(props) {
+    super(props)
+
+    this.fieldId = `col-field-${uid()}`
+    this.hintId = `${this.fieldId}-hint`
+  }
 
   getHint(hint) {
     return hint ? (
