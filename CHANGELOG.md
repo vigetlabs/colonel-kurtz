@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.2.0
+
+- Address embed issues where manually typing in HTML was impossible
+
 ## 5.1.0
 
 - Generate a unique ID for <Field /> and its associated label
