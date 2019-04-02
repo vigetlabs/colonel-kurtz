@@ -15,7 +15,7 @@ const blockTypes = [
     id: 'section',
     label: 'Section',
     component: SectionBlock,
-    types: ['child-text', 'image', 'youtube', 'section'],
+    types: ['child-text', 'image', 'youtube'],
     maxChildren: 3
   },
   {
