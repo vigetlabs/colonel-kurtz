@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.2.1
+
+- Fix bug where block creation toggle could get stuck open
+
 ## 5.2.0
 
 - Address embed issues where manually typing in HTML was impossible
