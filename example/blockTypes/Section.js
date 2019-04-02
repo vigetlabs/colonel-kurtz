@@ -18,7 +18,7 @@ export default class ExampleSection extends React.Component {
       {
         id: 'settings',
         label: 'Settings',
-        onClick: this._onSettingsOpen
+        onClick: this._onSettingsOpen.bind(this)
       }
     ]
   }
@@ -33,7 +33,7 @@ export default class ExampleSection extends React.Component {
           title="Settings"
           headingComponent="h1"
           active={openSettings}
-          onExit={this._onSettingsExit}
+          onExit={this._onSettingsExit.bind(this)}
         >
           <p>
             You can use dialogs such as these to hide more settings and
