@@ -48,7 +48,6 @@ export default class Switch extends React.Component {
         ref={el => (this.nav = el)}
         blockTypes={blockTypes}
         onAdd={this._onAdd.bind(this)}
-        onExit={this.close.bind(this)}
       />
     )
   }
