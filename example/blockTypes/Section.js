@@ -24,15 +24,13 @@ export default class ExampleSection extends React.Component {
   }
 
   render() {
-    let { color, openSettings } = this.state
-
     return (
       <div style={{ background: this.props.content.color }}>
         <Section {...this.props} />
         <Dialog
           title="Settings"
           headingComponent="h1"
-          active={openSettings}
+          active={this.state.openSettings}
           onExit={this._onSettingsExit.bind(this)}
         >
           <p>
@@ -44,7 +42,7 @@ export default class ExampleSection extends React.Component {
             <input
               type="color"
               onChange={this._onColorChange.bind(this)}
-              value={color}
+              value={this.props.content.color}
             />
           </label>
           <footer className="col-dialog-footer">
