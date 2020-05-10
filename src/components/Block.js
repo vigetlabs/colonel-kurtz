@@ -20,7 +20,7 @@ export default class Block extends React.PureComponent {
   getBlockType() {
     let { app, block } = this.props
 
-    let blockType = app.state.blockTypes.filter(i => i.id === block.type)[0]
+    let blockType = app.state.blockTypes.filter((i) => i.id === block.type)[0]
 
     return blockType ? blockType : new FallbackBlockType({ block })
   }
@@ -72,7 +72,7 @@ export default class Block extends React.PureComponent {
       <div className="col-editor-block">
         <div className={`col-block col-block-${block.type}`}>
           <Component
-            ref={el => (this.block = el)}
+            ref={(el) => (this.block = el)}
             {...block}
             content={content}
             onChange={this._onChange.bind(this)}
@@ -84,7 +84,7 @@ export default class Block extends React.PureComponent {
           </Component>
 
           <BlockMenu
-            ref={el => (this.menu = el)}
+            ref={(el) => (this.menu = el)}
             app={app}
             block={block}
             items={extraMenuItems}

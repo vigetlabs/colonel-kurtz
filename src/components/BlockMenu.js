@@ -14,7 +14,7 @@ export default class BlockMenu extends React.Component {
     let { id } = item
 
     return (
-      <Item key={id} ref={el => (this[id] = el)} {...item} {...this.props} />
+      <Item key={id} ref={(el) => (this[id] = el)} {...item} {...this.props} />
     )
   }
 
@@ -51,7 +51,7 @@ export default class BlockMenu extends React.Component {
         <>
           <Handle
             key="handle"
-            ref={el => (this.handle = el)}
+            ref={(el) => (this.handle = el)}
             onClick={this.props.onOpen}
           />
           {this.getMenu()}

@@ -3,7 +3,7 @@
  * This plugin is responsible for injecting data into the system
  */
 
-let parseElement = function(element) {
+let parseElement = function (element) {
   let data = []
 
   try {

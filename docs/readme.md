@@ -72,7 +72,7 @@ This isn't particularly useful on its own, however you can also
 _listen_ to when Colonel Kurtz has changed:
 
 ```javascript
-myEditor.listen(function() {
+myEditor.listen(function () {
   textarea.value = myEditor.toJSON()
 })
 ```

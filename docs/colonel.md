@@ -164,7 +164,7 @@ to this and update your input with:
 
 ```javascript
 // Assuming code from prior section
-editor.on('change', function () {
+editor.listen(function () {
   input.value = JSON.stringify(editor)
 })
 ```

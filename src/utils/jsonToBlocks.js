@@ -5,7 +5,7 @@ export default function jsonToBlocks(blocks, parent) {
   // If blocks are null or undefined, assume an empty list
   blocks = blocks || []
 
-  return blocks.reduce(function(memo, params) {
+  return blocks.reduce(function (memo, params) {
     let block = new Block(assign({}, params, { parent }))
     let children = jsonToBlocks(params.blocks, block)
 

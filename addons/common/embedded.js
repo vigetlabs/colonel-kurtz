@@ -34,7 +34,7 @@ export default class Embedded extends React.Component {
     return (
       <div className={className}>
         <Field
-          ref={el => (this.field = el)}
+          ref={(el) => (this.field = el)}
           hint={hint}
           label={title}
           value={slug}
@@ -42,7 +42,7 @@ export default class Embedded extends React.Component {
           onChange={this._onChange.bind(this)}
         />
         {this.props.children}
-        <Frame ref={el => (this.frame = el)} open={this.hasSlug()}>
+        <Frame ref={(el) => (this.frame = el)} open={this.hasSlug()}>
           <Graphic key={slug} element="iframe" src={this.getSrc(slug)} />
         </Frame>
       </div>

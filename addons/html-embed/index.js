@@ -41,7 +41,7 @@ export default class HtmlEmbedBlock extends React.Component {
           label="HTML Embed"
           element="textarea"
           hint="Paste HTML into this field. Include related JavaScript below."
-          ref={el => (this.html = el)}
+          ref={(el) => (this.html = el)}
           value={html}
           onChange={this.onHTMLChange.bind(this)}
         />
@@ -49,7 +49,7 @@ export default class HtmlEmbedBlock extends React.Component {
         <Field
           label="Embedded JavaScript URL"
           hint="Paste the JavaScript URL of the embed into this field."
-          ref={el => (this.script = el)}
+          ref={(el) => (this.script = el)}
           value={script}
           onChange={this.onScriptChange.bind(this)}
         />

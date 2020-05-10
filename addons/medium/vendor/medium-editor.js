@@ -3,7 +3,7 @@ export default function MediumEditor(elements, options) {
 }
 
 // eslint-disable-next-line
-;(function(window, document) {
+;(function (window, document) {
   'use strict'
 
   function extend(b, a) {
@@ -147,7 +147,7 @@ export default function MediumEditor(elements, options) {
           navigator.userAgent
         ) !== null),
 
-    init: function(elements, options) {
+    init: function (elements, options) {
       this.options = extend(options, this.defaults)
       this.setElementSelection(elements)
       if (this.elements.length === 0) {
@@ -174,7 +174,7 @@ export default function MediumEditor(elements, options) {
       return this.setup()
     },
 
-    setup: function() {
+    setup: function () {
       this.events = []
       this.isActive = true
       this.initElements()
@@ -185,12 +185,12 @@ export default function MediumEditor(elements, options) {
         .passInstance()
     },
 
-    on: function(target, event, listener, useCapture) {
+    on: function (target, event, listener, useCapture) {
       target.addEventListener(event, listener, useCapture)
       this.events.push([target, event, listener, useCapture])
     },
 
-    off: function(target, event, listener, useCapture) {
+    off: function (target, event, listener, useCapture) {
       var index = this.events.indexOf([target, event, listener, useCapture]),
         e
       if (index !== -1) {
@@ -199,7 +199,7 @@ export default function MediumEditor(elements, options) {
       }
     },
 
-    removeAllEvents: function() {
+    removeAllEvents: function () {
       var e = this.events.pop()
       while (e) {
         e[0].removeEventListener(e[1], e[2], e[3])
@@ -207,7 +207,7 @@ export default function MediumEditor(elements, options) {
       }
     },
 
-    initElements: function() {
+    initElements: function () {
       this.updateElementList()
       var i,
         addToolbar = false
@@ -225,9 +225,7 @@ export default function MediumEditor(elements, options) {
           )
         }
         this.elements[i].setAttribute('data-medium-element', true)
-        this.bindParagraphCreation(i)
-          .bindReturn(i)
-          .bindTab(i)
+        this.bindParagraphCreation(i).bindReturn(i).bindTab(i)
         if (
           !this.options.disableToolbar &&
           !this.elements[i].getAttribute('data-disable-toolbar')
@@ -237,20 +235,17 @@ export default function MediumEditor(elements, options) {
       }
       // Init toolbar
       if (addToolbar) {
-        this.initToolbar()
-          .bindButtons()
-          .bindAnchorForm()
-          .bindAnchorPreview()
+        this.initToolbar().bindButtons().bindAnchorForm().bindAnchorPreview()
       }
       return this
     },
 
-    setElementSelection: function(selector) {
+    setElementSelection: function (selector) {
       this.elementSelection = selector
       this.updateElementList()
     },
 
-    updateElementList: function() {
+    updateElementList: function () {
       this.elements =
         typeof this.elementSelection === 'string'
           ? this.options.ownerDocument.querySelectorAll(this.elementSelection)
@@ -260,7 +255,7 @@ export default function MediumEditor(elements, options) {
       }
     },
 
-    serialize: function() {
+    serialize: function () {
       var i,
         elementid,
         content = {}
@@ -281,7 +276,7 @@ export default function MediumEditor(elements, options) {
      * @param {string} funcName name of the function to call
      * @param [args] arguments passed into funcName
      */
-    callExtensions: function(funcName) {
+    callExtensions: function (funcName) {
       if (arguments.length < 1) {
         return
       }
@@ -305,7 +300,7 @@ export default function MediumEditor(elements, options) {
      * if extension constructor has 'parent' attribute set to 'true'
      *
      */
-    passInstance: function() {
+    passInstance: function () {
       var self = this,
         ext,
         name
@@ -323,9 +318,9 @@ export default function MediumEditor(elements, options) {
       return self
     },
 
-    bindParagraphCreation: function(index) {
+    bindParagraphCreation: function (index) {
       var self = this
-      this.on(this.elements[index], 'keypress', function(e) {
+      this.on(this.elements[index], 'keypress', function (e) {
         var node = getSelectionStart.call(self),
           tagName
         if (e.which === 32) {
@@ -336,7 +331,7 @@ export default function MediumEditor(elements, options) {
         }
       })
 
-      this.on(this.elements[index], 'keyup', function(e) {
+      this.on(this.elements[index], 'keyup', function (e) {
         var node = getSelectionStart.call(self),
           tagName,
           editorElement
@@ -377,7 +372,7 @@ export default function MediumEditor(elements, options) {
       return this
     },
 
-    isListItemChild: function(node) {
+    isListItemChild: function (node) {
       var parentNode = node.parentNode,
         tagName = parentNode.tagName.toLowerCase()
       while (this.parentElements.indexOf(tagName) === -1 && tagName !== 'div') {
@@ -394,9 +389,9 @@ export default function MediumEditor(elements, options) {
       return false
     },
 
-    bindReturn: function(index) {
+    bindReturn: function (index) {
       var self = this
-      this.on(this.elements[index], 'keypress', function(e) {
+      this.on(this.elements[index], 'keypress', function (e) {
         if (e.which === 13) {
           if (
             self.options.disableReturn ||
@@ -417,9 +412,9 @@ export default function MediumEditor(elements, options) {
       return this
     },
 
-    bindTab: function(index) {
+    bindTab: function (index) {
       var self = this
-      this.on(this.elements[index], 'keydown', function(e) {
+      this.on(this.elements[index], 'keydown', function (e) {
         if (e.which === 9) {
           // Override tab only for pre nodes
           var tag = getSelectionStart.call(self).tagName.toLowerCase()
@@ -444,7 +439,7 @@ export default function MediumEditor(elements, options) {
       return this
     },
 
-    buttonTemplate: function(btnType) {
+    buttonTemplate: function (btnType) {
       var buttonLabels = this.getButtonLabels(this.options.buttonLabels),
         buttonTemplates = {
           bold:
@@ -540,7 +535,7 @@ export default function MediumEditor(elements, options) {
     },
 
     // TODO: break method
-    getButtonLabels: function(buttonLabelType) {
+    getButtonLabels: function (buttonLabelType) {
       var customButtonLabels,
         attrname,
         buttonLabels = {
@@ -599,7 +594,7 @@ export default function MediumEditor(elements, options) {
       return buttonLabels
     },
 
-    initToolbar: function() {
+    initToolbar: function () {
       if (this.toolbar) {
         return this
       }
@@ -625,7 +620,7 @@ export default function MediumEditor(elements, options) {
       return this
     },
 
-    createToolbar: function() {
+    createToolbar: function () {
       var toolbar = document.createElement('div')
       toolbar.id = 'medium-editor-toolbar-' + this.id
       toolbar.className = 'medium-editor-toolbar'
@@ -636,7 +631,7 @@ export default function MediumEditor(elements, options) {
     },
 
     //TODO: actionTemplate
-    toolbarButtons: function() {
+    toolbarButtons: function () {
       var btns = this.options.buttons,
         ul = document.createElement('ul'),
         li,
@@ -669,7 +664,7 @@ export default function MediumEditor(elements, options) {
       return ul
     },
 
-    toolbarFormAnchor: function() {
+    toolbarFormAnchor: function () {
       var anchor = document.createElement('div'),
         input = document.createElement('input'),
         target_label = document.createElement('label'),
@@ -719,19 +714,19 @@ export default function MediumEditor(elements, options) {
       return anchor
     },
 
-    bindSelect: function() {
+    bindSelect: function () {
       var self = this,
         timer = '',
         i
 
-      this.checkSelectionWrapper = function(e) {
+      this.checkSelectionWrapper = function (e) {
         // Do not close the toolbar when bluring the editable area and clicking into the anchor form
         if (e && self.clickingIntoArchorForm(e)) {
           return false
         }
 
         clearTimeout(timer)
-        timer = setTimeout(function() {
+        timer = setTimeout(function () {
           self.checkSelection()
         }, self.options.delay)
       }
@@ -745,7 +740,7 @@ export default function MediumEditor(elements, options) {
       return this
     },
 
-    checkSelection: function() {
+    checkSelection: function () {
       var newSelection, selectionElement
 
       if (this.keepToolbarAlive !== true && !this.options.disableToolbar) {
@@ -772,7 +767,7 @@ export default function MediumEditor(elements, options) {
       return this
     },
 
-    clickingIntoArchorForm: function(e) {
+    clickingIntoArchorForm: function (e) {
       var self = this
 
       if (
@@ -787,7 +782,7 @@ export default function MediumEditor(elements, options) {
       return false
     },
 
-    hasMultiParagraphs: function() {
+    hasMultiParagraphs: function () {
       var selectionHtml = getSelectionHtml
           .call(this)
           .replace(/<[\S]+><\/[\S]+>/gim, ''),
@@ -798,7 +793,7 @@ export default function MediumEditor(elements, options) {
       return hasMultiParagraphs ? hasMultiParagraphs.length : 0
     },
 
-    checkSelectionElement: function(newSelection, selectionElement) {
+    checkSelectionElement: function (newSelection, selectionElement) {
       var i
       this.selection = newSelection
       this.selectionRange = this.selection.getRangeAt(0)
@@ -813,7 +808,7 @@ export default function MediumEditor(elements, options) {
       this.hideToolbarActions()
     },
 
-    findMatchingSelectionParent: function(testElementFunction) {
+    findMatchingSelectionParent: function (testElementFunction) {
       var selection = this.options.contentWindow.getSelection(),
         range,
         current
@@ -842,14 +837,14 @@ export default function MediumEditor(elements, options) {
       return false
     },
 
-    getSelectionElement: function() {
-      return this.findMatchingSelectionParent(function(el) {
+    getSelectionElement: function () {
+      return this.findMatchingSelectionParent(function (el) {
         return el.getAttribute('data-medium-element')
       })
     },
 
-    selectionInContentEditableFalse: function() {
-      return this.findMatchingSelectionParent(function(el) {
+    selectionInContentEditableFalse: function () {
+      return this.findMatchingSelectionParent(function (el) {
         return (
           el &&
           el.nodeName !== '#text' &&
@@ -858,7 +853,7 @@ export default function MediumEditor(elements, options) {
       })
     },
 
-    setToolbarPosition: function() {
+    setToolbarPosition: function () {
       var buttonHeight = 50,
         selection = this.options.contentWindow.getSelection(),
         range = selection.getRangeAt(0),
@@ -906,7 +901,7 @@ export default function MediumEditor(elements, options) {
       return this
     },
 
-    setToolbarButtonStates: function() {
+    setToolbarButtonStates: function () {
       var buttons = this.toolbarActions.querySelectorAll('button'),
         i
       for (i = 0; i < buttons.length; i += 1) {
@@ -916,7 +911,7 @@ export default function MediumEditor(elements, options) {
       return this
     },
 
-    checkActiveButtons: function() {
+    checkActiveButtons: function () {
       var elements = Array.prototype.slice.call(this.elements),
         parentNode = this.getSelectedParentElement()
       while (
@@ -934,7 +929,7 @@ export default function MediumEditor(elements, options) {
       }
     },
 
-    activateButton: function(tag) {
+    activateButton: function (tag) {
       var el = this.toolbar.querySelector('[data-element="' + tag + '"]')
       if (
         el !== null &&
@@ -944,11 +939,11 @@ export default function MediumEditor(elements, options) {
       }
     },
 
-    bindButtons: function() {
+    bindButtons: function () {
       var buttons = this.toolbar.querySelectorAll('button'),
         i,
         self = this,
-        triggerAction = function(e) {
+        triggerAction = function (e) {
           e.preventDefault()
           e.stopPropagation()
           if (self.selection === undefined) {
@@ -970,7 +965,7 @@ export default function MediumEditor(elements, options) {
       return this
     },
 
-    setFirstAndLastItems: function(buttons) {
+    setFirstAndLastItems: function (buttons) {
       if (buttons.length > 0) {
         buttons[0].className += ' ' + this.options.firstButtonClass
         buttons[buttons.length - 1].className +=
@@ -979,7 +974,7 @@ export default function MediumEditor(elements, options) {
       return this
     },
 
-    execAction: function(action, e) {
+    execAction: function (action, e) {
       if (action.indexOf('append-') > -1) {
         this.execFormatBlock(action.replace('append-', ''))
         this.setToolbarPosition()
@@ -999,7 +994,7 @@ export default function MediumEditor(elements, options) {
     },
 
     // http://stackoverflow.com/questions/15867542/range-object-get-selection-parent-node-chrome-vs-firefox
-    rangeSelectsSingleNode: function(range) {
+    rangeSelectsSingleNode: function (range) {
       var startNode = range.startContainer
       return (
         startNode === range.endContainer &&
@@ -1008,7 +1003,7 @@ export default function MediumEditor(elements, options) {
       )
     },
 
-    getSelectedParentElement: function() {
+    getSelectedParentElement: function () {
       var selectedParentElement = null,
         range = this.selectionRange
       if (this.rangeSelectsSingleNode(range)) {
@@ -1022,7 +1017,7 @@ export default function MediumEditor(elements, options) {
       return selectedParentElement
     },
 
-    triggerAnchorAction: function() {
+    triggerAnchorAction: function () {
       var selectedParentElement = this.getSelectedParentElement()
       if (
         selectedParentElement.tagName &&
@@ -1039,7 +1034,7 @@ export default function MediumEditor(elements, options) {
       return this
     },
 
-    execFormatBlock: function(el) {
+    execFormatBlock: function (el) {
       var selectionData = this.getSelectionData(this.selection.anchorNode)
       // FF handles blockquote differently on formatBlock
       // allowing nesting, we need to use outdent
@@ -1067,7 +1062,7 @@ export default function MediumEditor(elements, options) {
       return this.options.ownerDocument.execCommand('formatBlock', false, el)
     },
 
-    getSelectionData: function(el) {
+    getSelectionData: function (el) {
       var tagName
 
       if (el && el.tagName) {
@@ -1087,7 +1082,7 @@ export default function MediumEditor(elements, options) {
       }
     },
 
-    getFirstChild: function(el) {
+    getFirstChild: function (el) {
       var firstChild = el.firstChild
       while (firstChild !== null && firstChild.nodeType !== 1) {
         firstChild = firstChild.nextSibling
@@ -1095,21 +1090,21 @@ export default function MediumEditor(elements, options) {
       return firstChild
     },
 
-    hideToolbarActions: function() {
+    hideToolbarActions: function () {
       this.keepToolbarAlive = false
       if (this.toolbar !== undefined) {
         this.toolbar.classList.remove('medium-editor-toolbar-active')
       }
     },
 
-    showToolbarActions: function() {
+    showToolbarActions: function () {
       var self = this,
         timer
       this.anchorForm.style.display = 'none'
       this.toolbarActions.style.display = 'block'
       this.keepToolbarAlive = false
       clearTimeout(timer)
-      timer = setTimeout(function() {
+      timer = setTimeout(function () {
         if (
           self.toolbar &&
           !self.toolbar.classList.contains('medium-editor-toolbar-active')
@@ -1119,15 +1114,15 @@ export default function MediumEditor(elements, options) {
       }, 100)
     },
 
-    saveSelection: function() {
+    saveSelection: function () {
       this.savedSelection = saveSelection.call(this)
     },
 
-    restoreSelection: function() {
+    restoreSelection: function () {
       restoreSelection.call(this, this.savedSelection)
     },
 
-    showAnchorForm: function(link_value) {
+    showAnchorForm: function (link_value) {
       this.toolbarActions.style.display = 'none'
       this.saveSelection()
       this.anchorForm.style.display = 'block'
@@ -1137,7 +1132,7 @@ export default function MediumEditor(elements, options) {
       this.anchorInput.value = link_value || ''
     },
 
-    bindAnchorForm: function() {
+    bindAnchorForm: function () {
       var linkCancel = this.anchorForm.querySelector(
           'a.medium-editor-toobar-anchor-close'
         ),
@@ -1146,12 +1141,12 @@ export default function MediumEditor(elements, options) {
         ),
         self = this
 
-      this.on(this.anchorForm, 'click', function(e) {
+      this.on(this.anchorForm, 'click', function (e) {
         e.stopPropagation()
         self.keepToolbarAlive = true
       })
 
-      this.on(this.anchorInput, 'keyup', function(e) {
+      this.on(this.anchorInput, 'keyup', function (e) {
         var button = null,
           target
 
@@ -1174,7 +1169,7 @@ export default function MediumEditor(elements, options) {
       this.on(
         linkSave,
         'click',
-        function(e) {
+        function (e) {
           var button = null,
             target
           e.preventDefault()
@@ -1193,7 +1188,7 @@ export default function MediumEditor(elements, options) {
         true
       )
 
-      this.on(this.anchorInput, 'click', function(e) {
+      this.on(this.anchorInput, 'click', function (e) {
         // make sure not to hide form when cliking into the input
         e.stopPropagation()
         self.keepToolbarAlive = true
@@ -1203,7 +1198,7 @@ export default function MediumEditor(elements, options) {
       this.on(
         this.options.ownerDocument.body,
         'click',
-        function(e) {
+        function (e) {
           if (
             e.target !== self.anchorForm &&
             !isDescendant(self.anchorForm, e.target) &&
@@ -1218,7 +1213,7 @@ export default function MediumEditor(elements, options) {
       this.on(
         this.options.ownerDocument.body,
         'focus',
-        function(e) {
+        function (e) {
           if (
             e.target !== self.anchorForm &&
             !isDescendant(self.anchorForm, e.target) &&
@@ -1231,7 +1226,7 @@ export default function MediumEditor(elements, options) {
         true
       )
 
-      this.on(linkCancel, 'click', function(e) {
+      this.on(linkCancel, 'click', function (e) {
         e.preventDefault()
         self.showToolbarActions()
         restoreSelection.call(self, self.savedSelection)
@@ -1239,12 +1234,12 @@ export default function MediumEditor(elements, options) {
       return this
     },
 
-    hideAnchorPreview: function() {
+    hideAnchorPreview: function () {
       this.anchorPreview.classList.remove('medium-editor-anchor-preview-active')
     },
 
     // TODO: break method
-    showAnchorPreview: function(anchorEl) {
+    showAnchorPreview: function (anchorEl) {
       if (
         this.anchorPreview.classList.contains(
           'medium-editor-anchor-preview-active'
@@ -1267,7 +1262,7 @@ export default function MediumEditor(elements, options) {
       defaultLeft = self.options.diffLeft - halfOffsetWidth
 
       clearTimeout(timer)
-      timer = setTimeout(function() {
+      timer = setTimeout(function () {
         if (
           self.anchorPreview &&
           !self.anchorPreview.classList.contains(
@@ -1311,15 +1306,15 @@ export default function MediumEditor(elements, options) {
     },
 
     // TODO: break method
-    observeAnchorPreview: function(anchorEl) {
+    observeAnchorPreview: function (anchorEl) {
       var self = this,
         lastOver = new Date().getTime(),
         over = true,
-        stamp = function() {
+        stamp = function () {
           lastOver = new Date().getTime()
           over = true
         },
-        unstamp = function(e) {
+        unstamp = function (e) {
           if (
             !e.relatedTarget ||
             !/anchor-preview/.test(e.relatedTarget.className)
@@ -1327,7 +1322,7 @@ export default function MediumEditor(elements, options) {
             over = false
           }
         },
-        interval_timer = setInterval(function() {
+        interval_timer = setInterval(function () {
           if (over) {
             return true
           }
@@ -1351,7 +1346,7 @@ export default function MediumEditor(elements, options) {
       this.on(anchorEl, 'mouseout', unstamp)
     },
 
-    createAnchorPreview: function() {
+    createAnchorPreview: function () {
       var self = this,
         anchorPreview = this.options.ownerDocument.createElement('div')
 
@@ -1360,14 +1355,14 @@ export default function MediumEditor(elements, options) {
       anchorPreview.innerHTML = this.anchorPreviewTemplate()
       this.options.elementsContainer.appendChild(anchorPreview)
 
-      this.on(anchorPreview, 'click', function() {
+      this.on(anchorPreview, 'click', function () {
         self.anchorPreviewClickHandler()
       })
 
       return anchorPreview
     },
 
-    anchorPreviewTemplate: function() {
+    anchorPreviewTemplate: function () {
       return (
         '<div class="medium-editor-toolbar-anchor-preview" id="medium-editor-toolbar-anchor-preview">' +
         '    <i class="medium-editor-toolbar-anchor-preview-inner"></i>' +
@@ -1375,7 +1370,7 @@ export default function MediumEditor(elements, options) {
       )
     },
 
-    anchorPreviewClickHandler: function(e) {
+    anchorPreviewClickHandler: function (e) {
       if (this.activeAnchor) {
         var self = this,
           range = this.options.ownerDocument.createRange(),
@@ -1384,7 +1379,7 @@ export default function MediumEditor(elements, options) {
         range.selectNodeContents(self.activeAnchor)
         sel.removeAllRanges()
         sel.addRange(range)
-        setTimeout(function() {
+        setTimeout(function () {
           if (self.activeAnchor) {
             self.showAnchorForm(self.activeAnchor.href)
           }
@@ -1395,10 +1390,10 @@ export default function MediumEditor(elements, options) {
       this.hideAnchorPreview()
     },
 
-    editorAnchorObserver: function(e) {
+    editorAnchorObserver: function (e) {
       var self = this,
         overAnchor = true,
-        leaveAnchor = function() {
+        leaveAnchor = function () {
           // mark the anchor as no longer hovered, and stop listening
           overAnchor = false
           self.off(self.activeAnchor, 'mouseout', leaveAnchor)
@@ -1424,7 +1419,7 @@ export default function MediumEditor(elements, options) {
         this.on(this.activeAnchor, 'mouseout', leaveAnchor)
         // show the anchor preview according to the configured delay
         // if the mouse has not left the anchor tag in that time
-        setTimeout(function() {
+        setTimeout(function () {
           if (overAnchor) {
             self.showAnchorPreview(e.target)
           }
@@ -1432,10 +1427,10 @@ export default function MediumEditor(elements, options) {
       }
     },
 
-    bindAnchorPreview: function(index) {
+    bindAnchorPreview: function (index) {
       var i,
         self = this
-      this.editorAnchorObserverWrapper = function(e) {
+      this.editorAnchorObserverWrapper = function (e) {
         self.editorAnchorObserver(e)
       }
       for (i = 0; i < this.elements.length; i += 1) {
@@ -1444,12 +1439,12 @@ export default function MediumEditor(elements, options) {
       return this
     },
 
-    checkLinkFormat: function(value) {
+    checkLinkFormat: function (value) {
       var re = /^(https?|ftps?|rtmpt?):\/\/|mailto:/
       return (re.test(value) ? '' : 'http://') + value
     },
 
-    setTargetBlank: function(el) {
+    setTargetBlank: function (el) {
       var i
       el = el || getSelectionStart.call(this)
       if (el.tagName.toLowerCase() === 'a') {
@@ -1463,7 +1458,7 @@ export default function MediumEditor(elements, options) {
       }
     },
 
-    setButtonClass: function(buttonClass) {
+    setButtonClass: function (buttonClass) {
       var el = getSelectionStart.call(this),
         classes = buttonClass.split(' '),
         i,
@@ -1482,7 +1477,7 @@ export default function MediumEditor(elements, options) {
       }
     },
 
-    createLink: function(input, target, buttonClass) {
+    createLink: function (input, target, buttonClass) {
       var i, event
 
       if (input.value.trim().length === 0) {
@@ -1519,12 +1514,12 @@ export default function MediumEditor(elements, options) {
       input.value = ''
     },
 
-    bindWindowActions: function() {
+    bindWindowActions: function () {
       var timerResize,
         self = this
-      this.windowResizeHandler = function() {
+      this.windowResizeHandler = function () {
         clearTimeout(timerResize)
-        timerResize = setTimeout(function() {
+        timerResize = setTimeout(function () {
           if (
             self.toolbar &&
             self.toolbar.classList.contains('medium-editor-toolbar-active')
@@ -1537,7 +1532,7 @@ export default function MediumEditor(elements, options) {
       return this
     },
 
-    activate: function() {
+    activate: function () {
       if (this.isActive) {
         return
       }
@@ -1546,7 +1541,7 @@ export default function MediumEditor(elements, options) {
     },
 
     // TODO: break method
-    deactivate: function() {
+    deactivate: function () {
       var i
       if (!this.isActive) {
         return
@@ -1568,7 +1563,7 @@ export default function MediumEditor(elements, options) {
       this.removeAllEvents()
     },
 
-    htmlEntities: function(str) {
+    htmlEntities: function (str) {
       // converts special characters (like <) into their escaped/encoded values (like &lt;).
       // This allows you to show to display the string without the browser reading it as HTML.
       return String(str)
@@ -1578,10 +1573,10 @@ export default function MediumEditor(elements, options) {
         .replace(/"/g, '&quot;')
     },
 
-    bindPaste: function() {
+    bindPaste: function () {
       var i,
         self = this
-      this.pasteWrapper = function(e) {
+      this.pasteWrapper = function (e) {
         var paragraphs,
           html = '',
           p
@@ -1629,9 +1624,9 @@ export default function MediumEditor(elements, options) {
       return this
     },
 
-    setPlaceholders: function() {
+    setPlaceholders: function () {
       var i,
-        activatePlaceholder = function(el) {
+        activatePlaceholder = function (el) {
           if (
             !el.querySelector('img') &&
             !el.querySelector('blockquote') &&
@@ -1640,7 +1635,7 @@ export default function MediumEditor(elements, options) {
             el.classList.add('medium-editor-placeholder')
           }
         },
-        placeholderWrapper = function(e) {
+        placeholderWrapper = function (e) {
           this.classList.remove('medium-editor-placeholder')
           if (e.type !== 'keypress') {
             activatePlaceholder(this)
@@ -1654,7 +1649,7 @@ export default function MediumEditor(elements, options) {
       return this
     },
 
-    cleanPaste: function(text) {
+    cleanPaste: function (text) {
       /*jslint regexp: true*/
       /*
                 jslint does not allow character negation, because the negation
@@ -1745,7 +1740,7 @@ export default function MediumEditor(elements, options) {
       }
     },
 
-    pasteHTML: function(html) {
+    pasteHTML: function (html) {
       var elList,
         workEl,
         i,
@@ -1778,18 +1773,18 @@ export default function MediumEditor(elements, options) {
         fragmentBody.innerHTML.replace(/&nbsp;/g, ' ')
       )
     },
-    isCommonBlock: function(el) {
+    isCommonBlock: function (el) {
       return (
         el &&
         (el.tagName.toLowerCase() === 'p' || el.tagName.toLowerCase() === 'div')
       )
     },
-    filterCommonBlocks: function(el) {
+    filterCommonBlocks: function (el) {
       if (/^\s*$/.test(el.innerText)) {
         el.parentNode.removeChild(el)
       }
     },
-    filterLineBreak: function(el) {
+    filterLineBreak: function (el) {
       if (this.isCommonBlock(el.previousElementSibling)) {
         // remove stray br's following common block elements
         el.parentNode.removeChild(el)
@@ -1806,7 +1801,7 @@ export default function MediumEditor(elements, options) {
     },
 
     // remove an element, including its parent, if it is the only element within its parent
-    removeWithParent: function(el) {
+    removeWithParent: function (el) {
       if (el && el.parentNode) {
         if (el.parentNode.parentNode && el.parentNode.childElementCount === 1) {
           el.parentNode.parentNode.removeChild(el.parentNode)
@@ -1816,7 +1811,7 @@ export default function MediumEditor(elements, options) {
       }
     },
 
-    cleanupSpans: function(container_el) {
+    cleanupSpans: function (container_el) {
       var i,
         el,
         new_el,

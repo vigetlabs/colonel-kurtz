@@ -4,10 +4,10 @@ import TestUtils from 'react-dom/test-utils'
 
 const render = TestUtils.renderIntoDocument
 
-describe('Addons - YouTube', function() {
-  it('passes through slugs as a video_id content field', function(done) {
+describe('Addons - YouTube', function () {
+  it('passes through slugs as a video_id content field', function (done) {
     const slug = '0bRLtJHo0pI'
-    const test = function({ video_id }) {
+    const test = function ({ video_id }) {
       expect(video_id).toEqual(slug)
       done()
     }
@@ -17,8 +17,8 @@ describe('Addons - YouTube', function() {
     component._onChange({ video_id: slug })
   })
 
-  it('can process undefined values', function(done) {
-    const test = function({ video_id }) {
+  it('can process undefined values', function (done) {
+    const test = function ({ video_id }) {
       expect(video_id).toEqual('')
       done()
     }
@@ -28,7 +28,7 @@ describe('Addons - YouTube', function() {
     component._onChange({ video_id: undefined })
   })
 
-  describe('Extracting URLs', function() {
+  describe('Extracting URLs', function () {
     const patterns = {
       shortcode: 'http://youtu.be/dQw4w9WgXcQ',
       embed: 'http://www.youtube.com/embed/dQw4w9WgXcQ',
@@ -49,9 +49,9 @@ describe('Addons - YouTube', function() {
       it(`extracts the video id from a YouTube ${pattern.replace(
         '_',
         ' '
-      )}`, function(done) {
+      )}`, function (done) {
         const url = patterns[pattern]
-        const test = function({ video_id }) {
+        const test = function ({ video_id }) {
           expect(video_id).toEqual('dQw4w9WgXcQ')
           done()
         }

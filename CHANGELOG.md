@@ -16,6 +16,7 @@
 The main change to be aware of when upgrading to the latest version of Colonel Kurtz is that the editor no longer requires you to call `editor.start()` after calling `new ColonelKurtz({..})` in order to boot the app.
 
 #### Before
+
 ```javascript
 const editor = new ColonelKurtz({ .. })
 
@@ -23,6 +24,7 @@ editor.start()
 ```
 
 #### After
+
 ```javascript
 new ColonelKurtz({ .. })
 ```

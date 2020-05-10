@@ -30,7 +30,7 @@ export default class Switch extends React.Component {
 
     return (
       <ActionButton
-        ref={el => (this.toggle = el)}
+        ref={(el) => (this.toggle = el)}
         disabled={this.hasMaxChildren()}
         label="Open the block menu and create a block"
         onClick={this._onToggle.bind(this)}
@@ -45,7 +45,7 @@ export default class Switch extends React.Component {
 
     return (
       <SwitchNav
-        ref={el => (this.nav = el)}
+        ref={(el) => (this.nav = el)}
         blockTypes={blockTypes}
         onAdd={this._onAdd.bind(this)}
       />
