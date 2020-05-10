@@ -25,7 +25,10 @@ export default class SwitchNav extends React.Component {
   }
 
   getGroups(blocks) {
-    let groups = groupBy(blocks.filter(b => b.group), type => type.group)
+    let groups = groupBy(
+      blocks.filter((b) => b.group),
+      (type) => type.group
+    )
     let items = []
 
     for (var name in groups) {
@@ -49,15 +52,15 @@ export default class SwitchNav extends React.Component {
   render() {
     let { blockTypes } = this.props
 
-    let ungrouped = blockTypes.filter(b => !b.group).map(this.getButton, this)
+    let ungrouped = blockTypes.filter((b) => !b.group).map(this.getButton, this)
     let grouped = this.getGroups(blockTypes)
-    let sorted = grouped.concat(ungrouped).sort(function(a, b) {
+    let sorted = grouped.concat(ungrouped).sort(function (a, b) {
       return blockTypes.indexOf(a.type) - blockTypes.indexOf(b.type)
     })
 
     return (
       <nav className="col-switch-nav" role="navigation">
-        {sorted.map(s => s.component)}
+        {sorted.map((s) => s.component)}
       </nav>
     )
   }

@@ -36,7 +36,9 @@ $col-menu-z-index        : 1 !default;
   color: $col-primary;
   height: unit(6);
   padding: $col-menu-handle-padding;
-  position: relative;
+  position: absolute;
+  right: 0;
+  top: 0;
   z-index: $col-menu-z-index;
 
   svg {

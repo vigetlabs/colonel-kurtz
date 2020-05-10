@@ -1,5 +1,5 @@
 export default {
-  create(type, position, parent) {
+  create({ type, position, parent }) {
     return { type, position, parent }
   },
 
@@ -7,17 +7,17 @@ export default {
     return id
   },
 
-  update(id, content) {
+  update({ id, content }) {
     // valueOf() allows blocks to be passed, it will return
     // the id
     return { id: id.valueOf(), content }
   },
 
-  set(id, path, value) {
+  set({ id, path, value }) {
     return { id: id.valueOf(), path, value }
   },
 
-  move(block, distance) {
+  move({ block, distance }) {
     return { block, distance }
   }
 }

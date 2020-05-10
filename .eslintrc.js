@@ -20,8 +20,11 @@ module.exports = {
   extends: ['eslint:recommended'],
   plugins: ['react', 'prettier', 'jest'],
   settings: {
-    version: 'detect'
+    react: {
+      version: 'detect'
+    }
   },
+  ignorePatterns: ['**/vendor/*.js'],
   rules: {
     semi: 'off',
     'no-console': 'off',

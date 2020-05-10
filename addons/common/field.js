@@ -7,9 +7,7 @@ import React from 'react'
 
 function uid(len) {
   len = len || 7
-  return Math.random()
-    .toString(35)
-    .substr(2, len)
+  return Math.random().toString(35).substr(2, len)
 }
 
 const defaultProps = {
@@ -44,7 +42,7 @@ export default class Field extends React.Component {
         <span className="col-field-label">{label}</span>
 
         <Element
-          ref={el => (this.input = el)}
+          ref={(el) => (this.input = el)}
           id={id}
           className="col-field-input"
           aria-describedby={hint ? this.hintId : null}

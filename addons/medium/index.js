@@ -51,7 +51,7 @@ export default class MediumBlock extends React.Component {
           onBlur={this._onBlur.bind(this)}
           role="textarea"
           aria-multiline="true"
-          ref={el => (this.container = el)}
+          ref={(el) => (this.container = el)}
           dangerouslySetInnerHTML={{ __html: this.props.content.html }}
         />
         {this.props.children}

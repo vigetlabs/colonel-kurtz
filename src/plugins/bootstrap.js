@@ -3,7 +3,7 @@
  * This plugin is responsible for injecting data into the system
  */
 
-let parseElement = function(element) {
+let parseElement = function (element) {
   let data = []
 
   try {
@@ -16,29 +16,36 @@ let parseElement = function(element) {
 }
 
 export default {
-  filter(blockTypes, acceptable) {
-    if (!acceptable) return blockTypes
-
-    return blockTypes.filter(type => acceptable.indexOf(type.id) > -1)
-  },
-
-  register(
+  setup(
     app,
-    { allow, maxChildren = Infinity, blocks, blockTypes, maxDepth = Infinity },
-    next
+    {
+      allow,
+      maxChildren = Infinity,
+      blocks = [],
+      blockTypes,
+      maxDepth = Infinity
+    }
   ) {
     if (blocks instanceof HTMLElement) {
       blocks = parseElement(blocks)
     }
 
-    app.replace(
+    app.patch(
       {
-        maxChildren,
-        maxDepth,
         blocks,
-        blockTypes: this.filter(blockTypes, allow)
+        blockTypes: this.filter(blockTypes, allow),
+        settings: {
+          maxChildren,
+          maxDepth
+        }
       },
-      next
+      true // deserialize
     )
+  },
+
+  filter(blockTypes, acceptable) {
+    if (!acceptable) return blockTypes
+
+    return blockTypes.filter((type) => acceptable.indexOf(type.id) > -1)
   }
 }

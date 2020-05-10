@@ -5,8 +5,8 @@
 
 export default function siblingsOf(list, block) {
   if (block.parent) {
-    return list.filter(i => i.parent === block.parent)
+    return list.filter((i) => i.parent === block.parent)
   } else {
-    return list.filter(i => !i.parent)
+    return list.filter((i) => !i.parent)
   }
 }

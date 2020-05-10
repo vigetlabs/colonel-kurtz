@@ -4,7 +4,7 @@ jobs:
   build:
     working_directory: /home/circleci/colonel-kurtz
     docker:
-      - image: circleci/node:8.9
+      - image: circleci/node:12.13
     steps:
       - checkout
       - restore_cache:

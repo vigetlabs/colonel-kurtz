@@ -9,6 +9,7 @@ import HtmlEmbedBlock from '../addons/html-embed'
 import ImageBlock from '../addons/image'
 import YouTubeBlock from '../addons/youtube'
 import SectionBlock from './blockTypes/Section'
+import persist from './plugins/persist'
 
 const blockTypes = [
   {
@@ -16,7 +17,8 @@ const blockTypes = [
     label: 'Section',
     component: SectionBlock,
     types: ['child-text', 'image', 'youtube'],
-    maxChildren: 3
+    maxChildren: 3,
+    root: true
   },
   {
     id: 'medium',
@@ -32,8 +34,7 @@ const blockTypes = [
   {
     id: 'child-text',
     label: 'Child Text',
-    component: MediumBlock,
-    root: false
+    component: MediumBlock
   },
   {
     id: 'image',
@@ -49,11 +50,11 @@ const blockTypes = [
   }
 ]
 
-let editor = new ColonelKurtz({
+const editor = new ColonelKurtz({
   el: document.getElementById('app'),
   blockTypes: blockTypes,
   maxChildren: 5,
   maxDepth: 3
 })
 
-editor.start()
+editor.addEffect(persist, { el: document.getElementById('output') })

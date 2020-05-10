@@ -20,7 +20,7 @@ export default class Block extends React.PureComponent {
   getBlockType() {
     let { app, block } = this.props
 
-    let blockType = app.state.blockTypes.filter(i => i.id === block.type)[0]
+    let blockType = app.state.blockTypes.filter((i) => i.id === block.type)[0]
 
     return blockType ? blockType : new FallbackBlockType({ block })
   }
@@ -72,17 +72,19 @@ export default class Block extends React.PureComponent {
       <div className="col-editor-block">
         <div className={`col-block col-block-${block.type}`}>
           <Component
-            ref={el => (this.block = el)}
+            ref={(el) => (this.block = el)}
             {...block}
             content={content}
             onChange={this._onChange.bind(this)}
           >
             <Switch app={app} parent={block} />
-            <Animator className="col-block-children">{children}</Animator>
+            <Animator className="col-block-children">
+              <>{children}</>
+            </Animator>
           </Component>
 
           <BlockMenu
-            ref={el => (this.menu = el)}
+            ref={(el) => (this.menu = el)}
             app={app}
             block={block}
             items={extraMenuItems}
@@ -102,11 +104,11 @@ export default class Block extends React.PureComponent {
 
     if (typeof keypath === 'object') {
       // onChange({ field: 'value' })
-      app.push(Actions.update, [block, keypath])
+      app.push(Actions.update, { id: block, content: keypath })
     } else {
       // onChange('field', 'value')
       // onChange('deep.field', 'value')
-      app.push(Actions.set, [block, keypath, value])
+      app.push(Actions.set, { id: block, path: keypath, value })
     }
   }
 }

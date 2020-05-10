@@ -1,5 +1,36 @@
 # Changelog
 
+## New Changes
+
+- Upgrade project dependencies (the following is not an exhaustive list)
+  - Babel 7
+  - ESLint 7
+  - Prettier 2.0
+  - React/DOM 16.13
+  - Rollup 2.8
+  - Webpack 4.43
+  - Microcosm 12.15
+
+### Upgrading
+
+The main change to be aware of when upgrading to the latest version of Colonel Kurtz is that the editor no longer requires you to call `editor.start()` after calling `new ColonelKurtz({..})` in order to boot the app.
+
+#### Before
+
+```javascript
+const editor = new ColonelKurtz({ .. })
+
+editor.start()
+```
+
+#### After
+
+```javascript
+new ColonelKurtz({ .. })
+```
+
+**Note**: you may still want to bind the app instance to a variable if you want to attach additional listeners or perform other setup work.
+
 ## 5.2.1
 
 - Fix bug where block creation toggle could get stuck open

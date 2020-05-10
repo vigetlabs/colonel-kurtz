@@ -7,15 +7,14 @@ import TestUtils from 'react-dom/test-utils'
 
 const render = TestUtils.renderIntoDocument
 
-describe('Components - EditorBlock', function() {
+describe('Components - EditorBlock', function () {
   let app
 
-  beforeEach(function(done) {
+  beforeEach(function () {
     app = new Colonel(config)
-    app.start(done)
   })
 
-  it('renders child blocks', function() {
+  it('renders child blocks', function () {
     let block = app.state.blocks[0]
     let component = render(<EditorBlock app={app} block={block} />)
     let element = DOM.findDOMNode(component)

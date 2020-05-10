@@ -54,20 +54,21 @@ export default class BlockTypeGroup extends React.Component {
     return (
       <Animator
         role="button"
-        transitionName="col-menu"
+        classNames="col-menu"
         className="col-switch-dropdown"
-        transitionEnterTimeout={300}
-        transitionLeaveTimeout={200}
+        transition={{ exit: 200, enter: 300 }}
         onKeyUp={this._onKeyUp.bind(this)}
       >
-        <Btn
-          key="label"
-          className="col-switch-btn col-menu-label"
-          onClick={this.open.bind(this)}
-        >
-          {this.props.label}
-        </Btn>
-        {this.getMenu()}
+        <>
+          <Btn
+            key="label"
+            className="col-switch-btn col-menu-label"
+            onClick={this.open.bind(this)}
+          >
+            {this.props.label}
+          </Btn>
+          {this.getMenu()}
+        </>
       </Animator>
     )
   }

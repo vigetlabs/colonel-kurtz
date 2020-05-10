@@ -5,7 +5,7 @@
 
 import siblingsOf from './siblingsOf'
 
-export default function(list, block, delta) {
+export default function (list, block, delta) {
   let siblings = siblingsOf(list, block)
   let index = siblings.indexOf(block)
 

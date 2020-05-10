@@ -31,11 +31,11 @@ const Blocks = {
   },
 
   find(state, id) {
-    return state.filter(block => block.valueOf() === id)[0]
+    return state.filter((block) => block.valueOf() === id)[0]
   },
 
   getChildren(state, parent) {
-    return state.filter(i => i.parent === parent)
+    return state.filter((i) => i.parent === parent)
   },
 
   getDepth(state, block, maxDepth) {
@@ -44,14 +44,14 @@ const Blocks = {
 
     while (currentBlock && depth <= maxDepth + 1) {
       depth += 1
-      currentBlock = state.filter(i => i === currentBlock.parent)[0]
+      currentBlock = state.filter((i) => i === currentBlock.parent)[0]
     }
 
     return depth
   },
 
   filterChildren(state) {
-    return state.filter(i => !i.parent)
+    return state.filter((i) => !i.parent)
   },
 
   /**
@@ -87,7 +87,7 @@ const Blocks = {
 
     block.content = assign({}, block.content, content)
 
-    return state
+    return [...state]
   },
 
   set(state, { id, path, value }) {
@@ -95,11 +95,11 @@ const Blocks = {
 
     block.content = set(block.content, path, value)
 
-    return state
+    return [...state]
   },
 
   destroy(state, id) {
-    return state.filter(function(block) {
+    return state.filter(function (block) {
       for (let b = block; b; b = b.parent) {
         if (b.id == id) return false
       }
@@ -108,7 +108,7 @@ const Blocks = {
   },
 
   move(state, { block, distance }) {
-    let without = state.filter(i => i !== block)
+    let without = state.filter((i) => i !== block)
     let before = siblingAt(state, block, distance)
 
     return insertAt(without, block, state.indexOf(before))

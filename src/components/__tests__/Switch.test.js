@@ -5,20 +5,18 @@ import Fixture from './fixtures/testBlockType'
 import Switch from '../Switch'
 import TestUtils from 'react-dom/test-utils'
 
-describe('Components - Switch', function() {
+describe('Components - Switch', function () {
   let render = TestUtils.renderIntoDocument
   let app
 
-  beforeEach(function(done) {
+  beforeEach(function () {
     app = new Colonel({
       el: document.createElement('div'),
       blockTypes: [Fixture]
     })
-
-    app.start(done)
   })
 
-  it('closes when it adds a block', function() {
+  it('closes when it adds a block', function () {
     let base = render(<Switch app={app} />)
 
     base.setState({ open: true })
@@ -30,7 +28,7 @@ describe('Components - Switch', function() {
     expect(base).toHaveProperty('state.open', false)
   })
 
-  it('adds a block type on click', function() {
+  it('adds a block type on click', function () {
     let base = render(<Switch app={app} />)
 
     base.setState({ open: true })
@@ -42,8 +40,8 @@ describe('Components - Switch', function() {
     expect(app.state.blocks[0]).toHaveProperty('type', 'test')
   })
 
-  describe('When only one block type given', function() {
-    it('_onToggle creates that block type', function() {
+  describe('When only one block type given', function () {
+    it('_onToggle creates that block type', function () {
       let component = render(<Switch app={app} />)
 
       component._onToggle()
@@ -52,8 +50,8 @@ describe('Components - Switch', function() {
     })
   })
 
-  describe('When more than one block type is given', function() {
-    beforeEach(function(done) {
+  describe('When more than one block type is given', function () {
+    beforeEach(function () {
       let SecondType = Object.create(Fixture)
 
       SecondType.id = 'another'
@@ -62,11 +60,9 @@ describe('Components - Switch', function() {
         el: document.createElement('div'),
         blockTypes: [Fixture, SecondType]
       })
-
-      app.start(done)
     })
 
-    it('_onToggle sets the state to open', function() {
+    it('_onToggle sets the state to open', function () {
       let component = render(<Switch app={app} />)
 
       component._onToggle()
@@ -75,8 +71,8 @@ describe('Components - Switch', function() {
     })
   })
 
-  describe('When given a block with a parent', function() {
-    beforeEach(function(done) {
+  describe('When given a block with a parent', function () {
+    beforeEach(function () {
       let SecondType = Object.create(Fixture)
 
       SecondType.id = 'another'
@@ -87,11 +83,9 @@ describe('Components - Switch', function() {
         blockTypes: [Fixture, SecondType],
         value: [{ type: SecondType.id, content: {}, blocks: [] }]
       })
-
-      app.start(done)
     })
 
-    it('getTypes should display multiple blocks', function() {
+    it('getTypes should display multiple blocks', function () {
       let component = render(<Switch app={app} parent={app.state.blocks[0]} />)
 
       component.setState({ open: true })
@@ -102,25 +96,23 @@ describe('Components - Switch', function() {
     })
   })
 
-  describe('When given a block with a parent that has no types', function() {
-    beforeEach(function(done) {
+  describe('When given a block with a parent that has no types', function () {
+    beforeEach(function () {
       app = new Colonel({
         el: document.createElement('div'),
         blocks: [{ type: Fixture.id, content: {}, blocks: [] }],
         blockTypes: [Fixture]
       })
-
-      app.start(done)
     })
 
-    it('renders nothing', function() {
+    it('renders nothing', function () {
       let component = render(<Switch app={app} parent={app.state.blocks[0]} />)
       expect(DOM.findDOMNode(component)).toEqual(null)
     })
   })
 
-  describe('Key presses', function() {
-    it('closes when the escape key is presed', function() {
+  describe('Key presses', function () {
+    it('closes when the escape key is presed', function () {
       let base = render(<Switch app={app} />)
 
       base.setState({ open: true })
@@ -130,7 +122,7 @@ describe('Components - Switch', function() {
       expect(base).toHaveProperty('state.open', false)
     })
 
-    it('does not close when another key is presed', function() {
+    it('does not close when another key is presed', function () {
       let base = render(<Switch app={app} />)
 
       base.setState({ open: true })
@@ -141,14 +133,14 @@ describe('Components - Switch', function() {
     })
   })
 
-  describe('Creating block children', function() {
+  describe('Creating block children', function () {
     let LimitedFixture = Object.assign({}, Fixture, {
       id: 'limited',
       maxChildren: 3,
       types: ['limited']
     })
 
-    beforeEach(function(done) {
+    beforeEach(function () {
       let type = LimitedFixture.id
       let content = {}
       let block = { type, content, blocks: [] }
@@ -164,11 +156,9 @@ describe('Components - Switch', function() {
         ],
         blockTypes: [LimitedFixture]
       })
-
-      app.start(done)
     })
 
-    it('does not enable toggles when its provided block has too many children', function() {
+    it('does not enable toggles when its provided block has too many children', function () {
       let el = render(<Switch app={app} parent={app.state.blocks[0]} />)
       let button = DOM.findDOMNode(el).querySelector('button')
 
@@ -176,8 +166,8 @@ describe('Components - Switch', function() {
     })
   })
 
-  describe('With nested blocks', function() {
-    beforeEach(function(done) {
+  describe('With nested blocks', function () {
+    beforeEach(function () {
       let NestedFixture = { ...Fixture, types: [Fixture.id] }
 
       let bottom = { type: NestedFixture.id, content: {}, blocks: [] }
@@ -190,11 +180,9 @@ describe('Components - Switch', function() {
         blocks: [root],
         blockTypes: [NestedFixture]
       })
-
-      app.start(done)
     })
 
-    it('does not display the switch if the nesting is too deep', function() {
+    it('does not display the switch if the nesting is too deep', function () {
       let child = app.state.blocks[2]
       let parent = app.state.blocks[1]
       let el = render(<Switch app={app} parent={parent} position={child} />)
@@ -203,8 +191,8 @@ describe('Components - Switch', function() {
     })
   })
 
-  describe('With nested blocks too deep', function() {
-    beforeEach(function(done) {
+  describe('With nested blocks too deep', function () {
+    beforeEach(function () {
       let NestedFixture = { ...Fixture, types: [Fixture.id] }
 
       let bottom = { type: NestedFixture.id, content: {}, blocks: [] }
@@ -217,11 +205,9 @@ describe('Components - Switch', function() {
         blocks: [root],
         blockTypes: [NestedFixture]
       })
-
-      app.start(done)
     })
 
-    it('does not display the switch if the nesting is too deep', function() {
+    it('does not display the switch if the nesting is too deep', function () {
       let child = app.state.blocks[2]
       let parent = app.state.blocks[1]
       let el = render(<Switch app={app} parent={parent} position={child} />)
@@ -230,8 +216,8 @@ describe('Components - Switch', function() {
     })
   })
 
-  describe('Creating editor children', function() {
-    beforeEach(function(done) {
+  describe('Creating editor children', function () {
+    beforeEach(function () {
       let block = { type: Fixture.id, content: {}, blocks: [] }
 
       app = new Colonel({
@@ -240,11 +226,9 @@ describe('Components - Switch', function() {
         blocks: [block, block, block],
         blockTypes: [Fixture]
       })
-
-      app.start(done)
     })
 
-    it('does not enable toggles when the apps maxChildren setting is exceeded', function() {
+    it('does not enable toggles when the apps maxChildren setting is exceeded', function () {
       let el = render(<Switch app={app} />)
       let button = DOM.findDOMNode(el).querySelector('button')
 

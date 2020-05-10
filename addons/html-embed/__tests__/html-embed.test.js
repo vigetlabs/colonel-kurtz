@@ -5,18 +5,18 @@ import TestUtils from 'react-dom/test-utils'
 const Simulate = TestUtils.Simulate
 const render = TestUtils.renderIntoDocument
 
-describe('Addons - HTML Embed', function() {
+describe('Addons - HTML Embed', function () {
   const encoding = 'data:text/html;charset=utf-8'
 
-  describe('instantiating the component', function() {
-    describe('when no HTML or script is provided', function() {
+  describe('instantiating the component', function () {
+    describe('when no HTML or script is provided', function () {
       let component = null
 
-      beforeEach(function() {
+      beforeEach(function () {
         component = render(<HtmlEmbed />)
       })
 
-      it('does not render the sandbox', function() {
+      it('does not render the sandbox', function () {
         const iframes = TestUtils.scryRenderedDOMComponentsWithTag(
           component,
           'iframe'
@@ -26,16 +26,16 @@ describe('Addons - HTML Embed', function() {
       })
     })
 
-    describe('when HTML is provided', function() {
+    describe('when HTML is provided', function () {
       let content = null
       let component = null
 
-      beforeEach(function() {
+      beforeEach(function () {
         content = { html: '<p>Arbitrary html</p>' }
         component = render(<HtmlEmbed content={content} />)
       })
 
-      it('renders the sandbox', function() {
+      it('renders the sandbox', function () {
         const iframes = TestUtils.scryRenderedDOMComponentsWithTag(
           component,
           'iframe'
@@ -48,19 +48,19 @@ describe('Addons - HTML Embed', function() {
       })
     })
 
-    describe('when a script is provided', function() {
+    describe('when a script is provided', function () {
       let content = null
       let component = null
       let expectedScript = escape(
         '<script src="https://scripts.net/such-wow" async></script>'
       )
 
-      beforeEach(function() {
+      beforeEach(function () {
         content = { script: 'https://scripts.net/such-wow' }
         component = render(<HtmlEmbed content={content} />)
       })
 
-      it('renders the sandbox', function() {
+      it('renders the sandbox', function () {
         const iframes = TestUtils.scryRenderedDOMComponentsWithTag(
           component,
           'iframe'
@@ -73,10 +73,10 @@ describe('Addons - HTML Embed', function() {
     })
   })
 
-  describe('on an existing component', function() {
-    describe('when given HTML', function() {
-      describe('containing potentially dangerous tags (script/style)', function() {
-        it('sanitizes HTML when the user inputs markup', function(done) {
+  describe('on an existing component', function () {
+    describe('when given HTML', function () {
+      describe('containing potentially dangerous tags (script/style)', function () {
+        it('sanitizes HTML when the user inputs markup', function (done) {
           function didStripStyleTags(content) {
             expect(content.html).not.toContain('<style')
             expect(content.html).not.toContain('<script')
@@ -92,7 +92,7 @@ describe('Addons - HTML Embed', function() {
           })
         })
 
-        it('keeps script tags when set to unsafe', function(done) {
+        it('keeps script tags when set to unsafe', function (done) {
           function didKeepTags(content) {
             expect(content.html).toContain('<style')
             expect(content.html).toContain('<script')

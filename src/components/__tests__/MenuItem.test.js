@@ -7,31 +7,30 @@ import TestUtils from 'react-dom/test-utils'
 
 const render = TestUtils.renderIntoDocument
 
-describe('Components - Menu Item', function() {
+describe('Components - Menu Item', function () {
   let app
 
-  beforeEach(function(done) {
+  beforeEach(function () {
     app = new Colonel(config)
-    app.start(done)
   })
 
-  it('has a default noop onClick prop', function() {
+  it('has a default noop onClick prop', function () {
     let block = app.state.blocks[0]
     let item = render(<Item app={app} block={block} id="id" label="test" />)
 
     item.props.onClick()
   })
 
-  it('has a default noop isDisabled prop', function() {
+  it('has a default noop isDisabled prop', function () {
     let block = app.state.blocks[0]
     let item = render(<Item app={app} block={block} id="id" label="test" />)
 
     expect(item.props.isDisabled()).not.toBeDefined()
   })
 
-  it('allows label to be a function', function() {
+  it('allows label to be a function', function () {
     const block = app.state.blocks[0]
-    const labelFn = function() {
+    const labelFn = function () {
       return 'my-label'
     }
     const item = render(
@@ -42,7 +41,7 @@ describe('Components - Menu Item', function() {
     expect(result.textContent).toEqual('my-label')
   })
 
-  it('sends the item component into the onClick callback', function(done) {
+  it('sends the item component into the onClick callback', function (done) {
     function testClick(app, block, component) {
       expect(component).toEqual(item)
       done()

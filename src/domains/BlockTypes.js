@@ -14,7 +14,7 @@ export default {
   },
 
   deserialize(blockTypes = []) {
-    return blockTypes.map(options => new BlockType(options))
+    return blockTypes.map((options) => new BlockType(options))
   },
 
   serialize() {

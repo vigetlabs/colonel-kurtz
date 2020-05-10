@@ -71,6 +71,7 @@ $col-switch-nav-radius  : 3px !default;
   border-radius: $col-switch-nav-radius;
   box-shadow: $col-switch-shadow;
   display: inline-block;
+  position: relative;
 }
 
 .col-switch .col-btn-fab {

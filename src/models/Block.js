@@ -12,4 +12,8 @@ export default class Block {
   valueOf() {
     return this.id
   }
+
+  toString() {
+    return this.id
+  }
 }

@@ -3,11 +3,11 @@
  * Extracted logic to get the types of children a block may have
  */
 
-export default function(blockTypes, block) {
+export default function (blockTypes, block) {
   if (block) {
-    let types = blockTypes.filter(i => i.id === block.type)[0].types
-    return blockTypes.filter(i => types.indexOf(i.id) > -1)
+    let types = blockTypes.filter((i) => i.id === block.type)[0].types
+    return blockTypes.filter((i) => types.indexOf(i.id) > -1)
   } else {
-    return blockTypes.filter(type => type.root)
+    return blockTypes.filter((type) => type.root)
   }
 }
