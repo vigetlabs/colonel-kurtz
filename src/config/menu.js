@@ -8,7 +8,7 @@ export default [
     id: 'moveBefore',
     label: 'Move Up',
     onClick(app, block) {
-      app.push(move, [block, -1])
+      app.push(move, { block, distance: -1 })
     },
     isDisabled(app, block) {
       return siblingsOf(app.state.blocks, block)[0] === block
@@ -18,7 +18,7 @@ export default [
     id: 'moveAfter',
     label: 'Move Down',
     onClick(app, block) {
-      app.push(move, [block, 1])
+      app.push(move, { block, distance: 1 })
     },
     isDisabled(app, block) {
       return siblingsOf(app.state.blocks, block).pop() === block

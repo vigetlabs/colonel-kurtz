@@ -5,18 +5,17 @@
  */
 
 import React from 'react'
-import { CSSTransitionGroup } from 'react-transition-group'
+import { CSSTransition } from 'react-transition-group'
 
 const defaultProps = {
   component: 'div',
-  transitionName: 'col-editor-block',
-  transitionEnterTimeout: 280,
-  transitionLeaveTimeout: 280
+  classNames: 'col-editor-block',
+  timeout: { exit: 280, enter: 280 }
 }
 
 export default class Animator extends React.Component {
   render() {
-    return React.createElement(CSSTransitionGroup, this.props)
+    return React.createElement(CSSTransition, this.props)
   }
 }
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import BlockTypes from '../BlockTypes'
 
-describe('Stores - BlockType', function() {
+describe('Domains - BlockType', function () {
   let fixture = {
     id: 'test',
     label: 'test',
@@ -12,11 +12,11 @@ describe('Stores - BlockType', function() {
     }
   }
 
-  it('can handle if no blockTypes are given', function() {
+  it('can handle if no blockTypes are given', function () {
     expect(BlockTypes.deserialize()).toBeInstanceOf(Array)
   })
 
-  it('ensures a deserialized block type has a types field', function() {
+  it('ensures a deserialized block type has a types field', function () {
     let blockTypes = BlockTypes.deserialize([fixture])
     expect(blockTypes[0]).toHaveProperty('types')
   })

@@ -5,7 +5,7 @@
 
 import React from 'react'
 import Animator from './Animator'
-import Blocks from '../stores/Blocks'
+import Blocks from '../domains/Blocks'
 import EditorBlock from './EditorBlock'
 import Switch from './Switch'
 
@@ -22,8 +22,8 @@ export default class App extends React.Component {
     return (
       <div className="colonel">
         <Switch app={app} />
-        <Animator className="col-block-children">
-          {parents.map(this.getBlock, this)}
+        <Animator classNames="col-block-children">
+          <>{parents.map(this.getBlock, this)}</>
         </Animator>
       </div>
     )

@@ -1,6 +1,6 @@
 import Block from './Block'
 import React from 'react'
-import Blocks from '../stores/Blocks'
+import Blocks from '../domains/Blocks'
 
 export default class EditorBlock extends React.Component {
   getBlock(block) {

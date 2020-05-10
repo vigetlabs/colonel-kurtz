@@ -1,6 +1,6 @@
 import ActionButton from './ActionButton'
 import Actions from '../actions/blocks'
-import Blocks from '../stores/Blocks'
+import Blocks from '../domains/Blocks'
 import React from 'react'
 import SwitchNav from './SwitchNav'
 import classNames from 'classnames'
@@ -57,26 +57,29 @@ export default class Switch extends React.Component {
 
     if (!parent) {
       return (
-        Blocks.filterChildren(app.state.blocks).length >= app.state.maxChildren
+        Blocks.filterChildren(app.state.blocks).length >=
+        app.state.settings.maxChildren
       )
     }
 
     let children = Blocks.getChildren(app.state.blocks, parent)
-    let type = app.state.blockTypes.filter(t => t.id === parent.type)[0]
+    let type = app.state.blockTypes.filter((t) => t.id === parent.type)[0]
 
     return children.length >= type.maxChildren
   }
 
   depth() {
     let { app, parent } = this.props
-    return Blocks.getDepth(app.state.blocks, parent, app.state.maxDepth) + 1
+    return (
+      Blocks.getDepth(app.state.blocks, parent, app.state.settings.maxDepth) + 1
+    )
   }
 
   hasHitMaxDepth() {
     let { app } = this.props
-    if (!app.state.maxDepth) return false
+    if (!app.state.settings.maxDepth) return false
 
-    return this.depth() >= app.state.maxDepth
+    return this.depth() >= app.state.settings.maxDepth
   }
 
   render() {
@@ -97,7 +100,7 @@ export default class Switch extends React.Component {
 
   _onAdd(type) {
     let { app, position, parent } = this.props
-    app.push(Actions.create, [type.id, position, parent])
+    app.push(Actions.create, { type: type.id, position, parent })
     this.setState({ open: false })
   }
 
@@ -108,7 +111,7 @@ export default class Switch extends React.Component {
     // If only one type exists, instead of opening the nav, just
     // create that element
     if (types.length === 1) {
-      app.push(Actions.create, [types[0].id, position, parent])
+      app.push(Actions.create, { type: types[0].id, position, parent })
     } else {
       this.open()
     }

@@ -1,12 +1,12 @@
 import Block from '../../models/Block'
 import Blocks from '../Blocks'
 
-describe('Stores - Block', function() {
-  it('returns an empty list for its initial state', function() {
+describe('Domains - Block', function () {
+  it('returns an empty list for its initial state', function () {
     expect(Blocks.getInitialState()).toEqual([])
   })
 
-  it('can create new blocks at a specific position', function() {
+  it('can create new blocks at a specific position', function () {
     let target = new Block({})
     let initial = [new Block({}), target, new Block({})]
     let state = Blocks.create(initial, { type: 'test', position: target })
@@ -14,7 +14,7 @@ describe('Stores - Block', function() {
     expect(state[state.indexOf(target) + 1]).toHaveProperty('type', 'test')
   })
 
-  it('creates blocks at position of 0 if not specified', function() {
+  it('creates blocks at position of 0 if not specified', function () {
     let target = new Block({})
     let initial = [new Block({}), target, new Block({})]
     let state = Blocks.create(initial, { type: 'test' })
@@ -22,7 +22,7 @@ describe('Stores - Block', function() {
     expect(state[0]).toHaveProperty('type', 'test')
   })
 
-  it('can remove blocks with an id', function() {
+  it('can remove blocks with an id', function () {
     let target = new Block({})
     let initial = [new Block({}), target, new Block({})]
     let state = Blocks.destroy(initial, target.id)
@@ -30,7 +30,7 @@ describe('Stores - Block', function() {
     expect(state.indexOf(target)).toEqual(-1)
   })
 
-  it('can update the content for a block', function() {
+  it('can update the content for a block', function () {
     let target = new Block({})
     let initial = [new Block({}), target, new Block({})]
 
@@ -42,7 +42,7 @@ describe('Stores - Block', function() {
     expect(target.content).toHaveProperty('foo', 'bar')
   })
 
-  it('can set a nested key for a block', function() {
+  it('can set a nested key for a block', function () {
     let target = new Block({})
     let initial = [new Block({}), target, new Block({})]
 
@@ -55,7 +55,7 @@ describe('Stores - Block', function() {
     expect(target.content.foo.bar).toBe('baz')
   })
 
-  it('can move a block', function() {
+  it('can move a block', function () {
     let target = new Block({})
     let next = new Block({})
     let initial = [new Block({}), target, next]
@@ -64,7 +64,7 @@ describe('Stores - Block', function() {
     expect(state[2]).toEqual(target)
   })
 
-  it('creates a block after a given other block', function() {
+  it('creates a block after a given other block', function () {
     let target = new Block({})
     let initial = [target, new Block({})]
     let state = Blocks.create(initial, {
@@ -75,7 +75,7 @@ describe('Stores - Block', function() {
     expect(state[1].type).toEqual('expected')
   })
 
-  it('maintains an empty content object when deserialized', function() {
+  it('maintains an empty content object when deserialized', function () {
     let blocks = [new Block({})]
     let state = Blocks.deserialize(blocks)
 

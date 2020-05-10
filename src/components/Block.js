@@ -78,7 +78,9 @@ export default class Block extends React.PureComponent {
             onChange={this._onChange.bind(this)}
           >
             <Switch app={app} parent={block} />
-            <Animator className="col-block-children">{children}</Animator>
+            <Animator className="col-block-children">
+              <>{children}</>
+            </Animator>
           </Component>
 
           <BlockMenu
@@ -102,11 +104,11 @@ export default class Block extends React.PureComponent {
 
     if (typeof keypath === 'object') {
       // onChange({ field: 'value' })
-      app.push(Actions.update, [block, keypath])
+      app.push(Actions.update, { id: block, content: keypath })
     } else {
       // onChange('field', 'value')
       // onChange('deep.field', 'value')
-      app.push(Actions.set, [block, keypath, value])
+      app.push(Actions.set, { id: block, path: keypath, value })
     }
   }
 }
