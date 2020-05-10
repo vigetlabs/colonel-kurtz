@@ -58,21 +58,25 @@ haven't pulled down Colonel Kurtz from
 npm install --save colonel-kurtz
 ```
 
+Or if you're using [yarn](https://classic.yarnpkg.com/en/):
+
+```bash
+yarn add colonel-kurtz
+```
+
 After that finishes, we need to select the container for Colonel Kurtz
 and the input that we want to update.
 
 ```javascript
 import Colonel from 'colonel-kurtz'
 
-let container = document.querySelector('#container')
-let input = document.querySelector('#input')
+const container = document.querySelector('#container')
+const input = document.querySelector('#input')
 
-let editor = new ColonelKurtz({
+const editor = new ColonelKurtz({
   el: container,
   blocks: input
 })
-
-editor.start()
 ```
 
 That's it, for now at any rate. Since `#input` is a DOM element, the
@@ -111,10 +115,10 @@ editor:
 import Colonel from 'colonel-kurtz'
 import Youtube from 'colonel-kurtz/addons/youtube'
 
-let container = document.querySelector('#container')
-let input = document.querySelector('#input')
+const container = document.querySelector('#container')
+const input = document.querySelector('#input')
 
-let editor = new ColonelKurtz({
+const editor = new ColonelKurtz({
   el: container,
   blocks: input,
   blockTypes: [
@@ -125,8 +129,6 @@ let editor = new ColonelKurtz({
     }
   ]
 })
-
-editor.start()
 ```
 
 In the code above, we've added a `blockTypes` field that includes the
@@ -162,7 +164,7 @@ to this and update your input with:
 
 ```javascript
 // Assuming code from prior section
-editor.listen(function() {
+editor.on('change', function () {
   input.value = JSON.stringify(editor)
 })
 ```
