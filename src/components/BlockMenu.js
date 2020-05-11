@@ -1,9 +1,10 @@
 import Animator from './Animator'
-import FocusTrap from 'react-focus-trap'
-import Handle from './MenuHandle'
-import Item from './MenuItem'
+import MenuItem from './MenuItem'
 import React from 'react'
 import menuItems from '../config/menu'
+import Handle from './MenuHandle'
+import { Menu, MenuItems, MenuPopover } from '@reach/menu-button'
+import { positionRight } from '@reach/popover'
 
 const defaultProps = {
   items: []
@@ -14,7 +15,12 @@ export default class BlockMenu extends React.Component {
     let { id } = item
 
     return (
-      <Item key={id} ref={(el) => (this[id] = el)} {...item} {...this.props} />
+      <MenuItem
+        key={id}
+        ref={(el) => (this[id] = el)}
+        {...item}
+        {...this.props}
+      />
     )
   }
 
@@ -24,23 +30,6 @@ export default class BlockMenu extends React.Component {
     return items.concat(menuItems).map(this.getMenuItem, this)
   }
 
-  getMenu() {
-    if (!this.props.active) return null
-
-    return React.createElement(
-      FocusTrap,
-      {
-        active: true,
-        key: 'menu',
-        className: 'col-menu',
-        element: 'nav',
-        onExit: this.props.onExit,
-        role: 'navigation'
-      },
-      this.getMenuItems()
-    )
-  }
-
   render() {
     return (
       <Animator
@@ -48,18 +37,19 @@ export default class BlockMenu extends React.Component {
         classNames="col-menu"
         timeout={{ exit: 200, enter: 300 }}
       >
-        <>
-          <Handle
-            key="handle"
-            ref={(el) => (this.handle = el)}
-            onClick={this.props.onOpen}
-          />
-          {this.getMenu()}
-        </>
+        <Menu>
+          <Handle key="handle" />
+
+          <MenuPopover position={positionRight}>
+            <div className="colonel">
+              <MenuItems className="col-menu">{this.getMenuItems()}</MenuItems>
+            </div>
+          </MenuPopover>
+        </Menu>
       </Animator>
     )
   }
 }
 
-BlockMenu.Item = Item
+BlockMenu.Item = MenuItem
 BlockMenu.defaultProps = defaultProps

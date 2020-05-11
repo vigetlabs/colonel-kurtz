@@ -12,8 +12,7 @@ export default class Block extends React.PureComponent {
     super(...arguments)
 
     this.state = {
-      extraMenuItems: [],
-      menuOpen: false
+      extraMenuItems: []
     }
   }
 
@@ -35,14 +34,6 @@ export default class Block extends React.PureComponent {
     }
   }
 
-  openMenu() {
-    this.setState({ menuOpen: true })
-  }
-
-  closeMenu() {
-    this.setState({ menuOpen: false })
-  }
-
   componentDidMount() {
     this.setMenuItems(this.block)
 
@@ -62,7 +53,7 @@ export default class Block extends React.PureComponent {
   render() {
     let { app, block, children } = this.props
     let { component: Component } = this.getBlockType()
-    let { menuOpen, extraMenuItems } = this.state
+    let { extraMenuItems } = this.state
 
     // Determine content by taking the default content and extend it with
     // the current block content
@@ -88,9 +79,6 @@ export default class Block extends React.PureComponent {
             app={app}
             block={block}
             items={extraMenuItems}
-            active={menuOpen}
-            onOpen={this.openMenu.bind(this)}
-            onExit={this.closeMenu.bind(this)}
           />
         </div>
 

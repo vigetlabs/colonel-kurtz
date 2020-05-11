@@ -4,3 +4,4 @@ npm-debug.log
 coverage
 build
 example/example.build.*
+yarn-error.log

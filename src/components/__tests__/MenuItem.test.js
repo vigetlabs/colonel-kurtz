@@ -4,8 +4,27 @@ import Colonel from '../../Colonel'
 import Item from '../MenuItem'
 import config from './fixtures/colonelConfig'
 import TestUtils from 'react-dom/test-utils'
+import { Menu, MenuButton, MenuList } from '@reach/menu-button'
 
 const render = TestUtils.renderIntoDocument
+
+/**
+ * React UI's `MenuItem` must be rendered inside a `<Menu>` with a `<MenuButton>`.
+ */
+function renderMenuItem(props) {
+  const ref = React.createRef()
+
+  render(
+    <Menu>
+      <MenuButton>Menu</MenuButton>
+      <MenuList>
+        <Item ref={ref} {...props} />
+      </MenuList>
+    </Menu>
+  )
+
+  return ref.current
+}
 
 describe('Components - Menu Item', function () {
   let app
@@ -15,15 +34,27 @@ describe('Components - Menu Item', function () {
   })
 
   it('has a default noop onClick prop', function () {
-    let block = app.state.blocks[0]
-    let item = render(<Item app={app} block={block} id="id" label="test" />)
+    const block = app.state.blocks[0]
+
+    const item = renderMenuItem({
+      app,
+      block,
+      id: 'id',
+      label: 'test'
+    })
 
     item.props.onClick()
   })
 
   it('has a default noop isDisabled prop', function () {
-    let block = app.state.blocks[0]
-    let item = render(<Item app={app} block={block} id="id" label="test" />)
+    const block = app.state.blocks[0]
+
+    const item = renderMenuItem({
+      app,
+      block,
+      id: 'id',
+      label: 'test'
+    })
 
     expect(item.props.isDisabled()).not.toBeDefined()
   })
@@ -33,9 +64,14 @@ describe('Components - Menu Item', function () {
     const labelFn = function () {
       return 'my-label'
     }
-    const item = render(
-      <Item app={app} block={block} id="id" label={labelFn} />
-    )
+
+    const item = renderMenuItem({
+      app,
+      block,
+      id: 'id',
+      label: labelFn
+    })
+
     const result = DOM.findDOMNode(item)
 
     expect(result.textContent).toEqual('my-label')
@@ -47,10 +83,15 @@ describe('Components - Menu Item', function () {
       done()
     }
 
-    let block = app.state.blocks[0]
-    let item = render(
-      <Item app={app} onClick={testClick} block={block} id="id" label="test" />
-    )
+    const block = app.state.blocks[0]
+
+    const item = renderMenuItem({
+      app,
+      block,
+      id: 'id',
+      label: 'test',
+      onClick: testClick
+    })
 
     item._onClick()
   })

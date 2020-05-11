@@ -1,0 +1,22 @@
+/**
+ * Ensures the .colonel wrapper inside reach-ui portals exists and looks right
+ * so that any child CK UI components can render properly using their scoped
+ * styles
+ */
+[data-reach-menu] {
+  & .colonel {
+    background: transparent;
+    height: auto;
+    z-index: 1;
+  }
+}
+
+/**
+ * Disables the extra border style applied to reach menus. CK renders menus
+ * with a subtle box-shadow
+ */
+.colonel {
+  [data-reach-menu-items] {
+    border: none;
+  }
+}

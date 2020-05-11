@@ -1,5 +1,5 @@
-import Button from './Button'
 import React from 'react'
+import { MenuItem as ReachMenuItem } from '@reach/menu-button'
 
 const defaultProps = {
   className: 'col-menu-item',
@@ -21,6 +21,7 @@ export default class MenuItem extends React.Component {
       block,
       onOpen,
       onExit,
+      onClick, // don't forward this to the Reach component
       active,
       isDisabled,
       items,
@@ -28,13 +29,14 @@ export default class MenuItem extends React.Component {
     } = this.props
 
     return (
-      <Button
+      <ReachMenuItem
         {...safe}
-        onClick={this._onClick.bind(this)}
+        as="button"
+        onSelect={this._onClick.bind(this)}
         disabled={this.isDisabled()}
       >
         {this._formatLabel(label)}
-      </Button>
+      </ReachMenuItem>
     )
   }
 

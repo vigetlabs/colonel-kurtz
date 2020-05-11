@@ -10,8 +10,6 @@ $col-menu-item-fontsize  : 14px !default;
 $col-menu-item-padding   : unit(1.5) unit(2) !default;
 $col-menu-padding        : unit(1) 0 !default;
 $col-menu-radius         : $col-radius-small !default;
-$col-menu-right          : unit(1) !default;
-$col-menu-top            : unit(1) !default;
 $col-menu-width          : unit(18) !default;
 $col-menu-z-index        : 1 !default;
 
@@ -53,10 +51,7 @@ $col-menu-z-index        : 1 !default;
   min-width: $col-menu-width;
   overflow: hidden;
   padding: $col-menu-padding;
-  position: absolute;
-  right: $col-menu-right;
   transform-origin: 100% 0;
-  top: $col-menu-top;
   z-index: 2;
 
   &:focus {
@@ -88,8 +83,10 @@ $col-menu-z-index        : 1 !default;
   text-align: left;
 
   &:hover,
-  &:focus {
+  &:focus,
+  &[data-selected] {
     background: #e0e0e0;
+    color: rgba(#000, 0.7);
     transition: 0.1s all;
     outline: none;
   }
