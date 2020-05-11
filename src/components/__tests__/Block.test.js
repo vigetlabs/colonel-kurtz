@@ -29,11 +29,6 @@ describe('Components - Block', function () {
     expect(child.className).toContain(block.type)
   })
 
-  it('sends an onOpen callback to the menu it owns', function () {
-    component.menu.props.onOpen()
-    expect(component).toHaveProperty('state.menuOpen', true)
-  })
-
   it('updates a block when it changes', function () {
     component._onChange({ fiz: 'buzz' })
     expect(component).toHaveProperty('props.block.content.fiz', 'buzz')
@@ -45,15 +40,6 @@ describe('Components - Block', function () {
     component.setState({ menuOpen: true })
 
     expect(menu).toHaveProperty('test')
-  })
-
-  it('can close a menu', function () {
-    let { menu } = component
-
-    component.setState({ menuOpen: true })
-    menu.props.onExit()
-
-    expect(component).toHaveProperty('state.menuOpen', false)
   })
 
   it('respects default the content prop', function () {
