@@ -52,6 +52,11 @@ const blockTypes = [
 let editor = new ColonelKurtz({
   el: document.getElementById('app'),
   blockTypes: blockTypes,
+  blockOptions: {
+    youtube: {
+      name: 'Chris'
+    }
+  },
   maxChildren: 5,
   maxDepth: 3
 })

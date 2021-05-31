@@ -28,6 +28,8 @@ export default class YouTube extends React.Component {
   render() {
     const { baseUrl, content } = this.props
 
+    console.log(this.props.name)
+
     return (
       <Embedded
         className="col-youtube"
